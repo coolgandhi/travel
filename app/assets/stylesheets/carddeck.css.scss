@@ -1,6 +1,15 @@
-//my custom grid
-@import "mycustomgrid/mycustomgrid";
-@import "mediaqueries/mediaqueries";
+/* STYLING FOR CONTENT OF AN ACTIVITY CARD. CURRENTLY MIXING WITH MORE MAIN BODY STYLES BUT WILL WORK TO SEPARATE
+  1. MAIN BODY STYLES
+  2. TITLE DIV
+  3. FILMSTRIP NAVIGATION
+  4. IMAGE DIV
+  5. CAPTION DIV
+  6. NAVIGATION BOTTOM
+  7. MISC
+*/
+
+
+/* 1. MAIN BODY STYLES*/
 
 html, body, .page-wrap {
   height: 644px; //height of safari mobile viewport in landscape
@@ -32,43 +41,8 @@ html, body, .page-wrap {
   background-color: grey;
 }
 
-.fill{
-  min-height: 100%;
-  height: 100%
-}
 
-.col{
-  margin-bottom: -99999px;
-  padding-bottom: 99999px;
-}
-
-.col-wrap{
-  overflow: hidden; 
-}
-
-/* Main Image Rules */ 
-img {
-  width: auto;
-/*  height: auto;*/
-/*  max-width: 100%;*/
-  vertical-align: middle;
-  border: 0;
-  -ms-interpolation-mode: bicubic;
-}
-
-img.hung_image{
-  width: 100%;
-  height: auto;
-  
-  @include respond-to(widescreen){
-  height: 90%;
-  width: auto;
-  } 
-}
-
-
-
-/* Middle Layer of Content */ 
+/* 2. TITLE DIV */ 
 
 $titlerowheight: 10%;
 $lastrowheight: 10%;
@@ -116,6 +90,8 @@ $lastrowheight: 10%;
   }
 }
 
+
+/* 3. FILMSTRIP NAVIGATION */ 
 .filmstrip{
   @include col(2);
   @include box-sizing(border-box);
@@ -141,6 +117,27 @@ $lastrowheight: 10%;
   }
 }
 
+/* 4. IMAGE DIV */ 
+
+img {
+  width: auto;
+/*  height: auto;*/
+/*  max-width: 100%;*/
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+img.hung_image{
+  width: 100%;
+  height: auto;
+  
+  @include respond-to(widescreen){
+  height: 90%;
+  width: auto;
+  } 
+}
+
 .centerimage{
   @include col(8);
   @include box-sizing(border-box);
@@ -160,12 +157,13 @@ $lastrowheight: 10%;
   @include col(12);
   @include box-sizing(border-box);
   padding: 1em;
-  height: auto;
+  height: 60%;
   margin-left: 0;
   width: 100%;
   }
 }
 
+/* 5. CAPTION DIV */
 .rightcaption{
   @include col(4);
   @include box-sizing(border-box);
@@ -174,26 +172,22 @@ $lastrowheight: 10%;
   height: 100%;
 
   @include respond-to(portrait){
-  @include col(12);
-  // float: right;
-  @include box-sizing(border-box);
-  padding: 1em;
-  height: 40%;
+    @include col(12);
+    // float: right;
+    @include box-sizing(border-box);
+    padding: 1em;
+    height: 40%;
   }
 
   @include respond-to(small){
-  @include col(12);
-  // float: right;
-  @include box-sizing(border-box);
-  padding: 1em;
-  height: auto;
-  margin-left: 0;
-  width: 100%;
+    @include col(12);
+    // float: right;
+    @include box-sizing(border-box);
+    padding: 1em;
+    height: 40%;
+    margin-left: 0;
+    width: 100%;
   }
-}
-
-.filmstriptable{
-  min-height: 100%;
 }
 
 /* NAVIGATION ARROWS */
@@ -270,81 +264,9 @@ $lastrowheight: 10%;
   height: $lastrowheight;
 }
 
-/* Using CSS-only slide out */
-.toggle-menu {
-  display: none;
 
-  @include respond-to(small){
-  display: block;
-  }
-}
+/* 7. MISC */
 
-.main-nav-check {
-  display: none;
-}
-
-.main-nav {
-  position: fixed;
-  top: 0;
-  width: 0;
-  height: 100%;
-  background: #3B3B3B;
-  overflow: hidden;
-  overflow-y: auto; //i added this
-  transition: width 0.3s ease;
-  a {
-    display: block;
-    background: linear-gradient(#3E3E3E, #383838);
-    border-top: 1px solid #484848;
-    border-bottom: 1px solid #2E2E2E;
-    color: white;
-    padding: 15px;
-    &:hover, &:focus {
-      background: linear-gradient(#484848, #383838);
-    }
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 34px;
-    background: linear-gradient(left, rgba(black, 0), rgba(black, 0.4));
-  }
-}
-
-.close-menu {
-  display: none;
-}
-
-#main-nav-check:checked + #main-nav {
-  width: 20%;
-  left: 0;
-  @include box-sizing(border-box);
-  padding: 2%;
-}
-
-#main-nav-check:checked ~ .page-wrap {
-  width: 100%; //leaving this at 100% shifts the page off-canvas rather than shrinks it
-  // margin-left: 20%;
-  position: fixed;
-  left: 20%;
-  .open-menu {
-     display: none; 
-  }
-  .close-menu {
-     display: block;
-  }
-
-  .navbar {
-    margin-left: 0%;
-  }
-  // .main-header {
-  //   width: 80%;
-  //   left: 20%;
-  // }
-}
 
 /* bottom rails things */ 
 .bottom-actionlinks{

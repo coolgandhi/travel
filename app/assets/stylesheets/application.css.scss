@@ -1,13 +1,13 @@
  @import "compass/css3";
- @import "bootstrap";
- @import "bootstrap-responsive";
  @import "bootstrap_and_overrides";
+ @import "mycustomgrid/mycustomgrid"; //custom grid mix-in
+ @import "mediaqueries/mediaqueries"; //media queries mix-in
  @import "carddeck.css.scss";
- @import "about_author.css.scss";
- @import "flipper.css.scss";
+ @import "partials/offcanvas-slideout.css.scss";
+ @import "partials/about_author.css.scss";
+ @import "components/flipper.css.scss";
+ @import "components/swipeview_style.css.scss";
  @import "font-awesome.scss";
- @import "swipeview_style.css.scss";
-
 
 ul.ui-autocomplete {
   position: absolute;

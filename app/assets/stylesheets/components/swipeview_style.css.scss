@@ -1,0 +1,68 @@
+/* STYLING FOR THE SWIPEVIEW MODULE TOC
+
+	1. WRAPPER
+	2. FILMSTRIP NAVIGATION - CALLED #NAVSWIPE
+*/
+
+
+/* 1. WRAPPER */
+#wrapper {
+	@include col(10);
+	@include box-sizing(border-box);
+	border: 0.5em solid black;
+	height:90%;
+
+	@include respond-to(portrait){
+  	@include col(9);
+  	}
+
+  	@include respond-to(small){
+  	@include col(12);
+  	}
+}
+
+/* 2. FILMSTRIP NAVIGATION - NAVSWIPE */
+#navswipe {
+	z-index:100;
+	-webkit-border-radius:0.5em;
+	-moz-border-radius:0.5em;
+	-ms-border-radius:0.5em;
+	-o-border-radius:0.5em;
+	border-radius:0.5em;
+}
+
+#navswipe li {
+	overflow:hidden;
+	text-align:center;
+	@extend .media;	
+	display: table;
+}
+
+#navswipe2 li {
+	overflow:hidden;
+	text-align:center;
+	@extend .media;	
+	display: table;
+}
+
+#navswipe li#prev {
+	margin-left:5px;
+	background:transparent;
+	color: white;
+}
+
+#navswipe li#next {
+	margin-right:0;
+	background:transparent;
+	color: white;
+}
+
+#navswipe li.selected {
+	background:rgba(255,255,255,0.4);
+	border: 0.5em solid black;
+}
+
+#navswipe2 li.selected {
+	background:rgba(255,255,255,0.4);
+	border: 0.5em solid black;
+}

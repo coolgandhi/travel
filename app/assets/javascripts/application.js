@@ -17,5 +17,4 @@
 //- require hungcustom
 //= require holder/holder
 //= require swipeview
-//= require jquery.flip.min.js
 //= require_tree .
