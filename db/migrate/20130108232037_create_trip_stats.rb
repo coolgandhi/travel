@@ -1,7 +1,7 @@
 class CreateTripStats < ActiveRecord::Migration
   def change
     create_table :trip_stats do |t|
-      t.string : trip_id
+      t.string :trip_id
       t.float :total_rating
       t.integer :numbers_rated
       t.integer :likes
