@@ -1,7 +1,6 @@
 class CreateLocations < ActiveRecord::Migration
   def change
     create_table :locations do |t|
-      t.string : 
       t.string :location_id
       t.string :place
       t.string :city
