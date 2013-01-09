@@ -1,4 +1,4 @@
-set :repository, "git@github.com:coolgandhi/magic.git"
+set :repository, "git@github.com:coolgandhi/travel.git"
 set :deploy_to, "/var/www/travel"
 set :scm_command, "/usr/local/git/bin/git"
 set :user, "vagrant"
