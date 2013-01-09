@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   activity_time_type_id: MyString
+  activity_period: MyString
+
+two:
+   activity_time_type_id: MyString
+  activity_period: MyString

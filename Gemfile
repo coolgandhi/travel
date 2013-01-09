@@ -1,14 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.10'
-
+gem 'i18n', '~> 0.6.1'
+gem 'rack', '~> 1.4.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+#gem 'sqlite3'
+gem 'mysql2'
 gem 'json'
-
+gem 'rvm-capistrano', '1.3.0.rc1'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

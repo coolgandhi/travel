@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   transport_type_id: MyString
+  transport_name: MyString
+
+two:
+   transport_type_id: MyString
+  transport_name: MyString

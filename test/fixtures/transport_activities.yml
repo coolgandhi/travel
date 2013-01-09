@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   activity_id: MyString
+  transport_quick_tips: MyString
+  transport_type_id: MyString
+  duration: MyString
+  source: MyString
+  destination: MyString
+
+two:
+   activity_id: MyString
+  transport_quick_tips: MyString
+  transport_type_id: MyString
+  duration: MyString
+  source: MyString
+  destination: MyString

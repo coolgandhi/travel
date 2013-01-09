@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   trip_id: MyString
+  author_id: MyString
+  location_id: MyString
+  traveler_type_id: MyString
+  trip_name: MyString
+  trip_summary: MyString
+  duration: MyString
+
+two:
+   trip_id: MyString
+  author_id: MyString
+  location_id: MyString
+  traveler_type_id: MyString
+  trip_name: MyString
+  trip_summary: MyString
+  duration: MyString

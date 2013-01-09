@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   traveler_type_id: MyString
+  traveler_type_name: MyString
+
+two:
+   traveler_type_id: MyString
+  traveler_type_name: MyString

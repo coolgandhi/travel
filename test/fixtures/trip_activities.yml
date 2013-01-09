@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+   trip_id: MyString
+  activity_id: MyString
+  activity_day: MyString
+  activity_sequence_number: 1
+  activity_type: MyString
+  activity_time_type: MyString
+
+two:
+   trip_id: MyString
+  activity_id: MyString
+  activity_day: MyString
+  activity_sequence_number: 1
+  activity_type: MyString
+  activity_time_type: MyString
