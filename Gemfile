@@ -6,6 +6,7 @@ gem 'rack', '~> 1.4.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'therubyracer'
 #gem 'sqlite3'
 gem 'mysql2'
 gem 'json'
