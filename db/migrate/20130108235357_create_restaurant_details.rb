@@ -1,7 +1,7 @@
 class CreateRestaurantDetails < ActiveRecord::Migration
   def change
     create_table :restaurant_details do |t|
-      t.string : restaurant_detail_id
+      t.string :restaurant_detail_id
       t.string :name
       t.string :description
       t.string :category

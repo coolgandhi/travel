@@ -1,7 +1,7 @@
 class CreateLocationDetails < ActiveRecord::Migration
   def change
     create_table :location_details do |t|
-      t.string : location_detail_id
+      t.string :location_detail_id
       t.string :name
       t.string :description
       t.string :category
