@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   def index
     
     @trips = Trip.all
-    logger.info "here..."
+    #logger.info "here..."
     #@trips = nil
     
     respond_to do |format|

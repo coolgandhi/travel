@@ -10,7 +10,35 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+      <%= f.label :author_id, 'Author Name ' %>: <%= f.text_field :author_id %>
+  </div>
+  
+  <div class="field">
+      <%= f.label :trip_name, 'Your trip name' %>: <%= f.text_field :trip_name %>
+  </div>
 
+  <div class="field">
+      <%= f.label :location_id, "Place" %>: <%= f.text_field :location_id %>
+  </div>
+
+  <div class="field">
+        <%= f.label :traveler_type_id, 'For' %>: <%= select_tag(:traveler_type_id, options_for_select([['Solo', 1], ['Couples', 2], ['Groups', 3], ['GirlsGetAway ', 4], ['BackPackers', 5] ], 2)) %>
+    </div>
+
+    <div class="field">
+        <%= f.label :duation, 'Length of trip' %>: <%= f.text_field :duration %>
+    </div>  
+    
+    
+    <div class="field">
+        <%= f.label :trip_summary, 'Summary of the trip ' %>:<br/> <%= f.text_area :trip_summary %>
+    </div>
+
+  
+  
+  
   <div class="actions">
     <%= f.submit %>
   </div>
