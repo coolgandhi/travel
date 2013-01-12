@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
       <%= f.label :author_id, 'Author Name ' %>: <%= f.text_field :author_id %>
   </div>
@@ -24,8 +24,9 @@
   </div>
 
   <div class="field">
-        <%= f.label :traveler_type_id, 'For' %>: <%= select_tag(:traveler_type_id, options_for_select([['Solo', 1], ['Couples', 2], ['Groups', 3], ['GirlsGetAway ', 4], ['BackPackers', 5] ], 2)) %>
+        <%= f.label :traveler_type_id, 'For' %>: <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name %>
     </div>
+
 
     <div class="field">
         <%= f.label :duation, 'Length of trip' %>: <%= f.text_field :duration %>

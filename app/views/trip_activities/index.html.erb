@@ -1,0 +1,21 @@
+<h1>Listing trip_activities</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trip_activities.each do |trip_activity| %>
+  <tr>
+    <td><%= link_to 'Show', trip_activity %></td>
+    <td><%= link_to 'Edit', edit_trip_activity_path(trip_activity) %></td>
+    <td><%= link_to 'Destroy', trip_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trip activity', new_trip_activity_path %>

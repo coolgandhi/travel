@@ -12,7 +12,10 @@
   </div>
 <% end %>
 
-<%= @trip.trip_name %>  <br/> <%= @trip.trip_id %> <br/> <%= @trip.duration %> <br/> <%= @trip.location_id %> <br/> <%= @trip.traveler_type_id %> <br/> <%= @trip.trip_summary %> <br/> <%= @trip.author_id %> <br/>
+name: <%= @trip.trip_name %>  <br/>id: <%= @trip.trip_id %> <br/>duration: <%= @trip.duration %> <br/>location: <%= @trip.location_id %> <br/>traveler type: <%= @trip.traveler_type_id %> <br/>summary: <%= @trip.trip_summary %> <br/>author id: <%= @trip.author_id %> <br/>
+
+
+<%= link_to 'Add Activity', new_trip_activity_path(:trip_id => @trip.id) %> <br/>
 
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> |

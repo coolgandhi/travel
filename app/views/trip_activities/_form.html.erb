@@ -1,0 +1,85 @@
+<%= form_for(@trip_activity) do |f| %>
+  <% if @trip_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trip_activity.errors.count, "error") %> prohibited this trip_activity from being saved:</h2>
+
+      <ul>
+      <% @trip_activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag :trip_id, @trip_activity.trip_id %>
+  
+  <div class="field">
+      <%= f.label :activity_day, 'Activity Day ' %>: <%= f.text_field :activity_day %>
+  </div>
+
+  <div class="field">
+      <%= f.label :activity_sequence_number, 'Activity Sequence Number ' %>: <%= f.text_field :activity_sequence_number %>
+  </div>
+
+  <div class="field">
+    <%= f.collection_select :activity_type, ActivityType.all, :activity_type_id, :activity_name %>
+  </div>
+
+  <div class="field">
+    <%= f.collection_select :activity_time_type, ActivityTimeType.all, :activity_time_type_id, :activity_period %>
+  </div> <br/> <br/>
+  Food Activity <br/>
+  <%=  fields_for :food_activity do |fa| %>
+    <div class="field">
+        <%= fa.label :description %>: <%= fa.text_field :description %>
+    </div>
+    <div class="field">
+        <%= fa.label :duration %>: <%= fa.text_field :duration %>
+    </div>
+    <div class="field">
+        <%= fa.label :quick_tip %>: <%= fa.text_field :quick_tip %>
+    </div>
+    <div class="field">    
+        <%= fa.label :restaurant_detail_id %>: <%= fa.text_field :restaurant_detail_id %>
+    </div>    
+  <% end %> <br/> <br/>
+
+  Location Activity <br/>
+  <%=  fields_for :location_activity do |fa| %>
+    <div class="field">
+        <%= fa.label :description %>: <%= fa.text_field :description %>
+    </div>
+    <div class="field">
+        <%= fa.label :duration %>: <%= fa.text_field :duration %>
+    </div>
+    <div class="field">
+        <%= fa.label :quick_tip %>: <%= fa.text_field :quick_tip %>
+    </div>
+    <div class="field">    
+        <%= fa.label :location_detail_id %>: <%= fa.text_field :location_detail_id %>
+    </div>  <br/> <br/>  
+  <% end %> <br/> <br/>
+      
+  Transport Activity <br/>
+  <%=  fields_for :transport_activity do |fa| %>
+    <div class="field">        
+        <%= fa.label :source %>: <%= fa.text_field :source %>
+    </div>
+    <div class="field">
+        <%= fa.label :destination %>: <%= fa.text_field :destination %>
+    </div>
+    <div class="field">
+        <%= fa.label :duration %>: <%= fa.text_field :duration %>
+    </div>
+    <div class="field">  
+        <%= fa.label :transport_quick_tips %>: <%= fa.text_field :transport_quick_tips %>
+    </div>
+    <div class="field">  
+        <%= fa.collection_select :transport_type_id, TransportType.all, :transport_type_id, :transport_name %>
+    </div>
+  <% end %> <br/> <br/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
