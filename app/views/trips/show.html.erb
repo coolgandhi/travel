@@ -12,9 +12,22 @@
   </div>
 <% end %>
 
-name: <%= @trip.trip_name %>  <br/>id: <%= @trip.trip_id %> <br/>duration: <%= @trip.duration %> <br/>location: <%= @trip.location_id %> <br/>traveler type: <%= @trip.traveler_type_id %> <br/>summary: <%= @trip.trip_summary %> <br/>author id: <%= @trip.author_id %> <br/>
-
-
+name: <%= @trip.trip_name %>  <br/>
+id: <%= @trip.trip_id %> <br/>
+duration: <%= @trip.duration %> <br/>
+location: <%= @trip.location_id %> <br/>
+traveler type: <%= @trip.traveler_type_id %> <br/>
+summary: <%= @trip.trip_summary %> <br/>
+author id: <%= @trip.author_id %> <br/> <br/>
+itinerary   
+<% @trip_activities.each do |trip_activity| %>
+  <%= render :partial => "trip_activity", :object => trip_activity %>
+  <% if @trip_activities_details.has_key?(trip_activity.activity_id) %>
+    <%= render @trip_activities_details[trip_activity.activity_id] %>  
+  <% end %>
+  <br/> <br/>
+<% end %>
+<br/> <br/>
 <%= link_to 'Add Activity', new_trip_activity_path(:trip_id => @trip.id) %> <br/>
 
 
