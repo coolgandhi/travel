@@ -46,7 +46,7 @@ class TripActivitiesController < ApplicationController
     @trip_activity.trip_id = params[:trip_id]
     @activity = nil
 #    logger.info("PARAMS: #{params.inspect}")
-    logger.info "New post: #{@trip_activity.attributes.inspect}"
+#    logger.info "New post: #{@trip_activity.attributes.inspect}"
    
     respond_to do |format|
       if @trip_activity[:activity_type] == "1"
