@@ -9,9 +9,9 @@
 
 <% @trip_activities.each do |trip_activity| %>
   <tr>
-    <td><%= link_to 'Show', trip_activity %></td>
-    <td><%= link_to 'Edit', edit_trip_activity_path(trip_activity) %></td>
-    <td><%= link_to 'Destroy', trip_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', trip_trip_activity %></td>
+    <td><%= link_to 'Edit', edit_trip_trip_activity_path(trip_activity) %></td>
+    <td><%= link_to 'Destroy', trip_trip_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
