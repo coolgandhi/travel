@@ -1,14 +1,14 @@
 #set :repository, "git@github.com:coolgandhi/travel.git"
 set :repository, "."
 set :deploy_to, "/var/www/travel"
-set :scm_command, "/usr/local/git/bin/git"
+set :scm_command, "/usr/bin/git" 
+# set :scm_command, "/usr/local/git/bin/git"
 set :user, "vagrant"
 set :password, "vagrant"
 set :scm_username, "coolgandhi"
 set :local_scm_command, "git" 
 set :rvm_ruby_string, 'ruby-1.9.3-p362' 
 set :location, "192.168.33.10"
-#set :location, "192.168.0.107"
 
 set :rails_env, "production"
 set :branch, "master"
