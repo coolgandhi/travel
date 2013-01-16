@@ -8,7 +8,8 @@ set :password, "vagrant"
 set :scm_username, "coolgandhi"
 set :local_scm_command, "git" 
 set :rvm_ruby_string, 'ruby-1.9.3-p362' 
-set :location, "192.168.33.10"  
+set :location, "192.168.11.10"  
+#set :location, "192.168.33.10"  
 set :rails_env, "production"
 set :branch, "master"
 #set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names

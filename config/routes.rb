@@ -14,6 +14,9 @@ Travel::Application.routes.draw do
   #   resources :products
   resources :trips do
     resources :trip_activities
+    member do
+      get 'carddeck'
+    end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl
   # Sample resource route with options:
   #   resources :products do

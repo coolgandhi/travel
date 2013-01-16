@@ -1,14 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Travel</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Cool Travel Company" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<%= yield %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
 
-</body>
+
+  <body>
+
+      <input type="checkbox" class="main-nav-check" id="main-nav-check" />
+<nav class="main-nav" id="main-nav">
+  <ul class="media-list" id="filmstriplist">
+          
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+          
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>
+
+          <li class="media">
+            <img class="media-object" data-src="holder.js/160x120">
+          </li>                     
+          
+          <li>
+            <center><i class="icon-caret-down icon-2x"></i></center>
+          </li>
+
+        </ul>
+</nav>	
+  <div class="page-wrap">
+    <header class="navbar navbar-inverse navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </nav>
+    </header>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              
+            </div>
+          </div>
+
+          <footer>
+          </footer>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+              <%= yield %>
+  </div> <!--! end of .page-wrap -->
+  </body>
 </html>

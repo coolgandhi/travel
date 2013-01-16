@@ -58,5 +58,8 @@ module Travel
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # adding the path for fonts for the asset pipelin
+    config.assets.paths << "../app/assets/fonts"
   end
 end

@@ -1,0 +1,379 @@
+//my custom grid
+@import "mycustomgrid/mycustomgrid";
+@import "mediaqueries/mediaqueries";
+
+html, body, .page-wrap {
+  height: 644px; //height of safari mobile viewport in landscape
+
+  @include respond-to(portrait){
+  height: 981px;
+  }
+  
+  @include respond-to(small){
+  height: 981px;
+  padding-left: 0; //eliminating margin at small screen sizes
+  padding-right: 0;
+  }
+
+}
+
+.navbar-fixed-top{
+  @include respond-to(small){
+  margin-left: 0;
+  margin-right: 0;
+  }
+}
+
+#redbg{
+  background-color: #B0B0B0;
+}
+
+#greybg{
+  background-color: grey;
+}
+
+.fill{
+  min-height: 100%;
+  height: 100%
+}
+
+.col{
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
+.col-wrap{
+  overflow: hidden; 
+}
+
+/* Main Image Rules */ 
+img {
+  width: auto;
+/*  height: auto;*/
+/*  max-width: 100%;*/
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+img.hung_image{
+  width: 100%;
+  height: auto;
+  
+  @include respond-to(widescreen){
+  height: 90%;
+  width: auto;
+  } 
+}
+
+
+
+/* Middle Layer of Content */ 
+
+$titlerowheight: 10%;
+$lastrowheight: 10%;
+
+#maincontainer{
+  height: 90%;
+  
+  @include respond-to(portrait){
+  height: 86%;
+  }
+}
+
+.triptitlebox{
+  @include col(12);
+  min-height: $titlerowheight;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+
+  p{
+    margin: 0;
+  }
+
+  .trip-title-main-text{
+    font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    white-space: nowrap;
+  }
+
+  .trip-title-sub-text{
+    @extend .trip-title-main-text;
+    font-size: 1em;
+    line-height: 1em;
+  }
+}
+
+.socialmediabox{
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  @include respond-to(small){
+  font-size: .75em;
+  right: 1%;
+  }
+}
+
+.filmstrip{
+  @include col(2);
+  @include box-sizing(border-box);
+  padding: 1%;
+  height: 100% - $titlerowheight;
+  overflow: hidden;
+  overflow-y: auto;
+  background-color: grey;
+
+  @include respond-to(portrait){
+  @include col(3);
+  @include box-sizing(border-box);
+  padding: 1%;
+  height: 80%;
+  }
+
+  @include respond-to(small){
+  @include col(3);
+  @include box-sizing(border-box);
+  padding: 1%;
+  height: 80%;
+  display: none;
+  }
+}
+
+.centerimage{
+  @include col(7);
+  @include box-sizing(border-box);
+  padding: 1em;
+  height: 100% - $titlerowheight - $lastrowheight;
+  background-color:black;
+
+  @include respond-to(portrait){
+  @include col(9);
+  @include box-sizing(border-box);
+  padding: 1em;
+  height: 50%;
+  }
+
+  @include respond-to(small){
+  @include col(12);
+  @include box-sizing(border-box);
+  padding: 1em;
+  height: auto;
+  margin-left: 0;
+  width: 100%;
+  }
+}
+
+.rightcaption{
+  @include col(3);
+  @include box-sizing(border-box);
+  padding: 1em;
+  height: 100% - $titlerowheight - $lastrowheight;
+
+  @include respond-to(portrait){
+  @include col(9);
+  float: right;
+  @include box-sizing(border-box);
+  padding: 1em;
+  height: 30.1%;
+  }
+
+  @include respond-to(small){
+  @include col(12);
+  float: right;
+  @include box-sizing(border-box);
+  padding: 1em;
+  height: auto;
+  margin-left: 0;
+  width: 100%;
+  }
+}
+
+.filmstriptable{
+  min-height: 100%;
+}
+
+/*navigation arrows */
+
+#leftnavigation{
+  text-align: left;
+  @include col(1);
+  @extend .bottomnavigationbar;
+
+  @include respond-to(portrait){
+  @include col(1);
+  }
+
+  @include respond-to(small){
+  @include col(1);
+  }
+}
+
+#rightnavigation{
+  text-align: right;
+  @include col(1);
+  @extend .bottomnavigationbar;
+
+  @include respond-to(portrait){
+  @include col(1);
+  }
+
+  @include respond-to(small){
+  @include col(1);
+  }
+
+}
+
+#nextstepbox{
+  text-align: right;
+  // background-color: grey;
+  @include col(4);
+  @extend .bottomnavigationbar;
+
+  @include respond-to(portrait){
+  @include col(5);
+  }
+
+  @include respond-to(small){
+  @include col(5);
+  font-size: .8em;
+  text-align: center;
+  @include box-sizing(border-box);
+  padding: 1em 1em 1em 1em;
+  }
+}
+
+#previousstepbox{
+  text-align: left;
+  @include col(4);
+  @extend .bottomnavigationbar;
+
+  @include respond-to(portrait){
+  @include col(5);
+  }
+
+  @include respond-to(small){
+  @include col(5);
+  font-size: .8em;
+  text-align: center;
+  @include box-sizing(border-box);
+  padding: 1em 1em 1em 1em;
+  }
+}
+
+.bottomnavigationbar{
+  @include box-sizing(border-box);
+  padding: 1em 0 1em 0;
+  height: $lastrowheight;
+}
+
+/* Using CSS-only slide out */
+.toggle-menu {
+  display: none;
+
+  @include respond-to(small){
+  display: block;
+  }
+}
+
+.main-nav-check {
+  display: none;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #3B3B3B;
+  overflow: hidden;
+  overflow-y: auto; //i added this
+  transition: width 0.3s ease;
+  a {
+    display: block;
+    background: linear-gradient(#3E3E3E, #383838);
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #2E2E2E;
+    color: white;
+    padding: 15px;
+    &:hover, &:focus {
+      background: linear-gradient(#484848, #383838);
+    }
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 34px;
+    background: linear-gradient(left, rgba(black, 0), rgba(black, 0.4));
+  }
+}
+
+.close-menu {
+  display: none;
+}
+
+#main-nav-check:checked + #main-nav {
+  width: 20%;
+  left: 0;
+  @include box-sizing(border-box);
+  padding: 2%;
+}
+
+#main-nav-check:checked ~ .page-wrap {
+  width: 100%; //leaving this at 100% shifts the page off-canvas rather than shrinks it
+  // margin-left: 20%;
+  position: fixed;
+  left: 20%;
+  .open-menu {
+     display: none; 
+  }
+  .close-menu {
+     display: block;
+  }
+
+  .navbar {
+    margin-left: 0%;
+  }
+  // .main-header {
+  //   width: 80%;
+  //   left: 20%;
+  // }
+}
+
+
+/* panel for sliding up */ 
+
+#wrapperhung {
+  position:absolute;
+}
+
+#lower {
+  width: 80%;
+  max-height: 60%; /* for iPhone */ 
+  position: absolute;
+  position: fixed; /* position fixed required to keep panel at bottom of page even when scrolling */ 
+  bottom: 0px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#bar {
+  padding: 10px;
+  background-color: #aaaaaa;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#panel {
+  background-color: #aaaaaa;
+  display: none;
+  padding: 10px;
+/*  height: 100px; */
+}
+
