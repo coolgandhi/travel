@@ -1,8 +1,9 @@
 class TripActivitiesController < ApplicationController
+before_filter :load_trip
   # GET /trip_activities
   # GET /trip_activities.json
   def index
-    @trip_activities = TripActivity.all
+    @trip_activities = @trip.trip_activities.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class TripActivitiesController < ApplicationController
   # GET /trip_activities/1
   # GET /trip_activities/1.json
   def show
-    @trip_activity = TripActivity.find(params[:id])
+    @trip_activity = @trip.trip_activities.find(params[:id])
     @trip_activities_detail = nil
 
       if @trip_activity[:activity_type] == "1"
@@ -57,7 +58,7 @@ class TripActivitiesController < ApplicationController
   # GET /trip_activities/new
   # GET /trip_activities/new.json
   def new
-    @trip_activity = TripActivity.new
+    @trip_activity = @trip.trip_activities.new
     @trip_activity.trip_id = params[:trip_id]
 #    logger.info("PARAMS: #{params.inspect}")
 
@@ -69,13 +70,13 @@ class TripActivitiesController < ApplicationController
 
   # GET /trip_activities/1/edit
   def edit
-    @trip_activity = TripActivity.find(params[:id])
+    @trip_activity = @trip.trip_activities.find(params[:id])
   end
 
   # POST /trip_activities
   # POST /trip_activities.json
   def create
-    @trip_activity = TripActivity.new(params[:trip_activity])
+    @trip_activity = @trip.trip_activities.new(params[:trip_activity])
     @trip_activity.trip_id = params[:trip_id]
     @activity = nil
 #    logger.info("PARAMS: #{params.inspect}")
@@ -120,7 +121,7 @@ class TripActivitiesController < ApplicationController
       end
       
        if @trip_activity.save
-         format.html { redirect_to @trip_activity, notice: 'Trip activity was successfully created.' }
+         format.html { redirect_to @trip, notice: 'Trip activity was successfully created.' }
          format.json { render json: @trip_activity, status: :created, location: @trip_activity }
        else
          logger.info "trip activity error"
@@ -134,11 +135,11 @@ class TripActivitiesController < ApplicationController
   # PUT /trip_activities/1
   # PUT /trip_activities/1.json
   def update
-    @trip_activity = TripActivity.find(params[:id])
+    @trip_activity = @trip.trip_activities.find(params[:id])
 
     respond_to do |format|
       if @trip_activity.update_attributes(params[:trip_activity])
-        format.html { redirect_to @trip_activity, notice: 'Trip activity was successfully updated.' }
+        format.html { redirect_to trip_url(@trip), notice: 'Trip activity was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -150,12 +151,17 @@ class TripActivitiesController < ApplicationController
   # DELETE /trip_activities/1
   # DELETE /trip_activities/1.json
   def destroy
-    @trip_activity = TripActivity.find(params[:id])
+    @trip_activity = @trip.trip_activities.find(params[:id])
     @trip_activity.destroy
 
     respond_to do |format|
-      format.html { redirect_to trip_activities_url }
+      format.html { redirect_to @trip }
       format.json { head :no_content }
     end
   end
+
+  def load_trip
+    @trip = Trip.find(params[:trip_id])
+  end
+
 end

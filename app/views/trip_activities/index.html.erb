@@ -9,13 +9,19 @@
 
 <% @trip_activities.each do |trip_activity| %>
   <tr>
-    <td><%= link_to 'Show', trip_trip_activity %></td>
-    <td><%= link_to 'Edit', edit_trip_trip_activity_path(trip_activity) %></td>
-    <td><%= link_to 'Destroy', trip_trip_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= trip_activity.activity_day %></td>
+    <td><%= trip_activity.activity_sequence_number %></td>
+    <td><%= trip_activity.activity_time_type %></td>
+    <td><%= trip_activity.activity_type %></td>
+    
+    <td><%= link_to 'Show', trip_trip_activity_path(@trip, trip_activity) %></td>
+    <td><%= link_to 'Edit', edit_trip_trip_activity_path(@trip, trip_activity) %></td>
+    <td><%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Trip activity', new_trip_activity_path %>
+<%= link_to 'New Trip activity', new_trip_trip_activity_path %> |
+<%= link_to 'Back', trip_path(@trip) %>
