@@ -19,8 +19,13 @@
       <%= f.label :trip_name, 'Your trip name' %>: <%= f.text_field :trip_name %>
   </div>
 
+
   <div class="field">
-      <%= f.label :location_id, "Place" %>: <%= f.text_field :location_id %>
+    <%= f.hidden_field :location_id %>
+  </div>
+ 
+  <div class="field">
+    <label for="location">location</label>: <input id="place" type="text" name="location" />
   </div>
 
   <div class="field">

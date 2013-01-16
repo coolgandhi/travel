@@ -7,11 +7,17 @@ class LocationsController < ApplicationController
       
       tot = 5
       if params[:total]
-          tot = Integer(params[:total])
+        begin
+          tot = Integer(params[:total]) 
+        rescue ArgumentError
+          tot = 5
+        end
       end
       
-      @location_matches = Location.limit(tot).where (['city LIKE ?', nearest_match])
-      
+      nearest_match = "%" << nearest_match << "%"
+      @location_matches = Location.limit(tot).where (['locations.city LIKE ?', nearest_match])
+      logger.info " #{nearest_match} #{tot}"
+      #{@location_matches.attributes.inspect}
     rescue ActiveRecord::RecordNotFound
        logger.info "food activity entry not found"
     end
