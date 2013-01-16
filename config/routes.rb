@@ -1,4 +1,8 @@
 Travel::Application.routes.draw do
+  get "locations/pick"
+
+  #get "location_detail/pick"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -14,6 +18,7 @@ Travel::Application.routes.draw do
   #   resources :products
   resources :trips
   resources :trip_activities
+  #resources :locations, :only => [:pick]
   # Sample resource route with options:
   #   resources :products do
   #     member do

@@ -14,7 +14,8 @@ class TripActivitiesController < ApplicationController
   # GET /trip_activities/1.json
   def show
     @trip_activity = TripActivity.find(params[:id])
-
+    #logger.info("PARAMS: #{params.inspect}")
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @trip_activity }

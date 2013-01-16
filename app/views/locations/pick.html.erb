@@ -1,0 +1,16 @@
+<h1>Locations#pick</h1>
+<p>Find me in app/views/locations/pick.html.erb</p>
+
+<p id="notice"><%= notice %></p>
+
+
+
+<% @location_matches.each do |location_match| %>
+  location_id: <%= location_match.location_id %> <br/>
+  city: <%= location_match.city %> <br/>
+  latitude: <%= location_match.latitude %> <br/>
+  longitude: <%= location_match.longitude %> <br/>
+  place: <%= location_match.place %> <br/>
+  state: <%= location_match.state %> <br/> 
+  country: <%= location_match.country %> <br/> <br/>
+<% end %>
