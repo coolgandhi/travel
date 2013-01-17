@@ -11,6 +11,7 @@ gem 'therubyracer', '0.11.2'
 #gem 'sqlite3'
 gem 'mysql2'
 gem 'json'
+gem "foursquare2", "~> 1.9.2"
 gem 'rvm-capistrano', '1.3.0.rc1'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 # Gems used only for assets and not required
@@ -28,7 +29,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'jquery-ui-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

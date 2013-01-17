@@ -8,8 +8,10 @@ set :password, "vagrant"
 set :scm_username, "coolgandhi"
 set :local_scm_command, "git" 
 set :rvm_ruby_string, 'ruby-1.9.3-p362' 
+
 set :location, "192.168.11.10"  
 #set :location, "192.168.33.10"  
+
 set :rails_env, "production"
 set :branch, "master"
 #set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
@@ -86,5 +88,14 @@ namespace :deploy do
    task :seed do
      run "cd #{current_path}; rake db:seed RAILS_ENV=#{rails_env}" 
    end
+end
+
+
+desc "Run the super-awesome rake task"
+task :super_awesome do
+  rake = fetch(:rake, 'rake')
+  rails_env = fetch(:rails_env, 'production')
+
+  run "cd '#{current_path}' && #{rake} db:addlocation RAILS_ENV=#{rails_env}"
 end
 

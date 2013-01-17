@@ -1,4 +1,8 @@
 Travel::Application.routes.draw do
+  get "locations/pick"
+
+  #get "location_detail/pick"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -19,6 +23,10 @@ Travel::Application.routes.draw do
       end
     end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl
+
+  resources :trips
+  resources :trip_activities
+  #resources :locations, :only => [:pick]
   # Sample resource route with options:
   #   resources :products do
   #     member do
