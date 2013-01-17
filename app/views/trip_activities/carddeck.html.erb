@@ -79,17 +79,21 @@
       <div class="bottomnavigationbar" id="leftnavigation"><i class="icon-chevron-left icon-2x"></i></div>
       
       <div class="bottomnavigationbar" id="previousstepbox">
+        
         <% unless @trip_activity.prev.nil? %>
           <%= link_to 'Prev Card', carddeck_trip_trip_activity_path(@trip, @trip_activity.prev.id) %>
         <% else %>
-          <%= link_to 'Trip Overview', trip_path(@trip) %>
+          Back to <%= link_to 'Trip Overview', trip_path(@trip) %>
         <% end %>
+        
         </br>[How and Time]</div>
+      
       <div class="bottomnavigationbar" id="nextstepbox">
+        
         <% unless @trip_activity.next.nil? %>
           <%= link_to 'Next Card', carddeck_trip_trip_activity_path(@trip, @trip_activity.next.id) %>
         <% else %>
-          <%= link_to 'Trip Overview', trip_path(@trip) %>
+          Last Card - Go To <%= link_to 'Trip Overview', trip_path(@trip) %>
         <% end %>
 
       </br>[How and Time]</div>
