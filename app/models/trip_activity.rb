@@ -9,4 +9,13 @@ class TripActivity < ActiveRecord::Base
   accepts_nested_attributes_for :transport_activity, :allow_destroy => true
   
   attr_accessible :trip_id, :activity_day, :activity_id, :activity_sequence_number, :activity_time_type, :activity_type
+
+  def next
+  	trip.trip_activities.where("activity_sequence_number > ?", activity_sequence_number).first
+  end
+
+  def prev
+  	trip.trip_activities.where("activity_sequence_number < ?", activity_sequence_number).first
+  end
+
 end

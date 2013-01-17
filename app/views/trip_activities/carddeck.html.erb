@@ -1,13 +1,10 @@
-
-      
-<div class="container" id="maincontainer">
       <div class="triptitlebox">
 
         <p>
-        <span class="trip-title-main-text">My Awesome Trip is Really Awesome!</span>
-        <span class="trip-title-sub-text"> - 3 Days in London</span>
+        <span class="trip-title-main-text"><%= @trip.trip_name %></span>
+        <span class="trip-title-sub-text"> - Day <%= @trip_activity.activity_day %> of <%= @trip.duration %> in London</span>
         </p>
-        <small>by username      <i class="icon-heart-empty icon-1x"></i> 199 Likes</small>
+        <small>by <%= @trip.author_id %> <i class="icon-heart-empty icon-1x"></i> [000] Likes</small>
       
       <div class="socialmediabox">
       <i class="icon-pinterest-sign icon-2x"></i>
@@ -70,18 +67,33 @@
 
       <div class="centerimage">
         <%= image_tag("view_from_notre_dame_flickr_large.jpg",:alt => "Notre Dame View",:class => "hung_image") %>
-        <h3>Big Ben <small>(~1 hour)</small></h3>
+        <h3>[Location Name] <small> ( <%= @trip_activities_detail.duration %> )</small> </h3>
       </div>
       
       <div class="rightcaption" id="greybg">
-      <p class="lead">We walked over to see the Houses of Parliament and Big Ben. Big Ben actually made me a little teary eyed! I had seen so many pictures of it, but I wasn't prepared for how beautiful and almost regal it was.</p>
-      <div class="well well-small">Quick Tip: Stay in school, don't do drugs.</div> 
+      <p class="lead"> <%= @trip_activities_detail.description %> </p>
+      <div class="well well-small">Quick Tip: <%= @trip_activities_detail.quick_tip %></div> 
       </div>
 
 
       <div class="bottomnavigationbar" id="leftnavigation"><i class="icon-chevron-left icon-2x"></i></div>
-      <div class="bottomnavigationbar" id="previousstepbox">Road to Nowhere</br>Drive 5 mins</div>
-      <div class="bottomnavigationbar" id="nextstepbox">Westminster Abbey</br>Walk 1 min</div>
+      
+      <div class="bottomnavigationbar" id="previousstepbox">
+        <% unless @trip_activity.prev.nil? %>
+          <%= link_to 'Prev Card', carddeck_trip_trip_activity_path(@trip, @trip_activity.prev.id) %>
+        <% else %>
+          <%= link_to 'Trip Overview', trip_path(@trip) %>
+        <% end %>
+        </br>[How and Time]</div>
+      <div class="bottomnavigationbar" id="nextstepbox">
+        <% unless @trip_activity.next.nil? %>
+          <%= link_to 'Next Card', carddeck_trip_trip_activity_path(@trip, @trip_activity.next.id) %>
+        <% else %>
+          <%= link_to 'Trip Overview', trip_path(@trip) %>
+        <% end %>
+
+      </br>[How and Time]</div>
+      
       <div class="bottomnavigationbar" id="rightnavigation"><i class="icon-chevron-right icon-2x"></i></div>
 
       </div>   <!-- /container -->
@@ -89,7 +101,7 @@
 <div id="wrapperhung">
           <div id="lower">
 
-            <div id="bar"><a href="#" id="toggle">Show More</a></div>
+            <div id="bar"><a href="#" id="toggle">More Info</a></div>
 
             <div id="panel">
                 <p>Panel - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a mauris et nulla facilisis eleifend. Sed metus orci, vulputate sit amet malesuada id, luctus vestibulum lacus. Sed faucibus, nibh vel faucibus porta, lectus lacus suscipit metus, ut posuere nulla dolor porttitor erat. Nam iaculis dolor et est tristique scelerisque. Integer gravida scelerisque est, ut pellentesque sem facilisis in. Quisque felis elit, laoreet id sagittis non, sollicitudin vitae turpis. Pellentesque quis quam sed nibh sollicitudin porttitor non ac sapien. Cras luctus egestas urna, vitae bibendum enim malesuada ut. Nulla porta tempus mi vel consequat. Aenean scelerisque porttitor felis, id elementum erat porttitor eu. Mauris vitae elit non lorem malesuada viverra non ac eros.</p>
@@ -98,4 +110,3 @@
 
         </div>
 </div>
-</div>  <!-- page wrap containers  -->

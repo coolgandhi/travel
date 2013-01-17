@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-activity_id: <%= @trip_activity.activity_id %> <br/>
+activity_id: <%= @trip_activity.id %> <br/>
 activity day: <%= @trip_activity.activity_day %> <br/>
 activity sequence: <%= @trip_activity.activity_sequence_number %> <br/>
 activity type: <%= @trip_activity.activity_type %> <br/>
 activity time type: <%= @trip_activity.activity_time_type %> 
 
 </br>
-<%= render @trip_activities_detail %> 
+<%= render @trip_activities_detail %>
+<%= @trip_activities_detail.description %> 
 
 <%= link_to 'Edit', edit_trip_trip_activity_path(@trip_activity.trip_id, @trip_activity) %> |
 <%= link_to 'Back', trip_path(@trip_activity.trip_id) %>

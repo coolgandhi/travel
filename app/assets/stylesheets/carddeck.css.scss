@@ -146,7 +146,7 @@ $lastrowheight: 10%;
   @include box-sizing(border-box);
   padding: 1em;
   height: 100% - $titlerowheight - $lastrowheight;
-  background-color:black;
+  background-color:grey;
 
   @include respond-to(portrait){
   @include col(9);

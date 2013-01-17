@@ -27,7 +27,9 @@ itinerary </br></br>
     <%= render @trip_activities_details[trip_activity.activity_id] %>  
   <% end %>
   <%= link_to 'Show', trip_trip_activity_path(trip_activity.trip_id, trip_activity) %> |
-  <%= link_to 'Edit', edit_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %>
+  <%= link_to 'Edit', edit_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %> |
+  <%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %>|
+  <%= link_to 'Show Card', carddeck_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %>
   <br/><br/>
 <% end %>
 <br/> <br/>

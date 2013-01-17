@@ -160,6 +160,51 @@ before_filter :load_trip
     end
   end
 
+
+  # GET /trips/1
+  # GET /trips/1.json
+  def carddeck
+    @trip_activity = @trip.trip_activities.find(params[:id])
+    @trip_activities_detail = nil
+
+      if @trip_activity[:activity_type] == "1"
+          logger.info "food activity..."  
+          if @trip_activity[:activity_id]
+            begin 
+              @trip_activities_detail = FoodActivity.find(@trip_activity[:activity_id])
+            rescue ActiveRecord::RecordNotFound
+              logger.info "food activity entry not found"
+            end
+          end
+       elsif @trip_activity[:activity_type] == "2"
+          logger.info "transport acitivity" 
+          if @trip_activity[:activity_id] 
+            begin
+              @trip_activities_detail = TransportActivity.find(@trip_activity[:activity_id])
+            rescue ActiveRecord::RecordNotFound
+              logger.info "transport activity entry not found"
+            end
+          end
+       elsif @trip_activity[:activity_type] == "3"
+          logger.info "location activity"
+          if @trip_activity[:activity_id] 
+            begin  
+              @trip_activities_detail = LocationActivity.find(@trip_activity[:activity_id])
+            rescue ActiveRecord::RecordNotFound
+              logger.info "location activity entry not found"
+            end
+          end
+       else
+        logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
+        @trip_activities_detail[@trip_activity[:activity_id]] = nil
+       end
+       
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @trip_activity }
+    end
+  end
+
   def load_trip
     @trip = Trip.find(params[:trip_id])
   end
