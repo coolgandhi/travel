@@ -16,4 +16,5 @@
 //= require bootstrap
 //- require hungcustom
 //= require holder/holder
+//= require swipeview
 //= require_tree .

@@ -142,14 +142,15 @@ $lastrowheight: 10%;
 }
 
 .centerimage{
-  @include col(7);
+  @include col(8);
   @include box-sizing(border-box);
   padding: 1em;
-  height: 100% - $titlerowheight - $lastrowheight;
+  height: 100%;
   background-color:grey;
+  margin-left: 1%;
 
   @include respond-to(portrait){
-  @include col(9);
+  @include col(12);
   @include box-sizing(border-box);
   padding: 1em;
   height: 50%;
@@ -166,22 +167,23 @@ $lastrowheight: 10%;
 }
 
 .rightcaption{
-  @include col(3);
+  @include col(4);
   @include box-sizing(border-box);
   padding: 1em;
-  height: 100% - $titlerowheight - $lastrowheight;
+  background-color: grey;
+  height: 100%;
 
   @include respond-to(portrait){
-  @include col(9);
-  float: right;
+  @include col(12);
+  // float: right;
   @include box-sizing(border-box);
   padding: 1em;
-  height: 30.1%;
+  height: 40%;
   }
 
   @include respond-to(small){
   @include col(12);
-  float: right;
+  // float: right;
   @include box-sizing(border-box);
   padding: 1em;
   height: auto;
@@ -228,7 +230,7 @@ $lastrowheight: 10%;
 #nextstepbox{
   text-align: right;
   // background-color: grey;
-  @include col(4);
+  @include col(5);
   @extend .bottomnavigationbar;
 
   @include respond-to(portrait){
@@ -246,7 +248,7 @@ $lastrowheight: 10%;
 
 #previousstepbox{
   text-align: left;
-  @include col(4);
+  @include col(5);
   @extend .bottomnavigationbar;
 
   @include respond-to(portrait){
@@ -342,6 +344,12 @@ $lastrowheight: 10%;
   //   width: 80%;
   //   left: 20%;
   // }
+}
+
+/* bottom rails things */ 
+.bottom-actionlinks{
+  float:left;
+  @include col(12);
 }
 
 

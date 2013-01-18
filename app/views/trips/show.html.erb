@@ -1,40 +1,7 @@
-<p id="notice"><%= notice %></p>
+<%= render 'sideswipe' %>
 
-<% if @trip.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
-
-    <ul>
-    <% @trip.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-name: <%= @trip.trip_name %>  <br/>
-id: <%= @trip.id %> <br/>
-duration: <%= @trip.duration %> <br/>
-location: <%= @trip.location_id %> <br/>
-traveler type: <%= @trip.traveler_type_id %> <br/>
-summary: <%= @trip.trip_summary %> <br/>
-author id: <%= @trip.author_id %> <br/> <br/>
-
-itinerary </br></br>  
-<% @trip_activities.each do |trip_activity| %>
-  <%= render :partial => "trip_activity", :object => trip_activity %></br></br>
-  <% if @trip_activities_details.has_key?(trip_activity.activity_id) %>
-    <%= render @trip_activities_details[trip_activity.activity_id] %>  
-  <% end %>
-  <%= link_to 'Show', trip_trip_activity_path(trip_activity.trip_id, trip_activity) %> |
-  <%= link_to 'Edit', edit_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %> |
-  <%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %>|
-  <%= link_to 'Show Card', carddeck_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %>
-  <br/><br/>
-<% end %>
-<br/> <br/>
-<%= link_to 'Add Activity', new_trip_trip_activity_path(@trip) %> <br/>
-
-
+</br></br>
+<div class ="bottom-actionlinks"><%= link_to 'Add Activity', new_trip_trip_activity_path(@trip) %> <br/>
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
+</div>

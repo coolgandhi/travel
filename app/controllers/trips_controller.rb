@@ -57,7 +57,11 @@ class TripsController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @trip }
+      format.json { render :json => { :trip=> @trip,
+                                     :trip_activity => @trip_activities,
+                                     :trip_activities_details => @trip_activities_details
+                                   } 
+      }
     end
   end
 
