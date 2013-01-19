@@ -207,6 +207,9 @@ for (i=0; i<3; i++) {
   eel.innerHTML = slides[page].quicktip;
   el.appendChild(eel);
   gallery.masterPages[i].appendChild(el);
+
+  //I added to change text of trip-title-sub-text Day x of X in Location
+  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
 }
 
 gallery.onFlip(function () {
@@ -250,6 +253,9 @@ gallery.onFlip(function () {
 
   document.querySelector('#navswipe .selected').className = '';
   dots[gallery.pageIndex+1].className = 'selected';
+
+  //I added to change text of trip-title-sub-text Day x of X in Location
+  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
 });
 
 gallery.onMoveOut(function () {
