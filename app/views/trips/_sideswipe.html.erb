@@ -70,15 +70,17 @@
   <ul id="navswipe">
     <li id="prev" onclick="gallery.prev()">-</li>
     <li class="selected" onclick="gallery.goToPage(0)"></li>
-    <li onclick="gallery.goToPage(1)"></li>
-    <li onclick="gallery.goToPage(2)"></li>
-    <li onclick="gallery.goToPage(3)"></li>
+    <!-- / looping through activities for the status bar -->
+    <% for i  in 1..(@trip.trip_activities.count-1) %>
+    <li onclick="gallery.goToPage(<%= i %>)"></li>
+    <% end %> 
     <li id="next" onclick="gallery.next()"></li>
   </ul>
 
 
+<%= trip_activities_as_json %>
 <!-- /bottom navigation bar -->
-      <div class="bottomnavigationbar" id="leftnavigation"><i class="icon-chevron-left icon-2x"></i></div>
+      <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left icon-2x"></i></div>
       
       <div class="bottomnavigationbar" id="previousstepbox">
         
@@ -92,7 +94,7 @@
 
       </br>[How and Time]</div>
       
-      <div class="bottomnavigationbar" id="rightnavigation"><i class="icon-chevron-right icon-2x"></i></div>
+      <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right icon-2x"></i></div>
 
 <!-- /sliding panel -->        
 <div id="wrapperhung">
@@ -116,8 +118,8 @@
 
 
 <script type="text/javascript">
-
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+//removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 var gallery,
   el,
@@ -126,7 +128,7 @@ var gallery,
   i,
   page,
   dots = document.querySelectorAll('#navswipe li'),
-  slides = <%= tripdetails_as_json(@trip_activities_details).html_safe %>
+  slides = <%= trip_activities_as_json.html_safe %>
   // [
   //   {
   //     "img": 'holder.js/160x120',
@@ -180,6 +182,7 @@ for (i=0; i<3; i++) {
   // el.onload = function () { this.className = ''; }
   // gallery.masterPages[i].appendChild(el);
 
+  //creating the centerimage
   el = document.createElement('div');
   el.className = 'centerimage';
   del = document.createElement('img');
@@ -188,10 +191,10 @@ for (i=0; i<3; i++) {
   del.alt = 'Notre Dame View';
   el.appendChild(del);
   eel = document.createElement('h3');
-  eel.innerHTML = '[Location Name]';
+  eel.innerHTML = '[Location Name] ' + slides[page].duration + ' hours';
   el.appendChild(eel);
   gallery.masterPages[i].appendChild(el);
-
+  //creating the rightcaption
   el = document.createElement('div');
   el.className = 'rightcaption'; 
   del = document.createElement('p');
@@ -208,6 +211,8 @@ for (i=0; i<3; i++) {
 
 gallery.onFlip(function () {
   var el,
+    del,
+    eel,
     upcoming,
     i;
 
@@ -215,14 +220,31 @@ gallery.onFlip(function () {
     upcoming = gallery.masterPages[i].dataset.upcomingPageIndex;
 
     if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
-      el = gallery.masterPages[i].querySelector('img');
-      el.className = 'loading';
-      el.src = slides[upcoming].img;
-      el.width = slides[upcoming].width;
-      el.height = slides[upcoming].height;
+      el = gallery.masterPages[i].querySelector('div.centerimage');
+      del = gallery.masterPages[i].querySelector('img.hung_image');
+      del.src = '/assets/view_from_notre_dame_flickr_large.jpg';
+      del.alt = 'Notre Dame View';
+      el.appendChild(del);
+      eel = gallery.masterPages[i].querySelector('h3');
+      eel.innerHTML = '[Location Name] ' + slides[upcoming].duration + ' hours';
+      el.appendChild(eel);
 
-      el = gallery.masterPages[i].querySelector('span');
-      el.innerHTML = slides[upcoming].desc;
+      el = gallery.masterPages[i].querySelector('div.rightcaption');
+      del = gallery.masterPages[i].querySelector('p#rightsidecaption');
+      el.appendChild(del);
+      del.innerHTML = slides[upcoming].rightcaption;
+      eel = gallery.masterPages[i].querySelector('.rightcaption div');
+      eel.innerHTML = slides[upcoming].quicktip;
+      el.appendChild(eel);     
+
+      // el = gallery.masterPages[i].querySelector('img');
+      // el.className = 'loading';
+      // el.src = slides[upcoming].img;
+      // el.width = slides[upcoming].width;
+      // el.height = slides[upcoming].height;
+
+      // el = gallery.masterPages[i].querySelector('span');
+      // el.innerHTML = slides[upcoming].desc;
     }
   }
 

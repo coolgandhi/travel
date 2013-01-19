@@ -147,7 +147,6 @@ $lastrowheight: 10%;
   padding: 1em;
   height: 100%;
   background-color:grey;
-  margin-left: 1%;
 
   @include respond-to(portrait){
   @include col(12);
