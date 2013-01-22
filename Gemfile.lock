@@ -57,9 +57,6 @@ GEM
       multi_json (~> 1.0)
     faker (1.1.2)
       i18n (~> 0.5)
-<<<<<<< HEAD
-    fssm (0.2.9)
-=======
     faraday (0.8.4)
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
@@ -68,8 +65,8 @@ GEM
       faraday (~> 0.8)
       faraday_middleware (>= 0.8)
       hashie (~> 1.0)
+    fssm (0.2.9)
     hashie (1.2.0)
->>>>>>> 27407095a7cf88b81fc3a2576b0f8da7a2fca5f7
     highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.1)
