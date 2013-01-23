@@ -20,63 +20,20 @@
       
       <div class="filmstrip">
         
-        <ul class="media-list" id="filmstriplist">
-          
-          <li class="media">
+        <ul class="media-list" id="navswipe">
+          <li class="media selected" onclick="gallery.goToPage(0)">
             <img class="media-object" data-src="holder.js/160x120">
           </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-          
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>                     
-          
-          <li>
-            <center><i class="icon-caret-down icon-2x"></i></center>
-          </li>
+          <% for i  in 1..(@trip.trip_activities.count)-1 %>
+            <li class="media" onclick="gallery.goToPage(<%= i %>)">
+              <img class="media-object" data-src="holder.js/160x120">
+            </li>
+          <% end %> 
 
         </ul>
       </div>
 
   <div id="wrapper"></div>
-
-  <ul id="navswipe">
-    <li id="prev" onclick="gallery.prev()">-</li>
-    <li class="selected" onclick="gallery.goToPage(0)"></li>
-    <!-- / looping through activities for the status bar -->
-    <% for i  in 1..(@trip.trip_activities.count-1) %>
-    <li onclick="gallery.goToPage(<%= i %>)"></li>
-    <% end %> 
-    <li id="next" onclick="gallery.next()"></li>
-  </ul>
-
 
 <%= trip_activities_as_json %>
 <!-- /bottom navigation bar -->
@@ -110,63 +67,17 @@
         </div>
 </div>
 
-
-
-
-
-
-
-
 <script type="text/javascript">
 //removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
 // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 var gallery,
   el,
-  del,
-  eel,
   i,
   page,
   dots = document.querySelectorAll('#navswipe li'),
-  slides = <%= trip_activities_as_json.html_safe %>
-  // [
-  //   {
-  //     "img": 'holder.js/160x120',
-  //     "width": 300,
-  //     "height": 213,
-  //     "desc": 'Piazza del Duomo, Florence, Italy'
-  //   },
-  //   {
-  //     img: 'holder.js/160x120',
-  //     width: 300,
-  //     height: 164,
-  //     desc: 'Tuscan Landscape'
-  //   },
-  //   {
-  //     img: 'holder.js/160x120',
-  //     width: 300,
-  //     height: 213,
-  //     desc: 'Colosseo, Rome, Italy'
-  //   },
-  //   {
-  //     img: 'holder.js/160x120',
-  //     width: 147,
-  //     height: 220,
-  //     desc: 'Somewhere near Chinatown, San Francisco'
-  //   },
-  //   {
-  //     img: 'holder.js/160x120',
-  //     width: 300,
-  //     height: 213,
-  //     desc: 'Medieval guard tower, Asciano, Siena, Italy'
-  //   },
-  //   {
-  //     img: 'holder.js/160x120',
-  //     width: 165,
-  //     height: 220,
-  //     desc: 'Leaning tower, Pisa, Italy'
-  //   }
-  // ]
+  dots2 = document.querySelectorAll('#navswipe2 li'),
+  slides = <%= trip_activities_as_json.html_safe %> //this returns an array of hashes formatted in trip_helper.rb
   ;
 
 gallery = new SwipeView('#wrapper', { numberOfPages: slides.length });
@@ -174,29 +85,7 @@ gallery = new SwipeView('#wrapper', { numberOfPages: slides.length });
 // Load initial data
 for (i=0; i<3; i++) {
   page = i==0 ? slides.length-1 : i-1;
-  // el = document.createElement('img');
-  // el.className = 'loading';
-  // el.src = slides[page].img;
-  // el.width = slides[page].width;
-  // el.height = slides[page].height;
-  // el.onload = function () { this.className = ''; }
-  // gallery.masterPages[i].appendChild(el);
-
-  //creating the centerimage
-  // el = document.createElement('div');
-  // el.className = 'centerimage';
-  // del = document.createElement('img');
-  // del.className = 'hung_image';
-  // del.src = '/assets/view_from_notre_dame_flickr_large.jpg';
-  // del.alt = 'Notre Dame View';
-  // el.appendChild(del);
-  // eel = document.createElement('h3');
-  // eel.innerHTML = '[Location Name] ' + slides[page].duration + ' hours';
-  // el.appendChild(eel);
-  // gallery.masterPages[i].appendChild(el);
-  //creating the rightcaption
-  // el = document.createElement('div');
-  // el.className = 'emptyforloading';
+ 
   $.ajax({
     type: 'GET',
     url: slides[page].renderpartial,
@@ -207,26 +96,6 @@ for (i=0; i<3; i++) {
       $(gallery.masterPages[this.ajaxI]).append(data);
     }
   });
-  // $.get(slides[page].renderpartial, {activityid: slides[page].activityid, index: i}, function(data, index){
-  //   // alert(this.type);
-  //   //alert(gallery_c);
-  //   // alert (gallery.masterPages[0]);
-  //   // el = document.createElement('div');
-  //   // el.innerHTML = data;
-  //   $(gallery.masterPages[1]).append(data);
-  // }, "html");
-  //this works below but can't pass variables in
-
-  // del = document.createElement('p');
-  // del.className = 'lead';
-  // del.id = 'rightsidecaption';
-  // el.appendChild(del);
-  // del.innerHTML = slides[page].rightcaption;
-  // eel = document.createElement('div');
-  // eel.className = 'well well-small';
-  // eel.innerHTML = slides[page].quicktip;
-  // el.appendChild(eel);
-  // gallery.masterPages[i].appendChild(el);
 
   //I added to change text of trip-title-sub-text Day x of X in Location
   document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
@@ -243,10 +112,7 @@ gallery.onFlip(function () {
     upcoming = gallery.masterPages[i].dataset.upcomingPageIndex;
 
     if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
-      // el = gallery.masterPages[i].querySelector('.emptyforloading');
-      // $.get(slides[upcoming].renderpartial, {activityid: slides[upcoming].activityid}, function(data){
-      //   $('.emptyforloading').html(data);
-      // }, "html");
+
       $.ajax({
         type: 'GET',
         url: slides[upcoming].renderpartial,
@@ -257,35 +123,13 @@ gallery.onFlip(function () {
           $(gallery.masterPages[this.ajaxI]).html(data);
         }
       });
-      // del = gallery.masterPages[i].querySelector('img.hung_image');
-      // del.src = '/assets/view_from_notre_dame_flickr_large.jpg';
-      // del.alt = 'Notre Dame View';
-      // el.appendChild(del);
-      // eel = gallery.masterPages[i].querySelector('h3');
-      // eel.innerHTML = '[Location Name] ' + slides[upcoming].duration + ' hours';
-      // el.appendChild(eel);
-
-      // el = gallery.masterPages[i].querySelector('div.rightcaption');
-      // del = gallery.masterPages[i].querySelector('p#rightsidecaption');
-      // el.appendChild(del);
-      // del.innerHTML = slides[upcoming].rightcaption;
-      // eel = gallery.masterPages[i].querySelector('.rightcaption div');
-      // eel.innerHTML = slides[upcoming].quicktip;
-      // el.appendChild(eel);     
-
-      // el = gallery.masterPages[i].querySelector('img');
-      // el.className = 'loading';
-      // el.src = slides[upcoming].img;
-      // el.width = slides[upcoming].width;
-      // el.height = slides[upcoming].height;
-
-      // el = gallery.masterPages[i].querySelector('span');
-      // el.innerHTML = slides[upcoming].desc;
     }
   }
 
   document.querySelector('#navswipe .selected').className = '';
-  dots[gallery.pageIndex+1].className = 'selected';
+  dots[gallery.pageIndex].className = 'selected';
+  document.querySelector('#navswipe2 .selected').className = '';
+  dots2[gallery.pageIndex].className = 'selected';
 
   //I added to change text of trip-title-sub-text Day x of X in Location
   document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;

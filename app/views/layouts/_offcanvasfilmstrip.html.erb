@@ -1,46 +1,16 @@
       <input type="checkbox" class="main-nav-check" id="main-nav-check" />
 <nav class="main-nav" id="main-nav">
-  <ul class="media-list" id="filmstriplist">
-          
-          <li class="media">
+        
+        <ul class="media-list" id="navswipe2">
+          <li class="media selected" onclick="gallery.goToPage(0)">
             <img class="media-object" data-src="holder.js/160x120">
           </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-          
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-
-          <li class="media">
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>                     
-          
-          <li>
-            <center><i class="icon-caret-down icon-2x"></i></center>
-          </li>
+          <% for i  in 1..(@trip.trip_activities.count)-1 %>
+            <li class="media" onclick="gallery.goToPage(<%= i %>)">
+              <img class="media-object" data-src="holder.js/160x120">
+            </li>
+          <% end %> 
 
         </ul>
+
 </nav>  
