@@ -125,48 +125,50 @@ class TripsController < ApplicationController
     end
   end
 
-  def showpartial
-    @trip = Trip.find(params[:id])
-    @trip_activities = TripActivity.find_all_by_trip_id(params[:id])
-    @trip_activities_details = Hash.new
-    @trip_a = params[:activityid]
-#    logger.info "New post: #{@trip_activities.attributes.inspect}"
-    @trip_activities.each do |trip_activity|
-       if trip_activity[:activity_type] == "1"
-          logger.info "food activity..."  
-          if trip_activity[:activity_id]
-            begin 
-              @trip_activities_details[trip_activity[:activity_id]] = FoodActivity.find(trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "food activity entry not found"
-            end
-          end
-       elsif trip_activity[:activity_type] == "2"
-          logger.info "transport acitivity" 
-          if trip_activity[:activity_id] 
-            begin
-              @trip_activities_details[trip_activity[:activity_id]] = TransportActivity.find(trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "transport activity entry not found"
-            end
-          end
-       elsif trip_activity[:activity_type] == "3"
-          logger.info "location activity"
-          if trip_activity[:activity_id] 
-            begin  
-              @trip_activities_details[trip_activity[:activity_id]] = LocationActivity.find(trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "location activity entry not found"
-            end
-          end
-       else
-        logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
-        @trip_activities_details[trip_activity[:activity_id]] = nil
-       end
+#   def showpartial
+#     @trip = Trip.find(params[:id])
+#     @trip_activity = @trip.trip_activities.find(params[:activityid])
+#     @trip_activities = TripActivity.find_all_by_trip_id(params[:id])
+#     @trip_activities_details = Hash.new
+#     @trip_a = params[:activityid]
+#     @partial_layout = params[:layout]
+# #    logger.info "New post: #{@trip_activities.attributes.inspect}"
+#      @trip_activities.each do |trip_activity|
+#        if trip_activity[:activity_type] == "1"
+#           logger.info "food activity..."  
+#           if trip_activity[:activity_id]
+#             begin 
+#               @trip_activities_details[trip_activity[:activity_id]] = FoodActivity.find(trip_activity[:activity_id])
+#             rescue ActiveRecord::RecordNotFound
+#               logger.info "food activity entry not found"
+#             end
+#           end
+#        elsif trip_activity[:activity_type] == "2"
+#           logger.info "transport acitivity" 
+#           if trip_activity[:activity_id] 
+#             begin
+#               @trip_activities_details[trip_activity[:activity_id]] = TransportActivity.find(trip_activity[:activity_id])
+#             rescue ActiveRecord::RecordNotFound
+#               logger.info "transport activity entry not found"
+#             end
+#           end
+#        elsif trip_activity[:activity_type] == "3"
+#           logger.info "location activity"
+#           if trip_activity[:activity_id] 
+#             begin  
+#               @trip_activities_details[trip_activity[:activity_id]] = LocationActivity.find(trip_activity[:activity_id])
+#             rescue ActiveRecord::RecordNotFound
+#               logger.info "location activity entry not found"
+#             end
+#           end
+#        else
+#         logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
+#         @trip_activities_details[trip_activity[:activity_id]] = nil
+#        end
         
-    end
+#     end
     
-    render :partial => "testingpartial", :locals => {:barbo => "hellojohn", :foobo => "hellokate"}, :layout => false
-  end
+#     render :partial => @partial_layout, :layout => false
+#   end
 
 end

@@ -17,12 +17,13 @@ Travel::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :trips do
-    member do
-      get 'showpartial'
-    end
+    # collection do
+    #   get 'showpartial'
+    # end
     resources :trip_activities do
       member do
         get 'carddeck'
+        get 'showpartial'
       end
     end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl

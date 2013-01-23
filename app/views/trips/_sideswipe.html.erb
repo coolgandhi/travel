@@ -200,7 +200,7 @@ for (i=0; i<3; i++) {
   $.ajax({
     type: 'GET',
     url: slides[page].renderpartial,
-    data: {activityid: slides[page].activityid},
+    data: {activityid: slides[page].activityid, layout: slides[page].layout},
     ajaxI: i, // Capture the current value of 'i'
     dataType: 'html',
     success: function(data){
@@ -216,7 +216,7 @@ for (i=0; i<3; i++) {
   //   $(gallery.masterPages[1]).append(data);
   // }, "html");
   //this works below but can't pass variables in
-  // $(".emptyforloading").html("<%= escape_javascript( render(:partial => "testingpartial") ) %>");
+
   // del = document.createElement('p');
   // del.className = 'lead';
   // del.id = 'rightsidecaption';
@@ -250,7 +250,7 @@ gallery.onFlip(function () {
       $.ajax({
         type: 'GET',
         url: slides[upcoming].renderpartial,
-        data: {activityid: slides[upcoming].activityid},
+        data: {activityid: slides[upcoming].activityid, layout: slides[upcoming].layout},
         ajaxI: i, // Capture the current value of 'i'
         dataType: 'html',
         success: function(data){

@@ -206,6 +206,51 @@ before_filter :load_trip
     end
   end
 
+  def showpartial
+    # @trip_activity = @trip.trip_activities(params[:id])
+    @trip_activity = TripActivity.find(params[:activityid])
+    @trip_activities_detail = nil
+    @partial_layout = params[:layout]
+    
+      if @trip_activity[:activity_type] == "1"
+          logger.info "food activity..."  
+          if @trip_activity[:activity_id]
+            begin 
+              @trip_activities_detail = FoodActivity.find(@trip_activity[:activity_id])
+            rescue ActiveRecord::RecordNotFound
+              logger.info "food activity entry not found"
+            end
+          end
+       elsif @trip_activity[:activity_type] == "2"
+          logger.info "transport acitivity" 
+          if @trip_activity[:activity_id] 
+            begin
+              @trip_activities_detail = TransportActivity.find(@trip_activity[:activity_id])
+            rescue ActiveRecord::RecordNotFound
+              logger.info "transport activity entry not found"
+            end
+          end
+       elsif @trip_activity[:activity_type] == "3"
+          logger.info "location activity"
+          if @trip_activity[:activity_id] 
+            begin  
+              @trip_activities_detail = LocationActivity.find(@trip_activity[:activity_id])
+            rescue ActiveRecord::RecordNotFound
+              logger.info "location activity entry not found"
+            end
+          end
+       else
+        logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
+        @trip_activities_detail[@trip_activity[:activity_id]] = nil
+       end
+       
+    render :partial => "trip_activities/#{@partial_layout}", :locals => {:trip_activity => @trip_activity}, :layout => false
+  end
+
+
+
+
+
   def load_trip
     @trip = Trip.find(params[:trip_id])
   end

@@ -25,7 +25,7 @@ module TripsHelper
 							   rightcaption: @trip_activities_details[e["activity_id"].to_s]["description"], 
 							   quicktip: @trip_activities_details[e["activity_id"].to_s]["quick_tip"], 
 							   duration: @trip_activities_details[e["activity_id"].to_s]["duration"], 
-							   renderpartial: "/trips/#{t["id"]}/showpartial/"} }
+							   renderpartial: "/trips/#{t["id"]}/trip_activities/#{e["id"]}/showpartial/", layout: e["id"].odd? ? "testingpartial" : "otherpartial" }}
 		# sorting this JSON by sequence number
 		sortedbungle = mappedbungle.sort { |j, k| [j[:activityday], j[:activitysequence]] <=> [k[:activityday], k[:activitysequence]] }
 		prettybungle = JSON.pretty_generate(sortedbungle)
