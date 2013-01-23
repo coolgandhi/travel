@@ -191,7 +191,7 @@ var SwipeView = (function (window, document) {
 			p = p < 0 ? 0 : p > this.options.numberOfPages-1 ? this.options.numberOfPages-1 : p;
 			this.page = p;
 			this.pageIndex = p;
-			this.slider.style[transitionDuration] = '0s';
+			this.slider.style[transitionDuration] = '0.5s';
 			this.__pos(-p * this.pageWidth);
 
 			this.currentMasterPage = (this.page + 1) - Math.floor((this.page + 1) / 3) * 3;

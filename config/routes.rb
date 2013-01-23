@@ -17,9 +17,9 @@ Travel::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :trips do
-    # collection do
-    #   get 'showpartial'
-    # end
+    member do
+      get 'showpartial'
+    end
     resources :trip_activities do
       member do
         get 'carddeck'

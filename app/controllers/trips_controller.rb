@@ -125,4 +125,9 @@ class TripsController < ApplicationController
     end
   end
 
+  def showpartial
+    @partial_layout = params[:layout]
+    render :partial => "#{@partial_layout}", :layout => false
+  end
+
 end

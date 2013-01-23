@@ -22,13 +22,20 @@ module TripsHelper
 		# mapping the trip, trip_activity and trip_activities_detail into a formatted JSON object
 		mappedbungle = s.map {|e| {activityday: e["activity_day"], activitysequence: e["activity_sequence_number"], activityid: e["id"],
 								tripname: t["trip_name"],triplength: t["duration"], triplocation: t["location_id"], tripid: t["id"],
-							   rightcaption: @trip_activities_details[e["activity_id"].to_s]["description"], 
-							   quicktip: @trip_activities_details[e["activity_id"].to_s]["quick_tip"], 
-							   duration: @trip_activities_details[e["activity_id"].to_s]["duration"], 
-							   renderpartial: "/trips/#{t["id"]}/trip_activities/#{e["id"]}/showpartial/", layout: e["id"].odd? ? "testingpartial" : "otherpartial" }}
+							   	rightcaption: @trip_activities_details[e["activity_id"].to_s]["description"], 
+							   	quicktip: @trip_activities_details[e["activity_id"].to_s]["quick_tip"], 
+							   	duration: @trip_activities_details[e["activity_id"].to_s]["duration"], 
+							   	renderpartial: "/trips/#{t["id"]}/trip_activities/#{e["id"]}/showpartial/", 
+							   	layout: case 
+							   			  when e["activity_type"] == "1" then "testingpartial"
+							   			  when e["activity_type"] == "2" then "otherpartial"
+							   			  when e["activity_type"] == "3" then "otherpartial"
+							   			end				   			  			
+							   }}
 		# sorting this JSON by sequence number
 		sortedbungle = mappedbungle.sort { |j, k| [j[:activityday], j[:activitysequence]] <=> [k[:activityday], k[:activitysequence]] }
-		prettybungle = JSON.pretty_generate(sortedbungle)
+		endcapbungle = sortedbungle.push({renderpartial: "/trips/#{t["id"]}/showpartial/", layout: "about_author"})
+		prettybungle = JSON.pretty_generate(endcapbungle)
 		prettybungle
 	end
 
