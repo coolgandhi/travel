@@ -35,7 +35,6 @@
 
   <div id="wrapper"></div>
 
-<%= trip_activities_as_json %>
 <!-- /bottom navigation bar -->
       <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left icon-2x"></i></div>
       
@@ -53,19 +52,7 @@
       
       <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right icon-2x"></i></div>
 
-<!-- /sliding panel -->        
-<div id="wrapperhung">
-          <div id="lower">
 
-            <div id="bar"><a href="#" id="toggle">More Info</a></div>
-
-            <div id="panel">
-                <p>Panel - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a mauris et nulla facilisis eleifend. Sed metus orci, vulputate sit amet malesuada id, luctus vestibulum lacus. Sed faucibus, nibh vel faucibus porta, lectus lacus suscipit metus, ut posuere nulla dolor porttitor erat. Nam iaculis dolor et est tristique scelerisque. Integer gravida scelerisque est, ut pellentesque sem facilisis in. Quisque felis elit, laoreet id sagittis non, sollicitudin vitae turpis. Pellentesque quis quam sed nibh sollicitudin porttitor non ac sapien. Cras luctus egestas urna, vitae bibendum enim malesuada ut. Nulla porta tempus mi vel consequat. Aenean scelerisque porttitor felis, id elementum erat porttitor eu. Mauris vitae elit non lorem malesuada viverra non ac eros.</p>
-                <p>Panel - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a mauris et nulla facilisis eleifend. Sed metus orci, vulputate sit amet malesuada id, luctus vestibulum lacus. Sed faucibus, nibh vel faucibus porta, lectus lacus suscipit metus, ut posuere nulla dolor porttitor erat. Nam iaculis dolor et est tristique scelerisque. Integer gravida scelerisque est, ut pellentesque sem facilisis in. Quisque felis elit, laoreet id sagittis non, sollicitudin vitae turpis. Pellentesque quis quam sed nibh sollicitudin porttitor non ac sapien. Cras luctus egestas urna, vitae bibendum enim malesuada ut. Nulla porta tempus mi vel consequat. Aenean scelerisque porttitor felis, id elementum erat porttitor eu. Mauris vitae elit non lorem malesuada viverra non ac eros.</p>
-            </div>
-
-        </div>
-</div>
 
 <script type="text/javascript">
 //removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
@@ -132,7 +119,14 @@ gallery.onFlip(function () {
   dots2[gallery.pageIndex].className = 'selected';
 
   //I added to change text of trip-title-sub-text Day x of X in Location
+  if (slides[gallery.pageIndex].activityday == true)
+  {
   document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
+  }
+  else
+  {
+  document.querySelector('span.trip-title-sub-text').innerHTML = ' '
+  }
 });
 
 gallery.onMoveOut(function () {

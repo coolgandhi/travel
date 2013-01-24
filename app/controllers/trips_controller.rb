@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  layout "showtriplayout", :only => [:show]
   # GET /trips
   # GET /trips.json
   def index
@@ -126,6 +127,7 @@ class TripsController < ApplicationController
   end
 
   def showpartial
+    @trip = Trip.find(params[:id])
     @partial_layout = params[:layout]
     render :partial => "#{@partial_layout}", :layout => false
   end

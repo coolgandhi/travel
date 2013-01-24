@@ -147,6 +147,7 @@ $lastrowheight: 10%;
   padding: 1em;
   height: 100%;
   background-color:grey;
+  position: relative;
 
   @include respond-to(portrait){
   @include col(12);
@@ -193,6 +194,24 @@ $lastrowheight: 10%;
 
 .filmstriptable{
   min-height: 100%;
+}
+
+.hiddenMapDiv{
+  display: none;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+#mapShowHide{
+  z-index: 100;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 /*navigation arrows */
@@ -365,7 +384,7 @@ $lastrowheight: 10%;
   position: fixed; /* position fixed required to keep panel at bottom of page even when scrolling */ 
   bottom: 0px;
   margin-left: 10%;
-  margin-right: 10%;
+  // margin-right: 10%;
 }
 
 #bar {

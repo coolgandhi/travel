@@ -1,9 +1,12 @@
   <div class="centerimage">
         <%= image_tag("view_from_notre_dame_flickr_large.jpg",:alt => "Notre Dame View",:class => "hung_image") %>
         <h3><small> LAYOUT 1 ( <%= @trip_activity.id %> ) </small> </h3>
+        <div class = "hiddenMapDiv">I'm a map</div>
+      <button type="button" class="btn btn-primary" id="mapShowHide">Show Map</button>  
       </div>
       
       <div class="rightcaption" id="greybg">
       <p class="lead" id="rightsidecaption"><%= @trip_activities_detail.description %>  </p>
       <div class="well well-small">Quick Tip: <%= @trip_activities_detail.quick_tip %> </div> 
+      
       </div>
