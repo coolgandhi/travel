@@ -196,25 +196,7 @@ $lastrowheight: 10%;
   min-height: 100%;
 }
 
-.hiddenMapDiv{
-  display: none;
-  height: 100%;
-  width: 100%;
-  background-color: green;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-}
-
-#mapShowHide{
-  z-index: 100;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-/*navigation arrows */
+/* NAVIGATION ARROWS */
 
 #leftnavigation{
   text-align: left;

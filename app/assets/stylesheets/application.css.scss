@@ -1,10 +1,13 @@
+ @import "compass/css3";
  @import "bootstrap";
  @import "bootstrap-responsive";
  @import "bootstrap_and_overrides";
  @import "carddeck.css.scss";
  @import "about_author.css.scss";
+ @import "flipper.css.scss";
  @import "font-awesome.scss";
  @import "swipeview_style.css.scss";
+
 
 ul.ui-autocomplete {
   position: absolute;
