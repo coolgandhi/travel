@@ -17,43 +17,10 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-    @trip_activities = TripActivity.find_all_by_trip_id(params[:id])
-    @trip_activities_details = Hash.new
-#    logger.info "New post: #{@trip_activities.attributes.inspect}"
-    @trip_activities.each do |trip_activity|
-       if trip_activity[:activity_type] == "1"
-          logger.info "food activity..."  
-          if trip_activity[:activity_id]
-            begin 
-              @trip_activities_details[trip_activity[:activity_id]] = FoodActivity.find(trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "food activity entry not found"
-            end
-          end
-       elsif trip_activity[:activity_type] == "2"
-          logger.info "transport acitivity" 
-          if trip_activity[:activity_id] 
-            begin
-              @trip_activities_details[trip_activity[:activity_id]] = TransportActivity.find(trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "transport activity entry not found"
-            end
-          end
-       elsif trip_activity[:activity_type] == "3"
-          logger.info "location activity"
-          if trip_activity[:activity_id] 
-            begin  
-              @trip_activities_details[trip_activity[:activity_id]] = LocationActivity.find(trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "location activity entry not found"
-            end
-          end
-       else
-        logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
-        @trip_activities_details[trip_activity[:activity_id]] = nil
-       end
-        
-    end
+    
+   # @trip.trip_activities.each do |trip_act|
+   #    logger.info "here #{trip_act.activity.inspect} ..." 
+   # end
     
     respond_to do |format|
       format.html # show.html.erb

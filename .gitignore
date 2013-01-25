@@ -15,4 +15,6 @@
 /tmp
 .DS_Store
 /config/application.yml
+.rbx	
+/.sass-cache
 

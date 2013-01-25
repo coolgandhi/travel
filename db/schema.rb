@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116232740) do
+ActiveRecord::Schema.define(:version => 20130123234057) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20130116232740) do
 
   create_table "trip_activities", :force => true do |t|
     t.string   "trip_id"
-    t.string   "activity_id"
+    t.integer  "activity_id"
     t.string   "activity_day"
     t.integer  "activity_sequence_number"
     t.string   "activity_type"
