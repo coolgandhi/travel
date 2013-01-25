@@ -1,5 +1,5 @@
 namespace :db do
-  desc "Fill database with meta data"
+  desc "Fill database with location data"
   task addlocation: :environment do
     Location.create!(city: "San Francisco",
                      country: "US",

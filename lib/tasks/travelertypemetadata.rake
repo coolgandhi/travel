@@ -1,5 +1,5 @@
 namespace :db do
-  desc "Fill database with meta data"
+  desc "Fill database with travelertype data"
   task populate: :environment do
     TravelerType.create!(traveler_type_id: "1",
                  traveler_type_name: "Solo")

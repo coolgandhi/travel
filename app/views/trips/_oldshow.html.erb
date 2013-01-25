@@ -21,10 +21,10 @@ summary: <%= @trip.trip_summary %> <br/>
 author id: <%= @trip.author_id %> <br/> <br/>
 
 itinerary </br></br>  
-<% @trip_activities.each do |trip_activity| %>
+<% @trip.trip_activities.each do |trip_activity| %>
   <%= render :partial => "trip_activity", :object => trip_activity %></br></br>
-  <% if @trip_activities_details.has_key?(trip_activity.activity_id) %>
-    <%= render @trip_activities_details[trip_activity.activity_id] %>  
+  <% if trip_activity.activity %>
+    <%= render trip_activity.activity %>  
   <% end %>
   <%= link_to 'Show', trip_trip_activity_path(trip_activity.trip_id, trip_activity) %> |
   <%= link_to 'Edit', edit_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %> |
@@ -32,3 +32,12 @@ itinerary </br></br>
   <%= link_to 'Show Card', carddeck_trip_trip_activity_path(trip_activity.trip_id, trip_activity) %>
   <br/><br/>
 <% end %>
+<br/> <br/>
+<%= link_to 'Add Activity', new_trip_trip_activity_path(@trip) %> <br/>
+
+
+</br></br>
+<div class ="bottom-actionlinks"><%= link_to 'Add Activity', new_trip_trip_activity_path(@trip) %> <br/>
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>
+</div>

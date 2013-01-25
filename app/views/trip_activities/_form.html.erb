@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :trip_activity_latlong, @latlong %>
   <%= hidden_field_tag :trip_id, @trip_activity.trip_id %>
   
   <div class="field">
@@ -31,6 +32,12 @@
   Food Activity <br/>
   <%=  fields_for :food_activity do |fa| %>
     <div class="field">
+      <%= fa.hidden_field :restaurant_detail_id %>
+    </div>
+    <div class="field">
+      <label for="foodvenue">Location Name</label>: <input id="foodvenue" type="text" name="foodvenue" />
+    </div>
+    <div class="field">
         <%= fa.label :description %>: <%= fa.text_field :description %>
     </div>
     <div class="field">
@@ -39,14 +46,17 @@
     <div class="field">
         <%= fa.label :quick_tip %>: <%= fa.text_field :quick_tip %>
     </div>
-    <div class="field">    
-        <%= fa.label :restaurant_detail_id %>: <%= fa.text_field :restaurant_detail_id %>
-    </div>    
   <% end %> <br/> <br/>
 
   Location Activity <br/>
   <%=  fields_for :location_activity do |fa| %>
     <div class="field">
+      <%= fa.hidden_field :location_detail_id %>
+    </div>
+    <div class="field">
+      <label for="locationvenue">Location Name</label>: <input id="locationvenue" type="text" name="locationvenue" />
+    </div>
+    <div class="field">
         <%= fa.label :description %>: <%= fa.text_field :description %>
     </div>
     <div class="field">
@@ -54,10 +64,7 @@
     </div>
     <div class="field">
         <%= fa.label :quick_tip %>: <%= fa.text_field :quick_tip %>
-    </div>
-    <div class="field">    
-        <%= fa.label :location_detail_id %>: <%= fa.text_field :location_detail_id %>
-    </div>  <br/> <br/>  
+    </div> <br/> <br/>  
   <% end %> <br/> <br/>
       
   Transport Activity <br/>

@@ -1,4 +1,5 @@
 class TripActivitiesController < ApplicationController
+include ApplicationHelper
 before_filter :load_trip
   # GET /trip_activities
   # GET /trip_activities.json
@@ -15,42 +16,10 @@ before_filter :load_trip
   # GET /trip_activities/1.json
   def show
     @trip_activity = @trip.trip_activities.find(params[:id])
-    @trip_activities_detail = nil
-
-      if @trip_activity[:activity_type] == "1"
-          logger.info "food activity..."  
-          if @trip_activity[:activity_id]
-            begin 
-              @trip_activities_detail = FoodActivity.find(@trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "food activity entry not found"
-            end
-          end
-       elsif @trip_activity[:activity_type] == "2"
-          logger.info "transport acitivity" 
-          if @trip_activity[:activity_id] 
-            begin
-              @trip_activities_detail = TransportActivity.find(@trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "transport activity entry not found"
-            end
-          end
-       elsif @trip_activity[:activity_type] == "3"
-          logger.info "location activity"
-          if @trip_activity[:activity_id] 
-            begin  
-              @trip_activities_detail = LocationActivity.find(@trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "location activity entry not found"
-            end
-          end
-       else
-        logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
-        @trip_activities_detail[@trip_activity[:activity_id]] = nil
-       end
-       
-    respond_to do |format|
-      format.html # show.html.erb
+    
+    #logger.info " here... #{@trip_activity.activity.inspect}"
+    respond_to do |format| require 'trip_activities_controller'
+        format.html # show.html.erb
       format.json { render json: @trip_activity }
     end
   end
@@ -60,7 +29,14 @@ before_filter :load_trip
   def new
     @trip_activity = @trip.trip_activities.new
     @trip_activity.trip_id = params[:trip_id]
-#    logger.info("PARAMS: #{params.inspect}")
+    @latlong = nil
+    #logger.info (" here ... #{@trip.inspect}")
+    @location_detail = Location.find_by_location_id(@trip.location_id)
+    if (@location_detail)
+      @latlong = @location_detail.latitude + "," + @location_detail.longitude
+    else
+        @latlong = "37.77493,-122.41942"  # use SF by default
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -73,62 +49,50 @@ before_filter :load_trip
     @trip_activity = @trip.trip_activities.find(params[:id])
   end
 
+  def report_error format, object
+    logger.info "error"
+    format.html { render action: "new" }
+    format.json { render json: object.errors, status: :unprocessable_entity }
+  end
+  
   # POST /trip_activities
   # POST /trip_activities.json
   def create
-    @trip_activity = @trip.trip_activities.new(params[:trip_activity])
-    @trip_activity.trip_id = params[:trip_id]
+    @trip_activity = nil
     @activity = nil
-#    logger.info("PARAMS: #{params.inspect}")
-#    logger.info "New post: #{@trip_activity.attributes.inspect}"
-   
+
     respond_to do |format|
-      if @trip_activity[:activity_type] == "1"
-         logger.info "food activity..."
-         @activity = FoodActivity.new(params[:food_activity])
-         if @activity.save
-           @trip_activity.activity_id = @activity.id
-         else
-           logger.info "food error"
-           format.html { render action: "new" }
-           format.json { render json: @trip_activity.errors, status: :unprocessable_entity }  
-         end
-      elsif @trip_activity[:activity_type] == "2"
-         logger.info "transport acitivity" 
-         @activity = TransportActivity.new(params[:transport_activity])
-        
-         if @activity.save
-           @trip_activity.activity_id = @activity.id
-         else
-           logger.info "transport error"
-           format.html { render action: "new" }
-           format.json { render json: @trip_activity.errors, status: :unprocessable_entity }  
-         end 
-      elsif @trip_activity[:activity_type] == "3"
-         logger.info "location activity"
-         @activity = LocationActivity.new(params[:location_activity])
-         if @activity.save
-            @trip_activity.activity_id = @activity.id
-         else              
-           logger.info "location error"
-           format.html { render action: "new" }
-           format.json { render json: @trip_activity.errors, status: :unprocessable_entity }  
-         end
+      if params[:trip_activity][:activity_type] == "FoodActivity"
+        logger.info "food activity..."  
+        @activity = FoodActivity.new(params[:food_activity])
+        if (@activity.restaurant_detail.nil? or @activity.restaurant_detail == 0)
+          @activity.restaurant_detail = create_food_venue(@activity[:restaurant_detail_id])
+        end
+      elsif params[:trip_activity][:activity_type] == "TransportActivity"
+        logger.info "transport acitivity"
+        @activity = TransportActivity.new(params[:transport_activity])
+      elsif params[:trip_activity][:activity_type] == "LocationActivity"
+        logger.info "location acitivity"
+        @activity = LocationActivity.new(params[:location_activity])
+        if (@activity.location_detail.nil? or @activity.location_detail == 0)
+          @activity.location_detail = create_location_venue(@activity[:location_detail_id])
+        end
+      end 
+    
+      if @activity && @activity.save
+        @trip_activity = @trip.trip_activities.create(:activity => @activity, \
+        :activity_day => params[:trip_activity][:activity_day], \
+        :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
+        :activity_time_type => params[:trip_activity][:activity_time_type])
+        if @trip_activity.save
+          format.html { redirect_to @trip, notice: 'Trip activity was successfully created.' }
+          format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+        else
+          report_error format, @trip_activity
+        end
       else
-         logger.info "activity type error"
-         format.html { render action: "new" }
-         format.json { render json: @trip_activity.errors, status: :unprocessable_entity }  
+        report_error format, @activity
       end
-      
-       if @trip_activity.save
-         format.html { redirect_to @trip, notice: 'Trip activity was successfully created.' }
-         format.json { render json: @trip_activity, status: :created, location: @trip_activity }
-       else
-         logger.info "trip activity error"
-         format.html { render action: "new" }
-         format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-       end
-     #   format.html { redirect_to @trip_activity, notice: 'Trip activity was successfully created.' }
     end
   end
 
@@ -165,39 +129,7 @@ before_filter :load_trip
   # GET /trips/1.json
   def carddeck
     @trip_activity = @trip.trip_activities.find(params[:id])
-    @trip_activities_detail = nil
-
-      if @trip_activity[:activity_type] == "1"
-          logger.info "food activity..."  
-          if @trip_activity[:activity_id]
-            begin 
-              @trip_activities_detail = FoodActivity.find(@trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "food activity entry not found"
-            end
-          end
-       elsif @trip_activity[:activity_type] == "2"
-          logger.info "transport acitivity" 
-          if @trip_activity[:activity_id] 
-            begin
-              @trip_activities_detail = TransportActivity.find(@trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "transport activity entry not found"
-            end
-          end
-       elsif @trip_activity[:activity_type] == "3"
-          logger.info "location activity"
-          if @trip_activity[:activity_id] 
-            begin  
-              @trip_activities_detail = LocationActivity.find(@trip_activity[:activity_id])
-            rescue ActiveRecord::RecordNotFound
-              logger.info "location activity entry not found"
-            end
-          end
-       else
-        logger.info "invalid option in setting up a trip... trip activity type is not one of the known valeues."
-        @trip_activities_detail[@trip_activity[:activity_id]] = nil
-       end
+    #logger.info " here.... #{trip_activity.inspect}"
        
     respond_to do |format|
       format.html # show.html.erb

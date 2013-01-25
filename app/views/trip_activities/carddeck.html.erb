@@ -65,16 +65,16 @@
         </ul>
       </div>
 
-      <div class="centerimage">
-        <%= image_tag("view_from_notre_dame_flickr_large.jpg",:alt => "Notre Dame View",:class => "hung_image") %>
-        <h3>[Location Name] <small> ( <%= @trip_activities_detail.duration %> )</small> </h3>
-      </div>
-      
-      <div class="rightcaption" id="greybg">
-      <p class="lead" id="rightsidecaption"> <%= @trip_activities_detail.description %> </p>
-      <div class="well well-small">Quick Tip: <%= @trip_activities_detail.quick_tip %></div> 
-      </div>
-
+      <% if @trip_activity.activity %>
+        <div class="centerimage">
+          <%= image_tag("view_from_notre_dame_flickr_large.jpg",:alt => "Notre Dame View",:class => "hung_image") %>
+          <h3>[Location Name] <small> ( <%= @trip_activity.activity[:duration] %> )</small> </h3>
+        </div>
+        <div class="rightcaption" id="greybg">
+        <p class="lead" id="rightsidecaption"> <%= @trip_activity.activity[:description] %> </p>
+        <div class="well well-small">Quick Tip: <%= @trip_activity.activity[:quick_tip] %></div> 
+        </div>
+      <% end %>
 
       <div class="bottomnavigationbar" id="leftnavigation"><i class="icon-chevron-left icon-2x"></i></div>
       

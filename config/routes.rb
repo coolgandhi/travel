@@ -1,4 +1,8 @@
 Travel::Application.routes.draw do
+  get "venues/pick"
+
+  get "venues/get_venue_info"
+
   get "locations/pick"
 
   #get "location_detail/pick"

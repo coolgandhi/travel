@@ -7,9 +7,13 @@ activity type: <%= @trip_activity.activity_type %> <br/>
 activity time type: <%= @trip_activity.activity_time_type %> 
 
 </br>
-<%= render @trip_activities_detail %>
-<%= @trip_activities_detail.description %> 
-
+<%#= render @trip_activities_detail %>
+<%#= @trip_activities_detail.description %> 
+<% if @trip_activity.activity %>
+  <%= render @trip_activity.activity %>
+<%#= @trip_activities_detail.description %> 
+  <%#= @trip_activity.activity.description %> 
+<% end %>
 <%= link_to 'Edit', edit_trip_trip_activity_path(@trip_activity.trip_id, @trip_activity) %> |
 <%= link_to 'Back', trip_path(@trip_activity.trip_id) %>
 
