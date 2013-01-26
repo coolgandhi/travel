@@ -27,9 +27,9 @@ module TripsHelper
 							   	duration: @trip.trip_activities.find(e["id"].to_s).activity[:duration], 
 							   	renderpartial: "/trips/#{t["id"]}/trip_activities/#{e["id"]}/showpartial/", 
 							   	layout: case 
-							   			  when e["activity_type"] == "FoodActivity" then "otherpartial"
-							   			  when e["activity_type"] == "TransportActivity" then "testingpartial"
-							   			  when e["activity_type"] == "LocationActivity" then "otherpartial"
+							   			  when e["activity_type"] == "FoodActivity" then "foodactivitypartial"
+							   			  when e["activity_type"] == "TransportActivity" then "transportactivitypartial"
+							   			  when e["activity_type"] == "LocationActivity" then "locationactivitypartial"
 							   			end				   			  			
 							   }}
 		# # sorting this JSON by sequence number
