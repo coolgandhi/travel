@@ -7,7 +7,7 @@ jQuery ->
   $('#locationvenue').autocomplete
     source: (request, response) ->
       $.ajax 
-        url: "http://localhost:5678/venues/pick.json"
+        url: "http://localhost:3000/venues/pick.json"
         dataType: "json"
         minLength: 3
         data: 
@@ -37,7 +37,7 @@ jQuery ->
   $('#foodvenue').autocomplete
     source: (request, response) ->
       $.ajax 
-        url: "http://localhost:5678/venues/pick.json"
+        url: "http://localhost:3000/venues/pick.json"
         dataType: "json"
         minLength: 3
         data: 
