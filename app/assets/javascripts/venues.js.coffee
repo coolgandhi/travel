@@ -2,14 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-
 jQuery ->        
   $('#locationvenue').autocomplete
+    minLength: 3
     source: (request, response) ->
       $.ajax 
-        url: "http://localhost:5678/venues/pick.json"
+        url: "http://localhost:3000/venues/pick.json"
         dataType: "json"
-        minLength: 3
         data: 
           total: 10
           ven: request.term
@@ -35,11 +34,11 @@ jQuery ->
 
 jQuery ->        
   $('#foodvenue').autocomplete
+    minLength: 3
     source: (request, response) ->
       $.ajax 
         url: "http://localhost:3000/venues/pick.json"
         dataType: "json"
-        minLength: 3
         data: 
           total: 10
           ven: request.term

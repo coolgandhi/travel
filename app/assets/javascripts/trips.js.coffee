@@ -1,11 +1,11 @@
 
 jQuery ->        
   $('#place').autocomplete
+    minLength: 3
     source: (request, response) ->
       $.ajax 
-        url: "http://localhost:5678/locations/pick.json"
+        url: "http://localhost:3000/locations/pick.json"
         dataType: "json"
-        minLength: 2
         data: 
           total: 10
           near: request.term
