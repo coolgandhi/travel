@@ -32,7 +32,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 
 /* flip speed goes here */
 .flipper {
-  @include transition-duration(0.9s);
+  @include transition-duration(0.6s);
   @include transform-style(preserve-3d);
   position: relative;
 }
@@ -70,16 +70,6 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 #moreShowHideGroup{
   z-index: 100;
   position: absolute;
-  bottom: 2%;
-  right: 2%;
-}
-
-#moreShowHideGroup .btn{
-  font-size: 18px;
-  color: #0088cc;
-}
-
-#moreShowHideGroup .btn.active{
-  color: $grayLight;
-  background-color: #e6e6e6;
+  bottom: 0;
+  right: 0;
 }

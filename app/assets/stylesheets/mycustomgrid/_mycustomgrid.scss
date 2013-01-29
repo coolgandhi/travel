@@ -20,7 +20,7 @@ $font-base-percentage: (($font-base / 16px) * 100) + 0%;
 	float: left;
 	margin-left: percentage($gutter-width / $container-width);
 	width: percentage(($n * ($column-width + $gutter-width) - $gutter-width - ($padding * 2) - ($border * 2)) / $container-width);
-	border-width: $border;
+	// border-width: $border;
 	padding: em($padding, $font-base) percentage($padding / $container-width);
 }
 

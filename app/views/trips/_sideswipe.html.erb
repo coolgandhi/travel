@@ -22,18 +22,18 @@
         
         <ul class="media-list" id="navswipe">
           <li class="media selected" onclick="gallery.goToPage(0)">
-            <img class="media-object" data-src="holder.js/160x120">
+            <img class="media-object" data-src="holder.js/160x160">
           </li>
           <% for i  in 1..(trip_activities_as_json.count('{')-1) %>
             <li class="media" onclick="gallery.goToPage(<%= i %>)">
-              <img class="media-object" data-src="holder.js/160x120">
+              <img class="media-object" data-src="holder.js/160x160">
             </li>
           <% end %> 
 
         </ul>
       </div>
 
-  <div id="wrapper"></div>
+  <div id="swipewrapper"></div>
 
 <!-- /bottom navigation bar -->
       <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left icon-2x"></i></div>
@@ -67,7 +67,7 @@ var gallery,
   slides = <%= trip_activities_as_json.html_safe %> //this returns an array of hashes formatted in trip_helper.rb
   ;
 
-gallery = new SwipeView('#wrapper', { numberOfPages: slides.length });
+gallery = new SwipeView('#swipewrapper', { numberOfPages: slides.length });
 
 // Load initial data
 for (i=0; i<3; i++) {

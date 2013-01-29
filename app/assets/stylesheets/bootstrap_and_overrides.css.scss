@@ -1,4 +1,103 @@
-// $navbarHeight: 100px;
+//
+// Variables
+// --------------------------------------------------
+
+// Grays
+// -------------------------
+$black:                 #000 !default;
+$grayDarker:            #222 !default;
+$grayDark:              #333 !default;
+$gray:                  #555 !default;
+$grayLight:             #D2D2D2 !default; //changed this from #999
+$grayLighter:           #F1F1F1 !default; //changed this from #eee
+$white:                 #fff !default;
+
+// Accent colors
+// -------------------------
+$blue:                  #049cdb !default;
+$blueDark:              #0064cd !default;
+$green:                 #46a546 !default;
+$red:                   #9d261d !default;
+$yellow:                #ffc40d !default;
+$orange:                #f89406 !default;
+$pink:                  #c3325f !default;
+$purple:                #7a43b6 !default;
+
+/* Our custom colors */
+
+$blueLight:				#9AB4CB !default; //added this from pandora
+$borderGray: 			#C4C4C4 !default;//from Google+
+
+// Scaffolding
+// -------------------------
+$bodyBackground:        $grayLighter !default;
+
+// Navbar
+// -------------------------
+$navbarCollapseWidth:             979px !default;
+$navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
+
+$navbarHeight:                    40px !default;
+$navbarBackgroundHighlight:       $blueLight; //changed this from black
+$navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
+$navbarBorder:                    darken($navbarBackground, 12%) !default;
+
+$navbarText:                      #777 !default;
+$navbarLinkColor:                 #777 !default;
+$navbarLinkColorHover:            $grayDark !default;
+$navbarLinkColorActive:           $gray !default;
+$navbarLinkBackgroundHover:       transparent !default;
+$navbarLinkBackgroundActive:      darken($navbarBackground, 5%) !default;
+
+$navbarBrandColor:                $navbarLinkColor !default;
+
+// Inverted navbar
+$navbarInverseBackground:                #396A92 !default; 
+$navbarInverseBackgroundHighlight:       $blueLight !default; //from pandora
+$navbarInverseBorder:                    #252525 !default;
+
+$navbarInverseText:                      $white !default; //was grayLight
+$navbarInverseLinkColor:                 $white !default;
+$navbarInverseLinkColorHover:            $grayLight !default; //was white
+$navbarInverseLinkColorActive:           $navbarInverseLinkColorHover !default;
+$navbarInverseLinkBackgroundHover:       transparent !default;
+$navbarInverseLinkBackgroundActive:      $navbarInverseBackground !default;
+
+$navbarInverseSearchBackground:          lighten($navbarInverseBackground, 25%) !default;
+$navbarInverseSearchBackgroundFocus:     $white !default;
+$navbarInverseSearchBorder:              $navbarInverseBackground !default;
+$navbarInverseSearchPlaceholderColor:    #ccc !default;
+
+$navbarInverseBrandColor:                $navbarInverseLinkColor !default;
+
+// GRID
+// --------------------------------------------------
+
+
+// Default 940px grid
+// -------------------------
+$gridColumns:             12 !default;
+$gridColumnWidth:         60px !default;
+$gridGutterWidth:         20px !default; //changed this from 20px
+$gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
+
+// 1200px min
+$gridColumnWidth1200:     70px !default;
+$gridGutterWidth1200:     20px !default; //changed from 30
+$gridRowWidth1200:        ($gridColumns * $gridColumnWidth1200) + ($gridGutterWidth1200 * ($gridColumns - 1)) !default;
+
+// 768px-979px
+$gridColumnWidth768:      42px !default;
+$gridGutterWidth768:      20px !default; //changed from 20
+$gridRowWidth768:         ($gridColumns * $gridColumnWidth768) + ($gridGutterWidth768 * ($gridColumns - 1)) !default;
+
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+
+/* Our custom borders and shadows */
+
+$myDivBorderRadius:                  3px !default;
+$myDivBorderWidth:					  1px !default;
+$myDivBoxShadow:					  5px 5px 4px rgba(218,218,218,0.65) !default;

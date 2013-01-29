@@ -9,6 +9,7 @@
   @include col(12);
   background-color: #acb6c0;
   height: 100%;
+  margin-left: 0%; //need to remove the gutter
   .author_desc{
   	text-align: center;
   }

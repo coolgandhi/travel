@@ -3,11 +3,11 @@
         
         <ul class="media-list" id="navswipe2">
           <li class="media selected" onclick="gallery.goToPage(0)">
-            <img class="media-object" data-src="holder.js/160x120">
+            <img class="media-object" data-src="holder.js/160x160">
           </li>
           <% for i  in 1..(trip_activities_as_json.count('{')-1) %>
             <li class="media" onclick="gallery.goToPage(<%= i %>)">
-              <img class="media-object" data-src="holder.js/160x120">
+              <img class="media-object" data-src="holder.js/160x160">
             </li>
           <% end %> 
 

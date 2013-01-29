@@ -6,18 +6,24 @@
 
 
 /* 1. WRAPPER */
-#wrapper {
+#swipewrapper {
 	@include col(10);
 	@include box-sizing(border-box);
-	border: 0.5em solid black;
+	background-color: $white;
+	border-color: $borderGray;
+	border-width: $myDivBorderWidth;
+	border-style: solid;
+	@include border-radius($myDivBorderRadius);
+	@include box-shadow($myDivBoxShadow);
 	height:90%;
 
 	@include respond-to(portrait){
-  	@include col(9);
+	  	@include col(9);
+	  	height: 80%;
   	}
 
   	@include respond-to(small){
-  	@include col(12);
+  		@include col(12);
   	}
 }
 
