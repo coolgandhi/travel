@@ -40,4 +40,13 @@ module TripsHelper
 		prettybungle
 	end
 
+	def background_switch_class(time)
+   		case 
+		  when time == "1" then "morning_bg"
+		  when time == "2" then "afternoon_bg"
+		  when time == "3" then "evening_bg"
+		end	
+	end
+
+
 end

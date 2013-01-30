@@ -1,10 +1,10 @@
       <div class="triptitlebox">
 
         <p>
-        <span class="trip-title-main-text"><%= @trip.trip_name %></span>
-        <span class="trip-title-sub-text"> - Day X of <%= @trip.duration %> in London</span>
+        <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
+        <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
         </p>
-        <small>by <%= @trip.author_id %> <i class="icon-heart-empty icon-1x"></i> [000] Likes</small>
+        <small>by <%= @trip.author_id %></small>
       
       <div class="socialmediabox">
       <i class="icon-pinterest-sign icon-2x"></i>
@@ -71,7 +71,7 @@ for (i=0; i<3; i++) {
   });
 
   //I added to change text of trip-title-sub-text Day x of X in Location
-  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
+  document.querySelector('span.trip-title-sub-text').innerHTML = ' - Day '+ slides[gallery.pageIndex].activityday + ' of ' + <%=@trip.duration%> + ' in ' + '<%= @trip.location[:place] %>' + ' for <%=@trip.traveler_type_id%>';
 }
 
 gallery.onFlip(function () {
@@ -107,7 +107,7 @@ gallery.onFlip(function () {
   //I added to change text of trip-title-sub-text Day x of X in Location
   if (slides[gallery.pageIndex].activityday)
   {
-  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation;
+  document.querySelector('span.trip-title-sub-text').innerHTML = ' - Day '+ slides[gallery.pageIndex].activityday + ' of ' + <%=@trip.duration%> + ' in ' + '<%= @trip.location[:place] %>' + ' for <%=@trip.traveler_type_id%>';
   }
   else
   {

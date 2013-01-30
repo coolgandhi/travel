@@ -73,23 +73,25 @@ $lastrowheight: 10%;
   }
 
   .trip-title-main-text{
-    font-family: 'Oswald', Helvetica, Arial, sans-serif;
-    font-size: 1.2em;
-    line-height: 1.2em;
+    // font-family: 'Oswald', Helvetica, Arial, sans-serif;
+    font-size: 1.4em;
+    line-height: 1.4em;
     white-space: nowrap;
+    font-weight: 400;
   }
 
   .trip-title-sub-text{
-    @extend .trip-title-main-text;
+    // font-family: 'Oswald', Helvetica, Arial, sans-serif;
     font-size: 1em;
     line-height: 1em;
+    white-space: nowrap;
   }
 }
 
 .socialmediabox{
   position: absolute;
   right: 0%;
-  top: 50%;
+  top: 30%;
   @include respond-to(small){
   font-size: .75em;
   right: 1%;
@@ -148,6 +150,25 @@ $lastrowheight: 10%;
     padding: 5%;
   }
 }
+
+.morning_bg{
+  // @include background-image(linear-gradient(-90deg,rgb(153,179,255) 0%,rgb(243,243,243) 100%));
+  @include background-image(linear-gradient(-90deg,rgb(46,90,137) 0%,rgb(55,105,154) 25%,rgb(72,124,174) 50%,rgb(86,138,188) 64%,rgb(102,156,203) 76%,rgb(150,185,217) 88%,rgb(166,197,217) 100%));
+
+  .centerimage, .rightcaption{
+    @include box-shadow(0 0 0 0);
+  }
+}
+
+.evening_bg{
+  @include background-image(linear-gradient(-90deg,rgb(0,48,64) 0%,rgb(138,138,123) 100%));
+
+  .centerimage, .rightcaption{
+  @include box-shadow(0 0 0 0);
+  }
+}
+
+
 
 /* 4. IMAGE DIV */ 
 
