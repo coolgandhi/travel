@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
+//= require gmap3
 //- require hungcustom
 //= require holder/holder
 //= require swipeview

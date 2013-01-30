@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 # Ignore bundler config
+.rbx
 /.bundle
 
 # Ignore the default SQLite database.
@@ -15,6 +16,5 @@
 /tmp
 .DS_Store
 /config/application.yml
-.rbx	
 /.sass-cache
 

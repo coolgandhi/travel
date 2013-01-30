@@ -13,6 +13,7 @@ module TripsHelper
 		# this helper provides the view with a JSON object of the trip and all activities
 	def trip_activities_as_json
 		mybungle = {:trip => @trip,:trip_activity => @trip.trip_activities}
+		trip_location = @trip.location[:place]
 		parseable = mybungle.to_json
 		parsedbungle = JSON.parse(parseable)
 		t = parsedbungle["trip"]
@@ -21,7 +22,7 @@ module TripsHelper
 		# # blahblah = x.map {|e| {rightcaption: e[1]["description"], quicktip: e[1]["quick_tip"], tripname: t["trip_name"], activityday: @trip_activity[:activity_id] }}
 		# mapping the trip, trip_activity and trip_activities_detail into a formatted JSON object
 		mappedbungle = s.map {|e| {activityday: e["activity_day"], activitysequence: e["activity_sequence_number"], activityid: e["id"],
-								tripname: t["trip_name"],triplength: t["duration"], triplocation: t["location_id"], tripid: t["id"],
+								tripname: t["trip_name"],triplength: t["duration"], triplocation: trip_location, tripid: t["id"],
 							   	rightcaption: @trip.trip_activities.find(e["id"].to_s).activity[:description], 
 							   	quicktip: @trip.trip_activities.find(e["id"].to_s).activity[:quick_tip], 
 							   	duration: @trip.trip_activities.find(e["id"].to_s).activity[:duration], 

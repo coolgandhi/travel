@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123234057) do
+ActiveRecord::Schema.define(:version => 20130129034442) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20130123234057) do
     t.string   "longitude"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.text     "image_urls"
   end
 
   create_table "locations", :force => true do |t|
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130123234057) do
     t.string   "longitude"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.text     "image_urls"
   end
 
   create_table "transport_activities", :force => true do |t|
