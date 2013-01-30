@@ -15,8 +15,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require gmap3
-//- require hungcustom
+//= require hungcustom
 //= require holder/holder
 //= require swipeview
+//= require jquery.scrollTo
 //= require modernizr-touch-events-only
 //= require_tree .

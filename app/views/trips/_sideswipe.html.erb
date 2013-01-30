@@ -41,6 +41,7 @@
   </div>
 
 <script type="text/javascript">
+
 //removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
 // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
@@ -112,7 +113,12 @@ gallery.onFlip(function () {
   else
   {
   document.querySelector('span.trip-title-sub-text').innerHTML = ' '
-  }
+  };
+
+  //scrollTo implementation here
+  var $scrollTarget = $('.filmstrip').find('li:eq('+ (gallery.pageIndex) + ')');
+  $('.filmstrip').scrollTo($scrollTarget, 800, { offset:{ top:-150 } } );
+
 });
 
 gallery.onMoveOut(function () {
