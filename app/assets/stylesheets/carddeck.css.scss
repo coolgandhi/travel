@@ -242,75 +242,84 @@ img.hung_image{
 /* NAVIGATION ARROWS */
 
 #leftnavigation{
-  text-align: left;
-  @include col(1);
-  @extend .bottomnavigationbar;
-
-  @include respond-to(portrait){
-  @include col(1);
-  }
-
-  @include respond-to(small){
-  @include col(1);
+  text-align: center;
+  color:  $white;
+  width: 3%;
+  background-color: rgba(85, 85, 85, 0.8);
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  @include border-radius(0 5px 5px 0);
+  &:hover{
+    background-color: rgba(0, 0, 0, 1);
+    cursor: pointer;
+    border-width: 1px;
+    border-color: $black;
+    border-style: solid;
   }
 }
 
 #rightnavigation{
-  text-align: right;
-  @include col(1);
-  @extend .bottomnavigationbar;
-
-  @include respond-to(portrait){
-  @include col(1);
-  }
-
-  @include respond-to(small){
-  @include col(1);
-  }
-
-}
-
-#nextstepbox{
-  text-align: right;
-  // background-color: grey;
-  @include col(5);
-  @extend .bottomnavigationbar;
-
-  @include respond-to(portrait){
-  @include col(5);
-  }
-
-  @include respond-to(small){
-  @include col(5);
-  font-size: .8em;
   text-align: center;
-  @include box-sizing(border-box);
-  padding: 1em 1em 1em 1em;
+  color:  $white;
+  width: 3%;
+  background-color: rgba(85, 85, 85, 0.8);
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  @include border-radius(5px 0 0 5px);
+  &:hover{
+    background-color: rgba(0, 0, 0, 1);
+    cursor: pointer;
+    border-width: 1px;
+    border-color: $black;
+    border-style: solid;
   }
 }
 
-#previousstepbox{
-  text-align: left;
-  @include col(5);
-  @extend .bottomnavigationbar;
+// #nextstepbox{
+//   text-align: right;
+//   // background-color: grey;
+//   @include col(5);
+//   @extend .bottomnavigationbar;
 
-  @include respond-to(portrait){
-  @include col(5);
-  }
+//   @include respond-to(portrait){
+//   @include col(5);
+//   }
 
-  @include respond-to(small){
-  @include col(5);
-  font-size: .8em;
-  text-align: center;
-  @include box-sizing(border-box);
-  padding: 1em 1em 1em 1em;
-  }
-}
+//   @include respond-to(small){
+//   @include col(5);
+//   font-size: .8em;
+//   text-align: center;
+//   @include box-sizing(border-box);
+//   padding: 1em 1em 1em 1em;
+//   }
+// }
+
+// #previousstepbox{
+//   text-align: left;
+//   @include col(5);
+//   @extend .bottomnavigationbar;
+
+//   @include respond-to(portrait){
+//   @include col(5);
+//   }
+
+//   @include respond-to(small){
+//   @include col(5);
+//   font-size: .8em;
+//   text-align: center;
+//   @include box-sizing(border-box);
+//   padding: 1em 1em 1em 1em;
+//   }
+// }
 
 .bottomnavigationbar{
   @include box-sizing(border-box);
-  padding: 1em 0 1em 0;
-  height: $lastrowheight;
+  padding: 0.5em 0 0.5em 0;
+  // height: $lastrowheight;
+  z-index: 101;
+  display: none;
 }
 
 

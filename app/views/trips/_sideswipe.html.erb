@@ -33,26 +33,12 @@
         </ul>
       </div>
 
-  <div id="swipewrapper"></div>
-
-<!-- /bottom navigation bar -->
-      <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left icon-2x"></i></div>
-      
-      <div class="bottomnavigationbar" id="previousstepbox">
-        
-        [Go Back]
-        
-        </br>[How and Time]</div>
-      
-      <div class="bottomnavigationbar" id="nextstepbox">
-        
-        [Go Next]
-
-      </br>[How and Time]</div>
-      
-      <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right icon-2x"></i></div>
-
-
+  <div id="swipewrapper">
+    <!-- /bottom navigation bar -->
+          <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left"></i></div>
+          
+          <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right"></i></div>
+  </div>
 
 <script type="text/javascript">
 //removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
@@ -119,9 +105,9 @@ gallery.onFlip(function () {
   dots2[gallery.pageIndex].className = 'selected';
 
   //I added to change text of trip-title-sub-text Day x of X in Location
-  if (slides[gallery.pageIndex].activityday == true)
+  if (slides[gallery.pageIndex].activityday)
   {
-  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
+  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation;
   }
   else
   {

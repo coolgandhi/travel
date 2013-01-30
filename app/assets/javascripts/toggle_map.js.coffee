@@ -11,20 +11,19 @@ jQuery ->
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
-    $(this).toggleClass('active')
-    $(this).siblings('#infoShowHide').removeClass('active')
-    if $(this).class = "active" then $(this).siblings('#hideAllButton').removeClass('active')
-    # text = (if $(this).text() is "Show Map" then "Close" else "Show Map")
-    # $(this).text(text)
+    $(this).toggleClass('active').promise().done ->
+      if $(this).class = "active" then $(this).siblings('#infoShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
+      if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
 
   $("#swipewrapper").on "click", "#infoShowHide", (e) ->
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').show()
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').hide()
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped-again')
-    $(this).toggleClass('active')
-    $(this).siblings('#mapShowHide').removeClass('active')
-    if $(this).class = "active" then $(this).siblings('#hideAllButton').removeClass('active')
+    $(this).toggleClass('active').promise().done -> 
+      if $(this).class = "active" then $(this).siblings('#mapShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
+      if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
+
 
   $("#swipewrapper").on "click", "#hideAllButton", (e) ->
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')

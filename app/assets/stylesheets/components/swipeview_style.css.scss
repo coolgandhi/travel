@@ -2,6 +2,7 @@
 
 	1. WRAPPER
 	2. FILMSTRIP NAVIGATION - CALLED #NAVSWIPE
+	3. HOVER SHOW NAV ARROWS
 */
 
 
@@ -16,6 +17,7 @@
 	@include border-radius($myDivBorderRadius);
 	@include box-shadow($myDivBoxShadow);
 	height:90%;
+	-webkit-tap-highlight-color: rgba(0,0,0,0); //this disables the tap-highlight color in safari on ipad
 
 	@include respond-to(portrait){
 	  	@include col(9);
@@ -42,6 +44,7 @@
 	text-align:center;
 	@extend .media;	
 	display: table;
+	@include border-radius($myDivBorderRadius);
 }
 
 #navswipe2 li {
@@ -49,6 +52,7 @@
 	text-align:center;
 	@extend .media;	
 	display: table;
+	@include border-radius($myDivBorderRadius);
 }
 
 #navswipe li#prev {
@@ -65,10 +69,19 @@
 
 #navswipe li.selected {
 	background:rgba(255,255,255,0.4);
-	border: 0.5em solid black;
+	border: 1px solid $myDivGlows;
+	@include border-radius($myDivBorderRadius);
+	@include box-shadow(0px 0px 9px 6px $myDivGlows);
 }
 
 #navswipe2 li.selected {
 	background:rgba(255,255,255,0.4);
-	border: 0.5em solid black;
+	border: 1px solid $myDivGlows;
+	@include border-radius($myDivBorderRadius);
+	@include box-shadow(0px 0px 9px 6px $myDivGlows);
+}
+
+/* 3. HOVER SHOW NAV ARROWS */
+.no-touch #swipewrapper:hover > .bottomnavigationbar{
+	display: block;
 }

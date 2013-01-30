@@ -17,4 +17,5 @@
 //- require hungcustom
 //= require holder/holder
 //= require swipeview
+//= require modernizr-touch-events-only
 //= require_tree .
