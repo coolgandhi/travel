@@ -4,7 +4,7 @@ jQuery ->
     minLength: 3
     source: (request, response) ->
       $.ajax 
-        url: "http://localhost:3000/locations/pick.json"
+        url: "http://localhost:5678/locations/pick.json"
         dataType: "json"
         data: 
           total: 10

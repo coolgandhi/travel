@@ -1,3 +1,3 @@
-$ ->
-  gm = $.noConflict()
-  $("#trip_map").gmap3()
+# jQuery ->
+#   gm = $.noConflict()
+#   $("#trip_map").gmap3()

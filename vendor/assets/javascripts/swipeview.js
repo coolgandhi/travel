@@ -2,6 +2,7 @@
  * SwipeView v1.0 ~ Copyright (c) 2012 Matteo Spinelli, http://cubiq.org
  * Released under MIT license, http://cubiq.org/license
  * Downloaded from github on Jan 17, 2013
+ * Changed one line
  */
 var SwipeView = (function (window, document) {
 	var dummyStyle = document.createElement('div').style,
@@ -94,7 +95,7 @@ var SwipeView = (function (window, document) {
 			for (i=-1; i<2; i++) {
 				div = document.createElement('div');
 				div.id = 'swipeview-masterpage-' + (i+1);
-				div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0%;height:100%;width:90%' //hung moved position left to bottom. changed top to 2.5% and height and width.
+				div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0%;height:100%;width:90%' //hung moved position left to bottom.
 
 				if (!div.dataset) div.dataset = {};
 				pageIndex = i == -1 ? this.options.numberOfPages - 1 : i;
