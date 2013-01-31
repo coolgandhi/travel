@@ -33,16 +33,16 @@ module ApplicationHelper
   end
   
   def get_photos_from_venue_photos(photos)
-    photos_ret = []
+    photos_ret = ""
     count = 0;
     if photos[:items]
-      photos.items.each_with_index {|photo, idx| 
+      photos[:items].each {|photo|
         if photo[:sizes][:items]
-          one_set={}
-          (photo[:sizes])[:items].each_with_index {|photo_element, i|
-            one_set["#{i}"] = {url: photo_element[:url ], dimension: photo_element[:height].to_s + "X" + photo_element[:width].to_s}
+          (photo[:sizes])[:items].each {|photo_element|
+            photos_ret = photos_ret + photo_element[:url ] + "," + photo_element[:height].to_s + "X" + photo_element[:width].to_s + ","
           }
-          photos_ret.push({"#{idx}"=>one_set})
+          photos_ret.chomp!(',')
+          photos_ret = photos_ret + ";"
           count = count + 1
           if count > 5 
             break
@@ -50,7 +50,7 @@ module ApplicationHelper
         end
       }
     end
-    photos_ret.to_json
+    photos_ret
   end
   
   def create_food_venue(venue_id)
