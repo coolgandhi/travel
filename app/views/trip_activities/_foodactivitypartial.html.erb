@@ -3,26 +3,48 @@
   	<div class= "flip-container">
     		<div class= "flipper">
         		<div class= "front">
-        			<%= image_tag("view_from_notre_dame_flickr_large.jpg",:alt => "Notre Dame View",:class => "hung_image") %>
+              <%= image_tag(select_activity_img[0]["0"]["0"]["url"],:alt => "Notre Dame View",:class => "hung_image") %>
         		</div>
     			<div class = "back">
     				I'm a map boy!
     			</div>
     			<div class = "extraside">
-    				Address: <%= @trip_activity.activity.restaurant_detail[:address1] %>
-            <%= @trip_activity.activity.restaurant_detail[:city] %>, 
-            <%= @trip_activity.activity.restaurant_detail[:state] %> </br>
-            Description: <%= @trip_activity.activity.restaurant_detail[:description] %> </br>
-            Category: <%= @trip_activity.activity.restaurant_detail[:category] %> </br>
-            Open Hours: <%= @trip_activity.activity.restaurant_detail[:open_hours] %> </br>
-            Website: <%= @trip_activity.activity.restaurant_detail[:website] %>
-    			</div>
+
+            <dl class="dl-horizontal">
+              <dt>Address:</dt>
+              <dd>
+                <address>
+                  <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:address1]) %></br>
+                  <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:city]) %>, <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:state]) %>
+                  <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:zip]) %>
+                </address>  
+              </dd>
+
+              <dt>Description: </dt>
+              <dd><%= check_empty_detail(@trip_activity.activity.restaurant_detail[:description]) %>
+              </dd>
+
+              <dt>Category: </dt>
+              <dd><%= check_empty_detail(@trip_activity.activity.restaurant_detail[:category]) %></dd>
+
+              <dt>Open Hours:</dt>
+              <dd><%= check_empty_detail(@trip_activity.activity.restaurant_detail[:open_hours]) %></dd>
+
+              <dt>Phone:</dt>
+              <dd><%= check_empty_detail(@trip_activity.activity.restaurant_detail[:phone]) %></dd>
+
+              <dt>Website:</dt>
+              <dd><%= link_to  check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, :target => "_blank" %></dd>
+
+            </dl>
+    			
+          </div>
     		</div>
     	</div>
     	
-    	<div>
+    	<div class = "activity_title">
     		<h3> <%= @trip_activity.activity.restaurant_detail[:name] %><small>  ( <%= @trip_activity.id %> ) </small> </h3>           
-  	</div>
+  	  </div>
 
   	<div class="btn-group" id="moreShowHideGroup">
     	  <button class="btn active" id="hideAllButton"><i class="icon-picture"></i></button>
@@ -33,7 +55,8 @@
   </div>
 
   <div class="rightcaption">
-  <p class="lead" id="rightsidecaption"><%= @trip_activity.activity[:description] %>  </p>
+  <p class="lead" id="rightsidecaption"><%= @trip_activity.activity[:description] %>
+  </p>
   <div class="well well-small">Quick Tip: <%= @trip_activity.activity[:quick_tip] %> </div> 
   </div>
 </div>

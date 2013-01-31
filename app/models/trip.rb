@@ -7,6 +7,7 @@ class Trip < ActiveRecord::Base
   has_many :location_activities, :through => :trip_activities, :source => :activity, :source_type => 'LocationActivity', :dependent => :destroy
   has_many :transport_activities, :through => :trip_activities, :source => :activity, :source_type => 'TransportActivity', :dependent => :destroy
   belongs_to :location, :primary_key => :location_id
+  belongs_to :traveler_type, :primary_key => :traveler_type_id
 #  has_many :location_activities
 #  has_many :transport_activities
 end

@@ -13,14 +13,14 @@
 /* 1. MAIN BODY STYLES*/
 
 html, body, .page-wrap {
-  height: 644px; //height of safari mobile viewport in landscape
+  height: 614px; //height of safari mobile viewport in landscape
 
   @include respond-to(portrait){
-  height: 981px;
+  height: 971px;
   }
   
   @include respond-to(small){
-  height: 981px;
+  height: 971px;
   padding-left: 0; //eliminating margin at small screen sizes
   padding-right: 0;
   }
@@ -154,18 +154,10 @@ $lastrowheight: 10%;
 .morning_bg{
   // @include background-image(linear-gradient(-90deg,rgb(153,179,255) 0%,rgb(243,243,243) 100%));
   @include background-image(linear-gradient(-90deg,rgb(46,90,137) 0%,rgb(55,105,154) 25%,rgb(72,124,174) 50%,rgb(86,138,188) 64%,rgb(102,156,203) 76%,rgb(150,185,217) 88%,rgb(166,197,217) 100%));
-
-  .centerimage, .rightcaption{
-    @include box-shadow(0 0 0 0);
-  }
 }
 
 .evening_bg{
   @include background-image(linear-gradient(-90deg,rgb(0,48,64) 0%,rgb(138,138,123) 100%));
-
-  .centerimage, .rightcaption{
-  @include box-shadow(0 0 0 0);
-  }
 }
 
 
@@ -184,17 +176,12 @@ img {
 img.hung_image{
   width: 100%;
   height: auto;
-  
-  @include respond-to(widescreen){
-  height: 90%;
-  width: auto;
-  } 
 }
 
 .centerimage{
   @include col(8);
   @include box-sizing(border-box);
-  padding: 1em;
+  // padding: 1em;
   background-color: rgba(255,255,255,0.6);
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -222,6 +209,10 @@ img.hung_image{
   margin-left: 0;
   width: 100%;
   }
+}
+
+.activity_title{
+  padding: 0.5em;
 }
 
 /* 5. CAPTION DIV */

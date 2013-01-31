@@ -11,7 +11,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 .flip-container {
   @include perspective(1000);
   width: 100%;
-  height: 90%;
+  height: 85%;
 }
 
 /* SET HEIGHTS FOR THE SUBCOMPONENTS OF FLIP-CONTAINER */
@@ -48,6 +48,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 /* front pane, placed above back */
 .front {
   z-index: 3;
+  overflow: hidden;
 }
 
 /* back, initially hidden pane */
@@ -60,8 +61,20 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 /* extraside, initially hidden pane */
 .extraside {
   @include rotateX(-180deg);
-  background-color: red;
   display: none;
+  @include border-radius($myDivBorderRadius);
+  background-color: rgba(243,243,243,1);
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include box-shadow($myDivBoxShadow);
+  @include box-sizing(border-box);
+  padding: 0.75em;
+  overflow: hidden;
+  overflow-y: auto;
+  .dl-horizontal dt{
+    text-align: left;
+  }
 }
 
 /* 2. FLIP CONTROL BUTTONS */
