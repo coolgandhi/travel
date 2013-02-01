@@ -8,19 +8,23 @@
   				I'm a map boy!
   			</div>
   			<div class = "extraside">
-  				Address: <%= @trip_activity.activity.restaurant_detail[:address1] %>
-          <%= @trip_activity.activity.restaurant_detail[:city] %>, 
-          <%= @trip_activity.activity.restaurant_detail[:state] %> </br>
-          Description: <%= @trip_activity.activity.restaurant_detail[:description] %> </br>
-          Category: <%= @trip_activity.activity.restaurant_detail[:category] %> </br>
-          Open Hours: <%= @trip_activity.activity.restaurant_detail[:open_hours] %> </br>
-          Website: <%= @trip_activity.activity.restaurant_detail[:website] %>
+  			  <% if @trip_activity.activity.restaurant_detail %>
+  				  Address: <%= @trip_activity.activity.restaurant_detail[:address1] %>
+            <%= @trip_activity.activity.restaurant_detail[:city] %>, 
+            <%= @trip_activity.activity.restaurant_detail[:state] %> </br>
+            Description: <%= @trip_activity.activity.restaurant_detail[:description] %> </br>
+            Category: <%= @trip_activity.activity.restaurant_detail[:category] %> </br>
+            Open Hours: <%= @trip_activity.activity.restaurant_detail[:open_hours] %> </br>
+            Website: <%= @trip_activity.activity.restaurant_detail[:website] %>
+          <% end %>
   			</div>
   		</div>
   	</div>
   	
   	<div>
+  	   <% if @trip_activity.activity.restaurant_detail %>
   		<h3> <%= @trip_activity.activity.restaurant_detail[:name] %><small>  ( <%= @trip_activity.id %> ) </small> </h3>           
+  		<% end %>
 	</div>
 
 	<div class="btn-group btn-mini dropup" id="moreShowHideGroup">

@@ -53,6 +53,8 @@
       <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right icon-2x"></i></div>
 
 
+<div id="trip_map"></div>
+
 
 <script type="text/javascript">
 //removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
@@ -72,7 +74,7 @@ gallery = new SwipeView('#wrapper', { numberOfPages: slides.length });
 // Load initial data
 for (i=0; i<3; i++) {
   page = i==0 ? slides.length-1 : i-1;
- 
+  
   $.ajax({
     type: 'GET',
     url: slides[page].renderpartial,
@@ -83,10 +85,11 @@ for (i=0; i<3; i++) {
       $(gallery.masterPages[this.ajaxI]).append(data);
     }
   });
-
-  //I added to change text of trip-title-sub-text Day x of X in Location
-  document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
 }
+
+//I added to change text of trip-title-sub-text Day x of X in Location
+document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
+
 
 gallery.onFlip(function () {
   var el,
@@ -136,6 +139,8 @@ gallery.onMoveOut(function () {
 gallery.onMoveIn(function () {
   var className = gallery.masterPages[gallery.currentMasterPage].className;
   /(^|\s)swipeview-active(\s|$)/.test(className) || (gallery.masterPages[gallery.currentMasterPage].className = !className ? 'swipeview-active' : className + ' swipeview-active');
+  
+
 });
 
 </script>

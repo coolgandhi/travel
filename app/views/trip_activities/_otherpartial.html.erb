@@ -14,7 +14,9 @@
   	</div>
   	
   	<div>
+  	  <% if @trip_activity.activity.restaurant_detail %>
   		<h3><small> <%= @trip_activity.activity.restaurant_detail[:name] %> ( <%= @trip_activity.id %> ) </small> </h3>           
+  		<% end %>
 	</div>
 
 	<div class="btn-group btn-mini dropup" id="moreShowHideGroup">
