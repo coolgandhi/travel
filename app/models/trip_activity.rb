@@ -19,4 +19,12 @@ class TripActivity < ActiveRecord::Base
   	trip.trip_activities.where("activity_sequence_number < ?", activity_sequence_number).first
   end
 
+  def prev_activities_sequence_number
+  	trip.trip_activities.where("activity_sequence_number <= ?", activity_sequence_number).order(:activity_sequence_number)
+  end
+
+  def prev_activities_activity_id
+  	trip.trip_activities.where("id <= ?", id).order(:id)
+  end
+
 end

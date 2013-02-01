@@ -26,6 +26,7 @@ Travel::Application.routes.draw do
     end
     resources :trip_activities do
       member do
+        get 'mapinfo'
         get 'carddeck'
         get 'showpartial'
       end

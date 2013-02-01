@@ -1,6 +1,7 @@
 class TripActivitiesController < ApplicationController
-include ApplicationHelper
-before_filter :load_trip
+  include ApplicationHelper
+  include TripActivitiesHelper
+  before_filter :load_trip
   # GET /trip_activities
   # GET /trip_activities.json
   def index
@@ -146,7 +147,21 @@ before_filter :load_trip
     render :partial => "trip_activities/#{@partial_layout}", :locals => {:trip_activity => @trip_activity}, :layout => false
   end
 
-
+  # GET /trips/:id/trip_activities/:activity_id/mapinfo
+  def mapinfo
+    #logger.info { "mapinfo #{params.inspect}"}
+    @trip_activity = @trip.trip_activities.find(params[:id])
+    @trip_details = @trip_activity.prev_activities_activity_id
+    #logger.info { "\n\ntripdetails...  #{@trip_details.inspect}"}
+    
+    @trip_map_info = get_trip_map_info @trip_details
+    
+    logger.info "here #{@trip_map_info.inspect}"
+    respond_to do |format|
+      format.html # mapinfo.html.erb
+      format.json { render json: @trip_map_info  } 
+    end
+  end
 
 
 

@@ -4,7 +4,7 @@ jQuery ->
     minLength: 3
     source: (request, response) ->
       $.ajax 
-        url: "http://localhost:5678/locations/pick.json"
+        url: window.location.protocol + "//" + window.location.host + "/locations/pick.json"
         dataType: "json"
         data: 
           total: 10
@@ -26,3 +26,4 @@ jQuery ->
       $('#trip_location_id').val( ui.item.value )
       $(this).val ui.item.label
       $(this).siblings('#place').val ui.item.value
+      
