@@ -11,7 +11,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 .flip-container {
   @include perspective(1000);
   width: 100%;
-  height: 85%;
+  height: 80%;
 }
 
 /* SET HEIGHTS FOR THE SUBCOMPONENTS OF FLIP-CONTAINER */

@@ -48,29 +48,33 @@
 }
 
 #main-nav-check:checked + #main-nav {
-  width: 20%;
-  left: 0;
-  @include box-sizing(border-box);
-  padding: 2%;
+  @include respond-to(small){
+    width: 20%;
+    left: 0;
+    @include box-sizing(border-box);
+    padding: 2%;
+  }
 }
 
 #main-nav-check:checked ~ .page-wrap {
-  width: 100%; //leaving this at 100% shifts the page off-canvas rather than shrinks it
-  // margin-left: 20%;
-  position: fixed;
-  left: 20%;
-  .open-menu {
-     display: none; 
-  }
-  .close-menu {
-     display: block;
-  }
+  @include respond-to(small){
+    width: 100%; //leaving this at 100% shifts the page off-canvas rather than shrinks it
+    // margin-left: 20%;
+    position: fixed;
+    left: 20%;
+    .open-menu {
+       display: none; 
+    }
+    .close-menu {
+       display: block;
+    }
 
-  .navbar {
-    margin-left: 0%;
+    .navbar {
+      margin-left: 0%;
+    }
+    // .main-header {
+    //   width: 80%;
+    //   left: 20%;
+    // }
   }
-  // .main-header {
-  //   width: 80%;
-  //   left: 20%;
-  // }
 }

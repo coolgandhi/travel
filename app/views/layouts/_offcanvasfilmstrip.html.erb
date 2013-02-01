@@ -3,11 +3,64 @@
         
         <ul class="media-list" id="navswipe2">
           <li class="media selected" onclick="gallery.goToPage(0)">
-            <img class="media-object" data-src="holder.js/160x160">
+            <!-- thumb-wrapper div -->  
+            <div class="thumb-wrap"> 
+              <!-- image -->
+              <div data-picture data-alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia">
+                <div data-src="<%=show_thumbnail(0,6)%>" > </div>
+                <div data-src="<%=show_thumbnail(0,4)%>" data-media="(min-width: 480px)"></div>
+                <div data-src="<%=show_thumbnail(0,2)%>" data-media="(min-width: 767px)"></div>
+
+                <!--[if (lt IE 9) & (!IEMobile)]>
+                <div data-src="medium.jpg"></div>
+                <![endif]-->
+                
+                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                <noscript>
+                    <img src="<%=show_thumbnail(0,6)%>" alt="Image of Activity">
+                </noscript>
+              </div>
+                <!-- thumb-description div -->  
+                <div class="thumb-description">
+                  <!-- description content --> 
+                  <p class='description_content'><%=thumbnail_name(0)%></p>
+                  <!-- end description content -->     
+                </div>
+                <!-- end description div -->
+              </div>
+              <!-- end wrapper div -->   
+
           </li>
-          <% for i  in 1..(trip_activities_as_json.count('{')-1) %>
+          <% for i  in 1..(trip_activities_as_json.count('{'))-1 %>
             <li class="media" onclick="gallery.goToPage(<%= i %>)">
-              <img class="media-object" data-src="holder.js/160x160">
+
+            <!-- thumb-wrapper div -->  
+            <div class="thumb-wrap"> 
+              <!-- image -->              
+              <div data-picture data-alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia">
+                <div data-src="<%=show_thumbnail(i,6)%>" > </div>
+                <div data-src="<%=show_thumbnail(i,4)%>" data-media="(min-width: 480px)"></div>
+                <div data-src="<%=show_thumbnail(i,2)%>" data-media="(min-width: 767px)"></div>
+
+                <!--[if (lt IE 9) & (!IEMobile)]>
+                <div data-src="medium.jpg"></div>
+                <![endif]-->
+                
+                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                <noscript>
+                    <img src="<%=show_thumbnail(i,6)%>" alt="Image of Activity">
+                </noscript>
+              </div>
+                <!-- thumb-description div -->  
+                <div class="thumb-description">
+                  <!-- description content --> 
+                  <p class='description_content'><%=thumbnail_name(i)%></p>
+                  <!-- end description content -->     
+                </div>
+                <!-- end description div -->
+              </div>
+              <!-- end wrapper div -->  
+
             </li>
           <% end %> 
 

@@ -49,7 +49,7 @@ $lastrowheight: 10%;
 
 @media only screen and (min-width: $break-default + 1) and (max-width: $break-large - 1) {
   .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
-    width: 98%;
+    width: 1000px;
   }
 }
 
@@ -130,6 +130,35 @@ $lastrowheight: 10%;
   }
 }
 
+div.thumb-wrap{
+  float:left; /* important */
+  position:relative; /* important(so we can absolutely position the description div */
+}
+div.thumb-description{
+  position:absolute; /* absolute position (so we can position it where we want)*/
+  bottom:0px; /* position will be on bottom */
+  left:0px;
+  width:100%;
+  /* styling bellow */
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size:0.85em;
+  font-weight: 600;
+  color:white;
+  filter:alpha(opacity=60); /* IE transparency */
+}
+p.description_content{
+  @include box-sizing(border-box);
+  padding: 0.15em 0 0.15em 0.5em;
+  margin:0px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
 /* 3.5 ACTIVITY CONTAINER DIV */
 .activitycontainer{
   @include col(12);
@@ -164,18 +193,22 @@ $lastrowheight: 10%;
 
 /* 4. IMAGE DIV */ 
 
-img {
-  width: auto;
-/*  height: auto;*/
-/*  max-width: 100%;*/
-  vertical-align: middle;
-  border: 0;
-  -ms-interpolation-mode: bicubic;
-}
+// img {
+//   width: auto;
+// /*  height: auto;*/
+// /*  max-width: 100%;*/
+//   vertical-align: middle;
+//   border: 0;
+//   -ms-interpolation-mode: bicubic;
+// }
 
 img.hung_image{
   width: 100%;
   height: auto;
+}
+
+.relative_image{
+  position:relative;
 }
 
 .centerimage{
@@ -196,15 +229,15 @@ img.hung_image{
   @include col(12);
   @include box-sizing(border-box);
   @include border-radius($myDivBorderRadius $myDivBorderRadius 0 0);
-  @include box-shadow(5px 0 4px rgba(218,218,218,0.65));
-  padding: 1em;
+  @include box-shadow(2px 0 4px rgba(0,0,0,.05));
+  // padding: 1em;
   height: 70%;
   }
 
   @include respond-to(small){
   @include col(12);
   @include box-sizing(border-box);
-  padding: 1em;
+  // padding: 1em;
   height: 70%;
   margin-left: 0;
   width: 100%;
@@ -212,7 +245,13 @@ img.hung_image{
 }
 
 .activity_title{
-  padding: 0.5em;
+  padding: 0 0.5em 0 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  h3{
+    line-height: 20px;
+  }
 }
 
 /* 5. CAPTION DIV */

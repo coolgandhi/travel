@@ -2,8 +2,23 @@
   <div class="centerimage">
   	<div class= "flip-container">
     		<div class= "flipper">
-        		<div class= "front">
-              <%= image_tag(select_activity_img(@trip_activity)[0][0],:alt => "Notre Dame View",:class => "hung_image") %>
+        		<div class= "front" id="bloop">
+
+              <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
+                <div data-src=<%=select_activity_img(@trip_activity)[0][2]%> > </div> <%# select_activity_img(@trip_activity)[img][sizeurl] %>
+                <div data-src=<%=select_activity_img(@trip_activity)[0][2]%> data-media="(min-width: 480px)"></div>
+                <div data-src=<%=select_activity_img(@trip_activity)[0][0]%> data-media="(min-width: 767px)"></div>
+
+                <!--[if (lt IE 9) & (!IEMobile)]>
+                <div data-src="medium.jpg"></div>
+                <![endif]-->
+
+                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                <noscript>
+                    <img src=<%=select_activity_img(@trip_activity)[0][2]%> alt="Image of Activity">
+                </noscript>
+              </div>
+              
         		</div>
     			<div class = "back">
     				I'm a map boy!

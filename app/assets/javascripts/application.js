@@ -17,7 +17,9 @@
 //= require gmap3
 //= require hungcustom
 //= require holder/holder
+//= require picturefill
 //= require swipeview
 //= require jquery.scrollTo
 //= require modernizr-touch-events-only
+//= require resize-img-parent
 //= require_tree .
