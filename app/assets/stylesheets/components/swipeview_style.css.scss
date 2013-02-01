@@ -7,8 +7,12 @@
 
 
 /* 1. WRAPPER */
-#swipewrapper {
+
+#wrappiest{
 	@include col(10);
+	position: relative;
+	height:90%;
+	overflow: hidden;
 	@include box-sizing(border-box);
 	background-color: $white;
 	border-color: $borderGray;
@@ -16,7 +20,6 @@
 	border-style: solid;
 	@include border-radius($myDivBorderRadius);
 	@include box-shadow($myDivBoxShadow);
-	height:90%;
 	-webkit-tap-highlight-color: rgba(0,0,0,0); //this disables the tap-highlight color in safari on ipad
 
 	@include respond-to(portrait){
@@ -27,6 +30,14 @@
   	@include respond-to(small){
   		@include col(12);
   	}
+}
+#swipewrapper {
+	@include box-sizing(border-box);
+	overflow: visible !important;
+	width: 92.00%;
+	height:100%;
+	margin-left: 4%;
+	margin-right: 4%;
 }
 
 /* 2. FILMSTRIP NAVIGATION - NAVSWIPE */
@@ -82,6 +93,6 @@
 }
 
 /* 3. HOVER SHOW NAV ARROWS */
-.no-touch #swipewrapper:hover > .bottomnavigationbar{
+.no-touch #wrappiest:hover > .bottomnavigationbar{
 	display: block;
 }

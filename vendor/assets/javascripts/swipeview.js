@@ -37,9 +37,9 @@ var SwipeView = (function (window, document) {
 		translateZ = has3d ? ' translateZ(0)' : '',
 
 		//Left positions of masterPages - added by Hung
-		lLPosition= 15
-		mLPosition= 5
-		rLPosition = -5
+		lLPosition= 0
+		mLPosition= 0
+		rLPosition = 0
 
 		// Events
 		resizeEvent = 'onorientationchange' in window ? 'orientationchange' : 'resize',
@@ -86,7 +86,7 @@ var SwipeView = (function (window, document) {
 			
 			div = document.createElement('div');
 			div.id = 'swipeview-slider';
-			div.style.cssText = 'position:relative;top:0;height:100%;width:100%;' + cssVendor + 'transition-duration:0;' + cssVendor + 'transform:translateZ(0);' + cssVendor + 'transition-timing-function:ease-out';
+			div.style.cssText = 'position:relative;top:0;height:100%;width:100.00%;' + cssVendor + 'transition-duration:0;' + cssVendor + 'transform:translateZ(0);' + cssVendor + 'transition-timing-function:ease-out';
 			this.wrapper.appendChild(div);
 			this.slider = div;
 
@@ -95,7 +95,7 @@ var SwipeView = (function (window, document) {
 			for (i=-1; i<2; i++) {
 				div = document.createElement('div');
 				div.id = 'swipeview-masterpage-' + (i+1);
-				div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0%;height:100%;width:90%' //hung moved position left to bottom.
+				div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0%;height:100%;width:100.00%' //hung moved position left to bottom.
 
 				if (!div.dataset) div.dataset = {};
 				pageIndex = i == -1 ? this.options.numberOfPages - 1 : i;
@@ -113,7 +113,7 @@ var SwipeView = (function (window, document) {
 			// Added by Hung to customize initial left positions of masterPages. slightly different than others.
 			this.masterPages[0].style.left = this.page * 100 - 100 + '%';
 			this.masterPages[1].style.left = this.page * 100 + '%';
-			this.masterPages[2].style.left = this.page * 100 + 100 + -8 + '%';
+			this.masterPages[2].style.left = this.page * 100 + 100 + 0 + '%';
 
 			window.addEventListener(resizeEvent, this, false);
 			this.wrapper.addEventListener(startEvent, this, false);
@@ -174,7 +174,8 @@ var SwipeView = (function (window, document) {
 		},
 
 		refreshSize: function () {
-			this.wrapperWidth = this.wrapper.clientWidth;
+			this.wrapperBounds = this.wrapper.getBoundingClientRect(); //this is a more precise way to get the wrapper dimensions. see issue#40 of github repo
+			this.wrapperWidth = (this.wrapperBounds.right - this.wrapperBounds.left); // taking the wrapperBounds right less left gives us a more precise width. 
 			this.wrapperHeight = this.wrapper.clientHeight;
 			this.pageWidth = this.wrapperWidth;
 			this.maxX = -this.options.numberOfPages * this.pageWidth + this.wrapperWidth;

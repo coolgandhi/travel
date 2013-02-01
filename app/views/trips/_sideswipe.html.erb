@@ -25,12 +25,15 @@
         </ul>
       </div>
 
-  <div id="swipewrapper">
-    <!-- /bottom navigation bar -->
+<div id="wrappiest">
+    <!-- /navigation arrows -->
           <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left"></i></div>
           
           <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right"></i></div>
+    <!-- /end navigation arrows -->
+  <div id="swipewrapper">
   </div>
+</div>
 
 <script type="text/javascript">
 
@@ -46,7 +49,7 @@ var gallery,
   slides = <%= trip_activities_as_json.html_safe %> //this returns an array of hashes formatted in trip_helper.rb
   ;
 
-gallery = new SwipeView('#swipewrapper', { numberOfPages: slides.length });
+gallery = new SwipeView('#swipewrapper', { numberOfPages: slides.length, hastyPageFlip: true, loop: true });
 
 // Load initial data
 for (i=0; i<3; i++) {
