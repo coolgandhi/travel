@@ -36,28 +36,27 @@ jQuery ->
 jQuery ->
   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
     req = slides[gallery.pageIndex].tripid + "/trip_activities/" + slides[gallery.pageIndex].activityid + "/mapinfo"
+    mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
     $.ajax
       type: "GET"
       url: req  
       dataType: "json"
+      context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
       success: (data) ->
-        restore()
-        addmarkers(data)
-        addpolyline(data)
+        restore(mapcontainer)
+        addmarkers(data, mapcontainer)
+        addpolyline(data, mapcontainer)        
         return       
               
-
-restore = ->
-  $("#trip_map").gmap3 action: "destroy"
-  container = $("#trip_map").parent()
-  $("#trip_map").remove()
-  container.append "<div id=\"trip_map\"></div>"
+# don't need this anymore since we can load multiple maps
+restore = (booya) ->
+  booya.gmap3 action: "destroy"
+  # container = booya.parent()
+  # booya.remove()
+  # container.append "<div id=\"trip_map\"></div>"
   return
-  
 
-  
-
-addmarkers = (data) ->
+addmarkers = (data, booya) ->
   arrobject = []
   $.each data, (i, name) ->
     spl = data[i].location.split(",")
@@ -66,17 +65,17 @@ addmarkers = (data) ->
       data: data[i].name
       options:
         icon: "/assets/" + data[i].logo
-  return if arrobject.length < 2
-  $("#trip_map").gmap3
+    return if arrobject.length < 2
+  booya.gmap3
     marker:
       values: arrobject
       options:
         draggable: false
       events:
         click: () ->
-        mouseover: (marker, event, context) ->
-          map = $(this).gmap3("get")
-          infowindow = $(this).gmap3(get:
+        mouseover: (marker, event, context, booya) ->
+          map = booya.gmap3("get")
+          infowindow = booya.gmap3(get:
             name: "infowindow"
           )
           if infowindow
@@ -84,19 +83,19 @@ addmarkers = (data) ->
             infowindow.setContent context.data
             return
           else
-            $(this).gmap3 infowindow:
+            booya.gmap3 infowindow:
               anchor: marker
               options:
                 content: context.data
             return
         mouseout: ->
-          infowindow = $(this).gmap3(get:
+          infowindow = booya.gmap3(get:
             name: "infowindow"
           )
           infowindow.close()  if infowindow
           return
     autofit: {}
-      
+  return 
 
       
 getdirections = (data, showcontainer = false) ->
@@ -138,14 +137,14 @@ getdirections = (data, showcontainer = false) ->
   return
   
   
-addpolyline = (data) ->
+addpolyline = (data, booya) ->
   arrobject = []
   $.each data, (i, name) ->
     spl = data[i].location.split(",")
     arrobject.push [parseFloat(spl[0]), parseFloat(spl[1])]
     return
-  return if arrobject.length < 1
-  $("#trip_map").gmap3
+    return if arrobject.length < 1
+  booya.gmap3
     polyline:
       options:
         strokeColor: "#FF0000"
