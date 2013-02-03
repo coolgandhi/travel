@@ -1,4 +1,15 @@
-<%= stylesheet_link_tag "map" %>
+<%= content_for :head do %>
+  <html xmlns:fb="http://ogp.me/ns/fb#">
+  <%= stylesheet_link_tag "map" %>
+  <meta property="og:title" content=<%= @trip.trip_name %> />
+  <meta property="og:type"  content="website"> 
+  <meta property="og:url"   content=<%= request.env["REQUEST_URI"] %>> 
+  <meta property="og:image" content=<%= @trip.image_url  %> >
+  <meta property="og:description" content=<%= @trip.trip_summary %>>
+  <meta property="og:site_name" content=<%= request.env["HTTP_HOST"] %>/>
+  <meta property="fb:admins" content="371948146237702" />
+<% end %>
+
 <%= render "sideswipe" %>
 <br/> 
 

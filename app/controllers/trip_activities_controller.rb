@@ -20,7 +20,7 @@ class TripActivitiesController < ApplicationController
     
     #logger.info " here... #{@trip_activity.activity.inspect}"
     respond_to do |format| require 'trip_activities_controller'
-        format.html # show.html.erb
+      format.html # show.html.erb
       format.json { render json: @trip_activity }
     end
   end

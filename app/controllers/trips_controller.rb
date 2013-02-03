@@ -22,6 +22,8 @@ class TripsController < ApplicationController
    # @trip.trip_activities.each do |trip_act|
    #    logger.info "here #{trip_act.activity.inspect} ..." 
    # end
+   
+   # logger.info " #{request.inspect} here"
     
     respond_to do |format|
       format.html # show.html.erb
