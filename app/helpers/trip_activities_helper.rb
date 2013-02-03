@@ -23,7 +23,12 @@ module TripActivitiesHelper
 		if (JSON.parse(trip_activities_as_json))[i]["activityid"]
 			activity_id = (JSON.parse(trip_activities_as_json))[i]["activityid"] # takes the json that we built in trips_helper and parses it so we can access the current page's activityid
 			image_urls = select_activity_img(TripActivity.find(activity_id)) # find that activity id and pass it into another helper method that returns image_urls
-			image_urls[0][size] # access the array of image_urls.  [0] is first image [2] is the 2nd lowest quality url
+			#logger.info "\n\n image url #{image_urls} \n"
+			if image_urls.length > 0
+			  image_urls[0][size] # access the array of image_urls.  [0] is first image [2] is the 2nd lowest quality url
+			else
+			  return nil
+		  end
 		else
 			"/assets/view_from_notre_dame_flickr_large.jpg"
 		end
