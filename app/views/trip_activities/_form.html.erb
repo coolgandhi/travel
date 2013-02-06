@@ -1,3 +1,5 @@
+
+
 <%= form_for([@trip, @trip_activity]) do |f| %>
   <% if @trip_activity.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +13,10 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :selected_images, @selectedimages %>
   <%= hidden_field_tag :trip_activity_latlong, @latlong %>
   <%= hidden_field_tag :trip_id, @trip_activity.trip_id %>
-  
+
   <div class="field">
       <%= f.label :activity_day, 'Activity Day ' %>: <%= f.text_field :activity_day %>
   </div>
@@ -87,7 +90,9 @@
   <% end %> <br/> <br/>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :id => "trip_form_submit" %>
   </div>
 <% end %>
+
+<div id="venue_images"> </div>
 

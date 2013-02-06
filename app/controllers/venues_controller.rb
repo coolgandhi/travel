@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  include ApplicationHelper
   def pick
     tot = 10
     if params[:total]
@@ -18,5 +19,38 @@ class VenuesController < ApplicationController
   end
   
   def get_venue_info
+  end
+  
+  
+  def get_venue_photos
+    tot = 20
+    @venue_photos_first = nil
+    @venue_photos_com = nil
+    if params[:total]
+      begin
+        tot = Integer(params[:total]) 
+      rescue ArgumentError
+        tot = 20
+      end
+    end
+    
+    if params[:venueid]
+      FoursquareInteraction.foursquare_client
+      @venue_photos = FoursquareInteraction.venue_photos(params[:venueid], tot)
+      @venue_photos_com = get_photos_from_venue_photos(@venue_photos, tot)
+       logger.info "#{@venue_photos_com.inspect}"
+       
+      @venue_photos_com = get_photos_from_venue_photos_with_json(@venue_photos_com, true)
+      
+      @venue_photos_first = get_photos_from_venue_photos_first_resolution(@venue_photos, tot)
+      @venue_photos_first = get_photos_from_venue_photos_with_json(@venue_photos_first, false)
+    end
+    
+    respond_to do |format|
+      format.json { render json: { 
+                                  :venue_photos => @venue_photos_first, 
+                                  :venue_photos_com => @venue_photos_com                                                     
+                                  }}
+    end
   end
 end

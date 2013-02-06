@@ -15,10 +15,11 @@ class FoursquareInteraction
      venue
   end
   
-  def self.venue_photos venue_id
-    get_photos = @@client.venue_photos(venue_id, options = {:group => 'venue', :limit => '20'})
+  def self.venue_photos(venue_id, count = 20)
+    get_photos = @@client.venue_photos(venue_id, options = {:group => 'venue', :limit => count.to_s()})
+    #logger.info " venue info ... #{get_photos}"
     get_photos
-   # logger.info " venue info ... #{get_photos}"
+    
    # get_photos = @@client.venue_photos(venue_id, options = {:group => 'venue', :limit => '5'})
    # photos = get_photos.items.map {|x| {"image_url"=>x.url}}
    # photos

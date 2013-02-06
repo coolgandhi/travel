@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203074323) do
+ActiveRecord::Schema.define(:version => 20130206012726) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130203074323) do
     t.string   "duration"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.text     "image_urls"
   end
 
   create_table "location_activities", :force => true do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130203074323) do
     t.string   "duration"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.text     "image_urls"
   end
 
   create_table "location_details", :force => true do |t|
