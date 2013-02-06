@@ -1,31 +1,19 @@
-<div class = "activitycontainer <%=background_switch_class(@trip_activity.activity_time_type) %>" >
+<!-- Begin Activity Container -->
+<div class = "activitycontainer">
+  <!-- Begin centerimage Container -->
   <div class="centerimage">
-  	<div class= "flip-container">
-    		<div class= "flipper">
-        		<div class= "front" id="bloop">
 
-              <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
-                <div data-src=<%=select_activity_img(@trip_activity)[0][2]%> > </div> <%# select_activity_img(@trip_activity)[img][sizeurl] %>
-                <div data-src=<%=select_activity_img(@trip_activity)[0][2]%> data-media="(min-width: 480px)"></div>
-                <div data-src=<%=select_activity_img(@trip_activity)[0][0]%> data-media="(min-width: 767px)"></div>
+                <!-- Begin rightcaption -->
+              <div class="rightcaption">
 
-                <!--[if (lt IE 9) & (!IEMobile)]>
-                <div data-src="medium.jpg"></div>
-                <![endif]-->
-
-                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
-                <noscript>
-                    <img src=<%=select_activity_img(@trip_activity)[0][2]%> alt="Image of Activity">
-                </noscript>
-              </div>
-              
-        		</div>
-    			<div class = "back">
-    				<div id="trip_map"></div>
-    			</div>
-    			<div class = "extraside">
-
-            <dl class="dl-horizontal">
+                  <h3 id="activity_title"><%= @trip_activity.activity.restaurant_detail[:name] %></h3>
+                    <div>
+                      <p class="lead" id="user-description"><%= @trip_activity.activity[:description] %></p>
+                      <div class="well well-small caption-quick-tip">Quick Tip: <%= @trip_activity.activity[:quick_tip] %> </div>
+                    </div>
+                  <h3 id="more_info_accordion">More Info</h3>
+                    <div class = "more-info-dl" id="more-info-id">
+            <dl>
               <dt>Address:</dt>
               <dd>
                 <address>
@@ -50,28 +38,56 @@
 
               <dt>Website:</dt>
               <dd><%= link_to  check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, :target => "_blank" %></dd>
+                    </div>
+            
+              </div>
+              <!-- End rightcaption -->   
+              
+    <!-- Begin flip-container -->
+  	<div class= "flip-container">
+    		<div class= "flipper">
+        		<div class= "front">
+              <div class="main-pic-wrap" id="bloop">
 
-            </dl>
-    			
-          </div>
+              <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
+                <div data-src=<%=select_activity_img(@trip_activity)[0][2]%> > </div> <%# select_activity_img(@trip_activity)[img][sizeurl] %>
+                <div data-src=<%=select_activity_img(@trip_activity)[0][2]%> data-media="(min-width: 480px)"></div>
+                <div data-src=<%=select_activity_img(@trip_activity)[0][0]%> data-media="(min-width: 767px)"></div>
+
+                <!--[if (lt IE 9) & (!IEMobile)]>
+                <div data-src="medium.jpg"></div>
+                <![endif]-->
+
+                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                <noscript>
+                    <img src=<%=select_activity_img(@trip_activity)[0][2]%> alt="Image of Activity">
+                </noscript>
+              </div>
+              </div>
+
+              
+              
+        		</div>
+    			<div class = "back">
+    				<div id="trip_map"></div>
+    			</div>
+
     		</div>
+        <!-- End flipper -->
     	</div>
-    	
-    	<div class = "activity_title">
-    		<h3> <%= @trip_activity.activity.restaurant_detail[:name] %><small>  ( <%= @trip_activity.id %> ) </small> </h3>           
-  	  </div>
+    	<!-- End flip-container container -->
 
-  	<div class="btn-group" id="moreShowHideGroup">
-    	  <button class="btn active" id="hideAllButton"><i class="icon-picture"></i></button>
-      	<button class="btn" id="mapShowHide" href="#"><i class="icon-globe"></i></button>
-      	<button class="btn" id="infoShowHide" href="#"><i class="icon-info-sign"></i></button>
+
+
+  	<div id="moreShowHideGroup">
+        <div id="mapShowHide" class="icon-globe"></div>
   	</div>
 
-  </div>
 
-  <div class="rightcaption">
-  <p class="lead" id="rightsidecaption"><%= @trip_activity.activity[:description] %>
-  </p>
-  <div class="well well-small">Quick Tip: <%= @trip_activity.activity[:quick_tip] %> </div> 
+
   </div>
+  <!-- End centerimage -->
+
+
 </div>
+<!-- End activitycontainer -->  

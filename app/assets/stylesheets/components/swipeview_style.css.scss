@@ -14,7 +14,7 @@
 	height:90%;
 	overflow: hidden;
 	@include box-sizing(border-box);
-	background-color: $white;
+	background-color: $myDivBg;
 	border-color: $borderGray;
 	border-width: $myDivBorderWidth;
 	border-style: solid;
@@ -23,7 +23,7 @@
 	-webkit-tap-highlight-color: rgba(0,0,0,0); //this disables the tap-highlight color in safari on ipad
 
 	@include respond-to(portrait){
-	  	@include col(9);
+	  	@include col(10);
 	  	height: 80%;
   	}
 

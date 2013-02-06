@@ -1,4 +1,3 @@
-      
       <div class="triptitlebox">
 
         <p>
@@ -42,6 +41,48 @@
 
 <script type="text/javascript">
 
+var makeCaptionAccordion;
+// using jQuery-UI to make the rightcaption an accordion
+makeCaptionAccordion = function() {
+  var icons = {
+      header: " icon-chevron-down",
+      activeHeader: " icon-chevron-up"
+    };
+
+  $(".rightcaption").accordion({
+    collapsible: true,
+    icons: icons,
+    autoHeight: false,
+    clearStyle: true
+  });
+};
+
+var bodyBackgroundImageSwitch;
+bodyBackgroundImageSwitch = function() {
+  var timetype = slides[gallery.pageIndex].timetype
+  
+  switch (timetype) {
+   case "1":
+      $('img.evening_bg').fadeOut(2000)
+      $('img.afternoon_bg').fadeOut(2000)
+      $('body').removeClass().addClass('morning_bg')
+      $('img.morning_bg').fadeIn(2000)
+      break;
+   case "2":
+      $('img.morning_bg').fadeOut(2000)
+      $('img.evening_bg').fadeOut(2000)
+      $('body').removeClass().addClass('afternoon_bg')
+      $('img.afternoon_bg').fadeIn(2000)
+      break;
+   case "4":
+      $('img.morning_bg').fadeOut(2000)
+      $('img.afternoon_bg').fadeOut(2000)
+      $('body').removeClass().addClass('evening_bg')
+      $('img.evening_bg').fadeIn(2000)
+      break;
+  }
+}
+
 //removing this line per cubiq.org/swipeview comment to re-enable vertical scroll
 // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
@@ -70,6 +111,8 @@ for (i=0; i<3; i++) {
       $(gallery.masterPages[this.ajaxI]).append(data);
       picturefill(); //need to call this to get picturefill to fire on ajax loaded pics
       $('.relative_image').resizeToParent({parent: '#bloop'});
+      bodyBackgroundImageSwitch();
+      makeCaptionAccordion();
     }
   });
 
@@ -103,6 +146,8 @@ gallery.onFlip(function () {
           $(gallery.masterPages[this.ajaxI]).html(data);
           picturefill(); //need to call this to get picturefill to fire on ajax loaded pics
           $('.relative_image').resizeToParent({parent: '#bloop'});
+          bodyBackgroundImageSwitch();
+          makeCaptionAccordion();
         }
       });
     }

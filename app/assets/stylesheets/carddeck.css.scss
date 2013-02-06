@@ -26,21 +26,36 @@ html, body, .page-wrap {
   }
 }
 
+img.morning_bg, img.afternoon_bg, img.evening_bg{
+ position:absolute;
+ z-index:-1;
+ display:none;
+ height: 192px;
+ width: 100%;
+ top:-25px;
+}
+
+body.morning_bg{
+  background-color: #DAE6F6;
+  @include single-transition(opacity, 4s, ease-in-out, 0.5s);
+}
+
+body.afternoon_bg{
+  background-color: #D4EDED;
+  @include single-transition(opacity, 4s, ease-in-out, 0.5s);
+}
+
+body.evening_bg{
+  background-color: #AABDC6;
+  @include single-transition(opacity, 4s, ease-in-out, 0.5s);
+}
+
 .navbar-fixed-top{
   @include respond-to(small){
   margin-left: 0;
   margin-right: 0;
   }
 }
-
-#redbg{
-  background-color: #B0B0B0;
-}
-
-// #greybg{
-//   background-color: grey;
-// }
-
 
 /* 2. TITLE DIV */ 
 
@@ -77,7 +92,7 @@ $lastrowheight: 10%;
     font-size: 1.4em;
     line-height: 1.4em;
     white-space: nowrap;
-    font-weight: 400;
+    font-weight: 600;
   }
 
   .trip-title-sub-text{
@@ -107,15 +122,16 @@ $lastrowheight: 10%;
   height: 100% - $titlerowheight;
   overflow: hidden;
   overflow-y: auto;
-  background-color: $white;
+  background-color: $myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
+  position:relative;
 
   @include respond-to(portrait){
-  @include col(3);
+  @include col(2);
   @include box-sizing(border-box);
   padding: 1%;
   height: 80%;
@@ -163,33 +179,22 @@ p.description_content{
 .activitycontainer{
   @include col(12);
   @include box-sizing(border-box);
-  background-color: $grayLighter;
+  background-color: $myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth ($myDivBorderWidth + 1px) $myDivBorderWidth ($myDivBorderWidth + 1px);
+  @include border-radius($myDivBorderRadius);
   border-style: solid;
   height: 100%;
-  padding: 2.5% 2.0% 2.5% 3.5%; //left and right off by 1.2% because of the gutter between photo and caption
+  // padding: 2.5% 2.0% 2.5% 3.5%; //left and right off by 1.2% because of the gutter between photo and caption
   margin-left: 1%;
+  overflow: hidden;
 
   @include respond-to(portrait){
-    padding: 5%;
   }
 
   @include respond-to(small){
-    padding: 5%;
   }
 }
-
-.morning_bg{
-  // @include background-image(linear-gradient(-90deg,rgb(153,179,255) 0%,rgb(243,243,243) 100%));
-  @include background-image(linear-gradient(-90deg,rgb(46,90,137) 0%,rgb(55,105,154) 25%,rgb(72,124,174) 50%,rgb(86,138,188) 64%,rgb(102,156,203) 76%,rgb(150,185,217) 88%,rgb(166,197,217) 100%));
-}
-
-.evening_bg{
-  @include background-image(linear-gradient(-90deg,rgb(0,48,64) 0%,rgb(138,138,123) 100%));
-}
-
-
 
 /* 4. IMAGE DIV */ 
 
@@ -209,85 +214,192 @@ img.hung_image{
 
 .relative_image{
   position:relative;
+  z-index: -1;
+}
+
+.main-pic-wrap{
+  height:100%;
+  overflow: hidden;
+  @include border-radius($myDivBorderRadius);
+
+  @include respond-to(portrait){
+  height: 70%;
+  }
+  @include respond-to(small){
+  height: 70%;
+  }
 }
 
 .centerimage{
-  @include col(8);
+  width: 100%;
   @include box-sizing(border-box);
   // padding: 1em;
-  background-color: rgba(255,255,255,0.6);
-  border-color: $borderGray;
-  border-width: $myDivBorderWidth;
-  border-style: solid;
-  @include border-radius($myDivBorderRadius);
+  background-color: $myDivBg;
+  // border-color: $borderGray;
+  // border-width: $myDivBorderWidth;
+  // border-style: solid;
+  // @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   height: 100%;
   position: relative;
-  margin-left: 0;
+  // margin-left: 0;
 
   @include respond-to(portrait){
-  @include col(12);
   @include box-sizing(border-box);
-  @include border-radius($myDivBorderRadius $myDivBorderRadius 0 0);
-  @include box-shadow(2px 0 4px rgba(0,0,0,.05));
+  // @include border-radius($myDivBorderRadius $myDivBorderRadius 0 0);
+  // @include box-shadow(2px 0 4px rgba(0,0,0,.05));
   // padding: 1em;
-  height: 70%;
   }
 
   @include respond-to(small){
-  @include col(12);
   @include box-sizing(border-box);
   // padding: 1em;
-  height: 70%;
-  margin-left: 0;
-  width: 100%;
+  // margin-left: 0;
   }
 }
 
-.activity_title{
-  padding: 0 0.5em 0 0.5em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  h3{
-    line-height: 20px;
-  }
-}
 
 /* 5. CAPTION DIV */
+.rightcaption-hide{
+  display: none;
+  @include respond-to(portrait){
+    display: block;
+  }
+}
 .rightcaption{
-  @include col(4);
+  width: 30%;
+  // height: 100%;
+  color: $white;
   @include box-sizing(border-box);
-  background-color: rgba(255,255,255,0.6);
-  border-color: $borderGray;
-  border-width: $myDivBorderWidth;
-  border-style: solid;
+  background-color: rgba(0,0,0,0.6);
   @include border-radius($myDivBorderRadius);
-  @include box-shadow($myDivBoxShadow);
-  height: 100%;
-  padding: 1em;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  z-index: 200; //to go over showmap button
 
   @include respond-to(portrait){
-    @include col(12);
-    // float: right;
+    background-color: rgba(0,0,0,0.9);
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    top: auto;
+    min-height: 30%;
+    // height: 30%;
+    @include border-radius(0);
     @include box-sizing(border-box);
-    padding: 1em;
-    height: 30%;
-    @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
-    margin-top: 1%;
   }
 
   @include respond-to(small){
-    @include col(12);
-    // float: right;
-    @include box-sizing(border-box);
-    padding: 1em;
-    height: 30%;
-    margin-left: 0;
+    background-color: rgba(0,0,0,0.9);
     width: 100%;
-    @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
-    margin-top: 1%;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    top: auto;
+    min-height: 30%;
+    z-index: 200; //to go over showmap button
+    @include border-radius(0);
+    @include box-sizing(border-box);
   }
+}
+
+
+
+h3#activity_title{
+  @include box-sizing(border-box);
+  // padding: 0 0.5em 0 0.5em;
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  padding: 0.5em 2em 0.2em 0.7em; //padding-right needs to be big to make room for arrow
+  font-size: 1.3em;
+  font-weight: 500;
+  line-height: 1.2em;
+  border-bottom: 1px solid rgb(204,204,204);
+  outline: 0;
+}
+
+h3#more_info_accordion{
+  padding: 0.2em 0.5em 0.2em 1.2em;
+  margin-top: 0;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 0.6em;
+  outline: 0;
+}
+
+#activity_title .ui-accordion-header-icon, #more_info_accordion .ui-accordion-header-icon{
+  position: absolute;
+  left: auto;
+  right: .5em;
+  top: 40%;
+  font-size: 16px;
+  &:hover{
+    color: $gray;
+  }
+}
+
+div.rightcaption .ui-accordion-content {
+  padding: 0 1em;
+}
+
+#user-description{
+  font-size: 1.1em;
+  line-height: 1.2em;
+  font-weight: 400;
+  margin-bottom: 0.75em;
+  text-shadow: 2px 2px 2px #000;
+}
+
+// #more-info-id{
+//   border-top: 1px solid $gray;
+// }
+
+.more-info-dl{
+  font-size: 0.8em;
+  line-height: 0.8em;
+  
+  .ui-accordion-content{
+    border-top: 1px solid $grayLighter;
+  }
+
+  dl{
+    margin-top: 0;
+  }
+  dd{
+    line-height: 1.1em;
+  }
+  address{
+    margin-bottom: 0;
+    line-height: 1em;
+  }
+}
+.caption-quick-tip{
+  background-color: rgba(225,225,225, 0.6);
+  color: $black;
+  font-size: .8em;
+  line-height: 1em;
+  border: none;
+}
+
+#trip_map{
+ background-color: $black;
+ height: 100%;
+ width: 100%;
+ position: absolute;
+ left:0;
+ top:0;
+ img{max-width:none}
+ 
+ @include respond-to(portrait){
+ height: 70%;
+ }
+
+ @include respond-to(small){
+ height: 70%;
+ }
 }
 
 /* NAVIGATION ARROWS */
