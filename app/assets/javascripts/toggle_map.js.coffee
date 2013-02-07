@@ -8,10 +8,10 @@ jQuery ->
   #   $(this).siblings('.flipper').flip
   #     direction: "tb", content: $(".back")
   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').children('.back').show()
+    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').children('.extraside').hide()
+    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
+    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').toggleClass('flipped')
     $(this).parents('#moreShowHideGroup').siblings('.rightcaption').toggleClass('rightcaption-hide')
     $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
     # $(this).toggleClass('active').promise().done ->
@@ -38,7 +38,7 @@ jQuery ->
 jQuery ->
   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
     req = slides[gallery.pageIndex].tripid + "/trip_activities/" + slides[gallery.pageIndex].activityid + "/mapinfo"
-    mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
+    mapcontainer = $(this).parents('.always-here').siblings('.flip-container').find('#trip_map')
     $.ajax
       type: "GET"
       url: req  
