@@ -8,11 +8,11 @@ jQuery ->
   #   $(this).siblings('.flipper').flip
   #     direction: "tb", content: $(".back")
   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
-    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').children('.back').show()
-    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').children('.extraside').hide()
-    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
-    $(this).parents('.always-here').siblings('.flip-container').children('.flipper').toggleClass('flipped')
-    $(this).parents('#moreShowHideGroup').siblings('.rightcaption').toggleClass('rightcaption-hide')
+    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
+    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
+    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
+    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+    $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
     $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
     # $(this).toggleClass('active').promise().done ->
     #   if $(this).class = "active" then $(this).siblings('#infoShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
@@ -38,7 +38,7 @@ jQuery ->
 jQuery ->
   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
     req = slides[gallery.pageIndex].tripid + "/trip_activities/" + slides[gallery.pageIndex].activityid + "/mapinfo"
-    mapcontainer = $(this).parents('.always-here').siblings('.flip-container').find('#trip_map')
+    mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
     $.ajax
       type: "GET"
       url: req  

@@ -13,7 +13,6 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
   width: 100%;
   height: 100%;
   background-color: $myDivBg;
-  z-index: -1;
 }
 
 /* SET HEIGHTS FOR THE SUBCOMPONENTS OF FLIP-CONTAINER */
@@ -81,12 +80,19 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 /* 2. FLIP CONTROL BUTTONS */
 
 /* Show Hide Map Button Group */
-// #moreShowHideGroup{
-//   z-index: 100;
-//   position: absolute;
-//   bottom: 2%;
-//   right: 2%;
-// }
+#moreShowHideGroup{
+  z-index: 6;
+  position: absolute;
+  bottom: 2%;
+  right: 0%;
+  height: 60px;
+  min-width: 100%;
+  padding:5px;
+  @include respond-to(portrait){
+    bottom: 35%;
+    z-index: 4;
+  }
+}
 
 // #moreShowHideGroup .btn{
 //   font-size: 18px;
@@ -99,7 +105,6 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 // }
 
 #mapShowHide{
-  z-index: 101;
   position: absolute;
   bottom: 2%;
   right: 2%;
@@ -115,9 +120,6 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
   text-align: center;
   line-height: 50px;
   cursor:pointer;
-  @include respond-to(portrait){
-    bottom: 33%
-  }
 
   i{
     position:relative;
