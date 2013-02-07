@@ -75,6 +75,10 @@ $lastrowheight: 10%;
   @include respond-to(portrait){
   height: 86%;
   }
+
+  @include respond-to(small){
+  height: 86%;
+  }
 }
 
 .triptitlebox{
@@ -276,13 +280,30 @@ img.relative_image{
     min-height: 30%;
     bottom: 0;
     top: auto;
-  } 
+  }
+  @include respond-to(small){
+  min-height: 30%;
+  bottom: 0;
+  top: auto;
+}  
 }
 .always-here-hide{
   z-index: -1;
+  .rightcaption{
+    display: none;
+  }
   @include respond-to(portrait){
     z-index: 5;
+    .rightcaption{
+      display: block;
+    }
   }
+  @include respond-to(small){
+    z-index: 5;
+    .rightcaption{
+      display: block;
+    }
+}
 }
 /* 5. CAPTION DIV */
 
