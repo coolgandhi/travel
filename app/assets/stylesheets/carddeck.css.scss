@@ -265,6 +265,14 @@ img.relative_image{
   }
 }
 
+.always-here{
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  left:0;
+  top:0;
+  z-index: 5;
+}
 
 /* 5. CAPTION DIV */
 .rightcaption-hide{
