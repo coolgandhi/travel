@@ -36,7 +36,7 @@ class TripActivitiesController < ApplicationController
     if (@location_detail)
       @latlong = @location_detail.latitude + "," + @location_detail.longitude
     else
-        @latlong = "37.77493,-122.41942"  # use SF by default
+      @latlong = "37.77493,-122.41942"  # use SF by default
     end
 
     respond_to do |format|
@@ -61,11 +61,12 @@ class TripActivitiesController < ApplicationController
   def create
     @trip_activity = nil
     @activity = nil
-
+    #logger.info"#{params.inspect}"
     respond_to do |format|
       if params[:trip_activity][:activity_type] == "FoodActivity"
         logger.info "food activity..."  
         @activity = FoodActivity.new(params[:food_activity])
+        @activity.image_urls = params[:selected_images]
         if (@activity.restaurant_detail.nil? or @activity.restaurant_detail == 0)
           @activity.restaurant_detail = create_food_venue(@activity[:restaurant_detail_id])
         end
@@ -75,6 +76,7 @@ class TripActivitiesController < ApplicationController
       elsif params[:trip_activity][:activity_type] == "LocationActivity"
         logger.info "location acitivity"
         @activity = LocationActivity.new(params[:location_activity])
+        @activity.image_urls = params[:selected_images]
         if (@activity.location_detail.nil? or @activity.location_detail == 0)
           @activity.location_detail = create_location_venue(@activity[:location_detail_id])
         end

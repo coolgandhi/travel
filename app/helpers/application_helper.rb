@@ -32,23 +32,55 @@ module ApplicationHelper
     open_hours
   end
   
-  def get_photos_from_venue_photos(photos)
+  def get_photos_from_venue_photos(photos, limit = 5)
     photos_ret = ""
     count = 0;
     if photos[:items]
       photos[:items].each {|photo|
         if photo[:sizes][:items]
-          (photo[:sizes])[:items].each {|photo_element|
-            photos_ret = photos_ret + photo_element[:url ] + "," + photo_element[:height].to_s + "X" + photo_element[:width].to_s + ","
+          photos_ordered = (photo[:sizes])[:items].sort_by {|e| -e[:width]}
+          photos_ordered.each {|photo_element|
+            photos_ret = photos_ret + photo_element[:url] + "," + photo_element[:width].to_s + "X" + photo_element[:height].to_s + ","
           }
           photos_ret.chomp!(',')
           photos_ret = photos_ret + ";"
           count = count + 1
-          if count > 5 
+          if count > limit 
             break
           end
         end
       }
+    end
+    photos_ret
+  end
+    
+  def get_photos_from_venue_photos_first_resolution(photos, limit=5)
+    photos_ret = ""
+    count = 0;
+    if photos[:items]
+      photos[:items].each {|photo|
+        if photo[:sizes][:items]
+          photos_ret = photos_ret + photo[:sizes][:items].first[:url] + ","
+        end
+        count = count + 1
+        if count > limit 
+          break
+        end
+      }
+      photos_ret.chomp!(',')   
+    end
+    photos_ret
+  end
+  
+  def get_photos_from_venue_photos_with_json(photos, use_semi_colon)
+    photos_ret = ""
+    if photos != ""
+      if use_semi_colon
+        photos_arr = photos.split(/;/)
+      else
+        photos_arr = photos.split(/,/)
+      end
+      photos_ret = photos_arr.map {|x| {"img"=>x}}
     end
     photos_ret
   end

@@ -21,7 +21,7 @@
             <tr class ="morning_tr"><td colspan="2"><%= "Morning" %></td></tr>
             <% morning_activity_group.each do |x| %>
               <tr onclick="gallery.goToPage(<%=(x.activity_sequence_number.to_i)-1%>); $('#trip-overview-modal').modal('hide')">
-              <td class = "thumbnail_td"><%= image_tag(select_activity_img(x)[0][6], :alt => which_detail_type(x, "name")) %></td>
+              <td class = "thumbnail_td"><%= image_tag(select_activity_img(x, 50), :alt => which_detail_type(x, "name")) %></td>
               <td><%= which_detail_type(x, "name")%> (<%=which_detail_type(x, "category")%>) for <%= x.activity[:duration] %></td>
               </tr>
             <% end %>
@@ -35,7 +35,7 @@
             <tr class ="afternoon_tr"><td colspan="2"><%= "Afternoon" %></td></tr>
             <% afternoon_activity_group.each do |x| %>
               <tr onclick="gallery.goToPage(<%=(x.activity_sequence_number.to_i)-1%>); $('#trip-overview-modal').modal('hide')">
-              <td class = "thumbnail_td"><%= image_tag(select_activity_img(x)[0][6], :alt => which_detail_type(x, "name")) %></td>
+              <td class = "thumbnail_td"><%= image_tag(select_activity_img(x,50), :alt => which_detail_type(x, "name")) %></td>
               <td><%= which_detail_type(x, "name")%> (<%=which_detail_type(x, "category")%>) for <%= x.activity[:duration] %></td>
               </tr>
             <% end %>
@@ -48,7 +48,7 @@
           <tr class ="evening_tr"><td colspan="2"><%= "Evening" %></td></tr>
           <% evening_activity_group.each do |x| %>
             <tr onclick="gallery.goToPage(<%=(x.activity_sequence_number.to_i)-1%>); $('#trip-overview-modal').modal('hide')">
-            <td class = "thumbnail_td"><%= image_tag(select_activity_img(x)[0][6], :alt => which_detail_type(x, "name")) %></td>
+            <td class = "thumbnail_td"><%= image_tag(select_activity_img(x, 50), :alt => which_detail_type(x, "name")) %></td>
             <td><%= which_detail_type(x, "name")%> (<%=which_detail_type(x, "category")%>) for <%= x.activity[:duration] %></td>
             </tr>
           <% end %>
