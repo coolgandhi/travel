@@ -2,7 +2,7 @@
 
         <p>
         <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
-        <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
+        <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %> for <%=@trip.traveler_type[:traveler_type_name]%></span>
         </p>
         <small>by <%= @trip.author_id %></small>
       
@@ -129,10 +129,6 @@ for (i=0; i<3; i++) {
   //I added to change text of trip-title-sub-text Day x of X in Location
   document.querySelector('span.trip-title-sub-text').innerHTML = ' - Day '+ slides[gallery.pageIndex].activityday + ' of ' + <%=@trip.duration%> + ' in ' + '<%= @trip.location[:place] %>' + ' for <%=@trip.traveler_type[:traveler_type_name]%>';
 }
-
-//I added to change text of trip-title-sub-text Day x of X in Location
-document.querySelector('span.trip-title-sub-text').innerHTML = 'Day '+ slides[gallery.pageIndex].activityday + ' of ' + slides[gallery.pageIndex].triplength + ' in ' + slides[gallery.pageIndex].triplocation ;
-
 
 gallery.onFlip(function () {
   var el,
