@@ -18,15 +18,21 @@
 
       </div>
       
-      <div class="filmstrip">
+      <div class= "wrapper-film">
+        <div class="overview-button-wrapper">
+          <!-- Button to trigger modal -->
+          <a href="#trip-overview-modal" role="button" class="btn btn-inverse" data-toggle="modal">See Overview</a>
+        </div>
         
-        <ul class="media-list" id="navswipe">
-          <%= render "trips/partials/filmstrip-thumbnails" %>
-        </ul>
+        <div class="filmstrip">
+          <ul class="media-list" id="navswipe">
+            <%= render "trips/partials/filmstrip-thumbnails" %>
+          </ul>
+        </div>
       </div>
 
-
 <div id="wrappiest">
+  <%= render "trips/partials/trip-overview-modal" %>
     <!-- /navigation arrows -->
           <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left"></i></div>
           
@@ -63,18 +69,22 @@ bodyBackgroundImageSwitch = function() {
   
   switch (timetype) {
    case "1":
+   case "2":
       $('img.evening_bg').fadeOut(2000)
       $('img.afternoon_bg').fadeOut(2000)
       $('body').removeClass().addClass('morning_bg')
       $('img.morning_bg').fadeIn(2000)
       break;
-   case "2":
+   case "3":
+   case "4":
       $('img.morning_bg').fadeOut(2000)
       $('img.evening_bg').fadeOut(2000)
       $('body').removeClass().addClass('afternoon_bg')
       $('img.afternoon_bg').fadeIn(2000)
       break;
-   case "4":
+   case "5":
+   case "6":
+   case "7":
       $('img.morning_bg').fadeOut(2000)
       $('img.afternoon_bg').fadeOut(2000)
       $('body').removeClass().addClass('evening_bg')

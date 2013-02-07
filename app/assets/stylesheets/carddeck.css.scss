@@ -7,6 +7,7 @@
   5. CAPTION DIV
   6. NAVIGATION BOTTOM
   7. MISC
+  8. OVERVIEW MODAL AND TABLE
 */
 
 
@@ -114,14 +115,13 @@ $lastrowheight: 10%;
 }
 
 
-/* 3. FILMSTRIP NAVIGATION */ 
-.filmstrip{
+/* 3. FILMSTRIP NAVIGATION */
+.wrapper-film{
   @include col(2);
   @include box-sizing(border-box);
-  padding: 1%;
-  height: 100% - $titlerowheight;
+  // padding: 1%;
   overflow: hidden;
-  overflow-y: auto;
+  height: 100% - $titlerowheight;
   background-color: $myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -133,17 +133,24 @@ $lastrowheight: 10%;
   @include respond-to(portrait){
   @include col(2);
   @include box-sizing(border-box);
-  padding: 1%;
+  // padding: 1%;
   height: 80%;
   }
 
   @include respond-to(small){
   @include col(3);
   @include box-sizing(border-box);
-  padding: 1%;
+  // padding: 1%;
   height: 80%;
   display: none;
   }
+} 
+.filmstrip{
+  @include box-sizing(border-box);
+  padding: 8%;
+  height: 100%;
+  // overflow: hidden;
+  overflow-y: auto;
 }
 
 div.thumb-wrap{
@@ -212,7 +219,7 @@ img.hung_image{
   height: auto;
 }
 
-.relative_image{
+img.relative_image{
   position:relative;
   z-index: -1;
 }
@@ -267,7 +274,7 @@ img.hung_image{
   }
 }
 .rightcaption{
-  width: 30%;
+  width: 35%;
   // height: 100%;
   color: $white;
   @include box-sizing(border-box);
@@ -319,6 +326,7 @@ h3#activity_title{
   line-height: 1.2em;
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
+  text-shadow: 2px 1px 3px $black;
 }
 
 h3#more_info_accordion{
@@ -346,11 +354,11 @@ div.rightcaption .ui-accordion-content {
 }
 
 #user-description{
-  font-size: 1.1em;
-  line-height: 1.2em;
-  font-weight: 400;
+  font-size: 1.2em;
+  line-height: 1.4em;
+  font-weight: 300;
   margin-bottom: 0.75em;
-  text-shadow: 2px 2px 2px #000;
+  text-shadow: 2px 1px 3px #000;
 }
 
 // #more-info-id{
@@ -377,11 +385,13 @@ div.rightcaption .ui-accordion-content {
   }
 }
 .caption-quick-tip{
-  background-color: rgba(225,225,225, 0.6);
-  color: $black;
+  // background-color: rgba(225,225,225, 0.6);
+  color: $white;
   font-size: .8em;
   line-height: 1em;
-  border: none;
+  text-shadow: (1px 1px 1px $black);
+  border: 1px solid rgb(204,204,204);
+  background-color: transparent;
 }
 
 #trip_map{
@@ -528,3 +538,64 @@ div.rightcaption .ui-accordion-content {
 /*  height: 100px; */
 }
 
+/* 8. OVERVIEW MODAL AND TABLE */
+
+#trip-overview-modal{
+  @include box-sizing(border-box);
+  width: 98%;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1%;
+  margin-top: 2.5%;
+  background-color: rgba(255,255,255,0.9);
+  @include border-radius($myDivBorderRadius);
+  border-color: $borderGray;
+
+  .modal-header{
+    border-bottom: $myDivBorderWidth solid $borderGray;
+  }
+  .modal-body{
+    max-height: 73%;
+  }
+  .modal-footer{
+    @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
+    border-color: $borderGray;
+    padding: 0.5em;
+
+  }
+}
+
+.overview-button-wrapper{
+  margin-bottom: 2%;
+  margin-top: 2%;
+  padding: 2%;
+  text-align: center;
+}
+
+/* overview table formatting */
+tr.day_tr{
+  background-color: $grayLight;
+  font-weight: bold;
+}
+
+tr.morning_tr{
+  background-color: #E7B15B;
+  font-weight: bold;
+}
+
+tr.afternoon_tr{
+  background-color: #5B94FA;
+  font-weight: bold;
+}
+
+tr.evening_tr{
+  background-color: #7291A1;
+  font-weight: bold;
+}
+
+td.thumbnail_td{
+  text-align: center;
+  padding: 4px 0px;
+}
