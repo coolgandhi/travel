@@ -14,3 +14,11 @@
   	text-align: center;
   }
 }
+
+.auth_picture{
+	@include col(4);
+}
+
+.auth_description{
+	@include col(8);
+}
