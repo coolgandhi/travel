@@ -38,7 +38,7 @@ class VenuesController < ApplicationController
       FoursquareInteraction.foursquare_client
       @venue_photos = FoursquareInteraction.venue_photos(params[:venueid], tot)
       @venue_photos_com = get_photos_from_venue_photos(@venue_photos, tot)
-       logger.info "#{@venue_photos_com.inspect}"
+      #logger.info "#{@venue_photos_com.inspect}"
        
       @venue_photos_com = get_photos_from_venue_photos_with_json(@venue_photos_com, true)
       
