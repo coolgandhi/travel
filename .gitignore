@@ -7,6 +7,7 @@
 # Ignore bundler config
 .rbx
 /.bundle
+/public/assets
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
