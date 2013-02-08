@@ -25,7 +25,8 @@ module TripsHelper
 								tripname: t["trip_name"],triplength: t["duration"], triplocation: trip_location, tripid: t["id"],
 							   	rightcaption: @trip.trip_activities.find(e["id"].to_s).activity[:description], 
 							   	quicktip: @trip.trip_activities.find(e["id"].to_s).activity[:quick_tip], 
-							   	duration: @trip.trip_activities.find(e["id"].to_s).activity[:duration], 
+							   	duration: @trip.trip_activities.find(e["id"].to_s).activity[:duration],
+							   	timetype: e["activity_time_type"],
 							   	renderpartial: "/trips/#{t["id"]}/trip_activities/#{e["id"]}/showpartial/", 
 							   	layout: case 
 							   			  when e["activity_type"] == "FoodActivity" then "foodactivitypartial"
@@ -40,13 +41,13 @@ module TripsHelper
 		prettybungle
 	end
 
-	def background_switch_class(time)
-   		case 
-		  when time == "1" then "morning_bg"
-		  when time == "2" then "afternoon_bg"
-		  when time == "3" then "evening_bg"
-		end	
-	end
+	# def background_switch_class(time)
+ #   		case 
+	# 	  when time == "1" then "morning_bg"
+	# 	  when time == "2" then "afternoon_bg"
+	# 	  when time == "3" then "evening_bg"
+	# 	end	
+	# end
 
 
 end

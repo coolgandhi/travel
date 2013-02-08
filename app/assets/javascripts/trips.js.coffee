@@ -27,3 +27,6 @@ jQuery ->
       $(this).val ui.item.label
       $(this).siblings('#place').val ui.item.value
       
+# Open Trip Overview Modal on load 
+jQuery ->
+  $('#trip-overview-modal').modal('show');

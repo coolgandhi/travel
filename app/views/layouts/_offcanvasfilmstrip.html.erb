@@ -1,5 +1,9 @@
       <input type="checkbox" class="main-nav-check" id="main-nav-check" />
 <nav class="main-nav" id="main-nav">
+	    <div class="overview-button-wrapper">
+          <!-- Button to trigger modal -->
+          <a href="#trip-overview-modal" role="button" class="btn btn-info" data-toggle="modal">See Overview</a>
+        </div>
         
         <ul class="media-list" id="navswipe2">
          <%= render "trips/partials/filmstrip-thumbnails" %>

@@ -1,15 +1,14 @@
 <div class = "activitycontainer">
-<div class ="about_author_main">
+	<div class ="about_author_main">
 
-<h3 class = "author_desc">Hi - I'm the Author! <%= @trip.author_id %>
-Look at me!</h3>
-
-        <ul class="media-list">
-          <li class="media" >
-            <img class="media-object" data-src="holder.js/160x120">
-          </li>
-        </ul>
+	<h3 class = "author_desc">Hi - I'm the Author! <%= @trip.author_id %>
+	Look at me!</h3>
 
 
+	<div class="auth_picture"><%= image_tag("http://www.gravatar.com/avatar/ea9f42c26be777dcdedb1b9094edfe56.png", :alt => "profile") %></div>
+  	<div class="auth_description">Joe</div>
+
+
+	</div>
 </div>
-</div>
+

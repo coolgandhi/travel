@@ -1,5 +1,6 @@
  @import "compass";
  @import "bootstrap_and_overrides";
+ @import "components/rightcaption-accordion.css.scss"; //base jquery-ui CSS for accordion widget
  @import "mycustomgrid/mycustomgrid"; //custom grid mix-in
  @import "mediaqueries/mediaqueries"; //media queries mix-in
  @import "carddeck.css.scss";

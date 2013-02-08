@@ -98,7 +98,8 @@ body { padding-top: 60px; }
 
 /* Our custom borders and shadows */
 
-$myDivBorderRadius:                  3px !default;
-$myDivBorderWidth:					  1px !default;
-$myDivBoxShadow:					  0 2px 4px rgba(0,0,0,.05) !default;
-$myDivGlows:						  rgba(71,135,237,0.65);
+$myDivBorderRadius: 3px !default;
+$myDivBorderWidth:1px !default;
+$myDivBoxShadow: 0 2px 4px rgba(0,0,0,.05) !default;
+$myDivGlows:rgba(71,135,237,0.65);
+$myDivBg:rgba(255,255,255,.3);							 

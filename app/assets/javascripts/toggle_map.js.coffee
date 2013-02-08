@@ -12,25 +12,27 @@ jQuery ->
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
-    $(this).toggleClass('active').promise().done ->
-      if $(this).class = "active" then $(this).siblings('#infoShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
-      if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
+    $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
+    $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
+    # $(this).toggleClass('active').promise().done ->
+    #   if $(this).class = "active" then $(this).siblings('#infoShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
+    #   if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
 
-  $("#swipewrapper").on "click", "#infoShowHide", (e) ->
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').show()
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').hide()
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped-again')
-    $(this).toggleClass('active').promise().done -> 
-      if $(this).class = "active" then $(this).siblings('#mapShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
-      if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
+  # $("#swipewrapper").on "click", "#infoShowHide", (e) ->
+  #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').show()
+  #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').hide()
+  #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
+  #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped-again')
+  #   $(this).toggleClass('active').promise().done -> 
+  #     if $(this).class = "active" then $(this).siblings('#mapShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
+  #     if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
 
 
-  $("#swipewrapper").on "click", "#hideAllButton", (e) ->
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
-    $(this).addClass('active')
-    $(this).siblings('.btn').removeClass('active')
+  # $("#swipewrapper").on "click", "#hideAllButton", (e) ->
+  #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
+  #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
+  #   $(this).addClass('active')
+  #   $(this).siblings('.btn').removeClass('active')
 
 
 jQuery ->
