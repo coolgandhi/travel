@@ -1,13 +1,47 @@
-<div class = "activitycontainer">
+<div class = "auth_container">
 	<div class ="about_author_main">
 
-	<h3 class = "author_desc">Hi - I'm the Author! <%= @trip.author_id %>
-	Look at me!</h3>
+	<h3 class = "author_title">About the Author</h3>
+	<hr class="auth_hr">
 
 
-	<div class="auth_picture"><%= image_tag("http://www.gravatar.com/avatar/ea9f42c26be777dcdedb1b9094edfe56.png", :alt => "profile") %></div>
-  	<div class="auth_description">Joe</div>
+	<div class="auth_picture"><%= image_tag "http://www.gravatar.com/avatar/ea9f42c26be777dcdedb1b9094edfe56.png", :alt => "profile", :class => "auth_img_tag" %>
+	</div>
+  	
+  	<div class="auth_description">
+  		<h4><%= @trip.author_id %></br><small class="auth_city">San Francisco, CA</small></h4>
+  		<div class="auth_social_link"><%= link_to image_tag('/assets/twitter-bird-white-on-blue.png', :class=> "auth_social_icon"), 'https://twitter.com/hungkienluu', :target => "_blank"%></div>
+  	</div>
+  	
+  	<!-- begin auth_moreinfo -->
+  	<div class="auth_moreinfo">
+  		<p>
+  		<dl class="dl-horizontal">
+  			
+  			<dt>My day job</dt>
+  			<dd>Travel startup co-founder</dd>
 
+  			<dt>How I travel</dt>
+  			<dd>with friends, as a couple, with family</dd>
+  			
+  			<dt>Favorite places</dt>
+  			<dd>
+  				Rome, Italy</br>
+  				Florence, Italy</br>
+  				Ho Chi Minh City, Vietnam</br>
+  			</dd>
+
+  			<dt>I want to go to</dt>
+  			<dd>
+  				Rio de Janeiro, Brazil</br>
+  				Hanoi, Vietnam</br>
+  			</dd>
+
+		</dl>
+		</p>
+
+  	</div>
+  	<!-- end auth_moreinfo -->
 
 	</div>
 </div>

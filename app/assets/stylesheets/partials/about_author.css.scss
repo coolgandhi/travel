@@ -4,21 +4,78 @@
 
 
 /* 1. STRUCTURAL STYLING */
+.auth_container{
+  @include col(12);
+  @include box-sizing(border-box);
+  background-color: $myDivBg;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth ($myDivBorderWidth + 1px) $myDivBorderWidth ($myDivBorderWidth + 1px);
+  @include border-radius($myDivBorderRadius);
+  border-style: solid;
+  height: 100%;
+  margin-left: 1%;
+  overflow: hidden;
+}
 
 .about_author_main{
-  @include col(12);
-  background-color: #acb6c0;
-  height: 100%;
-  margin-left: 0%; //need to remove the gutter
-  .author_desc{
-  	text-align: center;
+  width: 80%;
+  float: left;
+  background-color: #f8f8f8;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  border: $myDivBorderWidth solid $borderGray;
+  height: 80%;
+  margin-top: 6%;
+  margin-left: 10%; 
+  @include box-sizing(border-box);
+  padding: 2% 5%;
+
+  .author_title{
   }
 }
 
+.auth_city{
+	color: $gray
+}
+
+.auth_hr{
+	margin: 0;
+	margin-bottom: 8px;
+	border-bottom: 1px solid $borderGray;
+	border-top: 0;
+}
+
 .auth_picture{
-	@include col(4);
+	@include box-sizing(border-box);
+	width: 20%;
+	float: left;
+	text-align: left;
+	padding: 1%;
+	.auth_img_tag{
+		@include border-radius($myDivBorderRadius);
+	}
+}
+.auth_social_link{
+	float:left;
+	clear:left;
+
+	.auth_social_icon{
+		height: 18px;
+		width: 18px;
+	}
 }
 
 .auth_description{
-	@include col(8);
+	@include box-sizing(border-box);
+	width: 80%;
+	float: left;
+	padding: 1%;
+	h4{
+		margin: 5px 0;
+	}
+}
+
+.auth_moreinfo{
+	width: 100%;
+	float: left;
 }

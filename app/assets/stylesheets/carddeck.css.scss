@@ -112,6 +112,7 @@ $lastrowheight: 10%;
   position: absolute;
   right: 0%;
   top: 30%;
+  overflow-y: hidden;
   @include respond-to(small){
   font-size: .75em;
   right: 1%;
@@ -168,14 +169,14 @@ div.thumb-description{
   width:100%;
   /* styling bellow */
   background-color: rgba(0, 0, 0, 0.6);
-  font-size:0.85em;
-  font-weight: 600;
+  font-size:0.75em;
+  font-weight: 300;
   color:white;
   filter:alpha(opacity=60); /* IE transparency */
 }
 p.description_content{
   @include box-sizing(border-box);
-  padding: 0.15em 0 0.15em 0.5em;
+  padding: 0.15em 0.5em 0.15em 0.5em;
   margin:0px;
   text-align: left;
   white-space: nowrap;
@@ -322,7 +323,6 @@ img.relative_image{
   @include respond-to(portrait){
     background-color: rgba(0,0,0,0.9);
     width: 100%;
-    position: absolute;
     bottom: 0%;
     left: 0%;
     top: auto;
@@ -335,7 +335,6 @@ img.relative_image{
   @include respond-to(small){
     background-color: rgba(0,0,0,0.9);
     width: 100%;
-    position: absolute;
     bottom: 0%;
     left: 0%;
     top: auto;
@@ -426,6 +425,7 @@ div.rightcaption .ui-accordion-content {
   text-shadow: (1px 1px 1px $black);
   border: 1px solid rgb(204,204,204);
   background-color: transparent;
+  margin-bottom: 10px;
 }
 
 #trip_map{
@@ -590,8 +590,19 @@ div.rightcaption .ui-accordion-content {
   .modal-header{
     border-bottom: $myDivBorderWidth solid $borderGray;
   }
+  
+  h3#myModalLabel{
+    font-size: 1.4em;
+    line-height: 1.4em;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  
   .modal-body{
     max-height: 73%;
+    @include respond-to(portrait){
+      min-height: 78%;
+    }
   }
   .modal-footer{
     @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
@@ -632,4 +643,7 @@ tr.evening_tr{
 td.thumbnail_td{
   text-align: center;
   padding: 4px 0px;
+  img{
+    @include border-radius($myDivBorderRadius);
+  }
 }

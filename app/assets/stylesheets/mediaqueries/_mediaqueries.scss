@@ -9,13 +9,13 @@ $break-large: 1200px;
 ------------------------------------------------*/
 @mixin respond-to($media) {
   @if $media == phones {
-    @media only screen and (max-width: $break-phones) { @content; }
+    @media only screen and (max-width: $break-phones) and (max-device-width: $break-phones) { @content; }
   }
   @else if $media == small {
-    @media only screen and (max-width: $break-small-tablets) { @content; }
+    @media only screen and (max-width: $break-small-tablets) and (max-device-width: $break-small-tablets) { @content; }
   }
   @else if $media == portrait {
-    @media only screen and (min-width: $break-small-tablets + 1) and (max-width: $break-default - 1) and (orientation: portrait) { @content; }
+    @media only screen and (min-width: $break-small-tablets + 1) and (max-width: $break-default - 1) and (max-device-width: $break-default - 1) and (orientation: portrait) { @content; }
   }
   @else if $media == widescreen {
     @media only screen and (min-width: $break-large) { @content; }
