@@ -9,8 +9,8 @@ jQuery ->
   #     direction: "tb", content: $(".back")
   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
-    $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
+    # $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
+    # $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
     $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
     $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")

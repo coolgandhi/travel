@@ -14,10 +14,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
-//= require caption-accordion
 //= require gmap3
 //= require facebook-plugins
-//= require hungcustom
 //= require holder/holder
 //= require picturefill
 //= require swipeview

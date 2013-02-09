@@ -4,17 +4,20 @@
         <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
         <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %> for <%=@trip.traveler_type[:traveler_type_name]%></span>
         </p>
+
+        <!--Begin show overview button that shows up only on small screens-->
+        <label class="toggle-menu" href="#trip-overview-modal" role="button" data-toggle="modal">
+          <i class="icon-reorder icon-border"></i>
+        </label>
+        <!--End show overview button that shows up only on small screens -->
+        
         <small>by <%= @trip.author_id %></small>
-      
+
       <div class="socialmediabox">
         <div id="fb-root"></div>
       
       <div class="fb-like" data-href="http://espn.com" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
       </div>
-
-      <label for="main-nav-check" class="toggle-menu">
-      <i class="icon-reorder icon-border"></i>
-      </label>
 
       </div>
       
@@ -101,7 +104,7 @@ var gallery,
   i,
   page,
   dots = document.querySelectorAll('#navswipe li'),
-  dots2 = document.querySelectorAll('#navswipe2 li'),
+  // dots2 = document.querySelectorAll('#navswipe2 li'),
   slides = <%= trip_activities_as_json.html_safe %> //this returns an array of hashes formatted in trip_helper.rb
   ;
 
@@ -161,8 +164,8 @@ gallery.onFlip(function () {
 
   document.querySelector('#navswipe .selected').className = '';
   dots[gallery.pageIndex].className = 'selected';
-  document.querySelector('#navswipe2 .selected').className = '';
-  dots2[gallery.pageIndex].className = 'selected';
+  // document.querySelector('#navswipe2 .selected').className = '';
+  // dots2[gallery.pageIndex].className = 'selected';
 
   //I added to change text of trip-title-sub-text Day x of X in Location
   if (slides[gallery.pageIndex].activityday)

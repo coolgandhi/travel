@@ -14,17 +14,27 @@
 /* 1. MAIN BODY STYLES*/
 
 html, body, .page-wrap {
-  height: 614px; //height of safari mobile viewport in landscape
+  // height: 614px; //height of safari mobile viewport in landscape
+  height: 100%;
+
+  //on large desktops limit the height of the body
+  @media only screen and (min-device-width: $break-large + 1) and (min-device-height: 614px){
+  height: 614px;
+  }
 
   @include respond-to(portrait){
-  height: 971px;
+  height: 100%;
   }
   
   @include respond-to(small){
-  height: 971px;
+  height: 100%;
   padding-left: 0; //eliminating margin at small screen sizes
   padding-right: 0;
   }
+}
+
+.page-wrap{
+  overflow: hidden; //this needs to be here to clear this div so max-height of pagewrap works.
 }
 
 img.morning_bg, img.afternoon_bg, img.evening_bg{
@@ -71,6 +81,8 @@ $lastrowheight: 10%;
 
 #maincontainer{
   height: 90%;
+  // overflow: hidden;
+  // clear: none;
 
   @include respond-to(portrait){
   height: 86%;
@@ -83,10 +95,11 @@ $lastrowheight: 10%;
 
 .triptitlebox{
   @include col(12);
-  min-height: $titlerowheight;
+  // min-height: $titlerowheight;
   height: auto;
   position: relative;
   overflow: visible;
+  margin-bottom: 1%;
 
   p{
     margin: 0;
@@ -97,7 +110,9 @@ $lastrowheight: 10%;
     font-size: 1.4em;
     line-height: 1.4em;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: 400;
+    text-shadow: 1px 1px 1px $white;
+
   }
 
   .trip-title-sub-text{
@@ -113,9 +128,11 @@ $lastrowheight: 10%;
   right: 0%;
   top: 30%;
   overflow-y: hidden;
+
   @include respond-to(small){
   font-size: .75em;
   right: 1%;
+  top: 60%;
   }
 }
 
@@ -149,7 +166,8 @@ $lastrowheight: 10%;
   height: 80%;
   display: none;
   }
-} 
+}
+
 .filmstrip{
   @include box-sizing(border-box);
   padding: 8%;
@@ -162,6 +180,7 @@ div.thumb-wrap{
   float:left; /* important */
   position:relative; /* important(so we can absolutely position the description div */
 }
+
 div.thumb-description{
   position:absolute; /* absolute position (so we can position it where we want)*/
   bottom:0px; /* position will be on bottom */
@@ -174,6 +193,7 @@ div.thumb-description{
   color:white;
   filter:alpha(opacity=60); /* IE transparency */
 }
+
 p.description_content{
   @include box-sizing(border-box);
   padding: 0.15em 0.5em 0.15em 0.5em;
@@ -183,9 +203,6 @@ p.description_content{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-
-
 
 /* 3.5 ACTIVITY CONTAINER DIV */
 .activitycontainer{
@@ -286,8 +303,9 @@ img.relative_image{
   min-height: 30%;
   bottom: 0;
   top: auto;
-}  
+  }  
 }
+
 .always-here-hide{
   z-index: -1;
   .rightcaption{
@@ -304,7 +322,7 @@ img.relative_image{
     .rightcaption{
       display: block;
     }
-}
+  }
 }
 /* 5. CAPTION DIV */
 
@@ -338,14 +356,12 @@ img.relative_image{
     bottom: 0%;
     left: 0%;
     top: auto;
-    min-height: 30%;
+    min-height: 100%;
     z-index: 200; //to go over showmap button
     @include border-radius(0);
     @include box-sizing(border-box);
   }
 }
-
-
 
 h3#activity_title{
   @include box-sizing(border-box);
@@ -369,6 +385,14 @@ h3#more_info_accordion{
   font-weight: 400;
   line-height: 0.6em;
   outline: 0;
+  @include respond-to(portrait){
+    font-size: 1em;
+    line-height: 1em;
+  }
+  @include respond-to(small){
+    font-size: 1em;
+    line-height: 1em;
+  }
 }
 
 #activity_title .ui-accordion-header-icon, #more_info_accordion .ui-accordion-header-icon{
@@ -392,15 +416,25 @@ div.rightcaption .ui-accordion-content {
   font-weight: 300;
   margin-bottom: 0.75em;
   text-shadow: 2px 1px 3px #000;
+  @include respond-to(portrait){
+    line-height: 1.2em;
+  }
+  @include respond-to(small){
+    line-height: 1.2em;
+  }
 }
-
-// #more-info-id{
-//   border-top: 1px solid $gray;
-// }
 
 .more-info-dl{
   font-size: 0.8em;
   line-height: 0.8em;
+  @include respond-to(portrait){
+    font-size: 1em;
+    line-height: 1em;
+  }
+  @include respond-to(small){
+    font-size: 1em;
+    line-height: 1em;
+  }
   
   .ui-accordion-content{
     border-top: 1px solid $grayLighter;
@@ -608,6 +642,10 @@ div.rightcaption .ui-accordion-content {
     @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
     border-color: $borderGray;
     padding: 0.5em;
+    width: inherit;
+    position:absolute;
+    bottom:0;
+    right:0;
 
   }
 }

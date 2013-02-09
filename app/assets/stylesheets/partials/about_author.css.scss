@@ -20,7 +20,7 @@
 .about_author_main{
   width: 80%;
   float: left;
-  background-color: #f8f8f8;
+  background-color: rgba(0,0,0,.6);
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   border: $myDivBorderWidth solid $borderGray;
@@ -29,13 +29,14 @@
   margin-left: 10%; 
   @include box-sizing(border-box);
   padding: 2% 5%;
+  color: $white;
 
   .author_title{
   }
 }
 
 .auth_city{
-	color: $gray
+	color: $white;
 }
 
 .auth_hr{
