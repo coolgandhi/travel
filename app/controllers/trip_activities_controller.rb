@@ -165,8 +165,6 @@ class TripActivitiesController < ApplicationController
     end
   end
 
-
-
   def load_trip
     @trip = Trip.find(params[:trip_id])
   end

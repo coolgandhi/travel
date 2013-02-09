@@ -106,7 +106,7 @@ var gallery,
   page,
   dots = document.querySelectorAll('#navswipe li'),
   // dots2 = document.querySelectorAll('#navswipe2 li'),
-  slides = <%= (@sorted_activities.to_json).html_safe %> //this returns an array of hashes formatted in trip_helper.rb
+  slides = <%= (@compressed_activities.to_json).html_safe %> //this returns an array of hashes formatted in trip_helper.rb
   ;
 
   gallery = new SwipeView('#swipewrapper', { numberOfPages: slides.length, hastyPageFlip: true, loop: true });
