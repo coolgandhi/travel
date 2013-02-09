@@ -1,53 +1,62 @@
 module TripsHelper
 
-	# this helper provides the view with a JSON object of the trip and all activities
-	# def tripdetails_as_json(tripdetails)
-	# 	mybungle = tripdetails.to_json
-	# 	parseable = JSON.parse(mybungle)
-	# 	# parseable = ActiveSupport::JSON.decode(mybungle)
-	# 	blahblah = parseable.map {|x| {rightcaption: x[1]["description"], quicktip: x[1]["quick_tip"]}}
-	# 	prettyup = JSON.pretty_generate(blahblah)
-	# 	prettyup
-	# end
+  # this helper provides the view with an arrary of trip and all activities
+  def sorted_trip_activities trip
+    trip_location = @trip.location[:place]
+    
+    mapped_activities = Array.new
+    trip.trip_activities.each {|trip_activity| 
+        image_url = ""
+        activity_venue_name = ""
+        lay_out = ""
+        case trip_activity.activity_type 
+            when "FoodActivity" then 
+              image_url = trip_activity.activity.restaurant_detail[:image_urls]   
+              activity_venue_name= trip_activity.activity.restaurant_detail[:name]
+              lay_out = "foodactivitypartial"
+            when "LocationActivity" then 
+              image_url = trip_activity.activity.location_detail[:image_urls]
+              activity_venue_name = trip_activity.activity.location_detail[:name]
+              lay_out = "locationactivitypartial"
+            else  # default transport activity
+              image_url = ""
+              activity_venue_name = ""
+              lay_out= "transportactivitypartial"
+        end
+      
+        if trip_activity.activity.image_urls and trip_activity.activity.image_urls != ""
+          image_url = trip_activity.activity.image_urls # select image from the activity if chosen by the author
+        end
+        
+        mapped_activities.push (
+          { 
+            :activityday => trip_activity.activity_day, 
+            :activitysequence => trip_activity.activity_sequence_number, 
+            :activityid => trip_activity.id,
+            :tripname => trip.trip_name,
+            :triplength => trip.duration, 
+            :triplocation => trip_location, 
+            :tripid =>  trip.id,
+            :rightcaption => trip_activity.activity.description, 
+            :quicktip => trip_activity.activity.quick_tip, 
+            :duration => trip_activity.activity.duration,
+            :timetype => trip_activity.activity_time_type,
+            :image_url => image_url,
+            :activity_venue_name => activity_venue_name,
+            :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial/", 
+            :layout => lay_out   
+          }
+        )             
+    }
 
-		# this helper provides the view with a JSON object of the trip and all activities
-	def trip_activities_as_json
-		mybungle = {:trip => @trip,:trip_activity => @trip.trip_activities}
-		trip_location = @trip.location[:place]
-		parseable = mybungle.to_json
-		parsedbungle = JSON.parse(parseable)
-		t = parsedbungle["trip"]
-		s = parsedbungle["trip_activity"]
-		# x = parsedbungle["trip_activities_details"]
-		# # blahblah = x.map {|e| {rightcaption: e[1]["description"], quicktip: e[1]["quick_tip"], tripname: t["trip_name"], activityday: @trip_activity[:activity_id] }}
-		# mapping the trip, trip_activity and trip_activities_detail into a formatted JSON object
-		mappedbungle = s.map {|e| {activityday: e["activity_day"], activitysequence: e["activity_sequence_number"], activityid: e["id"],
-								tripname: t["trip_name"],triplength: t["duration"], triplocation: trip_location, tripid: t["id"],
-							   	rightcaption: @trip.trip_activities.find(e["id"].to_s).activity[:description], 
-							   	quicktip: @trip.trip_activities.find(e["id"].to_s).activity[:quick_tip], 
-							   	duration: @trip.trip_activities.find(e["id"].to_s).activity[:duration],
-							   	timetype: e["activity_time_type"],
-							   	renderpartial: "/trips/#{t["id"]}/trip_activities/#{e["id"]}/showpartial/", 
-							   	layout: case 
-							   			  when e["activity_type"] == "FoodActivity" then "foodactivitypartial"
-							   			  when e["activity_type"] == "TransportActivity" then "transportactivitypartial"
-							   			  when e["activity_type"] == "LocationActivity" then "locationactivitypartial"
-							   			end				   			  			
-							   }}
-		# # sorting this JSON by sequence number
-		sortedbungle = mappedbungle.sort { |j, k| [j[:activityday], j[:activitysequence]] <=> [k[:activityday], k[:activitysequence]] }
-		endcapbungle = sortedbungle.push({renderpartial: "/trips/#{t["id"]}/showpartial/", layout: "about_author"})
-		prettybungle = JSON.pretty_generate(endcapbungle)
-		prettybungle
-	end
+    # # sorting this JSON by sequence number
+    sorted_activities = mapped_activities.sort {|j, k| 
+        [j[:activityday], 
+        j[:activitysequence]] <=> [k[:activityday], 
+        k[:activitysequence]] 
+      }
 
-	# def background_switch_class(time)
- #   		case 
-	# 	  when time == "1" then "morning_bg"
-	# 	  when time == "2" then "afternoon_bg"
-	# 	  when time == "3" then "evening_bg"
-	# 	end	
-	# end
-
-
+    sorted_activities.push({renderpartial: "/trips/#{t["id"]}/showpartial/", layout: "about_author"})
+    sorted_activities
+  end
 end

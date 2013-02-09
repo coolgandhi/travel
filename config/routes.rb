@@ -20,6 +20,9 @@ Travel::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  resources :trips
+  resources :trip_activities
+
   resources :trips do
     member do
       get 'showpartial'
@@ -33,8 +36,6 @@ Travel::Application.routes.draw do
     end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl
 
-  resources :trips
-  resources :trip_activities
   #resources :locations, :only => [:pick]
   # Sample resource route with options:
   #   resources :products do

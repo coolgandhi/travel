@@ -29,18 +29,20 @@ module TripActivitiesHelper
   end
   
   # This function gets the image that we want to show on an activity card
-  def select_activity_img(activity_id, width, index = 0)
-    if activity_id.activity.image_urls.nil? or activity_id.activity.image_urls == ""
-      case 
-          when activity_id.activity_type == "FoodActivity" then x = activity_id.activity.restaurant_detail[:image_urls]
-          when activity_id.activity_type == "TransportActivity" then x = activity_id.activity.location_detail[:image_urls]
-          else x = ""
+  def select_activity_img(activity_id, image_urls, width, index = 0)
+    if activity_id != -1
+      if activity_id.activity.image_urls.nil? or activity_id.activity.image_urls == ""
+        case 
+            when activity_id.activity_type == "FoodActivity" then image_urls = activity_id.activity.restaurant_detail[:image_urls]
+            when activity_id.activity_type == "TransportActivity" then image_urls = activity_id.activity.location_detail[:image_urls]
+            else image_urls = ""
+        end
+      else
+        image_urls = activity_id.activity.image_urls # select image from the activity if chosen by the author
       end
-    else
-      x = activity_id.activity.image_urls # select image from the activity if chosen by the author
     end
-
-    y = x.to_s.split(";")
+    
+    y = image_urls.to_s.split(";")
     if index < y.length
       y = y[index]
     elsif y.length > 0
@@ -58,15 +60,9 @@ module TripActivitiesHelper
 
   # This function gets the appropriate thumbnail for the filmstrip
   def show_thumbnail(i, width)
-    if (JSON.parse(trip_activities_as_json))[i]["activityid"]
-      activity_id = (JSON.parse(trip_activities_as_json))[i]["activityid"] # takes the json that we built in trips_helper and parses it so we can access the current page's activityid
-      image_url = select_activity_img(TripActivity.find(activity_id), width) # find that activity id and pass it into another helper method that returns image_urls
-      #logger.info "\n\n image url #{image_urls} \n"
-      # if image_urls.length > 0
-      #        image_urls[0][size] # access the array of image_urls.  [0] is first image [2] is the 2nd lowest quality url
-      #      else
-      #        return nil
-      #      end
+    if @sorted_activities[i][:activityid]
+      activity_id = @sorted_activities[i][:activityid]
+      image_url = select_activity_img(-1, @sorted_activities[i][:image_url], width) 
     else
       "/assets/view_from_notre_dame_flickr_large.jpg"
     end
@@ -74,15 +70,16 @@ module TripActivitiesHelper
 
   # This function gets the name of the activity venue for the thumbnail captions
   def thumbnail_name(i)
-    if (JSON.parse(trip_activities_as_json))[i]["activityid"]
-      activity_id = (JSON.parse(trip_activities_as_json))[i]["activityid"]
-      this_activity = TripActivity.find(activity_id)
-      activity_type = this_activity.activity_type
-      case 
-          when activity_type == "FoodActivity" then thumb_name = this_activity.activity.restaurant_detail[:name]
-          when activity_type == "TransportActivity" then thumb_name = this_activity.activity.location_detail[:name]
-          # when activity_id.activity_type == "LocationActivity" then thumb_name = activity_id.activity.transport_detail[:name]
-      end
+    if @sorted_activities[i][:activityid]
+      thumb_name = @sorted_activities[i][:activity_venue_name]
+      # activity_id = @sorted_activities[i][:activityid] 
+      # this_activity = TripActivity.find(activity_id)
+      # activity_type = this_activity.activity_type
+      # case 
+      #     when activity_type == "FoodActivity" then thumb_name = this_activity.activity.restaurant_detail[:name]
+      #     when activity_type == "TransportActivity" then thumb_name = this_activity.activity.location_detail[:name]
+      #     # when activity_id.activity_type == "LocationActivity" then thumb_name = activity_id.activity.transport_detail[:name]
+      # end
       thumb_name
     else
       ""

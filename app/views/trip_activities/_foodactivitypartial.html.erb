@@ -7,19 +7,25 @@
                 <div id="mapShowHide" class="icon-globe"></div>
               </div>
           <!-- End Button Group -->  
-
           <!-- Begin always-here -->
           <div class="always-here">
-              
               <!-- Begin rightcaption -->
               <div class="rightcaption">
-                  <h3 id="activity_title"><%= @trip_activity.activity.restaurant_detail[:name] %></h3>
-                    <div>
-                      <p class="lead" id="user-description"><%= @trip_activity.activity[:description] %></p>
-                      <div class="well well-small caption-quick-tip">Quick Tip: <%= @trip_activity.activity[:quick_tip] %> </div>
+                  <h3 id="activity_title">
+                    <%= @trip_activity.activity.restaurant_detail[:name] %>
+                  </h3>
+                  <div>
+                    <p class="lead" id="user-description">
+                      <%= @trip_activity.activity[:description] %>
+                    </p>
+                    <div class="well well-small caption-quick-tip">
+                      Quick Tip: <%= @trip_activity.activity[:quick_tip] %> 
                     </div>
-                  <h3 id="more_info_accordion">More Info</h3>
-                    <div class = "more-info-dl" id="more-info-id">
+                  </div>
+                  <h3 id="more_info_accordion">
+                    More Info
+                  </h3>
+                  <div class = "more-info-dl" id="more-info-id">
             <dl>
               <dt>Address:</dt>
               <dd>
@@ -60,25 +66,19 @@
     		<div class= "flipper">
         		<div class= "front">
               <div class="main-pic-wrap" id="bloop">
-
               <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
-                <div data-src=<%=select_activity_img(@trip_activity, 480)%> > </div> 
-                <div data-src=<%=select_activity_img(@trip_activity, 480)%> data-media="(min-width: 480px)"></div>
-                <div data-src=<%=select_activity_img(@trip_activity, 767) %> data-media="(min-width: 767px)"></div>
-
+                <div data-src=<%=select_activity_img(@trip_activity, "", 480)%> > </div> 
+                <div data-src=<%=select_activity_img(@trip_activity, "", 480)%> data-media="(min-width: 480px)"></div>
+                <div data-src=<%=select_activity_img(@trip_activity, "", 767) %> data-media="(min-width: 767px)"></div>
                 <!--[if (lt IE 9) & (!IEMobile)]>
                 <div data-src="medium.jpg"></div>
                 <![endif]-->
-
                 <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
                 <noscript>
-                    <img src=<%=select_activity_img(@trip_activity, 480)%> alt="Image of Activity">
+                    <img src=<%=select_activity_img(@trip_activity, "", 480)%> alt="Image of Activity">
                 </noscript>
               </div>
-              </div>
-
-              
-              
+              </div>   
         		</div>
     			<div class = "back">
     				<div id="trip_map"></div>

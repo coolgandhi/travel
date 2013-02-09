@@ -28,7 +28,7 @@
               <!-- end wrapper div -->   
 
           </li>
-          <% for i  in 1..(trip_activities_as_json.count('{'))-1 %>
+          <% for i  in 1..(@sorted_activities.length - 1) %>
             <li class="media" onclick="gallery.goToPage(<%= i %>)">
 
             <!-- thumb-wrapper div -->  
