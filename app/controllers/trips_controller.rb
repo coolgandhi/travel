@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  include TripsHelper
   layout "showtriplayout", :only => [:show]
   # GET /trips
   # GET /trips.json
@@ -18,6 +19,7 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
+    @sorted_activities = sorted_trip_activities @trip
     
    # @trip.trip_activities.each do |trip_act|
    #    logger.info "here #{trip_act.activity.inspect} ..." 
