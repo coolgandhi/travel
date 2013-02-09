@@ -68,7 +68,7 @@ module TripActivitiesHelper
       #        return nil
       #      end
     else
-      "/assets/view_from_notre_dame_flickr_large.jpg"
+      "/assets/no-img-holder.png"
     end
   end
 

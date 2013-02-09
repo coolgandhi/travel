@@ -73,11 +73,11 @@ body.evening_bg{
 $titlerowheight: 10%;
 $lastrowheight: 10%;
 
-@media only screen and (min-width: $break-default + 1) and (max-width: $break-large - 1) {
-  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
-    width: 1000px;
-  }
-}
+// @media only screen and (min-width: $break-default + 1) and (max-width: $break-large - 1) {
+//   .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+//     width: 1000px;
+//   }
+// }
 
 #maincontainer{
   height: 90%;
