@@ -95,7 +95,7 @@ $gridRowWidth768:         ($gridColumns * $gridColumnWidth768) + ($gridGutterWid
 body { padding-top: 60px; }
 
 //media query on responsive bootstrap grid so only responsive up to default device size (ipad landscape).
-@media only screen and (min-device-width: $break-phones + 1) and (max-device-width: $break-default - 1) {
+@media all and (max-device-width: $break-large - 1) {
 	@import "bootstrap-responsive";
 }
 

@@ -42,12 +42,12 @@
         
   <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right"></i></div>
   <!-- /end navigation arrows -->
-  <div id="swipewrapper">
-  </div>
+
+  <!-- <div id="loadjs" data-activities="<%= sorted_trip_activities(@trip) %>">
+  </div> -->
+
+  <div id="swipewrapper"></div>
 </div>
-
-
-
 
 <script type="text/javascript">
 
@@ -74,25 +74,25 @@
     switch (timetype) {
      case "1":
      case "2":
-        $('img.evening_bg').fadeOut(2000)
-        $('img.afternoon_bg').fadeOut(2000)
+        $('div.evening_bg').fadeOut(2000)
+        $('div.afternoon_bg').fadeOut(2000)
         $('body').removeClass().addClass('morning_bg')
-        $('img.morning_bg').fadeIn(2000)
+        $('div.morning_bg').fadeIn(2000)
         break;
      case "3":
      case "4":
-        $('img.morning_bg').fadeOut(2000)
-        $('img.evening_bg').fadeOut(2000)
+        $('div.morning_bg').fadeOut(2000)
+        $('div.evening_bg').fadeOut(2000)
         $('body').removeClass().addClass('afternoon_bg')
-        $('img.afternoon_bg').fadeIn(2000)
+        $('div.afternoon_bg').fadeIn(2000)
         break;
      case "5":
      case "6":
      case "7":
-        $('img.morning_bg').fadeOut(2000)
-        $('img.afternoon_bg').fadeOut(2000)
+        $('div.morning_bg').fadeOut(2000)
+        $('div.afternoon_bg').fadeOut(2000)
         $('body').removeClass().addClass('evening_bg')
-        $('img.evening_bg').fadeIn(2000)
+        $('div.evening_bg').fadeIn(2000)
         break;
     }
   }

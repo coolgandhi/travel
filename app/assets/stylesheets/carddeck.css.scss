@@ -37,17 +37,31 @@ html, body, .page-wrap {
   overflow: hidden; //this needs to be here to clear this div so max-height of pagewrap works.
 }
 
-img.morning_bg, img.afternoon_bg, img.evening_bg{
+div.morning_bg, div.afternoon_bg, div.evening_bg{
  position:absolute;
  z-index:-1;
  display:none;
- height: 192px;
+ height: 100%;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
  width: 100%;
  top:-25px;
 }
 
+div.morning_bg{
+  background-image:url(/assets/morning_bg.png);
+}
+
+div.afternoon_bg{
+  background-image:url(/assets/afternoon_bg.png);
+}
+
+div.evening_bg{
+  background-image:url(/assets/evening_bg.png);
+}
+
 body.morning_bg{
-  background-color: #DAE6F6;
+  background-color: #F8FAFD;
   @include single-transition(opacity, 4s, ease-in-out, 0.5s);
 }
 
@@ -57,7 +71,7 @@ body.afternoon_bg{
 }
 
 body.evening_bg{
-  background-color: #AABDC6;
+  background-color: #D3E5FC;
   @include single-transition(opacity, 4s, ease-in-out, 0.5s);
 }
 

@@ -1,4 +1,3 @@
-
 jQuery ->
   #using the .on jQuery function to delegate unbinded jquery function to AJAX loaded div
   # $("#swipewrapper").on "click", "#mapShowHide", (e) -> 
