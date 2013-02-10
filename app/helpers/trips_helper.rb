@@ -57,6 +57,18 @@ module TripsHelper
       }
 
     sorted_activities.push({renderpartial: "/trips/#{trip.id}/showpartial/", layout: "about_author"})
-    sorted_activities
+    
+    compressed_activities = Array.new
+    sorted_activities.each { |sorted_activity|
+      compressed_activities.push (
+        {
+          :activityid => sorted_activity[:activityid],
+          :renderpartial => sorted_activity[:renderpartial],
+          :layout => sorted_activity[:layout]
+        }
+      )
+    }
+    
+    return sorted_activities, compressed_activities
   end
 end

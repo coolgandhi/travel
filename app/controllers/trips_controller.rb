@@ -19,20 +19,11 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-    @sorted_activities = sorted_trip_activities @trip
-    
-   # @trip.trip_activities.each do |trip_act|
-   #    logger.info "here #{trip_act.activity.inspect} ..." 
-   # end
-   
-   # logger.info " #{request.inspect} here"
-    
+    @sorted_activities, @compressed_activities = sorted_trip_activities @trip    
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => { :trip=> @trip,
-                                     :trip_activity => @trip_activities,
-                                     :trip_activities_details => @trip_activities_details
-                                   } 
+      format.json { 
+          render :json => { :compressed_activity => @compressed_activities } 
       }
     end
   end
