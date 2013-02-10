@@ -64,7 +64,9 @@ module TripsHelper
         {
           :activityid => sorted_activity[:activityid],
           :renderpartial => sorted_activity[:renderpartial],
-          :layout => sorted_activity[:layout]
+          :layout => sorted_activity[:layout],
+          :timetype => sorted_activity[:timetype],
+          :tripid => sorted_activity[:tripid]
         }
       )
     }
