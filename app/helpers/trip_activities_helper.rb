@@ -34,7 +34,7 @@ module TripActivitiesHelper
       if activity_id.activity.image_urls.nil? or activity_id.activity.image_urls == ""
         case 
             when activity_id.activity_type == "FoodActivity" then image_urls = activity_id.activity.restaurant_detail[:image_urls]
-            when activity_id.activity_type == "TransportActivity" then image_urls = activity_id.activity.location_detail[:image_urls]
+            when activity_id.activity_type == "LocationActivity" then image_urls = activity_id.activity.location_detail[:image_urls]
             else image_urls = ""
         end
       else
@@ -43,6 +43,7 @@ module TripActivitiesHelper
     end
     
     y = image_urls.to_s.split(";")
+    
     if index < y.length
       y = y[index]
     elsif y.length > 0
@@ -51,7 +52,7 @@ module TripActivitiesHelper
       return ""
     end
     
-    z = y.split(",")  
+    z = y.split(",")      
     image = select_closest_image(z, width)
       #z is in the format of
         #[["https://is1.4sqi.net/pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk.jpg", "612X612", "https://is0.4sqi.net/derived_pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk_300x300.jpg", "300X300", "https://is0.4sqi.net/derived_pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk_100x100.jpg", "100X100", "https://is0.4sqi.net/derived_pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk_36x36.jpg", "36X36"],...]

@@ -142,6 +142,7 @@ class TripActivitiesController < ApplicationController
   end
 
   def showpartial
+    #logger.info "active #{params.inspect}"
     # @trip_activity = @trip.trip_activities(params[:id])
     @trip_activity = TripActivity.find(params[:activityid])
     @partial_layout = params[:layout]

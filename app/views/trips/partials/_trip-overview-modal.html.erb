@@ -6,63 +6,65 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel"><%=@trip.trip_name%> Overview</h3>
   </div>
-
+      
   <!-- Begin Modal Body -->
   <div class="modal-body">
     <!-- Begin Table -->
     <table class="table table-bordered table-condensed table-hover">
-    <% (1..@trip.duration.to_i).each do |i| %>
-      <% if @trip.trip_activities.where(:activity_day => i.to_s).present? %>
-
-        <tr class = "day_tr"><td colspan="2"><%= "Day #{i}" %></td></tr>
-        <% if @trip.trip_activities.where(:activity_day => i.to_s, :activity_time_type => ["1","2"]).present? %>
-          <% morning_activity_group = @trip.trip_activities.where(:activity_day => i.to_s, :activity_time_type => ["1","2"]).order("activity_sequence_number") %>
-
-            <tr class ="morning_tr"><td colspan="2"><%= "Morning" %></td></tr>
-            <% morning_activity_group.each do |x| %>
-              <tr onclick="gallery.goToPage(<%=(x.activity_sequence_number.to_i)-1%>); $('#trip-overview-modal').modal('hide')">
-              <td class = "thumbnail_td"><%= image_tag(select_activity_img(x, "", 50), :alt => which_detail_type(x, "name")) %></td>
-              <td><%= which_detail_type(x, "name")%> (<%=which_detail_type(x, "category")%>) for <%= x.activity[:duration] %></td>
-              </tr>
-            <% end %>
+      <% morning = 0 %>
+      <% afternoon = 0 %>
+      <% evening = 0 %>
+      <% current_day = 0 %>
+      <% for i  in 1..(@sorted_activities.length - 1) %>
+        <% timetype_text = "" %>
+        <% timetype_text_tag = "" %>
+        <% if @sorted_activities[i][:activityday].nil? or @sorted_activities[i][:activityday] == "" %>
+          <% nil %>
+          <% next %>
+        <% end %>
+        <% if @sorted_activities[i][:activityday] != current_day %>
+          <% morning = 0 %>
+          <% afternoon = 0 %>
+          <% evening = 0 %>
+          <% current_day = @sorted_activities[i][:activityday] %>
+          <tr class = "day_tr">
+            <td colspan="2">
+              <%= "Day #{@sorted_activities[i][:activityday]}" %>
+            </td>
+          </tr>
+        <% end %>
+        <% if ((@sorted_activities[i][:timetype] == "1" or @sorted_activities[i][:timetype] == "2") and morning == 0)  %>
+          <% timetype_text = "Morning" %>
+          <% timetype_text_tag = "morning_tr" %>
+          <% morning = 1 %>
+        <% elsif ((@sorted_activities[i][:timetype] == "3" or @sorted_activities[i][:timetype] == "4") and afternoon == 0) %>
+          <% timetype_text = "Afternoon" %>
+          <% timetype_text_tag = "afternoon_tr" %>
+          <% afternoon = 1 %>
+        <% elsif ((@sorted_activities[i][:timetype] == "5" or @sorted_activities[i][:timetype] == "6" or @sorted_activities[i][:timetype] == "7") and evening == 0) %>
+          <% timetype_text = "Evening" %>
+          <% timetype_text_tag = "evening_tr" %>
+          <% evening = 1 %>
         <% else %>
           <% nil %>
+          <% next %>
         <% end %>
-
-        <% if @trip.trip_activities.where(:activity_day => i.to_s, :activity_time_type => ["3","4"]).present? %>
-          <% afternoon_activity_group = @trip.trip_activities.where(:activity_day => i.to_s, :activity_time_type => ["3","4"]).order("activity_sequence_number") %>
-
-            <tr class ="afternoon_tr"><td colspan="2"><%= "Afternoon" %></td></tr>
-            <% afternoon_activity_group.each do |x| %>
-              <tr onclick="gallery.goToPage(<%=(x.activity_sequence_number.to_i)-1%>); $('#trip-overview-modal').modal('hide')">
-              <td class = "thumbnail_td"><%= image_tag(select_activity_img(x, "", 50), :alt => which_detail_type(x, "name")) %></td>
-              <td><%= which_detail_type(x, "name")%> (<%=which_detail_type(x, "category")%>) for <%= x.activity[:duration] %></td>
-              </tr>
-            <% end %>
-        <% else %>
-          <% nil %>
-        <% end %>
-
-        <% if @trip.trip_activities.where(:activity_day => i.to_s, :activity_time_type => ["5","6","7"]).present? %>
-          <% evening_activity_group = @trip.trip_activities.where(:activity_day => i.to_s, :activity_time_type => ["5","6","7"]).order("activity_sequence_number") %>
-          <tr class ="evening_tr"><td colspan="2"><%= "Evening" %></td></tr>
-          <% evening_activity_group.each do |x| %>
-            <tr onclick="gallery.goToPage(<%=(x.activity_sequence_number.to_i)-1%>); $('#trip-overview-modal').modal('hide')">
-            <td class = "thumbnail_td"><%= image_tag(select_activity_img(x, "", 50), :alt => which_detail_type(x, "name")) %></td>
-            <td><%= which_detail_type(x, "name")%> (<%=which_detail_type(x, "category")%>) for <%= x.activity[:duration] %></td>
-            </tr>
-          <% end %>
-        <% else %>
-          <% nil %>
-        <% end %>
-        
-      <% else %>
-        <% nil %>
-      <% end %>
-      
+        <tr class="<%= timetype_text_tag %>">
+          <td colspan="2">
+            <%= timetype_text %>
+          </td>
+        </tr>      
+        <tr onclick="gallery.goToPage(<%= @sorted_activities[i][:activitysequence].to_i - 1 %>); $('#trip-overview-modal').modal('hide')">
+          <td class = "thumbnail_td">
+            <%= image_tag(select_activity_img(-1, @sorted_activities[i][:image_url], 50), :alt => @sorted_activities[i][:activity_venue_name]) %>
+          </td>
+          <td>
+            <%= @sorted_activities[i][:activity_venue_name] %> (<%=@sorted_activities[i][:category] %>) for <%= @sorted_activities[i][:duration] %>
+          </td>
+        </tr>
       <% end %>
     </table>
-      <!-- End Table -->
+    <!-- End Table -->
   </div>
   <!-- End Modal Body -->
   

@@ -19,7 +19,8 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-    @sorted_activities, @compressed_activities = sorted_trip_activities @trip    
+    @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+   # logger.info "show trip #{@sorted_activities.inspect}"    
     respond_to do |format|
       format.html # show.html.erb
       format.json { 
@@ -48,7 +49,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(params[:trip])
-    logger.info "New post: #{@trip.attributes.inspect}"
+   # logger.info "New post: #{@trip.attributes.inspect}"
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
@@ -89,6 +90,8 @@ class TripsController < ApplicationController
   end
 
   def showpartial
+    #logger.info "trictive #{params.inspect}"
+    
     @trip = Trip.find(params[:id])
     @partial_layout = params[:layout]
     render :partial => "#{@partial_layout}", :layout => false
