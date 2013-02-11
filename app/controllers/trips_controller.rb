@@ -19,7 +19,8 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-    @sorted_activities, @compressed_activities = sorted_trip_activities @trip    
+    @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+   # logger.info "show trip #{@sorted_activities.inspect}"    
     respond_to do |format|
       format.html # show.html.erb
       format.json { 
