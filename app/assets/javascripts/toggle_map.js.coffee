@@ -13,6 +13,7 @@ jQuery ->
     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
     $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
     $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
+
     # $(this).toggleClass('active').promise().done ->
     #   if $(this).class = "active" then $(this).siblings('#infoShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
     #   if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
@@ -44,9 +45,14 @@ jQuery ->
       dataType: "json"
       context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
       success: (data) ->
+        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
+        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+        $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
+        $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
         restore(mapcontainer)
         addmarkers(data, mapcontainer)
-        addpolyline(data, mapcontainer)        
+        addpolyline(data, mapcontainer)
+        google.maps.event.trigger($("#trip_map").gmap3("get"), "resize")        
         return       
               
 # don't need this anymore since we can load multiple maps

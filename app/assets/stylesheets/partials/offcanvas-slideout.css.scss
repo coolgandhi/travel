@@ -3,6 +3,7 @@
 .toggle-menu {
   display: none;
   float: left;
+  width: 25px;
 
   @include respond-to(small){
   display: block;
