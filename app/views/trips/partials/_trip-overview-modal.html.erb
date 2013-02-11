@@ -15,7 +15,7 @@
       <% afternoon = 0 %>
       <% evening = 0 %>
       <% current_day = 0 %>
-      <% for i  in 1..(@sorted_activities.length - 1) %>
+      <% for i  in 0..(@sorted_activities.length - 1) %>
         <% timetype_text = "" %>
         <% timetype_text_tag = "" %>
         <% if @sorted_activities[i][:activityday].nil? or @sorted_activities[i][:activityday] == "" %>
@@ -45,15 +45,14 @@
           <% timetype_text = "Evening" %>
           <% timetype_text_tag = "evening_tr" %>
           <% evening = 1 %>
-        <% else %>
-          <% nil %>
-          <% next %>
         <% end %>
-        <tr class="<%= timetype_text_tag %>">
-          <td colspan="2">
-            <%= timetype_text %>
-          </td>
-        </tr>      
+        <% if timetype_text != "" and timetype_text_tag != "" %>
+          <tr class="<%= timetype_text_tag %>">
+            <td colspan="2">
+              <%= timetype_text %>
+            </td>
+          </tr>      
+        <% end %>
         <tr onclick="gallery.goToPage(<%= @sorted_activities[i][:activitysequence].to_i - 1 %>); $('#trip-overview-modal').modal('hide')">
           <td class = "thumbnail_td">
             <%= image_tag(select_activity_img(-1, @sorted_activities[i][:image_url], 50), :alt => @sorted_activities[i][:activity_venue_name]) %>
