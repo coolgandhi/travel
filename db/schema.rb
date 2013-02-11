@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206012726) do
+ActiveRecord::Schema.define(:version => 20130211013734) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(:version => 20130206012726) do
     t.text     "image_urls"
   end
 
+  add_index "location_details", ["location_detail_id"], :name => "location_detail_index", :unique => true
+
   create_table "locations", :force => true do |t|
     t.string   "location_id"
     t.string   "place"
@@ -100,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20130206012726) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "locations", ["location_id"], :name => "location_index", :unique => true
 
   create_table "restaurant_details", :force => true do |t|
     t.string   "restaurant_detail_id"
@@ -122,6 +126,8 @@ ActiveRecord::Schema.define(:version => 20130206012726) do
     t.datetime "updated_at",           :null => false
     t.text     "image_urls"
   end
+
+  add_index "restaurant_details", ["restaurant_detail_id"], :name => "restaurant_detail_index", :unique => true
 
   create_table "transport_activities", :force => true do |t|
     t.string   "activity_id"
@@ -158,6 +164,8 @@ ActiveRecord::Schema.define(:version => 20130206012726) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  add_index "trip_activities", ["trip_id"], :name => "trip_index"
 
   create_table "trip_comments", :force => true do |t|
     t.string   "trip_id"
