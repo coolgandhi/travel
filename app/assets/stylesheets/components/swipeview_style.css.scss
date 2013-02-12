@@ -11,7 +11,7 @@
 #wrappiest{
 	@include col(10);
 	position: relative;
-	height:90%;
+	// height:90%;
 	overflow: hidden;
 	@include box-sizing(border-box);
 	background-color: $myDivBg;
@@ -24,7 +24,7 @@
 
 	@include respond-to(portrait){
 	  	@include col(10);
-	  	height: 80%;
+	  	// height: 80%;
   	}
 
   	@include respond-to(small){

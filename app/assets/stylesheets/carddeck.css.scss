@@ -12,22 +12,28 @@
 
 
 /* 1. MAIN BODY STYLES*/
-
 html, body, .page-wrap {
   // height: 614px; //height of safari mobile viewport in landscape
-  height: 100%;
+  // height: 100%;
 
   //on large desktops limit the height of the body
   @media only screen and (min-device-width: $break-large + 1) and (min-device-height: 614px){
-  height: 614px;
+  // height: 614px;
   }
 
   @include respond-to(portrait){
-  height: 100%;
+  // height: 100%;
   }
   
   @include respond-to(small){
-  height: 100%;
+  // height: 100%;
+  padding-left: 0; //eliminating margin at small screen sizes
+  padding-right: 0;
+  }
+
+  @include respond-to(phones){
+  // height: auto;
+  // min-height: 100%;
   padding-left: 0; //eliminating margin at small screen sizes
   padding-right: 0;
   }
@@ -94,19 +100,19 @@ $lastrowheight: 10%;
 //   }
 // }
 
-#maincontainer{
-  height: 90%;
-  // overflow: hidden;
-  // clear: none;
+// #maincontainer{
+//   height: 90%;
+//   // overflow: hidden;
+//   // clear: none;
 
-  @include respond-to(portrait){
-  height: 86%;
-  }
+//   @include respond-to(portrait){
+//   height: 86%;
+//   }
 
-  @include respond-to(small){
-  height: 86%;
-  }
-}
+//   @include respond-to(small){
+//   height: 86%;
+//   }
+// }
 
 .triptitlebox{
   @include col(12);
@@ -158,7 +164,7 @@ $lastrowheight: 10%;
   @include box-sizing(border-box);
   // padding: 1%;
   overflow: hidden;
-  height: 100% - $titlerowheight;
+  // height: 100% - $titlerowheight;
   background-color: $myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -171,14 +177,14 @@ $lastrowheight: 10%;
   @include col(2);
   @include box-sizing(border-box);
   // padding: 1%;
-  height: 80%;
+  // height: 80%;
   }
 
   @include respond-to(small){
   @include col(3);
   @include box-sizing(border-box);
   // padding: 1%;
-  height: 80%;
+  // height: 80%;
   display: none;
   }
 }
@@ -217,6 +223,10 @@ p.description_content{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @include respond-to(phones){
+
+  }
 }
 
 /* 3.5 ACTIVITY CONTAINER DIV */
@@ -586,6 +596,7 @@ div.rightcaption .ui-accordion-content {
 .bottom-actionlinks{
   float:left;
   @include col(12);
+  overflow-y: auto;
 }
 
 

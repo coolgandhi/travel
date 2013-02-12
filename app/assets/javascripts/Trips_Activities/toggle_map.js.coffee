@@ -49,11 +49,17 @@ trips_activities_namespace = trips_activities_namespace || {}
         dataType: "json"
         context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
         success: (data) ->
+          $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
+          $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+          $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
+          $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
-          addpolyline(data, mapcontainer)        
-          return       
-              
+          addpolyline(data, mapcontainer)  
+          google.maps.event.trigger($("#trip_map").gmap3("get"), "resize")      
+          return             
+          
+           
   # don't need this anymore since we can load multiple maps
   restore = (mapcontainer) ->
     mapcontainer.gmap3 action: "destroy"
