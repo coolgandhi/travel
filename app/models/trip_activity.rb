@@ -8,7 +8,7 @@ class TripActivity < ActiveRecord::Base
 #  accepts_nested_attributes_for :food_activity, :allow_destroy => true
 #  accepts_nested_attributes_for :location_activity, :allow_destroy => true
 #  accepts_nested_attributes_for :transport_activity, :allow_destroy => true
-  
+  belongs_to :activity_time_types, :primary_key => :activity_time_type_id
   attr_accessible :activity, :trip_id, :activity_day, :activity_id, :activity_sequence_number, :activity_time_type, :activity_type
 
   def next

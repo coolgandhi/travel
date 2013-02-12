@@ -12,7 +12,8 @@
       <!-- Begin rightcaption -->
       <div class="rightcaption">
         <h3 id="activity_title">
-          <%= @trip_activity.activity.restaurant_detail[:name] %>
+          <%= @trip_activity.activity.restaurant_detail[:name] %></br>
+          <span class="activity-subtitle">Day <%= @trip_activity.activity_day %> <%= @trip_activity.activity_time_type %> (<%= @trip_activity.activity[:duration] %>)  <%#which_detail_type(@trip_activity, "category")%></span>
         </h3>
         <div>
           <p class="lead" id="user-description">

@@ -32,6 +32,24 @@ $borderGray: 			#C4C4C4 !default;//from Google+
 // -------------------------
 $bodyBackground:        $grayLighter !default;
 
+// Typography
+// -------------------------
+$customFontFamily:"Text Me One", Helvetica, Arial, sans-serif !default; //custom font
+@import url(http://fonts.googleapis.com/css?family=Text+Me+One);
+
+$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
+$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+
+$baseFontSize:          14px !default;
+$baseFontFamily:        $sansFontFamily !default;
+$baseLineHeight:        20px !default;
+$altFontFamily:         $serifFontFamily !default;
+
+$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    bold !default;    // instead of browser default, bold
+$headingsColor:         inherit !default; // empty to use BS default, $textColor
+
 // Navbar
 // -------------------------
 $navbarCollapseWidth:             979px !default;
@@ -98,7 +116,6 @@ body { padding-top: 60px; }
 @media all and (max-device-width: $break-large - 1) {
 	@import "bootstrap-responsive";
 }
-
 
 
 /* Our custom borders and shadows */

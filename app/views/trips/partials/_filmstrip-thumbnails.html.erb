@@ -4,17 +4,17 @@
             <div class="thumb-wrap"> 
               <!-- image -->
               <div data-picture data-alt="<%=thumbnail_name(0)%>">
-                <div data-src="<%=show_thumbnail(0, 36)%>" > </div>
+                <div data-src="<%=show_thumbnail(0, 100)%>" > </div>
                 <div data-src="<%=show_thumbnail(0, 100)%>" data-media="(min-device-width: 480px)"></div>
                 <div data-src="<%=show_thumbnail(0, 300)%>" data-media="(min-device-width: 767px)"></div>
 
                 <!--[if (lt IE 9) & (!IEMobile)]>
-                <div data-src="medium.jpg"></div>
+                <div data-src="<%=show_thumbnail(0, 100)%>"</div>
                 <![endif]-->
                 
                 <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
                 <noscript>
-                    <img src="<%=show_thumbnail(0,6)%>" alt="<%=thumbnail_name(0)%>">
+                    <img src="<%=show_thumbnail(0,100)%>" alt="<%=thumbnail_name(0)%>">
                 </noscript>
               </div>
                 <!-- thumb-description div -->  
@@ -35,17 +35,17 @@
             <div class="thumb-wrap"> 
               <!-- image -->              
               <div data-picture data-alt="<%=thumbnail_name(i)%>">
-                <div data-src="<%=show_thumbnail(i,36)%>" > </div>
+                <div data-src="<%=show_thumbnail(i,100)%>" > </div>
                 <div data-src="<%=show_thumbnail(i,100)%>" data-media="(min-device-width: 480px)"></div>
                 <div data-src="<%=show_thumbnail(i, 300)%>" data-media="(min-device-width: 767px)"></div>
 
                 <!--[if (lt IE 9) & (!IEMobile)]>
-                <div data-src="medium.jpg"></div>
+                <div data-src="<%=show_thumbnail(i, 100)%>"></div>
                 <![endif]-->
                 
                 <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
                 <noscript>
-                    <img src="<%=show_thumbnail(i,6)%>" alt="<%=thumbnail_name(i)%>">
+                    <img src="<%=show_thumbnail(i,100)%>" alt="<%=thumbnail_name(i)%>">
                 </noscript>
               </div>
                 <!-- thumb-description div -->  
