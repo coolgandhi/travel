@@ -44,11 +44,7 @@
 /* 2. FILMSTRIP NAVIGATION - NAVSWIPE */
 #navswipe {
 	z-index:100;
-	-webkit-border-radius:0.5em;
-	-moz-border-radius:0.5em;
-	-ms-border-radius:0.5em;
-	-o-border-radius:0.5em;
-	border-radius:0.5em;
+	@include border-radius($myDivBorderRadius);
 	margin-bottom: 4em;
 }
 
@@ -58,14 +54,9 @@
 	@extend .media;	
 	display: table;
 	@include border-radius($myDivBorderRadius);
-}
-
-#navswipe2 li {
-	overflow:hidden;
-	text-align:center;
-	@extend .media;	
-	display: table;
-	@include border-radius($myDivBorderRadius);
+	position: relative;
+	width: 100%;
+	margin-top: 0.5em;
 }
 
 #navswipe li#prev {
@@ -81,13 +72,6 @@
 }
 
 #navswipe li.selected {
-	background:rgba(255,255,255,0.4);
-	border: 1px solid $myDivGlows;
-	@include border-radius($myDivBorderRadius);
-	@include box-shadow(0px 0px 9px 6px $myDivGlows);
-}
-
-#navswipe2 li.selected {
 	background:rgba(255,255,255,0.4);
 	border: 1px solid $myDivGlows;
 	@include border-radius($myDivBorderRadius);

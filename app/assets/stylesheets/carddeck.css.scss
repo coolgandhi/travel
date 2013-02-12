@@ -200,6 +200,19 @@ $lastrowheight: 10%;
 div.thumb-wrap{
   float:left; /* important */
   position:relative; /* important(so we can absolutely position the description div */
+  height: 80px;
+  width: 100%;
+  overflow:hidden;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+img.thumb-image{
+  height: auto;
+  // min-width: 100%;
+  position: absolute;
+  top: -25%;
+  left: 0;
 }
 
 div.thumb-description{
@@ -208,7 +221,7 @@ div.thumb-description{
   left:0px;
   width:100%;
   /* styling bellow */
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   font-size:0.75em;
   font-weight: 300;
   color:white;
@@ -684,6 +697,7 @@ div.rightcaption .ui-accordion-content {
   background-color: rgba(255,255,255,0.9);
   @include border-radius($myDivBorderRadius);
   border-color: $borderGray;
+  z-index: 99;
 
   .modal-header{
     border-bottom: $myDivBorderWidth solid $borderGray;
