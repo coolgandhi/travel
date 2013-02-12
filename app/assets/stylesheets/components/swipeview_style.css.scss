@@ -3,6 +3,7 @@
 	1. WRAPPER
 	2. FILMSTRIP NAVIGATION - CALLED #NAVSWIPE
 	3. HOVER SHOW NAV ARROWS
+	4. SWIPEVIEW LOADING CLASS
 */
 
 
@@ -96,4 +97,23 @@
 /* 3. HOVER SHOW NAV ARROWS */
 .no-touch #wrappiest:hover > .bottomnavigationbar{
 	display: block;
+}
+
+/* SWIPEVIEW LOADING CLASS */
+#swipewrapper > div > .swipeview-loading{
+	// background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#444), to(#555)),
+	// 	-webkit-gradient(linear, 0 0, 100% 0, from(#777), to(#777));
+	// background-position:50% 50%, 50% 50%;
+	// background-size:200px 140px, 210px 150px;
+	// background-repeat:no-repeat;
+	background-color: $black;
+}
+
+.swipe-loading-indicator{
+	display: none;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-top:-32px;
+   	margin-left:-32px;
 }

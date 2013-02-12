@@ -388,6 +388,39 @@ img.relative_image{
   }
 }
 
+//this mixin gives the active / inactive and hover styles for accordion icons
+@mixin accordion-icons{
+  &.ui-accordion-header-active span.ui-accordion-header-icon{
+    border: 2px solid $transBlack;
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 10px;
+    text-shadow: none;
+    background-color: $transWhite;
+    color: $transBlack;
+  }
+  span.ui-accordion-header-icon{
+    border: 2px solid $transWhite;
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 10px;
+    text-shadow: none;
+    background-color: $transBlack;
+    color: $white;
+
+    &:hover{
+      border: 2px solid $transBlack;
+      border-radius: 50%;
+      padding: 2px;
+      font-size: 10px;
+      text-shadow: none;
+      background-color: $transWhite;
+      color: $transBlack;
+    }
+  }
+}
+
+
 h3#activity_title{
   @include box-sizing(border-box);
   // padding: 0 0.5em 0 0.5em;
@@ -401,6 +434,8 @@ h3#activity_title{
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
   text-shadow: 2px 1px 3px $black;
+  
+  @include accordion-icons;
 }
 
 h3#more_info_accordion{
@@ -410,6 +445,9 @@ h3#more_info_accordion{
   font-weight: 400;
   line-height: 0.6em;
   outline: 0;
+
+  @include accordion-icons;
+  
   @include respond-to(portrait){
     font-size: 1em;
     line-height: 1em;
@@ -426,9 +464,6 @@ h3#more_info_accordion{
   right: .5em;
   top: 40%;
   font-size: 16px;
-  &:hover{
-    color: $gray;
-  }
 }
 
 div.rightcaption .ui-accordion-content {

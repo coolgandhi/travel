@@ -1,0 +1,22 @@
+/* CUSTOMIZING THE SCROLLBAR */
+.filmstrip{
+  &::-webkit-scrollbar{
+  width: 5px; //this sets the width
+  }
+
+/* Track */
+  &::-webkit-scrollbar-track-piece{
+    background-color: rgba(255,255,255,0.1); //sets color of backgroun of track
+  }
+
+  &::-webkit-scrollbar-track{
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $grayLight; //this set color of the track piece
+    min-height:5px;
+    min-width:5px;
+  }
+}

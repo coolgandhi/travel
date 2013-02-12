@@ -36,6 +36,7 @@
 </div>
 
 <div id="wrappiest">
+  <%= image_tag("/assets/spinner.gif", :class => "swipe-loading-indicator") %>
   <%= render "trips/partials/trip-overview-modal" %>
   <!-- /navigation arrows -->
   <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left"></i></div>
@@ -114,13 +115,19 @@ var gallery,
   // Load initial data
   for (i=0; i<3; i++) {
     page = i==0 ? slides.length-1 : i-1;
-  
+
     $.ajax({
+      beforeSend: function() {
+        $('.swipe-loading-indicator').show();
+        },
       type: 'GET',
       url: slides[page].renderpartial,
       data: {activityid: slides[page].activityid, layout: slides[page].layout},
       ajaxI: i, // Capture the current value of 'i'
       dataType: 'html',
+      complete: function(){
+        $('.swipe-loading-indicator').hide();
+        },
       success: function(data){
         $(gallery.masterPages[this.ajaxI]).append(data);
         picturefill(); //need to call this to get picturefill to fire on ajax loaded pics
@@ -147,11 +154,17 @@ var gallery,
       if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
 
         $.ajax({
+          beforeSend: function() {
+            $('.swipe-loading-indicator').show();
+            },
           type: 'GET',
           url: slides[upcoming].renderpartial,
           data: {activityid: slides[upcoming].activityid, layout: slides[upcoming].layout},
           ajaxI: i, // Capture the current value of 'i'
           dataType: 'html',
+          complete: function(){
+            $('.swipe-loading-indicator').hide();
+            },
           success: function(data){
             $(gallery.masterPages[this.ajaxI]).html(data);
             picturefill(); //need to call this to get picturefill to fire on ajax loaded pics
