@@ -1,13 +1,13 @@
  @import "compass";
- @import "mediaqueries/mediaqueries"; //media queries mix-in
+ @import "Sitewide/mediaqueries"; //media queries mix-in
  @import "bootstrap_and_overrides";
- @import "components/jqueryui_subset_styles.css.scss"; //base jquery-ui CSS for accordion widget
- @import "mycustomgrid/mycustomgrid"; //custom grid mix-in
+ @import "jqueryui_subset_styles.css.scss"; //base jquery-ui CSS for accordion widget
+ @import "Sitewide/mycustomgrid"; //custom grid mix-in
  @import "carddeck.css.scss";
- @import "partials/offcanvas-slideout.css.scss";
- @import "partials/about_author.css.scss";
- @import "components/flipper.css.scss";
- @import "components/swipeview_style.css.scss";
- @import "components/trip_activities_form.css.scss";
+ @import "trip_activities/partials/offcanvas-slideout.css.scss";
+ @import "trip_activities/partials/about_author.css.scss";
+ @import "flipper.css.scss";
+ @import "trip_activities/swipeview_style.css.scss";
+ @import "trip_activities/trip_activities_form.css.scss";
  @import "font-awesome.scss";
   
