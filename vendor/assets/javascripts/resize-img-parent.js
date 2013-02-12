@@ -3,6 +3,7 @@
  *
  * Author: Christian Varga
  * Author URI: http://christianvarga.com
+ * Source website: http://christianvarga.com/blog/2011/05/jquery-resize-image-to-parent-container-plugin/
  *
  */
  
