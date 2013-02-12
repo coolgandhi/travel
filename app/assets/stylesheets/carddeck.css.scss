@@ -407,6 +407,10 @@ img.relative_image{
     text-shadow: none;
     background-color: $transBlack;
     color: $white;
+    position: absolute;
+    left: auto;
+    right: .5em;
+    top: 40%;
 
     &:hover{
       border: 2px solid $transBlack;
@@ -430,12 +434,19 @@ h3#activity_title{
   padding: 0.5em 2em 0.2em 0.7em; //padding-right needs to be big to make room for arrow
   font-size: 1.3em;
   font-weight: 500;
-  line-height: 1.2em;
+  line-height: 1.1em;
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
   text-shadow: 2px 1px 3px $black;
   
   @include accordion-icons;
+
+  span.activity-subtitle{
+    font-size: 0.7em;
+    line-height: 0.7em;
+    text-shadow: 1px 1px 1px $black;
+    font-weight: 100;
+  }
 }
 
 h3#more_info_accordion{
@@ -456,14 +467,6 @@ h3#more_info_accordion{
     font-size: 1em;
     line-height: 1em;
   }
-}
-
-#activity_title .ui-accordion-header-icon, #more_info_accordion .ui-accordion-header-icon{
-  position: absolute;
-  left: auto;
-  right: .5em;
-  top: 40%;
-  font-size: 16px;
 }
 
 div.rightcaption .ui-accordion-content {
