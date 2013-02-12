@@ -1,0 +1,62 @@
+/*=VARIABLES - GRID
+------------------------------------------------*/
+$columns: $gridColumns; //from bootstrap/_variables.scss
+$column-width: $gridColumnWidth; //from bootstrap/_variables.scss
+$gutter-width: $gridGutterWidth; //from bootstrap/_variables.scss
+$max-width: $columns * ($column-width + $gutter-width);
+
+
+/*=VARIABLES - FONTS
+------------------------------------------------*/
+$font-base: $baseFontSize; //from bootstrap/_variables.scss
+$font-base-line-height: $baseLineHeight; //from bootstrap/_variables.scss
+$font-base-line-height-half: $font-base-line-height / 2;
+$font-base-percentage: (($font-base / 16px) * 100) + 0%;
+
+
+/*MIXINS
+------------------------------------------------*/
+@mixin col($n, $padding: 0px, $border: 0px, $container-width: $max-width) {
+	float: left;
+	margin-left: percentage($gutter-width / $container-width);
+	width: percentage(($n * ($column-width + $gutter-width) - $gutter-width - ($padding * 2) - ($border * 2)) / $container-width);
+	// border-width: $border;
+	padding: em($padding, $font-base) percentage($padding / $container-width);
+}
+
+/*FUNCTIONS
+------------------------------------------------*/
+@function em($target, $context: $font-base) {
+	@if $target == 0 { @return 0 }
+	@return $target / $context + 0em;
+}
+
+@function perc($width, $container-width: $max-width) {
+	@return percentage($width / $container-width);
+}
+
+@function lh($amount: 1, $context: $font-base) {
+	@return em($font-base-line-height * $amount, $context);
+}
+
+@function heading-line-height($size) {
+	
+	$line-height: $font-base-line-height;
+	
+	$match: false;
+	@while $match != true {
+		
+		@if $size == $line-height {
+			$match: true;
+		} @else if  $size < $line-height {
+			$match: true;
+		} @else if $size > $line-height {
+			$line-height: $line-height + $font-base-line-height;
+		} @else {
+			$match: true;
+		}
+		
+	} 
+
+	@return ($line-height / $size) + 0em;
+}

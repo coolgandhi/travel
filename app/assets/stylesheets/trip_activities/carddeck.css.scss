@@ -148,7 +148,7 @@ $lastrowheight: 10%;
   position: absolute;
   right: 0%;
   top: 30%;
-  overflow-y: hidden;
+  overflow: hidden;
 
   @include respond-to(small){
   font-size: .75em;
@@ -193,8 +193,26 @@ $lastrowheight: 10%;
   @include box-sizing(border-box);
   padding: 8%;
   height: 100%;
+  margin-left: 1%;
   // overflow: hidden;
   overflow-y: auto;
+}
+
+.overview-button-wrapper{
+  margin-bottom: 2%;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.overview-button{
+  height: 60px;
+  width: 80%;
+  line-height: 60px;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 4px 6px;
+  position: relative;
+  @include border-radius($myDivBorderRadius);
 }
 
 div.thumb-wrap{
@@ -458,7 +476,7 @@ h3#activity_title{
     font-size: 0.7em;
     line-height: 0.7em;
     text-shadow: 1px 1px 1px $black;
-    font-weight: 100;
+    font-weight: 300;
   }
 }
 
@@ -726,13 +744,6 @@ div.rightcaption .ui-accordion-content {
     right:0;
 
   }
-}
-
-.overview-button-wrapper{
-  margin-bottom: 2%;
-  margin-top: 2%;
-  padding: 2%;
-  text-align: center;
 }
 
 /* overview table formatting */
