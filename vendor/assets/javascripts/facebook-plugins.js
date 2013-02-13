@@ -25,5 +25,18 @@ window.fbAsyncInit = function() {
 		       // alert('You sent the URL: ' + response); todo: add logging
 		    }
 		);
+
+		FB.Event.subscribe('comment.create',
+		    function(response) {
+		       // alert('You sent the URL: ' + response); todo: add logging
+		    }
+		);
+		
+		FB.Event.subscribe('comment.remove',
+		    function(response) {
+		       // alert('You sent the URL: ' + response); todo: add logging
+		    }
+		);
 		
 	};
+	
