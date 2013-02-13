@@ -56,7 +56,6 @@ trips_activities_namespace = trips_activities_namespace || {}
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
           addpolyline(data, mapcontainer)  
-          google.maps.event.trigger($("#trip_map").gmap3("get"), "resize")      
           return             
           
            

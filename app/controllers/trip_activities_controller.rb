@@ -154,12 +154,12 @@ class TripActivitiesController < ApplicationController
   def mapinfo
     #logger.info { "mapinfo #{params.inspect}"}
     @trip_activity = @trip.trip_activities.find(params[:id])
-    @trip_details = @trip_activity.prev_activities_activity_id
+    @trip_details = @trip_activity.prev_activities_sequence_number
     #logger.info { "\n\ntripdetails...  #{@trip_details.inspect}"}
     
     @trip_map_info = get_trip_map_info @trip_details
     
-    logger.info "here #{@trip_map_info.inspect}"
+    #logger.info "here #{@trip_map_info.inspect}"
     respond_to do |format|
       format.html # mapinfo.html.erb
       format.json { render json: @trip_map_info  } 
