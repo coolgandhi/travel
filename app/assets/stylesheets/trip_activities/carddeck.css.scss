@@ -69,17 +69,17 @@ div.evening_bg{
 
 body.morning_bg{
   background-color: #F8FAFD;
-  @include single-transition(opacity, 4s, ease-in-out, 0.5s);
+  @include single-transition(all, 4s, ease-in-out, 0.5s);
 }
 
 body.afternoon_bg{
   background-color: #D4EDED;
-  @include single-transition(opacity, 4s, ease-in-out, 0.5s);
+  @include single-transition(all, 4s, ease-in-out, 0.5s);
 }
 
 body.evening_bg{
   background-color: #D3E5FC;
-  @include single-transition(opacity, 4s, ease-in-out, 0.5s);
+  @include single-transition(all, 4s, ease-in-out, 0.5s);
 }
 
 .navbar-fixed-top{
@@ -199,7 +199,7 @@ $lastrowheight: 10%;
 }
 
 .overview-button-wrapper{
-  margin-bottom: 2%;
+  margin-bottom: 5%;
   margin-top: 5%;
   text-align: center;
 }
@@ -228,9 +228,23 @@ div.thumb-wrap{
 img.thumb-image{
   height: auto;
   // min-width: 100%;
-  position: absolute;
-  top: -25%;
-  left: 0;
+  // position: absolute;
+  // top: -25%;
+  // left: 0;
+}
+
+.thumb-author{
+  @include box-sizing(border-box);
+  height: 100%;
+  width: 98%;
+  // border: 2px solid $borderGray;
+  background-color: $grayLight;
+  @include border-radius($myDivBorderRadius);
+  
+  .icon-user{
+  line-height: 60px;
+  font-size: 40px;
+  }
 }
 
 div.thumb-description{
@@ -653,7 +667,7 @@ div.rightcaption .ui-accordion-content {
   @include box-sizing(border-box);
   padding: 0.5em 0 0.5em 0;
   // height: $lastrowheight;
-  z-index: 101;
+  z-index: 98;
   display: none;
 }
 

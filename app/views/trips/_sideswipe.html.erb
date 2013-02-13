@@ -2,7 +2,7 @@
 
   <p>
   <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
-  <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %> for <%=@trip.traveler_type[:traveler_type_name]%></span>
+  <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %> for a <%=@trip.traveler_type[:traveler_type_name]%></span>
   </p>
 
   <!--Begin show overview button that shows up only on small screens-->
@@ -138,9 +138,6 @@ var gallery,
         makeCaptionAccordion();
       }
     });
-
-    //I added to change text of trip-title-sub-text Day x of X in Location
-    // document.querySelector('span.trip-title-sub-text').innerHTML = ' - Day '+ slides[gallery.pageIndex].activityday + ' of ' + <%=@trip.duration%> + ' in ' + '<%= @trip.location[:place] %>' + ' for <%=@trip.traveler_type[:traveler_type_name]%>';
   }
 
   gallery.onFlip(function () {
@@ -180,18 +177,6 @@ var gallery,
 
   document.querySelector('#navswipe .selected').className = '';
   dots[gallery.pageIndex].className = 'selected';
-  // document.querySelector('#navswipe2 .selected').className = '';
-  // dots2[gallery.pageIndex].className = 'selected';
-
-    //I added to change text of trip-title-sub-text Day x of X in Location
-    // if (slides[gallery.pageIndex].activityday)
-    // {
-    //   document.querySelector('span.trip-title-sub-text').innerHTML = ' - Day '+ slides[gallery.pageIndex].activityday + ' of ' + <%=@trip.duration%> + ' in ' + '<%= @trip.location[:place] %>' + ' for <%=@trip.traveler_type[:traveler_type_name]%>';
-    // }
-    // else
-    // {
-    //   document.querySelector('span.trip-title-sub-text').innerHTML = ' '
-    // };
 
     //scrollTo implementation here for scrolling filmstrip container to go with what's active
     var $scrollTarget = $('.filmstrip').find('li:eq('+ (gallery.pageIndex) + ')');
