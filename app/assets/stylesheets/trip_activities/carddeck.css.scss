@@ -665,7 +665,7 @@ div.rightcaption .ui-accordion-content {
 .bottom-actionlinks{
   float:left;
   @include col(12);
-  overflow-y: auto;
+  overflow: auto;
 }
 
 
