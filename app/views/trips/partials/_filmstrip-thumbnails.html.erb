@@ -65,20 +65,9 @@
            <li class="media" onclick="gallery.goToPage(<%= @sorted_activities.length %>)">
 
             <!-- thumb-wrapper div -->  
-            <div class="thumb-wrap"> 
+            <div class="thumb-wrap thumb-author"> 
               <!-- image -->              
-              <div data-picture data-alt="About the Author" data-class="thumb-image">
-                <div data-src="/assets/no-img-holder.png" > </div>
-
-                <!--[if (lt IE 9) & (!IEMobile)]>
-                <div data-src="/assets/no-img-holder.png"></div>
-                <![endif]-->
-                
-                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
-                <noscript>
-                    <img src="/assets/no-img-holder.png" alt="About the Author">
-                </noscript>
-              </div>
+              <div class="icon-user"></div>
                 <!-- thumb-description div -->  
                 <div class="thumb-description">
                   <!-- description content --> 
