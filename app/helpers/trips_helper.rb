@@ -57,9 +57,12 @@ module TripsHelper
 
     # # sorting this JSON by sequence number
     sorted_activities = mapped_activities.sort {|j, k| 
-        [j[:activityday], 
-        j[:activitysequence]] <=> [k[:activityday], 
-        k[:activitysequence]] 
+        f = ((j[:activityday].nil? or j[:activityday] == "") ? 0 : j[:activityday].to_i)
+        g = (j[:activitysequence].nil? ) ? 0: j[:activitysequence]
+        h = ((k[:activityday].nil? or k[:activityday]) ? 0 : k[:activityday].to_i)
+        i = (k[:activitysequence].nil?) ? 0: k[:activitysequence]
+       # logger.info "#{f}, #{g}.. #{h}, #{i} .... \n"
+        [f, g] <=> [h, i]
       }
 
     sorted_activities.push({renderpartial: "/trips/#{trip.id}/showpartial/", layout: "about_author"})
