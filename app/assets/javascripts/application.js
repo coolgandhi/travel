@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery-ui
+//= require Sitewide/preload.js
 //= require jquery_ujs
 //= require jquery.scrollTo
 //= require modernizr-touch-events-only
