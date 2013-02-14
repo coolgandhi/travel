@@ -44,7 +44,7 @@ html, body, .page-wrap {
 }
 
 div.morning_bg, div.afternoon_bg, div.evening_bg{
- position:absolute;
+ position:fixed;
  z-index:-1;
  display:none;
  height: 100%;
@@ -52,34 +52,42 @@ div.morning_bg, div.afternoon_bg, div.evening_bg{
  background-attachment: fixed;
  width: 100%;
  top:-25px;
- background-position-y: -40px;
+ background-position-y: -10px;
+}
+
+body{
+  // background-image:url(/assets/cloud_bg.png);
+  // background-position-y: 40px;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  background-color: #DEEFFA;
 }
 
 div.morning_bg{
-  background-image:url(/assets/morning_bg.png);
+  background-image:url(/assets/morning_flare.png);
 }
 
 div.afternoon_bg{
-  background-image:url(/assets/afternoon_bg.png);
+  background-image:url(/assets/afternoon_flare.png);
 }
 
 div.evening_bg{
-  background-image:url(/assets/evening_bg.png);
+  background-image:url(/assets/night_moon.png);
 }
 
 body.morning_bg{
-  background-color: #F8FAFD;
-  @include single-transition(all, 4s, ease-in-out, 0.5s);
+  background-color: #DEEFFA;//#F8FAFD;
+  @include single-transition(all, 3s, ease-in-out, 0.4s);
 }
 
 body.afternoon_bg{
-  background-color: #D4EDED;
-  @include single-transition(all, 4s, ease-in-out, 0.5s);
+  background-color: #8dc0d9;//#D4EDED;
+  @include single-transition(all, 3s, ease-in-out, 0.4s);
 }
 
 body.evening_bg{
-  background-color: #D3E5FC;
-  @include single-transition(all, 4s, ease-in-out, 0.5s);
+  background-color: #365165;//#D3E5FC;
+  @include single-transition(all, 3s, ease-in-out, 0.4s);
 }
 
 .navbar-fixed-top{
@@ -132,7 +140,7 @@ $lastrowheight: 10%;
     line-height: 1.4em;
     white-space: nowrap;
     font-weight: 400;
-    text-shadow: 1px 1px 1px $white;
+    text-shadow: 1px 1px 1px $gray;
 
   }
 

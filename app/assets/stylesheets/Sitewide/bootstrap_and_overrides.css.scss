@@ -84,8 +84,8 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
-$navbarHeight:                    40px !default;
-$navbarBackgroundHighlight:       $blueLight; //changed this from black
+$navbarHeight:                    30px !default; //was 40px
+$navbarBackgroundHighlight:       #ffffff; //$blueLight
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
 
@@ -99,8 +99,8 @@ $navbarLinkBackgroundActive:      darken($navbarBackground, 5%) !default;
 $navbarBrandColor:                $navbarLinkColor !default;
 
 // Inverted navbar
-$navbarInverseBackground:                #396A92 !default; 
-$navbarInverseBackgroundHighlight:       $blueLight !default; //from pandora
+$navbarInverseBackground:                #111111 !default; //#396A92 
+$navbarInverseBackgroundHighlight:       #222222 !default; //$blueLight from pandora
 $navbarInverseBorder:                    #252525 !default;
 
 $navbarInverseText:                      $white !default; //was grayLight
