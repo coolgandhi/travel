@@ -4,50 +4,25 @@ trips_activities_namespace = trips_activities_namespace || {}
 ((trips_activities_namespace, undefined_) ->
 
   jQuery ->
-    #using the .on jQuery function to delegate unbinded jquery function to AJAX loaded div
-    # $("#swipewrapper").on "click", "#mapShowHide", (e) -> 
-    #   $(".hiddenMapDiv").fadeToggle "slow"
-  
-    # $("#swipewrapper").on "click", "#flipper-check", (e) -> 
-    #   $(this).siblings('.flipper').flip
-    #     direction: "tb", content: $(".back")
     $("#swipewrapper").on "click", "#mapShowHide", (e) ->
       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
-      # $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').hide()
-      # $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
       $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
       $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
-      # $(this).toggleClass('active').promise().done ->
-      #   if $(this).class = "active" then $(this).siblings('#infoShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
-      #   if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
-
-    # $("#swipewrapper").on "click", "#infoShowHide", (e) ->
-    #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.extraside').show()
-    #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').hide()
-    #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
-    #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped-again')
-    #   $(this).toggleClass('active').promise().done -> 
-    #     if $(this).class = "active" then $(this).siblings('#mapShowHide').removeClass('active') && $(this).siblings('#hideAllButton').removeClass('active')
-    #     if $(this).hasClass('active') == false then $(this).siblings('#hideAllButton').addClass('active')
-
-
-    # $("#swipewrapper").on "click", "#hideAllButton", (e) ->
-    #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped')
-    #   $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').removeClass('flipped-again')
-    #   $(this).addClass('active')
-    #   $(this).siblings('.btn').removeClass('active')
-
 
   jQuery ->
     $("#swipewrapper").on "click", "#mapShowHide", (e) ->
       req = slides[gallery.pageIndex].tripid + "/trip_activities/" + slides[gallery.pageIndex].activityid + "/mapinfo"
       mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
       $.ajax
+        beforeSend: ->
+          $(".swipe-loading-indicator").show()
         type: "GET"
         url: req  
         dataType: "json"
         context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
+        complete: ->
+          $(".swipe-loading-indicator").hide()
         success: (data) ->
           $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
           $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')

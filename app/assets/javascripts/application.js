@@ -14,7 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.scrollTo
-//= require modernizr-touch-events-only
+//= require modernizr-development-latest-2.6.2
 //= require resize-img-parent
 //= require bootstrap
 //= require gmap3
