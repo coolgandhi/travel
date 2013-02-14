@@ -6,7 +6,12 @@ trips_activities_namespace = trips_activities_namespace || {}
   jQuery ->
     $("#swipewrapper").on "click", "#mapShowHide", (e) ->
       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
-      $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+      if Modernizr.csstransitions
+        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+      else
+        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').animate
+          opacity: 0,
+          2000
       $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
       $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
 
@@ -24,10 +29,6 @@ trips_activities_namespace = trips_activities_namespace || {}
         complete: ->
           $(".swipe-loading-indicator").hide()
         success: (data) ->
-          $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
-          $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
-          $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
-          $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
           addpolyline(data, mapcontainer)  
