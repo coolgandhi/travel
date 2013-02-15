@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211064533) do
+ActiveRecord::Schema.define(:version => 20130215070735) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(:version => 20130211064533) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true
 
   create_table "food_activities", :force => true do |t|
     t.string   "activity_id"
@@ -167,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20130211064533) do
     t.datetime "updated_at",               :null => false
   end
 
+  add_index "trip_activities", ["trip_id", "activity_day", "activity_sequence_number"], :name => "trip_activity_order_index", :unique => true
   add_index "trip_activities", ["trip_id"], :name => "trip_index"
 
   create_table "trip_comments", :force => true do |t|

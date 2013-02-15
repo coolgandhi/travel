@@ -6,14 +6,9 @@ class FoursquareInteraction
   end
   
   def self.suggest_venues latlong, term, total
-    if (@@client)
-      Rails.logger.info "\n\n -#{latlong}- -#{term}- -#{total}-"
-    else
-      Rails.logger.info "\n\n espn"
-    end  
    get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
   #    get_suggestions = @@client.search_venues(options = {:ll => "37.77,-122.42", :query => "star", :limit => "10"})
-   Rails.logger.info "\n\n #{get_suggestions.inspect}"
+  # Rails.logger.info "\n\n #{get_suggestions.inspect}"
    suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
   end
 

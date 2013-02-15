@@ -8,6 +8,12 @@ class Trip < ActiveRecord::Base
   has_many :transport_activities, :through => :trip_activities, :source => :activity, :source_type => 'TransportActivity', :dependent => :destroy
   belongs_to :location, :primary_key => :location_id
   belongs_to :traveler_type, :primary_key => :traveler_type_id
-#  has_many :location_activities
-#  has_many :transport_activities
+  belongs_to :author_info, :foreign_key => :author_id
+
+  validates :author_id, :presence => { :message => "" }
+  validates :location_id, :presence => { :message => "choose a location" }
+  validates :trip_name, :presence => { :message => "enter trip name" }, :length => { :minimum => 2, :maximum => 100, :too_short => "trip name must have at least %{count} characters in the trip name", :too_long  => "trip name can have at most %{count} characters" }
+  validates :trip_summary, :presence => { :message => "enter trip summary" }, :length => { :minimum => 2, :maximum => 250, :too_short => "trip summary must have at least %{count} characters", :too_long  => "trip summary can have at most %{count} characters" }
+  validates :duration, :presence => { :message => "enter a valid duration for the trip" }
+  validates_numericality_of :duration, :message => "enter a valid length of the trip" 
 end
