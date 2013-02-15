@@ -16,8 +16,6 @@ class LocationsController < ApplicationController
       
       nearest_match = "%" << nearest_match << "%"
       @location_matches = Location.limit(tot).where (['locations.city LIKE ?', nearest_match])
-      logger.info " #{nearest_match} #{tot}"
-      #{@location_matches.attributes.inspect}
     rescue ActiveRecord::RecordNotFound
        logger.info "food activity entry not found"
     end

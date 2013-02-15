@@ -25,20 +25,24 @@ class TripActivitiesController < ApplicationController
     end
   end
 
+  def find_location_latlong trip
+    location_detail = Location.find_by_location_id(trip.location_id)
+    if (location_detail)
+      latlong = location_detail.latitude + "," + location_detail.longitude
+    else
+      latlong = "37.77493,-122.41942"  # use SF by default
+    end
+    latlong
+  end
+  
   # GET /trip_activities/new
   # GET /trip_activities/new.json
   def new
+    @activity = nil
     @trip_activity = @trip.trip_activities.new
     @trip_activity.trip_id = params[:trip_id]
-    @latlong = nil
-    #logger.info (" here ... #{@trip.inspect}")
-    @location_detail = Location.find_by_location_id(@trip.location_id)
-    if (@location_detail)
-      @latlong = @location_detail.latitude + "," + @location_detail.longitude
-    else
-      @latlong = "37.77493,-122.41942"  # use SF by default
-    end
-
+    @latlong = find_location_latlong @trip
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @trip_activity }
@@ -61,7 +65,6 @@ class TripActivitiesController < ApplicationController
   def create
     @trip_activity = nil
     @activity = nil
-    #logger.info"#{params.inspect}"
     respond_to do |format|
       if params[:trip_activity][:activity_type] == "FoodActivity"
         logger.info "food activity..."  
@@ -82,19 +85,23 @@ class TripActivitiesController < ApplicationController
         end
       end 
     
-      if @activity && @activity.save
-        @trip_activity = @trip.trip_activities.create(:activity => @activity, \
-        :activity_day => params[:trip_activity][:activity_day], \
-        :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
-        :activity_time_type => params[:trip_activity][:activity_time_type])
-        if @trip_activity.save
-          format.html { redirect_to @trip, notice: 'Trip activity was successfully created.' }
-          format.json { render json: @trip_activity, status: :created, location: @trip_activity }
-        else
-          report_error format, @trip_activity
-        end
+      err = 0;
+      if @activity and @activity.save
       else
-        report_error format, @activity
+        err = 1;
+      end
+        
+      @trip_activity = @trip.trip_activities.create(:activity => @activity, \
+      :activity_day => params[:trip_activity][:activity_day], \
+      :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
+      :activity_time_type => params[:trip_activity][:activity_time_type])
+      if err == 0 and @trip_activity.save 
+        format.html { redirect_to @trip, notice: 'Trip activity was successfully created.' }
+        format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+      else
+        @latlong = find_location_latlong @trip
+        format.html { render action: "new" }
+        format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -132,8 +139,7 @@ class TripActivitiesController < ApplicationController
   # GET /trips/1.json
   def carddeck
     @trip_activity = @trip.trip_activities.find(params[:id])
-    #logger.info " here.... #{trip_activity.inspect}"
-       
+        
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @trip_activity }

@@ -1,18 +1,28 @@
 <%= form_for(@trip) do |f| %>
-  <% if @trip.errors.any? %>
+  
+  <% if @trip.errors.any? or @author_info.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
-
+      <h2><%#= pluralize(@trip.errors.count + @author_info.errors.count, "error") %> prohibited this trip from being saved:</h2>
       <ul>
-      <% @trip.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @author_info.errors.messages.each do |attr, msg| %>
+          <li><%= msg.first %></li>
+        <% end %>
+      
+        <% @trip.errors.messages.each do |attr, msg| %>
+          <li><%= msg.first %></li>
+        <% end %>
       </ul>
+      
     </div>
   <% end %>
-
+  
+  
   <div class="field">
-      <%= f.label :author_id, 'Author Name ' %>: <%= f.text_field :author_id %>
+      <label for="author_name">Author Name</label>: <input id="author_name" type="text" name="author_name" />
+  </div>
+  
+  <div class="field">
+      <label for="author_email">Author Email</label>: <input id="author_email" type="text" name="author_email" />
   </div>
   
   <div class="field">

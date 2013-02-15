@@ -20,6 +20,7 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+     
     #logger.info "show trip #{@sorted_activities.inspect}"    
     respond_to do |format|
       format.html # show.html.erb
@@ -33,7 +34,8 @@ class TripsController < ApplicationController
   # GET /trips/new.json
   def new
     @trip = Trip.new
-
+    @author_info = AuthorInfo.new
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @trip }
@@ -49,8 +51,22 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(params[:trip])
-   # logger.info "New post: #{@trip.attributes.inspect}"
+    @author_info = AuthorInfo.find_by_email(params[:author_email].downcase)
+    if @author_info.nil?
+      @author_info = AuthorInfo.new
+      @author_info.author_name = params[:author_name]
+      @author_info.email = params[:author_email].downcase
+    end
+    
     respond_to do |format|
+      if @author_info.save
+        @trip.author_id = @author_info.id
+      else
+        @trip.author_id = "a"
+        format.html { render action: "new" }
+        format.json { render json: @author_info.errors, status: :unprocessable_entity }
+      end
+      
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render json: @trip, status: :created, location: @trip }
@@ -93,6 +109,8 @@ class TripsController < ApplicationController
     #logger.info "trictive #{params.inspect}"
     
     @trip = Trip.find(params[:id])
+    @author = @trip.author_info
+    
     @partial_layout = params[:layout]
     render :partial => "#{@partial_layout}", :layout => false
   end
