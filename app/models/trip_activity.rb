@@ -12,6 +12,8 @@ class TripActivity < ActiveRecord::Base
   validates_numericality_of :activity_sequence_number, :only_integer => true, :message => "enter a valid sequence number" 
   validates :activity_type, :presence => { :message => "enter activity type" }
   
+  validates_uniqueness_of :trip_id, :scope => [:activity_day, :activity_sequence_number], :message => "trip with same activity day and sequence number already present"
+  
   # def next
   #   trip.trip_activities.where("activity_sequence_number > ?", activity_sequence_number).first
   # end

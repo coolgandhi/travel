@@ -5,4 +5,5 @@ class AuthorInfo < ActiveRecord::Base
   has_many :trips, :dependent => :destroy
   validates :author_name, :presence => { :message => "enter author name" }
   validates :email, :presence => { :message => "enter author email" }, :email => true
+  validates_uniqueness_of :email, :message => "email already present"
 end
