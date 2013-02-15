@@ -1,5 +1,5 @@
 /* CUSTOMIZING THE SCROLLBAR */
-.filmstrip{
+.filmstrip, .bottom-actionlinks{
   &::-webkit-scrollbar{
   width: 5px; //this sets the width
   }

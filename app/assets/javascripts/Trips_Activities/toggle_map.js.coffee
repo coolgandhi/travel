@@ -9,9 +9,7 @@ trips_activities_namespace = trips_activities_namespace || {}
       if Modernizr.csstransitions
         $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
       else
-        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').animate
-          opacity: 0,
-          2000
+        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.front').toggle('slow')
       $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
       $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
 

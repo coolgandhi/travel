@@ -7,6 +7,6 @@ wrap_widths = ->
 
 $(document).ready ->
   wrap_heights()
-  wrap_widths()
+  # wrap_widths()
   $(window).on "resize", wrap_heights
-  $(window).on "resize", wrap_widths
+  # $(window).on "resize", wrap_widths

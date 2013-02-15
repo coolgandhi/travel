@@ -26,7 +26,7 @@
   
   <div class="overview-button-wrapper">
     <!-- Button to trigger modal -->
-    <a href="#trip-overview-modal" role="button" class="btn btn-large btn-inverse overview-button" data-toggle="modal"><i class="icon-list"></i> Trip Overview</a>
+    <a href="#trip-overview-modal" role="button" class="btn btn-large btn-inverse overview-button" data-toggle="modal"><i class="icon-list overview-icon"></i> </br><span class="overview-button-text">Overview</span></a>
 
   </div>
 
@@ -80,12 +80,14 @@
         $('div.evening_bg').fadeOut(2000)
         $('div.afternoon_bg').fadeOut(2000)
         $('body').removeClass().addClass('morning_bg')
+        // $('body').animate({ backgroundColor: '#DEEFFA' }, 2000)
         $('div.morning_bg').fadeIn(2000)
         break;
      case "3":
      case "4":
         $('div.morning_bg').fadeOut(2000)
         $('div.evening_bg').fadeOut(2000)
+        // $('body').animate({ backgroundColor: '#8dc0d9' }, 2000)
         $('body').removeClass().addClass('afternoon_bg')
         $('div.afternoon_bg').fadeIn(2000)
         break;
@@ -95,6 +97,7 @@
         $('div.morning_bg').fadeOut(2000)
         $('div.afternoon_bg').fadeOut(2000)
         $('body').removeClass().addClass('evening_bg')
+        // $('body').animate({ backgroundColor: '#365165' }, 2000)
         $('div.evening_bg').fadeIn(2000)
         break;
     }
