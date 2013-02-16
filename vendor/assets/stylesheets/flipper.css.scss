@@ -59,7 +59,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 .back {
   @include rotateX(180deg);
   overflow: hidden;
-  display: none;
+  // display: none;
 }
 
 /* extraside, initially hidden pane */
@@ -92,11 +92,11 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
   min-width: 100%;
   padding:5px;
   @include respond-to(portrait){
-    bottom: 35%;
+    bottom: 38%;
     z-index: 4;
   }
   @include respond-to(small){
-  bottom: 35%;
+  bottom: 38%;
   z-index: 4;
 }
 }

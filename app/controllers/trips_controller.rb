@@ -19,6 +19,7 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
+    @author = @trip.author_info
     @sorted_activities, @compressed_activities = sorted_trip_activities @trip
      
     #logger.info "show trip #{@sorted_activities.inspect}"    

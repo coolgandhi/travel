@@ -208,6 +208,7 @@ $lastrowheight: 10%;
   margin-left: 1%;
   // overflow: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overview-button-wrapper{
@@ -773,6 +774,7 @@ div.rightcaption .ui-accordion-content {
   
   .modal-body{
     max-height: 73%;
+    -webkit-overflow-scrolling: touch;
     @include respond-to(portrait){
       min-height: 78%;
     }

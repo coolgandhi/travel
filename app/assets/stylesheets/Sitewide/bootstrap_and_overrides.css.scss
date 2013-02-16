@@ -124,12 +124,12 @@ $navbarInverseBrandColor:                $navbarInverseLinkColor !default;
 // Default 940px grid
 // -------------------------
 $gridColumns:             12 !default;
-$gridColumnWidth:         60px !default;
+$gridColumnWidth:         60px !default; //was 60
 $gridGutterWidth:         20px !default; //changed this from 20px
 $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
 
 // 1200px min
-$gridColumnWidth1200:     70px !default;
+$gridColumnWidth1200:     70px !default; //changed from 70
 $gridGutterWidth1200:     20px !default; //changed from 30
 $gridRowWidth1200:        ($gridColumns * $gridColumnWidth1200) + ($gridGutterWidth1200 * ($gridColumns - 1)) !default;
 
