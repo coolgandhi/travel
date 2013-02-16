@@ -27,12 +27,16 @@ trips_activities_namespace = trips_activities_namespace || {}
         context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
         complete: ->
           $(".swipe-loading-indicator").hide()
+          mapcontainer.width("100%").height("100%").gmap3 trigger: "resize"
         success: (data) ->
-          restore(mapcontainer)
+          # restore(mapcontainer)
           addmarkers(data, mapcontainer)
-          addpolyline(data, mapcontainer)  
-          return             
-          
+          addpolyline(data, mapcontainer)
+          return
+      setTimeout (->
+        mapcontainer.width("100%").height("100%").gmap3 trigger: "resize"
+      ), 2000                 
+      # $("trip_map").gmap3({trigger:"resize"})      
            
   # don't need this anymore since we can load multiple maps
   restore = (mapcontainer) ->
@@ -57,8 +61,8 @@ trips_activities_namespace = trips_activities_namespace || {}
         values: arrobject
         options:
           draggable: false
-        callback: (results) ->
-          $(this).gmap3({action:'trigger', name:'resize'})
+        # callback: (results) ->
+        #   $(this).gmap3({trigger:"resize"})
         events:
           click: () ->
           mouseover: (marker, event, context) ->
@@ -83,6 +87,7 @@ trips_activities_namespace = trips_activities_namespace || {}
             infowindow.close()  if infowindow
             return
       autofit: {}
+    # mapcontainer.gmap3({trigger:"resize"})
     return 
 
       
@@ -140,5 +145,5 @@ trips_activities_namespace = trips_activities_namespace || {}
           strokeWeight: 2
           path: arrobject
       autofit: {}
-
+    # mapcontainer.gmap3({trigger:"resize"})  
 ) trips_activities_namespace

@@ -10,3 +10,11 @@ $(document).ready ->
   # wrap_widths()
   $(window).on "resize", wrap_heights
   # $(window).on "resize", wrap_widths
+  if Modernizr.touch
+    setTimeout (->	
+      filmScroller = new iScroll("filmstrip-scroll")
+      # commentScroller = new iScroll("bottom-actionlinks")
+      # overviewScroller = new iScroll("scroll-modal-body")
+    ), 6000 
+   else
+   	console.log('no touch')
