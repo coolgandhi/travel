@@ -70,6 +70,7 @@ trips_activities_namespace = trips_activities_namespace || {}
         $(this).siblings('#foodvenue').val ui.item.value   
         fetchvenueimages ui.item.value
       
+      
   jQuery ->
     $("#venue_images").on "click", "img", (e) ->
       if ($(this).css("borderWidth") == '5px') 

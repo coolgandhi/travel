@@ -3,6 +3,7 @@ trips_activities_namespace = trips_activities_namespace || {}
 
 ((trips_activities_namespace, undefined_) ->
 
+  
   jQuery ->
     $("#swipewrapper").on "click", "#mapShowHide", (e) ->
       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
@@ -56,6 +57,8 @@ trips_activities_namespace = trips_activities_namespace || {}
         values: arrobject
         options:
           draggable: false
+        callback: (results) ->
+          $(this).gmap3({action:'trigger', name:'resize'})
         events:
           click: () ->
           mouseover: (marker, event, context) ->
@@ -136,6 +139,6 @@ trips_activities_namespace = trips_activities_namespace || {}
           strokeOpacity: 1.0
           strokeWeight: 2
           path: arrobject
-
+      autofit: {}
 
 ) trips_activities_namespace
