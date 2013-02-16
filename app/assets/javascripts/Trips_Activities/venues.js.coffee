@@ -71,7 +71,7 @@ trips_activities_namespace = trips_activities_namespace || {}
         fetchvenueimages ui.item.value
       
   jQuery ->
-    $("#venue_images img").live "click", ->
+    $("#venue_images").on "click", "img", (e) ->
       if ($(this).css("borderWidth") == '5px') 
         $(this).css("border",'1px solid black')
         totalSelectedImages--

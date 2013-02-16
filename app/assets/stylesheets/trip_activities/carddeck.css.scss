@@ -695,12 +695,12 @@ div.rightcaption .ui-accordion-content {
 
 
 /* bottom rails things */ 
-.bottom-actionlinks{
+#bottom-actionlinks{
   @include col(12);
   @include box-sizing(border-box);
   padding: 1% 5%;
   margin-top: 2%;
-  background-color: $myDivBg;
+  background-color: $blue;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
