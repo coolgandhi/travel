@@ -694,14 +694,12 @@ div.rightcaption .ui-accordion-content {
 
 /* 7. MISC */
 
-#comments-wrapping{
-
-}
 /* bottom rails things */ 
 #bottom-actionlinks{
   @include col(12);
+  position: relative;
   @include box-sizing(border-box);
-  padding: 1% 5%;
+  padding: 1% 0% 1% 5%;
   margin-top: 2%;
   background-color: $myDivBg;
   border-color: $borderGray;
@@ -711,10 +709,19 @@ div.rightcaption .ui-accordion-content {
   @include box-shadow($myDivBoxShadow);
   height: 301px;
   overflow: hidden;
-  // overflow: auto;
+  overflow: auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-    // div{overflow: auto;}
+    .div-fb-comments{
+      position: absolute;
+      width: 100%;
+      min-height: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      // background-color: red;
+    }
 }
 
 
@@ -765,6 +772,7 @@ div.rightcaption .ui-accordion-content {
   @include border-radius($myDivBorderRadius);
   border-color: $borderGray;
   z-index: 99;
+  overflow: hidden;
 
   .modal-header{
     border-bottom: $myDivBorderWidth solid $borderGray;

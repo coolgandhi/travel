@@ -58,7 +58,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 /* back, initially hidden pane */
 .back {
   @include rotateX(180deg);
-  overflow: hidden;
+  // overflow: hidden;
   // display: none;
 }
 
