@@ -37,6 +37,13 @@ trips_activities_namespace = trips_activities_namespace || {}
   # don't need this anymore since we can load multiple maps
   restore = (mapcontainer) ->
     mapcontainer.gmap3 action: "destroy"
+    # mapcontainer.gmap3 
+    #   action: 'init'
+    #   events:
+    #     idle: () ->
+    #       console.log $(this)
+    #       alert "hi"
+    #       return
     # container = mapcontainer.parent()
     # mapcontainer.remove()
     # container.append "<div id=\"trip_map\"></div>"
@@ -58,8 +65,12 @@ trips_activities_namespace = trips_activities_namespace || {}
         options:
           draggable: false
         callback: (results) ->
-          $(this).gmap3({action:'trigger', name:'resize'})
+          google.maps.event.trigger($(this), 'resize') 
         events:
+          idle: () ->
+            # console.log $(this)
+            # alert "hi"
+            return
           click: () ->
           mouseover: (marker, event, context) ->
             map = $(this).gmap3("get")
