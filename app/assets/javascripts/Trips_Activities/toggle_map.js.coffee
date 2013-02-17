@@ -31,6 +31,25 @@ trips_activities_namespace = trips_activities_namespace || {}
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
           addpolyline(data, mapcontainer)  
+          map = mapcontainer.gmap3('get')
+          google.maps.event.addListenerOnce map, "idle", ->
+            alert "hi"
+            google.maps.event.trigger map, "resize"
+          # if map.getBounds() != undefined  
+          #   map.panToBounds(map.getBounds()) 
+          # else
+          #   #bounds = new google.maps.LatLngBounds() 
+          #   mapcontainer.gmap3
+          #     get: 
+          #       name:'marker' 
+          #       all:true
+          #       callback: (objs) ->
+          #         console.log objs
+          #         $.each objs, (key, value) ->
+          #           #console.log key
+          #           #bounds.extend(value.latLng)
+          #           #mapcontainer.gmap3('option','center', bounds(getCenter()))
+          #           return
           return             
           
            
@@ -64,13 +83,6 @@ trips_activities_namespace = trips_activities_namespace || {}
         values: arrobject
         options:
           draggable: false
-        callback: (results) ->
-          map = $(this).gmap3('get')
-          # console.log map
-          google.maps.event.trigger(map, 'resize')
-          map.setZoom(map.getZoom()) if map.getZoom() != undefined
-          map.panToBounds(map.getBounds()) if map.getBounds() != undefined
-          return
         events:
           idle: () ->
             # console.log $(this)
