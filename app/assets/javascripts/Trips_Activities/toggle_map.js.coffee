@@ -65,11 +65,15 @@ trips_activities_namespace = trips_activities_namespace || {}
         options:
           draggable: false
         callback: (results) ->
-          google.maps.event.trigger($(this), 'resize') 
+          map = $(this).gmap3('get')
+          # console.log map
+          google.maps.event.trigger(map, 'resize')
+          map.setZoom(map.getZoom()) if map.getZoom() != undefined
+          map.panToBounds(map.getBounds()) if map.getBounds() != undefined
+          return
         events:
           idle: () ->
             # console.log $(this)
-            # alert "hi"
             return
           click: () ->
           mouseover: (marker, event, context) ->
