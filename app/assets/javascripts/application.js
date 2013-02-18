@@ -15,7 +15,6 @@
 //= require Sitewide/preload.js
 //= require jquery_ujs
 //= require iscroll
-//= require jquery.jscrollpane
 //= require jquery.scrollTo
 //= require modernizr-development-latest-2.6.2
 //= require resize-img-parent
