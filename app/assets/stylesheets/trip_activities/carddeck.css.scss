@@ -246,7 +246,9 @@ div.thumb-wrap{
 }
 
 img.thumb-image{
-  height: auto;
+  // height: auto; //this broke on firefox
+  height: 100%;
+  width: 100%;
   // min-width: 100%;
   // position: absolute;
   // top: -25%;
