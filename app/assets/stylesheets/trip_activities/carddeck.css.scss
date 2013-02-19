@@ -648,43 +648,6 @@ div.rightcaption .ui-accordion-content {
   }
 }
 
-// #nextstepbox{
-//   text-align: right;
-//   // background-color: grey;
-//   @include col(5);
-//   @extend .bottomnavigationbar;
-
-//   @include respond-to(portrait){
-//   @include col(5);
-//   }
-
-//   @include respond-to(small){
-//   @include col(5);
-//   font-size: .8em;
-//   text-align: center;
-//   @include box-sizing(border-box);
-//   padding: 1em 1em 1em 1em;
-//   }
-// }
-
-// #previousstepbox{
-//   text-align: left;
-//   @include col(5);
-//   @extend .bottomnavigationbar;
-
-//   @include respond-to(portrait){
-//   @include col(5);
-//   }
-
-//   @include respond-to(small){
-//   @include col(5);
-//   font-size: .8em;
-//   text-align: center;
-//   @include box-sizing(border-box);
-//   padding: 1em 1em 1em 1em;
-//   }
-// }
-
 .bottomnavigationbar{
   @include box-sizing(border-box);
   padding: 0.5em 0 0.5em 0;

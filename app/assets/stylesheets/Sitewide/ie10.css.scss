@@ -1,0 +1,17 @@
+//ie10 specific for the swipe navigation buttons
+.ie10 .bottomnavigationbar{
+  display: block;
+}
+
+//Flipper Animation
+
+/* FLIP TO BACK PAGE ANIMATION */
+.ie10 .flip-container .flipper.flipped {
+  @include rotateX(0deg);
+ }
+
+ /* back, initially hidden pane */
+.ie10 .back {
+  @include rotateX(0deg);
+  display: none;
+}

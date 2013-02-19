@@ -79,7 +79,8 @@
      case "2":
         $('div.evening_bg').fadeOut(2000)
         $('div.afternoon_bg').fadeOut(2000)
-        $('body').removeClass().addClass('morning_bg')
+        $('body').removeClass('afternoon_bg').removeClass('evening_bg')
+        $('body').addClass('morning_bg')
         // $('body').animate({ backgroundColor: '#DEEFFA' }, 2000)
         $('div.morning_bg').fadeIn(2000)
         break;
@@ -87,8 +88,9 @@
      case "4":
         $('div.morning_bg').fadeOut(2000)
         $('div.evening_bg').fadeOut(2000)
+        $('body').removeClass('morning_bg').removeClass('evening_bg')
+        $('body').addClass('afternoon_bg')
         // $('body').animate({ backgroundColor: '#8dc0d9' }, 2000)
-        $('body').removeClass().addClass('afternoon_bg')
         $('div.afternoon_bg').fadeIn(2000)
         break;
      case "5":
@@ -96,7 +98,8 @@
      case "7":
         $('div.morning_bg').fadeOut(2000)
         $('div.afternoon_bg').fadeOut(2000)
-        $('body').removeClass().addClass('evening_bg')
+        $('body').removeClass('afternoon_bg').removeClass('morning_bg')
+        $('body').addClass('evening_bg')
         // $('body').animate({ backgroundColor: '#365165' }, 2000)
         $('div.evening_bg').fadeIn(2000)
         break;
@@ -116,6 +119,12 @@ var gallery,
   ;
 
   gallery = new SwipeView('#swipewrapper', { numberOfPages: slides.length, hastyPageFlip: true, loop: true });
+  
+  // prevent swipeview from resizing itself on orientation change, instead use `resize` event per git issue 16
+  window.removeEventListener('orientationchange', gallery, false);
+  window.addEventListener('resize', function(e) {
+    gallery.__resize();
+  });
 
   // Load initial data
   for (i=0; i<3; i++) {
