@@ -1,17 +1,27 @@
 <div class="triptitlebox">
 
-  <p>
-  <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
-  <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %> for a <%=@trip.traveler_type[:traveler_type_name]%></span>
-  </p>
+  <div class="trip-title-text">
+    <p>
+      <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
+      <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
+    </p>
+    
+      <!--Begin show overview button that shows up only on small screens-->
+      <label class="toggle-menu" href="#trip-overview-modal" role="button" data-toggle="modal">
+        <i class="icon-reorder icon-border"></i>
+      </label>
+      <!--End show overview button that shows up only on small screens -->
+    
+    <small>by <%= @author.author_name %></small>
+  </div>
+
+  <div class='couples-badge'></div>
 
   <!--Begin show overview button that shows up only on small screens-->
   <label class="toggle-menu" href="#trip-overview-modal" role="button" data-toggle="modal">
     <i class="icon-reorder icon-border"></i>
   </label>
   <!--End show overview button that shows up only on small screens -->
-
-  <small>by <%= @author.author_name %></small>
 
   <div class="socialmediabox">
     <div id="fb-root"></div>

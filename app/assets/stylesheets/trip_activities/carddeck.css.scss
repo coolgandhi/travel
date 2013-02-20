@@ -134,8 +134,22 @@ $lastrowheight: 10%;
   overflow: visible;
   margin-bottom: 1%;
 
+  @include box-sizing(border-box);
+  padding: 1%;
+  overflow: hidden;
+  background-color: $myDivBg;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+
   p{
     margin: 0;
+  }
+
+  div.trip-title-text{
+    float: left;
   }
 
   .trip-title-main-text{
@@ -144,7 +158,7 @@ $lastrowheight: 10%;
     line-height: 1.4em;
     white-space: nowrap;
     font-weight: 400;
-    text-shadow: 1px 1px 1px $grayLight;
+    // text-shadow: 1px 1px 1px $grayLight;
 
   }
 
@@ -158,7 +172,7 @@ $lastrowheight: 10%;
 
 .socialmediabox{
   position: absolute;
-  right: 0%;
+  right: 1%;
   top: 30%;
   overflow: hidden;
 
@@ -169,6 +183,22 @@ $lastrowheight: 10%;
   }
 }
 
+@mixin traveler-badge{
+  background-position:center;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  border: solid 1px $gray;
+  border-radius: 50%;
+  float: left;
+  @include box-sizing(border-box);
+  margin-left: 1%;
+}
+
+.couples-badge{
+  @include traveler-badge;
+  background-image:url(/assets/logos/foursquare-icon-16x16.png);
+}
 
 /* 3. FILMSTRIP NAVIGATION */
 .wrapper-film{
@@ -419,7 +449,7 @@ img.relative_image{
 /* 5. CAPTION DIV */
 
 .rightcaption{
-  width: 35%;
+  width: 40%;
   // height: 100%;
   color: $white;
   @include box-sizing(border-box);
@@ -519,7 +549,7 @@ h3#activity_title{
 h3#more_info_accordion{
   padding: 0.2em 0.5em 0.2em 1.2em;
   margin-top: 0;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: 400;
   line-height: 0.6em;
   outline: 0;
@@ -554,9 +584,18 @@ div.rightcaption .ui-accordion-content {
   }
 }
 
+#more-info-id{
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .more-info-dl{
-  font-size: 0.8em;
-  line-height: 0.8em;
+  font-size: .95em;
+  line-height: 1em;
+  font-weight: 200;
+  max-height: 300px;
+
   @include respond-to(portrait){
     font-size: 1em;
     line-height: 1em;
@@ -590,6 +629,22 @@ div.rightcaption .ui-accordion-content {
   border: 1px solid rgb(204,204,204);
   background-color: transparent;
   margin-bottom: 10px;
+}
+
+.foursquare-attribution{
+  // float: right;
+  text-align: right;
+  margin-bottom: 1em;
+  font-size: 0.8em;
+  #accordion-foursquare-logo{
+    background-image:url(/assets/logos/foursquare-icon-16x16.png);
+    background-repeat: no-repeat;
+    // background-size: Auto 16px;
+    height: 16px;
+    width: 16px;
+    float: right;
+    margin-left: 0.5em;
+  }
 }
 
 #trip_map{
