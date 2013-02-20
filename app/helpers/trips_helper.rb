@@ -81,8 +81,7 @@ module TripsHelper
       )
     }
     
-    # logger.info " sorted #{compressed_activities.inspect}"
-
     return sorted_activities, compressed_activities
   end
+
 end

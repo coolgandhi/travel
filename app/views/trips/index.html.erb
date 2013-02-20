@@ -1,22 +1,32 @@
-<h1>Listing trips</h1>
+<%= stylesheet_link_tag "jquery.ui.datepicker.css.erb" %>
+
+
+<%= form_tag trips_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag "place", params[:place], :placeholder => "you would like to go to?" %>
+    <%= hidden_field_tag "trip_location_id", params[:trip_location_id] %>
+     as a <br/>    
+    <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> traveler between <br/> 
+    <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]) %>
+    <%= text_field_tag :from, params[:from] %> and
+    <%= text_field_tag :to, params[:to] %> <br/>
+    <%= submit_tag "Search Trips", :name => nil %>
+  </p>
+<% end %>
 
 <table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @trips.each do |trip| %>
-  <tr>
-    <td><%= trip.trip_name %></td>
-    <td><%= link_to 'Show', trip %></td>
-    <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-    <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @trips.each do |trip| %>
+    <tr>
+      <td><%= trip.trip_name %></td>
+      <td><%= link_to 'Show', trip %></td>
+      <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+      <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
 </table>
 
+<br/>
+<%= will_paginate @trips %>
 <br />
 
 <%= link_to 'New Trip', new_trip_path %>

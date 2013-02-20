@@ -4,11 +4,8 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    
-    @trips = Trip.all
-    #logger.info "here..."
-    #@trips = nil
-    
+    @trips = Trip.search(params).paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 5)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trips }

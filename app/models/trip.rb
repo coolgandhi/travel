@@ -16,4 +16,18 @@ class Trip < ActiveRecord::Base
   validates :trip_summary, :presence => { :message => "enter trip summary" }, :length => { :minimum => 2, :maximum => 250, :too_short => "trip summary must have at least %{count} characters", :too_long  => "trip summary can have at most %{count} characters" }
   validates :duration, :presence => { :message => "enter a valid duration for the trip" }
   validates_numericality_of :duration, :message => "enter a valid length of the trip" 
+  
+  
+  def self.search params
+    if (params[:trip_location_id] and params[:trip_location_id] != "")
+      duration = (DateTime.strptime(params[:to], "%m/%d/%Y") - DateTime.strptime(params[:from], "%m/%d/%Y"))
+      logger.info " to #{DateTime.strptime(params[:to], "%m/%d/%Y")}  from #{DateTime.strptime(params[:from], "%m/%d/%Y")} duration #{duration} \n"
+      trips = Trip.where("location_id = ? and traveler_type_id = ? and duration = ?", params[:trip_location_id], params[:traveler_type_id], duration.to_i.to_s)
+    else
+      trips = Trip.all
+    end
+    
+    trips
+  end
+
 end
