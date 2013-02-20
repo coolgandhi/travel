@@ -24,10 +24,8 @@ class Trip < ActiveRecord::Base
       logger.info " to #{DateTime.strptime(params[:to], "%m/%d/%Y")}  from #{DateTime.strptime(params[:from], "%m/%d/%Y")} duration #{duration} \n"
       trips = Trip.where("location_id = ? and traveler_type_id = ? and duration = ?", params[:trip_location_id], params[:traveler_type_id], duration.to_i.to_s)
     else
-      trips = Trip.all
+      scoped
     end
-    
-    trips
-  end
+   end
 
 end
