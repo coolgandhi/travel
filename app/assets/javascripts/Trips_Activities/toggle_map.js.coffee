@@ -66,7 +66,7 @@ trips_activities_namespace = trips_activities_namespace || {}
               name: "infowindow"
             )
             if infowindow
-              infowindow.setOptions({maxWidth:250})
+              # infowindow.setOptions({maxWidth:50, pixelOffset:new google.maps.Size(0, 0)})
               infowindow.open map, marker
               infowindow.setContent context.data
               return
@@ -91,14 +91,11 @@ trips_activities_namespace = trips_activities_namespace || {}
       spl = data[i].location.split(",")
       arrobject.push
         latLng: [parseFloat(spl[0]), parseFloat(spl[1])]
-    console.log(arrobject)
-    return if arrobject.length < 1
+    # console.log(arrobject)
+    # return if arrobject.length < 1
     mapcontainer.gmap3
       overlay:
-        values: [{latLng:[48.8620722, 2.352047], data:"Paris !"},
-        {latLng:[48.8620722, 10.352047], data:"Fii !"},
-        {latLng:[48.8620722, 32.352047], data:"Bal !"}
-        ]
+        values: [{latLng:[48.8620722, 2.352047]}, {latLng:[48.8620722, 10.352047]},{latLng:[48.8620722, 32.352047]}]
         options:
           content: '<div style="color:#000000; background-color: #FF7C70; text-align:center; font-size: 11px; line-height: 11px;border-radius:50%; width: 16px; text-align:center;">2</div>'
           offset:
