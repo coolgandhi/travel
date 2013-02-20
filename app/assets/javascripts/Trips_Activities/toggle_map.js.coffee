@@ -29,6 +29,7 @@ trips_activities_namespace = trips_activities_namespace || {}
         success: (data) ->
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
+          addMarkerLabels(data, mapcontainer)
           addpolyline(data, mapcontainer)  
           return             
           
@@ -48,14 +49,15 @@ trips_activities_namespace = trips_activities_namespace || {}
       arrobject.push
         latLng: [parseFloat(spl[0]), parseFloat(spl[1])]
         data: data[i].name
-        options:
-          icon: "/assets/" + data[i].logo
+        # options:
+        #   icon: "/assets/" + data[i].logo
     return if arrobject.length < 1
     mapcontainer.gmap3
       marker:
         values: arrobject
         options:
           draggable: false
+          # animation: google.maps.Animation.DROP
         events:
           click: () ->
           mouseover: (marker, event, context) ->
@@ -64,6 +66,7 @@ trips_activities_namespace = trips_activities_namespace || {}
               name: "infowindow"
             )
             if infowindow
+              infowindow.setOptions({maxWidth:250})
               infowindow.open map, marker
               infowindow.setContent context.data
               return
@@ -79,6 +82,28 @@ trips_activities_namespace = trips_activities_namespace || {}
             )
             infowindow.close()  if infowindow
             return
+      autofit: {}
+    return 
+
+  addMarkerLabels = (data, mapcontainer) ->
+    arrobject = []
+    $.each data, (i, name) ->
+      spl = data[i].location.split(",")
+      arrobject.push
+        latLng: [parseFloat(spl[0]), parseFloat(spl[1])]
+    console.log(arrobject)
+    return if arrobject.length < 1
+    mapcontainer.gmap3
+      overlay:
+        values: [{latLng:[48.8620722, 2.352047], data:"Paris !"},
+        {latLng:[48.8620722, 10.352047], data:"Fii !"},
+        {latLng:[48.8620722, 32.352047], data:"Bal !"}
+        ]
+        options:
+          content: '<div style="color:#000000; background-color: #FF7C70; text-align:center; font-size: 11px; line-height: 11px;border-radius:50%; width: 16px; text-align:center;">2</div>'
+          offset:
+            y: -30
+            x: -8
       autofit: {}
     return 
 
@@ -132,10 +157,9 @@ trips_activities_namespace = trips_activities_namespace || {}
     mapcontainer.gmap3
       polyline:
         options:
-          strokeColor: "#FF0000"
-          strokeOpacity: 1.0
-          strokeWeight: 2
+          strokeColor: "#8FD8D8"
+          strokeOpacity: 0.6
+          strokeWeight: 4
           path: arrobject
-
 
 ) trips_activities_namespace

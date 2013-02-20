@@ -15,7 +15,14 @@
     <small>by <%= @author.author_name %></small>
   </div>
 
-  <div class='couples-badge'></div>
+  <div class = "badge_buttons">
+    <ul class = "unstyled badges-ul">
+    <li>
+      <a class= <%=traveler_type_badge_class(@trip.traveler_type[:traveler_type_name])%> ></a>
+      <p><%=@trip.traveler_type[:traveler_type_name]%></p>
+    </li>
+    </ul>
+  </div>
 
   <!--Begin show overview button that shows up only on small screens-->
   <label class="toggle-menu" href="#trip-overview-modal" role="button" data-toggle="modal">
