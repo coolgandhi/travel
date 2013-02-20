@@ -4,6 +4,7 @@
  @import "Sitewide/mediaqueries"; //media queries mix-in
  @import "Sitewide/bootstrap_and_overrides";
  @import "Sitewide/custom-grid-mixins"; //custom grid mix-in
+ @import "trips/index.css.scss"; 
  @import "trip_activities/carddeck.css.scss";
  @import "trip_activities/partials/offcanvas-slideout.css.scss";
  @import "trip_activities/partials/about_author.css.scss";

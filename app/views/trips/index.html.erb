@@ -16,5 +16,8 @@
 
 <div id="trips"><%= render 'trips' %></div>
 
+<%= will_paginate @trips %>
+<a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
+
 
 <%= link_to 'New Trip', new_trip_path %>
