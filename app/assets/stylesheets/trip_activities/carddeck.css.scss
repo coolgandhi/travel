@@ -145,10 +145,10 @@ $lastrowheight: 10%;
   @include box-sizing(border-box);
   padding: 1%;
   overflow: hidden;
-  background-color: $myDivBg;
-  border-color: $borderGray;
-  border-width: $myDivBorderWidth;
-  border-style: solid;
+  background-color: rgba(255,255,255,0.3);
+  // border-color: $borderGray;
+  // border-width: $myDivBorderWidth;
+  // border-style: solid;
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
 
@@ -213,13 +213,14 @@ $lastrowheight: 10%;
     a{
       display: block;
       position: relative;
-      margin: 0 7.5px; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
-      width: 25px;
+      margin: 0 5px; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
+      width: 30px;
     }
     p{
       text-align: center;
       font-size: 0.75em;
       line-height: 10px;
+      font-weight: bold;
     }
   }
 }
@@ -227,10 +228,10 @@ $lastrowheight: 10%;
 @mixin traveler-badge{
   background-position:center;
   background-repeat: no-repeat;
-  height: 25px;
-  width: 25px;
-  border: solid 1px $gray;
-  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  // border: solid 1px $gray;
+  // border-radius: 50%;
   float: left;
   position: relative;
   @include box-sizing(border-box);
@@ -239,22 +240,27 @@ $lastrowheight: 10%;
 
 .couples-badge{
   @include traveler-badge;
-  background-image:url(/assets/logos/foursquare-icon-16x16.png);
+  background-image:url(/assets/badges/couples-badge.png);
 }
 
 .solo-badge{
   @include traveler-badge;
-  background-image:url(/assets/logos/foursquare-icon-16x16.png);
+  background-image:url(/assets/badges/solo-badge.png);
 }
 
 .family-badge{
   @include traveler-badge;
-  background-image:url(/assets/logos/foursquare-icon-16x16.png);
+  background-image:url(/assets/badges/family-badge.png);
 }
 
 .group-badge{
   @include traveler-badge;
-  background-image:url(/assets/logos/foursquare-icon-16x16.png);
+  background-image:url(/assets/badges/group-badge.png);
+}
+
+.other-badge{
+  @include traveler-badge;
+  background-image:url(/assets/badges/other-badge.png);
 }
 
 /* 3. FILMSTRIP NAVIGATION */
@@ -302,6 +308,7 @@ $lastrowheight: 10%;
 .filmstrip-day-dividers{
   font-size: 1em;
   line-height: 1.5em;
+  font-weight: bold;
   height: 1.5em;
   text-align: center;
   border-bottom: 1px solid $black;

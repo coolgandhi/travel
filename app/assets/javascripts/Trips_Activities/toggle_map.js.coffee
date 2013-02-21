@@ -29,7 +29,6 @@ trips_activities_namespace = trips_activities_namespace || {}
         success: (data) ->
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
-          addMarkerLabels(data, mapcontainer)
           addpolyline(data, mapcontainer)  
           return             
           
@@ -49,8 +48,8 @@ trips_activities_namespace = trips_activities_namespace || {}
       arrobject.push
         latLng: [parseFloat(spl[0]), parseFloat(spl[1])]
         data: data[i].name
-        # options:
-        #   icon: "/assets/" + data[i].logo
+        options:
+          icon: new google.maps.MarkerImage("/assets/markers/" + data[i].logo, new google.maps.Size(40, 40), new google.maps.Point(4+((i%10)*47), 4+((Math.floor(i/10)*42))))
     return if arrobject.length < 1
     mapcontainer.gmap3
       marker:
@@ -84,26 +83,6 @@ trips_activities_namespace = trips_activities_namespace || {}
             return
       autofit: {}
     return 
-
-  addMarkerLabels = (data, mapcontainer) ->
-    arrobject = []
-    $.each data, (i, name) ->
-      spl = data[i].location.split(",")
-      arrobject.push
-        latLng: [parseFloat(spl[0]), parseFloat(spl[1])]
-    # console.log(arrobject)
-    # return if arrobject.length < 1
-    mapcontainer.gmap3
-      overlay:
-        values: [{latLng:[48.8620722, 2.352047]}, {latLng:[48.8620722, 10.352047]},{latLng:[48.8620722, 32.352047]}]
-        options:
-          content: '<div style="color:#000000; background-color: #FF7C70; text-align:center; font-size: 11px; line-height: 11px;border-radius:50%; width: 16px; text-align:center;">2</div>'
-          offset:
-            y: -30
-            x: -8
-      autofit: {}
-    return 
-
       
   getdirections = (data, showcontainer = false) ->
     arrobject = []
