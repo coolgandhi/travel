@@ -81,10 +81,9 @@ module TripsHelper
       )
     }
     
-    # logger.info " sorted #{compressed_activities.inspect}"
-
     return sorted_activities, compressed_activities
   end
+
 
   def avatar_url(author)  
     gravatar_id = Digest::MD5::hexdigest(author.email).downcase  

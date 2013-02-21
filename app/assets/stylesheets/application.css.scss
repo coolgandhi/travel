@@ -1,10 +1,11 @@
+ @import "jqueryui_subset_styles_custom.css.scss";
  @import "compass";
  @import "Sitewide/preloader.css.scss";
  @import "Sitewide/mediaqueries"; //media queries mix-in
  @import "Sitewide/bootstrap_and_overrides";
- @import "jqueryui_subset_styles.css.scss"; //base jquery-ui CSS for accordion widget
  @import "Sitewide/custom-grid-mixins"; //custom grid mix-in
  @import "Sitewide/ie10"; //IE10 specific shizz
+ @import "trips/index.css.scss"; 
  @import "trip_activities/carddeck.css.scss";
  @import "trip_activities/partials/offcanvas-slideout.css.scss";
  @import "trip_activities/partials/about_author.css.scss";
