@@ -57,7 +57,7 @@ trips_activities_namespace = trips_activities_namespace || {}
         values: arrobject
         options:
           draggable: false
-          animation: google.maps.Animation.DROP
+          # animation: google.maps.Animation.DROP
         events:
           click: () ->
           mouseover: (marker, event, context) ->
