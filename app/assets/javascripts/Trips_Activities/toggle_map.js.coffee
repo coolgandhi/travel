@@ -49,14 +49,15 @@ trips_activities_namespace = trips_activities_namespace || {}
         latLng: [parseFloat(spl[0]), parseFloat(spl[1])]
         data: data[i].name
         options:
-          icon: new google.maps.MarkerImage("/assets/markers/" + data[i].logo, new google.maps.Size(40, 40), new google.maps.Point(4+((i%10)*47), 4+((Math.floor(i/10)*42))))
+          #construction for icon is 1. make map MarkerImage - specify sprite URL, specify size of image, specify origin from top left corner, specify anchor point of where the pin should be centered (not based on sprite but based on the 40x40 image)
+          icon: new google.maps.MarkerImage("/assets/markers/" + data[i].logo, new google.maps.Size(40, 40), new google.maps.Point(4+((i%10)*47), 4+((Math.floor(i/10)*42))), new google.maps.Point(11.5, 37.9)) 
     return if arrobject.length < 1
     mapcontainer.gmap3
       marker:
         values: arrobject
         options:
           draggable: false
-          # animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP
         events:
           click: () ->
           mouseover: (marker, event, context) ->
