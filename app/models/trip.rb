@@ -19,12 +19,18 @@ class Trip < ActiveRecord::Base
   
   
   def self.search params
+    message_with_trip_render = " Check out your trips! "
     if (params[:trip_location_id] and params[:trip_location_id] != "")
       duration = (DateTime.strptime(params[:to], "%m/%d/%Y") - DateTime.strptime(params[:from], "%m/%d/%Y"))
-      logger.info " to #{DateTime.strptime(params[:to], "%m/%d/%Y")}  from #{DateTime.strptime(params[:from], "%m/%d/%Y")} duration #{duration} \n"
-      trips = Trip.where("location_id = ? and traveler_type_id = ? and duration = ?", params[:trip_location_id], params[:traveler_type_id], duration.to_i.to_s)
+      trips = Trip.where("location_id = ? and traveler_type_id IN (?) and duration >= ? and duration <= ?", params[:trip_location_id], params[:traveler_type_id], duration.to_i.to_s, duration.to_i.to_s)
+      
+      if trips.length == 0 # find trips from same location as a minimum 
+        trips = Trip.where("location_id = ?", params[:trip_location_id])
+        message_with_trip_render = "Can't find the trips with the specified constraints, check other trips to the same location"
+      end
+      return trips, message_with_trip_render
     else
-      scoped
+      return scoped, message_with_trip_render
     end
    end
 

@@ -7,13 +7,16 @@
     <%= hidden_field_tag "trip_location_id", params[:trip_location_id] %>
      as a <br/>    
     <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> traveler between <br/> 
-    <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]) %>
+    <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true %>
     <%= text_field_tag :from, params[:from] %> and
     <%= text_field_tag :to, params[:to] %> <br/>
     <%= submit_tag "Search Trips", :name => nil %>
   </p>
 <% end %>
 
+<br/>
+<%= @message_with_trip_render %> 
+<br/>
 <div id="trips"><%= render 'trips' %></div>
 
 <%= will_paginate @trips %>
