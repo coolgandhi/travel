@@ -27,35 +27,41 @@
           More Info
         </h3>
         <div class = "more-info-dl" id="more-info-id">
-          <dl>
-          <dt>Address:</dt>
-          <dd>
-            <address>
-              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:address1]) %></br>
-              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:city]) %>, <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:state]) %>
-              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:zip]) %>
-            </address>  
-          </dd>
-          <dt>Description: </dt>
-          <dd>
-            <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:description]) %>
-          </dd>
-          <dt>Category: </dt>
-          <dd>
-            <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:category]) %>
-          </dd>
-          <dt>Open Hours:</dt>
-          <dd>
-            <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:open_hours]) %>
-          </dd>
-          <dt>Phone:</dt>
-          <dd>
-            <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:phone]) %>
-          </dd>
-          <dt>Website:</dt>
-          <dd>
-            <%= link_to  check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, :target => "_blank" %>
-          </dd>
+          <div id = "more-info-buffer-header"></div>
+          <div id = "more-info-buffer-content">
+            <dl>
+            <dt>Address:</dt>
+            <dd>
+              <address>
+                <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:address1]) %></br>
+                <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:city]) %>, <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:state]) %>
+                <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:zip]) %>
+              </address>  
+            </dd>
+            <dt>Description: </dt>
+            <dd>
+              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:description]) %>
+            </dd>
+            <dt>Category: </dt>
+            <dd>
+              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:category]) %>
+            </dd>
+            <dt>Open Hours:</dt>
+            <dd>
+              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:open_hours]) %>
+            </dd>
+            <dt>Phone:</dt>
+            <dd>
+              <%= check_empty_detail(@trip_activity.activity.restaurant_detail[:phone]) %>
+            </dd>
+            <dt>Website:</dt>
+            <dd>
+              <%= link_to  check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, check_empty_detail(@trip_activity.activity.restaurant_detail[:website]).to_s, :target => "_blank" %>
+            </dd>
+            </dl>
+            <div class="foursquare-attribution">Powered by <div id ="accordion-foursquare-logo"></div></div>
+          </div>
+          <!-- End more-info-buffer-content -->
         </div>
       </div>
       <!-- End rightcaption -->   

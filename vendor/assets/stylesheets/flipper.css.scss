@@ -29,10 +29,10 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
   }
 }
 
-/* FLIP TO EXTRA PAGE ANIMATION */
-.flip-container .flipper.flipped-again {
-  @include rotateX(-180deg);
-}
+// /* FLIP TO EXTRA PAGE ANIMATION */
+// .flip-container .flipper.flipped-again {
+//   @include rotateX(-180deg);
+// }
 
 /* flip speed goes here */
 .flipper {
@@ -44,6 +44,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 /* hide back of pane during swap */
 .front, .back, .extraside {
   @include backface-visibility(hidden);
+  @include perspective(1000);
   position: absolute;
   top: 0;
   left: 0;
@@ -59,7 +60,7 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 .back {
   @include rotateX(180deg);
   // overflow: hidden;
-  // display: none;
+  display: none;
 }
 
 /* extraside, initially hidden pane */

@@ -1,3 +1,5 @@
+          
+          <div class = "filmstrip-day-dividers">Day <%= @sorted_activities[0][:activityday] %></div>
           <li class="media selected" onclick="gallery.goToPage(0)">
             
             <!-- thumb-wrapper div -->  
@@ -29,6 +31,10 @@
 
           </li>
           <% for i  in 1..(@sorted_activities.length - 2) %>
+            <% if @sorted_activities[i][:activityday] != @sorted_activities[i-1][:activityday] %>
+              <div class = "filmstrip-day-dividers">Day <%= @sorted_activities[i][:activityday] %></div>
+            <% else %>
+            <% end %>
             <li class="media" onclick="gallery.goToPage(<%= i %>)">
 
             <!-- thumb-wrapper div -->  

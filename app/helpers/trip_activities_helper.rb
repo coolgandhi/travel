@@ -97,9 +97,10 @@ module TripActivitiesHelper
         case trip_activity.activity_type
           when "FoodActivity" 
             if trip_activity.activity.restaurant_detail
-              trip_map_info[i] =  { name: trip_activity.activity.restaurant_detail[:name],
+              trip_map_info[i] =  { name: "<b>" + trip_activity.activity.restaurant_detail[:name] + "</b>",
+                                    address: "<address>" + check_empty_detail(trip_activity.activity.restaurant_detail[:address1])+ "<br>" + check_empty_detail(trip_activity.activity.restaurant_detail[:city])+ ", " + check_empty_detail(trip_activity.activity.restaurant_detail[:state]) + " " + check_empty_detail(trip_activity.activity.restaurant_detail[:zip]) + "</address>",
                                     location: trip_activity.activity.restaurant_detail[:latitude] + "," + trip_activity.activity.restaurant_detail[:longitude],
-                                    logo: "food.png" 
+                                    logo: "map-markers-blue-food.png" 
                                   }
               i = i + 1
             end
@@ -107,9 +108,10 @@ module TripActivitiesHelper
             # do nothing
           when "LocationActivity"     
             if trip_activity.activity.location_detail
-              trip_map_info[i] =  { name: trip_activity.activity.location_detail[:name],
+              trip_map_info[i] =  { name: "<b>" + trip_activity.activity.location_detail[:name] + "</b>",
+                                    address: "<address>" + check_empty_detail(trip_activity.activity.location_detail[:address1])+ "<br>" + check_empty_detail(trip_activity.activity.location_detail[:city])+ ", " + check_empty_detail(trip_activity.activity.location_detail[:state]) + " " + check_empty_detail(trip_activity.activity.location_detail[:zip])  + "</address>",
                                     location: trip_activity.activity.location_detail[:latitude] + "," + trip_activity.activity.location_detail[:longitude],
-                                    logo: "location.png" 
+                                    logo: "map-markers-blue-location.png" 
                                   }
               i = i + 1
             end

@@ -5,6 +5,7 @@
  @import "Sitewide/bootstrap_and_overrides";
  @import "Sitewide/custom-grid-mixins"; //custom grid mix-in
  @import "Sitewide/forms.css.scss";
+ @import "Sitewide/ie10"; //IE10 specific shizz
  @import "trips/index.css.scss"; 
  @import "trip_activities/carddeck.css.scss";
  @import "trip_activities/partials/offcanvas-slideout.css.scss";

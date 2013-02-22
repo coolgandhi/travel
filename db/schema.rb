@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215070735) do
+ActiveRecord::Schema.define(:version => 20130220011655) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20130215070735) do
     t.string   "twitter_handle"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "state"
+    t.string   "blurb"
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true

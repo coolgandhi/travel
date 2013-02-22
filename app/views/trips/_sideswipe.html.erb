@@ -1,17 +1,34 @@
 <div class="triptitlebox">
 
-  <p>
-  <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
-  <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %> for a <%=@trip.traveler_type[:traveler_type_name]%></span>
-  </p>
+  <div class="trip-title-text">
+    <p>
+      <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
+      <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
+    </p>
+    
+      <!--Begin show overview button that shows up only on small screens-->
+      <label class="toggle-menu" href="#trip-overview-modal" role="button" data-toggle="modal">
+        <i class="icon-reorder icon-border"></i>
+      </label>
+      <!--End show overview button that shows up only on small screens -->
+    
+    <small>by <%= @author.author_name %></small>
+  </div>
+
+  <div class = "badge_buttons">
+    <ul class = "unstyled badges-ul">
+    <li>
+      <a class= <%=traveler_type_badge_class(@trip.traveler_type[:traveler_type_name])%> ></a>
+      <p><%=@trip.traveler_type[:traveler_type_name]%></p>
+    </li>
+    </ul>
+  </div>
 
   <!--Begin show overview button that shows up only on small screens-->
   <label class="toggle-menu" href="#trip-overview-modal" role="button" data-toggle="modal">
     <i class="icon-reorder icon-border"></i>
   </label>
   <!--End show overview button that shows up only on small screens -->
-
-  <small>by <%= @author.author_name %></small>
 
   <div class="socialmediabox">
     <div id="fb-root"></div>
@@ -38,7 +55,7 @@
 </div>
 
 <div id="wrappiest">
-  <%= image_tag("/assets/spinner.gif", :class => "swipe-loading-indicator") %>
+  <%= image_tag("/assets/spinners/ajax-loader.gif", :class => "swipe-loading-indicator") %>
   <%= render "trips/partials/trip-overview-modal" %>
   <!-- /navigation arrows -->
   <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left"></i></div>
@@ -79,7 +96,8 @@
      case "2":
         $('div.evening_bg').fadeOut(2000)
         $('div.afternoon_bg').fadeOut(2000)
-        $('body').removeClass().addClass('morning_bg')
+        $('body').removeClass('afternoon_bg').removeClass('evening_bg')
+        $('body').addClass('morning_bg')
         // $('body').animate({ backgroundColor: '#DEEFFA' }, 2000)
         $('div.morning_bg').fadeIn(2000)
         break;
@@ -87,8 +105,9 @@
      case "4":
         $('div.morning_bg').fadeOut(2000)
         $('div.evening_bg').fadeOut(2000)
+        $('body').removeClass('morning_bg').removeClass('evening_bg')
+        $('body').addClass('afternoon_bg')
         // $('body').animate({ backgroundColor: '#8dc0d9' }, 2000)
-        $('body').removeClass().addClass('afternoon_bg')
         $('div.afternoon_bg').fadeIn(2000)
         break;
      case "5":
@@ -96,7 +115,8 @@
      case "7":
         $('div.morning_bg').fadeOut(2000)
         $('div.afternoon_bg').fadeOut(2000)
-        $('body').removeClass().addClass('evening_bg')
+        $('body').removeClass('afternoon_bg').removeClass('morning_bg')
+        $('body').addClass('evening_bg')
         // $('body').animate({ backgroundColor: '#365165' }, 2000)
         $('div.evening_bg').fadeIn(2000)
         break;
@@ -116,6 +136,12 @@ var gallery,
   ;
 
   gallery = new SwipeView('#swipewrapper', { numberOfPages: slides.length, hastyPageFlip: true, loop: true });
+  
+  // prevent swipeview from resizing itself on orientation change, instead use `resize` event per git issue 16
+  window.removeEventListener('orientationchange', gallery, false);
+  window.addEventListener('resize', function(e) {
+    gallery.__resize();
+  });
 
   // Load initial data
   for (i=0; i<3; i++) {
