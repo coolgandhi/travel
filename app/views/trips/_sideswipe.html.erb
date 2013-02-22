@@ -144,9 +144,15 @@ var gallery,
   });
 
   // Load initial data
-  for (i=0; i<3; i++) {
+  var total = 3;
+  if (slides.length < 3)
+  {
+    total = slides.length; 
+  }
+
+  for (i=0; i< total; i++) {
     page = i==0 ? slides.length-1 : i-1;
-    //alert(slides[page].renderpartial);
+    
     $.ajax({
       beforeSend: function() {
         $('.swipe-loading-indicator').show();
@@ -176,7 +182,13 @@ var gallery,
       upcoming,
       i;
 
-    for (i=0; i<3; i++) {
+    var total = 3;
+    if (slides.length < 3)
+    {
+      total = slides.length; 
+    }
+    
+    for (i=0; i< total; i++) {
       upcoming = gallery.masterPages[i].dataset.upcomingPageIndex;
 
       if (upcoming != gallery.masterPages[i].dataset.pageIndex) {
