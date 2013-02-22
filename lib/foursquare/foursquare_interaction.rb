@@ -7,8 +7,6 @@ class FoursquareInteraction
   
   def self.suggest_venues latlong, term, total
    get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
-  #    get_suggestions = @@client.search_venues(options = {:ll => "37.77,-122.42", :query => "star", :limit => "10"})
-  # Rails.logger.info "\n\n #{get_suggestions.inspect}"
    suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
   end
 
@@ -22,14 +20,28 @@ class FoursquareInteraction
     #logger.info " venue info ... #{get_photos}"
     get_photos
     
-   # get_photos = @@client.venue_photos(venue_id, options = {:group => 'venue', :limit => '5'})
-   # photos = get_photos.items.map {|x| {"image_url"=>x.url}}
-   # photos
   end
   
   
   def self.venue_tips venue_id
     tips = @@client.venue_tips(venue_id, options = {:limit => '5'})
     tips
+  end
+
+  def self.find_closest_venue(latitude, longitude, place)
+    get_places = @@client.search_venues(options = {:ll => latitude + "," + longitude, :near => place, :categoryId => "50aa9e094b90af0d42d5de0d", :radius => 5000, :limit => 3})
+    # find closest category:city, within raidus of 5 kms limited to 3 results
+    # Rails.logger.info " venue info ... #{get_places}"
+    id = ""
+    if get_places[:groups] and (get_places[:groups]).first[:items].length > 0
+      (get_places[:groups]).first[:items].each {|get_place|
+        # normalizing the foursquare representation e.g. San José to San Jose
+        if get_place[:name].mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').to_s.downcase.include?place.downcase
+          id = get_place[:id]
+          break
+        end
+      } 
+    end
+    id
   end
 end

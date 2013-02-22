@@ -1,7 +1,5 @@
 
-trips_activities_namespace = trips_activities_namespace || {}
-
-((trips_activities_namespace, undefined_) ->
+((trips_activities_namespace, $, undefined_) ->
 
   jQuery ->
     $("#swipewrapper").on "click", "#mapShowHide", (e) ->
@@ -138,4 +136,4 @@ trips_activities_namespace = trips_activities_namespace || {}
           path: arrobject
 
 
-) trips_activities_namespace
+) window.trips_activities_namespace = window.trips_activities_namespace or {}, jQuery

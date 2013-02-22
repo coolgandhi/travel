@@ -4,12 +4,12 @@
  @import "Sitewide/mediaqueries"; //media queries mix-in
  @import "Sitewide/bootstrap_and_overrides";
  @import "Sitewide/custom-grid-mixins"; //custom grid mix-in
+ @import "Sitewide/forms.css.scss";
  @import "trips/index.css.scss"; 
  @import "trip_activities/carddeck.css.scss";
  @import "trip_activities/partials/offcanvas-slideout.css.scss";
  @import "trip_activities/partials/about_author.css.scss";
  @import "flipper.css.scss";
  @import "trip_activities/swipeview_style.css.scss";
- @import "trip_activities/trip_activities_form.css.scss";
  @import "trip_activities/scrolling_bars.css.scss";
  @import "font-awesome.scss";
