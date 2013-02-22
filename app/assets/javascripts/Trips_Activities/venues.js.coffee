@@ -2,9 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-trips_activities_namespace = trips_activities_namespace || {}
-
-((trips_activities_namespace, undefined_) ->
+((trips_activities_namespace, $, undefined_) ->
 
   totalSelectedImages = 0;
 
@@ -37,7 +35,7 @@ trips_activities_namespace = trips_activities_namespace || {}
         $('#location_activity_location_detail_id').val( ui.item.value )
         $(this).val ui.item.label
         $(this).siblings('#locationvenue').val ui.item.value
-        fetchvenueimages ui.item.value
+        site_wide_namespace.fetchvenueimages ui.item.value, $("#venue_images")
 
   jQuery ->        
     $('#foodvenue').autocomplete
@@ -68,7 +66,7 @@ trips_activities_namespace = trips_activities_namespace || {}
         $('#food_activity_restaurant_detail_id').val( ui.item.value )
         $(this).val ui.item.label
         $(this).siblings('#foodvenue').val ui.item.value   
-        fetchvenueimages ui.item.value
+        site_wide_namespace.fetchvenueimages ui.item.value, $("#venue_images")
       
       
   jQuery ->
@@ -88,7 +86,7 @@ trips_activities_namespace = trips_activities_namespace || {}
 
 
   jQuery ->
-    $("#trip_form_submit").click ->
+    $("#trip_activities_form_submit").click ->
       dat = ""
       $('#venue_images').children().each (index, data) ->
         if ($(this).css("borderWidth") == '5px')
@@ -98,23 +96,4 @@ trips_activities_namespace = trips_activities_namespace || {}
       return
     return
   
-  
-  fetchvenueimages = (venueid) ->
-    $.ajax 
-      url: window.location.protocol + "//" + window.location.host + "/venues/get_venue_photos.json"
-      dataType: "json"
-      data: 
-        total: 20
-        venueid: venueid
-      success: (data) ->
-        $("#venue_images").empty()
-        $.each data.venue_photos, (i, name) ->
-          $("#venue_images").append("<img data id=" + "img_" + i  + " class='venue_image' src='" + name.img + "'/>")
-          return
-        $.each data.venue_photos_com, (i, name) ->
-          $('#img_' + i).data('img', name)
-          return
-        return
-    return
-  
-) trips_activities_namespace
+) window.trips_activities_namespace = window.trips_activities_namespace or {}, jQuery

@@ -18,9 +18,21 @@ class VenuesController < ApplicationController
     end
   end
   
-  def get_venue_info
+  def get_info
   end
   
+  def get_photos venue_id, tot
+    FoursquareInteraction.foursquare_client
+    venue_photos = FoursquareInteraction.venue_photos(venue_id, tot)
+    venue_photos_com = get_photos_from_venue_photos(venue_photos, tot)
+    #logger.info "#{@venue_photos_com.inspect}"
+     
+    venue_photos_com = get_photos_from_venue_photos_with_json(venue_photos_com, true)
+    
+    venue_photos_first = get_photos_from_venue_photos_first_resolution(venue_photos, tot)
+    venue_photos_first = get_photos_from_venue_photos_with_json(venue_photos_first, false)
+    return venue_photos_first, venue_photos_com
+  end
   
   def get_venue_photos
     tot = 20
@@ -35,15 +47,13 @@ class VenuesController < ApplicationController
     end
     
     if params[:venueid]
+      @venue_photos_first, @venue_photos_com = self.get_photos(params[:venueid], tot)
+    elsif params[:latitude] and params[:longitude] and params[:place]
       FoursquareInteraction.foursquare_client
-      @venue_photos = FoursquareInteraction.venue_photos(params[:venueid], tot)
-      @venue_photos_com = get_photos_from_venue_photos(@venue_photos, tot)
-      #logger.info "#{@venue_photos_com.inspect}"
-       
-      @venue_photos_com = get_photos_from_venue_photos_with_json(@venue_photos_com, true)
-      
-      @venue_photos_first = get_photos_from_venue_photos_first_resolution(@venue_photos, tot)
-      @venue_photos_first = get_photos_from_venue_photos_with_json(@venue_photos_first, false)
+      @venue_id = FoursquareInteraction.find_closest_venue(params[:latitude], params[:longitude], params[:place] )
+      if (@venue_id != "")
+        @venue_photos_first, @venue_photos_com = self.get_photos(@venue_id, tot)
+      end
     end
     
     respond_to do |format|

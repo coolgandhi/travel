@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "jquery.ui.datepicker.css.erb" %>
 
+<%= link_to 'New Trip', new_trip_path %>
 
 <%= form_tag trips_path, :method => 'get' do %>
   <p>
@@ -22,5 +23,3 @@
 <%= will_paginate @trips %>
 <a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
 
-
-<%= link_to 'New Trip', new_trip_path %>

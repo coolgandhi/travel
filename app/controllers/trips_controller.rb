@@ -53,6 +53,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(params[:trip])
+    @trip.image_url = params[:selected_images]
     @author_info = AuthorInfo.find_by_email(params[:author_email].downcase)
     if @author_info.nil?
       @author_info = AuthorInfo.new

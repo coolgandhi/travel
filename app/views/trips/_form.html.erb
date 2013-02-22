@@ -1,59 +1,66 @@
-<%= form_for(@trip) do |f| %>
+<div class = "overflow-form">
+
+  <%= form_for(@trip) do |f| %>
   
-  <% if @trip.errors.any? or @author_info.errors.any? %>
-    <div id="error_explanation">
-      <h2><%#= pluralize(@trip.errors.count + @author_info.errors.count, "error") %> prohibited this trip from being saved:</h2>
-      <ul>
-        <% @author_info.errors.messages.each do |attr, msg| %>
-          <li><%= msg.first %></li>
-        <% end %>
+    <% if @trip.errors.any? or @author_info.errors.any? %>
+      <div id="error_explanation">
+        <h2><%#= pluralize(@trip.errors.count + @author_info.errors.count, "error") %> prohibited this trip from being saved:</h2>
+        <ul>
+          <% @author_info.errors.messages.each do |attr, msg| %>
+            <li><%= msg.first %></li>
+          <% end %>
       
-        <% @trip.errors.messages.each do |attr, msg| %>
-          <li><%= msg.first %></li>
-        <% end %>
-      </ul>
+          <% @trip.errors.messages.each do |attr, msg| %>
+            <li><%= msg.first %></li>
+          <% end %>
+        </ul>
       
+      </div>
+    <% end %>
+  
+    <%= hidden_field_tag :selected_images, @selectedimages %>
+    
+    <div class="field">
+        <label for="author_name">Author Name</label>: <input id="author_name" type="text" name="author_name" />
+    </div>
+  
+    <div class="field">
+        <label for="author_email">Author Email</label>: <input id="author_email" type="text" name="author_email" />
+    </div>
+  
+    <div class="field">
+        <%= f.label :trip_name, 'Your trip name' %>: <%= f.text_field :trip_name %>
+    </div>
+
+
+    <div class="field">
+      <%= f.hidden_field :location_id %>
+    </div>
+ 
+    <div class="field">
+      <label for="location">location</label>: <input id="place" type="text" name="location" />
+    </div>
+
+    <div class="field">
+          <%= f.label :traveler_type_id, 'For' %>: <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name %>
+      </div>
+
+
+      <div class="field">
+          <%= f.label :duration, 'Length of trip' %>: <%= f.text_field :duration %>
+      </div>  
+    
+    
+      <div class="field">
+          <%= f.label :trip_summary, 'Summary of the trip ' %>:<br/> <%= f.text_area :trip_summary %>
+      </div>
+
+  
+    <div class="actions">
+      <%= f.submit  :id => "trip_form_submit" %>
     </div>
   <% end %>
+
+  <div id="location_images"> </div>
   
-  
-  <div class="field">
-      <label for="author_name">Author Name</label>: <input id="author_name" type="text" name="author_name" />
-  </div>
-  
-  <div class="field">
-      <label for="author_email">Author Email</label>: <input id="author_email" type="text" name="author_email" />
-  </div>
-  
-  <div class="field">
-      <%= f.label :trip_name, 'Your trip name' %>: <%= f.text_field :trip_name %>
-  </div>
-
-
-  <div class="field">
-    <%= f.hidden_field :location_id %>
-  </div>
- 
-  <div class="field">
-    <label for="location">location</label>: <input id="place" type="text" name="location" />
-  </div>
-
-  <div class="field">
-        <%= f.label :traveler_type_id, 'For' %>: <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name %>
-    </div>
-
-
-    <div class="field">
-        <%= f.label :duration, 'Length of trip' %>: <%= f.text_field :duration %>
-    </div>  
-    
-    
-    <div class="field">
-        <%= f.label :trip_summary, 'Summary of the trip ' %>:<br/> <%= f.text_area :trip_summary %>
-    </div>
-
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

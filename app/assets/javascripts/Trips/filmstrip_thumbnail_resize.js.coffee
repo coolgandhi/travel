@@ -1,7 +1,6 @@
-trips_namespace = trips_namespace || {}
-((trips_namespace, undefined_) ->
+((trips_namespace, $, undefined_) ->
   
   jQuery ->
     $(".thumb-image").resizeToParent parent: ".thumb-wrap"
 
-) trips_namespace
+) window.trips_namespace = window.trips_namespace or {}, jQuery

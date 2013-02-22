@@ -1,5 +1,4 @@
-trips_namespace = trips_namespace || {}
-((trips_namespace, undefined_) ->
+((trips_namespace, $, undefined_) ->
 
   $ ->
     $("#from").datepicker()
@@ -37,4 +36,4 @@ trips_namespace = trips_namespace || {}
       # $(window).scroll()
     return
   
-) trips_namespace
+) window.trips_namespace = window.trips_namespace or {}, jQuery

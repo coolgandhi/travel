@@ -1,5 +1,4 @@
-trips_namespace = trips_namespace || {}
-((trips_namespace, undefined_) ->
+((trips_namespace, $, undefined_) ->
   
   wrap_heights = ->
     # create a jQuery deferred object
@@ -33,4 +32,4 @@ trips_namespace = trips_namespace || {}
     # $(window).on "resize", wrap_widths
     wrap_heights().done create_iscrollers
     
-) trips_namespace
+) window.trips_namespace = window.trips_namespace or {}, jQuery

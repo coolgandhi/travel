@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery.ui.datepicker
 //= require Sitewide/preload.js
+//= require Sitewide/venue_details.js
 //= require jquery_ujs
 //= require iscroll
 //= require jquery.scrollTo
