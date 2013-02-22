@@ -49,7 +49,7 @@ module TripsHelper
             :category => category,
             :image_url => image_url,
             :activity_venue_name => activity_venue_name,
-            :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial/", 
+            :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial", 
             :layout => lay_out   
           }
         )             
