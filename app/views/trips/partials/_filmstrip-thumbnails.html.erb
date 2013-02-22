@@ -37,7 +37,7 @@
           <% end %>
 
           <!-- About the Author Last Slide -->
-           <li class="media <%=@sorted_activities.length == 1 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= @sorted_activities.length %>)">
+           <li class="media <%=@sorted_activities.length == 1 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= @sorted_activities.length == 1 ? (@sorted_activities.length - 1)  : @sorted_activities.length %>)">
             <!-- thumb-wrapper div -->  
             <div class="thumb-wrap thumb-author"> 
               <!-- image -->              
