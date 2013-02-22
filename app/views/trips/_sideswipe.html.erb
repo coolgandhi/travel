@@ -58,9 +58,9 @@
   <%= image_tag("/assets/spinners/ajax-loader.gif", :class => "swipe-loading-indicator") %>
   <%= render "trips/partials/trip-overview-modal" %>
   <!-- /navigation arrows -->
-  <div class="bottomnavigationbar" id="leftnavigation" onclick="gallery.prev()"><i class="icon-chevron-left"></i></div>
+  <div class="bottomnavigationbar" id="leftnavigation" onclick="trips_namespace.gallery.prev()"><i class="icon-chevron-left"></i></div>
         
-  <div class="bottomnavigationbar" id="rightnavigation" onclick="gallery.next()"  ><i class="icon-chevron-right"></i></div>
+  <div class="bottomnavigationbar" id="rightnavigation" onclick="trips_namespace.gallery.next()"  ><i class="icon-chevron-right"></i></div>
   <!-- /end navigation arrows -->
 
   <div id="loadjs" data-activities="<%= @compressed_activities.to_json %>">

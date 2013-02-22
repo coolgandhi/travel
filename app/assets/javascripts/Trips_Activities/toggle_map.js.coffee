@@ -13,7 +13,7 @@
 
   jQuery ->
     $("#swipewrapper").on "click", "#mapShowHide", (e) ->
-      req = slides[gallery.pageIndex].tripid + "/trip_activities/" + slides[gallery.pageIndex].activityid + "/mapinfo"
+      req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
       mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
       $.ajax
         beforeSend: ->
