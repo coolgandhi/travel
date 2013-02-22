@@ -21,6 +21,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @author = @trip.author_info
     @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+    logger.info "here #{@compressed_activities.inspect} \n\n #{@compressed_activities.to_json.inspect}"
      
     #logger.info "show trip #{@sorted_activities.inspect}"    
     respond_to do |format|
