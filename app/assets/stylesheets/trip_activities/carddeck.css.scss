@@ -411,6 +411,7 @@ p.description_content{
   // padding: 2.5% 2.0% 2.5% 3.5%; //left and right off by 1.2% because of the gutter between photo and caption
   margin-left: 1%;
   overflow: hidden;
+  position: relative;
 
   @include respond-to(portrait){
   }
@@ -717,6 +718,55 @@ div.rightcaption .ui-accordion-content {
     float: right;
     margin-left: 0.5em;
   }
+}
+
+#mapModal{
+  @include box-sizing(border-box);
+  width: 96%;
+  height: 90%;
+  position: absolute;
+  top: 5%;
+  left: 0;
+  margin-left: 2%;
+  margin-top: 0%;
+  background-color: rgba(255,255,255,0.9);
+  @include border-radius($myDivBorderRadius);
+  border-color: $borderGray;
+  z-index: 102;
+  overflow: hidden;
+
+  .modal-header{
+    border-bottom: $myDivBorderWidth solid $borderGray;
+  }  
+  .modal-body{
+    height: 100%;
+    max-height: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+#modal_map{
+ height: 100%;
+ width: 100%;
+ position: absolute;
+ left:0;
+ top:0;
+ img{max-width:none}
+}
+
+.mapModalMask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 101;
+  background-color: rgba(0,0,0, 0.8);
+  display: none;
 }
 
 #trip_map{

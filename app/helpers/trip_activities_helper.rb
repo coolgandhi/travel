@@ -90,7 +90,8 @@ module TripActivitiesHelper
     alt_name
   end
   
-  def get_trip_map_info(trip_activities_info)
+  def get_trip_map_info(trip_activities_info, current_activity)
+    logger.info { "\n\n\n\ntripdetails...  #{current_activity}"}
     trip_map_info = Array.new
     i = 0;
     trip_activities_info.each { |trip_activity|
@@ -100,7 +101,7 @@ module TripActivitiesHelper
               trip_map_info[i] =  { name: "<b>" + trip_activity.activity.restaurant_detail[:name] + "</b>",
                                     address: "<address>" + check_empty_detail(trip_activity.activity.restaurant_detail[:address1])+ "<br>" + check_empty_detail(trip_activity.activity.restaurant_detail[:city])+ ", " + check_empty_detail(trip_activity.activity.restaurant_detail[:state]) + " " + check_empty_detail(trip_activity.activity.restaurant_detail[:zip]) + "</address>",
                                     location: trip_activity.activity.restaurant_detail[:latitude] + "," + trip_activity.activity.restaurant_detail[:longitude],
-                                    logo: "map-markers-blue-food.png" 
+                                    logo: trip_activity.id.to_i == current_activity.to_i ? "map-markers-red-food.png" : "map-markers-blue-food.png"
                                   }
               i = i + 1
             end
