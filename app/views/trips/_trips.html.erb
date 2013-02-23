@@ -1,13 +1,29 @@
-<table>
-  <% @trips.each do |trip| %>
-    <tr>
-      <td><%= trip.trip_name %></td>
-      <td><%= link_to 'Show', trip %></td>
-      <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-      <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+  <ul class="thumbnails">
+    <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
+      <% @trips.each do |trip| %>
+        <li class="span4">
+          <div class="thumbnail">
+            <img src="<%= select_image_given_image_urls(trip.image_url, 300) %>" alt="Trip Image">
+            <div class="caption">
+              <table>
+                <tr>          
+                <td><%= trip.trip_name %></td>
+                <td><%= trip.trip_summary %></td>              
+                <td><%= link_to 'Show', trip %></td>
+                <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+                <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>                
+                <div id="fb-root"></div>
+                <div class="fb-like" data-href="http://espn.com" data-send="true" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend">
+                </div>
+              </table>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </div>
+  </ul>
+  
 <div>
 here we go
 <br/><br/><br/>

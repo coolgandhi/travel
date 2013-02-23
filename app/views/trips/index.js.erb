@@ -1,7 +1,12 @@
 $('#trips').append('<%= escape_javascript(render("trips")) %>');
+try
+  {
+       FB.XFBML.parse(document.getElementById('<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>'));  // triggering fb xml parse on the newly added trips_page div only
+  }catch(ex){}
+
 <% if @trips.next_page %>
-	$('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
+  $('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
 <% else %>
-	$('.pagination').remove();
+  $('.pagination').remove();
 <% end %>
 <% sleep 2 %>

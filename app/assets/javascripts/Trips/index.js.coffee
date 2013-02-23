@@ -10,7 +10,10 @@
     $("#to").datepicker('setDate', queryDate + 3)
   
     $("#trips").on "click", ".pagination a", (e) ->
-      $.getScript(this.href)
+      $.getScript this.href, ->
+        try
+          FB.XFBML.parse()
+        return
       return false
 
     $('#scrolltotop').on "click", null, (e) ->
@@ -26,8 +29,7 @@
         url = $('.pagination .next_page').attr('href')
         if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
           $('.pagination').text('Fetching pins')
-          $.getScript(url)
-          # $('#scrolltotop').fadeIn("slow")
+          $.getScript url
           return
         if $(window).scrollTop() > 0
           $('#scrolltotop').fadeIn("slow")

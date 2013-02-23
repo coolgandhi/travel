@@ -4,31 +4,9 @@ module TripActivitiesHelper
   def check_empty_detail(attribute)
     attribute == "" ? "--" : attribute
   end
-
-  def select_closest_image(images, width)
-    image = ""
-    index = 0
-    while index < images.length
-      y = images[index + 1].to_s.split("X")
-      if (((width + 50) >  y[0].to_i) and (y[0].to_i > (width - 50)))
-        image = images[index]
-        break
-      end
-      index = index + 2
-    end
-    
-    if image == ""
-      if image.length > 2
-        image = images[2] # always return the second sized image,  best case effort if available
-      else
-        image = images[0]
-      end
-    end
-    
-    image
-  end
   
   # This function gets the image that we want to show on an activity card
+  # index details which image to pick if multiple images
   def select_activity_img(activity_id, image_urls, width, index = 0)
     if activity_id != -1
       if activity_id.activity.image_urls.nil? or activity_id.activity.image_urls == ""
@@ -42,18 +20,8 @@ module TripActivitiesHelper
       end
     end
     
-    y = image_urls.to_s.split(";")
     
-    if index < y.length
-      y = y[index]
-    elsif y.length > 0
-      y = y[0]
-    else
-      return ""
-    end
-    
-    z = y.split(",")      
-    image = select_closest_image(z, width)
+    image = select_image_given_image_urls(image_urls, width, index)
       #z is in the format of
         #[["https://is1.4sqi.net/pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk.jpg", "612X612", "https://is0.4sqi.net/derived_pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk_300x300.jpg", "300X300", "https://is0.4sqi.net/derived_pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk_100x100.jpg", "100X100", "https://is0.4sqi.net/derived_pix/77727_kohZm1hN4NDZ6kQVznu7SGUkWk7NeJz6W9Xwa_heiqk_36x36.jpg", "36X36"],...]
         #z[picture][size]. odd index numbers are the dimensions and even are urls to the right size in descending size order

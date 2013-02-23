@@ -123,4 +123,50 @@ module ApplicationHelper
     end
     @activity_detail
   end
+  
+  
+  
+  def select_closest_image(images, width)
+    image = ""
+    index = 0
+    while index < images.length
+      y = images[index + 1].to_s.split("X")
+      if (((width + 50) >  y[0].to_i) and (y[0].to_i > (width - 50)))
+        image = images[index]
+        break
+      end
+      index = index + 2
+    end
+    
+    if image == ""
+      if image.length > 2
+        image = images[2] # always return the second sized image,  best case effort if available
+      else
+        image = images[0]
+      end
+    end
+    
+    image
+  end
+  
+  # index details which image to pick if multiple images
+  def select_image_given_image_urls(image_urls, width, index = 0)
+    if image_urls.nil? or image_urls == ""
+      return "assets/Image_Missing.png"
+    end
+    
+    y = image_urls.to_s.split(";")
+    
+    if index < y.length
+      y = y[index]
+    elsif y.length > 0
+      y = y[0]
+    else
+      return ""
+    end
+    
+    z = y.split(",")
+    image = select_closest_image(z, width)
+  end
+  
 end
