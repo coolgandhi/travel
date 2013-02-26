@@ -25,5 +25,4 @@
 //= require facebook-plugins
 //= require picturefill
 //= require swipeview
-//= require_tree .
-
+//= require jquery.multiselect

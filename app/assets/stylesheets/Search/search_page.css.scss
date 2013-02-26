@@ -1,0 +1,68 @@
+.big-image-header{
+  position: relative;
+  @include clearfix;
+  height: 470px;
+  padding: 0;
+}
+
+.splash-image-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 470px;
+  width: 100%;
+  background-color: $black;
+  background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
+  background-repeat: no-repeat;
+  background-size: 1200px auto;
+  background-position-x:center;
+  // margin: 0 auto;
+}
+
+.splash-form-container{
+  position: absolute;
+  top: 25%;
+  left: 0;
+  width: 100%;
+  // margin: 0 auto;
+  .form-centering{
+  	position: relative;
+  	width: 50%;
+  	margin: 0 auto;
+  	// text-align: center;
+  	.hero-form{
+  	  color: white;
+  	  font-size: 2em;
+  	  font-weight: 300;
+  	  text-shadow: 1px 1px 0 black;
+  	}
+  }
+}
+
+#place-text-field{
+  height: 2em;
+}
+
+.ui-multiselect.traveler-type-multiselect{
+  margin-bottom: 0.8em;
+  height: 2em;
+  font-size: 0.5em;
+}
+
+.ui-multiselect-menu.traveler-type-multiselect{
+
+}
+
+#trips-results-container{
+  position: relative;
+  // @include col(12);
+  // width: 100%;
+}
+
+.trip-result-thumbnail-li{
+  @include col(4);
+}
+
+.trip-result-thumbnail-div{
+  height: 370px;
+}

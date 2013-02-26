@@ -1,8 +1,8 @@
   <ul class="thumbnails">
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
       <% @trips.each do |trip| %>
-        <li class="span4">
-          <div class="thumbnail">
+        <li class="trip-result-thumbnail-li">
+          <div class="thumbnail trip-result-thumbnail-div">
             <img src="<%= select_image_given_image_urls(trip.image_url, 300) %>" alt="Trip Image">
             <div class="caption">
               <table>
@@ -23,22 +23,3 @@
       <% end %>
     </div>
   </ul>
-  
-<div>
-here we go
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-i lik it
-<br/><br/><br/>
-hhhkkkkklllllmmmm
-<br/><br/><br/>
-jknkjnknk 
-<br/><br/><br/> 
-</div>
-  
-
-<br/>
-<br />

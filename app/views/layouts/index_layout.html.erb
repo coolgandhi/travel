@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Chalo" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <%= stylesheet_link_tag "index", :media => "all" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%# stylesheet_link_tag "jquery.ui.datepicker.css.erb" %>
+    <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "index" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+
+  <!--removing top padding-->
+  <body style="padding-top:0px;">
+  <!-- Preloader -->
+  <div id="preloader">
+      <div id="status">&nbsp;</div>
+  </div>
+  
+  <%= render 'layouts/navigation' %>
+
+  <%= yield %>
+ 
+
+  </body>
+</html>

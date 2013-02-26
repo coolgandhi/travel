@@ -129,7 +129,7 @@ $gridGutterWidth:         20px !default; //changed this from 20px
 $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
 
 // 1200px min
-$gridColumnWidth1200:     70px !default; //changed from 70
+$gridColumnWidth1200:     80px !default; //changed from 70
 $gridGutterWidth1200:     20px !default; //changed from 30
 $gridRowWidth1200:        ($gridColumns * $gridColumnWidth1200) + ($gridGutterWidth1200 * ($gridColumns - 1)) !default;
 
@@ -141,10 +141,19 @@ $gridRowWidth768:         ($gridColumns * $gridColumnWidth768) + ($gridGutterWid
 @import "bootstrap";
 body { padding-top: 60px; }
 
+// @import "bootstrap-responsive";
+
 //media query on responsive bootstrap grid so only responsive up to large device size but also using Modernizr's .touch class to only load for touch-enabled.
 .touch{
   @media all and (max-width: $break-large - 1) {
 	@import "bootstrap-responsive";
+  }
+}
+
+//make the grid wide when widescreen! a 1200px grid
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+  @include respond-to(widescreen){
+    width: 1180px;
   }
 }
 

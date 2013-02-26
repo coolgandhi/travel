@@ -1,4 +1,4 @@
-((trips_namespace, $, undefined_) ->
+((search_namespace, $, undefined_) ->
 
   $ ->
     $("#from").datepicker()
@@ -9,7 +9,7 @@
   
     $("#to").datepicker('setDate', queryDate + 3)
   
-    $("#trips").on "click", ".pagination a", (e) ->
+    $("#trips-results-container").on "click", ".pagination a", (e) ->
       $.getScript this.href, ->
         try
           FB.XFBML.parse()
@@ -29,7 +29,9 @@
         url = $('.pagination .next_page').attr('href')
         if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
           $('.pagination').text('Fetching pins')
-          $.getScript url
+          $('.swipe-loading-indicator-footer').show()
+          $.getScript(url).done ->
+            $('.swipe-loading-indicator-footer').hide()
           return
         if $(window).scrollTop() > 0
           $('#scrolltotop').fadeIn("slow")
@@ -38,4 +40,4 @@
       # $(window).scroll()
     return
   
-) window.trips_namespace = window.trips_namespace or {}, jQuery
+) window.search_namespace = window.search_namespace or {}, jQuery

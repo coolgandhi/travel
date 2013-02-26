@@ -24,9 +24,11 @@ Travel::Application.routes.draw do
   resources :trip_activities
 
   resources :trips do
+    
     member do
       get 'showpartial'
     end
+
     resources :trip_activities do
       member do
         get 'mapinfo'

@@ -11,29 +11,71 @@
   <meta property="fb:app_id" content="537855380,3406777"/>
 <% end %>
 
+<!-- Begin Hero Unit -->
+<div class="hero-unit big-image-header">
+    <!-- Begin Splash Image Container -->
+    <div class = "splash-image-container">
+      <!-- Begin Splash Form Container -->
+      <div class = "splash-form-container">
+        <!-- Begin Form Centering -->
+        <div class ="form-centering">
+        <%= form_tag trips_path, :method => 'get', :remote => true do %>
+          <p class ="hero-form">
+            
+            <span>Show me trip summaries for 
+            <%= text_field_tag "place-text-field", params[:place], :placeholder => "you would like to go to?" %>
+            <%= hidden_field_tag "trip_location_id", params[:trip_location_id] %> <br/>
+            </span>
+            
+            <span>
+            as a     
+            <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
+            <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>
+            traveler
+           </span>
+            <br/>
 
-<%= stylesheet_link_tag "jquery.ui.datepicker.css.erb" %>
+            <span> 
+            between <%= text_field_tag :from, params[:from] %> and
+            <%= text_field_tag :to, params[:to] %> 
+            </span> 
+            <br/>
+            
+            <%= submit_tag "Search Trips", :name => nil, :class => 'btn' %>
+          </p>
+        <% end %>
+        </div>
+        <!-- End Form Centering -->
+      </div>
+      <!-- End Splash Form Container -->
+    </div>
+    <!-- End Splash Image Container -->
+  </div>
+  <!-- End Hero Unit -->
 
-<%= link_to 'New Trip', new_trip_path %>
-
-<%= form_tag trips_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag "place", params[:place], :placeholder => "you would like to go to?" %>
-    <%= hidden_field_tag "trip_location_id", params[:trip_location_id] %>
-     as a <br/>    
-    <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> traveler between <br/> 
-    <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true %>
-    <%= text_field_tag :from, params[:from] %> and
-    <%= text_field_tag :to, params[:to] %> <br/>
-    <%= submit_tag "Search Trips", :name => nil %>
-  </p>
-<% end %>
+<div class="container" id="maincontainer">
+    <div class="content">
+       <div class="row">
+        <div class="span12">
+          <%= render 'layouts/messages' %>
+        </div>
+      </div>
+    </div>
 
 <br/>
 <%= @message_with_trip_render %> 
 <br/>
-<div id="trips"><%= render 'trips' %></div>
+<div class="row" id="trips-results-container"><%= render 'trips' %></div>
 
-<%= will_paginate @trips %>
+<div id="page-pagination-div">
+  <%= will_paginate @trips %>
+</div>
 <a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
 
+
+<footer>
+  <%= image_tag("/assets/spinners/ajax-loader-transparent.gif", :class => "swipe-loading-indicator-footer") %>
+  <%= link_to 'New Trip', new_trip_path %>
+</footer>
+
+</div> <!--! end of .container -->

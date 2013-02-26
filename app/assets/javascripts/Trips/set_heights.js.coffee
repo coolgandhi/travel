@@ -22,7 +22,7 @@
       commentScroller = new iScroll("bottom-actionlinks")
       overviewScroller = new iScroll("trip-overview-modal")
     else
-     	console.log('no touch')
+     	''
 
   # calling the methods above
   $(document).ready ->

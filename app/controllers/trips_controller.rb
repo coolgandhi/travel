@@ -1,11 +1,12 @@
 class TripsController < ApplicationController
   include TripsHelper
-  layout "showtriplayout", :only => [:show]
+  layout :resolve_layout
+
   # GET /trips
   # GET /trips.json
   def index
     @trips, @message_with_trip_render = Trip.search(params)
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 5)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
 
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
@@ -115,6 +116,19 @@ class TripsController < ApplicationController
     
     @partial_layout = params[:layout]
     render :partial => "#{@partial_layout}", :layout => false
+  end
+
+  private
+
+  def resolve_layout
+    case action_name
+    when "show"
+      "showtriplayout"
+    when "index"
+      "index_layout"
+    else
+      "application"
+    end
   end
 
 end
