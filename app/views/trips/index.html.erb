@@ -30,6 +30,21 @@
 <% end %>
 
 <br/>
+<% if @trips_locations %>
+  <% @trips_locations.each do |trips_location| %>
+    <%= trips_location.name %>
+    <br/>
+  <% end %>
+<% end %>
+
+<% if @trips_restaurants %>
+  <% @trips_restaurants.each do |trips_restaurant| %>
+    <%= trips_restaurant.name %>
+    <%= trips_restaurant.food_activities.count %>
+    <br/>
+  <% end %>
+<% end %>
+<br/> <br/>
 <%= @message_with_trip_render %> 
 <br/>
 <div id="trips"><%= render 'trips' %></div>

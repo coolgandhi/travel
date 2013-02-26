@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220011655) do
+ActiveRecord::Schema.define(:version => 20130226020050) do
 
   create_table "activity_time_types", :force => true do |t|
     t.string   "activity_time_type_id"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20130220011655) do
     t.text     "image_urls"
   end
 
+  add_index "food_activities", ["restaurant_detail_id"], :name => "restaurant_detail_index"
+
   create_table "location_activities", :force => true do |t|
     t.string   "activity_id"
     t.string   "location_detail_id"
@@ -70,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20130220011655) do
     t.datetime "updated_at",         :null => false
     t.text     "image_urls"
   end
+
+  add_index "location_activities", ["location_detail_id"], :name => "location_detail_index"
 
   create_table "location_details", :force => true do |t|
     t.string   "location_detail_id"
@@ -91,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130220011655) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.text     "image_urls"
+    t.string   "location_id"
   end
 
   add_index "location_details", ["location_detail_id"], :name => "location_detail_index", :unique => true
@@ -129,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20130220011655) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.text     "image_urls"
+    t.string   "location_id"
   end
 
   add_index "restaurant_details", ["restaurant_detail_id"], :name => "restaurant_detail_index", :unique => true

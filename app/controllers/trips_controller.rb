@@ -6,7 +6,15 @@ class TripsController < ApplicationController
   def index
     @trips, @message_with_trip_render = Trip.search(params)
     @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 5)
-
+    
+    @trips_locations = nil
+    @trips_restaurants = nil
+    
+    if (params[:trip_location_id] and params[:trip_location_id] != "") 
+      @trips_locations = LocationDetail.search(params[:trip_location_id])
+      @trips_restaurants = RestaurantDetail.search(params[:trip_location_id])
+    end
+    
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
       format.html # index.html.erb
