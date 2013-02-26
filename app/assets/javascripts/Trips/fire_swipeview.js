@@ -12,8 +12,10 @@
     // dots2 = document.querySelectorAll('#navswipe2 li'),
     trips_namespace.slides = $('#loadjs').data('activities') //this returns an array of hashes formatted in trip_helper.rb
 
-    trips_namespace.gallery = new SwipeView('#swipewrapper', { numberOfPages: trips_namespace.slides.length, hastyPageFlip: true, loop: true });
+    trips_namespace.gallery = new SwipeView('#swipewrapper', { numberOfPages: trips_namespace.slides.length, hastyPageFlip: true, loop: true, handleMouseSwiping: true });
     // prevent swipeview from resizing itself on orientation change, instead use `resize` event per git issue 16
+    // window.removeEventListener('swipeview-touchstart', this.preventDefault(), false);
+
     window.removeEventListener('orientationchange', trips_namespace.gallery, false);
     window.addEventListener('resize', function(e) {
     trips_namespace.gallery.__resize();
@@ -94,6 +96,9 @@
     //scrollTo implementation here for scrolling filmstrip container to go with what's active
     var $scrollTarget = $('.filmstrip').find('li:eq('+ (trips_namespace.gallery.pageIndex) + ')');
     $('.filmstrip').scrollTo($scrollTarget, 500, { offset:{ top:-150 } } );
+
+    //close the map modal
+    trips_activities_namespace.closeMapModal();
 
     });
 

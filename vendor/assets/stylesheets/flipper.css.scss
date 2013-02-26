@@ -54,6 +54,10 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 .front {
   z-index: 1;
   overflow: hidden;
+  background-color: $black;
+  @include respond-to(portrait){
+    overflow: auto;
+  }
 }
 
 /* back, initially hidden pane */
@@ -63,23 +67,23 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
   display: none;
 }
 
-/* extraside, initially hidden pane */
-.extraside {
-  @include rotateX(-180deg);
-  display: none;
-  @include border-radius($myDivBorderRadius);
-  border-color: $borderGray;
-  border-width: $myDivBorderWidth;
-  border-style: solid;
-  @include box-shadow($myDivBoxShadow);
-  @include box-sizing(border-box);
-  padding: 0.75em;
-  overflow: hidden;
-  overflow-y: auto;
-  .dl-horizontal dt{
-    text-align: left;
-  }
-}
+// /* extraside, initially hidden pane */
+// .extraside {
+//   @include rotateX(-180deg);
+//   display: none;
+//   @include border-radius($myDivBorderRadius);
+//   border-color: $borderGray;
+//   border-width: $myDivBorderWidth;
+//   border-style: solid;
+//   @include box-shadow($myDivBoxShadow);
+//   @include box-sizing(border-box);
+//   padding: 0.75em;
+//   overflow: hidden;
+//   overflow-y: auto;
+//   .dl-horizontal dt{
+//     text-align: left;
+//   }
+// }
 
 /* 2. FLIP CONTROL BUTTONS */
 
@@ -112,7 +116,49 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 //   background-color: #e6e6e6;
 // }
 
-#mapShowHide{
+// #mapShowHide{
+//   position: absolute;
+//   bottom: 2%;
+//   right: 2%;
+//   background: rgba(0,0,0,0.6) no-repeat center;
+//   background-image: "icon-globe";
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   border: 3px solid $white;
+//   text-align: center;
+//   color: $white;
+//   font-size: 35px;
+//   text-align: center;
+//   line-height: 50px;
+//   cursor:pointer;
+
+//   i{
+//     position:relative;
+//     top: 0%;
+//     left: -13%;
+//     margin:0;
+//   }
+//   &:hover{
+//     color: $gray;
+//     background: rgba(255, 255,255,0.6);
+//     border: 3px solid $gray;
+//   }
+//   &.active{
+//     background-image: "icon-globe";
+//     font-size: 25px;
+//     color: $gray;
+//     background: rgba(255, 255,255,0.6);
+//     border: 3px solid $gray;
+//       &:hover{
+//         color: $white;
+//         background: rgba(0,0,0,0.6) no-repeat center;
+//         border: 3px solid $white;
+//       }
+//   }
+// }
+
+#mapShow{
   position: absolute;
   bottom: 2%;
   right: 2%;
@@ -141,8 +187,48 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
     border: 3px solid $gray;
   }
   &.active{
-    background-image: "icon-globe";
-    font-size: 25px;
+    font-size: 35px;
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    border: 3px solid $gray;
+      &:hover{
+        color: $white;
+        background: rgba(0,0,0,0.6) no-repeat center;
+        border: 3px solid $white;
+      }
+  }
+}
+
+#mapHide{
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  background: rgba(0,0,0,0.6) no-repeat center;
+  background-image: "icon-remove";
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid $white;
+  text-align: center;
+  color: $white;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+  cursor:pointer;
+
+  i{
+    position:relative;
+    top: 0%;
+    left: -13%;
+    margin:0;
+  }
+  &:hover{
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    border: 3px solid $gray;
+  }
+  &.active{
+    font-size: 35px;
     color: $gray;
     background: rgba(255, 255,255,0.6);
     border: 3px solid $gray;

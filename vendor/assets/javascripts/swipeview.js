@@ -73,7 +73,8 @@ var SwipeView = (function (window, document) {
 				numberOfPages: 3,
 				snapThreshold: null,
 				hastyPageFlip: false,
-				loop: true
+				loop: true,
+				handleMouseSwiping: true //added this to disable mouseswiping
 			};
 		
 			// User defined options
@@ -115,11 +116,14 @@ var SwipeView = (function (window, document) {
 			this.masterPages[1].style.left = this.page * 100 + '%';
 			this.masterPages[2].style.left = this.page * 100 + 100 + 0 + '%';
 
-			window.addEventListener(resizeEvent, this, false);
-			this.wrapper.addEventListener(startEvent, this, false);
-			this.wrapper.addEventListener(moveEvent, this, false);
-			this.wrapper.addEventListener(endEvent, this, false);
-			this.slider.addEventListener(transitionEndEvent, this, false);
+			//added this handleMouseSwiping to disable mouseswiping
+			if ( hasTouch || this.options.handleMouseSwiping ) {
+				window.addEventListener(resizeEvent, this, false);
+				this.wrapper.addEventListener(startEvent, this, false);
+				this.wrapper.addEventListener(moveEvent, this, false);
+				this.wrapper.addEventListener(endEvent, this, false);
+				this.slider.addEventListener(transitionEndEvent, this, false)
+			};
 			// in Opera >= 12 the transitionend event is lowercase so we register both events
 			if ( vendor == 'O' ) this.slider.addEventListener(transitionEndEvent.toLowerCase(), this, false);
 

@@ -25,7 +25,8 @@ class TripActivity < ActiveRecord::Base
   def prev_activities_sequence_number
     day = (activity_day.nil? or activity_day == "") ? "0" : activity_day
     sequence = (activity_sequence_number.nil? ) ? 0: activity_sequence_number
-  	trip.trip_activities.where("activity_sequence_number <= ? and activity_day = ?", sequence, day).order(:activity_sequence_number)
+  	# trip.trip_activities.where("activity_sequence_number <= ? and activity_day = ?", sequence, day).order(:activity_sequence_number)
+    trip.trip_activities.where("activity_day = ?", day).order(:activity_sequence_number)
   end
 
 end

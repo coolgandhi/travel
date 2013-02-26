@@ -57,6 +57,25 @@
 <div id="wrappiest">
   <%= image_tag("/assets/spinners/ajax-loader.gif", :class => "swipe-loading-indicator") %>
   <%= render "trips/partials/trip-overview-modal" %>
+
+<!-- Container that fills the screen: do not remove! -->    
+    <div class="mapModalMask"></div>
+
+<!-- Map Modal -->
+  <div id="mapModal" class="modal hide fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-body">
+      
+      <!-- Begin Button Group -->  
+      <div id="moreShowHideGroup">
+        <div id="mapHide" class="icon-remove"></div>
+      </div>
+      <!-- End Button Group -->  
+      
+      <div id="modal_map"></div>
+    </div>
+  </div>
+<!-- End Map Modal -->
+
   <!-- /navigation arrows -->
   <div class="bottomnavigationbar" id="leftnavigation" onclick="trips_namespace.gallery.prev()"><i class="icon-chevron-left"></i></div>
         

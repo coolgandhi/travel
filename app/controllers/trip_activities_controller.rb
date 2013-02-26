@@ -161,9 +161,10 @@ class TripActivitiesController < ApplicationController
     #logger.info { "mapinfo #{params.inspect}"}
     @trip_activity = @trip.trip_activities.find(params[:id])
     @trip_details = @trip_activity.prev_activities_sequence_number
+    @current_activity = params[:id]
     #logger.info { "\n\ntripdetails...  #{@trip_details.inspect}"}
     
-    @trip_map_info = get_trip_map_info @trip_details
+    @trip_map_info = get_trip_map_info @trip_details, @current_activity
     
     #logger.info "here #{@trip_map_info.inspect}"
     respond_to do |format|

@@ -1,25 +1,63 @@
 
 ((trips_activities_namespace, $, undefined_) ->
 
-  jQuery ->
-    $("#swipewrapper").on "click", "#mapShowHide", (e) ->
-      $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
-      if Modernizr.csstransitions
-        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
-      else
-        $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.front').toggle('slow')
-      $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
-      $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
+  # jQuery ->
+  #   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
+  #     $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.back').show()
+  #     if Modernizr.csstransitions
+  #       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
+  #     else
+  #       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.front').toggle('slow')
+  #     $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
+  #     $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
+  #     $('#mapModal').modal('toggle')
+
+  trips_activities_namespace.closeMapModal = ->
+    $('#mapModal').modal('hide')
+    $('.mapModalMask').fadeOut('slow')
 
   jQuery ->
-    $("#swipewrapper").on "click", "#mapShowHide", (e) ->
+    $("#swipewrapper").on "click", "#mapShow", (e) ->
+      $('#mapModal').modal('show')
+      $('.mapModalMask').fadeIn('slow')
+
+  jQuery ->
+    $("#mapHide").click ->
+      trips_activities_namespace.closeMapModal()
+
+  jQuery ->
+    $(document).bind "keydown", (e) ->
+      $('.mapModalMask').fadeOut('slow') if e.which is 27
+
+
+
+  # jQuery ->
+  #   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
+  #     req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
+  #     mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
+  #     $.ajax
+  #       beforeSend: ->
+  #         $(".swipe-loading-indicator").show()
+  #       type: "GET"
+  #       url: req  
+  #       dataType: "json"
+  #       context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
+  #       complete: ->
+  #         $(".swipe-loading-indicator").hide()
+  #       success: (data) ->
+  #         restore(mapcontainer)
+  #         addmarkers(data, mapcontainer)
+  #         addpolyline(data, mapcontainer)
+  #         return             
+  jQuery ->
+    $("#swipewrapper").on "click", "#mapShow", (e) ->
       req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
-      mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
+      mapcontainer = $('#modal_map')
       $.ajax
         beforeSend: ->
           $(".swipe-loading-indicator").show()
         type: "GET"
-        url: req  
+        url: req
         dataType: "json"
         context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
         complete: ->
@@ -27,16 +65,14 @@
         success: (data) ->
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
-          addpolyline(data, mapcontainer)  
-          return             
-          
-           
-  # don't need this anymore since we can load multiple maps
+          addpolyline(data, mapcontainer)
+          return       
+                    
   restore = (mapcontainer) ->
-    mapcontainer.gmap3 action: "destroy"
+    mapcontainer.gmap3('destroy') 
     # container = mapcontainer.parent()
     # mapcontainer.remove()
-    # container.append "<div id=\"trip_map\"></div>"
+    # container.append '<div id="modal_map"></div>'
     return
 
   addmarkers = (data, mapcontainer) ->
@@ -51,11 +87,19 @@
           icon: new google.maps.MarkerImage("/assets/markers/" + data[i].logo, new google.maps.Size(40, 40), new google.maps.Point(4+((i%10)*47), 4+((Math.floor(i/10)*42))), new google.maps.Point(11.5, 37.9)) 
     return if arrobject.length < 1
     mapcontainer.gmap3
+      # map:
+      #   events:
+      #     idle: () ->
+      #       map = $(this).gmap3("get") #gets the google map rendered object
+      #       google.maps.event.addListener(map, "drag", ->
+      #         console.log("yoyoyo")
+      #         google.maps.event.clearListeners(map, "drag") #this needs to be here or listeners multiply
+      #       )
       marker:
         values: arrobject
         options:
           draggable: false
-          # animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP
         events:
           click: () ->
           mouseover: (marker, event, context) ->
@@ -136,6 +180,5 @@
           strokeOpacity: 0.6
           strokeWeight: 4
           path: arrobject
-
 
 ) window.trips_activities_namespace = window.trips_activities_namespace or {}, jQuery
