@@ -30,17 +30,20 @@
 <% end %>
 
 <br/>
-<% if @trips_locations %>
-  <% @trips_locations.each do |trips_location| %>
-    <%= trips_location.name %>
+<% if @locations %>
+  <% @locations.each do |location| %>
+    <%= location.name %>
+    <%= location.location_activities.count %>
+    <%= link_to location.name, params.merge({:location => location.location_detail_id}) %>
     <br/>
   <% end %>
 <% end %>
-
-<% if @trips_restaurants %>
-  <% @trips_restaurants.each do |trips_restaurant| %>
-    <%= trips_restaurant.name %>
-    <%= trips_restaurant.food_activities.count %>
+<br/> <br/>
+<% if @restaurants %>
+  <% @restaurants.each do |restaurant| %>
+    <%= restaurant.name %>
+    <%= restaurant.food_activities.count %>
+     <%= link_to restaurant.name, params.merge({:restaurant => restaurant.restaurant_detail_id}) %>
     <br/>
   <% end %>
 <% end %>
