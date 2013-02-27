@@ -2,7 +2,7 @@
   <% @locations.each do |location| %>
     <%= location.name %>
     <%= location.location_activities.count %>
-    <%= link_to location.name, params.merge({:location => location.location_detail_id}) %>
+    <%= link_to location.name, params.merge({:location => location.location_detail_id}), :remote=>true %>
     <br/>
   <% end %>
 <% end %>
@@ -11,7 +11,7 @@
   <% @restaurants.each do |restaurant| %>
     <%= restaurant.name %>
     <%= restaurant.food_activities.count %>
-     <%= link_to restaurant.name, params.merge({:restaurant => restaurant.restaurant_detail_id}) %>
+     <%= link_to restaurant.name, params.merge({:restaurant => restaurant.restaurant_detail_id}), :remote=>true %>
     <br/>
   <% end %>
 <% end %>

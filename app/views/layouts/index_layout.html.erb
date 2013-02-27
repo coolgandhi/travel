@@ -16,17 +16,16 @@
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-
   <!--removing top padding-->
   <body style="padding-top:0px;">
-  <!-- Preloader -->
-  <div id="preloader">
-      <div id="status">&nbsp;</div>
-  </div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
   
-  <%= render 'layouts/navigation' %>
+    <%= render 'layouts/navigation' %>
 
-  <%= yield %>
+    <%= yield %>
  
 
   </body>
