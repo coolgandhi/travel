@@ -1,13 +1,21 @@
 class TripsController < ApplicationController
   include TripsHelper
   layout :resolve_layout
-
   # GET /trips
   # GET /trips.json
   def index
     @trips, @message_with_trip_render = Trip.search(params)
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
-
+    @trips, @message_with_trip_render = get_trips_filtered_by_landmarks(params, @trips, @message_with_trip_render)
+    @locations = nil
+    @restaurants = nil
+    if (params[:trip_location_id] and params[:trip_location_id] != "" and (params[:page] == nil or params[:page] == "1"))
+      # generate landmark of interest only for the initial trip search with location, not while paginating 
+      @locations = LocationDetail.search(params[:trip_location_id])
+      @restaurants = RestaurantDetail.search(params[:trip_location_id])
+    end
+    
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 5)
+    
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
       format.html # index.html.erb

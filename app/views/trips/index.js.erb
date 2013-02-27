@@ -1,5 +1,6 @@
 <% if @trips.current_page == 1 %>
 	$('#trips-results-container').html('<%= escape_javascript(render("trips")) %>');
+	$('#trips-landmark-container').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>');
 <% else %>
 	$('#trips-results-container').append('<%= escape_javascript(render("trips")) %>');
 <% end %>

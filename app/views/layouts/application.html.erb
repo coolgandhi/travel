@@ -8,8 +8,10 @@
     <meta name="author" content="">
 
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "show_trip", :media => "all" %>
     <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "show_trip" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>

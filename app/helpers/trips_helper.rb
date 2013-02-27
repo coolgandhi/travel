@@ -105,4 +105,37 @@ module TripsHelper
     end
   end
 
+  def get_trips_filtered_by_landmarks params, trips, message_with_trip_render
+    if (params[:restaurant])
+      trip_restaurants = []
+      restaurant = RestaurantDetail.find_by_restaurant_detail_id(params[:restaurant])
+      food_activities = restaurant.food_activities
+      food_activities.each { |food_activity|
+        trip_restaurants.push(food_activity.trip_activity.trip)
+      }
+   
+      trips = trip_restaurants & trips
+      if trips.length == 0 || message_with_trip_render != " Check out your trips! " # find trips from same location as a minimum 
+        message_with_trip_render = "Can't find the trips with the specified constraints for #{restaurant.name}, adding trips which includes this restaurant"
+        trips = trip_restaurants
+      end
+    end
+
+    if (params[:location])
+      trip_locations = []
+      location = LocationDetail.find_by_location_detail_id(params[:location])
+      location_activities = location.location_activities
+      location_activities.each { |location_activity|
+        trip_locations.push(location_activity.trip_activity.trip)
+      }
+
+      trips = trip_locations & trips
+      if trips.length == 0 || message_with_trip_render != " Check out your trips! " # find trips from same location as a minimum 
+       message_with_trip_render = "Can't find the trips with the specified constraints for #{location.name}, adding trips which includes this restaurant"
+       trips = trip_locations
+      end
+    end
+    
+    return trips, message_with_trip_render
+  end
 end

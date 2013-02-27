@@ -71,7 +71,7 @@ class TripActivitiesController < ApplicationController
         @activity = FoodActivity.new(params[:food_activity])
         @activity.image_urls = params[:selected_images]
         if (@activity.restaurant_detail.nil? or @activity.restaurant_detail == 0)
-          @activity.restaurant_detail = create_food_venue(@activity[:restaurant_detail_id])
+          @activity.restaurant_detail = create_food_venue(@activity[:restaurant_detail_id], @trip.location_id)
         end
       elsif params[:trip_activity][:activity_type] == "TransportActivity"
         logger.info "transport acitivity"
@@ -81,7 +81,7 @@ class TripActivitiesController < ApplicationController
         @activity = LocationActivity.new(params[:location_activity])
         @activity.image_urls = params[:selected_images]
         if (@activity.location_detail.nil? or @activity.location_detail == 0)
-          @activity.location_detail = create_location_venue(@activity[:location_detail_id])
+          @activity.location_detail = create_location_venue(@activity[:location_detail_id], @trip.location_id)
         end
       end 
     
