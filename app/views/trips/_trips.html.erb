@@ -3,15 +3,14 @@
       <% @trips.each do |trip| %>
         <li class="trip-result-thumbnail-li">
           <div class="thumbnail trip-result-thumbnail-div">
-            <img src="<%= select_image_given_image_urls(trip.image_url, 300) %>" alt="Trip Image">
+            <%= link_to trip do %>
+              <%= image_tag(select_image_given_image_urls(trip.image_url, 300), {:class => "image-link-thumbnail"}) %>
+            <% end %>
             <div class="caption">
               <table>
                 <tr>          
                 <td><%= trip.trip_name %></td>
                 <td><%= trip.trip_summary %></td>              
-                <td><%= link_to 'Show', trip %></td>
-                <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-                <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>                
                 <div id="fb-root"></div>
                 <div class="fb-like" data-href="http://espn.com" data-send="true" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend">

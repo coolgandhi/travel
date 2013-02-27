@@ -29,9 +29,9 @@
         url = $('.pagination .next_page').attr('href')
         if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
           $('.pagination').text('Fetching pins')
-          $('.swipe-loading-indicator-footer').show()
+          $('.continuous-loading-indicator-wrapper').show()
           $.getScript(url).done ->
-            $('.swipe-loading-indicator-footer').hide()
+            $('.continuous-loading-indicator-wrapper').hide()
           return
         if $(window).scrollTop() > 0
           $('#scrolltotop').fadeIn("slow")

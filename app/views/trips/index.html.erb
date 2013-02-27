@@ -62,25 +62,6 @@
       </div>
     </div>
 
-<br/>
-<% if @locations %>
-  <% @locations.each do |location| %>
-    <%= location.name %>
-    <%= location.location_activities.count %>
-    <%= link_to location.name, params.merge({:location => location.location_detail_id}) %>
-    <br/>
-  <% end %>
-<% end %>
-<br/> <br/>
-<% if @restaurants %>
-  <% @restaurants.each do |restaurant| %>
-    <%= restaurant.name %>
-    <%= restaurant.food_activities.count %>
-     <%= link_to restaurant.name, params.merge({:restaurant => restaurant.restaurant_detail_id}) %>
-    <br/>
-  <% end %>
-<% end %>
-<br/> <br/>
 <%= @message_with_trip_render %> 
 <br/>
 <div class="row" id="trips-landmark-container"></div>
@@ -91,9 +72,12 @@
 </div>
 <a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
 
+<div class ='row continuous-loading-indicator-wrapper'>
+  <%= image_tag("/assets/spinners/ajax-loader-dots.gif", :class => "continuous-scroll-spinner") %>
+  <p>Loading Trips...</p>
+</div>
 
 <footer>
-  <%= image_tag("/assets/spinners/ajax-loader-transparent.gif", :class => "swipe-loading-indicator-footer") %>
   <%= link_to 'New Trip', new_trip_path %>
 </footer>
 
