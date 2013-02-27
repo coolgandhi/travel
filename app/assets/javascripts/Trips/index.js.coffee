@@ -1,4 +1,4 @@
-((search_namespace, $, undefined_) ->
+((trips_namespace, $, undefined_) ->
 
   $ ->
     $("#from").datepicker()
@@ -40,4 +40,4 @@
       # $(window).scroll()
     return
   
-) window.search_namespace = window.search_namespace or {}, jQuery
+) window.trips_namespace = window.trips_namespace or {}, jQuery

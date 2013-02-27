@@ -5,7 +5,6 @@
  @import "Sitewide/custom-grid-mixins"; //custom grid mix-in
  @import "Sitewide/forms.css.scss";
  @import "Sitewide/ie10"; //IE10 specific shizz
- @import "trips/index.css.scss"; 
  @import "trip_activities/carddeck.css.scss";
  @import "trip_activities/partials/offcanvas-slideout.css.scss";
  @import "trip_activities/partials/about_author.css.scss";
@@ -13,4 +12,5 @@
  @import "trip_activities/swipeview_style.css.scss";
  @import "trip_activities/scrolling_bars.css.scss";
  @import "Search/search_page.css.scss";
+ @import "Search/index.css.scss"; 
  @import "font-awesome.scss";
