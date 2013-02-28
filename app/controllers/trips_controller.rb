@@ -8,10 +8,16 @@ class TripsController < ApplicationController
     @trips, @message_with_trip_render = get_trips_filtered_by_landmarks(params, @trips, @message_with_trip_render)
     @locations = nil
     @restaurants = nil
+    @traveler_types = nil
+    
     if (params[:trip_location_id] and params[:trip_location_id] != "" and (params[:page] == nil or params[:page] == "1"))
       # generate landmark of interest only for the initial trip search with location, not while paginating 
       @locations = LocationDetail.search(params[:trip_location_id])
       @restaurants = RestaurantDetail.search(params[:trip_location_id])
+      
+      if (params[:traveler_type_id])
+        @traveler_types =TravelerType.where("traveler_type_id IN (?)", params[:traveler_type_id])
+      end
     end
     
     @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
