@@ -1,3 +1,16 @@
+Showing trips 
+<% if params["place-text-field"]  %> 
+ for <%=  params["place-text-field"] %>
+<% end %>
+<% if params["from"] and params["to"] %>
+ between <%= params["from"] %> to <%= params["to"] %> 
+<% end %>
+<% if params["traveler_type_id"] %>
+  for 
+  <% @traveler_types.each do |traveler_type| %>
+    <%= traveler_type[:traveler_type_name] %>
+  <% end %> 
+<% end %>
 <% if @locations %>
   <ul class="breadcrumb">
     <% @locations.each_with_index do |location, index| %>
