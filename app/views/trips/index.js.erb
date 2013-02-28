@@ -1,10 +1,18 @@
 <% if @trips.current_page == 1 %>
 	$('#trips-results-container').html('<%= escape_javascript(render("trips")) %>');
 	$('#trips-landmark-container').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>');
+	
+	// if there is the hero unit then remove it and inject in the condensed-searchbar. otherwise, do nothing
+	if ($('.big-image-header').length > 0) {
+	  $('.big-image-header').remove();
+	  $('.condensed-search-container').show();
+	} else {	
+	}
+
 <% else %>
 	$('#trips-results-container').append('<%= escape_javascript(render("trips")) %>');
 <% end %>
-	
+
 
 try
   {
@@ -21,3 +29,5 @@ try
   $('.pagination').remove();
 <% end %>
 <% sleep 2 %>
+
+
