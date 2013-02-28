@@ -1,9 +1,9 @@
 ((trips_namespace, $, undefined_) ->
 
   $ ->
-    $("#from, .from-datefield").datepicker()
+    $("#from, .from-datefield, .condensed-from-datefield").datepicker()
   
-    queryDate = $( "#from, .from-datefield" ).datepicker('setDate', new Date())
+    queryDate = $( "#from, .from-datefield, .condensed-from-datefield" ).datepicker('setDate', new Date())
   
     $("#to").datepicker()
   

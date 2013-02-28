@@ -6,31 +6,31 @@
       <div class = "splash-form-container">
         <!-- Begin Form Centering -->
         <div class ="form-centering">
-        <%= form_tag trips_path, :method => 'get', :remote => true do %>
-          <p class ="hero-form">
+        
+          <span class ="hero-form">
             
-            <span>Show me trip summaries for 
+            <span>Show me trip summaries for </span>
             </br>
-            <%= text_field_tag "place-text-field", params[:place], :placeholder => "where to?", :class => "place-text-field" %>
-            <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %> 
-            </span>
+            <%= form_tag trips_path, :method => 'get', :remote => true do %>
+              <%= text_field_tag "place-text-field", params[:place], :placeholder => "Where would you like to go?", :class => "place-text-field" %>
+              <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %> 
             
-            <span>
-            for a     
-            <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
-            <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>
-           </span>
+            
+              <span>
+              for a     
+              <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
+              <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>
+              </span>
           
 
-            <span> 
-            starting <%= text_field_tag :from, params[:from], :class => "from-datefield input-small" %> for
-            <%= text_field_tag :days, params[:days], :class => "input-mini", :placeholder=>"#"  %> Days
-            </span> 
-            <br/>
-            
-            <%= submit_tag "Search Trips", :name => nil, :class => 'btn' %>
-          </p>
-        <% end %>
+              <span> 
+              starting <%= text_field_tag :from, params[:from], :class => "from-datefield input-small" %> for
+              <%= text_field_tag :days, params[:days], :class => "input-mini", :placeholder=>"#"  %> days
+              <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash-submit-button' %>
+              </span> 
+              
+            </span>
+            <% end %>
         </div>
         <!-- End Form Centering -->
       </div>

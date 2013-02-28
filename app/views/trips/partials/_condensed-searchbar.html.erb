@@ -2,27 +2,25 @@
       <div class = "condensed-search-container">
         <!-- Begin Form Centering -->
         <div class ="form-centering">
-        <%= form_tag trips_path, :method => 'get', :remote => true do %>
-          <p class ="hero-form">
-            
-            <%= text_field_tag "place-text-field", params[:place], :placeholder => "where to?", :class => "place-text-field"  %>
+        
+            <%= form_tag trips_path, :method => 'get', :remote => true, :class => 'hero-form' do %>
+            <%= text_field_tag "condensed-place-text-field", params[:place], :placeholder => "Where would you like to go?", :class => "condensed-place-text-field"  %>
             <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %> 
             </span>
             
             <span>
             for a     
             <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
-            <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>
+            <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "condensed-traveler-type-multiselect" %>
            </span>
           
 
             <span> 
-            starting <%= text_field_tag :from, params[:from], :class => "from-datefield input-small" %> for
-            <%= text_field_tag :days, params[:days], :class => "input-mini", :placeholder=>"#"  %> Days
+            starting <%= text_field_tag :from, params[:from], :class => "condensed-from-datefield input-small" %> for
+            <%= text_field_tag :days, params[:days], :class => "input-mini condensed-days-field", :placeholder=>"#"  %> days
             </span> 
             
-            <%= submit_tag "Search Trips", :name => nil, :class => 'btn' %>
-          </p>
+            <%= submit_tag "Search Trips", :name => nil, :class => 'btn condensed-search-button' %>
         <% end %>
         </div>
         <!-- End Form Centering -->
