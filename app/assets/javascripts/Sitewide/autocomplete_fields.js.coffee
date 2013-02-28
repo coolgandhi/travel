@@ -4,7 +4,7 @@
   totalSelectedImages = 0;
   
   jQuery ->        
-    $('#place-text-field').autocomplete
+    $('#place-text-field, .place-text-field').autocomplete
       minLength: 3
       source: (request, response) ->
         $.ajax 
@@ -29,7 +29,7 @@
         event.preventDefault()
         splitarrayvalue = ui.item.value.split(",")
         splitarraylabel = ui.item.label.split(",")
-        $('#trip_location_id').val( splitarrayvalue[0] )
+        $('#trip_location_id, .trip_location_id').val( splitarrayvalue[0] )
         $(this).val ui.item.label
         $(this).siblings('#place-text-field').val splitarrayvalue[0]
         site_wide_namespace.fetchlocationimages splitarraylabel[0], splitarrayvalue[1], splitarrayvalue[2], $("#location_images")

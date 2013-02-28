@@ -150,12 +150,12 @@ body { padding-top: 60px; }
   }
 }
 
-//make the grid wide when widescreen! a 1200px grid
-.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
-  @include respond-to(widescreen){
-    width: 1180px;
-  }
-}
+// //make the grid wide when widescreen! a 1200px grid
+// .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+//   @include respond-to(widescreen){
+//     width: 1180px;
+//   }
+// }
 
 /* Our custom borders and shadows */
 

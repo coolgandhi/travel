@@ -1,9 +1,9 @@
-((search_namespace, $, undefined_) ->
+((trips_namespace, $, undefined_) ->
 
   $ ->
-    $("#from").datepicker()
+    $("#from, .from-datefield").datepicker()
   
-    queryDate = $( "#from" ).datepicker('setDate', new Date())
+    queryDate = $( "#from, .from-datefield" ).datepicker('setDate', new Date())
   
     $("#to").datepicker()
   
@@ -40,4 +40,4 @@
       # $(window).scroll()
     return
   
-) window.search_namespace = window.search_namespace or {}, jQuery
+) window.trips_namespace = window.trips_namespace or {}, jQuery
