@@ -2,8 +2,11 @@ Showing trips
 <% if params["place-text-field"]  %> 
  for <%=  params["place-text-field"] %>
 <% end %>
-<% if params["from"] and params["to"] %>
- between <%= params["from"] %> to <%= params["to"] %> 
+<% if params["from"] %>
+ starting <%= params["from"] %>
+<% end %>
+<% if params["days"] %>
+ for <%= params["days"] %> days
 <% end %>
 <% if params["traveler_type_id"] %>
   for 
