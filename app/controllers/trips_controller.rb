@@ -14,7 +14,7 @@ class TripsController < ApplicationController
       @restaurants = RestaurantDetail.search(params[:trip_location_id])
     end
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 5)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
     
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
@@ -125,6 +125,15 @@ class TripsController < ApplicationController
     @partial_layout = params[:layout]
     render :partial => "#{@partial_layout}", :layout => false
   end
+
+  # def admin
+  #   @trips = Trip.all
+    
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.json { render json: @trip_activities }
+  #   end
+  # end
 
   private
 

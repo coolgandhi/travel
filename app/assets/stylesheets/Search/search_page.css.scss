@@ -32,7 +32,7 @@
   	// text-align: center;
   	.hero-form{
   	  color: white;
-  	  font-size: 2em;
+  	  font-size: 1.5em;
   	  font-weight: 300;
   	  text-shadow: 1px 1px 0 black;
   	}
@@ -65,4 +65,35 @@
 
 .trip-result-thumbnail-div{
   height: 370px;
+}
+
+.continuous-loading-indicator-wrapper{
+  text-align: center;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  background-color: $myDivBg;
+  padding: 0.5% 0;
+  display: none;
+  p{
+    margin: 0;
+  }
+}
+
+.continuous-scroll-spinner{
+  // height: 25px;
+  // width: 25px;
+  margin: 0 auto;
+  // background-image: url('/assets/spinners/ajax-loader-dots.gif');
+  // background-size: 25px auto;
+  // background-repeat: no-repeat;
+  // background-position: center;
+}
+
+.image-link-thumbnail{
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
