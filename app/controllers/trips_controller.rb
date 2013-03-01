@@ -16,7 +16,7 @@ class TripsController < ApplicationController
       @restaurants = RestaurantDetail.search(params[:trip_location_id])
       
       if (params[:traveler_type_id])
-        @traveler_types =TravelerType.where("traveler_type_id IN (?)", params[:traveler_type_id])
+        @traveler_types = TravelerType.where("traveler_type_id IN (?)", params[:traveler_type_id])
       end
     end
     

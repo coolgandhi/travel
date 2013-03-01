@@ -24,18 +24,18 @@
             <!--Begin Trip Result Caption-->
             <div class="caption trip-results-caption">
 
-              <!--Begin Traveler Type Badge -->
+              <!--Begin Traveler Type Badge 
               <div class = "caption-badge_buttons">
                 <ul class = "unstyled caption-badges-ul">
                 <li>
-                  <a class= <%=traveler_type_badge_class(trip.traveler_type[:traveler_type_name])%> ></a>
-                  <p><%=trip.traveler_type[:traveler_type_name]%></p>
+                  <a class= <%=traveler_type_badge_class((trip.traveler_type_id) ? trip.traveler_type[:traveler_type_name] : "other")%> ></a>
+                  <p><%=(trip.traveler_type_id) ? trip.traveler_type[:traveler_type_name] : "other"%></p>
                 </li>
                 </ul>
               </div>
               <!--End Traveler Type Badge -->
 
-              <p> <%= trip.duration %> Days in <%= trip.location[:place] %></p>
+              <p> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %></p>
 
               <h3><%= trip.trip_name %></h3>
               <p><%= trip.trip_summary %><p>
