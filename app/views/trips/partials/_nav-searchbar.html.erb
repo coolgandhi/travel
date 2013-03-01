@@ -1,0 +1,11 @@
+<%= form_tag trips_path, :method => 'get', :remote => true, :class => 'droptoggle-form form-horizontal' do %>
+  <%= hidden_field_tag "drophide-place-field", params[:place], :placeholder => "Where would you like to go?", :class => "drophide-place-field"  %>
+  <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %> 
+
+  <%= select_tag :dropdown_traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "dropdown-traveler-type-multiselect" %>
+
+  <%= text_field_tag :from, params[:from], :class => "dropdown-from-datefield input-small" %>
+  <%= text_field_tag :days, params[:days], :class => "input-mini dropdown-days-field", :placeholder=>"#", :value=>3 %> days
+  <button type="button" class="btn btn-danger dropdown-close-button">Cancel</button>
+  <%= submit_tag "Search Trips", :name => nil, :class => 'btn dropdown-search-button' %>
+<% end %>

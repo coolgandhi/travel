@@ -4,7 +4,8 @@
 	
 	// if there is the hero unit then remove it and inject in the condensed-searchbar. otherwise, do nothing
 	if ($('.big-image-header').length > 0) {
-	  $('.big-image-header').slideUp(1000, 'linear', function(){ this.remove(); $('.condensed-search-container').slideDown('slow'); });
+	  $('.big-image-header').fadeOut(1000, 'linear', function(){ this.remove();});
+	   $('.condensed-search-container').fadeIn(1000, 'linear');
 	} else {	
 	}
 

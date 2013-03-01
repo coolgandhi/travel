@@ -8,12 +8,12 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
 /* 1. FLIP-CONTAINER */
 
 /* entire container, keeps perspective */
-.flip-container {
-  @include perspective(1000);
-  width: 100%;
-  height: 100%;
-  background-color: $myDivBg;
-}
+// .flip-container {
+//   @include perspective(1000);
+//   width: 100%;
+//   height: 100%;
+//   background-color: $myDivBg;
+// }
 
 /* SET HEIGHTS FOR THE SUBCOMPONENTS OF FLIP-CONTAINER */
 .flipper, .front, .back, .extraside {

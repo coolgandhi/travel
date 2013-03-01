@@ -3,7 +3,7 @@
     <!-- Begin Splash Image Container -->
     <div class = "splash-image-container">
       <!-- Begin Splash Form Container -->
-      <div class = "splash-form-container">
+      <div class = "container splash-form-container">
         <!-- Begin Form Centering -->
         <div class ="form-centering">
         
@@ -25,7 +25,7 @@
 
               <span> 
               starting <%= text_field_tag :from, params[:from], :class => "from-datefield input-small" %> for
-              <%= text_field_tag :days, params[:days], :class => "input-mini", :placeholder=>"#"  %> days
+              <%= text_field_tag :days, params[:days], :class => "input-mini", :placeholder=>"#", :value=>3 %> days
               <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash-submit-button' %>
               </span> 
               
