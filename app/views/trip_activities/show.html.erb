@@ -14,7 +14,9 @@ activity time type: <%= @trip_activity.activity_time_type %>
 <%#= @trip_activities_detail.description %> 
   <%#= @trip_activity.activity.description %> 
 <% end %>
-<%= link_to 'Edit', edit_trip_trip_activity_path(@trip_activity.trip_id, @trip_activity) %> |
-<%= link_to 'Back', trip_path(@trip_activity.trip_id) %>
 
+<% if admin? %>
+  <%= link_to 'Edit', edit_trip_trip_activity_path(@trip_activity.trip_id, @trip_activity) %> |
+  <%= link_to 'Back', trip_path(@trip_activity.trip_id) %>
+<% end %>
 

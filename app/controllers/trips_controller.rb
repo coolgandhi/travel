@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   include TripsHelper
+  before_filter :authorize, :except => [:index, :show, :showpartial]
   layout :resolve_layout
   # GET /trips
   # GET /trips.json

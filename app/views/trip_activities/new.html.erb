@@ -3,4 +3,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', trip_path(@trip) %>
+<% if admin? %>
+  <%= link_to 'Back', trip_path(@trip) %>
+<% end %>

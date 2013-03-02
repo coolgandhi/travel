@@ -40,7 +40,9 @@
 </div>
 
 <footer>
+<% if admin? %>  
   <%= link_to 'New Trip', new_trip_path %>
+<% end %>
 </footer>
 
 </div> <!--! end of .container -->
