@@ -1,0 +1,14 @@
+.swipe-loading-indicator-header{
+  position: fixed;
+  top: 1%;
+  left: 50%;
+  height: 20px;
+  z-index: 9999;
+  display: none;
+}
+
+.swipe-loading-indicator-footer{
+  height: 20px;
+  z-index: 9999;
+  display: none;
+}

@@ -623,7 +623,7 @@
   display: inline; 
 }
 .ui-accordion .ui-accordion-header-active { 
-  border-bottom: 0 !important; 
+  /*border-bottom: 0 !important; */
 }
 .ui-accordion .ui-accordion-header a { 
   display: block; 

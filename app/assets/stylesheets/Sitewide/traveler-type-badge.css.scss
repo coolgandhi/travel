@@ -1,0 +1,71 @@
+.badge_buttons{
+  // float: left;
+  // margin-left: 2%;
+  // width: 100px;
+  text-align: center;
+}
+
+.badges-ul{
+  // @include clearfix;
+  // width: 100px;
+  margin: 0 auto;
+
+  li{
+    float: left;
+    text-align: center;
+    margin-left: 1%;
+    width: 40px;
+    position: relative;
+    display: inline;
+    a{
+      display: block;
+      position: relative;
+      margin: 0 5px; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
+      width: 30px;
+    }
+    p{
+      text-align: center;
+      font-size: 0.75em;
+      line-height: 10px;
+      font-weight: bold;
+    }
+  }
+}
+
+@mixin traveler-badge{
+  background-position:center;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  // border: solid 1px $gray;
+  // border-radius: 50%;
+  float: left;
+  position: relative;
+  @include box-sizing(border-box);
+  // margin-left: 1%;
+}
+
+.couples-badge{
+  @include traveler-badge;
+  background-image:url(/assets/badges/couples-badge.png);
+}
+
+.solo-badge{
+  @include traveler-badge;
+  background-image:url(/assets/badges/solo-badge.png);
+}
+
+.family-badge{
+  @include traveler-badge;
+  background-image:url(/assets/badges/family-badge.png);
+}
+
+.group-badge{
+  @include traveler-badge;
+  background-image:url(/assets/badges/group-badge.png);
+}
+
+.other-badge{
+  @include traveler-badge;
+  background-image:url(/assets/badges/other-badge.png);
+}

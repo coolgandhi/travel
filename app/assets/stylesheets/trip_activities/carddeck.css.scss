@@ -12,20 +12,7 @@
 
 
 /* 1. MAIN BODY STYLES*/
-.swipe-loading-indicator-header{
-  position: fixed;
-  top: 1%;
-  left: 50%;
-  height: 20px;
-  z-index: 9999;
-  display: none;
-}
 
-.swipe-loading-indicator-footer{
-  height: 20px;
-  z-index: 9999;
-  display: none;
-}
 /* 2. TITLE DIV */ 
 
 $titlerowheight: 10%;
@@ -108,77 +95,6 @@ $lastrowheight: 10%;
   }
 }
 
-.badge_buttons{
-  // float: left;
-  // margin-left: 2%;
-  // width: 100px;
-  text-align: center;
-}
-
-.badges-ul{
-  // @include clearfix;
-  // width: 100px;
-  margin: 0 auto;
-
-  li{
-    float: left;
-    text-align: center;
-    margin-left: 1%;
-    width: 40px;
-    position: relative;
-    display: inline;
-    a{
-      display: block;
-      position: relative;
-      margin: 0 5px; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
-      width: 30px;
-    }
-    p{
-      text-align: center;
-      font-size: 0.75em;
-      line-height: 10px;
-      font-weight: bold;
-    }
-  }
-}
-
-@mixin traveler-badge{
-  background-position:center;
-  background-repeat: no-repeat;
-  height: 30px;
-  width: 30px;
-  // border: solid 1px $gray;
-  // border-radius: 50%;
-  float: left;
-  position: relative;
-  @include box-sizing(border-box);
-  // margin-left: 1%;
-}
-
-.couples-badge{
-  @include traveler-badge;
-  background-image:url(/assets/badges/couples-badge.png);
-}
-
-.solo-badge{
-  @include traveler-badge;
-  background-image:url(/assets/badges/solo-badge.png);
-}
-
-.family-badge{
-  @include traveler-badge;
-  background-image:url(/assets/badges/family-badge.png);
-}
-
-.group-badge{
-  @include traveler-badge;
-  background-image:url(/assets/badges/group-badge.png);
-}
-
-.other-badge{
-  @include traveler-badge;
-  background-image:url(/assets/badges/other-badge.png);
-}
 
 /* 3. FILMSTRIP NAVIGATION */
 .wrapper-film{
@@ -298,7 +214,7 @@ div.thumb-description{
   background-color: rgba(0, 0, 0, 0.7);
   font-size:0.75em;
   font-weight: 300;
-  color:white;
+  color: $white;
   filter:alpha(opacity=60); /* IE transparency */
 }
 
@@ -439,6 +355,25 @@ img.relative_image{
 }
 /* 5. CAPTION DIV */
 
+.rightcaption .ui-widget-content, .rightcaption .ui-widget-header{
+  border: none; 
+  background: none;
+  color: none;
+} 
+
+.rightcaption .ui-accordion-content, .rightcaption .ui-widget-content a, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
+  border: none; 
+  background: none;
+  border-bottom: none;
+  color: inherit;
+  text-shadow: none;
+  @include box-shadow(none);
+}
+
+.rightcaption .ui-helper-reset{
+  margin: auto;
+}
+
 .rightcaption{
   width: 40%;
   // height: 100%;
@@ -498,7 +433,6 @@ img.relative_image{
     font-size: 10px;
     text-shadow: none;
     background-color: $transBlack;
-    color: $white;
     position: absolute;
     left: auto;
     right: .5em;
@@ -530,6 +464,7 @@ h3#activity_title{
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
   text-shadow: 2px 1px 3px $black;
+  border-radius: 0;
   
   @include accordion-icons;
 
@@ -543,7 +478,7 @@ h3#activity_title{
 
 h3#more_info_accordion{
   padding: 0.2em 0.5em 0.2em 1.2em;
-  margin-top: 0;
+  margin: 1em 0;
   font-size: 0.9em;
   font-weight: 400;
   line-height: 0.6em;
@@ -566,6 +501,7 @@ div.rightcaption .ui-accordion-content {
 }
 
 #user-description{
+  color: $white;
   font-size: 1.2em;
   line-height: 1.4em;
   font-weight: 300;
@@ -583,6 +519,7 @@ div.rightcaption .ui-accordion-content {
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
+  margin-bottom: 1em;
 }
 
 .more-info-dl{
@@ -616,8 +553,6 @@ div.rightcaption .ui-accordion-content {
   }
 }
 .caption-quick-tip{
-  // background-color: rgba(225,225,225, 0.6);
-  color: $white;
   font-size: .8em;
   line-height: 1em;
   text-shadow: (1px 1px 1px $black);
