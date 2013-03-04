@@ -5,6 +5,7 @@ class LocationDetail < ActiveRecord::Base
   
   
   def self.search location_id
-    LocationDetail.where("location_id = ?", location_id)
+  #  result = LocationDetail.select("location_details.*, COUNT(*) AS location_count").find(:conditions => "location_id = ?", location_id).join(:location_activities).group(:location_id).order("location_count DESC")
+    LocationDetail.find(:all, :conditions => ["location_id = ?", location_id], :joins => :location_activities, :select => "location_details.*, COUNT(*) AS location_count", :group => :location_detail_id, :order => "location_count DESC")
   end
 end

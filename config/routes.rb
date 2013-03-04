@@ -1,4 +1,15 @@
 Travel::Application.routes.draw do
+  
+  get "login" => "sessions#new"
+  get "logout" => "sessions#del"
+  match "sessions" => "sessions#create", :via => :post
+  #resource :sessions 
+  # do
+  #   member do
+  #     get "del"
+  #   end
+  # end
+
   get "venues/pick"
   get "venues/get_venue_info"
   get "venues/get_venue_photos"
@@ -22,13 +33,10 @@ Travel::Application.routes.draw do
   #   resources :products
   resources :trips
   resources :trip_activities
-
   resources :trips do
-    
     member do
       get 'showpartial'
     end
-
     resources :trip_activities do
       member do
         get 'mapinfo'
@@ -37,8 +45,7 @@ Travel::Application.routes.draw do
       end
     end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl
-
-  #resources :locations, :only => [:pick]
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -74,11 +81,15 @@ Travel::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'trips#index'
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  
+  unless Rails.application.config.consider_all_requests_local
+      match '*not_found', to: 'errors#error_404'
+  end
 end

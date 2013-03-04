@@ -5,6 +5,8 @@ class RestaurantDetail < ActiveRecord::Base
   
   
   def self.search location_id
-    RestaurantDetail.where("location_id = ?", location_id)
+    #RestaurantDetail.where("location_id = ?", location_id)
+    
+    RestaurantDetail.find(:all, :conditions => ["location_id = ?", location_id], :joins => :food_activities, :select => "restaurant_details.*, COUNT(*) AS restaurant_count", :group => :restaurant_detail_id, :order => "restaurant_count DESC")
   end
 end

@@ -14,9 +14,12 @@
     <td><%= trip_activity.activity_time_type %></td>
     <td><%= trip_activity.activity_type %></td>
     
-    <td><%= link_to 'Show', trip_trip_activity_path(@trip, trip_activity) %></td>
-    <td><%= link_to 'Edit', edit_trip_trip_activity_path(@trip, trip_activity) %></td>
-    <td><%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if admin? %>
+      <td><%= link_to 'Show', trip_trip_activity_path(@trip, trip_activity) %></td>
+      <td><%= link_to 'Edit', edit_trip_trip_activity_path(@trip, trip_activity) %></td>
+      <td><%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    
   </tr>
 <% end %>
 </table>

@@ -12,6 +12,7 @@
       <div class = "container splash-form-container">
         <!-- Begin Form Centering -->
         <div class ="form-centering">
+
             Show me trip summaries for </br>
             <%= form_tag trips_path, :method => 'get', :class => 'hero-form', :remote => true do %>
               <span class = "hero-form-left">  
@@ -20,6 +21,7 @@
               <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %>                          
 
               for   
+
               <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
               <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>                    
               </span>
@@ -34,6 +36,8 @@
               </div>  
               <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash-submit-button' %>
             <% end %>
+
+            <div class = "error-msg"></div>
 
         </div>
         <!-- End Form Centering -->

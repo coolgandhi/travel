@@ -1,6 +1,7 @@
 <h1>Editing trip</h1>
+<% if admin? %>
+  <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @trip %> |
-<%= link_to 'Back', @trip %>
+  <%= link_to 'Show', @trip %> |
+  <%= link_to 'Back', @trip %>
+<% end %>

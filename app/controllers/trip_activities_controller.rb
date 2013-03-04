@@ -2,6 +2,7 @@ class TripActivitiesController < ApplicationController
   include ApplicationHelper
   include TripActivitiesHelper
   before_filter :load_trip
+  before_filter :authorize, :except => [:index, :show, :mapinfo, :carddeck, :showpartial]
   # GET /trip_activities
   # GET /trip_activities.json
   def index
