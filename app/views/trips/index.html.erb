@@ -12,7 +12,6 @@
 <% end %>
 
 <%= render 'trips/partials/hero-unit' %>
-<%# render 'trips/partials/condensed-searchbar' %>
 
 <div class="container index-maincon" id="maincontainer">
     <div class="content">
@@ -22,11 +21,8 @@
         </div>
       </div>
     </div>
-
-
-<div class="row" id="trips-landmark-container"></div>
-<%= @message_with_trip_render %> 
-<div class="row" id="trips-results-container"><%= render 'trips' %></div>
+ 
+<div class="row" id="trips-results-container"><%= render 'trips/partials/featured-trips' %></div>
 
 <div id="page-pagination-div">
   <%= will_paginate @trips %>

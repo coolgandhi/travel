@@ -1,36 +1,40 @@
 <!-- Begin Hero Unit -->
 <div class="hero-unit big-image-header">
+  <!-- Begin Tag-Line Overlay -->
+  <div class="hero-tag-line">
+    Travel Planning Made Easy
+  </div>
+  <!-- End Tag-Line Overlay -->
+
     <!-- Begin Splash Image Container -->
     <div class = "splash-image-container">
       <!-- Begin Splash Form Container -->
       <div class = "container splash-form-container">
         <!-- Begin Form Centering -->
         <div class ="form-centering">
-        
-          <span class ="hero-form">
-            
-            <span>Show me trip summaries for </span>
-            </br>
-            <%= form_tag trips_path, :method => 'get', :remote => true do %>
-              <%= text_field_tag "place-text-field", params[:place], :placeholder => "Where would you like to go?", :class => "place-text-field" %>
-              <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %> 
-            
-            
-              <span>
-              for a     
-              <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
-              <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>
-              </span>
-          
+            Show me trip summaries for </br>
+            <%= form_tag trips_path, :method => 'get', :class => 'hero-form', :remote => true do %>
+              <span class = "hero-form-left">  
+              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "place_dropdown_field" %>
 
-              <span> 
-              starting <%= text_field_tag :from, params[:from], :class => "from-datefield input-small" %> for
-              <%= text_field_tag :days, params[:days], :class => "input-mini", :placeholder=>"#", :value=>3 %> days
+              <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %>                          
+
+              for   
+              <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
+              <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>                    
+              </span>
+              <div class="input-prepend hero-from-prepend">
+              <span class="add-on">from</span>
+              <%= text_field_tag :from, params[:from], :class => "from-datefield input-small" %> 
+              </div>
+              <div class="hero-form-left">for</div>
+              <div class="input-append hero-days-append">
+              <%= text_field_tag :days, params[:days], :placeholder=>"#", :value=>3 %>
+              <span class="add-on">days</span>
+              </div>  
               <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash-submit-button' %>
-              </span> 
-              
-            </span>
             <% end %>
+
         </div>
         <!-- End Form Centering -->
       </div>

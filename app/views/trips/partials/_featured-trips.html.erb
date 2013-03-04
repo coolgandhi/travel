@@ -1,11 +1,5 @@
-  <%= @message_with_trip_render %>
-  <h3 class ="results-title">  
-  <% unless params["place-text-field"].blank? %> 
-    for <%=  params["place-text-field"] %>
-  <% end %>
-</h3>
-  <div class="row" id="trips-landmark-container"></div>
- <!--Begin Trip Result ul group -->
+  <h3 class ="results-title">Featured Trips</h3>
+  <!--Begin Trip Result ul group -->
   <ul class="thumbnails">
     <!--Begin Trip Result Pagination Div -->
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">

@@ -3,7 +3,7 @@
   display: none;
 }
 
-.body{
+body{
   background-color: $white;
 }
 
@@ -19,22 +19,36 @@
 .big-image-header{
   position: relative;
   @include clearfix;
-  height: 470px;
+  height: 550px;
   padding: 0;
   top: -30px;
-  margin-bottom: 0;
+  margin-bottom: -30px;
+}
+
+.hero-tag-line{
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  color: white;
+  font-family: futura;
+  font-size: 2em;
+  text-shadow: 1px 1px 1px black;
+  font-weight: bold;
+  z-index: 1;
+  text-transform: lowercase;
 }
 
 .splash-image-container{
   position: absolute;
   top: 0;
   left: 0;
-  height: 470px;
+  height: 550px;
   width: 100%;
-  background-color: $black;
-  background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
+  background-color: $white;
+  // background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
+  background-image: url("/assets/splash_images/st-james-park_20120925_160149_1440x550_hi.jpg");
   background-repeat: no-repeat;
-  background-size: 1200px auto;
+  background-size: 1400px auto;
   background-position-x:center;
   // margin: 0 auto;
 }
@@ -47,16 +61,20 @@
   margin: 0 auto;
   .form-centering{
   	position: relative;
-  	width: 70%;
+  	max-width: 900px;
     // @include col(12);
   	margin: 0 auto;
     color: white;
-    font-size: 1.5em;
-    line-height: 1.75em;
+    font-size: 1.3em;
+    line-height: 1.5em;
     font-weight: 300;
     text-shadow: 1px 1px 0 black;
-  	// text-align: center;
+    @include respond-to(portrait){
+      max-width: 500px;
+    }
   	.hero-form{
+      margin: 0 auto;
+      width: 100%;
 
   	}
   }
@@ -81,9 +99,37 @@
   }  
 }
 
+.hero-form-left{
+  float: left;
+  position: relative;
+}
+
+.hero-from-prepend{
+  float: left;
+  color: $black;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.hero-days-append{
+  float: left;
+  color: $black;
+  margin-right: 5px;
+  margin-left: 5px;
+  input{
+    width: 25px;
+  }
+}
+
 .splash-submit-button{
-  float: right;
-  margin-right: 2%;
+  float: left;
+  // margin-right: 2%;
+}
+
+/* Results Container */
+
+.results-title{
+  margin-top: 0;
 }
 
 #trips-results-container{
@@ -120,12 +166,20 @@
 /* Trip Results Thumbnail Containers */ 
 .trip-result-thumbnail-li{
   @include col(4);
+  background-color: $myDivBg;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include box-sizing(border-box);
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
 }
 
 .trip-result-thumbnail-div{
   height: 370px;
   padding: 0;
   position: relative;
+  border: none;
 }
 
 $result-thumb-height: 70%;
@@ -134,25 +188,30 @@ $result-thumb-height: 70%;
   height: $result-thumb-height;
   // padding: 2%;
   overflow: hidden;
+  position: relative;
 }
 
 .image-link-thumbnail{
-  display: block;
-  margin: 0 auto;
+  // display: block;
+  // margin: 0 auto;
   // max-width: 100%;
+  height: auto;
   width: 100%;
+  position: absolute;
 }
 
 .trip-results-caption{
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid $borderGray;
   min-height: 100-$result-thumb-height;
+  overflow: hidden;
   h3{
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.1em;
     letter-spacing: 0.05em;
     margin: 0;
     margin-bottom: 1px;
     font-weight: bold;
+    color: $black;
   }
   p{
     font-size: 0.9em;
@@ -161,12 +220,16 @@ $result-thumb-height: 70%;
     margin: 0.35em 0 0 0;
     font-weight: normal;
   }
+  .caption-trip-subtitle{
+  color: #08c;
+  }
 }
 
 .caption-box-social{
   position: absolute;
   bottom: 100-$result-thumb-height+2;
   right: 2%;
+  z-index: 1;
 }
 
 /* Caption Badges */

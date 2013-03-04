@@ -84,7 +84,7 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
-$navbarHeight:                    30px !default; //was 40px
+$navbarHeight:                    40px !default; //was 40px
 $navbarBackgroundHighlight:       #ffffff; //$blueLight
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;

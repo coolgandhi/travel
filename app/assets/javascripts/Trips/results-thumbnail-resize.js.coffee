@@ -1,5 +1,5 @@
 ((trips_namespace, $, undefined_) ->
-  fire_picturefill = ->
+  trips_namespace.fire_picturefill = ->
     # create a jQuery deferred object
     r = $.Deferred()
     picturefill()
@@ -10,11 +10,11 @@
     # return the deferred object
     r
   
-  fireResizeResultsPic = ->
-    $(".image-link-thumbnail").resizeToParent parent: ".results-thumb-wrap"
+  trips_namespace.fireResizeResultsPic = ->
+    $(".image-link-thumbnail").resizeToParent parent: ".result-thumb-wrap"
 
-  $(document).ready ->
-    fireResizeResultsPic()
+  jQuery ->
+    trips_namespace.fireResizeResultsPic()
     # fire_picturefill()
     # $(window).on "resize", fire_picturefill
     # fire_picturefill().done fireResizeResultsPic
