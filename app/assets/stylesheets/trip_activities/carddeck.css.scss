@@ -364,7 +364,6 @@ img.relative_image{
 .rightcaption .ui-accordion-content, .rightcaption .ui-widget-content a, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
   border: none; 
   background: none;
-  border-bottom: none;
   color: inherit;
   text-shadow: none;
   @include box-shadow(none);
@@ -372,6 +371,7 @@ img.relative_image{
 
 .rightcaption .ui-helper-reset{
   margin: auto;
+  font-family: inherit;
 }
 
 .rightcaption{
