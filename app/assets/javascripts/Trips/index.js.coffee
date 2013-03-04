@@ -16,6 +16,30 @@
         return
       return false
 
+     
+    searchformrules = 
+      rules:
+        days:
+          required: false
+          min: 1
+      success: (label) ->
+        $(".error-msg").empty()
+        return
+      errorPlacement: (error, element) ->
+        $(".error-msg").empty()
+        error.appendTo $(".error-msg")
+        return
+      onfocusout: (element) ->
+        if $(element).attr('id') == "days" and $(element).val() == ""
+          $(".error-msg").empty()
+        else
+          $(element).valid()
+        return
+    
+    $(".hero-form").validate(searchformrules)
+    $(".search-form").validate(searchformrules)
+
+
     $('#scrolltotop').on "click", null, (e) ->
       $("html, body").animate({
          scrollTop: 0

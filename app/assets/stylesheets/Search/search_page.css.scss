@@ -286,3 +286,10 @@ $result-thumb-height: 70%;
   @include box-shadow($myDivBoxShadow);
   padding: 0.5% 1%;
 }
+
+.error-msg {
+  border-width: $myDivBorderWidth;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  padding: 0.5% 1%;
+}

@@ -11,7 +11,7 @@
             
             <span>Show me trip summaries for </span>
             </br>
-            <%= form_tag trips_path, :method => 'get', :remote => true do %>
+            <%= form_tag trips_path, :method => 'get', :class => 'search-form', :remote => true do %>
               <%= text_field_tag "place-text-field", params[:place], :placeholder => "Where would you like to go?", :class => "place-text-field" %>
               <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "trip_location_id" %> 
             
@@ -31,6 +31,7 @@
               
             </span>
             <% end %>
+            <div class = "error-msg"></div>
         </div>
         <!-- End Form Centering -->
       </div>
