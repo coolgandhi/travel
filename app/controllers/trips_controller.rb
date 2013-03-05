@@ -34,10 +34,17 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @trip = Trip.find(params[:id])
-    @author = @trip.author_info
-    @sorted_activities, @compressed_activities = sorted_trip_activities @trip
-     
+    begin
+      @trip = Trip.find(params[:id])
+      @author = @trip.author_info
+      @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+    
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end 
+
     #logger.info "show trip #{@sorted_activities.inspect}"    
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +68,13 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
-    @trip = Trip.find(params[:id])
+    begin  
+      @trip = Trip.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end 
   end
 
   # POST /trips
@@ -98,7 +111,13 @@ class TripsController < ApplicationController
   # PUT /trips/1
   # PUT /trips/1.json
   def update
-    @trip = Trip.find(params[:id])
+    begin  
+      @trip = Trip.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end 
 
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
@@ -114,8 +133,14 @@ class TripsController < ApplicationController
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
-    @trip = Trip.find(params[:id])
-    @trip.destroy
+    begin
+      @trip = Trip.find(params[:id])
+      @trip.destroy
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end 
 
     respond_to do |format|
       format.html { redirect_to trips_url }
@@ -125,11 +150,17 @@ class TripsController < ApplicationController
 
   def showpartial
     #logger.info "trictive #{params.inspect}"
+    begin
+      @trip = Trip.find(params[:id])
+      @author = @trip.author_info
     
-    @trip = Trip.find(params[:id])
-    @author = @trip.author_info
+      @partial_layout = params[:layout]
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end 
     
-    @partial_layout = params[:layout]
     render :partial => "#{@partial_layout}", :layout => false
   end
 

@@ -17,9 +17,14 @@ class TripActivitiesController < ApplicationController
   # GET /trip_activities/1
   # GET /trip_activities/1.json
   def show
-    @trip_activity = @trip.trip_activities.find(params[:id])
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
     
-    #logger.info " here... #{@trip_activity.activity.inspect}"
     respond_to do |format| require 'trip_activities_controller'
       format.html # show.html.erb
       format.json { render json: @trip_activity }
@@ -52,7 +57,13 @@ class TripActivitiesController < ApplicationController
 
   # GET /trip_activities/1/edit
   def edit
-    @trip_activity = @trip.trip_activities.find(params[:id])
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
   end
 
   def report_error format, object
@@ -110,7 +121,13 @@ class TripActivitiesController < ApplicationController
   # PUT /trip_activities/1
   # PUT /trip_activities/1.json
   def update
-    @trip_activity = @trip.trip_activities.find(params[:id])
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
 
     respond_to do |format|
       if @trip_activity.update_attributes(params[:trip_activity])
@@ -126,9 +143,14 @@ class TripActivitiesController < ApplicationController
   # DELETE /trip_activities/1
   # DELETE /trip_activities/1.json
   def destroy
-    @trip_activity = @trip.trip_activities.find(params[:id])
-    @trip_activity.destroy
-
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+      @trip_activity.destroy
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
     respond_to do |format|
       format.html { redirect_to @trip }
       format.json { head :no_content }
@@ -139,7 +161,13 @@ class TripActivitiesController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def carddeck
-    @trip_activity = @trip.trip_activities.find(params[:id])
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
         
     respond_to do |format|
       format.html # show.html.erb
@@ -151,8 +179,14 @@ class TripActivitiesController < ApplicationController
   def showpartial
     #logger.info "active #{params.inspect}"
     # @trip_activity = @trip.trip_activities(params[:id])
-    @trip_activity = TripActivity.find(params[:activityid])
-    @partial_layout = params[:layout]
+    begin
+      @trip_activity = TripActivity.find(params[:activityid])
+      @partial_layout = params[:layout]
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
        
     render :partial => "trip_activities/#{@partial_layout}", :locals => {:trip_activity => @trip_activity}, :layout => false
   end
@@ -160,12 +194,18 @@ class TripActivitiesController < ApplicationController
   # GET /trips/:id/trip_activities/:activity_id/mapinfo
   def mapinfo
     #logger.info { "mapinfo #{params.inspect}"}
-    @trip_activity = @trip.trip_activities.find(params[:id])
-    @trip_details = @trip_activity.prev_activities_sequence_number
-    @current_activity = params[:id]
-    #logger.info { "\n\ntripdetails...  #{@trip_details.inspect}"}
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+      @trip_details = @trip_activity.prev_activities_sequence_number
+      @current_activity = params[:id]
+      #logger.info { "\n\ntripdetails...  #{@trip_details.inspect}"}
     
-    @trip_map_info = get_trip_map_info @trip_details, @current_activity
+      @trip_map_info = get_trip_map_info @trip_details, @current_activity
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
     
     #logger.info "here #{@trip_map_info.inspect}"
     respond_to do |format|
@@ -175,7 +215,13 @@ class TripActivitiesController < ApplicationController
   end
 
   def load_trip
-    @trip = Trip.find(params[:trip_id])
+    begin
+      @trip = Trip.find(params[:trip_id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
   end
 
 end
