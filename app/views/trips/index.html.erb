@@ -11,18 +11,53 @@
   <meta property="fb:app_id" content="537855380,3406777"/>
 <% end %>
 
-<%= render 'trips/partials/hero-unit' %>
+<% unless params["show_hero"] == 'false' %>
+  <%= render 'trips/partials/hero-unit' %>
+<% else %>
+
+<% end %>  
 
 <div class="container index-maincon" id="maincontainer">
-    <div class="content">
-       <div class="row">
-        <div class="span12">
-          <%= render 'layouts/messages' %>
-        </div>
-      </div>
-    </div>
+  
+<div class="row results-searchbar-container">
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
+    <%= render 'trips/partials/results-searchbar' %>
+  <% else %>
+  <% end %>  
+</div>
+
+<div class="row results-flash-message">
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
+    <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+  <% else %>
+  <% end %>  
+</div>
  
-<div class="row" id="trips-results-container"><%= render 'trips/partials/featured-trips' %></div>
+<div id="results-breadcrumbs" class="row">
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
+    <%= render 'trips/partials/results-breadcrumbs' %>
+  <% else %>
+  <% end %>
+</div>
+
+<% if @trips %>
+  <div id="trips-landmark-container" class="row">
+    <% if params["show_hero"] && params["show_hero"] == 'false' %>
+      <%= render 'trips/partials/landmarks-filtering' %>
+    <% else %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row" id="trips-results-container">
+
+
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
+    <%= render 'trips' %>
+  <% else %>
+    <%= render 'trips/partials/featured-trips' %>
+  <% end %>  
+</div>
 
 <div id="page-pagination-div">
   <%= will_paginate @trips %>

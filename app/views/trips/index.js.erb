@@ -1,14 +1,21 @@
 <% if @trips.current_page == 1 %>
 	$('#trips-results-container').html('<%= escape_javascript(render("trips")) %>');
 	$('#trips-landmark-container').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>');
+	$('.results-searchbar-container').html('<%= escape_javascript(render("trips/partials/results-searchbar")) %>');
+	$('#results-breadcrumbs').html('<%= escape_javascript(render("trips/partials/results-breadcrumbs")) %>');
+	// fire resize on the results thumbnails
 	trips_namespace.fireResizeResultsPic();
+	$(document).ready(function() {
+  	  trips_namespace.fireResultSearchBarJs();
+  	});
+	//show flash message
+	$(".results-flash-message").html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>");
 	
 	// if there is the hero unit then remove it after a search
 	if ($('.big-image-header').length > 0) {
 	  $('.big-image-header').fadeOut(1000, 'linear', function(){ this.remove();});
 	} else {	
 	}
-
 <% else %>
 	$('#trips-results-container').append('<%= escape_javascript(render("trips")) %>');
 	trips_namespace.fireResizeResultsPic();
@@ -30,5 +37,4 @@ try
   $('.pagination').remove();
 <% end %>
 <% sleep 2 %>
-
-
+  

@@ -1,14 +1,6 @@
 ((trips_namespace, $, undefined_) ->
 
-  $ ->
-    $("#from, .from-datefield").datepicker()
-  
-    queryDate = $( "#from, .from-datefield" ).datepicker('setDate', new Date())
-  
-    $("#to").datepicker()
-  
-    $("#to").datepicker('setDate', queryDate + 3)
-  
+  $ ->  
     $("#trips-results-container").on "click", ".pagination a", (e) ->
       $.getScript this.href, ->
         try
