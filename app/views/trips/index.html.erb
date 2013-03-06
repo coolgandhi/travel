@@ -13,31 +13,49 @@
 
 <% unless params["show_hero"] == 'false' %>
   <%= render 'trips/partials/hero-unit' %>
+<% else %>
+
 <% end %>  
 
 <div class="container index-maincon" id="maincontainer">
   
-<div class="row results-searchbar">
-  <% unless params["show_hero"] == 'true' %>
+<div class="row results-searchbar-container">
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
     <%= render 'trips/partials/results-searchbar' %>
+  <% else %>
   <% end %>  
 </div>
 
 <div class="row results-flash-message">
-  <% unless params["show_hero"] == 'true' %>
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
     <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+  <% else %>
   <% end %>  
 </div>
  
-<div class="row" id="trips-results-container">
-  <% if params["show_hero"] == 'true' %>
-    <%= render 'trips/partials/featured-trips' %>
+<div id="results-breadcrumbs" class="row">
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
+    <%= render 'trips/partials/results-breadcrumbs' %>
   <% else %>
-    <div id="results-breadcrumbs"><%= render 'trips/partials/results-breadcrumbs' %></div>
-      <% if @trips %>
-        <div id="trips-landmark-container"><%= render 'trips/partials/landmarks-filtering' %></div>
-      <% end %>
-      <%= render 'trips' %>
+  <% end %>
+</div>
+
+<% if @trips %>
+  <div id="trips-landmark-container" class="row">
+    <% if params["show_hero"] && params["show_hero"] == 'false' %>
+      <%= render 'trips/partials/landmarks-filtering' %>
+    <% else %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row" id="trips-results-container">
+
+
+  <% if params["show_hero"] && params["show_hero"] == 'false' %>
+    <%= render 'trips' %>
+  <% else %>
+    <%= render 'trips/partials/featured-trips' %>
   <% end %>  
 </div>
 

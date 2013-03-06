@@ -181,6 +181,7 @@ body{
 
 .results-subtitle-params{
   color: $result-subtitle-color;
+  margin-bottom: 0;
   .divider{
     color: #ccc;
     padding: 0 5px;
@@ -323,8 +324,8 @@ $result-thumb-height: 70%;
 /* Filter by Landmarks */
 
 #trips-landmark-container{
-  margin-top: 1%;
-  margin-bottom: 1%;
+  // margin-top: 1%;
+  // margin-bottom: 1%;
 }
 
 .filter-by-bar{

@@ -1,7 +1,7 @@
 <% if @trips.current_page == 1 %>
 	$('#trips-results-container').html('<%= escape_javascript(render("trips")) %>');
 	$('#trips-landmark-container').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>');
-	$('.results-searchbar').html('<%= escape_javascript(render("trips/partials/results-searchbar")) %>');
+	$('.results-searchbar-container').html('<%= escape_javascript(render("trips/partials/results-searchbar")) %>');
 	$('#results-breadcrumbs').html('<%= escape_javascript(render("trips/partials/results-breadcrumbs")) %>');
 	// fire resize on the results thumbnails
 	trips_namespace.fireResizeResultsPic();
