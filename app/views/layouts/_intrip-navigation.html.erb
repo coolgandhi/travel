@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
           </a>
 
-          <%= link_to 'Chalo', trips_path, :class=>"brand", :id =>"homepagelink"%>
+          <%= link_to 'Chalo', trips_path, :class=>"brand", :id =>"homepagelink" %>
 
           <!-- The drop down menu -->
           <ul class="nav pull-left">
@@ -16,11 +16,11 @@
 <!--               <form class="navbar-search pull-left">
               <input type="text" class="search-query droptoggle-searchbar" placeholder="Where do you want to go?">
               </form> -->
-                <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "droptoggle-searchbar" %>
+                <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all), "location_id", "city", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "droptoggle-searchbar" %>
 
               <div class="dropdown-menu droptoggle-menu">
                 <!-- Login form here -->
-                <%= render 'trips/partials/nav-searchbar' %>
+                <%= render 'trips/partials/intrip-nav-searchbar' %>
               </div>
 
             </li>
