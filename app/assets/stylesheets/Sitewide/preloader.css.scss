@@ -2,22 +2,24 @@
 
 #preloader {
   position:absolute;
-  top:0;
+  top:40px;
   left:0;
   right:0;
   bottom:0;
-  background-color:grey; /* change if the mask should have another color then white */
+  background-color:$white; /* change if the mask should have another color then white */
   z-index:2002; /* makes sure it stays on top */
 }
 
 #status {
-  width:800px;
-  height:800px;
+  width:50px;
+  height:50px;
   position:absolute;
-  left:0%; /* centers the loading animation horizontally one the screen */
-  top:0%; /* centers the loading animation vertically one the screen */
+  left:50%; /* centers the loading animation horizontally one the screen */
+  top:50%; /* centers the loading animation vertically one the screen */
   background-image:url(/assets/spinners/ajax-loader-transparent.gif); /* path to your loading animation */
   background-repeat:no-repeat;
   background-position:center;
-  margin:-100px 0 0 -100px; /* is width and height divided by two */
+  background-size: 30px auto;
+  background-color: $black;
+  @include border-radius($myDivBorderRadius);
 }
