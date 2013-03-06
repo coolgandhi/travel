@@ -36,7 +36,7 @@
               <!--End Traveler Type Badge -->
               
               <h3><%= trip.trip_name %></h3>
-              <p class="caption-trip-subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %>  by <%= trip.author_info.author_name %> </p>
+              <p class="caption-trip-subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %> | by <%= (trip.author_info and trip.author_info.author_name) ? trip.author_info.author_name : "unknown" %> </p>
               <p class="caption-trip-summary"><%= trip.trip_summary %><p>
 
 
