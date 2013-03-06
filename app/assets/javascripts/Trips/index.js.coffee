@@ -30,6 +30,23 @@
     jQuery ->
       $(".hero-form").validate(trips_namespace.searchformrules)
       $(".droptoggle-form").validate(trips_namespace.searchformrules)
+    
+    $(".hero-form").submit ->
+      site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3) 
+      site_wide_namespace.setCustomVar(2, "traveler_type", $("#traveler_type_id").val(), 3) 
+      site_wide_namespace.setCustomVar(3, "start_date", $("#from-datefield").val(), 3) 
+      site_wide_namespace.setCustomVar(4, "number_of_days", $("#days").val(), 3) 
+      site_wide_namespace.trackEvent("search", "click", "big_box")
+      return
+      
+    $(".droptoggle-form").submit -> 
+      site_wide_namespace.setCustomVar(1, "place", $("#droptoggle_searchbar_id").val(), 3) 
+      site_wide_namespace.setCustomVar(2, "traveler_type", $("#dropdown_traveler_type_id").val(), 3) 
+      site_wide_namespace.setCustomVar(3, "start_date", $("#dropdown-from-datefield").val(), 3) 
+      site_wide_namespace.setCustomVar(4, "number_of_days", $("#days").val(), 3) 
+      site_wide_namespace.trackEvent("search", "click", "small_box")
+      return
+    
 
     $('#scrolltotop').on "click", null, (e) ->
       $("html, body").animate({
