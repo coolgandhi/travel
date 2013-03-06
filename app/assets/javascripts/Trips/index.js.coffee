@@ -13,16 +13,16 @@
         days:
           required: false
           min: 1
-      success: (label) ->
-        $(".error-msg").empty()
+      success: (label, element) ->
+        $(element).parents('form').siblings(".error-msg").empty()
         return
       errorPlacement: (error, element) ->
-        $(".error-msg").empty()
-        error.appendTo $(".error-msg")
+        $(element).parents('form').siblings(".error-msg").empty()
+        error.appendTo $(element).parents('form').siblings(".error-msg")
         return
       onfocusout: (element) ->
         if ($(element).attr('id') == "days" or $(element).attr('id') == "results-day-field" or $(element).attr('id') == "dropdown-day-field") and $(element).val() == ""
-          $(".error-msg").empty()
+          $(element).parents('form').siblings(".error-msg").empty()
         else
           $(element).valid()
         return

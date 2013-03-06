@@ -103,60 +103,8 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
   @include respond-to(small){
   bottom: 38%;
   z-index: 4;
+  }
 }
-}
-
-// #moreShowHideGroup .btn{
-//   font-size: 18px;
-//   color: #0088cc;
-// }
-
-// #moreShowHideGroup .btn.active{
-//   color: $grayLight;
-//   background-color: #e6e6e6;
-// }
-
-// #mapShowHide{
-//   position: absolute;
-//   bottom: 2%;
-//   right: 2%;
-//   background: rgba(0,0,0,0.6) no-repeat center;
-//   background-image: "icon-globe";
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 50%;
-//   border: 3px solid $white;
-//   text-align: center;
-//   color: $white;
-//   font-size: 35px;
-//   text-align: center;
-//   line-height: 50px;
-//   cursor:pointer;
-
-//   i{
-//     position:relative;
-//     top: 0%;
-//     left: -13%;
-//     margin:0;
-//   }
-//   &:hover{
-//     color: $gray;
-//     background: rgba(255, 255,255,0.6);
-//     border: 3px solid $gray;
-//   }
-//   &.active{
-//     background-image: "icon-globe";
-//     font-size: 25px;
-//     color: $gray;
-//     background: rgba(255, 255,255,0.6);
-//     border: 3px solid $gray;
-//       &:hover{
-//         color: $white;
-//         background: rgba(0,0,0,0.6) no-repeat center;
-//         border: 3px solid $white;
-//       }
-//   }
-// }
 
 #mapShow{
   position: absolute;
@@ -198,6 +146,23 @@ THIS CONTAINS STYLING THAT ENABLES THE CARD FLIPPING BTWN IMG, MAP AND MORE INFO
       }
   }
 }
+
+#mapHideGroup{
+  z-index: 6;
+  position: absolute;
+  bottom: 2%;
+  right: 0%;
+  height: 10px;
+  min-width: 100%;
+  padding:5px;
+  @include respond-to(portrait){
+    z-index: 4;
+  }
+  @include respond-to(small){
+  z-index: 4;
+  }
+}
+
 
 #mapHide{
   position: absolute;

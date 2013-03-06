@@ -8,7 +8,7 @@
         <li>Filter by location <span class="divider">|</span></li>
 
         <!--begin c. for items 1 thru 4 in @locations -->
-        <% @locations[0..4].each_with_index do |location, index| %>
+        <% @locations[0..3].each_with_index do |location, index| %>
           <li>
 
             <%= link_to "#{location.name} (#{location.location_activities.count})", params.merge({:location => location.location_detail_id}), :remote=>true %> 
@@ -21,7 +21,7 @@
         <!-- end c. for items 1 thru 4 in @locations -->
         
         <!--begin d. for items 5 thru last in @locations -->
-        <% if @locations[5..-1] %>
+        <% if @locations[4..-1] %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               See More
@@ -29,7 +29,7 @@
             </a>  
             
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-              <% @locations[5..-1].each_with_index do |location, index| %>
+              <% @locations[4..-1].each_with_index do |location, index| %>
                 <li>
                   <%= link_to "#{location.name} (#{location.location_activities.count})", params.merge({:location => location.location_detail_id}), :remote=>true %> 
                 </li>
@@ -50,7 +50,7 @@
       <li>Filter by restaurant <span class="divider">|</span></li>
 
       <!--begin f. for items 1 thru 4 in @restaurants -->
-      <% @restaurants[0..4].each_with_index do |restaurant, index| %> 
+      <% @restaurants[0..3].each_with_index do |restaurant, index| %> 
         <li> 
           
           <%= link_to "#{restaurant.name} (#{restaurant.food_activities.count})", params.merge({:restaurant => restaurant.restaurant_detail_id}), :remote=>true %> 
@@ -63,7 +63,7 @@
       <!-- end f. for items 1 thru 4 in @restaurants -->
 
       <!-- begin g. for items 5 thru last in @restaurants -->
-      <% if @restaurants[5..-1] %>
+      <% if @restaurants[4..-1] %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             See More
@@ -72,7 +72,7 @@
 
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
         
-            <% @restaurants[5..-1].each_with_index do |restaurant, index| %>
+            <% @restaurants[4..-1].each_with_index do |restaurant, index| %>
               <li>
                 <%= link_to "#{restaurant.name} (#{restaurant.food_activities.count})", params.merge({:restaurant => restaurant.restaurant_detail_id}), :remote=>true, :tabindex=>"-1" %> 
               </li>

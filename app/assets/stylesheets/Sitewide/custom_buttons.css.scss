@@ -1,0 +1,244 @@
+// $color-flat-primary: #3079ed;
+
+// @mixin btn-flat($flatcolor){
+//   background-color: $flatcolor;
+//   @include background-image(linear-gradient(top, $flatcolor, darken($flatcolor, 5%)));
+//   border: 1px solid $flatcolor;
+//   @include box-shadow(none);
+//   color: #fff;
+//   text-decoration: none;
+//   text-shadow: none;  
+//   @include border-radius(2px);
+// }
+
+// .btn-flat-primary{
+//   @include btn-flat($color-flat-primary);
+// }
+
+//
+// Flat-Buttons
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core
+.btn-flat {
+  display: inline-block;
+  @include ie7-inline-block();
+  padding: 4px 12px;
+  margin-bottom: 0; // For input.btn
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
+  border: 1px solid $btnBorder;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  border-bottom-color: darken($btnBorder, 10%);
+//.border-radius(0);
+  @include ie7-restore-left-whitespace(); // Give IE7 some love
+ @include box-shadow(none);
+ @include border-radius(2px);
+
+  // Hover state
+  &:hover {
+    color: $grayDark;
+    text-decoration: none;
+    background-position: 0 -15px;
+
+    // transition is only when going to hover, otherwise the background
+    // behind the gradient (there for IE<=9 fallback) gets mismatched
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    @include tab-focus();
+  }
+
+  // Active state
+  &.active,
+  &:active {
+    background-image: none;
+    outline: 0;
+   @include box-shadow(none);
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-image: none;
+    @include opacity(65);
+   @include box-shadow(none);
+  }
+
+}
+
+// Button Sizes
+// --------------------------------------------------
+
+// Large
+.btn-flat-large {
+  padding: $paddingLarge;
+  font-size: $fontSizeLarge;
+//.border-radius(0);
+}
+.btn-flat-large [class^="icon-"],
+.btn-flat-large [class*=" icon-"] {
+  margin-top: 4px;
+}
+
+// Small
+.btn-flat-small {
+  padding: $paddingSmall;
+  font-size: $fontSizeSmall;
+//.border-radius(0);
+}
+.btn-flat-small [class^="icon-"],
+.btn-flat-small [class*=" icon-"] {
+  margin-top: 0;
+}
+.btn-flat-mini [class^="icon-"],
+.btn-flat-mini [class*=" icon-"] {
+  margin-top: -1px;
+}
+
+// Mini
+.btn-flat-mini {
+  padding: $paddingMini;
+  font-size: $fontSizeMini;
+//.border-radius(0);
+}
+
+
+// Block button
+// -------------------------
+
+.btn-flat-block {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  @include box-sizing(border-box);
+}
+
+// Vertically space out multiple block buttons
+.btn-flat-block + .btn-flat-block {
+  margin-top: 5px;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-flat-block {
+    width: 100%;
+  }
+}
+
+// Alternate buttons
+// --------------------------------------------------
+
+// Provide *some* extra contrast for those who can get it
+.btn-flat-primary.active,
+.btn-flat-warning.active,
+.btn-flat-danger.active,
+.btn-flat-success.active,
+.btn-flat-info.active,
+.btn-flat-inverse.active {
+  color: rgba(255,255,255,.75);
+}
+
+
+
+// Set the backgrounds
+// -------------------------
+.btn-flat {
+  // reset here as of 2.0.3 due to Recess property order
+  border-color: #c5c5c5;
+  border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
+}
+.btn-flat-primary {
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
+// Warning appears are orange
+.btn-flat-warning {
+  @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
+}
+// Danger and error appear as red
+.btn-flat-danger {
+  @include buttonBackground($btnDangerBackground, $btnDangerBackgroundHighlight);
+}
+// Success appears as green
+.btn-flat-success {
+  @include buttonBackground($btnSuccessBackground, $btnSuccessBackgroundHighlight);
+}
+// Info appears as a neutral blue
+.btn-flat-info {
+  @include buttonBackground($btnInfoBackground, $btnInfoBackgroundHighlight);
+}
+// Inverse appears as dark gray
+.btn-flat-inverse {
+  @include buttonBackground($btnInverseBackground, $btnInverseBackgroundHighlight);
+}
+
+// Cross-browser Jank
+// --------------------------------------------------
+
+button.btn-flat,
+input[type="submit"].btn-flat {
+
+  // Firefox 3.6 only I believe
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  // IE7 has some default padding on button controls
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+
+  &.btn-flat-large {
+    *padding-top: 7px;
+    *padding-bottom: 7px;
+  }
+  &.btn-flat-small {
+    *padding-top: 3px;
+    *padding-bottom: 3px;
+  }
+  &.btn-flat-mini {
+    *padding-top: 1px;
+    *padding-bottom: 1px;
+  }
+}
+
+
+// Link buttons
+// --------------------------------------------------
+
+// Make a button look and behave like a link
+.btn-flat-link,
+.btn-flat-link:active,
+.btn-flat-link[disabled] {
+  background-color: transparent;
+  background-image: none;
+ @include box-shadow(none);
+}
+.btn-flat-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: $linkColor;
+//.border-radius(0);
+}
+.btn-flat-link:hover {
+  color: $linkColorHover;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.btn-flat-link[disabled]:hover {
+  color: $grayDark;
+  text-decoration: none;
+}

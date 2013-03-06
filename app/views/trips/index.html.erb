@@ -17,23 +17,23 @@
 
 <% end %>  
 
-<div class="container index-maincon" id="maincontainer">
+<div class="container">
   
-<div class="row results-searchbar-container">
+<div class="results-searchbar-container">
   <% if params["show_hero"] && params["show_hero"] == 'false' %>
     <%= render 'trips/partials/results-searchbar' %>
   <% else %>
   <% end %>  
 </div>
 
-<div class="row results-flash-message">
+<div class="results-flash-message">
   <% if params["show_hero"] && params["show_hero"] == 'false' %>
     <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
   <% else %>
   <% end %>  
 </div>
  
-<div id="results-breadcrumbs" class="row">
+<div id="results-breadcrumbs">
   <% if params["show_hero"] && params["show_hero"] == 'false' %>
     <%= render 'trips/partials/results-breadcrumbs' %>
   <% else %>
@@ -41,7 +41,7 @@
 </div>
 
 <% if @trips %>
-  <div id="trips-landmark-container" class="row">
+  <div id="trips-landmark-container">
     <% if params["show_hero"] && params["show_hero"] == 'false' %>
       <%= render 'trips/partials/landmarks-filtering' %>
     <% else %>
@@ -49,7 +49,7 @@
   </div>
 <% end %>
 
-<div class="row" id="trips-results-container">
+<div id="trips-results-container">
 
 
   <% if params["show_hero"] && params["show_hero"] == 'false' %>
@@ -64,7 +64,7 @@
 </div>
 <a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
 
-<div class ='row continuous-loading-indicator-wrapper'>
+<div class ='continuous-loading-indicator-wrapper'>
   <%= image_tag("/assets/spinners/ajax-loader-dots.gif", :class => "continuous-scroll-spinner") %>
   <p>Loading Trips...</p>
 </div>
