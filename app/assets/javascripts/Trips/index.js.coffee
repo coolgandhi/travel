@@ -7,9 +7,8 @@
           FB.XFBML.parse()
         return
       return false
-
-     
-    searchformrules = 
+ 
+    trips_namespace.searchformrules = 
       rules:
         days:
           required: false
@@ -22,13 +21,15 @@
         error.appendTo $(".error-msg")
         return
       onfocusout: (element) ->
-        if $(element).attr('id') == "days" and $(element).val() == ""
+        if ($(element).attr('id') == "days" or $(element).attr('id') == "results-day-field" or $(element).attr('id') == "dropdown-day-field") and $(element).val() == ""
           $(".error-msg").empty()
         else
           $(element).valid()
         return
     
-    $(".hero-form").validate(searchformrules)
+    jQuery ->
+      $(".hero-form").validate(trips_namespace.searchformrules)
+      $(".droptoggle-form").validate(trips_namespace.searchformrules)
 
     $('#scrolltotop').on "click", null, (e) ->
       $("html, body").animate({

@@ -2,7 +2,7 @@
 <!-- Begin Form Centering -->
   <div class ="results-form-centering">
 
-      <%= form_tag trips_path, :method => 'get', :class => 'hero-form', :remote => true do %>
+      <%= form_tag trips_path, :method => 'get', :class => 'results-hero-form', :remote => true do %>
         <span class = "hero-form-left">  
         <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params["trip_location_id"].to_s), :multiple => false, :prompt => "Where do you want to go?" , :class => "results-place_dropdown_field" %>
 
@@ -24,8 +24,7 @@
         <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash-submit-button' %>
       <% end %>
 
-      <div class = "error-msg"></div>
-
   </div>
   <!-- End Form Centering -->
+  <div class = "error-msg"></div>
 </div>

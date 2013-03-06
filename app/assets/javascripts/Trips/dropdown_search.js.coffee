@@ -4,8 +4,10 @@
     $('.droptoggle-searchbar').focus ->
       $('.droptoggle-menu').show()
 
-    $('.dropdown-close-button, .dropdown-search-button').click ->
+    $('.dropdown-close-button').click ->
   	  $('.droptoggle-menu').hide()
+
+    $('.dropdown-search-button').on('submit', $('.droptoggle-menu').hide())  
   
   # passing label and value of the dropdown search place field to hidden fields in dropdown form
   jQuery ->

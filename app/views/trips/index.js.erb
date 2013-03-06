@@ -7,7 +7,9 @@
 	trips_namespace.fireResizeResultsPic();
 	$(document).ready(function() {
   	  trips_namespace.fireResultSearchBarJs();
+  	  $(".results-hero-form").validate(trips_namespace.searchformrules);
   	});
+
 	//show flash message
 	$(".results-flash-message").html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>");
 	
