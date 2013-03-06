@@ -20,35 +20,29 @@
 
 
   <body>
-  <!-- Preloader -->
-  <div id="preloader">
-      <div id="status">&nbsp;</div>
-  </div>
-  <div class="morning_bg"></div>
-  <div class="afternoon_bg"></div>
-  <div class="evening_bg"></div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <div class="morning_bg"></div>
+    <div class="afternoon_bg"></div>
+    <div class="evening_bg"></div>
       
-  <!-- removed render of offcanvas partial here -->
-
-  <div class="page-wrap">
-
-          <%= render 'layouts/intrip-navigation' %>
-    
-    <div class="container" id="maincontainer">
+    <!-- removed render of offcanvas partial here -->
+    <div class="page-wrap">
+      <%= render 'layouts/intrip-navigation' %>
+      <div class="container" id="maincontainer">
         <div class="content">
-           <div class="row">
+          <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
             </div>
           </div>
         </div>
-
-            <%= yield %>
-
+        <%= yield %>
         <footer></footer>
-    </div> <!--! end of .container -->
-
-  </div> <!--! end of .page-wrap -->
-
+      </div> <!--! end of .container -->
+    </div> <!--! end of .page-wrap -->
+    <%= render :partial => 'layouts/ga' %>
   </body>
 </html>

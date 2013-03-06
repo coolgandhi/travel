@@ -20,13 +20,14 @@
     <div id="fb-root"></div>
     <!-- Preloader -->
     <div id="preloader">
-        <div id="status">&nbsp;</div>
+      <div id="status">&nbsp;</div>
     </div>
   
     <%= render 'layouts/navigation' %>
 
     <%= yield %>
  
-
+    <%# render :partial => ‘layouts/ga’ if RAILS_ENV == ‘production’ %>
+    <%= render :partial => 'layouts/ga' %>
   </body>
 </html>

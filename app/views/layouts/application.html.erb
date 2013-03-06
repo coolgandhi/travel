@@ -18,28 +18,28 @@
 
 
   <body>
-  <!-- Preloader -->
-  <div id="preloader">
+    <!-- Preloader -->
+    <div id="preloader">
       <div id="status">&nbsp;</div>
-  </div>
-  <div class="page-wrap">
+    </div>
+    <div class="page-wrap">
+      <%= render 'layouts/navigation' %>
 
-          <%= render 'layouts/navigation' %>
-
-    <div class="container" id="maincontainer">
+      <div class="container" id="maincontainer">
         <div class="content">
-           <div class="row">
+          <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
             </div>
           </div>
         </div>
 
-            <%= yield %>
+        <%= yield %>
 
         <footer></footer>
-    </div> <!--! end of .container -->
-  </div> <!--! end of .page-wrap -->
+      </div> <!--! end of .container -->
+    </div> <!--! end of .page-wrap -->
 
+    <%= render :partial => 'layouts/ga' %>
   </body>
 </html>
