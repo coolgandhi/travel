@@ -14,29 +14,26 @@ window.fbAsyncInit = function() {
       xfbml  : true  // parse XFBML
     });
 
-		FB.Event.subscribe('edge.create',
-		    function(response) {
-		        // alert('You liked the URL: ' + response); todo: add logging
-		    }
-		);
+		FB.Event.subscribe('edge.create', function(response) {
+			// alert('You liked the URL: ' + response); 
+			site_wide_namespace.trackSocial('facebook', 'like', response);
+		});
 
-		FB.Event.subscribe('message.send',
-		    function(response) {
-		       // alert('You sent the URL: ' + response); todo: add logging
-		    }
-		);
-
-		FB.Event.subscribe('comment.create',
-		    function(response) {
-		       // alert('You sent the URL: ' + response); todo: add logging
-		    }
-		);
+		FB.Event.subscribe('edge.remove', function(response) {
+		  site_wide_namespace.trackSocial('facebook', 'unlike', response);
+		});
 		
-		FB.Event.subscribe('comment.remove',
-		    function(response) {
-		       // alert('You sent the URL: ' + response); todo: add logging
-		    }
-		);
+		FB.Event.subscribe('message.send', function(response) {
+			site_wide_namespace.trackSocial('facebook', 'send', response);
+		});
+
+		FB.Event.subscribe('comment.create', function(response) {
+			site_wide_namespace.trackSocial('facebook', 'commented', response);
+		});
+		
+		FB.Event.subscribe('comment.remove', function(response) {
+			site_wide_namespace.trackSocial('facebook', 'uncommented', response);
+		});
 		
 	};
 	

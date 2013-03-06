@@ -13,7 +13,7 @@
 	
 	// if there is the hero unit then remove it after a search
 	if ($('.big-image-header').length > 0) {
-	  $('.big-image-header').fadeOut(1000, 'linear', function(){ this.remove();});
+	  $('.big-image-header').fadeOut(1000, 'linear', function(){ $(this).remove();});
 	} else {	
 	}
 <% else %>

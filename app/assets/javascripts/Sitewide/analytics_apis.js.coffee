@@ -8,6 +8,10 @@
       _gaq.push(['_trackPageview', pageURL])
       return
 
+  site_wide_namespace.trackSocial = (network, action, target = null, page = null) ->
+      _gaq.push(['_trackSocial', network, action, target, page])
+      return
+
   site_wide_namespace.disable_tracking = () ->
     window['ga-disable-UA-39026127-1'] = true
     return
@@ -17,7 +21,7 @@
     return
     
   site_wide_namespace.setCustomVar = (index, name, value, scope) ->
-    _gaq.push(['setCustomVar', index, name, value, scope])     
+    _gaq.push(['_setCustomVar', index, name, value, scope])   
     return
     
   jQuery ->
