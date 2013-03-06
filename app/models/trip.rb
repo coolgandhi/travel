@@ -27,7 +27,7 @@ class Trip < ActiveRecord::Base
       
       if trips.length == 0 # find trips from same location as a minimum 
         trips = Trip.where("location_id = ?", params[:trip_location_id])
-        message_with_trip_render = "Can't find the trips with the specified constraints, check other trips to the same location"
+        message_with_trip_render = "Can't find the trips with the specified constraints, check out these other trips to the same location"
       end
       return trips, message_with_trip_render
     else

@@ -1,3 +1,7 @@
+/* Variables */
+$result-subtitle-color: #08c;
+
+
 /* Body Styles */ 
 .js .pagination{
   display: none;
@@ -13,6 +17,12 @@ body{
 
 .navbar-fixed-top .container{
   width: 1180px;
+}
+
+.results-flash-message{
+  .alert{
+    margin-bottom: 0;
+  }
 }
 
 /* Hero Unit Styles */ 
@@ -126,12 +136,56 @@ body{
   // margin-right: 2%;
 }
 
-/* Results Container */
 
-.results-title{
-  margin-top: 0;
+/* Results Searchbar */
+
+.results-searchbar{
+  text-align: center;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  background-color: $myDivBg;
+  margin-bottom: 1%;
 }
 
+.results-form-centering{
+  display: inline-block;
+  margin-top: 1%;
+}
+
+.ui-multiselect.results-traveler-type-multiselect{
+  @extend .ui-multiselect.traveler-type-multiselect;
+}
+
+.ui-multiselect-menu.results-traveler-type-multiselect{
+  .ui-multiselect-header{
+    border: none;
+  }
+  .ui-multiselect-checkboxes label input{
+    top: -3px;
+    margin-right: 3px;
+  }  
+}
+/* Results Container */
+
+.featured-results-title{
+  margin: 0 0 1% 0;
+}
+
+.results-title{
+  // line-height: 1.2em;
+  margin: 0;
+}
+
+.results-subtitle-params{
+  color: $result-subtitle-color;
+  .divider{
+    color: #ccc;
+    padding: 0 5px;
+  }
+}
 #trips-results-container{
   position: relative;
   // @include col(12);
@@ -221,7 +275,7 @@ $result-thumb-height: 70%;
     font-weight: normal;
   }
   .caption-trip-subtitle{
-  color: #08c;
+    @extend .results-subtitle-params
   }
 }
 
@@ -274,6 +328,7 @@ $result-thumb-height: 70%;
 }
 
 .filter-by-bar{
+  width: 100%;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
@@ -292,6 +347,7 @@ $result-thumb-height: 70%;
 .location-filter-bar, .restaurant-filter-bar{
   padding: 0;
   margin: 0;
+  background-color: transparent;
   }
 }
 
@@ -308,4 +364,5 @@ $result-thumb-height: 70%;
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   padding: 0.5% 1%;
+  float: left;
 }

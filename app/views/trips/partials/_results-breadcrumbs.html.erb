@@ -1,0 +1,29 @@
+<h3 class ="results-title">  
+  <% unless params["place-text-field"].blank? %> 
+    Trip Summaries for <%=  params["place-text-field"] %>
+  <% end %>
+</h3>
+
+<p class = "results-subtitle-params">  
+  <% unless params["traveler_type_id"].blank? %>
+    for a
+    <% @traveler_types.each do |traveler_type| %>
+      <%= traveler_type[:traveler_type_name] %><% unless @traveler_types.last == traveler_type %>, <% end %>
+    <% end %>
+    <% unless params["days"].blank? %> 
+      <span class="divider">|</span>
+    <% end %>
+  <% end %>
+
+  <% unless params["days"].blank? %>
+    <%= params["days"] %> Days
+    <% unless params["from"].blank? %> 
+      <span class="divider">|</span>
+    <% end %>
+  <% end %>
+  
+  <% unless params["from"].blank? %>
+   starting <%= Date.strptime(params["from"],'%m/%d/%Y').strftime("%a, %b #{Date.strptime(params["from"],'%m/%d/%Y').day.ordinalize}") %>
+  <% end %>
+
+</p>

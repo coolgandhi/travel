@@ -1,4 +1,4 @@
-((site_wide_namespace, $, undefined_) ->
+((trips_namespace, $, undefined_) ->
   #Toggles the dropdown on 'focus' of search bar
   jQuery ->
     $('.droptoggle-searchbar').focus ->
@@ -10,7 +10,7 @@
   # passing label and value of the dropdown search place field to hidden fields in dropdown form
   jQuery ->
   	$('.droptoggle-searchbar').change ->
-      $('.trip_location_id').val($('.droptoggle-searchbar').val())
+      $('.dropdown_trip_location_id').val($('.droptoggle-searchbar').val())
       $('.drophide-place-field').val($('select.droptoggle-searchbar option:selected').text())
   
   #Calling Multi-select
@@ -27,4 +27,4 @@
     $(".dropdown-from-datefield").datepicker()
     queryDate = $( ".dropdown-from-datefield" ).datepicker('setDate', new Date())
 
-) window.site_wide_namespace = window.site_wide_namespace or {}, jQuery
+) window.trips_namespace = window.trips_namespace or {}, jQuery

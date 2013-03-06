@@ -25,7 +25,8 @@ class TripsController < ApplicationController
     
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
-      format.html # index.html.erb
+      flash.now[:notice] = @message_with_trip_render
+      format.html  # index.html.erb
       format.js # index.js.erb
       format.json { render json: @trips }
     end
