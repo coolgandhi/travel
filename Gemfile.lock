@@ -53,6 +53,8 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     erubis (2.7.0)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faker (1.1.2)
@@ -170,6 +172,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.2.2.0)
   coffee-rails (~> 3.2.1)
   compass-rails
+  exception_notification
   faker
   foursquare2 (~> 1.9.2)
   i18n (~> 0.6.1)
