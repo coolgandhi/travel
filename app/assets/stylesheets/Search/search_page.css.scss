@@ -41,11 +41,12 @@ body{
   bottom: 10%;
   right: 5%;
   color: white;
-  // font-family: futura;
+  font-family: 'Open Sans Condensed', sans-serif;
   font-size: 3em;
-  text-shadow: 3px 6px 6px black;
+  text-shadow: 6px 6px 6px black;
+  letter-spacing: -2px;
   // font-weight: bold;
-  // text-transform: lowercase;
+  text-transform: uppercase;
   z-index: 1;
 
 }
@@ -58,10 +59,11 @@ body{
   width: 100%;
   background-color: $black;
   // background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
-  background-image: url("/assets/splash_images/st-james-park_20120925_160149_1440x550_hi.jpg");
+  background-image: url("/assets/splash_images/st-james-park_20120925_160149_1440x550_hi_freeze_blue.jpg");
   background-repeat: no-repeat;
   background-size: 1400px auto;
-  background-position-x:center;
+  background-position-x: center;
+  background-position-y: 50%;
   // margin: 0 auto;
 }
 
@@ -78,16 +80,18 @@ body{
   	margin: 0 auto;
     color: white;
     font-size: 1.3em;
-    line-height: 1.5em;
-    font-weight: 300;
+    line-height: 1.8em;
+    font-weight: bold;
     text-shadow: 1px 1px 0 black;
+    background-color: rgba(0,0,0,.6);
+    padding: 0.5% 1%; 
+    @include clearfix;
     @include respond-to(portrait){
       max-width: 500px;
     }
   	.hero-form{
       margin: 0 auto;
       width: 100%;
-
   	}
   }
 }
@@ -211,7 +215,7 @@ body{
 
 .results-subtitle-params{
   color: $result-subtitle-color;
-  margin-bottom: 0;
+  margin-bottom: 1%;
   .divider{
     color: #ccc;
     padding: 0 5px;
@@ -380,7 +384,7 @@ $result-thumb-height: 70%;
   @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
-  padding: 0.25% 0.5%;
+  padding: 0.25% 1%;
   margin: 0 0 1% 0;
   @include box-sizing(border-box);
   font-size: 0.95em;
