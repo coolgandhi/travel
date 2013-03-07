@@ -8,29 +8,72 @@
         return
       return false
  
-    trips_namespace.searchformrules = 
+    trips_namespace.day_rule = 
+      required: false
+      min: 1
+        
+    trips_namespace.place_rule =
+      required: true      
+      
+    trips_namespace.day_err_message = "Please enter atleast 1 day for the trip"
+    
+    trips_namespace.place_err_message = "Please select where would you like to go"
+      
+    trips_namespace.searchformrules_on_page_box = 
       rules:
-        days:
-          required: false
-          min: 1
+        days: trips_namespace.day_rule
+        place_dropdown_field: trips_namespace.place_rule
+      messages: 
+        days: trips_namespace.day_err_message
+        place_dropdown_field: trips_namespace.place_err_message
       success: (label, element) ->
-        $(element).parents('form').siblings(".error-msg").empty()
+        # $(element).parents('form').siblings(".error-msg").empty()
         return
-      errorPlacement: (error, element) ->
-        $(element).parents('form').siblings(".error-msg").empty()
-        error.appendTo $(element).parents('form').siblings(".error-msg")
-        return
-      onfocusout: (element) ->
-        if ($(element).attr('id') == "days" or $(element).attr('id') == "results-day-field" or $(element).attr('id') == "dropdown-day-field") and $(element).val() == ""
-          $(element).parents('form').siblings(".error-msg").empty()
+      showErrors: (errorMap, errorList) ->
+        summary = ""
+        $.each errorList, ->
+          summary += " * " + @message + "\n"
+        if summary != ""
+          $(".error-msg").html summary
         else
-          $(element).valid()
+          $(".error-msg").empty
+      onfocusout: false
+      onkeyup: false
+      onclick: false
+      
+    trips_namespace.searchformrules_small_box = 
+      ignore: []
+      rules:
+        days: trips_namespace.day_rule
+        place_text_field: trips_namespace.place_rule
+      messages: 
+        days: trips_namespace.day_err_message
+        place_text_field: trips_namespace.place_err_message
+      success: (label, element) ->
+        # $(element).parents('form').siblings(".error-msg").empty()
         return
+      showErrors: (errorMap, errorList) ->
+        summary = ""
+        $.each errorList, ->
+          summary += " * " + @message + "\n"
+          return
+        console.log summary
+        if summary != ""
+          $(".small-error-msg").html summary
+          return
+        else
+          $(".small-error-msg").empty
+          return
+      onfocusout: false
+      onkeyup: false
+      onclick: false
+    
     
     jQuery ->
-      $(".hero-form").validate(trips_namespace.searchformrules)
-      $(".droptoggle-form").validate(trips_namespace.searchformrules)
+      $(".hero-form").validate(trips_namespace.searchformrules_on_page_box)
+      $(".droptoggle-form").validate(trips_namespace.searchformrules_small_box)
       $(".hero-form").submit ->
+        # alert $("#place_dropdown_field").val() + " " + $("#traveler_type_id").val() + " " + $("#from-datefield").val() + " " + $("#days").val()
         site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3) 
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#traveler_type_id").val(), 3) 
         site_wide_namespace.setCustomVar(3, "start_date", $("#from-datefield").val(), 3) 
@@ -38,11 +81,11 @@
         site_wide_namespace.trackEvent("search", "click", "big_box")
         return
       $(".droptoggle-form").submit -> 
-        #alert $("#droptoggle_searchbar_id").val() + " " + $("#dropdown_traveler_type_id").val() + " " + $("#dropdown-from-datefield").val() + " " + $("#dropdown-day-field").val()
+        # alert $("#droptoggle_searchbar_id").val() + " " + $("#dropdown_traveler_type_id").val() + " " + $("#dropdown-from-datefield").val() + " " + $("#dropdown_day_field").val()
         site_wide_namespace.setCustomVar(1, "place", $("#droptoggle_searchbar_id").val(), 3) 
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#dropdown_traveler_type_id").val(), 3) 
         site_wide_namespace.setCustomVar(3, "start_date", $("#dropdown-from-datefield").val(), 3) 
-        site_wide_namespace.setCustomVar(4, "number_of_days", $("#dropdown-day-field").val(), 3) 
+        site_wide_namespace.setCustomVar(4, "number_of_days", $("#dropdown_day_field").val(), 3) 
         site_wide_namespace.trackEvent("search", "click", "small_box")
         return
       return

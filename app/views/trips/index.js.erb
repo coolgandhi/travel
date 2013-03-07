@@ -7,15 +7,15 @@
   trips_namespace.fireResizeResultsPic();
   $(document).ready(function() {
      trips_namespace.fireResultSearchBarJs();
-     $(".results-hero-form").validate(trips_namespace.searchformrules);
+     $(".results-hero-form").validate(trips_namespace.searchformrules_on_page_box);
      $('.droptoggle-menu').hide();
      $('.results-hero-form').on('submit', function (){
-       //alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results-day-field").val());
-       site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3) 
-       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3) 
-       site_wide_namespace.setCustomVar(3, "start_date", $("#from").val(), 3) 
-       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results-day-field").val(), 3) 
-       site_wide_namespace.trackEvent("search", "click", "results_search_box")       
+ //      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
+			 site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3); 
+       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3);
+       site_wide_namespace.setCustomVar(3, "start_date", $("#from").val(), 3); 
+       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results_day_field").val(), 3); 
+       site_wide_namespace.trackEvent("search", "click", "results_search_box");       
       });
     });
 

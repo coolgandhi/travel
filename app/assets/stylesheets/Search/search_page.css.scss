@@ -92,7 +92,7 @@ body{
   }
 }
 
-.place-text-field{
+.place_text_field{
   // height: 2em;
 }
 
@@ -405,6 +405,7 @@ $result-thumb-height: 70%;
   padding: 0.5% 1%;
 }
 
+.small-error-msg,
 .error-msg {
   // border-width: $myDivBorderWidth;
   // @include border-radius($myDivBorderRadius);
