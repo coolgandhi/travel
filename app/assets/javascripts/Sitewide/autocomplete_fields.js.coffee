@@ -4,7 +4,7 @@
   totalSelectedImages = 0;
   
   jQuery ->        
-    $('#place-text-field, .place-text-field').autocomplete
+    $('#place_text_field, .place_text_field').autocomplete
       minLength: 3
       source: (request, response) ->
         $.ajax 
@@ -19,7 +19,7 @@
               value: item.location_id + "," + item.latitude + "," + item.longitude
               )
       open: ->
-        $(this).removeClass("#place-text-field").addClass "ui-corner-top"
+        $(this).removeClass("#place_text_field").addClass "ui-corner-top"
       close: ->
         $(this).removeClass("ui-corner-top").addClass "ui-corner-all"
       focus: (event, ui) ->
@@ -31,7 +31,7 @@
         splitarraylabel = ui.item.label.split(",")
         $('#trip_location_id, .trip_location_id').val( splitarrayvalue[0] )
         $(this).val ui.item.label
-        $(this).siblings('#place-text-field').val splitarrayvalue[0]
+        $(this).siblings('#place_text_field').val splitarrayvalue[0]
         site_wide_namespace.fetchlocationimages splitarraylabel[0], splitarrayvalue[1], splitarrayvalue[2], $("#location_images")
       
 ) window.site_wide_namespace = window.site_wide_namespace or {}, jQuery

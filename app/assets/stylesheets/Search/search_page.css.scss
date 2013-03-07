@@ -108,6 +108,10 @@ body{
   }
 }
 
+.place_text_field{
+  // height: 2em;
+}
+
 .ui-multiselect.traveler-type-multiselect{
   margin-bottom: 12px;
   height: 30px;
@@ -421,9 +425,9 @@ $result-thumb-height: 70%;
   padding: 0.5% 1%;
 }
 
-/* SEARCH VALIDATION */
 
-.error-msg {
+/* SEARCH VALIDATION */
+.small-error-msg, .error-msg {
   // border-width: $myDivBorderWidth;
   // @include border-radius($myDivBorderRadius);
   // @include box-shadow($myDivBoxShadow);
