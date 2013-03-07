@@ -1,5 +1,5 @@
 /* Variables */
-$result-subtitle-color: #08c;
+$result-subtitle-color: dimgrey;///#08c;
 $color-border-color: #00A1CB;
 
 
@@ -39,14 +39,15 @@ body{
 .hero-tag-line{
   position: absolute;
   bottom: 10%;
-  right: 10%;
+  right: 5%;
   color: white;
   // font-family: futura;
-  font-size: 2em;
-  text-shadow: 1px 1px 1px black;
-  font-weight: bold;
+  font-size: 3em;
+  text-shadow: 3px 6px 6px black;
+  // font-weight: bold;
+  // text-transform: lowercase;
   z-index: 1;
-  text-transform: lowercase;
+
 }
 
 .splash-image-container{
@@ -107,7 +108,10 @@ body{
   .ui-multiselect-checkboxes label input{
     top: -3px;
     margin-right: 3px;
-  }  
+  }
+  .ui-multiselect-checkboxes li label.ui-state-hover{
+    background-color: rgba(0,0,0,.1);
+  }    
 }
 
 .hero-form-left{
@@ -148,16 +152,36 @@ body{
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
-  margin-bottom: 1%;
+  @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%));
+  // margin-bottom: 1%;
+  margin-bottom: 0;
+  padding-top: 0.5%;
 }
 
 .results-form-centering{
   display: inline-block;
-  margin-top: 1%;
+  // padding-top: 0.5%;
+}
+
+.results-hero-form{
+  .hero-from-prepend{
+    margin-bottom: 0;
+  }
+  .hero-days-append{
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+}
+
+.results-place_dropdown_field{
+  margin-bottom: 0;
+  width: 200px;
 }
 
 .ui-multiselect.results-traveler-type-multiselect{
   @extend .ui-multiselect.traveler-type-multiselect;
+  margin-bottom: 0;
+  width: 200px;
 }
 
 .ui-multiselect-menu.results-traveler-type-multiselect{
@@ -167,17 +191,22 @@ body{
   .ui-multiselect-checkboxes label input{
     top: -3px;
     margin-right: 3px;
-  }  
+  }
+  .ui-multiselect-checkboxes li label.ui-state-hover{
+    background-color: rgba(0,0,0,.1);
+  }    
 }
 /* Results Container */
 
 .featured-results-title{
   margin: 0 0 1% 0;
+  font-weight: normal;
 }
 
 .results-title{
   line-height: 1.2em;
   margin: 0;
+  font-weight: normal;
 }
 
 .results-subtitle-params{
@@ -267,12 +296,12 @@ $result-thumb-height: 70%;
   min-height: 100-$result-thumb-height;
   overflow: hidden;
   h3{
-    font-size: 1.1em;
-    line-height: 1.1em;
+    font-size: 1.2em;
+    line-height: 1.2em;
     letter-spacing: 0.05em;
     margin: 0;
     margin-bottom: 1px;
-    font-weight: bold;
+    font-weight: normal;
     color: $black;
     a{
       color: $black;
@@ -338,8 +367,8 @@ $result-thumb-height: 70%;
 /* Filter by Landmarks */
 
 #trips-landmark-container{
-  // margin-top: 1%;
-  // margin-bottom: 1%;
+  width: 95%;
+  margin-left: 2.5%;
 }
 
 .filter-by-bar{
@@ -347,12 +376,14 @@ $result-thumb-height: 70%;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
-  @include border-radius($myDivBorderRadius);
+  border-top: 0;
+  @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
-  padding: 0.5% 1%;
-  margin: 1% 0;
+  padding: 0.25% 0.5%;
+  margin: 0 0 1% 0;
   @include box-sizing(border-box);
+  font-size: 0.95em;
   hr{
   margin: 2px 0;
   border: 0;

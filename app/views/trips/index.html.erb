@@ -26,6 +26,15 @@
   <% end %>  
 </div>
 
+<% if @trips %>
+  <div id="trips-landmark-container">
+    <% if params["show_hero"] && params["show_hero"] == 'false' %>
+      <%= render 'trips/partials/landmarks-filtering' %>
+    <% else %>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="results-flash-message">
   <% if params["show_hero"] && params["show_hero"] == 'false' %>
     <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
@@ -40,14 +49,7 @@
   <% end %>
 </div>
 
-<% if @trips %>
-  <div id="trips-landmark-container">
-    <% if params["show_hero"] && params["show_hero"] == 'false' %>
-      <%= render 'trips/partials/landmarks-filtering' %>
-    <% else %>
-    <% end %>
-  </div>
-<% end %>
+
 
 <div id="trips-results-container">
 

@@ -42,7 +42,7 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 $customFontFamily:"Text Me One", Helvetica, Arial, sans-serif !default; //custom font
 @import url(http://fonts.googleapis.com/css?family=Text+Me+One);
 
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$sansFontFamily:        "Helvetica Neue Light", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
@@ -61,8 +61,8 @@ $btnBackground:                     $white !default;
 $btnBackgroundHighlight:            darken($white, 10%) !default;
 $btnBorder:                         #bbb !default;
 
-$btnPrimaryBackground:              $linkColor !default;
-$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) !default;
+$btnPrimaryBackground:              #00a1cb !default; //$linkColor
+$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 5%) !default;
 
 $btnInfoBackground:                 #5bc0de !default;
 $btnInfoBackgroundHighlight:        #2f96b4 !default;

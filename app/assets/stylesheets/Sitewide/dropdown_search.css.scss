@@ -54,5 +54,8 @@
   .ui-multiselect-checkboxes label input{
     top: -3px;
     margin-right: 3px;
-  }  
+  }
+  .ui-multiselect-checkboxes li label.ui-state-hover{
+    background-color: rgba(0,0,0,.1);
+  }    
 }

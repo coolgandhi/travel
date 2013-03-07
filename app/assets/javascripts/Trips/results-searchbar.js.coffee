@@ -9,11 +9,12 @@
   #Calling Multi-select
   trips_namespace.fireResultsTravelerTypeMultiSelect = ->
     $(".results-traveler-type-multiselect").multiselect(
-      noneSelectedText: 'Your traveler type'
+      noneSelectedText: 'Your traveler type?'
       selectedList: 4
       classes : "results-traveler-type-multiselect"
       height: 'auto'
-    )  
+    )
+    $('.ui-multiselect.results-traveler-type-multiselect').css('width', '200px');  
 
   #calling date from field datepicker
   trips_namespace.fireResultsFromField = ->

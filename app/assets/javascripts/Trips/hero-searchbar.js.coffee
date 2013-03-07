@@ -9,7 +9,7 @@
   #Calling Multi-select
   trips_namespace.fireTravelerTypeMultiSelect = ->
     $(".traveler-type-multiselect").multiselect(
-      noneSelectedText: 'Your traveler type'
+      noneSelectedText: 'Your travel style?'
       selectedList: 4
       classes : "traveler-type-multiselect"
       height: 'auto'
