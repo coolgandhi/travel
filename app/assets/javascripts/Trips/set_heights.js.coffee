@@ -1,6 +1,6 @@
 ((trips_namespace, $, undefined_) ->
   
-  wrap_heights = ->
+  trips_namespace.wrap_heights = ->
     # create a jQuery deferred object
     r = $.Deferred()
     $('#wrappiest').css "height", "" + Math.round(.7 * $(window).height())
@@ -12,11 +12,11 @@
     # return the deferred object
     r
 
-  wrap_widths = ->
+  trips_namespace.wrap_widths = ->
     $('#comments').css "width", "" + Math.round(.6 * $(window).width())
 
   #this initiates the iscrolls
-  create_iscrollers = ->
+  trips_namespace.create_iscrollers = ->
     if Modernizr.touch
       filmScroller = new iScroll("filmstrip-scroll")
       commentScroller = new iScroll("bottom-actionlinks")
@@ -26,10 +26,11 @@
 
   # calling the methods above
   $(document).ready ->
-    wrap_heights()
-    # wrap_widths()
-    $(window).on "resize", wrap_heights
-    # $(window).on "resize", wrap_widths
-    wrap_heights().done create_iscrollers
+    trips_namespace.wrap_heights()
+    # # wrap_widths()
+    $(window).on "resize", -> trips_namespace.wrap_heights()
+    $(window).on "orientationchange", -> trips_namespace.wrap_heights()
+    # # $(window).on "resize", wrap_widths
+    trips_namespace.wrap_heights().done trips_namespace.create_iscrollers
     
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

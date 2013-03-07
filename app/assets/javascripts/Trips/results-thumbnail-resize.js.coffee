@@ -15,8 +15,8 @@
 
   jQuery ->
     trips_namespace.fireResizeResultsPic()
-    $(window).on "resize", trips_namespace.fireResizeResultsPic()
-    $(window).on "orientationchange", trips_namespace.fireResizeResultsPic()
+    $(window).on "resize", -> trips_namespace.fireResizeResultsPic()
+    $(window).on "orientationchange", -> trips_namespace.fireResizeResultsPic()
     # fire_picturefill()
     # fire_picturefill().done fireResizeResultsPic
     # $(window).on "resize", fireResizeResultsPic

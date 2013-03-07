@@ -15,26 +15,28 @@
 
             Show me trip summaries for </br>
             <%= form_tag trips_path, :method => 'get', :class => 'hero-form', :remote => true do %>
-              <span class = "hero-form-left">  
-              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "place_dropdown_field" %>
-
-              <%= hidden_field_tag "place-text-field", params[:place], :class => "hero-hidden-place-field" %>
-              
-              <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "hero_trip_location_id" %>                          
-
-              for   
-
-              <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
-              <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>                    
-              </span>
-              <div class="input-prepend hero-from-prepend">
-              <span class="add-on">from</span>
-              <%= text_field_tag :from, params[:from], :class => "from-datefield input-small", :id => "from-datefield" %> 
+              <div class = "hero-form-left">  
+                <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "place_dropdown_field" %>
               </div>
-              <div class="hero-form-left">for</div>
+                <%= hidden_field_tag "place-text-field", params[:place], :class => "hero-hidden-place-field" %>
+              
+                <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "hero_trip_location_id" %>                          
+              <div class="hero-form-left">
+                for
+              </div>
+              <div class = "hero-form-left">
+                <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler-type-multiselect" %>                    
+              </div>
+              <div class="input-prepend hero-from-prepend">
+                <span class="add-on">from</span>
+                <%= text_field_tag :from, params[:from], :class => "from-datefield input-small", :id => "from-datefield" %> 
+              </div>
+              <div class="hero-form-left">
+                 for
+              </div>
               <div class="input-append hero-days-append">
-              <%= text_field_tag :days, params[:days], :placeholder=>"#", :value=>3 %>
-              <span class="add-on">days</span>
+                <%= text_field_tag :days, params[:days], :placeholder=>"#", :value=>3 %>
+                <span class="add-on">days</span>
               </div>  
               <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary splash-submit-button' %>
             <% end %>
