@@ -20,7 +20,7 @@
     if Modernizr.touch
       filmScroller = new iScroll("filmstrip-scroll")
       commentScroller = new iScroll("bottom-actionlinks")
-      overviewScroller = new iScroll("trip-overview-modal")
+      overviewScroller = new iScroll("trip_overview_modal")
     else
      	''
 

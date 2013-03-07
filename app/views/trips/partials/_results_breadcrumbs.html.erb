@@ -1,10 +1,10 @@
-<h3 class ="results-title">  
+<h3 class ="results_title">  
   <% unless params["place_text_field"].blank? %> 
     Trip Summaries for <%=  params["place_text_field"] %>
   <% end %>
 </h3>
 
-<p class = "results-subtitle-params">  
+<p class = "results_subtitle_params">  
   <% unless params["traveler_type_id"].blank? %>
     for a
     <% @traveler_types.each do |traveler_type| %>

@@ -1,6 +1,6 @@
 <!-- Modal -->
 
-<div id="trip-overview-modal" class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+<div id="trip_overview_modal" class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
   
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -53,7 +53,7 @@
             </td>
           </tr>      
         <% end %>
-        <tr onclick="trips_namespace.gallery.goToPage(<%= i %>); $('#trip-overview-modal').modal('hide')">
+        <tr onclick="trips_namespace.gallery.goToPage(<%= i %>); $('#trip_overview_modal').modal('hide')">
           <td class = "thumbnail_td">
             <%= image_tag(select_activity_img(-1, @sorted_activities[i][:image_url], 50), :alt => @sorted_activities[i][:activity_venue_name]) %>
           </td>

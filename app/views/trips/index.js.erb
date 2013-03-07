@@ -1,15 +1,15 @@
 <% if @trips.current_page == 1 %>
-  $('#trips-results-container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
-  $('#trips-landmark-container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>').fadeIn('slow');
-  $('.results-searchbar-container').html('<%= escape_javascript(render("trips/partials/results-searchbar")) %>');
-  $('#results-breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results-breadcrumbs")) %>').fadeIn('slow');
+  $('#trips_results_container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
+  $('#trips_landmark_container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks_filtering")) %>').fadeIn('slow');
+  $('.results_searchbar-container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');
+  $('#results_breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results_breadcrumbs")) %>').fadeIn('slow');
   // fire resize on the results thumbnails
   trips_namespace.fireResizeResultsPic();
   $(document).ready(function() {
      trips_namespace.fireResultSearchBarJs();
-     $(".results-hero-form").validate(trips_namespace.searchformrules_on_page_box);
-     $('.droptoggle-menu').hide();
-     $('.results-hero-form').on('submit', function (){
+     $(".results_hero_form").validate(trips_namespace.searchformrules_on_page_box);
+     $('.droptoggle_menu').hide();
+     $('.results_hero_form').on('submit', function (){
  //      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
 			 site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3); 
        site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3);
@@ -20,14 +20,14 @@
     });
 
   //show flash message
-  $(".results-flash-message").fadeOut('slow').html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>").fadeIn('slow');
+  $(".results_flash_message").fadeOut('slow').html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>").fadeIn('slow');
   
   // if there is the hero unit then remove it after a search
-  if ($('.big-image-header').length > 0) {
-    $('.big-image-header').fadeOut(1000, 'linear', function(){ $(this).remove();});
+  if ($('.big_image_header').length > 0) {
+    $('.big_image_header').fadeOut(1000, 'linear', function(){ $(this).remove();});
   } 
 <% else %>
-  $('#trips-results-container').append('<%= escape_javascript(render("trips")) %>');
+  $('#trips_results_container').append('<%= escape_javascript(render("trips")) %>');
   trips_namespace.fireResizeResultsPic();
 <% end %>
 

@@ -11,7 +11,7 @@
     r
   
   trips_namespace.fireResizeResultsPic = ->
-    $(".image-link-thumbnail").resizeToParent parent: ".result-thumb-wrap"
+    $(".image_link_thumbnail").resizeToParent parent: ".result_thumb_wrap"
 
   jQuery ->
     trips_namespace.fireResizeResultsPic()

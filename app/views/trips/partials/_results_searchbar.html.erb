@@ -1,9 +1,9 @@
-<div class = "results-searchbar">
+<div class = "results_searchbar">
   <!-- Begin Form Centering -->
-  <div class ="results-form-centering">
+  <div class ="results_form_centering">
 
-      <%= form_tag trips_path, :method => 'get', :class => 'results-hero-form', :remote => true do %>
-        <span class = "hero-form-left">  
+      <%= form_tag trips_path, :method => 'get', :class => 'results_hero_form', :remote => true do %>
+        <span class = "hero_form_left">  
         <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params["trip_location_id"].to_s), :multiple => false, :prompt => "Where do you want to go?" , :class => "results_place_dropdown_field" %>
 
         <%= hidden_field_tag "place_text_field", params[:place], :class => "results-hidden-place-field", :value=> params["place_text_field"] %>
@@ -11,19 +11,19 @@
         <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "results-trip_location_id", :value=> params["trip_location_id"] %>                          
 
         <%#= select("traveler_type_id", "traveler_type_id",  TravelerType.all.collect {|t| [ t.traveler_type_name, t.traveler_type_id]}) %> 
-        <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "results-traveler-type-multiselect", :id => "results_traveler_type_id" %>                    
+        <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "results_traveler_type_multiselect", :id => "results_traveler_type_id" %>                    
         </span>
-        <div class="input-prepend hero-from-prepend">
+        <div class="input-prepend hero_from_prepend">
         <span class="add-on">from</span>
         <%= text_field_tag :from, params[:from], :class => "results-from-datefield input-small", :value => params["from"] %> 
         </div>
-        <div class="input-append hero-days-append">
+        <div class="input-append hero_days_append">
         <%= text_field_tag :days, params[:days], :placeholder=>"#", :value=>3, :class => "results_day_field", :id => "results_day_field", :value => params["days"] %>
         <span class="add-on">days</span>
         </div>  
-        <%= submit_tag "Search", :name => nil, :class => 'btn-flat btn-flat-primary splash-submit-button' %>
+        <%= submit_tag "Search", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button' %>
       <% end %>
-  <div class = "error-msg"></div>
+  <div class = "error_msg"></div>
   </div>
   <!-- End Form Centering -->
   

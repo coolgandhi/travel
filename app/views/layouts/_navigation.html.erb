@@ -14,13 +14,13 @@
             <li class="divider-vertical"></li>
             <li class="dropdown">
 <!--               <form class="navbar-search pull-left">
-              <input type="text" class="search-query droptoggle-searchbar" placeholder="Where do you want to go?">
+              <input type="text" class="search-query droptoggle_searchbar" placeholder="Where do you want to go?">
               </form> -->
-                <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "droptoggle-searchbar" %>
+                <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "droptoggle_searchbar" %>
 
-              <div class="dropdown-menu droptoggle-menu">
+              <div class="dropdown-menu droptoggle_menu">
                 <!-- Login form here -->
-                <%= render 'trips/partials/nav-searchbar' %>
+                <%= render 'trips/partials/nav_searchbar' %>
               </div>
 
             </li>

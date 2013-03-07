@@ -1,7 +1,7 @@
 ((trips_namespace, $, undefined_) ->
 
   $ ->  
-    $("#trips-results-container").on "click", ".pagination a", (e) ->
+    $("#trips_results_container").on "click", ".pagination a", (e) ->
       $.getScript this.href, ->
         try
           FB.XFBML.parse()
@@ -27,16 +27,16 @@
         days: trips_namespace.day_err_message
         place_dropdown_field: trips_namespace.place_err_message
       success: (label, element) ->
-        # $(element).parents('form').siblings(".error-msg").empty()
+        # $(element).parents('form').siblings(".error_msg").empty()
         return
       showErrors: (errorMap, errorList) ->
         summary = ""
         $.each errorList, ->
           summary += " * " + @message + "\n"
         if summary != ""
-          $(".error-msg").html summary
+          $(".error_msg").html summary
         else
-          $(".error-msg").empty
+          $(".error_msg").empty
       onfocusout: false
       onkeyup: false
       onclick: false
@@ -50,7 +50,7 @@
         days: trips_namespace.day_err_message
         place_text_field: trips_namespace.place_err_message
       success: (label, element) ->
-        # $(element).parents('form').siblings(".error-msg").empty()
+        # $(element).parents('form').siblings(".error_msg").empty()
         return
       showErrors: (errorMap, errorList) ->
         summary = ""
@@ -59,10 +59,10 @@
           return
         console.log summary
         if summary != ""
-          $(".small-error-msg").html summary
+          $(".small_error_msg").html summary
           return
         else
-          $(".small-error-msg").empty
+          $(".small_error_msg").empty
           return
       onfocusout: false
       onkeyup: false
@@ -70,9 +70,9 @@
     
     
     jQuery ->
-      $(".hero-form").validate(trips_namespace.searchformrules_on_page_box)
-      $(".droptoggle-form").validate(trips_namespace.searchformrules_small_box)
-      $(".hero-form").submit ->
+      $(".hero_form").validate(trips_namespace.searchformrules_on_page_box)
+      $(".droptoggle_form").validate(trips_namespace.searchformrules_small_box)
+      $(".hero_form").submit ->
         # alert $("#place_dropdown_field").val() + " " + $("#traveler_type_id").val() + " " + $("#from-datefield").val() + " " + $("#days").val()
         site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3) 
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#traveler_type_id").val(), 3) 
@@ -80,7 +80,7 @@
         site_wide_namespace.setCustomVar(4, "number_of_days", $("#days").val(), 3) 
         site_wide_namespace.trackEvent("search", "click", "big_box")
         return
-      $(".droptoggle-form").submit -> 
+      $(".droptoggle_form").submit -> 
         # alert $("#droptoggle_searchbar_id").val() + " " + $("#dropdown_traveler_type_id").val() + " " + $("#dropdown-from-datefield").val() + " " + $("#dropdown_day_field").val()
         site_wide_namespace.setCustomVar(1, "place", $("#droptoggle_searchbar_id").val(), 3) 
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#dropdown_traveler_type_id").val(), 3) 
@@ -104,9 +104,9 @@
         url = $('.pagination .next_page').attr('href')
         if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
           $('.pagination').text('Fetching pins')
-          $('.continuous-loading-indicator-wrapper').show()
+          $('.continuous_loading_indicator_wrapper').show()
           $.getScript(url).done ->
-            $('.continuous-loading-indicator-wrapper').hide()
+            $('.continuous_loading_indicator_wrapper').hide()
           return
         if $(window).scrollTop() > 0
           $('#scrolltotop').fadeIn("slow")

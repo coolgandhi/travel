@@ -2,8 +2,8 @@
 
   # Open Trip Overview Modal on load 
   jQuery ->
-    $('#trip-overview-modal').modal('show')
-    $("#trip-overview-modal").on "shown", ->
+    $('#trip_overview_modal').modal('show')
+    $("#trip_overview_modal").on "shown", ->
   	  $(document).off "focusin.modal"
 
 

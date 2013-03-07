@@ -13,8 +13,8 @@
 
 
 /* Variables */
-$result-subtitle-color: dimgrey;///#08c;
-$color-border-color: #00A1CB;
+$resultSubtitleColor: dimgrey;///#08c;
+$colorBorderColor: #00A1CB;
 
 
 /* Body Styles */ 
@@ -28,25 +28,25 @@ body{
   }
 }
 
-.results-flash-message{
+.results_flash_message{
   .alert{
     margin-bottom: 0.5%;
   }
 }
 
 /* Hero Unit Styles */ 
-.big-image-header{
+.big_image_header{
   position: relative;
   @include clearfix;
   height: 450px;
   padding: 0;
   top: -30px;
   margin-bottom: -30px;
-  border-bottom: 10px solid $color-border-color;
+  border-bottom: 10px solid $colorBorderColor;
   @include border-radius(0);
 }
 
-.hero-tag-line{
+.hero_tag_line{
   position: absolute;
   top: 10%;
   left: 2%;
@@ -60,7 +60,7 @@ body{
   z-index: 1;
 }
 
-.splash-image-container{
+.splash_image_container{
   position: absolute;
   top: 0;
   left: 0;
@@ -76,14 +76,14 @@ body{
   // margin: 0 auto;
 }
 
-.splash-form-container{
+.splash_form_container{
   position: absolute;
   top: 35%;
   left: 0;
   width: 100%;
   margin: 0 auto;
   font-size: $baseFontSize;
-  .form-centering{
+  .form_centering{
   	position: relative;
   	max-width: 900px;
     // @include col(12);
@@ -100,7 +100,7 @@ body{
     @include respond-to(portrait){
       max-width: 500px;
     }
-  	.hero-form{
+  	.hero_form{
       margin: 0 auto;
       width: 100%;
       padding: 0 2%;
@@ -112,12 +112,12 @@ body{
   // height: 2em;
 }
 
-.ui-multiselect.traveler-type-multiselect{
+.ui-multiselect.traveler_type_multiselect{
   margin-bottom: 12px;
   height: 30px;
   font-size: 13px;
 }
-.ui-multiselect-menu.traveler-type-multiselect{
+.ui-multiselect-menu.traveler_type_multiselect{
   .ui-multiselect-header{
     border: none;
   }
@@ -130,38 +130,34 @@ body{
   }    
 }
 
-.hero-form-left{
+.hero_form_left{
   float: left;
   position: relative;
   margin-right: 5px;
 }
 
-.hero-from-prepend{
+.hero_from_prepend{
   float: left;
   color: $black;
   margin-right: 5px;
-  // margin-left: 5px;
 }
 
-.hero-days-append{
+.hero_days_append{
   float: left;
   color: $black;
   margin-right: 5px;
-  // margin-left: 5px;
   input{
     width: 25px;
   }
 }
 
-.splash-submit-button{
+.splash_submit_button{
   float: left;
-  // margin-right: 2%;
 }
-
 
 /* Results Searchbar */
 
-.results-searchbar{
+.results_searchbar{
   text-align: center;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -175,33 +171,33 @@ body{
   padding-top: 0.5%;
 }
 
-.results-form-centering{
+.results_form_centering{
   display: inline-block;
   // padding-top: 0.5%;
 }
 
-.results-hero-form{
-  .hero-from-prepend{
+.results_hero_form{
+  .hero_from_prepend{
     margin-bottom: 0;
   }
-  .hero-days-append{
+  .hero_days_append{
     margin-bottom: 0;
     margin-left: 0;
   }
 }
 
-.results-place_dropdown_field{
+.results_place_dropdown_field{
   margin-bottom: 0;
   width: 200px;
 }
 
-.ui-multiselect.results-traveler-type-multiselect{
-  @extend .ui-multiselect.traveler-type-multiselect;
+.ui-multiselect.results_traveler_type_multiselect{
+  @extend .ui-multiselect.traveler_type_multiselect;
   margin-bottom: 0;
   width: 200px;
 }
 
-.ui-multiselect-menu.results-traveler-type-multiselect{
+.ui-multiselect-menu.results_traveler_type_multiselect{
   .ui-multiselect-header{
     border: none;
   }
@@ -215,32 +211,32 @@ body{
 }
 /* Results Container */
 
-.featured-results-title{
+.featured_results_title{
   margin: 0 0 1% 0;
   font-weight: normal;
 }
 
-.results-title{
+.results_title{
   line-height: 1.2em;
   margin: 0;
   font-weight: normal;
 }
 
-.results-subtitle-params{
-  color: $result-subtitle-color;
+.results_subtitle_params{
+  color: $resultSubtitleColor;
   margin-bottom: 1%;
   .divider{
     color: #ccc;
     padding: 0 5px;
   }
 }
-#trips-results-container{
+#trips_results_container{
   position: relative;
   // @include col(12);
   // width: 100%;
 }
 
-.continuous-loading-indicator-wrapper{
+.continuous_loading_indicator_wrapper{
   text-align: center;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -255,7 +251,7 @@ body{
   }
 }
 
-.continuous-scroll-spinner{
+.continuous_scroll_spinner{
   // height: 25px;
   // width: 25px;
   margin: 0 auto;
@@ -266,7 +262,7 @@ body{
 }
 
 /* Trip Results Thumbnail Containers */ 
-.trip-result-thumbnail-li{
+.trip_result_thumbnail_li{
   @include col(4);
   background-color: $myDivBg;
   border-color: $borderGray;
@@ -281,25 +277,25 @@ body{
   }
 }
 
-.trip-result-thumbnail-div{
+.trip_result_thumbnail_div{
   height: 370px;
   padding: 0;
   position: relative;
   border: none;
 }
 
-$result-thumb-height: 70%;
-.result-thumb-wrap{
+$resultThumbHeight: 70%;
+.result_thumb_wrap{
   @include box-sizing(border-box);
-  height: $result-thumb-height;
+  height: $resultThumbHeight;
   overflow: hidden;
   position: relative;
   @include respond-to(portrait){
-    height: $result-thumb-height - 10%;
+    height: $resultThumbHeight - 10%;
   }
 }
 
-.image-link-thumbnail{
+.image_link_thumbnail{
   // display: block;
   // margin: 0 auto;
   // max-width: 100%;
@@ -308,9 +304,9 @@ $result-thumb-height: 70%;
   position: absolute;
 }
 
-.trip-results-caption{
-  border-top: 5px solid $color-border-color;
-  min-height: 100-$result-thumb-height;
+.trip_results_caption{
+  border-top: 5px solid $colorBorderColor;
+  min-height: 100-$resultThumbHeight;
   overflow: hidden;
   h3{
     font-size: 1.2em;
@@ -331,30 +327,30 @@ $result-thumb-height: 70%;
     margin: 0.35em 0 0 0;
     font-weight: normal;
   }
-  .caption-trip-subtitle{
-    @extend .results-subtitle-params;
+  .caption_trip_subtitle{
+    @extend .results_subtitle_params;
     font-size: 0.83em;
   }
 }
 
-.caption-box-social{
+.caption_box_social{
   position: absolute;
-  bottom: 100-$result-thumb-height+2;
+  bottom: 100-$resultThumbHeight+2;
   right: 2%;
   z-index: 1;
   @include respond-to(portrait){
-    bottom: 100-$result-thumb-height+2+10;
+    bottom: 100-$resultThumbHeight+2+10;
   }
 }
 
 /* Caption Badges */
-.caption-badge_buttons{
+.caption_badge_buttons{
   text-align: center;
   float: right;
   margin-right: 1%;
 }
 
-.caption-badges-ul{
+.caption_badges-ul{
   // @include clearfix;
   // width: 100px;
   margin: 0 auto;
@@ -383,12 +379,12 @@ $result-thumb-height: 70%;
 
 /* Filter by Landmarks */
 
-#trips-landmark-container{
+#trips_landmark_container{
   width: 95%;
   margin-left: 2.5%;
 }
 
-.filter-by-bar{
+.filter_by_bar{
   width: 100%;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -410,14 +406,14 @@ $result-thumb-height: 70%;
   border-top: 1px solid $borderGray;
 }
 
-.location-filter-bar, .restaurant-filter-bar{
+.location_filter_bar, .restaurant_filter_bar{
   padding: 0;
   margin: 0;
   background-color: transparent;
   }
 }
 
-.search-params-crumbs{
+.search_params_crumbs{
   background-color: rgba(0,0,0,0.3);
   color: $white;
   @include border-radius($myDivBorderRadius);
@@ -427,7 +423,7 @@ $result-thumb-height: 70%;
 
 
 /* SEARCH VALIDATION */
-.small-error-msg, .error-msg {
+.small_error_msg, .error_msg {
   // border-width: $myDivBorderWidth;
   // @include border-radius($myDivBorderRadius);
   // @include box-shadow($myDivBoxShadow);

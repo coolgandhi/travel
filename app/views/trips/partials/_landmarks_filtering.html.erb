@@ -1,10 +1,10 @@
 <!--Begin Filter by Landmarks Div Bar -->
 <!--begin a. check if there is a trip_location_id param -->
 <% unless params["trip_location_id"].blank? %>
-  <div class = "filter-by-bar">
+  <div class = "filter_by_bar">
     <!--begin b. check if there is @locations -->
     <% if @locations.length > 0 %>
-      <ul class="breadcrumb location-filter-bar">
+      <ul class="breadcrumb location_filter_bar">
         <li>Filter by location <span class="divider">|</span></li>
 
         <!--begin c. for items 1 thru 4 in @locations -->
@@ -46,7 +46,7 @@
 
   <!--begin e. check if there is @restaurants -->
   <% if @restaurants.length > 0 %>
-    <ul class="breadcrumb restaurant-filter-bar">
+    <ul class="breadcrumb restaurant_filter_bar">
       <li>Filter by restaurant <span class="divider">|</span></li>
 
       <!--begin f. for items 1 thru 4 in @restaurants -->
