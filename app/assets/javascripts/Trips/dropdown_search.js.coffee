@@ -23,6 +23,7 @@
       classes : "dropdown-traveler-type-multiselect"
       height: 'auto'
     )
+    $('.ui-multiselect.dropdown-traveler-type-multiselect').css('width', '280px');  
 
   #calling date from field datepicker
   jQuery ->

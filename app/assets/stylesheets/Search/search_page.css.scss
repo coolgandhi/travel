@@ -28,7 +28,7 @@ body{
 .big-image-header{
   position: relative;
   @include clearfix;
-  height: 500px;
+  height: 450px;
   padding: 0;
   top: -30px;
   margin-bottom: -30px;
@@ -41,11 +41,12 @@ body{
   bottom: 10%;
   right: 5%;
   color: white;
-  // font-family: futura;
+  font-family: 'Open Sans Condensed', sans-serif;
   font-size: 3em;
-  text-shadow: 3px 6px 6px black;
+  text-shadow: 6px 6px 6px black;
+  letter-spacing: -2px;
   // font-weight: bold;
-  // text-transform: lowercase;
+  text-transform: uppercase;
   z-index: 1;
 
 }
@@ -54,14 +55,15 @@ body{
   position: absolute;
   top: 0;
   left: 0;
-  height: 500px;
+  height: 450px;
   width: 100%;
   background-color: $black;
   // background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
-  background-image: url("/assets/splash_images/st-james-park_20120925_160149_1440x550_hi.jpg");
+  background-image: url("/assets/splash_images/Positano-Seaview-1440x550_1-IMG_0572.JPG");
   background-repeat: no-repeat;
-  background-size: 1400px auto;
-  background-position-x:center;
+  background-size: 1600px auto;
+  background-position-x: center;
+  background-position-y: 50%;
   // margin: 0 auto;
 }
 
@@ -78,16 +80,19 @@ body{
   	margin: 0 auto;
     color: white;
     font-size: 1.3em;
-    line-height: 1.5em;
-    font-weight: 300;
+    line-height: 1.8em;
+    font-weight: normal;
     text-shadow: 1px 1px 0 black;
+    background-color: rgba(0,0,0,.6);
+    padding: 0.5% 1%; 
+    @include clearfix;
     @include respond-to(portrait){
       max-width: 500px;
     }
   	.hero-form{
       margin: 0 auto;
       width: 100%;
-
+      padding: 0 2%;
   	}
   }
 }
@@ -97,7 +102,7 @@ body{
 }
 
 .ui-multiselect.traveler-type-multiselect{
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   height: 30px;
   font-size: 13px;
 }
@@ -117,20 +122,21 @@ body{
 .hero-form-left{
   float: left;
   position: relative;
+  margin-right: 5px;
 }
 
 .hero-from-prepend{
   float: left;
   color: $black;
   margin-right: 5px;
-  margin-left: 5px;
+  // margin-left: 5px;
 }
 
 .hero-days-append{
   float: left;
   color: $black;
   margin-right: 5px;
-  margin-left: 5px;
+  // margin-left: 5px;
   input{
     width: 25px;
   }
@@ -211,7 +217,7 @@ body{
 
 .results-subtitle-params{
   color: $result-subtitle-color;
-  margin-bottom: 0;
+  margin-bottom: 1%;
   .divider{
     color: #ccc;
     padding: 0 5px;
@@ -310,7 +316,7 @@ $result-thumb-height: 70%;
   p{
     font-size: 0.9em;
     line-height: 1.2em;
-    letter-spacing: 0.07em;
+    // `
     margin: 0.35em 0 0 0;
     font-weight: normal;
   }
@@ -380,10 +386,13 @@ $result-thumb-height: 70%;
   @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
-  padding: 0.25% 0.5%;
+  padding: 0.25% 1%;
   margin: 0 0 1% 0;
   @include box-sizing(border-box);
-  font-size: 0.95em;
+  font-size: 1em;
+  @include respond-to(portrait){
+    font-size: 0.95em;
+  }
   hr{
   margin: 2px 0;
   border: 0;
