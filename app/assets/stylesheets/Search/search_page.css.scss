@@ -1,13 +1,23 @@
+/* STYLING FOR THE FRONT INDEX PAGE AND SEARCH BARS
+  * VARIABLES
+  * BODY STYLES
+  * HERO UNIT
+  * RESULTS SEARCH BAR
+  * RESULTS CONTAINER
+  * TRIP RESULTS THUMBNAIL CONTAINER
+  * TRIP RESULTS CAPTION BADGE
+  * FILTER BY LANDMARK BAR
+  * OVERVIEW MODAL AND TABLE
+  * SEARCH VALIDATION
+*/
+
+
 /* Variables */
 $result-subtitle-color: dimgrey;///#08c;
 $color-border-color: #00A1CB;
 
 
 /* Body Styles */ 
-.js .pagination{
-  display: none;
-}
-
 body{
   background-color: #f1f1f1;
 }
@@ -38,8 +48,8 @@ body{
 
 .hero-tag-line{
   position: absolute;
-  bottom: 10%;
-  right: 5%;
+  top: 10%;
+  left: 2%;
   color: white;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 3em;
@@ -48,7 +58,6 @@ body{
   // font-weight: bold;
   text-transform: uppercase;
   z-index: 1;
-
 }
 
 .splash-image-container{
@@ -69,22 +78,24 @@ body{
 
 .splash-form-container{
   position: absolute;
-  top: 25%;
+  top: 35%;
   left: 0;
   width: 100%;
   margin: 0 auto;
+  font-size: $baseFontSize;
   .form-centering{
   	position: relative;
   	max-width: 900px;
     // @include col(12);
   	margin: 0 auto;
     color: white;
-    font-size: 1.3em;
+    font-size: em(24.5px);
     line-height: 1.8em;
     font-weight: normal;
     text-shadow: 1px 1px 0 black;
     background-color: rgba(0,0,0,.6);
     padding: 0.5% 1%; 
+    @include border-radius($myDivBorderRadius);
     @include clearfix;
     @include respond-to(portrait){
       max-width: 500px;
@@ -409,6 +420,8 @@ $result-thumb-height: 70%;
   @include box-shadow($myDivBoxShadow);
   padding: 0.5% 1%;
 }
+
+/* SEARCH VALIDATION */
 
 .error-msg {
   // border-width: $myDivBorderWidth;

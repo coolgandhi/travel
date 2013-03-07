@@ -2,7 +2,7 @@
 <div class="hero-unit big-image-header">
   <!-- Begin Tag-Line Overlay -->
   <div class="hero-tag-line">
-    Travel Planning Made Easy.
+    We Make Your Travel Planning Easy.
   </div>
   <!-- End Tag-Line Overlay -->
 
@@ -13,7 +13,7 @@
         <!-- Begin Form Centering -->
         <div class ="form-centering">
 
-            Show me trip summaries for </br>
+            Show me trip summaries for<br/>
             <%= form_tag trips_path, :method => 'get', :class => 'hero-form', :remote => true do %>
               <div class = "hero-form-left">  
                 <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where do you want to go?", :class => "place_dropdown_field" %>

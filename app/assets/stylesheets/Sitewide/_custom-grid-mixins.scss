@@ -28,7 +28,7 @@ $font-base-percentage: (($font-base / 16px) * 100) + 0%;
 ------------------------------------------------*/
 @function em($target, $context: $font-base) {
 	@if $target == 0 { @return 0 }
-	@return $target / $context + 0em;
+	@return ($target / $context) + 0em;
 }
 
 @function perc($width, $container-width: $max-width) {
