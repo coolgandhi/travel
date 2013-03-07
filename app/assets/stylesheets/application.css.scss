@@ -3,13 +3,13 @@
  @import "Sitewide/mediaqueries"; //media queries mix-in
  @import "Sitewide/bootstrap_and_overrides";
  @import "Sitewide/custom_buttons.css.scss";
- @import "Sitewide/custom-grid-mixins"; //custom grid mix-in
+ @import "Sitewide/custom_grid_mixins"; //custom grid mix-in
  @import "Sitewide/preloader.css.scss";
  @import "jquery-ui-1.10.0.custom";
  @import "jquery.multiselect.css.scss";
  @import "Sitewide/forms.css.scss";
  @import "Sitewide/ie10"; //IE10 specific shizz
- @import "Sitewide/loader-styles.css.scss";
+ @import "Sitewide/loader_styles.css.scss";
  @import "Sitewide/dropdown_search.css.scss";
- @import "Sitewide/traveler-type-badge.css.scss";
+ @import "Sitewide/traveler_type_badge.css.scss";
  @import "font-awesome.scss";
