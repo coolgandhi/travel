@@ -64,4 +64,15 @@ Travel::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "chalo.io Exception :(  ",
+    :sender_address => %{"notifier" <chaloiorocks@gmail.com>},
+    :exception_recipients => %w{gandhisi@gmail.com hungkienluu@gmail.com},
+    :smtp_settings => {
+      :user_name => "chaloiorocks@gmail.com",
+      :password => "QAZwsx987",
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :authentication => :plain
+    }
 end

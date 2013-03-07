@@ -1,41 +1,48 @@
 <% if @trips.current_page == 1 %>
-	$('#trips-results-container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
-	$('#trips-landmark-container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>').fadeIn('slow');
-	$('.results-searchbar-container').html('<%= escape_javascript(render("trips/partials/results-searchbar")) %>');
-	$('#results-breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results-breadcrumbs")) %>').fadeIn('slow');
-	// fire resize on the results thumbnails
-	trips_namespace.fireResizeResultsPic();
-	$(document).ready(function() {
-  	  trips_namespace.fireResultSearchBarJs();
-  	  $(".results-hero-form").validate(trips_namespace.searchformrules);
-  	  $('.droptoggle-menu').hide();
-  	});
+  $('#trips-results-container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
+  $('#trips-landmark-container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks-filtering")) %>').fadeIn('slow');
+  $('.results-searchbar-container').html('<%= escape_javascript(render("trips/partials/results-searchbar")) %>');
+  $('#results-breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results-breadcrumbs")) %>').fadeIn('slow');
+  // fire resize on the results thumbnails
+  trips_namespace.fireResizeResultsPic();
+  $(document).ready(function() {
+     trips_namespace.fireResultSearchBarJs();
+     $(".results-hero-form").validate(trips_namespace.searchformrules);
+     $('.droptoggle-menu').hide();
+     $('.results-hero-form').on('submit', function (){
+       //alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results-day-field").val());
+       site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3) 
+       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3) 
+       site_wide_namespace.setCustomVar(3, "start_date", $("#from").val(), 3) 
+       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results-day-field").val(), 3) 
+       site_wide_namespace.trackEvent("search", "click", "results_search_box")       
+      });
+    });
 
-	//show flash message
-	$(".results-flash-message").fadeOut('slow').html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>").fadeIn('slow');
-	
-	// if there is the hero unit then remove it after a search
-	if ($('.big-image-header').length > 0) {
-	  $('.big-image-header').fadeOut(1000, 'linear', function(){ $(this).remove();});
-	} else {	
-	}
+  //show flash message
+  $(".results-flash-message").fadeOut('slow').html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>").fadeIn('slow');
+  
+  // if there is the hero unit then remove it after a search
+  if ($('.big-image-header').length > 0) {
+    $('.big-image-header').fadeOut(1000, 'linear', function(){ $(this).remove();});
+  } 
 <% else %>
-	$('#trips-results-container').append('<%= escape_javascript(render("trips")) %>');
-	trips_namespace.fireResizeResultsPic();
+  $('#trips-results-container').append('<%= escape_javascript(render("trips")) %>');
+  trips_namespace.fireResizeResultsPic();
 <% end %>
 
 
-try
-  {
-       FB.XFBML.parse(document.getElementById('<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>'));  // triggering fb xml parse on the newly added trips_page div only
-  }catch(ex){}
+try {
+	FB.XFBML.parse(document.getElementById('<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>'));  // triggering fb xml parse on the newly added trips_page div only
+} catch (ex) {}
 
 <% if @trips.next_page %>
- 	if ($('.pagination').length == 0) {
-		$("#page-pagination-div").append('<%= j will_paginate(@trips) %>');
-	} else {
-  		$('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
-  	}
+  if ($('.pagination').length == 0) {
+    $("#page-pagination-div").append('<%= j will_paginate(@trips) %>');
+  } 
+	else {
+    $('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
+  }
 <% else %>
   $('.pagination').remove();
 <% end %>
