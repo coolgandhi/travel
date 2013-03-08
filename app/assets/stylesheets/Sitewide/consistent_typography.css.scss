@@ -18,12 +18,14 @@ $consistentFontWeight: 300;
 .caption_title{
   font-size: em(20px);
   line-height: 1.2em;
-  font-weight: $consistentFontWeight+100;	
+  font-weight: $consistentFontWeight+100;
+  margin: 0;	
 }
 .caption_subtitle{
   font-size: em(12px);
   line-height: 1.4em;
   font-weight: $consistentFontWeight;
+  margin: 0;
 }
 .caption_summary{
   font-size: em(14px);

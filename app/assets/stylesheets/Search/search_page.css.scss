@@ -9,6 +9,7 @@
   * FILTER BY LANDMARK BAR
   * OVERVIEW MODAL AND TABLE
   * SEARCH VALIDATION
+  * FRONT PAGE CONVERSATION
 */
 
 
@@ -49,7 +50,7 @@ body{
 .hero_tag_line{
   position: absolute;
   top: 10%;
-  left: 2%;
+  left: 4%;
   color: white;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 3em;
@@ -424,4 +425,30 @@ $resultThumbHeight: 60%;
   float: left;
   width: 100%;
   text-align: left;
+}
+
+/* FRONT PAGE CONVERSATION */
+.front_page_convo_wrapper{
+  height: 250px;
+  overflow: hidden;
+  margin: 1% 0;
+  @include box-sizing(border-box);
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  background-color: $myDivBg;
+}
+
+.front_page_convo_header{
+  height: 15%;
+  padding: 1%;
+}
+
+.front_page_convo_body{
+  height: 85%;
+  padding: 1%;
+  overflow: auto;
+  border-top: 1px solid $borderGray;
 }

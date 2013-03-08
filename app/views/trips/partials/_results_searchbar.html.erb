@@ -4,7 +4,7 @@
 
       <%= form_tag trips_path, :method => 'get', :class => 'results_hero_form', :remote => true do %>
         <span class = "hero_form_left">  
-        <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params["trip_location_id"].to_s), :multiple => false, :prompt => "Where do you want to go?" , :class => "results_place_dropdown_field" %>
+        <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params["trip_location_id"].to_s), :multiple => false, :prompt => "Where would you like to go?" , :class => "results_place_dropdown_field" %>
 
         <%= hidden_field_tag "place_text_field", params[:place], :class => "results-hidden-place-field", :value=> params["place_text_field"] %>
         

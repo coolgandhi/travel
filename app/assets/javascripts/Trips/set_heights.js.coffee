@@ -21,6 +21,7 @@
       filmScroller = new iScroll("filmstrip-scroll")
       commentScroller = new iScroll("bottom_actionlinks")
       overviewScroller = new iScroll("trip_overview_modal")
+      frontPageConvoScroller = new iScroll("front_page_convo_wrapper")
     else
      	''
 

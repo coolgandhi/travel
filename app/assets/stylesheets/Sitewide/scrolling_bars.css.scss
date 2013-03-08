@@ -1,5 +1,5 @@
 /* CUSTOMIZING THE SCROLLBAR */
-.filmstrip, #bottom_actionlinks, .div_fb_comments, .modal-body, .more_info_dl{
+.filmstrip, #bottom_actionlinks, .div_fb_comments, .modal-body, .more_info_dl, .cust_scroll_thin{
   &::-webkit-scrollbar{
   width: 5px; //this sets the width
   }
