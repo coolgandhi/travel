@@ -1,9 +1,9 @@
 <div class="triptitlebox">
 
-  <div class="trip-title-text">
+  <div class="trip_title_text">
     <p>
-      <span class="trip-title-main-text"><%= @trip.trip_name %></span> 
-      <span class="trip-title-sub-text"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
+      <span class="trip_title_main_text caption_title"><%= @trip.trip_name %></span> 
+      <span class="trip_title_sub_text caption_summary"> - <%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
     </p>
     
       <!--Begin show overview button that shows up only on small screens-->
@@ -12,7 +12,7 @@
       </label>
       <!--End show overview button that shows up only on small screens -->
     
-    <small>by <%= @author.author_name %></small>
+    <p class="caption_subtitle">by <%= @author.author_name %></p>
   </div>
 
   <div class = "badge_buttons">
@@ -39,11 +39,11 @@
 
 </div>
 
-<div class= "wrapper-film" id="filmstrip-scroll">
+<div class= "wrapper_film" id="filmstrip-scroll">
   
-  <div class="overview-button-wrapper">
+  <div class="overview_button_wrapper">
     <!-- Button to trigger modal -->
-    <a href="#trip_overview_modal" role="button" class="btn-flat btn-flat-large btn-flat-inverse overview-button" data-toggle="modal"><i class="icon-list overview-icon"></i> </br><span class="overview-button-text">Overview</span></a>
+    <a href="#trip_overview_modal" role="button" class="btn-flat btn-flat-large btn-flat-inverse overview_button" data-toggle="modal"><i class="icon-list overview_icon"></i> </br><span class="overview_button_text">Overview</span></a>
 
   </div>
 

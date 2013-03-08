@@ -1,0 +1,44 @@
+/* TYPOGRAPHY */
+
+$consistentFontWeight: 300;
+
+/* TITLES - for Large Header Titles */
+.title{
+  font-size: em(24.5px);
+  line-height: 1.2em;
+  font-weight: $consistentFontWeight;
+}
+.title_subtitle{
+  font-size: em(14px);
+  line-height: 1.4em;
+  font-weight: $consistentFontWeight;	  
+}
+
+/* CAPTIONS - for captions of article captions, thumbnail captions, trip captions */
+.caption_title{
+  font-size: em(20px);
+  line-height: 1.2em;
+  font-weight: $consistentFontWeight+100;	
+}
+.caption_subtitle{
+  font-size: em(12px);
+  line-height: 1.4em;
+  font-weight: $consistentFontWeight;
+}
+.caption_summary{
+  font-size: em(14px);
+  line-height: 1.4em;
+  font-weight: $consistentFontWeight;
+}
+
+.caption_large{
+  font-size: em(16px);
+  line-height: em(22px);
+  font-weight: $consistentFontWeight;
+}
+
+.caption_small{
+  font-size: em(11px);
+  line-height: 1.4em;
+  font-weight: $consistentFontWeight;	
+}

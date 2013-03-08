@@ -11,7 +11,7 @@
     r
   
   fireResizeThumbnails = ->
-    $(".thumb-image").resizeToParent parent: ".thumb-wrap"
+    $(".thumb_image").resizeToParent parent: ".thumb_wrap"
 
   fireResizeSlideImages = ->
     $(".relative_image").resizeToParent parent: "#bloop"
@@ -25,7 +25,7 @@
   
 
   # jQuery ->
-  #   $(".thumb-image").resizeToParent parent: ".thumb-wrap"
+  #   $(".thumb_image").resizeToParent parent: ".thumb_wrap"
 
 
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

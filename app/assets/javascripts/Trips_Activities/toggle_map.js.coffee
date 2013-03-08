@@ -8,7 +8,7 @@
   #       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').toggleClass('flipped')
   #     else
   #       $(this).parents('#moreShowHideGroup').siblings('.flip-container').children('.flipper').children('.front').toggle('slow')
-  #     $(this).parents('#moreShowHideGroup').siblings('.always-here').toggleClass('always-here-hide')
+  #     $(this).parents('#moreShowHideGroup').siblings('.always_here').toggleClass('always_here_hide')
   #     $(this).toggleClass("icon-globe").toggleClass("icon-picture").toggleClass("active")
   #     $('#mapModal').modal('toggle')
 

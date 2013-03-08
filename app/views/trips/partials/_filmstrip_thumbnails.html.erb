@@ -1,15 +1,15 @@
 
           <% for i  in 0..(@sorted_activities.length - 2) %>
             <% if @sorted_activities[i][:activityday] != @sorted_activities[i-1][:activityday] %>
-              <div class = "filmstrip-day-dividers">Day <%= @sorted_activities[i][:activityday] %></div>
+              <div class = "filmstrip_day_dividers">Day <%= @sorted_activities[i][:activityday] %></div>
             <% else %>
             <% end %>
             <li class="media <%=i == 0 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= i %>)">
 
-            <!-- thumb-wrapper div -->  
-            <div class="thumb-wrap"> 
+            <!-- thumb_wrapper div -->  
+            <div class="thumb_wrap"> 
               <!-- image -->              
-              <div data-picture data-alt="<%=thumbnail_name(i)%>" data-class="thumb-image">
+              <div data-picture data-alt="<%=thumbnail_name(i)%>" data-class="thumb_image">
                 <div data-src="<%=show_thumbnail(i,100)%>" > </div>
                 <div data-src="<%=show_thumbnail(i,100)%>" data-media="(min-width: 480px)"></div>
                 <div data-src="<%=show_thumbnail(i, 300)%>" data-media="(min-width: 767px)"></div>
@@ -23,10 +23,10 @@
                     <img src="<%=show_thumbnail(i,100)%>" alt="<%=thumbnail_name(i)%>">
                 </noscript>
               </div>
-                <!-- thumb-description div -->  
-                <div class="thumb-description">
+                <!-- thumb_description div -->  
+                <div class="thumb_description">
                   <!-- description content --> 
-                  <p class='description_content'><%=thumbnail_name(i)%></p>
+                  <p class='description_content caption_small'><%=thumbnail_name(i)%></p>
                   <!-- end description content -->     
                 </div>
                 <!-- end description div -->
@@ -38,14 +38,14 @@
 
           <!-- About the Author Last Slide -->
            <li class="media <%=@sorted_activities.length == 1 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= @sorted_activities.length == 1 ? (@sorted_activities.length - 1)  : @sorted_activities.length %>)">
-            <!-- thumb-wrapper div -->  
-            <div class="thumb-wrap thumb-author"> 
+            <!-- thumb_wrapper div -->  
+            <div class="thumb_wrap thumb_author"> 
               <!-- image -->              
-              <div class="icon-user"></div>
-                <!-- thumb-description div -->  
-                <div class="thumb-description">
+              <div class="icon_user"></div>
+                <!-- thumb_description div -->  
+                <div class="thumb_description">
                   <!-- description content --> 
-                  <p class='description_content'>About the Author</p>
+                  <p class='description_content caption_small'>About the Author</p>
                   <!-- end description content -->     
                 </div>
                 <!-- end description div -->

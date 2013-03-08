@@ -60,24 +60,20 @@ $lastrowheight: 10%;
     margin: 0;
   }
 
-  div.trip-title-text{
+  div.trip_title_text{
     float: left;
   }
 
-  .trip-title-main-text{
+  .trip_title_main_text{
     // font-family: 'Oswald', Helvetica, Arial, sans-serif;
-    font-size: 1.4em;
-    line-height: 1.4em;
     white-space: nowrap;
-    font-weight: 400;
+    // font-weight: 400;
     // text-shadow: 1px 1px 1px $grayLight;
 
   }
 
-  .trip-title-sub-text{
+  .trip_title_sub_text{
     // font-family: 'Oswald', Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    line-height: 1em;
     white-space: nowrap;
   }
 }
@@ -97,7 +93,7 @@ $lastrowheight: 10%;
 
 
 /* 3. FILMSTRIP NAVIGATION */
-.wrapper-film{
+.wrapper_film{
   @include col(2);
   @include box-sizing(border-box);
   // padding: 1%;
@@ -138,7 +134,7 @@ $lastrowheight: 10%;
   overflow: auto;
 }
 
-.filmstrip-day-dividers{
+.filmstrip_day_dividers{
   font-size: 1em;
   line-height: 1.5em;
   font-weight: bold;
@@ -147,30 +143,30 @@ $lastrowheight: 10%;
   border-bottom: 1px solid $black;
 }
 
-.overview-button-wrapper{
+.overview_button_wrapper{
   margin-bottom: 5%;
   margin-top: 5%;
   text-align: center;
 }
 
-.overview-button{
+.overview_button{
   // height: 60px;
   width: 75%;
   text-align: center;
   padding: 10px 5px;
   position: relative;
   @include border-radius($myDivBorderRadius);
-  .overview-button-text{
+  .overview_button_text{
     line-height: 1em;
     font-size: 0.75em;
     font-weight: 500;
   }
-  .overview-icon{
+  .overview_icon{
     font-size: 1.2em;
   }
 }
 
-div.thumb-wrap{
+div.thumb_wrap{
   // float:left; /* important */
   // position:relative; /* important(so we can absolutely position the description div */
   height: 80px;
@@ -180,7 +176,7 @@ div.thumb-wrap{
   // vertical-align: middle;
 }
 
-img.thumb-image{
+img.thumb_image{
   // height: auto; //this broke on firefox
   // height: 100%;
   // width: 100%;
@@ -191,7 +187,7 @@ img.thumb-image{
   // left: 0;
 }
 
-.thumb-author{
+.thumb_author{
   @include box-sizing(border-box);
   height: 100%;
   width: 98%;
@@ -199,28 +195,28 @@ img.thumb-image{
   background-color: $grayLight;
   @include border-radius($myDivBorderRadius);
   
-  .icon-user{
+  .icon_user{
   line-height: 60px;
   font-size: 40px;
   }
 }
 
-div.thumb-description{
+div.thumb_description{
   position:absolute; /* absolute position (so we can position it where we want)*/
   bottom:0px; /* position will be on bottom */
   left:0px;
   width:100%;
   /* styling bellow */
   background-color: rgba(0, 0, 0, 0.7);
-  font-size:0.75em;
-  font-weight: 300;
+  // font-size:0.75em;
+  // font-weight: 300;
   color: $white;
   filter:alpha(opacity=60); /* IE transparency */
 }
 
 p.description_content{
   @include box-sizing(border-box);
-  padding: 0.15em 0.5em 0.15em 0.5em;
+  padding: 0.15em 0.7em 0.15em 0.7em;
   margin:0px;
   text-align: left;
   white-space: nowrap;
@@ -275,7 +271,7 @@ img.relative_image{
   z-index: -1;
 }
 
-.main-pic-wrap{
+.main_pic_wrap{
   height:100%;
   overflow: hidden;
   @include border-radius($myDivBorderRadius);
@@ -316,7 +312,7 @@ img.relative_image{
   }
 }
 
-.always-here{
+.always_here{
   min-height: 100%;
   min-width: 100%;
   position: absolute;
@@ -335,7 +331,7 @@ img.relative_image{
   }  
 }
 
-.always-here-hide{
+.always_here_hide{
   z-index: -1;
   .rightcaption{
     display: none;
@@ -359,17 +355,21 @@ img.relative_image{
   border: none; 
   background: none;
   color: none;
+  font-size: $baseFontSize;
 } 
 
-.rightcaption .ui-accordion-content, .rightcaption .ui-widget-content a, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
+.rightcaption .ui-accordion-content, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
   border: none; 
   background: none;
+  font-size: $baseFontSize;
+  font-weight: inherit;
   color: inherit;
   text-shadow: none;
   @include box-shadow(none);
 }
 
 .rightcaption .ui-helper-reset{
+  font-size: $baseFontSize;
   margin: auto;
   font-family: inherit;
 }
@@ -458,41 +458,45 @@ h3#activity_title{
   // overflow: hidden;
   // text-overflow: ellipsis;
   padding: 0.5em 2em 0.2em 0.7em; //padding-right needs to be big to make room for arrow
-  font-size: 1.3em;
-  font-weight: 500;
-  line-height: 1.1em;
+  // font-size: 1.3em;
+  // font-weight: 500;
+  // line-height: 1.1em;
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
-  text-shadow: 2px 1px 3px $black;
+  
   border-radius: 0;
   
   @include accordion-icons;
-
-  span.activity-subtitle{
-    font-size: 0.7em;
-    line-height: 0.7em;
-    text-shadow: 1px 1px 1px $black;
-    font-weight: 300;
+  
+  span.activity_title{
+    // text-shadow: 2px 1px 3px $black;
+    // font-weight: normal;
+  }
+  span.activity_subtitle{
+    // font-size: 0.7em;
+    // line-height: 0.7em;
+    // text-shadow: 1px 1px 1px $black;
+    // font-weight: normal;
   }
 }
 
 h3#more_info_accordion{
-  padding: 0.2em 0.5em 0.2em 1.2em;
-  margin: 1em 0;
-  font-size: 0.9em;
-  font-weight: 400;
-  line-height: 0.6em;
+  padding: 0 1em;
+  margin: 0.5em 0;
+  // font-size: 0.9em;
+  // font-weight: 400;
+  // line-height: 0.6em;
   outline: 0;
 
   @include accordion-icons;
   
   @include respond-to(portrait){
-    font-size: 1em;
-    line-height: 1em;
+    // font-size: 1em;
+    // line-height: 1em;
   }
   @include respond-to(small){
-    font-size: 1em;
-    line-height: 1em;
+    // font-size: 1em;
+    // line-height: 1em;
   }
 }
 
@@ -500,73 +504,80 @@ div.rightcaption .ui-accordion-content {
   padding: 0 1em;
 }
 
-#user-description{
+#user_description{
   color: $white;
-  font-size: 1.2em;
-  line-height: 1.4em;
-  font-weight: 300;
-  margin-bottom: 0.75em;
-  text-shadow: 2px 1px 3px #000;
+  // font-size: 1.2em;
+  // line-height: 1.4em;
+  letter-spacing: 1px;
+  // font-weight: 100;
+  margin: 0.75em 0;
+  // text-shadow: 2px 1px 3px #000;
   @include respond-to(portrait){
-    line-height: 1.2em;
+    // line-height: 1.2em;
   }
   @include respond-to(small){
-    line-height: 1.2em;
+    // line-height: 1.2em;
   }
 }
 
-#more-info-id{
+#more_info_id{
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 1em;
 }
 
-.more-info-dl{
-  font-size: .95em;
-  line-height: 1em;
-  font-weight: 200;
+.more_info_dl{
+  // font-size: .95em;
+  // line-height: 1em;
+  // font-weight: 200;
   max-height: 300px;
+  padding: 0 1em;
 
   @include respond-to(portrait){
-    font-size: 1em;
-    line-height: 1em;
+    // font-size: 1em;
+    // line-height: 1em;
   }
   @include respond-to(small){
-    font-size: 1em;
-    line-height: 1em;
+    // font-size: 1em;
+    // line-height: 1em;
   }
   
   .ui-accordion-content{
     border-top: 1px solid $grayLighter;
-  }
-
+  }  
   dl{
     margin-top: 0;
-  }
-  dd{
-    line-height: 1.1em;
-  }
-  address{
-    margin-bottom: 0;
-    line-height: 1em;
+    dd{
+      line-height: inherit;
+      font-size: inherit;
+      address{
+        margin-bottom: 0;
+        line-height: inherit;
+        font-size: inherit;
+      }
+      a{
+        line-height: inherit;
+        font-size: inherit;
+        color: inherit;
+      }
+    }
   }
 }
-.caption-quick-tip{
-  font-size: .8em;
-  line-height: 1em;
+.caption_quick_tip{
+  // font-weight: 100;
   text-shadow: (1px 1px 1px $black);
   border: 1px solid rgb(204,204,204);
   background-color: transparent;
   margin-bottom: 10px;
 }
 
-.foursquare-attribution{
+.foursquare_attribution{
   // float: right;
   text-align: right;
   margin-bottom: 1em;
   font-size: 0.8em;
-  #accordion-foursquare-logo{
+  #accordion_foursquare_logo{
     background-image:url(/assets/logos/foursquare-icon-16x16.png);
     background-repeat: no-repeat;
     // background-size: Auto 16px;
@@ -694,7 +705,7 @@ div.rightcaption .ui-accordion-content {
 /* 7. MISC */
 
 /* bottom rails things */ 
-#bottom-actionlinks{
+#bottom_actionlinks{
   @include col(12);
   position: relative;
   @include box-sizing(border-box);
@@ -708,10 +719,10 @@ div.rightcaption .ui-accordion-content {
   @include box-shadow($myDivBoxShadow);
   height: 301px;
   overflow: hidden; //works
-    .buffer-comments{
+    .buffer_comments{
       //this is here because iScroll4 needs a header to scroll the main body item.
     } 
-    .div-fb-comments{
+    .div_fb_comments{
       // position: absolute;
       // width: 100%;
       height: 100%; //having this works for all except for android browser (sticky scrolling)
@@ -775,10 +786,8 @@ div.rightcaption .ui-accordion-content {
   }
   
   h3#myModalLabel{
-    font-size: 1.4em;
-    line-height: 1.4em;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: normal;
   }
   
   .modal-body{
@@ -828,5 +837,8 @@ td.thumbnail_td{
   padding: 4px 0px;
   img{
     @include border-radius($myDivBorderRadius);
+    height: 36px;
+    width: 36px;
+    overflow: hidden;
   }
 }

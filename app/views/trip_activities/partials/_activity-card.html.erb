@@ -7,29 +7,29 @@
       <div id="mapShow" class="icon-globe"></div>
     </div>
     <!-- End Button Group -->  
-    <!-- Begin always-here -->
-    <div class="always-here">
+    <!-- Begin always_here -->
+    <div class="always_here">
       <!-- Begin rightcaption -->
       <div class="rightcaption">
         <h3 id="activity_title">
-          <%= (which_detail_type(@trip_activity,"name")) %></br>
-          <span class="activity-subtitle">Day <%= @trip_activity.activity_day %> (<%= @trip_activity.activity[:duration] %>)  <%#which_detail_type(@trip_activity, "category")%></span>
+          <span class="activity_title caption_title"><%= (which_detail_type(@trip_activity,"name")) %></span></br>
+          <span class="activity_subtitle caption_summary">Day <%= @trip_activity.activity_day %> (<%= @trip_activity.activity[:duration] %>)  <%#which_detail_type(@trip_activity, "category")%></span>
         </h3>
         <div>
-          <p class="lead" id="user-description">
+          <p class="caption_large" id="user_description">
             <%= @trip_activity.activity[:description] %>
           </p>
-          <div class="well well-small caption-quick-tip">
+          <div class="well well-small caption_quick_tip caption_subtitle">
             Quick Tip: <%= @trip_activity.activity[:quick_tip] %> 
           </div>
         </div>
         <h3 id="more_info_accordion">
-          More Info
+          <div class = "caption_subtitle">More Info</div>
         </h3>
-        <div class = "more-info-dl" id="more-info-id">
+        <div class = "more_info_dl" id="more_info_id">
           <div id = "more-info-buffer-header"></div>
           <div id = "more-info-buffer-content">
-            <dl>
+            <dl class = "caption_subtitle">
             <dt>Address:</dt>
             <dd>
               <address>
@@ -56,20 +56,20 @@
             </dd>
             <dt>Website:</dt>
             <dd>
-              <%= link_to  check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, :target => "_blank" %>
+              <%= link_to  check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, :target => "_blank", :class => "caption_subtitle" %>
             </dd>
             </dl>
-            <div class="foursquare-attribution">Powered by <div id ="accordion-foursquare-logo"></div></div>
+            <div class="foursquare_attribution">Powered by <div id ="accordion_foursquare_logo"></div></div>
           </div>
           <!-- End more-info-buffer-content -->
         </div>
       </div>
       <!-- End rightcaption -->   
     </div>
-    <!-- End always-here --> 
+    <!-- End always_here --> 
 
         <div class= "front">
-          <div class="main-pic-wrap" id="bloop">
+          <div class="main_pic_wrap" id="bloop">
             <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
               <div data-src=<%=select_activity_img(@trip_activity, "", 480)%> > </div> 
               <div data-src=<%=select_activity_img(@trip_activity, "", 480)%> data-media="(min-width: 480px)"></div>
