@@ -37,13 +37,13 @@
   #     mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
   #     $.ajax
   #       beforeSend: ->
-  #         $(".swipe-loading-indicator").show()
+  #         $(".swipe_loading_indicator").show()
   #       type: "GET"
   #       url: req  
   #       dataType: "json"
   #       context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
   #       complete: ->
-  #         $(".swipe-loading-indicator").hide()
+  #         $(".swipe_loading_indicator").hide()
   #       success: (data) ->
   #         restore(mapcontainer)
   #         addmarkers(data, mapcontainer)
@@ -55,13 +55,13 @@
       mapcontainer = $('#modal_map')
       $.ajax
         beforeSend: ->
-          $(".swipe-loading-indicator").show()
+          $(".swipe_loading_indicator").show()
         type: "GET"
         url: req
         dataType: "json"
         context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
         complete: ->
-          $(".swipe-loading-indicator").hide()
+          $(".swipe_loading_indicator").hide()
         success: (data) ->
           restore(mapcontainer)
           addmarkers(data, mapcontainer)

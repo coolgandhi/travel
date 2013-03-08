@@ -6,7 +6,7 @@ $consistentFontWeight: 300;
 .title{
   font-size: em(24.5px);
   line-height: 1.2em;
-  font-weight: $consistentFontWeight;
+  font-weight: $consistentFontWeight+100;
 }
 .title_subtitle{
   font-size: em(14px);

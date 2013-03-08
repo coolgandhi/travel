@@ -1,7 +1,7 @@
 ((site_wide_namespace, $, undefined_) ->
   $(document).ajaxStart(->
-    $(".swipe-loading-indicator-header").show()
+    $(".swipe_loading_indicator_header").show()
   ).ajaxStop ->
-    $(".swipe-loading-indicator-header").hide()
+    $(".swipe_loading_indicator_header").hide()
 
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

@@ -30,7 +30,7 @@
     page = i==0 ? trips_namespace.slides.length-1 : i-1;
     $.ajax({
       beforeSend: function() {
-        $('.swipe-loading-indicator').show();
+        $('.swipe_loading_indicator').show();
         },
       type: 'GET',
       url: trips_namespace.slides[page].renderpartial,
@@ -38,7 +38,7 @@
       ajaxI: i, // Capture the current value of 'i'
       dataType: 'html',
       complete: function(){
-        $('.swipe-loading-indicator').hide();
+        $('.swipe_loading_indicator').hide();
         },
       success: function(data){
         $(trips_namespace.gallery.masterPages[this.ajaxI]).append(data);
@@ -69,7 +69,7 @@
 
         $.ajax({
           beforeSend: function() {
-            $('.swipe-loading-indicator').show();
+            $('.swipe_loading_indicator').show();
             },
           type: 'GET',
           url: trips_namespace.slides[upcoming].renderpartial,
@@ -77,7 +77,7 @@
           ajaxI: i, // Capture the current value of 'i'
           dataType: 'html',
           complete: function(){
-            $('.swipe-loading-indicator').hide();
+            $('.swipe_loading_indicator').hide();
             },
           success: function(data){
             $(trips_namespace.gallery.masterPages[this.ajaxI]).html(data);

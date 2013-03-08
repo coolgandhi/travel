@@ -195,7 +195,7 @@ img.thumb_image{
   background-color: $grayLight;
   @include border-radius($myDivBorderRadius);
   
-  .icon_user{
+  .icon-user{
   line-height: 60px;
   font-size: 40px;
   }
@@ -508,7 +508,7 @@ div.rightcaption .ui-accordion-content {
   color: $white;
   // font-size: 1.2em;
   // line-height: 1.4em;
-  letter-spacing: 1px;
+  //letter-spacing: 1px;
   // font-weight: 100;
   margin: 0.75em 0;
   // text-shadow: 2px 1px 3px #000;
@@ -566,7 +566,7 @@ div.rightcaption .ui-accordion-content {
 }
 .caption_quick_tip{
   // font-weight: 100;
-  text-shadow: (1px 1px 1px $black);
+  // text-shadow: (1px 1px 1px $black);
   border: 1px solid rgb(204,204,204);
   background-color: transparent;
   margin-bottom: 10px;
