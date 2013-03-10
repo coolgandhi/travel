@@ -1,35 +1,34 @@
-set :repository, "git@github.com:coolgandhi/travel.git"
-#set :repository, "." # for local setup
+#set :repository, "git@github.com:coolgandhi/travel.git" # for setup from checked in branch
+set :repository, "." # for setup from local repo
 set :deploy_to, "/var/www/travel"
-set :scm_command, "/usr/bin/git" 
-# set :scm_command, "/usr/local/git/bin/git"
+#set :scm_command, "/usr/bin/git" 
+set :scm_command, "/usr/local/git/bin/git" # for setup from local repo
 #set :user, "vagrant" # for vagrant
-set :user, "ec2-user"
+set :user, "ec2-user" # for aws
 #set :password, "vagrant" # for vagrant
 set :scm_username, "coolgandhi"
 set :local_scm_command, "git" 
 set :rvm_ruby_string, 'ruby-1.9.3-p327' 
 set :rvm_bin_path, "/home/ec2-user/.rvm/bin"
-#set :rvm_bin_path, "/home/vagrant/.rvm/bin"
-set :scm_command, "/usr/bin/git"
-# set :scm_command, "/usr/local/git/bin/git"
+#set :rvm_bin_path, "/home/vagrant/.rvm/bin" # for vagrant
+
+#set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
+set :scm, :none
+
 #set :user, "vagrant" # for vagrant
-set :user, "ec2-user"
+set :user, "ec2-user" # for aws
+
 #set :password, "vagrant" # for vagrant
 
 #set :location, "192.168.33.10"  
-#set :location, "ec2-50-112-211-203.us-west-2.compute.amazonaws.com"
-set :location, "ec2-54-244-137-102.us-west-2.compute.amazonaws.com"  
+set :location, "ec2-54-245-132-108.us-west-2.compute.amazonaws.com"  # for aws
 
 set :rails_env, "production"
 set :branch, "master"
-set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-#set :scm, :none
 set :deploy_via, :copy
 #set :git_shallow_clone, 1
 
-# for aws deploy
-ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/freeinstanceTrip.pem"]
+ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/freeinstanceTrip.pem"] # for aws
 
 
 # Automatically precompile assets
@@ -95,12 +94,12 @@ namespace :deploy do
    end
 end
 
+namespace :rake do 
+  desc "Run the super-awesome rake task"
+  task :super_awesome do
+    rake = fetch(:rake, 'rake')
+    rails_env = fetch(:rails_env, 'production')
 
-desc "Run the super-awesome rake task"
-task :super_awesome do
-  rake = fetch(:rake, 'rake')
-  rails_env = fetch(:rails_env, 'production')
-
-  run "cd '#{current_path}' && #{rake} db:addlocation RAILS_ENV=#{rails_env}"
+    run "cd '#{current_path}' && #{rake} db:addlocation RAILS_ENV=#{rails_env}"
+  end
 end
-
