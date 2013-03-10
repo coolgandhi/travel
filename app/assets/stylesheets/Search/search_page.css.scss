@@ -20,7 +20,8 @@ $colorBorderColor: #00A1CB;
 
 /* Body Styles */ 
 body{
-  background-color: #f1f1f1;
+  background-color: #8dc0d9;
+  background: url(/assets/backgrounds/afternoon_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/afternoon_bg_80x80.png) fixed
 }
 
 .navbar-fixed-top .container{
@@ -33,6 +34,15 @@ body{
   .alert{
     margin-bottom: 0.5%;
   }
+}
+
+.middle_results_container{
+  background-color: #f1f1f1;
+  @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+  padding: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  @include border-radius($myDivBorderRadius);
 }
 
 /* Hero Unit Styles */ 

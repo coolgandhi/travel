@@ -66,18 +66,22 @@ div.evening_bg{
 
 body.morning_bg{
   background-color: #DEEFFA;//#F8FAFD;
-  @include single-transition(background-color, 3s, ease-in-out, 0.4s);
-
+  @include single-transition(all, 3s, ease-in-out, 0.4s);
+  // background: url(/assets/backgrounds/morning_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/morning_bg_80x80.png) fixed
+  // @include background-image(linear-gradient(top, #6EB4E9 10%, #DEEFFA 100%));
 }
 
 body.afternoon_bg{
   background-color: #8dc0d9;//#D4EDED;
-  @include single-transition(background-color, 3s, ease-in-out, 0.4s);
+  @include single-transition(all, 3s, ease-in-out, 0.4s);
+  // background: url(/assets/backgrounds/afternoon_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/afternoon_bg_80x80.png) fixed
+  // @include background-image(linear-gradient(top, #1C82B3 10%, #8DC0D9 100%));
 }
 
 body.evening_bg{
   background-color: #365165;//#D3E5FC;
-  @include single-transition(background-color, 3s, ease-in-out, 0.4s);
+  @include single-transition(all, 3s, ease-in-out, 0.4s);
+  // background: url(/assets/backgrounds/evening_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/evening_bg_80x80.png) fixed
 }
 
 .navbar-fixed-top{
