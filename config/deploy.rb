@@ -1,21 +1,30 @@
-#set :repository, "git@github.com:coolgandhi/travel.git"
-set :repository, "."
+set :repository, "git@github.com:coolgandhi/travel.git"
+#set :repository, "." # for local setup
 set :deploy_to, "/var/www/travel"
 set :scm_command, "/usr/bin/git" 
 # set :scm_command, "/usr/local/git/bin/git"
-set :user, "vagrant"
-set :password, "vagrant"
+#set :user, "vagrant" # for vagrant
+set :user, "ec2-user"
+#set :password, "vagrant" # for vagrant
 set :scm_username, "coolgandhi"
 set :local_scm_command, "git" 
-set :rvm_ruby_string, 'ruby-1.9.3-p362' 
+set :rvm_ruby_string, 'ruby-1.9.3-p327' 
+set :rvm_bin_path, "/home/ec2-user/.rvm/bin"
+#set :rvm_bin_path, "/home/vagrant/.rvm/bin"
+set :scm_command, "/usr/bin/git"
+# set :scm_command, "/usr/local/git/bin/git"
+#set :user, "vagrant" # for vagrant
+set :user, "ec2-user"
+#set :password, "vagrant" # for vagrant
 
-#set :location, "192.168.11.10"  
-set :location, "192.168.33.10"  
+#set :location, "192.168.33.10"  
+#set :location, "ec2-50-112-211-203.us-west-2.compute.amazonaws.com"
+set :location, "ec2-54-244-137-102.us-west-2.compute.amazonaws.com"  
 
 set :rails_env, "production"
 set :branch, "master"
-#set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-set :scm, :none
+set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
+#set :scm, :none
 set :deploy_via, :copy
 #set :git_shallow_clone, 1
 
@@ -31,8 +40,6 @@ require "bundler/capistrano"
  
 # RVM integration
 require "rvm/capistrano"
-#set :rvm_bin_path, "/home/ec2-user/.rvm/bin"
-set :rvm_bin_path, "/home/vagrant/.rvm/bin"
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 default_run_options[:pty] = true
 # System-wide RVM installation
@@ -49,7 +56,7 @@ before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy', 'rvm:install_rvm'
 
 # set :rvm_install_shell, :zsh
-set :application, 'magicdelivery'
+set :application, 'travel'
 #ssh_options[:forward_agent] = true
 set :use_sudo, false
 
@@ -58,8 +65,6 @@ set :use_sudo, false
 #set :deploy_subdir, "magicdelivery"
 #set :user, "ec2-user"
 
-#set :location, "ec2-50-112-211-203.us-west-2.compute.amazonaws.com"
-#set :location, "192.168.33.10"
 role :web, location                       # Your HTTP server, Apache/etc
 role :app, location                          # This may be the same as your `Web` server
 role :db,  location, :primary => true # This is where Rails migrations will run
@@ -74,7 +79,7 @@ set :normalize_asset_timestamps, false
 
 
 set :ec2onrails_config, {
-	:mysql_root_password => "QAZwsx987"
+    :mysql_root_password => "QAZwsx987"
 }
 
 # If you are using Passenger mod_rails uncomment this:
