@@ -13,10 +13,10 @@
           data: 
             total: 10
             near: request.term
-          success: (data) ->
+          success: (data) -> 
             response $.map(data, (item) ->
-              label: item.city + ", " + item.state + ", " + item.country 
-              value: item.location_id + "," + item.latitude + "," + item.longitude
+                label: item.city + ", " + item.state + ", " + item.country 
+                value: item.location_id + "," + item.latitude + "," + item.longitude
               )
       open: ->
         $(this).removeClass("#place_text_field").addClass "ui-corner-top"
@@ -24,7 +24,7 @@
         $(this).removeClass("ui-corner-top").addClass "ui-corner-all"
       focus: (event, ui) ->
         event.preventDefault()
-        $(this).val ui.item.label      
+        $(this).val ui.item.label
       select: (event, ui) ->
         event.preventDefault()
         splitarrayvalue = ui.item.value.split(",")
@@ -33,5 +33,7 @@
         $(this).val ui.item.label
         $(this).siblings('#place_text_field').val splitarrayvalue[0]
         site_wide_namespace.fetchlocationimages splitarraylabel[0], splitarrayvalue[1], splitarrayvalue[2], $("#location_images")
-      
+        return
+    return
+  return
 ) window.site_wide_namespace = window.site_wide_namespace or {}, jQuery
