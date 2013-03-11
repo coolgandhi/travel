@@ -60,7 +60,7 @@ class TripsController < ApplicationController
   def new
     @trip = Trip.new
     @author_info = AuthorInfo.new
-    
+    @location_val = ""
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @trip }
@@ -71,6 +71,9 @@ class TripsController < ApplicationController
   def edit
     begin  
       @trip = Trip.find(params[:id])
+      @author_info = @trip.author_info
+      @location_detail = Location.find_by_location_id(@trip.location_id)
+      @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -83,7 +86,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(params[:trip])
     @trip.image_url = params[:selected_images]
-    @author_info = AuthorInfo.find_by_email(params[:author_email].downcase)
+    @author_info = AuthorInfo.find_by_email((params[:author_info][:email]).downcase)
     if @author_info.nil?
       @author_info = AuthorInfo.new
       @author_info.author_name = params[:author_name]
@@ -114,6 +117,7 @@ class TripsController < ApplicationController
   def update
     begin  
       @trip = Trip.find(params[:id])
+      @author_info = @trip.author_info
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -121,7 +125,7 @@ class TripsController < ApplicationController
     end 
 
     respond_to do |format|
-      if @trip.update_attributes(params[:trip])
+      if @trip.update_attributes(params[:trip]) and @author_info.update_attributes(params[:author_info])
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else

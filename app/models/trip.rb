@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url
+  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag
   has_many :trip_comments, :dependent => :destroy
   has_many :trip_activities, :dependent => :destroy
   has_one  :trip_stat, :dependent => :destroy
@@ -20,10 +20,17 @@ class Trip < ActiveRecord::Base
   
   def self.search params
     message_with_trip_render = " Check out your trips! "
-    if (params[:trip_location_id] and params[:trip_location_id] != "")
+    if ((params[:trip_location_id] and params[:trip_location_id] != "") or params[:featured])
       # duration = (DateTime.strptime(params[:to], "%m/%d/%Y") - DateTime.strptime(params[:from], "%m/%d/%Y"))
       duration = params[:days]
-      trips = Trip.where("location_id = ? and traveler_type_id IN (?) and duration >= ? and duration <= ?", params[:trip_location_id], params[:traveler_type_id], duration.to_i.to_s, duration.to_i.to_s)
+      query = ""
+      query = (params[:trip_location_id] and params[:trip_location_id] != "")? " location_id IN ( " + params[:trip_location_id] + ") and " : ""
+      query += (params[:traveler_type_id] and params[:traveler_type_id] != "")? "traveler_type_id IN (" + params[:traveler_type_id].join(" , ") + ") and " : "" 
+      query += (duration and duration != "") ? " duration >= " + duration.to_i.to_s + " and duration <= " + duration.to_i.to_s + " and " : "" 
+      query += (params[:featured])? " featured_trip_flag = " + params[:featured]  : " featured_trip_flag is NOT NULL" 
+
+      trips = Trip.where( query )
+#      trips = Trip.where("location_id IN (?) and traveler_type_id IN (?) and duration >= ? and duration <= ? and featured_trip_flag = ?", params[:trip_location_id], (params[:traveler_type_id])?params[:traveler_type_id] : "select traveler_type_id from traveler_types", duration.to_i.to_s, duration.to_i.to_s, (params[:featured_trip_flag])?params[:featured_trip_flag] : false)
       
       if trips.length == 0 # find trips from same location as a minimum 
         trips = Trip.where("location_id = ?", params[:trip_location_id])
