@@ -108,7 +108,7 @@ class TripActivitiesController < ApplicationController
       :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
       :activity_time_type => params[:trip_activity][:activity_time_type])
       if err == 0 and @trip_activity.save 
-        format.html { redirect_to @trip, notice: 'Trip activity was successfully created.' }
+        format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
         format.json { render json: @trip_activity, status: :created, location: @trip_activity }
       else
         @latlong = find_location_latlong @trip

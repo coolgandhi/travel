@@ -2,7 +2,7 @@ module TripActivitiesHelper
 
   # this checks to see if a detail (i.e. open hours) is avaialble, if not then just post a empty string rather than nothing at all
   def check_empty_detail(attribute)
-    attribute == "" ? "--" : attribute
+    attribute.blank? ? "--" : attribute
   end
   
   # This function gets the image that we want to show on an activity card
@@ -80,7 +80,7 @@ module TripActivitiesHelper
               trip_map_info[i] =  { name: "<b>" + trip_activity.activity.location_detail[:name] + "</b>",
                                     address: "<address>" + check_empty_detail(trip_activity.activity.location_detail[:address1])+ "<br>" + check_empty_detail(trip_activity.activity.location_detail[:city])+ ", " + check_empty_detail(trip_activity.activity.location_detail[:state]) + " " + check_empty_detail(trip_activity.activity.location_detail[:zip])  + "</address>",
                                     location: trip_activity.activity.location_detail[:latitude] + "," + trip_activity.activity.location_detail[:longitude],
-                                    logo: "map-markers-blue-location.png" 
+                                    logo: trip_activity.id.to_i == current_activity.to_i ? "map-markers-red-location.png" : "map-markers-blue-location.png"
                                   }
               i = i + 1
             end

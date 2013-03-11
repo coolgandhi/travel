@@ -19,9 +19,14 @@
           <p class="caption_large" id="user_description">
             <%= @trip_activity.activity[:description] %>
           </p>
-          <div class="well well-small caption_quick_tip caption_large">
-            Quick Tip: <%= @trip_activity.activity[:quick_tip] %> 
-          </div>
+          
+          <% unless @trip_activity.activity[:quick_tip].blank? %>
+            <div class="well well-small caption_quick_tip caption_large">
+              Quick Tip: <%= @trip_activity.activity[:quick_tip] %> 
+            </div>
+          <% else %>
+          <% end %>
+
         </div>
         <h3 id="more_info_accordion">
           <div class = "caption_summary">More Info</div>
