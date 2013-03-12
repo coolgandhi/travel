@@ -25,6 +25,7 @@
 //= require bootstrap
 //= require gmap3
 //= require facebook-plugins
+//= require twitter-plugin
 //= require picturefill
 //= require swipeview
 //= require jquery.multiselect
