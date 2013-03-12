@@ -1,25 +1,28 @@
+  
 <div class = "auth_container">
 	<div class ="about_author_main">
-
-	<h3 class = "author_title">About the Author</h3>
-	<hr class="auth_hr">
-
-
-	<div class="auth_picture"><%= image_tag avatar_url(@author), :alt => "profile", :class => "auth_img_tag" %>
-	</div>
+  	<h3 class = "author_title">About the Author</h3>
+  	<hr class="auth_hr">
+  	<div class="auth_picture"><%= image_tag avatar_url(@author), :alt => "profile", :class => "auth_img_tag" %>
+  	</div>
   	
   	<div class="auth_description">
   		<h4><%= @author.author_name %></br><small class="auth_city"><%= @author.city %>, <%= @author.state %> </small></h4>
-  		<div class="auth_social_link"><%= link_to image_tag('/assets/twitter-bird-white-on-blue.png', :class=> "auth_social_icon"), raw("https://twitter.com/#{@author.twitter_handle}"), :target => "_blank"%></div>
+  		<!-- <div class="auth_social_link"><%#= link_to image_tag('/assets/twitter-bird-white-on-blue.png', :class=> "auth_social_icon"), raw("https://twitter.com/#{@author.twitter_handle}"), :target => "_blank"%>
+  			<a href="https://twitter.com/#{@author.twitter_handle}" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @ <%= @author.twitter_handle %></a>
+      </div> -->
+      <div>
+        <iframe allowtransparency="true" frameborder="0" scrolling="no"
+        src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author.twitter_handle %>"
+        style="width:300px; height:20px;"></iframe>
+      </div>
   	</div>
-  	
-  	<!-- begin auth_moreinfo -->
+  	    
+    <!-- begin auth_moreinfo -->
   	<div class="auth_moreinfo">
-      <lead><%= @author.blurb %></lead>
-
-  	</div>
+      <lead><%= @author.about %></lead>
+    </div>
   	<!-- end auth_moreinfo -->
-
 	</div>
 </div>
 

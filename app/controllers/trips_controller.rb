@@ -88,18 +88,25 @@ class TripsController < ApplicationController
     @trip.image_url = params[:selected_images]
     @author_info = AuthorInfo.find_by_email((params[:author_info][:email]).downcase)
     if @author_info.nil?
-      @author_info = AuthorInfo.new
-      @author_info.author_name = params[:author_name]
-      @author_info.email = params[:author_email].downcase
+      @author_info = AuthorInfo.new(params[:author_info])
+    else
+      @author_info.author_name = (params[:author_info][:author_name] and params[:author_info][:author_name] != "") ? params[:author_info][:author_name]: @author_info.author_name;
+      @author_info.about = (params[:author_info][:about] and params[:author_info][:about] != "") ? params[:author_info][:about]: @author_info.about;
+      @author_info.twitter_handle = (params[:author_info][:twitter_handle] and params[:author_info][:twitter_handle] != "") ? params[:author_info][:twitter_handle]: @author_info.twitter_handle;
+      @author_info.website = (params[:author_info][:website] and params[:author_info][:website] != "") ? params[:author_info][:website]: @author_info.website;
+      @author_info.city = (params[:author_info][:city] and params[:author_info][:city] != "") ? params[:author_info][:city]: @author_info.city;
+      @author_info.state = (params[:author_info][:state] and params[:author_info][:state] != "") ? params[:author_info][:state]: @author_info.state;
+      @author_info.country = (params[:author_info][:country] and params[:author_info][:country] != "") ? params[:author_info][:country]: @author_info.country;
     end
     
     respond_to do |format|
       if @author_info.save
         @trip.author_id = @author_info.id
       else
-        @trip.author_id = "a"
+        #@trip.author_id = "a"
         format.html { render action: "new" }
         format.json { render json: @author_info.errors, status: :unprocessable_entity }
+        return
       end
       
       if @trip.save
