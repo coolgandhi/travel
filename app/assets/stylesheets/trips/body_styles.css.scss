@@ -46,7 +46,7 @@ body{
   // background-position-y: 40px;
   // background-repeat: no-repeat;
   // background-attachment: fixed;
-  background-color: #DEEFFA;
+  background-color: #e7ebf2;
   // -webkit-backface-visibility: hidden;
   // transform: translate3d(0,0,0);
   // -webkit-transform: translate3d(0,0,0);
@@ -65,7 +65,7 @@ div.evening_bg{
 }
 
 body.morning_bg{
-  background-color: #DEEFFA;//#F8FAFD;
+  background-color: #e7ebf2;//#DEEFFA;//#F8FAFD;
   @include single-transition(all, 3s, ease-in-out, 0.4s);
   // background: url(/assets/backgrounds/morning_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/morning_bg_80x80.png) fixed
   // @include background-image(linear-gradient(top, #6EB4E9 10%, #DEEFFA 100%));

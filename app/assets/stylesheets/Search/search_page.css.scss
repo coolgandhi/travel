@@ -17,11 +17,11 @@
 $resultSubtitleColor: dimgrey;///#08c;
 $colorBorderColor: #00A1CB;
 
-
 /* Body Styles */ 
 body{
-  background-color: #8dc0d9;
-  background: url(/assets/backgrounds/afternoon_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/afternoon_bg_80x80.png) fixed
+  background-color: #e7ebf2;
+  // background-color: #8dc0d9;
+  // background: url(/assets/backgrounds/afternoon_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/afternoon_bg_80x80.png) fixed
 }
 
 .navbar-fixed-top .container{
@@ -37,12 +37,12 @@ body{
 }
 
 .middle_results_container{
-  background-color: #f1f1f1;
-  @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
-  padding: 2%;
-  margin-top: 1%;
-  margin-bottom: 0%;
-  @include border-radius($myDivBorderRadius);
+  background-color: #e7ebf2;
+  // @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+  // padding: 2%;
+  // margin-top: 1%;
+  // margin-bottom: 0%;
+  // @include border-radius($myDivBorderRadius);
 }
 
 /* Hero Unit Styles */ 
@@ -52,7 +52,7 @@ body{
   height: 450px;
   padding: 0;
   top: -30px;
-  margin-bottom: -50px;
+  // margin-bottom: -50px;
   border-bottom: 10px solid $colorBorderColor;
   @include border-radius(0);
   @include box-shadow(0px 4px 4px rgba(0, 0, 0, 0.3))
@@ -80,7 +80,7 @@ body{
   width: 100%;
   background-color: $black;
   // background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
-  background-image: url("/assets/splash_images/Positano-Seaview-1440x550_1-IMG_0572.JPG");
+  background-image: url("/assets/splash_images/Positano-Seaview-1800x687_1-IMG_0572.jpg");
   background-repeat: no-repeat;
   background-size: 1600px auto;
   background-position-x: center;
