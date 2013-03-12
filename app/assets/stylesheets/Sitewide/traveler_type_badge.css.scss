@@ -1,3 +1,9 @@
+/* COMPASS TO SPRITE BADGES DIRECTORY */
+@import "badges/*.png";
+@include all-badges-sprites;
+
+/* BADGE STYLES */
+
 .badge_buttons{
   // float: left;
   // margin-left: 2%;
@@ -47,25 +53,30 @@
 
 .couples-badge{
   @include traveler-badge;
-  background-image:url(/assets/badges/couples-badge.png);
+  // background-image:url(/assets/badges/couples-badge.png);
+  @include badges-sprite(couples-badge);
 }
 
 .solo-badge{
   @include traveler-badge;
-  background-image:url(/assets/badges/solo-badge.png);
+  // background-image:url(/assets/badges/solo-badge.png);
+  @include badges-sprite(solo-badge);
 }
 
 .family-badge{
   @include traveler-badge;
-  background-image:url(/assets/badges/family-badge.png);
+  // background-image:url(/assets/badges/family-badge.png);
+  @include badges-sprite(family-badge);
 }
 
 .group-badge{
   @include traveler-badge;
-  background-image:url(/assets/badges/group-badge.png);
+  // background-image:url(/assets/badges/group-badge.png);
+  @include badges-sprite(group-badge);
 }
 
 .other-badge{
   @include traveler-badge;
-  background-image:url(/assets/badges/other-badge.png);
+  // background-image:url(/assets/badges/other-badge.png);
+  @include badges-sprite(other-badge);
 }

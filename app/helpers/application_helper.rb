@@ -172,4 +172,13 @@ module ApplicationHelper
     image = select_closest_image(z, width)
   end
   
+  # for pill nav bar to set active or disabled
+  def nav_link(link_text, link_path)
+  class_name = current_page?(link_path) ? 'active' : ''
+
+  content_tag(:li, :class => class_name) do
+    link_to link_text, link_path
+  end
+  end
+
 end
