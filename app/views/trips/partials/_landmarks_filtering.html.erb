@@ -5,7 +5,7 @@
     <!--begin b. check if there is @locations -->
     <% if @locations.length > 0 %>
       <ul class="breadcrumb location_filter_bar">
-        <li>Filter by location <span class="divider">|</span></li>
+        <li>w/ this spot <span class="divider">|</span></li>
 
         <!--begin c. for items 1 thru 4 in @locations -->
         <% @locations[0..3].each_with_index do |location, index| %>
@@ -47,7 +47,7 @@
   <!--begin e. check if there is @restaurants -->
   <% if @restaurants.length > 0 %>
     <ul class="breadcrumb restaurant_filter_bar">
-      <li>Filter by restaurant <span class="divider">|</span></li>
+      <li>w/ this Food <span class="divider">|</span></li>
 
       <!--begin f. for items 1 thru 4 in @restaurants -->
       <% @restaurants[0..3].each_with_index do |restaurant, index| %> 

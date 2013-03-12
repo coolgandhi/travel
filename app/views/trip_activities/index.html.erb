@@ -1,10 +1,13 @@
 <h1>Listing trip_activities</h1>
 
-<table>
+<table class ="table table-bordered">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Activity Day</th>
+    <th>Activity Sequence Number</th>
+    <th>Activity Time Type</th>
+    <th>Activity Type</th>
+    <th>Activity Name</th>
+    <th>Admin?</th>
   </tr>
 
 <% @trip_activities.each do |trip_activity| %>
@@ -12,6 +15,7 @@
     <td><%= trip_activity.activity_day %></td>
     <td><%= trip_activity.activity_sequence_number %></td>
     <td><%= trip_activity.activity_time_type %></td>
+    <td><%= (which_detail_type(trip_activity,"name")) %></td>
     <td><%= trip_activity.activity_type %></td>
     
     <% if admin? %>

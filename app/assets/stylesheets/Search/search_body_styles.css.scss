@@ -1,0 +1,6 @@
+//make the nav wide when widescreen! a 1200px grid
+.navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+  @include respond-to(widescreen){
+    width: 1180px;
+  }
+}

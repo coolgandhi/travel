@@ -397,7 +397,7 @@ $resultThumbHeight: 60%;
   border-top: 0;
   @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
-  background-color: $myDivBg;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 0.25% 1%;
   margin: 0 0 1% 0;
   @include box-sizing(border-box);
