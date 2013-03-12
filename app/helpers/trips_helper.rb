@@ -10,16 +10,19 @@ module TripsHelper
         activity_venue_name = ""
         lay_out = ""
         category = ""
+        duration = ""
         case trip_activity.activity_type 
             when "FoodActivity" then 
               image_url = trip_activity.activity.restaurant_detail[:image_urls]   
               activity_venue_name = trip_activity.activity.restaurant_detail[:name]
               category = trip_activity.activity.restaurant_detail[:category]
+              duration = (trip_activity.activity.activity_duration_type)? trip_activity.activity.activity_duration_type[:activity_duration_name] : trip_activity.activity[:duration]
               lay_out = "foodactivitypartial"
             when "LocationActivity" then 
               image_url = trip_activity.activity.location_detail[:image_urls]
               activity_venue_name = trip_activity.activity.location_detail[:name]
               category = trip_activity.activity.location_detail[:category]
+              duration = (trip_activity.activity.activity_duration_type)? trip_activity.activity.activity_duration_type[:activity_duration_name] : trip_activity.activity[:duration]
               lay_out = "locationactivitypartial"
             else  # default transport activity
               image_url = ""
@@ -44,7 +47,7 @@ module TripsHelper
             :tripid =>  trip.id,
             :rightcaption => trip_activity.activity.description, 
             :quicktip => trip_activity.activity.quick_tip, 
-            :duration => trip_activity.activity.duration,
+            :duration => duration,
             :timetype => trip_activity.activity_time_type,
             :category => category,
             :image_url => image_url,

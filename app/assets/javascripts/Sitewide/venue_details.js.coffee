@@ -5,7 +5,7 @@
       url: window.location.protocol + "//" + window.location.host + "/venues/get_venue_photos.json"
       dataType: "json"
       data: 
-        total: 20
+        total: 60
         venueid: venueid
       success: (data) ->
         container.empty()
@@ -24,7 +24,7 @@
       url: window.location.protocol + "//" + window.location.host + "/venues/get_venue_photos.json"
       dataType: "json"
       data: 
-        total: 20
+        total: 60
         latitude: latitude
         longitude: longitude
         place: place

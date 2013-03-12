@@ -94,12 +94,12 @@ namespace :deploy do
    end
 end
 
-namespace :rake do 
+#namespace :rake do 
   desc "Run the super-awesome rake task"
   task :super_awesome do
     rake = fetch(:rake, 'rake')
     rails_env = fetch(:rails_env, 'production')
 
-    run "cd '#{current_path}' && #{rake} db:addlocation RAILS_ENV=#{rails_env}"
+    run "cd '#{current_path}' && #{rake} db:migrate RAILS_ENV=#{rails_env}"
   end
-end
+#end

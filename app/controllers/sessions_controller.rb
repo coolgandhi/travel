@@ -9,12 +9,12 @@ class SessionsController < ApplicationController
     logger.info "#{params[:password]}"
     session[:password] = params[:password]
     flash[:notice] = "Successfully logged in"
-    redirect_to :controller => 'trips', :action => 'index'
+    redirect_to root_path
   end
 
   def del
     reset_session
     flash[:notice] = "Successfully logged out"
-    redirect_to :controller => 'trips', :action => 'index'
+    redirect_to root_path
   end
 end
