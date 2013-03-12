@@ -47,7 +47,7 @@
         <%= fa.label :description %>: <%= fa.text_field :description %>
     </div>
     <div class="field">
-        <%= fa.label :duration %>: <%= fa.text_field :duration %>
+       <%= fa.label :duration %>: <%= fa.collection_select :duration, ActivityDurationType.all, :activity_duration_type_id, :activity_duration_name, {:selected => ActivityDurationType.first[:activity_duration_type_id]} %>
     </div>
     <div class="field">
         <%= fa.label :quick_tip %>: <%= fa.text_field :quick_tip %>
@@ -66,7 +66,7 @@
         <%= fa.label :description %>: <%= fa.text_field :description %>
     </div>
     <div class="field">
-        <%= fa.label :duration %>: <%= fa.text_field :duration %>
+        <%= fa.label :duration %>: <%= fa.collection_select :duration, ActivityDurationType.all, :activity_duration_type_id, :activity_duration_name, {:selected => ActivityDurationType.first[:activity_duration_type_id]} %>
     </div>
     <div class="field">
         <%= fa.label :quick_tip %>: <%= fa.text_field :quick_tip %>

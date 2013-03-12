@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  activity_duration_type_id: MyString
+  activity_duration_name: MyString
+
+two:
+  activity_duration_type_id: MyString
+  activity_duration_name: MyString
