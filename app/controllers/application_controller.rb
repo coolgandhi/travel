@@ -19,8 +19,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def admin?
-   # session[:password] == "foobar"
-    # during development
     if Rails.env.development?
       return true
     else
