@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  before_filter :miniprofiler
+  
   #session :session_key => '_chaloio_session_id'
   # added a customizable error message for unknown paths user access 
   # refer to http://ramblinglabs.com/blog/2012/01/rails-3-1-adding-custom-404-and-500-error-pages
@@ -40,6 +42,10 @@ class ApplicationController < ActionController::Base
       format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
       format.all { render nothing: true, status: status }
     end
+  end
+  
+  def miniprofiler
+    Rack::MiniProfiler.authorize_request if admin?
   end
   
 end
