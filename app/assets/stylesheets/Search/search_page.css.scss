@@ -18,17 +18,11 @@ $resultSubtitleColor: dimgrey;///#08c;
 $colorBorderColor: #00A1CB;
 
 /* Body Styles */ 
-body{
-  background-color: #e7ebf2;
-  // background-color: #8dc0d9;
-  // background: url(/assets/backgrounds/afternoon_bg_80x350.png) 0 0 repeat-x,url(/assets/backgrounds/afternoon_bg_80x80.png) fixed
-}
-
-.navbar-fixed-top .container{
-  @include respond-to(widescreen){
-    width: 1180px;
-  }
-}
+// .navbar-fixed-top .container{
+//   @include respond-to(widescreen){
+//     width: 1180px;
+//   }
+// }
 
 .results_flash_message{
   .alert{
