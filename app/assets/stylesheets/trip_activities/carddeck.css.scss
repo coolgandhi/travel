@@ -286,6 +286,7 @@ img.relative_image{
 
 .centerimage{
   width: 100%;
+  height: 100%;
   @include box-sizing(border-box);
   // padding: 1em;
   background-color: $myDivBg;
@@ -294,7 +295,6 @@ img.relative_image{
   // border-style: solid;
   // @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
-  height: 100%;
   position: relative;
   // margin-left: 0;
 
@@ -313,6 +313,8 @@ img.relative_image{
 }
 
 .always_here{
+  // min-height: 100%;
+  // min-width: 100%;
   min-height: 100%;
   min-width: 100%;
   position: absolute;
@@ -506,14 +508,10 @@ div.rightcaption .ui-accordion-content {
 
 #user_description{
   color: $white;
-  // font-size: 1.2em;
-  // line-height: 1.4em;
-  //letter-spacing: 1px;
-  // font-weight: 100;
-  margin: 0.75em 0;
+  margin: 0.25em 0;
   // text-shadow: 2px 1px 3px #000;
   @include respond-to(portrait){
-    // line-height: 1.2em;
+    // line-height: 1.2em;ap
   }
   @include respond-to(small){
     // line-height: 1.2em;
@@ -801,6 +799,10 @@ div.rightcaption .ui-accordion-content {
     @include respond-to(portrait){
       min-height: 78%;
     }
+
+  tr{
+    cursor: pointer; 
+  }
   }
   .modal-footer{
     @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);

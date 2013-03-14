@@ -71,10 +71,18 @@
   <p>Loading Trips...</p>
 </div>
 
-<footer>
+<footer class="row">
+<div class = "span12 index_footer">
+<div class = "span6">
+  <div class="index_foursquare_attribution">Location images and details powered by 
+    <%= link_to image_tag('/assets/logos/foursquare-icon-16x16.png', :class=> "index_social_icon"), raw("https://foursquare.com"), :target => "_blank"%></div>
+</div>
 <% if admin? %>  
-  <%= link_to 'New Trip', new_trip_path %>
+  <div class = "span6">
+    <%= link_to 'New Trip', new_trip_path %>
+  </div>
 <% end %>
+</div>
 </footer>
 
 </div> <!--! end of .container -->

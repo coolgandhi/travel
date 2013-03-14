@@ -13,7 +13,16 @@
       <div class="rightcaption">
         <h3 id="activity_title">
           <span class="activity_title caption_title"><%= (which_detail_type(@trip_activity,"name")) %></span></br>
-          <span class="activity_subtitle caption_summary">Day <%= @trip_activity.activity_day %> (<%= (@trip_activity.activity.activity_duration_type)? @trip_activity.activity.activity_duration_type[:activity_duration_name]: @trip_activity.activity[:duration] %>)  <%#which_detail_type(@trip_activity, "category")%></span>
+          <span class="activity_subtitle caption_summary">Day <%= @trip_activity.activity_day %> 
+              <% if @trip_activity.activity.activity_duration_type %>
+                <% unless @trip_activity.activity.activity_duration_type[:activity_duration_name].blank? %>
+                  <%= "( #{@trip_activity.activity.activity_duration_type[:activity_duration_name]} )" %>
+                <% end %>
+              <% else %>
+                <%= "( #{@trip_activity.activity[:duration]} )" %>
+              <% end %>
+          </span>
+
         </h3>
         <div>
           <p class="caption_large" id="user_description">
