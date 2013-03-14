@@ -48,6 +48,9 @@ Travel::Application.routes.draw do
         get 'carddeck'
         get 'showpartial'
       end
+      collection do
+        get 'move'
+      end
     end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl
   

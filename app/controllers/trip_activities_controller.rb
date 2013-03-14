@@ -2,12 +2,14 @@ class TripActivitiesController < ApplicationController
   include ApplicationHelper
   include TripActivitiesHelper
   before_filter :load_trip
-  before_filter :authorize, :except => [:mapinfo, :carddeck, :showpartial]
+  before_filter :authorize, :except => [:mapinfo, :showpartial]
   # GET /trip_activities
   # GET /trip_activities.json
   def index
-    @trip_activities = @trip.trip_activities.all
-
+    @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+    # if ["move_lower", "move_higher", "move_to_top", "move_to_bottom"].include?(params[:method]) and params[:trip_activity_id] =~ /^\d+$/
+    #   TripActivity.find(params[:trip_activity_id]).send(params[:method])
+    # end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trip_activities }
@@ -48,6 +50,16 @@ class TripActivitiesController < ApplicationController
     @trip_activity = @trip.trip_activities.new
     @trip_activity.trip_id = params[:trip_id]
     @latlong = find_location_latlong @trip
+    @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+
+    #if we have less than one activity, set the activity_sequence_number to 1
+    if @trip_activities.size < 1
+      @trip_activity.activity_sequence_number = 1
+    else
+      #if we have more than one activity, get last activity sequence
+      #and set this new activity's position (in the form field), to n+1
+      @trip_activity.activity_sequence_number = @trip_activities.last.activity_sequence_number+1
+    end
     
     respond_to do |format|
       format.html # new.html.erb
@@ -78,6 +90,8 @@ class TripActivitiesController < ApplicationController
   def create
     @trip_activity = nil
     @activity = nil
+    @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+
     respond_to do |format|
       if params[:trip_activity][:activity_type] == "FoodActivity"
         logger.info "food activity..."  
@@ -108,7 +122,11 @@ class TripActivitiesController < ApplicationController
       :activity_day => params[:trip_activity][:activity_day], \
       :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
       :activity_time_type => params[:trip_activity][:activity_time_type])
-      if err == 0 and @trip_activity.save 
+      if err == 0 and @trip_activity.save
+        #if the activity is saved, check it's position against that array of activities 
+        if @trip_activity.activity_sequence_number > @trip_activities.last.activity_sequence_number+2
+          @trip_activity.activity_sequence_number = @trip_activities.last.activity_sequence_number+1
+        end 
         format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
         format.json { render json: @trip_activity, status: :created, location: @trip_activity }
       else
@@ -125,6 +143,7 @@ class TripActivitiesController < ApplicationController
     begin
       @trip_activity = @trip.trip_activities.find(params[:id])
       @activity = @trip_activity.activity
+      @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
       if params[:trip_activity][:activity_type] == "FoodActivity"
         @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
         if (@activity.update_attributes(params[:food_activity]) == false)
@@ -156,7 +175,7 @@ class TripActivitiesController < ApplicationController
 
     respond_to do |format|
       if @trip_activity.update_attributes(params[:trip_activity])
-        format.html { redirect_to trip_url(@trip), notice: 'Trip activity was successfully updated.' }
+        format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -179,25 +198,6 @@ class TripActivitiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @trip }
       format.json { head :no_content }
-    end
-  end
-
-
-  # GET /trips/1
-  # GET /trips/1.json
-  def carddeck
-    begin
-      @trip_activity = @trip.trip_activities.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Trip activity not found"
-      redirect_to :controller => 'trips', :action => 'index'
-      return
-    end
-        
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @trip_activity }
-      format.js
     end
   end
 
@@ -238,6 +238,22 @@ class TripActivitiesController < ApplicationController
       format.json { render json: @trip_map_info  } 
     end
   end
+
+  def move
+    if ["move_lower", "move_higher", "move_to_top", "move_to_bottom"].include?(params[:method]) and params[:trip_activity_id] =~ /^\d+$/
+     #if the incoming params contain any of these methods and a numeric trip_activity_id, 
+     #let's find the activity with that id and send it the acts_as_list specific method
+     #that rode in with the params from whatever link was clicked on
+       @trip.trip_activities.find(params[:trip_activity_id]).send(params[:method])
+    end
+    @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+    #after we're done updating the position (which gets done in the background
+    #because of acts_as_list, we'll use ajax to reload the page
+    respond_to do |format|
+      format.js # index.js.erb
+    end
+  end
+
 
   def load_trip
     begin

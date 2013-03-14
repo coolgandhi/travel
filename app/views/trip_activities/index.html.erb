@@ -1,33 +1,7 @@
 <h1>Listing trip_activities</h1>
-
-<table class ="table table-bordered">
-  <tr>
-    <th>Activity Day</th>
-    <th>Activity Sequence Number</th>
-    <th>Activity Time Type</th>
-    <th>Activity Type</th>
-    <th>Activity Name</th>
-    <th>Admin?</th>
-  </tr>
-
-<% @trip_activities.each do |trip_activity| %>
-  <tr>
-    <td><%= trip_activity.activity_day %></td>
-    <td><%= trip_activity.activity_sequence_number %></td>
-    <td><%= trip_activity.activity_time_type %></td>
-    <td><%= (which_detail_type(trip_activity,"name")) %></td>
-    <td><%= trip_activity.activity_type %></td>
-    
-    <% if admin? %>
-      <td><%= link_to 'Show', trip_trip_activity_path(@trip, trip_activity) %></td>
-      <td><%= link_to 'Edit', edit_trip_trip_activity_path(@trip, trip_activity) %></td>
-      <td><%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-    
-  </tr>
-<% end %>
-</table>
-
+<div class = "trip_activities_admin">
+<%= render 'trip_activities/partials/trip_activities_admin_partial' %>
+</div>
 <br />
 
 <%= link_to 'New Trip activity', new_trip_trip_activity_path %> |

@@ -48,7 +48,7 @@
       <div class="field">
         <%= fa.hidden_field :restaurant_detail_id %>
       </div>
-      <% loc = (@trip_activity.activity)  ?  @trip_activity.activity.restaurant_detail[:name] + "," + @trip_activity.activity.restaurant_detail[:address1] + "," + @trip_activity.activity.restaurant_detail[:city] : "" %>
+      <% loc = (@trip_activity.activity)  ?  @trip_activity.activity.restaurant_detail[:name] + "," + check_empty_detail(which_detail_type(@trip_activity,"address1")) + "," + @trip_activity.activity.restaurant_detail[:city] : "" %>
       <div class="field">
         <label for="foodvenue">Location Name</label>: <input id="foodvenue" type="text" name="foodvenue" value="<%= loc %>" />
       </div>
@@ -70,7 +70,7 @@
       <div class="field">
         <%= fa.hidden_field :location_detail_id %>
       </div>
-      <% loc = (@trip_activity.activity)  ?  @trip_activity.activity.location_detail[:name] + "," + @trip_activity.activity.location_detail[:address1] + "," + @trip_activity.activity.location_detail[:city] : "" %>
+      <%= loc = (@trip_activity.activity)  ?  @trip_activity.activity.location_detail[:name] + "," + check_empty_detail(which_detail_type(@trip_activity,"address1")) + "," + @trip_activity.activity.location_detail[:city] : "" %>
       <div class="field">
         <label for="locationvenue">Location Name</label>: <input id="locationvenue" type="text" name="locationvenue" value="<%= loc %>" />
       </div>

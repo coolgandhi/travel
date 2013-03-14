@@ -1,0 +1,40 @@
+<table class ="table table-bordered">
+  <tr>
+    <th>Activity Day</th>
+    <th>Activity Sequence Number</th>
+    <th>Activity Time Type</th>
+    <th>Activity Type</th>
+    <th>Activity Name</th>
+    <th>Admin?</th>
+  </tr>
+
+<% @trip_activities.each do |trip_activity| %>
+  <tr>
+    <td><%= trip_activity.activity_day %></td>
+    <td><%= trip_activity.activity_sequence_number %>
+        <% unless @trip_activities.first.activity_sequence_number == trip_activity.activity_sequence_number %> 
+          <%= link_to "up", { :action => 'move', :method => 'move_higher', :trip_activity_id => trip_activity.id, :remote => true } %> 
+          <%= link_to "top", { :action =>'move', :method => 'move_to_top', :trip_activity_id => trip_activity.id, :remote => true }  %> 
+        <% end %> 
+
+        <% unless @trip_activities.last.activity_sequence_number == trip_activity.activity_sequence_number %>
+          <% unless trip_activity.activity_sequence_number == (@trip_activities.first.activity_sequence_number || @trip_activities.last.activity_sequence_number) %> | 
+          <% end %> 
+          <%= link_to "down", { :action => 'move', :method => 'move_lower', :trip_activity_id => trip_activity.id, :remote => true } %> 
+          <%= link_to "bottom", { :action => 'move', :method => 'move_to_bottom', :trip_activity_id => trip_activity.id, :remote => true } %> 
+        <% end %>
+    </td>
+
+    <td><%= trip_activity.activity_time_type %></td>
+    <td><%= (which_detail_type(trip_activity,"name")) %></td>
+    <td><%= trip_activity.activity_type %></td>
+    
+    <% if admin? %>
+      <td><%= link_to 'Show', trip_trip_activity_path(@trip, trip_activity) %></td>
+      <td><%= link_to 'Edit', edit_trip_trip_activity_path(@trip, trip_activity) %></td>
+      <td><%= link_to 'Destroy', [@trip, trip_activity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    
+  </tr>
+<% end %>
+</table>

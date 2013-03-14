@@ -21,6 +21,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'resque'
 gem 'exception_notification'
 gem 'rack-mini-profiler'
+gem 'acts_as_list', '~> 0.2.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
