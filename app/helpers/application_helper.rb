@@ -155,7 +155,7 @@ module ApplicationHelper
   # index details which image to pick if multiple images
   def select_image_given_image_urls(image_urls, width, index = 0)
     if image_urls.nil? or image_urls == ""
-      return "Image_Missing.png"
+      return "/assets/Image_Missing.png"
     end
     
     y = image_urls.to_s.split(";")
