@@ -20,7 +20,7 @@ gem 'compass-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'resque'
 gem 'exception_notification'
-
+gem 'rack-mini-profiler'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

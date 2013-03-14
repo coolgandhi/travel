@@ -94,7 +94,7 @@ namespace :deploy do
    end
 end
 
-namespace :rake do 
+#namespace :rake do 
   desc "Run the super-awesome rake task"
   task :super_awesome do
     rake = fetch(:rake, 'rake')
@@ -102,4 +102,4 @@ namespace :rake do
 
     run "cd '#{current_path}' && #{rake} db:migrate RAILS_ENV=#{rails_env}"
   end
-end
+#end

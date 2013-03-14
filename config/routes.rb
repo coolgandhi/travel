@@ -36,7 +36,7 @@ Travel::Application.routes.draw do
     get page, controller: "info", action: page
   end
   
-  resources :trips
+  #resources :trips
   resources :trip_activities
   resources :trips do
     member do

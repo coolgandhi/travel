@@ -2,7 +2,7 @@ class TripActivitiesController < ApplicationController
   include ApplicationHelper
   include TripActivitiesHelper
   before_filter :load_trip
-  before_filter :authorize, :except => [:index, :show, :mapinfo, :carddeck, :showpartial]
+  before_filter :authorize, :except => [:mapinfo, :carddeck, :showpartial]
   # GET /trip_activities
   # GET /trip_activities.json
   def index
@@ -59,6 +59,7 @@ class TripActivitiesController < ApplicationController
   def edit
     begin
       @trip_activity = @trip.trip_activities.find(params[:id])
+      @latlong = find_location_latlong @trip
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -123,6 +124,30 @@ class TripActivitiesController < ApplicationController
   def update
     begin
       @trip_activity = @trip.trip_activities.find(params[:id])
+      @activity = @trip_activity.activity
+      if params[:trip_activity][:activity_type] == "FoodActivity"
+        @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
+        if (@activity.update_attributes(params[:food_activity]) == false)
+          format.html { render action: "edit" }
+          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+          return
+        end 
+      elsif params[:trip_activity][:activity_type] == "TransportActivity"
+        if (@activity.update_attributes(params[:transport_activity]) == false)
+          format.html { render action: "edit" }
+          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+          return
+        end  
+      elsif params[:trip_activity][:activity_type] == "LocationActivity"
+        @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
+        if (@activity.update_attributes(params[:location_activity]) == false)
+          format.html { render action: "edit" }
+          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+          return    
+        end 
+        
+      end
+        
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
