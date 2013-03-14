@@ -36,8 +36,7 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     begin
-      @trip = Trip.find(params[:id])
-      @author = @trip.author_info
+      @trip = Trip.find(params[:id], :include => [:author_info], :include => :author_info, :select => "trips.*, author_infos.*")
       @sorted_activities, @compressed_activities = sorted_trip_activities @trip
     
     rescue ActiveRecord::RecordNotFound
