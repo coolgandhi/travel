@@ -33,7 +33,7 @@ Travel::Application.routes.draw do
   #   resources :products
   
   %w[about privacy tos].each do |page|
-    get page, controller: "info", action: page
+    get page, :controller => "info", :action => page
   end
   
   #resources :trips
@@ -98,6 +98,6 @@ Travel::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   
   unless Rails.application.config.consider_all_requests_local
-      match '*not_found', to: 'errors#error_404'
+     match '*not_found', :to => 'errors#error_404'
   end
 end

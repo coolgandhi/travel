@@ -88,12 +88,13 @@
   jQuery ->
     $("#trip_activities_form_submit").click ->
       dat = ""
-      $('#venue_images').children().each (index, data) ->
+      $.each $('#venue_images').children(), (index, data) ->
         if ($(this).css("borderWidth") == '5px')
           da = $(this).data('img')
           dat = dat + da.img + ";"
+          return
       $('#selected_images').val(dat)    
-      return
+      return true
     return
   
 ) window.trips_activities_namespace = window.trips_activities_namespace or {}, jQuery

@@ -110,25 +110,30 @@ class TripActivitiesController < ApplicationController
         if (@activity.location_detail.nil? or @activity.location_detail == 0)
           @activity.location_detail = create_location_venue(@activity[:location_detail_id], @trip.location_id)
         end
+      else
+        logger.info "invalid value activity type "
+        format.html { render action: "new", :notice => 'invalid activity' }
+        format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+        return
       end 
-    
+      
       err = 0;
       if @activity and @activity.save
       else
         err = 1;
+        logger.info "\n #{@activity.errors} "
       end
-        
       @trip_activity = @trip.trip_activities.create(:activity => @activity, \
       :activity_day => params[:trip_activity][:activity_day], \
       :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
       :activity_time_type => params[:trip_activity][:activity_time_type])
       if err == 0 and @trip_activity.save
-        @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
-        
-        #if the activity is saved, check it's position against that array of activities 
-        if @trip_activity.activity_sequence_number > @trip_activities.last.activity_sequence_number+2
-          @trip_activity.activity_sequence_number = @trip_activities.last.activity_sequence_number+1
-        end 
+        # @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+        # #                 
+        # #         #if the activity is saved, check it's position against that array of activities 
+        # if @trip_activities and @trip_activity.activity_sequence_number > @trip_activities.last.activity_sequence_number+2
+        #   @trip_activity.activity_sequence_number = @trip_activities.last.activity_sequence_number+1
+        # end 
         format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
         format.json { render json: @trip_activity, status: :created, location: @trip_activity }
       else
@@ -166,7 +171,10 @@ class TripActivitiesController < ApplicationController
           format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
           return    
         end 
-        
+      else
+        logger.info "invalid option activity_type"
+        format.html { render action: "edit", :notice => 'invalid activity' }
+        format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
       end
         
     rescue ActiveRecord::RecordNotFound
