@@ -73,10 +73,10 @@
 
 <footer class="row">
 <div class = "span12 index_footer">
-<div class = "span6">
-  <div class="index_foursquare_attribution">Location images and details powered by 
-    <%= link_to image_tag('/assets/logos/foursquare-icon-16x16.png', :class=> "index_social_icon"), raw("https://foursquare.com"), :target => "_blank"%></div>
-</div>
+  <div class="index_foursquare_attribution caption_small">Location images and details powered by 
+    <%= link_to image_tag('/assets/logos/foursquare-icon-16x16.png', :class=> "index_social_icon"), raw("https://foursquare.com"), :target => "_blank"%>
+  </div>
+
 <% if admin? %>  
   <div class = "span6">
     <%= link_to 'New Trip', new_trip_path %>
