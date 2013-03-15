@@ -1,7 +1,7 @@
 ((site_wide_namespace, $, undefined_) ->
   isMobile =
     Android: ->
-      navigator.userAgent.match /Android/i
+      navigator.userAgent.match /Mobile Android/i
 
     BlackBerry: ->
       navigator.userAgent.match /BlackBerry/i
