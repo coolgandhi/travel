@@ -1,0 +1,14 @@
+.mobile_disclaimer_prepend{
+  width: 100%;
+  min-height: 5%;
+  text-align: center;
+  padding: 1%;
+  background-color: $btnDangerBackground;
+  color: white;
+  z-index: 1000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 2em;
+  line-height: 1.2em;
+}

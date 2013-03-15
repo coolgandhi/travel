@@ -8,6 +8,7 @@
   6. NAVIGATION BOTTOM
   7. MISC
   8. OVERVIEW MODAL AND TABLE
+  9. TIME DAY SWATCH
 */
 
 
@@ -50,9 +51,9 @@ $lastrowheight: 10%;
   padding: 1%;
   overflow: hidden;
   background-color: rgba(255,255,255,0.3);
-  // border-color: $borderGray;
-  // border-width: $myDivBorderWidth;
-  // border-style: solid;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
 
@@ -75,6 +76,9 @@ $lastrowheight: 10%;
   .trip_title_sub_text{
     // font-family: 'Oswald', Helvetica, Arial, sans-serif;
     white-space: nowrap;
+    margin-top: 1%;
+    color: dimgray;
+    font-weight: normal;
   }
 }
 
@@ -162,7 +166,7 @@ $lastrowheight: 10%;
     font-weight: 500;
   }
   .overview_icon{
-    font-size: 1.2em;
+    font-size: 1em;
   }
 }
 
@@ -508,7 +512,7 @@ div.rightcaption .ui-accordion-content {
 
 #user_description{
   color: $white;
-  margin: 0.25em 0;
+  margin: 0.5em 0;
   // text-shadow: 2px 1px 3px #000;
   @include respond-to(portrait){
     // line-height: 1.2em;ap

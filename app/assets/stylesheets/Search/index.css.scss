@@ -22,13 +22,14 @@
   border-top: 1px solid $borderGray;
 }
 .index_foursquare_attribution{
-  font-size: em(12px);
-  color: dimgray;
-  padding: 2% 0;
+  color: #666;
+  padding: 1% 0;
+  float: right;
 
 }
 
 .index_social_icon{
   height: 16px;
   width: 16px;
+  margin-bottom: 5px;
 }
