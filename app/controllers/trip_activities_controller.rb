@@ -90,8 +90,8 @@ class TripActivitiesController < ApplicationController
   def create
     @trip_activity = nil
     @activity = nil
-    @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
-
+    
+    
     respond_to do |format|
       if params[:trip_activity][:activity_type] == "FoodActivity"
         logger.info "food activity..."  
@@ -123,6 +123,8 @@ class TripActivitiesController < ApplicationController
       :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
       :activity_time_type => params[:trip_activity][:activity_time_type])
       if err == 0 and @trip_activity.save
+        @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+        
         #if the activity is saved, check it's position against that array of activities 
         if @trip_activity.activity_sequence_number > @trip_activities.last.activity_sequence_number+2
           @trip_activity.activity_sequence_number = @trip_activities.last.activity_sequence_number+1
