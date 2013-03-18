@@ -855,16 +855,16 @@ td.thumbnail_td{
 /* 9. TIME DAY SWATCH */
 .time_day_swatch{
   opacity: .9;
-  width: 9%;
+  width: 7%;
   height: 0;
-  padding-bottom: 9%;
+  padding-bottom: 7%;
   position: absolute;
   top: 2%;
   right: 1%;
   @include border-radius($myDivBorderRadius);
   background-color: $transBlack;
   border: $myDivBorderWidth solid $borderGray;
-  background-image:url(/assets/backgrounds/day_change_swatch.png);
+  background-image:url(/assets/backgrounds/day_change_swatch_real.png);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: Auto 100%;
@@ -872,16 +872,16 @@ td.thumbnail_td{
   &.morning_sw{
     background-color: yellow;
     background-position: 0 0;
-    @include single-transition(all, 1s, ease-in-out, 0.1s);
+    @include single-transition(all, 0.5s, ease-in-out, 0.1s);
   }
   &.afternoon_sw{
     background-color: blue;
     background-position: 50% 0;
-    @include single-transition(all, 1s, ease-in-out, 0.1s);
+    @include single-transition(all, 0.5s, ease-in-out, 0.1s);
   }
   &.evening_sw{
     background-color: black;
     background-position: 100% 0;
-    @include single-transition(all, 1s, ease-in-out, 0.1s);
+    @include single-transition(all, 0.5s, ease-in-out, 0.1s);
   }
 }
