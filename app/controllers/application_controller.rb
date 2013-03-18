@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
   end
 
+  
   helper_method :admin?
 
   protected
@@ -36,6 +37,11 @@ class ApplicationController < ActionController::Base
   
   private
   def render_error(status, exception)
+
+    logger.info "System Error: Tried to access '#{request.fullpath}'.\n#{exception.class} error was raised for path .\n#{exception.message}"
+    ExceptionNotifier::Notifier.exception_notification(request.env, exception,
+        :data => {:message => "chalo.io error: please check"}).deliver
+  
     respond_to do |format|
       format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
       format.all { render nothing: true, status: status }
