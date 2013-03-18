@@ -2,9 +2,9 @@
 
   # passing values to hidden fields for results search bar
   trips_namespace.fireResultsPlaceDropdownField = -> 
-    $('.results-place_dropdown_field').change ->
-      $('.results-trip_location_id').val($('.results-place_dropdown_field').val())
-      $('.results-hidden-place-field').val($('select.results-place_dropdown_field option:selected').text())
+    $('.results_place_dropdown_field').change ->
+      $('.results_trip_location_id').val($('.results_place_dropdown_field').val())
+      $('.results_hidden_place_field').val($('select.results_place_dropdown_field option:selected').text())
   
   #Calling Multi-select
   trips_namespace.fireResultsTravelerTypeMultiSelect = ->
@@ -18,15 +18,15 @@
 
   #calling date from field datepicker
   trips_namespace.fireResultsFromField = ->
-    $(".results-from-datefield").datepicker();
-    queryDate = $( ".results-from-datefield" ).datepicker('setDate', new Date());
+    $(".results_from_datefield").datepicker();
+    queryDate = $( ".results_from_datefield" ).datepicker('setDate', new Date());
 
   #carry params forward from previous search
   trips_namespace.fireResultsPopulateFields = (location_id, place_text, from_date, days_field) ->
-    $('.results-place_dropdown_field').val(location_id)
-    $('.results-trip_location_id').val(location_id)
-    $('.results-hidden-place-field').val(place_text)
-    $('.results-from-datefield').val(from_date)
+    $('.results_place_dropdown_field').val(location_id)
+    $('.results_trip_location_id').val(location_id)
+    $('.results_hidden_place_field').val(place_text)
+    $('.results_from_datefield').val(from_date)
     $('.results-day-field').val(days_field)
 
   trips_namespace.fireResultSearchBarJs = ->

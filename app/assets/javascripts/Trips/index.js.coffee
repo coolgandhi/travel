@@ -15,7 +15,7 @@
     trips_namespace.place_rule =
       required: true      
       
-    trips_namespace.day_err_message = "Please enter atleast 1 day for the trip"
+    trips_namespace.day_err_message = "Please enter at least 1 day for the trip"
     
     trips_namespace.place_err_message = "Please select where would you like to go"
       
