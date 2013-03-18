@@ -46,8 +46,10 @@
     Food Activity <br/>
       <%=  fields_for @trip_activity.activity || :food_activity do |fa| %>
       <div class="field">
-        <%= fa.hidden_field :restaurant_detail_id %>
+        <%= fa.label :restaurant_detail_id %>
+        <%= fa.text_field :restaurant_detail_id %>
       </div>
+      <button type="button" class="btn-flat btn-flat-inverse create_form_show_images_food">Show Images for Location</button>
       <% loc = (@trip_activity.activity)  ?  @trip_activity.activity.restaurant_detail[:name] + "," + check_empty_detail(which_detail_type(@trip_activity,"address1")) + "," + @trip_activity.activity.restaurant_detail[:city] : "" %>
       <div class="field">
         <label for="foodvenue">Location Name</label>: <input id="foodvenue" type="text" name="foodvenue" value="<%= loc %>" />
@@ -68,8 +70,10 @@
     Location Activity <br/>
     <%=  fields_for @trip_activity.activity || :location_activity do |fa| %>
       <div class="field">
-        <%= fa.hidden_field :location_detail_id %>
+        <%= fa.label :location_detail_id %>:
+        <%= fa.text_field :location_detail_id %>
       </div>
+      <button type="button" class="btn-flat btn-flat-inverse create_form_show_images_location">Show Images for Location</button>
       <%= loc = (@trip_activity.activity)  ?  @trip_activity.activity.location_detail[:name] + "," + check_empty_detail(which_detail_type(@trip_activity,"address1")) + "," + @trip_activity.activity.location_detail[:city] : "" %>
       <div class="field">
         <label for="locationvenue">Location Name</label>: <input id="locationvenue" type="text" name="locationvenue" value="<%= loc %>" />
