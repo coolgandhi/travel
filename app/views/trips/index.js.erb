@@ -25,10 +25,14 @@
   // if there is the hero unit then remove it after a search
   if ($('.big_image_header').length > 0) {
     $('.big_image_header').fadeOut(1000, 'linear', function(){ $(this).remove();});
-  } 
+  }
+
+  History.pushState({state:null}, "", this.href);
+
 <% else %>
   $('#trips_results_container').append('<%= escape_javascript(render("trips")) %>');
   trips_namespace.fireResizeResultsPic();
+  History.pushState({state:1}, "", this.href);
 <% end %>
 
 

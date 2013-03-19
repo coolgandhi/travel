@@ -29,3 +29,4 @@
 //= require picturefill
 //= require swipeview
 //= require jquery.multiselect
+//= require jquery.history
