@@ -21,7 +21,7 @@ class TripsController < ApplicationController
       end
     end
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 2)
     
    # logger.info "#{@trips.inspect}"
     respond_to do |format|

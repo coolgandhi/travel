@@ -6,18 +6,23 @@
   // fire resize on the results thumbnails
   trips_namespace.fireResizeResultsPic();
   $(document).ready(function() {
-     trips_namespace.fireResultSearchBarJs();
-     $(".results_hero_form").validate(trips_namespace.searchformrules_on_page_box);
-     $('.droptoggle_menu').hide();
-     $('.results_hero_form').on('submit', function (){
- //      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
-			 site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3); 
-       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3);
-       site_wide_namespace.setCustomVar(3, "start_date", $("#from").val(), 3); 
-       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results_day_field").val(), 3); 
-       site_wide_namespace.trackEvent("search", "click", "results_search_box");       
-      });
-    });
+    trips_namespace.remoteLoadIndexFire();
+  });  
+  
+ //  trips_namespace.remoteLoadIndexFire = function() {  
+ //     trips_namespace.fireResultSearchBarJs();
+ //     trips_namespace.continuousScrollPagination();
+ //     $(".results_hero_form").validate(trips_namespace.searchformrules_on_page_box);
+ //     $('.droptoggle_menu').hide();
+ //     $('.results_hero_form').on('submit', function (){
+ // //      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
+	// 		 site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3); 
+ //       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3);
+ //       site_wide_namespace.setCustomVar(3, "start_date", $("#from").val(), 3); 
+ //       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results_day_field").val(), 3); 
+ //       site_wide_namespace.trackEvent("search", "click", "results_search_box");       
+ //      });  
+ //  };  
 
   //show flash message
   $(".results_flash_message").fadeOut('slow').html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>").fadeIn('slow');
@@ -27,12 +32,11 @@
     $('.big_image_header').fadeOut(1000, 'linear', function(){ $(this).remove();});
   }
 
-  History.pushState({state:null}, "", this.href);
 
 <% else %>
   $('#trips_results_container').append('<%= escape_javascript(render("trips")) %>');
   trips_namespace.fireResizeResultsPic();
-  History.pushState({state:1}, "", this.href);
+  
 <% end %>
 
 
