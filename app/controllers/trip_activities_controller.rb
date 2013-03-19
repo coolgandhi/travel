@@ -90,55 +90,64 @@ class TripActivitiesController < ApplicationController
   def create
     @trip_activity = nil
     @activity = nil
-    
-    
+    @activity_detail = nil
     respond_to do |format|
-      if params[:trip_activity][:activity_type] == "FoodActivity"
-        logger.info "food activity..."  
-        @activity = FoodActivity.new(params[:food_activity])
-        @activity.image_urls = params[:selected_images]
-        if (@activity.restaurant_detail.nil? or @activity.restaurant_detail == 0)
-          @activity.restaurant_detail = create_food_venue(@activity[:restaurant_detail_id], @trip.location_id)
-        end
-      elsif params[:trip_activity][:activity_type] == "TransportActivity"
-        logger.info "transport acitivity"
-        @activity = TransportActivity.new(params[:transport_activity])
-      elsif params[:trip_activity][:activity_type] == "LocationActivity"
-        logger.info "location acitivity"
-        @activity = LocationActivity.new(params[:location_activity])
-        @activity.image_urls = params[:selected_images]
-        if (@activity.location_detail.nil? or @activity.location_detail == 0)
-          @activity.location_detail = create_location_venue(@activity[:location_detail_id], @trip.location_id)
+      if (params[:trip_activity][:activity_type] == "FoodActivity" or params[:trip_activity][:activity_type] == "LocationActivity" or params[:trip_activity][:activity_type] == "TransportActivity")
+        if params[:trip_activity][:activity_type] == "FoodActivity"
+          logger.info "food activity..."  
+          @activity = FoodActivity.new(params[:food_activity])
+          @activity.image_urls = params[:selected_images]
+          @activity_detail = @activity.restaurant_detail
+          if (@activity_detail.nil? or @activity_detail == 0)
+            @activity_detail = create_food_venue(@activity[:restaurant_detail_id], @trip.location_id)
+            @activity.restaurant_detail = @activity_detail
+          end
+        elsif params[:trip_activity][:activity_type] == "TransportActivity"
+          logger.info "transport acitivity"
+          @activity_detail = ""
+          @activity = TransportActivity.new(params[:transport_activity])
+        elsif params[:trip_activity][:activity_type] == "LocationActivity"
+          logger.info "location acitivity"
+          @activity = LocationActivity.new(params[:location_activity])
+          @activity.image_urls = params[:selected_images]
+          @activity_detail = @activity.location_detail
+          if (@activity_detail.nil? or @activity_detail == 0)
+            @activity_detail = create_location_venue(@activity[:location_detail_id], @trip.location_id)
+            @activity.location_detail = @activity_detail
+          end
+        end   
+      
+        if @activity_detail == nil or @activity_detail.errors.any?
+          if @activity_detail.nil?
+          else
+            logger.info "activity detail errors #{@activity_detail.inspect.errors} "
+          end
+          format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Error during activity creation, retry.'  }
+          format.json { render json: @activity_detail.errors, status: :unprocessable_entity }    
+        else
+          if !(@activity and @activity.save)
+            logger.info "\n activity errors #{@activity.errors.messages} "
+            format.html { redirect_to new_trip_trip_activity_path(@trip), notice: @activity.errors.full_messages.to_sentence }
+            format.json { render json: @activity.errors, status: :unprocessable_entity }    
+          else        
+            @trip_activity = @trip.trip_activities.create(:activity => @activity, \
+            :activity_day => params[:trip_activity][:activity_day], \
+            :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
+            :activity_time_type => params[:trip_activity][:activity_time_type])
+            if @trip_activity.save
+              format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
+              format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+            else
+              @activity.destroy # clean up
+              @latlong = find_location_latlong @trip
+              format.html { render action: "new", notice: @trip_activity.errors.full_messages.to_sentence  }
+              format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+            end
+          end
         end
       else
         logger.info "invalid value activity type "
-        format.html { render action: "new", :notice => 'invalid activity' }
-        format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-        return
-      end 
-      
-      err = 0;
-      if @activity and @activity.save
-      else
-        err = 1;
-        logger.info "\n #{@activity.errors} "
-      end
-      @trip_activity = @trip.trip_activities.create(:activity => @activity, \
-      :activity_day => params[:trip_activity][:activity_day], \
-      :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
-      :activity_time_type => params[:trip_activity][:activity_time_type])
-      if err == 0 and @trip_activity.save
-        # @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
-        # #                 
-        # #         #if the activity is saved, check it's position against that array of activities 
-        # if @trip_activities and @trip_activity.activity_sequence_number > @trip_activities.last.activity_sequence_number+2
-        #   @trip_activity.activity_sequence_number = @trip_activities.last.activity_sequence_number+1
-        # end 
-        format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
-        format.json { render json: @trip_activity, status: :created, location: @trip_activity }
-      else
-        @latlong = find_location_latlong @trip
-        format.html { render action: "new" }
+        format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'invalid activity selected' }
         format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
       end
     end
@@ -151,45 +160,33 @@ class TripActivitiesController < ApplicationController
       @trip_activity = @trip.trip_activities.find(params[:id])
       @activity = @trip_activity.activity
       @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
-      if params[:trip_activity][:activity_type] == "FoodActivity"
-        @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
-        if (@activity.update_attributes(params[:food_activity]) == false)
-          format.html { render action: "edit" }
-          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-          return
-        end 
-      elsif params[:trip_activity][:activity_type] == "TransportActivity"
-        if (@activity.update_attributes(params[:transport_activity]) == false)
-          format.html { render action: "edit" }
-          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-          return
-        end  
-      elsif params[:trip_activity][:activity_type] == "LocationActivity"
-        @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
-        if (@activity.update_attributes(params[:location_activity]) == false)
-          format.html { render action: "edit" }
-          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-          return    
-        end 
-      else
-        logger.info "invalid option activity_type"
-        format.html { render action: "edit", :notice => 'invalid activity' }
-        format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-      end
-        
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
       return
     end
-
+    
     respond_to do |format|
-      if @trip_activity.update_attributes(params[:trip_activity])
-        format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully updated.' }
-        format.json { head :no_content }
+      if params[:trip_activity][:activity_type] == "FoodActivity"
+        @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
+        values = params[:food_activity]
+      elsif params[:trip_activity][:activity_type] == "TransportActivity"
+        values = params[:transport_activity]
+      elsif params[:trip_activity][:activity_type] == "LocationActivity"
+        @activity.image_urls = (params[:selected_images] != "") ? params[:selected_images] : @activity.image_urls
+        values = params[:location_activity]
+      end        
+      if (@activity.update_attributes(values) == false)
+        format.html { render action: "edit", notice: @activity.errors.full_messages.to_sentence }
+        format.json { render json: @activity.errors, status: :unprocessable_entity }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+        if @trip_activity.update_attributes(params[:trip_activity])
+          format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit", notice: @trip_activity.errors.full_messages.to_sentence}
+          format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
