@@ -21,7 +21,7 @@ class TripsController < ApplicationController
       end
     end
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 6)
     
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
@@ -146,6 +146,9 @@ class TripsController < ApplicationController
   def destroy
     begin
       @trip = Trip.find(params[:id])
+      
+      @trip.trip_activities.each {|trip_activity| 
+        trip_activity.activity.destroy }
       @trip.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
