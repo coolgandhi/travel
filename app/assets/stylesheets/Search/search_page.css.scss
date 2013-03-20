@@ -16,6 +16,7 @@
 /* Variables */
 $resultSubtitleColor: dimgrey;///#08c;
 $colorBorderColor: #00A1CB;
+$colorBorderWeight: 6px solid;
 
 /* Body Styles */ 
 // .navbar-fixed-top .container{
@@ -31,7 +32,7 @@ $colorBorderColor: #00A1CB;
 }
 
 .middle_results_container{
-  background-color: #e7ebf2;
+  background-color: transparent;
   // @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
   // padding: 2%;
   // margin-top: 1%;
@@ -270,7 +271,7 @@ $colorBorderColor: #00A1CB;
 /* Trip Results Thumbnail Containers */ 
 .trip_result_thumbnail_li{
   @include col(4);
-  background-color: $myDivBg;
+  background-color: #fafafa;//$myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
@@ -313,7 +314,7 @@ $resultThumbHeight: 60%;
 }
 
 .trip_results_caption{
-  border-top: 5px solid $colorBorderColor;
+  // border-top: 5px solid $colorBorderColor;
   min-height: 100-$resultThumbHeight;
   overflow: hidden;
   a{
@@ -334,6 +335,26 @@ $resultThumbHeight: 60%;
     color: $black;
     margin: em(4px) 0 0 0;
   }
+}
+
+.solo-badge_border_top{
+  border-top: $colorBorderWeight #18ADD7;
+}
+
+.couples-badge_border_top{
+  border-top: $colorBorderWeight #ED1968;  
+}
+
+.family-badge_border_top{
+  border-top: $colorBorderWeight #00B1AB;
+}
+
+.group-badge_border_top{
+  border-top: $colorBorderWeight #FF9A19;  
+}
+
+.other-badge_border_top{
+  border-top: $colorBorderWeight #CD3542;  
 }
 
 .caption_box_social{
@@ -383,8 +404,8 @@ $resultThumbHeight: 60%;
 /* Filter by Landmarks */
 
 #trips_landmark_container{
-  width: 95%;
-  margin-left: 2.5%;
+  width: 99%;
+  margin-left: 0.5%;
 }
 
 .filter_by_bar{
@@ -395,7 +416,7 @@ $resultThumbHeight: 60%;
   border-top: 0;
   @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #fafafa;//rgba(255, 255, 255, 0.7);
   padding: 0.25% 1%;
   margin: 0 0 1% 0;
   @include box-sizing(border-box);

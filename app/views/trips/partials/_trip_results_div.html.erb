@@ -24,7 +24,7 @@
             </div>
 
             <!--Begin Trip Result Caption-->
-            <div class="caption trip_results_caption">
+            <div class="caption trip_results_caption <%="#{traveler_type_badge_class((trip.traveler_type_id) ? trip.traveler_type[:traveler_type_name] : "other")}_border_top"%>">
 
               <!--Begin Traveler Type Badge -->
               <div class = "caption_badge_buttons">
