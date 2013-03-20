@@ -4,6 +4,9 @@ module TripsHelper
   def sorted_trip_activities trip
     trip_location = trip.location[:place]
     trip_activities = trip.trip_activities
+    
+    # food_activities = TripActivity.find_by_sql(["SELECT trip_activities.*, food_activities.*, restaurant_details.*, activity_duration_types.* FROM trip_activities, food_activities,  restaurant_details, activity_duration_types WHERE (trip_activities.activity_type = \"FoodActivity\" and  food_activities.id = trip_activities.activity_id and food_activities.duration = activity_duration_types.activity_duration_type_id and trip_activities.trip_id = ? and restaurant_details.restaurant_detail_id = food_activities.restaurant_detail_id)", trip.id])
+    
     mapped_activities = Array.new
     trip_activities.each {|trip_activity| 
         image_url = ""
