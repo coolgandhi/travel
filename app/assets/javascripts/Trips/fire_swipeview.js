@@ -31,6 +31,7 @@
     $.ajax({
       beforeSend: function() {
         $('.swipe_loading_indicator').show();
+        $(".swipe_loading_indicator_header").hide();
         },
       type: 'GET',
       url: trips_namespace.slides[page].renderpartial,
@@ -70,6 +71,7 @@
         $.ajax({
           beforeSend: function() {
             $('.swipe_loading_indicator').show();
+            $(".swipe_loading_indicator_header").hide();
             },
           type: 'GET',
           url: trips_namespace.slides[upcoming].renderpartial,
