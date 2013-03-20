@@ -1,4 +1,4 @@
-<% if @trips.current_page == 1 %>
+<% if @trips.current_page == 1 or (params[:continuous] and params[:continuous] == "1") %>
   $('#trips_results_container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
   $('#trips_landmark_container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks_filtering")) %>').fadeIn('slow');
   $('.results_searchbar-container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');

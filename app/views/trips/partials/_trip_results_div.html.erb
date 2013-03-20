@@ -2,52 +2,13 @@
   <ul class="thumbnails">
     <!--Begin Trip Result Pagination Div -->
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
+      <% if  @trips_to_add != nil %>
+        <% @trips_to_add.each do |trip| %>
+          <%= render 'trips/partials/trip_div', :trip => trip %>
+        <% end %>
+      <% end %>
       <% @trips.each do |trip| %>
-        
-        <!--Begin Trip Result List Item-->
-        <li class="trip_result_thumbnail_li">
-          <!--Begin Trip Result Thumbnail Wrapper-->
-          <div class="thumbnail trip_result_thumbnail_div">
-              <% url_to_append = url_for(params.except(:utf8).merge(:continuous => "1")) %>
-              <%# raw (request.env['HTTP_HOST'] + url_to_append) %>
-              <%= hidden_field_tag :request_uri_hidden, url_to_append %>
-
-            <div class="caption_box_social">
-              <div id="fb-root"></div>
-              <div class="fb-like" data-href="http://espn.com" data-send="true" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
-            </div>
-            
-            <div class="result_thumb_wrap">  
-            <%= link_to trip do %>
-              <%= image_tag(select_image_given_image_urls(trip.image_url, 600), {:class => "image_link_thumbnail"}) %>
-            <% end %>
-            </div>
-
-            <!--Begin Trip Result Caption-->
-            <div class="caption trip_results_caption">
-
-              <!--Begin Traveler Type Badge -->
-              <div class = "caption_badge_buttons">
-                <ul class = "unstyled caption_badges-ul">
-                <li>
-                  <a class= <%=traveler_type_badge_class((trip.traveler_type_id) ? trip.traveler_type[:traveler_type_name] : "other")%> ></a>
-                  <p><%=(trip.traveler_type_id) ? trip.traveler_type[:traveler_type_name] : "other"%></p>
-                </li>
-                </ul>
-              </div>
-              <!--End Traveler Type Badge -->
-              
-              <h3 class="caption_trip_title caption_title"><%= link_to trip.trip_name, trip %></h3>
-              <p class="caption_trip_subtitle caption_subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %> <span class="divider">|</span> by <%= (trip.author_info and trip.author_info.author_name) ? trip.author_info.author_name : "unknown" %> </p>
-              <p class="caption_trip_summary caption_subtitle"><%= trip.trip_summary %><p>
-
-
-            </div>
-            <!--End Trip Result Caption-->
-          </div>
-          <!--End Trip Result Thumbnail Wrapper-->
-        </li>
-        <!--End Trip Result List Item-->
+        <%= render 'trips/partials/trip_div', :trip => trip %>
       <% end %>
     
     </div>
