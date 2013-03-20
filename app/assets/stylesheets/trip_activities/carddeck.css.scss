@@ -852,18 +852,18 @@ td.thumbnail_td{
   }
 }
 
-/* 9. TIME DAY SWATCH */
+/* 9. TIME DAY SWATCH */  
 .time_day_swatch{
   opacity: .9;
-  width: 7%;
+  width: 50px;
   height: 0;
-  padding-bottom: 7%;
+  padding-bottom: 50px;
   position: absolute;
   top: 2%;
-  right: 1%;
-  @include border-radius($myDivBorderRadius);
+  right: 2%;
+  @include border-radius(50%);
   background-color: $transBlack;
-  border: $myDivBorderWidth solid $borderGray;
+  border: 3px solid $borderGray;
   background-image:url(/assets/backgrounds/day_change_swatch_real.png);
   background-repeat: no-repeat;
   background-position: 0 0;
