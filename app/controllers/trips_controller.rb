@@ -21,7 +21,7 @@ class TripsController < ApplicationController
       end
     end
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 3)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 6)
     
    # logger.info "#{@trips.inspect}"
     respond_to do |format|
@@ -36,7 +36,7 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     begin
-      @trip = Trip.find(params[:id], :include => [:author_info], :include => :author_info, :select => "trips.*, author_infos.*")
+      @trip = Trip.find(params[:id], :include => [:author_info, :location], :select => "trips.*, author_infos.*, locations.*")
       @sorted_activities, @compressed_activities = sorted_trip_activities @trip
     
     rescue ActiveRecord::RecordNotFound
@@ -45,7 +45,6 @@ class TripsController < ApplicationController
       return
     end 
 
-    #logger.info "show trip #{@sorted_activities.inspect}"    
     respond_to do |format|
       format.html # show.html.erb
       format.json { 
@@ -146,6 +145,9 @@ class TripsController < ApplicationController
   def destroy
     begin
       @trip = Trip.find(params[:id])
+      
+      @trip.trip_activities.each {|trip_activity| 
+        trip_activity.activity.destroy }
       @trip.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"

@@ -22,12 +22,13 @@
   jQuery ->
     $("#trip_form_submit").click ->
       dat = ""
-      $('#location_images').children().each (index, data) ->
+      $.each $('#location_images').children(), (index, data) ->
         if ($(this).css("borderWidth") == '5px')
           da = $(this).data('img')
           dat = dat + da.img + ";"
+          return
       $('#selected_images').val(dat)    
-      return
+      return true
     return
 
 

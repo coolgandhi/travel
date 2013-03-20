@@ -1,5 +1,5 @@
 class TripActivity < ActiveRecord::Base
-  acts_as_list :column => :activity_sequence_number
+  acts_as_list :column => :activity_sequence_number, :scope => :trip
   belongs_to :trip
   belongs_to :activity,  :polymorphic => true
   belongs_to :activity_time_types, :primary_key => :activity_time_type_id

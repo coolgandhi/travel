@@ -2,27 +2,41 @@ module TripsHelper
 
   # this helper provides the view with an arrary of trip and all activities
   def sorted_trip_activities trip
-    trip_location = @trip.location[:place]
+    trip_location = trip.location[:place]
+    trip_activities = trip.trip_activities
+    
+    # food_activities = TripActivity.find_by_sql(["SELECT trip_activities.*, food_activities.*, restaurant_details.*, activity_duration_types.* FROM trip_activities, food_activities,  restaurant_details, activity_duration_types WHERE (trip_activities.activity_type = \"FoodActivity\" and  food_activities.id = trip_activities.activity_id and food_activities.duration = activity_duration_types.activity_duration_type_id and trip_activities.trip_id = ? and restaurant_details.restaurant_detail_id = food_activities.restaurant_detail_id)", trip.id])
     
     mapped_activities = Array.new
-    trip.trip_activities.each {|trip_activity| 
+    trip_activities.each {|trip_activity| 
         image_url = ""
         activity_venue_name = ""
         lay_out = ""
         category = ""
         duration = ""
+        activity = nil
         case trip_activity.activity_type 
             when "FoodActivity" then 
-              image_url = trip_activity.activity.restaurant_detail[:image_urls]   
-              activity_venue_name = trip_activity.activity.restaurant_detail[:name]
-              category = trip_activity.activity.restaurant_detail[:category]
-              duration = (trip_activity.activity.activity_duration_type)? trip_activity.activity.activity_duration_type[:activity_duration_name] : trip_activity.activity[:duration]
+              activity = FoodActivity.find(trip_activity.activity_id, :include => [:restaurant_detail, :activity_duration_type], :select => "food_activity.*, restaurant_detail.*, activity_duration_type.*")
+              # image_url = trip_activity.activity.restaurant_detail[:image_urls]   
+              #       activity_venue_name = trip_activity.activity.restaurant_detail[:name]
+              #       category = trip_activity.activity.restaurant_detail[:category]
+              #       duration = (trip_activity.activity.activity_duration_type)? trip_activity.activity.activity_duration_type[:activity_duration_name] : trip_activity.activity[:duration]
+              image_url = activity.restaurant_detail.image_urls
+              activity_venue_name = activity.restaurant_detail.name
+              category = activity.restaurant_detail.category
+              duration = (activity.activity_duration_type)? activity.activity_duration_type[:activity_duration_name] : activity.duration
               lay_out = "foodactivitypartial"
             when "LocationActivity" then 
-              image_url = trip_activity.activity.location_detail[:image_urls]
-              activity_venue_name = trip_activity.activity.location_detail[:name]
-              category = trip_activity.activity.location_detail[:category]
-              duration = (trip_activity.activity.activity_duration_type)? trip_activity.activity.activity_duration_type[:activity_duration_name] : trip_activity.activity[:duration]
+              # image_url = trip_activity.activity.location_detail[:image_urls]
+              #               activity_venue_name = trip_activity.activity.location_detail[:name]
+              #               category = trip_activity.activity.location_detail[:category]
+              #               duration = (trip_activity.activity.activity_duration_type)? trip_activity.activity.activity_duration_type[:activity_duration_name] : trip_activity.activity[:duration]
+              activity = LocationActivity.find(trip_activity.activity_id, :include => [:location_detail, :activity_duration_type], :select => "location_activity.*, location_detail.*, activity_duration_type.*")
+              image_url = activity.location_detail.image_urls
+              activity_venue_name = activity.location_detail.name
+              category = activity.location_detail.category
+              duration = (activity.activity_duration_type)? activity.activity_duration_type[:activity_duration_name] : activity.duration
               lay_out = "locationactivitypartial"
             else  # default transport activity
               image_url = ""
@@ -31,8 +45,8 @@ module TripsHelper
               lay_out= "transportactivitypartial"
         end
       
-        if trip_activity.activity.image_urls and trip_activity.activity.image_urls != "" and trip_activity.activity.image_urls != nil
-          image_url = trip_activity.activity.image_urls # select image from the activity if chosen by the author
+        if activity.image_urls and activity.image_urls != "" 
+          image_url = activity.image_urls # select image from the activity if chosen by the author
         end
         
         mapped_activities.push (
@@ -45,8 +59,8 @@ module TripsHelper
             :triplength => trip.duration, 
             :triplocation => trip_location, 
             :tripid =>  trip.id,
-            :rightcaption => trip_activity.activity.description, 
-            :quicktip => trip_activity.activity.quick_tip, 
+            :rightcaption => activity.description, 
+            :quicktip => activity.quick_tip, 
             :duration => duration,
             :timetype => trip_activity.activity_time_type,
             :category => category,
