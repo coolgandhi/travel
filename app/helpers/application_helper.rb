@@ -87,7 +87,11 @@ module ApplicationHelper
   
   def create_food_venue(venue_id, location_id, update=0)
     FoursquareInteraction.foursquare_client
-    @venue = FoursquareInteraction.venue_info(venue_id)
+    @venue, error = FoursquareInteraction.venue_info(venue_id)
+    if error != ""
+      Rails.logger.info " errors #{error}"
+      return nil
+    end
     @venue_tips = FoursquareInteraction.venue_tips(venue_id)
     @venue_photos = FoursquareInteraction.venue_photos(venue_id)
     tag = get_tag_from_venue(@venue)
@@ -109,7 +113,10 @@ module ApplicationHelper
   
   def create_location_venue(venue_id, location_id, update=0)
     FoursquareInteraction.foursquare_client
-    @venue = FoursquareInteraction.venue_info(venue_id)
+    @venue, error = FoursquareInteraction.venue_info(venue_id)
+    if error != ""
+      return nil
+    end
     @venue_tips = FoursquareInteraction.venue_tips(venue_id)
     @venue_photos = FoursquareInteraction.venue_photos(venue_id)
     tag = get_tag_from_venue(@venue)

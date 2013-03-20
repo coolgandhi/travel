@@ -3,5 +3,6 @@
   <%= render 'form' %>
 
   <%= link_to 'Show', @trip %> |
-  <%= link_to 'Back', @trip %>
+  <%= link_to 'Back', @trip %> |
+  <%= link_to 'Destroy', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

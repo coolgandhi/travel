@@ -274,6 +274,7 @@ $colorBorderColor: #00A1CB;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
+  margin-bottom: 1%;
   @include box-sizing(border-box);
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);

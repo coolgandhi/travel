@@ -1,4 +1,6 @@
 class FoursquareInteraction
+  include ActiveSupport::Rescuable
+  
   @@client = nil
   def self.foursquare_client
     @@client ||= Foursquare2::Client.new(:client_id => CONFIG[:FOURSQUARE_CLIENT_ID], :client_secret => CONFIG[:FOURSQUARE_CLIENT_SECRET])
@@ -11,8 +13,17 @@ class FoursquareInteraction
   end
 
   def self.venue_info venue_id
-     venue = @@client.venue venue_id
-     venue
+    begin
+      error =""
+      venue = @@client.venue venue_id
+      venue
+   rescue Exception => exc
+      case exc
+        when Foursquare2::APIError 
+          error = exc.inspect
+        end
+    end
+    return venue, error
   end
   
   def self.venue_photos(venue_id, count = 20)
