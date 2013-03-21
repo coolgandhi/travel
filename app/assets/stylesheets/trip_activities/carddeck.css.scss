@@ -243,8 +243,8 @@ p.description_content{
   @include box-sizing(border-box);
   background-color: $myDivBg;
   border-color: $borderGray;
-  border-width: $myDivBorderWidth ($myDivBorderWidth + 1px) $myDivBorderWidth ($myDivBorderWidth + 1px);
-  @include border-radius($myDivBorderRadius);
+  border-width: 0 3px;
+  // @include border-radius($myDivBorderRadius);
   border-style: solid;
   height: 100%;
   // padding: 2.5% 2.0% 2.5% 3.5%; //left and right off by 1.2% because of the gutter between photo and caption
@@ -868,7 +868,7 @@ td.thumbnail_td{
   float: left;
   @include border-radius($myDivBorderRadius);
   background-color: $transBlack;
-  border: 1px solid #cccccc;
+  border: 2px solid #cccccc;
   background-image:url(/assets/backgrounds/day_change_swatch_real.png);
   background-repeat: no-repeat;
   background-position: 0 0;
