@@ -113,7 +113,7 @@
             $('#scrolltotop').fadeIn("slow")
           else
             $('#scrolltotop').fadeOut("slow")
-        # $(window).scroll()
+        $(window).scroll()
       return
 
     jQuery ->    

@@ -2,13 +2,24 @@
   <ul class="thumbnails">
     <!--Begin Trip Result Pagination Div -->
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
+      <% exact_matched_trip = false %>
       <% if  @trips_to_add != nil %>
         <% @trips_to_add.each do |trip| %>
-          <%= render 'trips/partials/trip_div', :trip => trip %>
+          <% exact_matched_trip = false %>
+          <% if @exact_match_count > 0 %>
+            <% @exact_match_count = @exact_match_count - 1 %>
+            <% exact_matched_trip = true %>
+          <% end %>
+          <%= render 'trips/partials/trip_div', :trip => trip, :exact_matched_trip => exact_matched_trip %>
         <% end %>
       <% end %>
       <% @trips.each do |trip| %>
-        <%= render 'trips/partials/trip_div', :trip => trip %>
+        <% exact_matched_trip = false %>
+        <% if @exact_match_count > 0 %>
+          <% @exact_match_count = @exact_match_count - 1 %>
+          <% exact_matched_trip = true %>
+        <% end %>
+        <%= render 'trips/partials/trip_div', :trip => trip, :exact_matched_trip => exact_matched_trip %>
       <% end %>
     
     </div>

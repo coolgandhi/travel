@@ -122,7 +122,7 @@ module TripsHelper
     end
   end
 
-  def get_trips_filtered_by_landmarks params, trips, message_with_trip_render
+  def get_trips_filtered_by_landmarks params, trips, message_with_trip_render, exact_match_count_passed_in
     if (params[:restaurant])
       trip_restaurants = []
       restaurant = RestaurantDetail.find_by_restaurant_detail_id(params[:restaurant])
@@ -157,6 +157,6 @@ module TripsHelper
       end
     end
     
-    return trips, trips.length, message_with_trip_render
+    return trips, exact_match_count_passed_in, message_with_trip_render
   end
 end
