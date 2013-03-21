@@ -1,3 +1,14 @@
+<% if @trips.next_page %>
+  if ($('.pagination').length == 0) {
+    $("#page-pagination-div").append('<%= j will_paginate(@trips) %>');
+  } 
+	else {
+    $('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
+  }
+<% else %>
+  $('.pagination').remove();
+<% end %>
+
 <% if (params[:continuous] == "1" and params[:featured] == "1") %>
   $('#trips_results_container').html('');
   $('#trips_results_container').html('<%= escape_javascript(render("trips")) %>');
@@ -33,15 +44,6 @@ try {
 	FB.XFBML.parse(document.getElementById('<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>'));  // triggering fb xml parse on the newly added trips_page div only
 } catch (ex) {}
 
-<% if @trips.next_page %>
-  if ($('.pagination').length == 0) {
-    $("#page-pagination-div").append('<%= j will_paginate(@trips) %>');
-  } 
-	else {
-    $('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
-  }
-<% else %>
-  $('.pagination').remove();
-<% end %>
+
 <% #sleep 2 %>
   

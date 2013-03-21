@@ -34,12 +34,12 @@ class Trip < ActiveRecord::Base
 #      trips = Trip.where("location_id IN (?) and traveler_type_id IN (?) and duration >= ? and duration <= ? and featured_trip_flag = ?", params[:trip_location_id], (params[:traveler_type_id])?params[:traveler_type_id] : "select traveler_type_id from traveler_types", duration.to_i.to_s, duration.to_i.to_s, (params[:featured_trip_flag])?params[:featured_trip_flag] : false)
       if trips.length > 0
         exact_match_count = trips.length
-        message_with_trip_render = "Found #{trips.length} trip summaries that matched your criteria"
+        message_with_trip_render = "Found #{trips.length} trip summaries that matched your criteria."
       end
       
       if trips.length < 3 and find_exact_match_only == false # find trips from same location as a minimum 
         trips_notmatch = Trip.where("location_id = ?", params[:trip_location_id])
-        message_with_trip_render += ", check out other trip summaries as well"
+        message_with_trip_render += " Check out other trip summaries as well."
         trips = ( trips + trips_notmatch ).uniq
       end
       
