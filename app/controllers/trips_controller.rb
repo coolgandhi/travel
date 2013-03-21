@@ -5,8 +5,12 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips, @message_with_trip_render = Trip.search(params)
-    @trips, @message_with_trip_render = get_trips_filtered_by_landmarks(params, @trips, @message_with_trip_render)
+    find_exact_match_only = false
+    if (params[:restaurant] or params[:location] )
+      find_exact_match_only = true
+    end
+    @trips, @exact_match_count, @message_with_trip_render = Trip.search(params, find_exact_match_only)
+    @trips, @exact_match_count, @message_with_trip_render = get_trips_filtered_by_landmarks(params, @trips, @message_with_trip_render, @exact_match_count)
     @locations = nil
     @restaurants = nil
     @traveler_types = nil
@@ -23,16 +27,16 @@ class TripsController < ApplicationController
       end
     end
     
-    
+    pp = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : per_page_default
+    page  = (params[:page])? params[:page].to_i : 1
+    @exact_match_count = @exact_match_count - (page - 1) * pp
     if ( params[:continuous] == "1" and params[:page] != nil and params[:page] != "1" )
-        @trips_to_add = Array.new
-        pp = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : per_page_default
+        @trips_to_add = Array.new      
         @trips_to_add = @trips[0, (params[:page].to_i - 1) * pp]
     end
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : per_page_default)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => pp)
     
-   # logger.info "#{@trips.inspect}"
     respond_to do |format|
       flash.now[:notice] = @message_with_trip_render
       format.html  # index.html.erb

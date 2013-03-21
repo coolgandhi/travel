@@ -122,7 +122,7 @@ module TripsHelper
     end
   end
 
-  def get_trips_filtered_by_landmarks params, trips, message_with_trip_render
+  def get_trips_filtered_by_landmarks params, trips, message_with_trip_render, exact_match_count_passed_in
     if (params[:restaurant])
       trip_restaurants = []
       restaurant = RestaurantDetail.find_by_restaurant_detail_id(params[:restaurant])
@@ -132,9 +132,11 @@ module TripsHelper
       }
    
       trips = trip_restaurants & trips
-      if trips.length == 0 || message_with_trip_render != " Check out your trips! " # find trips from same location as a minimum 
-        message_with_trip_render = "Can't find the trips with the specified constraints for #{restaurant.name}, adding trips which includes this restaurant"
+      if trips.length == 0 # find trips from same location as a minimum 
+        message_with_trip_render = "Find the trips that includes #{restaurant.name}."
         trips = trip_restaurants
+      else
+        message_with_trip_render =  "Found #{trips.length} trip summaries that matched your criteria."
       end
     end
 
@@ -147,12 +149,14 @@ module TripsHelper
       }
 
       trips = trip_locations & trips
-      if trips.length == 0 || message_with_trip_render != " Check out your trips! " # find trips from same location as a minimum 
-       message_with_trip_render = "Can't find the trips with the specified constraints for #{location.name}, adding trips which includes this restaurant"
+      if trips.length == 0  # find trips from same location as a minimum 
+       message_with_trip_render = "Find the trips that includes #{location.name}."
        trips = trip_locations
+      else
+        message_with_trip_render =  "Found #{trips.length} trip summaries that matched your criteria"
       end
     end
     
-    return trips, message_with_trip_render
+    return trips, exact_match_count_passed_in, message_with_trip_render
   end
 end

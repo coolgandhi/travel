@@ -35,8 +35,12 @@
       <h3 class="caption_trip_title caption_title"><%= link_to trip.trip_name, trip %></h3>
       <p class="caption_trip_subtitle caption_subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %> <span class="divider">|</span> by <%= (trip.author_info and trip.author_info.author_name) ? trip.author_info.author_name : "unknown" %> </p>
       <p class="caption_trip_summary caption_subtitle"><%= trip.trip_summary %><p>
-
-
+      
+      <% if exact_matched_trip == true %>
+        exact
+      <% else %>
+        non-exact
+      <% end %>
     </div>
     <!--End Trip Result Caption-->
   </div>
