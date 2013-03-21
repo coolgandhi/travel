@@ -45,7 +45,8 @@
         $(trips_namespace.gallery.masterPages[this.ajaxI]).append(data);
         picturefill(); //need to call this to get picturefill to fire on ajax loaded pics
         $('.relative_image').resizeToParent({parent: '#bloop'});
-        trips_namespace.bodyBackgroundImageSwitch();
+        // trips_namespace.bodyBackgroundImageSwitch();
+        trips_namespace.daySwatchSwitch();
         trips_namespace.makeCaptionAccordion();
       }
     });
@@ -85,7 +86,8 @@
             $(trips_namespace.gallery.masterPages[this.ajaxI]).html(data);
             picturefill(); //need to call this to get picturefill to fire on ajax loaded pics
             $('.relative_image').resizeToParent({parent: '#bloop'});
-            trips_namespace.bodyBackgroundImageSwitch();
+            // trips_namespace.bodyBackgroundImageSwitch();
+            trips_namespace.daySwatchSwitch();
             trips_namespace.makeCaptionAccordion();
           }
         });

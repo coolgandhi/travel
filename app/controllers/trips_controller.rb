@@ -15,7 +15,8 @@ class TripsController < ApplicationController
     @restaurants = nil
     @traveler_types = nil
     @trips_to_add = nil
-    
+    per_page_default = 3
+
     if (params[:trip_location_id] and params[:trip_location_id] != "" and (params[:page] == nil or params[:page] == "1" or params[:continuous] == "1"))
       # generate landmark of interest only for the initial trip search with location, not while paginating 
       @locations = LocationDetail.search(params[:trip_location_id])
@@ -29,11 +30,11 @@ class TripsController < ApplicationController
     
     if ( params[:continuous] == "1" and params[:page] != nil and params[:page] != "1" )
         @trips_to_add = Array.new
-        pp = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 6
+        pp = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : per_page_default
         @trips_to_add = @trips[0, (params[:page].to_i - 1) * pp]
     end
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : 6)
+    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : per_page_default)
     
     respond_to do |format|
       flash.now[:notice] = @message_with_trip_render

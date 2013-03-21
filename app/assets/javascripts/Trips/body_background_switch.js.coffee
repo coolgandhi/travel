@@ -26,4 +26,22 @@
         
         # $('body').animate({ backgroundColor: '#365165' }, 2000)
         $("div.evening_bg").fadeIn 2000
+
+  trips_namespace.daySwatchSwitch = ->
+    timetype = trips_namespace.slides[trips_namespace.gallery.pageIndex].timetype
+    nextTime = (trips_namespace.gallery.pageIndex+1).toString()
+    switch timetype
+      when "1", "2"
+        $(".swipeview-active").find(".time_day_swatch").removeClass("afternoon_sw").removeClass "evening_sw"
+        $(".swipeview-active").find(".time_day_swatch").addClass "morning_sw"
+        $('div[data-page-index=' + nextTime + ']').find(".time_day_swatch").addClass("morning_sw")
+      when "3", "4"
+        $(".swipeview-active").find(".time_day_swatch").removeClass("morning_sw").removeClass("evening_sw")
+        $(".swipeview-active").find(".time_day_swatch").addClass "afternoon_sw"
+        $('div[data-page-index=' + nextTime + ']').find(".time_day_swatch").addClass("afternoon_sw")
+      when "5", "6", "7"
+        $(".swipeview-active").find(".time_day_swatch").removeClass("afternoon_sw").removeClass("morning_sw")
+        $(".swipeview-active").find(".time_day_swatch").addClass "evening_sw"
+        $('div[data-page-index=' + nextTime + ']').find(".time_day_swatch").addClass("evening_sw")
+
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

@@ -1,4 +1,8 @@
-<% if @trips.current_page == 1 or (params[:continuous] and params[:continuous] == "1") %>
+<% if (params[:continuous] == "1" and params[:featured] == "1") %>
+  $('#trips_results_container').html('');
+  $('#trips_results_container').html('<%= escape_javascript(render("trips")) %>');
+
+<% elsif @trips.current_page == 1 or (params[:continuous] and params[:continuous] == "1") %>
   $('#trips_results_container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
   $('#trips_landmark_container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks_filtering")) %>').fadeIn('slow');
   $('.results_searchbar-container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');
@@ -9,21 +13,6 @@
     trips_namespace.remoteLoadIndexFire();
   });  
   
- //  trips_namespace.remoteLoadIndexFire = function() {  
- //     trips_namespace.fireResultSearchBarJs();
- //     trips_namespace.continuousScrollPagination();
- //     $(".results_hero_form").validate(trips_namespace.searchformrules_on_page_box);
- //     $('.droptoggle_menu').hide();
- //     $('.results_hero_form').on('submit', function (){
- // //      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
-	// 		 site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val(), 3); 
- //       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val(), 3);
- //       site_wide_namespace.setCustomVar(3, "start_date", $("#from").val(), 3); 
- //       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results_day_field").val(), 3); 
- //       site_wide_namespace.trackEvent("search", "click", "results_search_box");       
- //      });  
- //  };  
-
   //show flash message
   $(".results_flash_message").fadeOut('slow').html("<%= escape_javascript(render :partial => 'layouts/messages' , :locals => { :flash => flash }).html_safe %>").fadeIn('slow');
   
