@@ -2,7 +2,7 @@
 
   <div class="trip_title_text">
     <p>
-      <span class="trip_title_main_text caption_title"><%= @trip.trip_name %></span> 
+      <span class="trip_title_main_text title_large"><%= @trip.trip_name %></span> 
     </p>
     
       <!--Begin show overview button that shows up only on small screens-->
@@ -11,7 +11,7 @@
       </label>
       <!--End show overview button that shows up only on small screens -->
     
-    <p class="trip_title_sub_text title_subtitle"><%= @trip.duration %> Days in <%= @trip.location[:place] %> | by <%= @trip.author_info.author_name %></p>
+    <p class="trip_title_sub_text caption_large"><%= @trip.duration %> Days in <%= @trip.location[:place] %> | by <%= @trip.author_info.author_name %></p>
   </div>
 
   <div class = "badge_buttons">

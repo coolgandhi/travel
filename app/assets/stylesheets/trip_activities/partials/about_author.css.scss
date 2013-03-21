@@ -5,7 +5,8 @@
 
 /* 1. STRUCTURAL STYLING */
 .auth_container{
-  @include col(12);
+  // @include col(12);
+  width: 99%;
   @include box-sizing(border-box);
   background-color: $myDivBg;
   border-color: $borderGray;
@@ -13,7 +14,7 @@
   @include border-radius($myDivBorderRadius);
   border-style: solid;
   height: 100%;
-  margin-left: 1%;
+  margin-left: 0.5%;
   overflow: hidden;
 }
 

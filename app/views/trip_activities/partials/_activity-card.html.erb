@@ -10,16 +10,14 @@
     <!-- Begin always_here -->
     <div class="always_here">
 
-      <!-- Begin Time of Day Swatch -->
-      <div class = "time_day_swatch">
-      </div>
-      <! -- End Time of Day Swatch -->
-
       <!-- Begin rightcaption -->
       <div class="rightcaption">
         <h3 id="activity_title">
-          <span class="activity_title caption_title"><%= (which_detail_type(@trip_activity,"name")) %></span></br>
-          <span class="activity_subtitle caption_summary">Day <%= @trip_activity.activity_day %> 
+          <!-- Begin Time of Day Swatch -->
+          <div class = "time_day_swatch"></div>
+          <! -- End Time of Day Swatch -->
+          <span class="activity_title title"><%= (which_detail_type(@trip_activity,"name")) %></span></br>
+          <span class="activity_subtitle caption_large">Day <%= @trip_activity.activity_day %> 
               <% if @trip_activity.activity.activity_duration_type %>
                 <% unless @trip_activity.activity.activity_duration_type[:activity_duration_name].blank? %>
                   <%= "( #{@trip_activity.activity.activity_duration_type[:activity_duration_name]} )" %>
@@ -36,7 +34,7 @@
           </p>
           
           <% unless @trip_activity.activity[:quick_tip].blank? %>
-            <div class="well well-small caption_quick_tip caption_large">
+            <div class="well well-small caption_quick_tip caption_medium">
               Quick Tip: <%= @trip_activity.activity[:quick_tip] %> 
             </div>
           <% else %>
@@ -44,12 +42,12 @@
 
         </div>
         <h3 id="more_info_accordion">
-          <div class = "caption_summary">More Info</div>
+          <div class = "caption_medium">More Info</div>
         </h3>
         <div class = "more_info_dl" id="more_info_id">
           <div id = "more-info-buffer-header"></div>
           <div id = "more-info-buffer-content">
-            <dl class = "caption_summary">
+            <dl class = "caption_medium">
             <dt>Address:</dt>
             <dd>
               <address>

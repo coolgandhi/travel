@@ -310,6 +310,7 @@ $resultThumbHeight: 60%;
   // max-width: 100%;
   height: auto;
   width: 100%;
+  max-width: none;
   position: absolute;
 }
 
@@ -342,7 +343,7 @@ $resultThumbHeight: 60%;
 }
 
 .couples-badge_border_top{
-  border-top: $colorBorderWeight #ED1968;  
+  border-top: $colorBorderWeight #FF9284;  
 }
 
 .family-badge_border_top{

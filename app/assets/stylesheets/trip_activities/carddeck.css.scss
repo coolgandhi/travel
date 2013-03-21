@@ -185,6 +185,9 @@ img.thumb_image{
   // height: 100%;
   // width: 100%;
   position: relative;
+  max-width: none;
+  width: 100%;
+  overflow: hidden;
   // min-width: 100%;
   // position: absolute;
   // top: -25%;
@@ -226,6 +229,7 @@ p.description_content{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 600;
 
   @include respond-to(phones){
 
@@ -234,7 +238,8 @@ p.description_content{
 
 /* 3.5 ACTIVITY CONTAINER DIV */
 .activitycontainer{
-  @include col(12);
+  // @include col(12);
+  width: 99%;
   @include box-sizing(border-box);
   background-color: $myDivBg;
   border-color: $borderGray;
@@ -243,7 +248,7 @@ p.description_content{
   border-style: solid;
   height: 100%;
   // padding: 2.5% 2.0% 2.5% 3.5%; //left and right off by 1.2% because of the gutter between photo and caption
-  margin-left: 1%;
+  margin-left: 0.5%;
   overflow: hidden;
   position: relative;
 
@@ -272,6 +277,7 @@ img.hung_image{
 
 img.relative_image{
   position:relative;
+  max-width: none;
   z-index: -1;
 }
 
@@ -362,12 +368,14 @@ img.relative_image{
   background: none;
   color: none;
   font-size: $baseFontSize;
+  font-family: $sansFontFamily;
 } 
 
 .rightcaption .ui-accordion-content, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
   border: none; 
   background: none;
   font-size: $baseFontSize;
+  font-family: $sansFontFamily;
   font-weight: inherit;
   color: inherit;
   text-shadow: none;
@@ -376,6 +384,7 @@ img.relative_image{
 
 .rightcaption .ui-helper-reset{
   font-size: $baseFontSize;
+  font-family: $sansFontFamily;
   margin: auto;
   font-family: inherit;
 }
@@ -385,7 +394,7 @@ img.relative_image{
   // height: 100%;
   color: $white;
   @include box-sizing(border-box);
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.9);
   @include border-radius($myDivBorderRadius);
   position: absolute;
   top: 2%;
@@ -459,14 +468,8 @@ img.relative_image{
 
 h3#activity_title{
   @include box-sizing(border-box);
-  // padding: 0 0.5em 0 0.5em;
-  // white-space: nowrap;
-  // overflow: hidden;
-  // text-overflow: ellipsis;
-  padding: 0.5em 2em 0.2em 0.7em; //padding-right needs to be big to make room for arrow
-  // font-size: 1.3em;
-  // font-weight: 500;
-  // line-height: 1.1em;
+  padding: 0.5em 2em 0.2em 1em; //padding-right needs to be big to make room for arrow
+  font-weight: 600;
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
   
@@ -792,7 +795,8 @@ div.rightcaption .ui-accordion-content {
   
   h3#myModalLabel{
     white-space: nowrap;
-    font-weight: normal;
+    font-weight: inherit;
+    line-height: inherit;
   }
   
   .modal-body{
@@ -855,15 +859,16 @@ td.thumbnail_td{
 /* 9. TIME DAY SWATCH */  
 .time_day_swatch{
   opacity: .9;
-  width: 50px;
+  width: 3em;
   height: 0;
-  padding-bottom: 50px;
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  @include border-radius(50%);
+  padding-bottom: 3em;
+  position: relative;
+  margin-top: 1%;
+  margin-right: 2%;
+  float: left;
+  @include border-radius($myDivBorderRadius);
   background-color: $transBlack;
-  border: 3px solid $borderGray;
+  border: 1px solid #cccccc;
   background-image:url(/assets/backgrounds/day_change_swatch_real.png);
   background-repeat: no-repeat;
   background-position: 0 0;
@@ -872,16 +877,16 @@ td.thumbnail_td{
   &.morning_sw{
     background-color: yellow;
     background-position: 0 0;
-    @include single-transition(all, 0.5s, ease-in-out, 0.1s);
+    @include single-transition(background-position, 0.5s, ease-in-out, 0.1s);
   }
   &.afternoon_sw{
     background-color: blue;
     background-position: 50% 0;
-    @include single-transition(all, 0.5s, ease-in-out, 0.1s);
+    @include single-transition(background-position, 0.5s, ease-in-out, 0.1s);
   }
   &.evening_sw{
     background-color: black;
     background-position: 100% 0;
-    @include single-transition(all, 0.5s, ease-in-out, 0.1s);
+    @include single-transition(background-position, 0.5s, ease-in-out, 0.1s);
   }
 }

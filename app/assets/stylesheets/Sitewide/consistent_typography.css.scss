@@ -1,46 +1,62 @@
 /* TYPOGRAPHY */
 
-$consistentFontWeight: 300;
+$consistentFontWeight: 400;
+$consistentLineHeight: 1.5;
+$consistentFontFamily: $sansFontFamily;
 
 /* TITLES - for Large Header Titles */
 .title{
   font-size: em(24.5px);
-  line-height: 1.2em;
-  font-weight: $consistentFontWeight+100;
+  line-height: normal;
+  font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;
+}
+.title_large{
+  font-size: em(27.5px);
+  line-height: normal;
+  font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;
 }
 .title_subtitle{
   font-size: em(14px);
-  line-height: 1.4em;
-  font-weight: $consistentFontWeight;	  
+  line-height: normal;
+  font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;	  
 }
 
 /* CAPTIONS - for captions of article captions, thumbnail captions, trip captions */
 .caption_title{
   font-size: em(20px);
-  line-height: 1.2em;
-  font-weight: $consistentFontWeight+100;
+  line-height: normal;
+  font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;
   margin: 0;	
 }
+
 .caption_subtitle{
   font-size: em(12px);
-  line-height: 1.4em;
+  line-height: $consistentLineHeight;
   font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;
   margin: 0;
 }
-.caption_summary{
+.caption_medium{
   font-size: em(14px);
-  line-height: 1.4em;
+  line-height: $consistentLineHeight;
   font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;
 }
 
 .caption_large{
   font-size: em(16px);
-  line-height: 1.4em;
+  line-height: $consistentLineHeight;
   font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;
 }
 
 .caption_small{
   font-size: em(11px);
-  line-height: 1.4em;
-  font-weight: $consistentFontWeight;	
+  line-height: $consistentLineHeight;
+  font-weight: $consistentFontWeight;
+  font-family: $consistentFontFamily;	
 }
