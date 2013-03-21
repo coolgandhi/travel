@@ -132,9 +132,11 @@ module TripsHelper
       }
    
       trips = trip_restaurants & trips
-      if trips.length == 0 || message_with_trip_render != " Check out your trips! " # find trips from same location as a minimum 
+      if trips.length == 0 # find trips from same location as a minimum 
         message_with_trip_render = "Can't find the trips with the specified constraints for #{restaurant.name}, adding trips which includes this restaurant"
         trips = trip_restaurants
+      else
+        message_with_trip_render =  "Found #{trips.length} trip summaries that matched your criteria"
       end
     end
 
@@ -147,12 +149,14 @@ module TripsHelper
       }
 
       trips = trip_locations & trips
-      if trips.length == 0 || message_with_trip_render != " Check out your trips! " # find trips from same location as a minimum 
+      if trips.length == 0  # find trips from same location as a minimum 
        message_with_trip_render = "Can't find the trips with the specified constraints for #{location.name}, adding trips which includes this restaurant"
        trips = trip_locations
+      else
+        message_with_trip_render =  "Found #{trips.length} trip summaries that matched your criteria"
       end
     end
     
-    return trips, message_with_trip_render
+    return trips, trips.length, message_with_trip_render
   end
 end
