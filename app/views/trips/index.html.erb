@@ -17,23 +17,28 @@
 
 <% end %>  
 
-<div class="container middle_results_container">
-  
-<div class="results_searchbar-container">
-  <% if params["show_hero"] && params["show_hero"] == 'false' %>
-    <%= render 'trips/partials/results_searchbar' %>
-  <% else %>
-  <% end %>  
+<div class = "results_search_and_filter container">
+  <div class="results_searchbar_container">
+    <% if params["show_hero"] && params["show_hero"] == 'false' %>
+      <%= render 'trips/partials/results_searchbar' %>
+    <% else %>
+    <% end %>  
+  </div>
+
+  <% if @trips %>
+    <div id="trips_landmark_container">
+      <% if params["show_hero"] && params["show_hero"] == 'false' %>
+        <%= render 'trips/partials/landmarks_filtering' %>
+      <% else %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
-<% if @trips %>
-  <div id="trips_landmark_container">
-    <% if params["show_hero"] && params["show_hero"] == 'false' %>
-      <%= render 'trips/partials/landmarks_filtering' %>
-    <% else %>
-    <% end %>
-  </div>
-<% end %>
+
+<div class="container middle_results_container">
+  
+
 
 <div class="results_flash_message">
   <% if params["show_hero"] && params["show_hero"] == 'false' %>

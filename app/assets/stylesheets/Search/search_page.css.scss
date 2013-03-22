@@ -33,6 +33,7 @@ $colorBorderWeight: 6px solid;
 
 .middle_results_container{
   background-color: transparent;
+  padding-top: 1%;
   // @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
   // padding: 2%;
   // margin-top: 1%;
@@ -110,7 +111,7 @@ $colorBorderWeight: 6px solid;
     .form_dialog{
       margin: 1% 0;
       padding-left: 2%;
-      font-weight: 300;
+      // font-weight: 300;
     }
   }
 }
@@ -403,6 +404,12 @@ $resultThumbHeight: 60%;
 }
 
 /* Filter by Landmarks */
+
+.results_search_and_filter{
+  &.bottom_color_border{
+    border-bottom: 5px solid $colorBorderColor;
+  }
+}
 
 #trips_landmark_container{
   width: 99%;
