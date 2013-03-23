@@ -12,8 +12,8 @@ class Trip < ActiveRecord::Base
 
   validates :author_id, :presence => { :message => "" }
   validates :location_id, :presence => { :message => "choose a location" }
-  validates :trip_name, :presence => { :message => "enter trip name" }, :length => { :minimum => 2, :maximum => 100, :too_short => "trip name must have at least %{count} characters in the trip name", :too_long  => "trip name can have at most %{count} characters" }
-  validates :trip_summary, :presence => { :message => "enter trip summary" }, :length => { :minimum => 2, :maximum => 250, :too_short => "trip summary must have at least %{count} characters", :too_long  => "trip summary can have at most %{count} characters" }
+  validates :trip_name, :presence => { :message => "enter trip name" }, :length => { :minimum => 2, :maximum => 40, :too_short => "trip name must have at least %{count} characters in the trip name", :too_long  => "trip name can have at most %{count} characters" }
+  validates :trip_summary, :presence => { :message => "enter trip summary" }, :length => { :minimum => 2, :maximum => 200, :too_short => "trip summary must have at least %{count} characters", :too_long  => "trip summary can have at most %{count} characters" }
   validates :duration, :presence => { :message => "enter a valid duration for the trip" }
   validates_numericality_of :duration, :message => "enter a valid length of the trip" 
   
@@ -39,7 +39,7 @@ class Trip < ActiveRecord::Base
       
       if trips.length < 3 and find_exact_match_only == false # find trips from same location as a minimum 
         trips_notmatch = Trip.where("location_id = ?", params[:trip_location_id])
-        message_with_trip_render += " Check out other trip summaries as well."
+        message_with_trip_render += " Check out these other trip summaries as well."
         trips = ( trips + trips_notmatch ).uniq
       end
       

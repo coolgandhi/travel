@@ -85,7 +85,7 @@ $lastrowheight: 10%;
 .socialmediabox{
   position: absolute;
   right: 1%;
-  top: 30%;
+  bottom: 5%;
   overflow: hidden;
 
   @include respond-to(small){
