@@ -39,8 +39,15 @@ class Trip < ActiveRecord::Base
       
       if trips.length < 3 and find_exact_match_only == false # find trips from same location as a minimum 
         trips_notmatch = Trip.where("location_id = ?", params[:trip_location_id])
-        message_with_trip_render += " Check out these other trip summaries as well."
+        if trips.length == 0
+          message_with_trip_render += " None of the trip summaries matched your criteria. Check out these other trip summaries."
+        else
+          message_with_trip_render += " Check out these other trip summaries as well."
+        end
         trips = ( trips + trips_notmatch ).uniq
+        if trips.length == 0
+          message_with_trip_render = "None of the trip summaries matched your criteria."
+        end
       end
       
       return trips, exact_match_count, message_with_trip_render
