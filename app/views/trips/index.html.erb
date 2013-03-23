@@ -15,29 +15,31 @@
   <%= render 'trips/partials/hero_unit' %>
 <% end %>  
 
-<div class="container middle_results_container">
-  
-  <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1"))%>  
-    <div class="results_searchbar-container">
-       <%= render 'trips/partials/results_searchbar' %>
+<% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1"))%>  
+  <div class = "results_search_and_filter container">
+    <div class="results_searchbar_container">
+      <%= render 'trips/partials/results_searchbar' %>
     </div>
 
     <% if @trips or @trips_to_add %>
       <div id="trips_landmark_container">
-          <%= render 'trips/partials/landmarks_filtering' %>
+        <%= render 'trips/partials/landmarks_filtering' %>
       </div>
     <% end %>
+  </div>
+<% end %>
 
+<div class="container middle_results_container">
+  <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1")) %>
     <div class="results_flash_message">
-        <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+      <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
     </div>
- 
+  
     <div id="results_breadcrumbs">
         <%= render 'trips/partials/results_breadcrumbs' %>
     </div>
-  <% end %>
-
-
+  <% end %>  
+      
   <div id="trips_results_container">
     <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1")) %>
       <%= render 'trips' %>
@@ -57,17 +59,17 @@
   </div>
 
   <footer class="row">
-  <div class = "span12 index_footer">
-    <div class="index_foursquare_attribution caption_small">Location images and details powered by 
-      <%= link_to image_tag('/assets/logos/foursquare-icon-16x16.png', :class=> "index_social_icon"), raw("https://foursquare.com"), :target => "_blank"%>
-    </div>
+    <div class = "span12 index_footer">
+      <div class="index_foursquare_attribution caption_small">Location images and details powered by 
+        <%= link_to image_tag('/assets/logos/foursquare-icon-16x16.png', :class=> "index_social_icon"), raw("https://foursquare.com"), :target => "_blank"%>
+      </div>
 
-  <% if admin? %>  
-    <div class = "span6">
-      <%= link_to 'New Trip', new_trip_path %>
+      <% if admin? %>  
+        <div class = "span6">
+          <%= link_to 'New Trip', new_trip_path %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  </div>
   </footer>
 
 </div> <!--! end of .container -->

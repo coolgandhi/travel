@@ -22,8 +22,9 @@
 
 <% elsif (@trips.current_page == 1 or (params[:continuous] and params[:continuous] == "1")) %>
   $('#trips_results_container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
+  $('.results_search_and_filter').addClass('bottom_color_border');
   $('#trips_landmark_container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks_filtering")) %>').fadeIn('slow');
-  $('.results_searchbar-container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');
+  $('.results_searchbar_container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');
   $('#results_breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results_breadcrumbs")) %>').fadeIn('slow');
   // fire resize on the results thumbnails
   trips_namespace.fireResizeResultsPic();

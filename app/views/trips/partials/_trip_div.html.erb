@@ -1,6 +1,7 @@
 <!--Begin Trip Result List Item-->
 
-<li class="trip_result_thumbnail_li">
+<li class="trip_result_thumbnail_li <%= "not_exact_result" if exact_matched_trip == false %>">
+
   <!--Begin Trip Result Thumbnail Wrapper-->
   <div class="thumbnail trip_result_thumbnail_div">
       <% url_to_append = url_for(params.except(:utf8).merge(:continuous => "1")) %>
@@ -36,11 +37,6 @@
       <p class="caption_trip_subtitle caption_subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %> <span class="divider">|</span> by <%= (trip.author_info and trip.author_info.author_name) ? trip.author_info.author_name : "unknown" %> </p>
       <p class="caption_trip_summary caption_subtitle"><%= trip.trip_summary %><p>
       
-      <% if exact_matched_trip == true %>
-        exact
-      <% else %>
-        non-exact
-      <% end %>
     </div>
     <!--End Trip Result Caption-->
   </div>

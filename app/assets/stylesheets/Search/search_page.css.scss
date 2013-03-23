@@ -15,7 +15,6 @@
 
 /* Variables */
 $resultSubtitleColor: dimgrey;///#08c;
-$colorBorderColor: #00A1CB;
 $colorBorderWeight: 6px solid;
 
 /* Body Styles */ 
@@ -33,6 +32,7 @@ $colorBorderWeight: 6px solid;
 
 .middle_results_container{
   background-color: transparent;
+  padding-top: 1%;
   // @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
   // padding: 2%;
   // margin-top: 1%;
@@ -44,73 +44,106 @@ $colorBorderWeight: 6px solid;
 .big_image_header{
   position: relative;
   @include clearfix;
-  height: 450px;
+  height: 475px;
   padding: 0;
   top: -30px;
-  // margin-bottom: -50px;
-  border-bottom: 10px solid $colorBorderColor;
+  margin-bottom: -2%;
+  border-bottom: 5px solid $myPrimaryBlue;
   @include border-radius(0);
   @include box-shadow(0px 4px 4px rgba(0, 0, 0, 0.3))
 }
 
 .hero_tag_line{
-  position: absolute;
-  top: 10%;
-  left: 4%;
+  // position: absolute;
+  // top: 10%;
+  // left: 4%;
+  position: relative;
   color: white;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 3em;
+  font-size: 4em;
+  line-height: 1;
   text-shadow: 0px 3px 3px black;
   letter-spacing: -1px;
   // font-weight: bold;
   text-transform: uppercase;
   z-index: 1;
+  // margin-bottom: 4%;
 }
 
 .splash_image_container{
   position: absolute;
   top: 0;
   left: 0;
-  height: 450px;
+  height: 475px;
   width: 100%;
   background-color: $black;
   // background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
-  background-image: url("/assets/splash_images/Positano-Seaview-1800x687_1-IMG_0572.jpg");
+  // background-image: url("/assets/splash_images/Positano-Seaview-1800x687_1-IMG_0572.jpg");
+  background-image: url("/assets/splash_images/paris_street_zoetnet_4850848041_flickr_med.jpg");
   background-repeat: no-repeat;
   background-size: 1600px auto;
   background-position-x: center;
   background-position-y: 50%;
   // margin: 0 auto;
 }
+.text_standout_blob{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("/assets/splash_images/text_standout_blob.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 50%;
+  background-size: 1600px auto;
+  height: 400px;
+  width: 100%;
+}
+
+.splash_image_attribution{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: $transBlack;
+  color: $white;
+  font-size: em(10px);
+  padding: 0 5px;
+}
 
 .splash_form_container{
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 0;
   width: 100%;
   margin: 0 auto;
   font-size: $baseFontSize;
   .form_centering{
   	position: relative;
-  	max-width: 900px;
+  	max-width: 800px;
   	margin: 0 auto;
     color: white;
-    background-color: rgba(0,0,0,.6);
-    padding: 0.5% 1%; 
+    // background-color: rgba(0,0,0,.6);
+    // padding: 0.5% 1%; 
     @include border-radius($myDivBorderRadius);
-    @include clearfix;
+    @include clearfix;  
     @include respond-to(portrait){
       max-width: 500px;
     }
   	.hero_form{
-      margin: 0 auto;
-      width: 100%;
-      padding: 0 2%;
+      // margin: 0 auto;
+      // width: 100%;
+      padding: 5px;
+      position: relative;
+      @include clearfix;
+      background-color: $transBlack;
+      @include border-radius($myDivBorderRadius);
+      float: left;
   	}
     .form_dialog{
       margin: 1% 0;
-      padding-left: 2%;
-      font-weight: 300;
+      text-shadow: 0px 1px 1px black;
+      font-size: 1.5em;
+      // padding-left: 2%;
+      // font-weight: 300;
     }
   }
 }
@@ -119,10 +152,20 @@ $colorBorderWeight: 6px solid;
   // height: 2em;
 }
 
+.place_dropdown_field{
+  margin-bottom: 0;
+  @include respond-to(portrait){
+    margin-bottom: 2%;
+  }
+}
+
 .ui-multiselect.traveler_type_multiselect{
-  margin-bottom: 12px;
+  margin-bottom: 0;
   height: 30px;
   font-size: 13px;
+  @include respond-to(portrait){
+    margin-bottom: 2%;
+  }
 }
 .ui-multiselect-menu.traveler_type_multiselect{
   .ui-multiselect-header{
@@ -141,18 +184,21 @@ $colorBorderWeight: 6px solid;
   float: left;
   position: relative;
   margin-right: 5px;
+  margin-bottom: 0;
 }
 
 .hero_from_prepend{
   float: left;
   color: $black;
   margin-right: 5px;
+  margin-bottom: 0;
 }
 
 .hero_days_append{
   float: left;
   color: $black;
   margin-right: 5px;
+  margin-bottom: 0;
   input{
     width: 25px;
   }
@@ -175,7 +221,8 @@ $colorBorderWeight: 6px solid;
   @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%));
   // margin-bottom: 1%;
   margin-bottom: 0;
-  padding-top: 0.5%;
+  padding: 1% 0;
+  height: 30px;
 }
 
 .results_form_centering{
@@ -184,6 +231,8 @@ $colorBorderWeight: 6px solid;
 }
 
 .results_hero_form{
+  @include clearfix;
+  margin-bottom: 0;
   .hero_from_prepend{
     margin-bottom: 0;
   }
@@ -284,6 +333,10 @@ $colorBorderWeight: 6px solid;
     border-width: $myDivBorderWidth + 0px;
     @include box-shadow(0px 0px 3px 3px rgba(0,0,0,0.1))
   }
+  &.not_exact_result{
+    border-style: dashed;
+    border-width: $myDivBorderWidth+1;
+  }
 }
 
 .trip_result_thumbnail_div{
@@ -315,7 +368,7 @@ $resultThumbHeight: 60%;
 }
 
 .trip_results_caption{
-  // border-top: 5px solid $colorBorderColor;
+  // border-top: 5px solid $myPrimaryBlue;
   min-height: 100-$resultThumbHeight;
   overflow: hidden;
   a{
@@ -404,6 +457,12 @@ $resultThumbHeight: 60%;
 
 /* Filter by Landmarks */
 
+.results_search_and_filter{
+  &.bottom_color_border{
+    border-bottom: 5px solid $myPrimaryBlue;
+  }
+}
+
 #trips_landmark_container{
   width: 99%;
   margin-left: 0.5%;
@@ -422,6 +481,7 @@ $resultThumbHeight: 60%;
   margin: 0 0 1% 0;
   @include box-sizing(border-box);
   font-size: 1em;
+  color: dimgrey;
   @include respond-to(portrait){
     font-size: 0.95em;
   }
@@ -459,10 +519,43 @@ $resultThumbHeight: 60%;
 }
 
 /* FRONT PAGE CONVERSATION */
+
+.front_page_convo_container{
+  // @include col(12);
+}
+
+.sample_trip_result_thumbnail_li{
+  @include col(4);
+  @extend .trip_result_thumbnail_li;
+  @include box-sizing(border-box);
+  .trip_result_thumbnail_div{
+    height: 250px;  
+  }
+  .result_thumb_wrap{
+    height: 35%;
+    text-align: center;
+    background-color: #f1f1f1;
+    i{
+      margin-top: 1%;
+      color: $myPrimaryBlue;
+      font-size: 6em;
+    }
+  }
+  .trip_results_caption{
+    @include box-sizing(border-box);
+    min-height: 65%;
+    border-top: 6px solid $myPrimaryBlue;
+    a{
+      color: $linkColor;
+    }
+  }
+}
+
 .front_page_convo_wrapper{
   height: 250px;
+  float: left;
   overflow: hidden;
-  margin: 1% 0;
+  margin-bottom: 1%;
   @include box-sizing(border-box);
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -470,6 +563,7 @@ $resultThumbHeight: 60%;
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
+  @include col(8);
 }
 
 .front_page_convo_header{
