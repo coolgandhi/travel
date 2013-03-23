@@ -27,6 +27,7 @@ $purple:                #7a43b6 !default;
 
 $blueLight:				#9AB4CB !default; //added this from pandora
 $borderGray: 			#C4C4C4 !default;//from Google+
+$myPrimaryBlue: 		#3C8DC5;//#17649A;//#4c66a4;//#00A1CB;
 
 // Scaffolding
 // -------------------------
@@ -87,7 +88,7 @@ $btnBackground:                     $white !default;
 $btnBackgroundHighlight:            darken($white, 10%) !default;
 $btnBorder:                         #bbb !default;
 
-$btnPrimaryBackground:              #00a1cb !default; //$linkColor
+$btnPrimaryBackground:              $myPrimaryBlue !default; //$linkColor
 $btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 5%) !default;
 
 $btnInfoBackground:                 #5bc0de !default;
@@ -149,13 +150,13 @@ $zindexModal:             1050 !default;
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
-$navbarHeight:                    40px !default; //was 40px
-$navbarBackgroundHighlight:       #ffffff; //$blueLight
+$navbarHeight:                    45px !default; //was 40px
+$navbarBackgroundHighlight:       $myPrimaryBlue; //$blueLight
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
 
 $navbarText:                      #777 !default;
-$navbarLinkColor:                 #777 !default;
+$navbarLinkColor:                 #FFF !default; //#777
 $navbarLinkColorHover:            $grayDark !default;
 $navbarLinkColorActive:           $gray !default;
 $navbarLinkBackgroundHover:       transparent !default;

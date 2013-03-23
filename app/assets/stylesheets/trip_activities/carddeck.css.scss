@@ -869,23 +869,23 @@ td.thumbnail_td{
   @include border-radius($myDivBorderRadius);
   background-color: $transBlack;
   border: 2px solid #cccccc;
-  background-image:url(/assets/backgrounds/day_change_swatch_real.png);
+  background-image:url(/assets/backgrounds/day_change_swatch_alt.png);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: Auto 100%;
 
   &.morning_sw{
-    background-color: yellow;
+    // background-color: yellow;
     background-position: 0 0;
     @include single-transition(background-position, 0.5s, ease-in-out, 0.1s);
   }
   &.afternoon_sw{
-    background-color: blue;
+    // background-color: blue;
     background-position: 50% 0;
     @include single-transition(background-position, 0.5s, ease-in-out, 0.1s);
   }
   &.evening_sw{
-    background-color: black;
+    // background-color: black;
     background-position: 100% 0;
     @include single-transition(background-position, 0.5s, ease-in-out, 0.1s);
   }
