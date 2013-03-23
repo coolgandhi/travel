@@ -12,18 +12,20 @@
           <%# link_to 'Chalo', root_url, :class=>"brand", :id =>"homepagelink"%>
 
           <!-- The drop down menu -->
-          <ul class="nav pull-left">
-            <li class="divider-vertical"></li>
-            <li class="dropdown">
-                <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar" %>
+          <% unless @trip.nil? %>
+            <ul class="nav pull-left">
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                  <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar" %>
 
-              <div class="dropdown-menu droptoggle_menu">
-                <!-- Login form here -->
-                <%= render 'trips/partials/nav_searchbar' %>
-              </div>
+                <div class="dropdown-menu droptoggle_menu">
+                  <!-- Login form here -->
+                  <%= render 'trips/partials/nav_searchbar' %>
+                </div>
 
-            </li>
-          </ul>
+              </li>
+            </ul>
+          <% end %>
           <!-- End drop down menu -->
 
           <div class="nav-collapse collapse">
