@@ -37,7 +37,6 @@ class TripsController < ApplicationController
     
     @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page)
     
-    logger.info "current #{@trips.current_page} \n"
     respond_to do |format|
       flash.now[:notice] = @message_with_trip_render
       format.html  # index.html.erb
