@@ -336,6 +336,7 @@ $colorBorderWeight: 6px solid;
   &.not_exact_result{
     border-style: dashed;
     border-width: $myDivBorderWidth+1;
+    background-color: #f1f1f1;
   }
 }
 
@@ -404,7 +405,7 @@ $resultThumbHeight: 60%;
 }
 
 .group-badge_border_top{
-  border-top: $colorBorderWeight #ecc81f;//#FF9A19;  
+  border-top: $colorBorderWeight #FFBF22;//#FF9A19;  
 }
 
 .other-badge_border_top{
@@ -443,8 +444,8 @@ $resultThumbHeight: 60%;
     a{
       display: block;
       position: relative;
-      margin: 0 5px; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
-      width: 30px;
+      margin: 0; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
+      width: 40px;
     }
     p{
       text-align: center;
