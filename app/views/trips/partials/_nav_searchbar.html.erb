@@ -1,4 +1,4 @@
-<%= form_tag trips_path, :method => 'get', :remote => @trip.nil? ? true : false, :class => 'droptoggle_form' do %>
+<%= form_tag trips_path, :method => 'get', :remote => false, :class => 'droptoggle_form' do %>
   <%= hidden_field_tag "show_hero", params[:show_hero], :value=> false %> 
   <%= hidden_field_tag "place_text_field", params[:place], :placeholder => "Where would you like to go?", :class => "drophide-place-field", :id => "drophide-place-field" %>
   <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "dropdown_trip_location_id" %> 

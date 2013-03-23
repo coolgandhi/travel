@@ -2,4 +2,7 @@
 
 <%= render 'trips/partials/trip_results_div' %>
 
-<%= render 'trips/partials/conversation/front_page_convo' %>
+<% if (@conv_rendered == false) %>
+  <% @conv_rendered = true %>
+  <%= render 'trips/partials/conversation/front_page_convo' %>
+<% end %>
