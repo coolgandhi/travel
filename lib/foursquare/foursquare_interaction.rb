@@ -40,9 +40,8 @@ class FoursquareInteraction
   end
 
   def self.find_closest_venue(latitude, longitude, place)
-    get_places = @@client.search_venues(options = {:ll => latitude + "," + longitude, :near => place, :categoryId => "50aa9e094b90af0d42d5de0d", :radius => 5000, :limit => 3})
+    get_places = @@client.search_venues(options = {:ll => latitude + "," + longitude, :near => place, :categoryId => "50aa9e094b90af0d42d5de0d", :radius => 5000, :limit => 10})
     # find closest category:city, within raidus of 5 kms limited to 3 results
-    # Rails.logger.info " venue info ... #{get_places}"
     id = ""
     if get_places[:groups] and (get_places[:groups]).first[:items].length > 0
       (get_places[:groups]).first[:items].each {|get_place|
@@ -52,6 +51,17 @@ class FoursquareInteraction
           break
         end
       } 
+      if id == "" # add a best case closest city for now (first one on the list)
+        (get_places[:groups]).first[:items].each {|get_place|
+          id = get_place[:id]
+          break
+        }
+      end
+    else
+      Rails.logger.info "Couldn't search for venues for latitude:#{latitude}, longitude:#{longitude}, place:#{place}" 
+    end
+    if (id == "")
+      Rails.logger.info " Couldn't find venue id"       
     end
     id
   end
