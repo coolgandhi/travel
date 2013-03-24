@@ -19,7 +19,7 @@
   #calling date from field datepicker
   trips_namespace.fireResultsFromField = ->
     $(".results_from_datefield").datepicker();
-    queryDate = $( ".results_from_datefield" ).datepicker('setDate', new Date());
+    # queryDate = $( ".results_from_datefield" ).datepicker('setDate', new Date());
 
   #carry params forward from previous search
   trips_namespace.fireResultsPopulateFields = (location_id, place_text, from_date, days_field) ->

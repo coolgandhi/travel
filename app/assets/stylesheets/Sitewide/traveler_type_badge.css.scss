@@ -26,8 +26,8 @@
     a{
       display: block;
       position: relative;
-      margin: 0 5px; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
-      width: 30px;
+      margin: 0; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
+      width: 40px;
     }
     p{
       text-align: center;
@@ -41,8 +41,8 @@
 @mixin traveler-badge{
   background-position:center;
   background-repeat: no-repeat;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   // border: solid 1px $gray;
   // border-radius: 50%;
   float: left;
@@ -54,29 +54,29 @@
 .couples-badge{
   @include traveler-badge;
   // background-image:url(/assets/badges/couples-badge.png);
-  @include badges-sprite(couples-badge);
+  @include badges-sprite(couples-badge-40x40);
 }
 
 .solo-badge{
   @include traveler-badge;
   // background-image:url(/assets/badges/solo-badge.png);
-  @include badges-sprite(solo-badge);
+  @include badges-sprite(solo-badge-40x40);
 }
 
 .family-badge{
   @include traveler-badge;
   // background-image:url(/assets/badges/family-badge.png);
-  @include badges-sprite(family-badge);
+  @include badges-sprite(family-badge-40x40);
 }
 
 .group-badge{
   @include traveler-badge;
   // background-image:url(/assets/badges/group-badge.png);
-  @include badges-sprite(group-badge);
+  @include badges-sprite(group-badge-40x40);
 }
 
 .other-badge{
   @include traveler-badge;
   // background-image:url(/assets/badges/other-badge.png);
-  @include badges-sprite(other-badge);
+  @include badges-sprite(other-badge-40x40);
 }
