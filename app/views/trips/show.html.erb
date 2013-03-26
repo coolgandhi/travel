@@ -17,7 +17,7 @@
   </div>
   <div class ="div_fb_comments">
     <!-- <fb:comments-count href="http://espn.com"></fb:comments-count> awesome comments <br/> -->
-    <fb:comments href="<%=  (Rails.env == "production") ? "#{request.env[:REQUEST_URI]}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
+    <fb:comments href="<%=  (Rails.env == "production") ? "#{request.url}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
   </div> 
 </div>
 
