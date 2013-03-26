@@ -197,9 +197,7 @@ class TripActivitiesController < ApplicationController
     begin
       @trip_activity = @trip.trip_activities.find(params[:id])
       # this is not tested and a very crude way to delete the trip
-      @trip_activity.each {|trip_activity| 
-        trip_activity.activity.destroy
-      }
+      @trip_activity.activity.destroy
       @trip_activity.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"

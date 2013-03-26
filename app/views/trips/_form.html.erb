@@ -72,6 +72,10 @@
         <%= f.label :featured_trip_flag, 'Featured Trip' %>: <%= f.check_box :featured_trip_flag %>
     </div>
   
+    <div class="field">
+        <%= f.label :rank_score, 'Give trip a rank (try to keep it between 0 to 100 - higher the rank, higher it will appear in the search or featured trip results)' %>: <%= f.text_field :rank_score, :value => @trip.rank_score || 0 %>
+    </div>
+  
 
     <div class="field">
         <%= f.label :traveler_type_id, 'For' %>: <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name %>

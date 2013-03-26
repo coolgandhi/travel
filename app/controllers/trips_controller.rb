@@ -136,6 +136,9 @@ class TripsController < ApplicationController
     begin  
       @trip = Trip.find(params[:id])
       @author_info = @trip.author_info
+      if (params[:selected_images] != "")
+        @trip.image_url = params[:selected_images]
+      end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'

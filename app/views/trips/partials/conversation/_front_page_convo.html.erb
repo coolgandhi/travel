@@ -5,7 +5,7 @@
   	  <p class= "caption_subtitle"> We'd love to hear from you! Join the conversation! </p>
     </div>
     <div class = "front_page_convo_body cust_scroll_thin">
-      <fb:comments href="http://espn.com" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
+      <fb:comments href="<%=  (Rails.env == "production") ? "#{request.url}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
     </div>  
   </div>
 

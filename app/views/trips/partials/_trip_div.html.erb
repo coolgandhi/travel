@@ -10,9 +10,8 @@
 
     <div class="caption_box_social">
       <div id="fb-root"></div>
-      <div class="fb-like" data-href="http://espn.com" data-send="true" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
+      <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for( :controller => 'trips', :action => 'show', :id => trip.id, :only_path => false)}" : "http://espn.com" %>" data-send="true" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
     </div>
-    
     <div class="result_thumb_wrap">  
     <%= link_to trip do %>
       <%= image_tag(select_image_given_image_urls(trip.image_url, 600), {:class => "image_link_thumbnail"}) %>
