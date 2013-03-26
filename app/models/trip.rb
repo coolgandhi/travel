@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag
+  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score
   has_many :trip_comments, :dependent => :destroy
   has_many :trip_activities, :dependent => :destroy
   has_one  :trip_stat, :dependent => :destroy
@@ -16,7 +16,7 @@ class Trip < ActiveRecord::Base
   validates :trip_summary, :presence => { :message => "enter trip summary" }, :length => { :minimum => 2, :maximum => 200, :too_short => "trip summary must have at least %{count} characters", :too_long  => "trip summary can have at most %{count} characters" }
   validates :duration, :presence => { :message => "enter a valid duration for the trip" }
   validates_numericality_of :duration, :message => "enter a valid length of the trip" 
-  
+  validates :rank_score, :presence => { :message => "enter a score" }, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :message => "score should be between 0 and 100"}
   
   def self.search params, find_exact_match_only
     message_with_trip_render = ""
@@ -30,7 +30,7 @@ class Trip < ActiveRecord::Base
       query += (duration and duration != "") ? " duration >= " + duration.to_i.to_s + " and duration <= " + duration.to_i.to_s + " and " : "" 
       query += (params[:featured])? " featured_trip_flag = " + params[:featured]  : " featured_trip_flag is NOT NULL" 
       
-      trips = Trip.where( query )
+      trips = Trip.where( query ).order("rank_score DESC")
 #      trips = Trip.where("location_id IN (?) and traveler_type_id IN (?) and duration >= ? and duration <= ? and featured_trip_flag = ?", params[:trip_location_id], (params[:traveler_type_id])?params[:traveler_type_id] : "select traveler_type_id from traveler_types", duration.to_i.to_s, duration.to_i.to_s, (params[:featured_trip_flag])?params[:featured_trip_flag] : false)
       if trips.length > 0
         exact_match_count = trips.length
@@ -38,7 +38,7 @@ class Trip < ActiveRecord::Base
       end
       
       if trips.length < 3 and find_exact_match_only == false # find trips from same location as a minimum 
-        trips_notmatch = Trip.where("location_id = ?", params[:trip_location_id])
+        trips_notmatch = Trip.where("location_id = ?", params[:trip_location_id]).order("rank_score DESC")
         if trips.length == 0
           message_with_trip_render += " None of the trip summaries matched your criteria. Check out these other trip summaries."
         else
