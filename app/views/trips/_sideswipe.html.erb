@@ -23,12 +23,6 @@
     </ul>
   </div>
 
-  <!--Begin show overview button that shows up only on small screens-->
-  <label class="toggle-menu" href="#trip_overview_modal" role="button" data-toggle="modal">
-    <i class="icon-reorder icon-border"></i>
-  </label>
-  <!--End show overview button that shows up only on small screens -->
-
   <div class="socialmediabox">
     <div id="fb-root"></div>
       <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{request.url}" : "http://espn.com" %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
