@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def empty_string_if_value_nil(value)
+    ret_value = (value.nil?) ? "" : value
+    ret_value
+  end
+  
   def get_tag_from_venue(venue)
     tag = ""
     if venue[:description] 
@@ -85,6 +90,26 @@ module ApplicationHelper
     photos_ret
   end
   
+  def get_categories_from_venue(full_venue_structure)
+    category = ""
+    if full_venue_structure[:categories] != nil and  full_venue_structure[:categories].first
+      category_name = empty_string_if_value_nil(full_venue_structure[:categories].first[:name])
+      category_parents = empty_string_if_value_nil(full_venue_structure[:categories].first[:parents].first)
+      
+      if category_name != ""
+        category = category_name 
+      end
+      
+      if category_parents != ""
+        if category != ""
+          category =  category + ", "
+        end
+        category = category + category_parents
+      end
+    end
+    category
+  end
+  
   def create_food_venue(venue_id, location_id, update=0)
     FoursquareInteraction.foursquare_client
     @venue, error = FoursquareInteraction.venue_info(venue_id)
@@ -99,7 +124,10 @@ module ApplicationHelper
     open_hours = get_open_hours_from_venue(@venue)
     
     @activity_detail = update == 0 ? RestaurantDetail.new : RestaurantDetail.find_by_restaurant_detail_id(@venue[:id])
-    @activity_detail.attributes = { :restaurant_detail_id => @venue[:id], :address1 => @venue[:location][:address], :city => @venue[:location][:city], :address2 => @venue[:location][:crossStreet], :country => @venue[:location][:country], :state => @venue[:location][:state], :latitude => @venue[:location][:lat].to_s, :longitude => @venue[:location][:lng].to_s, :phone => @venue[:contact][:formattedPhone], :zip => @venue[:location][:postalCode], :name => @venue[:name], :website => @venue[:url], :category => (@venue[:categories] != nil and  @venue[:categories].first) ? (@venue[:categories].first[:name] + ", " + @venue[:categories].first[:parents].first) : "", :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
+    
+    category = get_categories_from_venue(@venue)
+    
+    @activity_detail.attributes = { :restaurant_detail_id => @venue[:id], :address1 => empty_string_if_value_nil(@venue[:location][:address]), :city => empty_string_if_value_nil(@venue[:location][:city]), :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), :country => empty_string_if_value_nil(@venue[:location][:country]), :state => empty_string_if_value_nil(@venue[:location][:state]), :latitude => empty_string_if_value_nil(@venue[:location][:lat].to_s), :longitude => empty_string_if_value_nil(@venue[:location][:lng].to_s), :phone => empty_string_if_value_nil(@venue[:contact][:formattedPhone]), :zip => empty_string_if_value_nil(@venue[:location][:postalCode]), :name => empty_string_if_value_nil(@venue[:name]), :website => empty_string_if_value_nil(@venue[:url]), :category => category, :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
 
 
     if @activity_detail.save
@@ -125,7 +153,9 @@ module ApplicationHelper
     
     @activity_detail = update == 0 ? LocationDetail.new : LocationDetail.find_by_location_detail_id(@venue[:id])
     
-    @activity_detail.attributes = { :location_detail_id => @venue[:id], :address1 => @venue[:location][:address], :city => @venue[:location][:city], :address2 => @venue[:location][:crossStreet], :country => @venue[:location][:country], :state => @venue[:location][:state], :latitude => @venue[:location][:lat].to_s, :longitude => @venue[:location][:lng].to_s, :phone => @venue[:contact][:formattedPhone], :zip => @venue[:location][:postalCode], :name => @venue[:name], :website => @venue[:url], :category => (@venue[:categories] != nil and  @venue[:categories].first) ? (@venue[:categories].first[:name] + ", " + @venue[:categories].first[:parents].first) : "", :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
+    category = get_categories_from_venue(@venue)
+        
+    @activity_detail.attributes = { :location_detail_id => @venue[:id], :address1 => empty_string_if_value_nil(@venue[:location][:address]), :city => empty_string_if_value_nil(@venue[:location][:city]), :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), :country => empty_string_if_value_nil(@venue[:location][:country]), :state => empty_string_if_value_nil(@venue[:location][:state]), :latitude => empty_string_if_value_nil(@venue[:location][:lat].to_s), :longitude => empty_string_if_value_nil(@venue[:location][:lng].to_s), :phone => empty_string_if_value_nil(@venue[:contact][:formattedPhone]), :zip => empty_string_if_value_nil(@venue[:location][:postalCode]), :name => empty_string_if_value_nil(@venue[:name]), :website => empty_string_if_value_nil(@venue[:url]), :category => category, :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
     
     if @activity_detail.save
     else
