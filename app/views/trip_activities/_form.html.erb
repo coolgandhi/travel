@@ -74,7 +74,7 @@
         <%= fa.text_field :location_detail_id %>
       </div>
       <button type="button" class="btn-flat btn-flat-inverse create_form_show_images_location">Show Images for Location</button>
-      <%= loc = (@trip_activity.activity)  ?  @trip_activity.activity.location_detail[:name] + "," + check_empty_detail(which_detail_type(@trip_activity,"address1")) + "," + @trip_activity.activity.location_detail[:city] : "" %>
+      <%= loc = (@trip_activity.activity)  ?  @trip_activity.activity.location_detail[:name] + "," + check_empty_detail(which_detail_type(@trip_activity,"address1")) + "," + ((@trip_activity.activity.location_detail[:city]) ? @trip_activity.activity.location_detail[:city] : "")  : "" %>
       <div class="field">
         <label for="locationvenue">Location Name</label>: <input id="locationvenue" type="text" name="locationvenue" value="<%= loc %>" />
       </div>
