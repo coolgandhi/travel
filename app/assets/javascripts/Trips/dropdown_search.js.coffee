@@ -18,7 +18,7 @@
   #Calling Multi-select
   $(document).ready ->
     $(".dropdown_traveler_type_multiselect").multiselect(
-      noneSelectedText: 'for what travel style?'
+      noneSelectedText: 'For what travel style?'
       selectedList: 4
       classes : "dropdown_traveler_type_multiselect"
       height: 'auto'

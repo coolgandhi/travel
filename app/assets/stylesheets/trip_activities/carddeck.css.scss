@@ -68,6 +68,7 @@ $lastrowheight: 10%;
   .trip_title_main_text{
     // font-family: 'Oswald', Helvetica, Arial, sans-serif;
     white-space: nowrap;
+    text-transform: capitalize;
     // font-weight: 400;
     // text-shadow: 1px 1px 1px $grayLight;
 
@@ -797,6 +798,7 @@ div.rightcaption .ui-accordion-content {
     white-space: nowrap;
     font-weight: inherit;
     line-height: inherit;
+    text-transform: capitalize;
   }
   
   .modal-body{
