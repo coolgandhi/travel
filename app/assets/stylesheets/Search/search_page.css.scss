@@ -533,24 +533,53 @@ $resultThumbHeight: 60%;
     height: 250px;  
   }
   .result_thumb_wrap{
-    height: 35%;
+    height: 20%;
     text-align: center;
     background-color: #f1f1f1;
     i{
       margin-top: 1%;
       color: $myPrimaryBlue;
-      font-size: 6em;
+      font-size: 3em;
     }
   }
   .trip_results_caption{
     @include box-sizing(border-box);
-    min-height: 65%;
+    min-height: 80%;
     border-top: 6px solid $myPrimaryBlue;
     a{
       color: $linkColor;
     }
   }
 }
+
+//Begin Mailchimp embedded form
+#mc-embedded-subscribe-form{
+  margin: 0;
+}
+
+#mc_embed_signup label{
+  font-size: em(12px);
+  padding-bottom: 0;
+  font-weight: bold;
+}
+
+#mc_embed_signup input.email{
+  float: left;
+  margin: 0;
+  margin-right: 1%;
+  text-indent: em(5px);
+  width: 58%;
+  min-width: 130px;
+}
+
+#mc_embed_signup input.button{
+  float: left;
+  width: 35%;
+  min-width: 90px;
+  margin: 0;
+}
+
+//End Mailchimp embedded form
 
 .front_page_convo_wrapper{
   height: 250px;
