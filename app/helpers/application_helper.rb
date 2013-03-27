@@ -99,7 +99,7 @@ module ApplicationHelper
     open_hours = get_open_hours_from_venue(@venue)
     
     @activity_detail = update == 0 ? RestaurantDetail.new : RestaurantDetail.find_by_restaurant_detail_id(@venue[:id])
-    @activity_detail.attributes = { :restaurant_detail_id => @venue[:id], :address1 => @venue[:location][:address], :city => @venue[:location][:city], :address2 => @venue[:location][:crossStreet], :country => @venue[:location][:country], :state => @venue[:location][:state], :latitude => @venue[:location][:lat].to_s, :longitude => @venue[:location][:lng].to_s, :phone => @venue[:contact][:formattedPhone], :zip => @venue[:location][:postalCode], :name => @venue[:name], :website => @venue[:url], :category => ( @venue[:categories].first[:name] + ", " + @venue[:categories].first[:parents].first), :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
+    @activity_detail.attributes = { :restaurant_detail_id => @venue[:id], :address1 => @venue[:location][:address], :city => @venue[:location][:city], :address2 => @venue[:location][:crossStreet], :country => @venue[:location][:country], :state => @venue[:location][:state], :latitude => @venue[:location][:lat].to_s, :longitude => @venue[:location][:lng].to_s, :phone => @venue[:contact][:formattedPhone], :zip => @venue[:location][:postalCode], :name => @venue[:name], :website => @venue[:url], :category => (@venue[:categories] != nil and  @venue[:categories].first) ? (@venue[:categories].first[:name] + ", " + @venue[:categories].first[:parents].first) : "", :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
 
 
     if @activity_detail.save
@@ -125,7 +125,7 @@ module ApplicationHelper
     
     @activity_detail = update == 0 ? LocationDetail.new : LocationDetail.find_by_location_detail_id(@venue[:id])
     
-    @activity_detail.attributes = { :location_detail_id => @venue[:id], :address1 => @venue[:location][:address], :city => @venue[:location][:city], :address2 => @venue[:location][:crossStreet], :country => @venue[:location][:country], :state => @venue[:location][:state], :latitude => @venue[:location][:lat].to_s, :longitude => @venue[:location][:lng].to_s, :phone => @venue[:contact][:formattedPhone], :zip => @venue[:location][:postalCode], :name => @venue[:name], :website => @venue[:url], :category => ( @venue[:categories].first[:name] + ", " + @venue[:categories].first[:parents].first), :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
+    @activity_detail.attributes = { :location_detail_id => @venue[:id], :address1 => @venue[:location][:address], :city => @venue[:location][:city], :address2 => @venue[:location][:crossStreet], :country => @venue[:location][:country], :state => @venue[:location][:state], :latitude => @venue[:location][:lat].to_s, :longitude => @venue[:location][:lng].to_s, :phone => @venue[:contact][:formattedPhone], :zip => @venue[:location][:postalCode], :name => @venue[:name], :website => @venue[:url], :category => (@venue[:categories] != nil and  @venue[:categories].first) ? (@venue[:categories].first[:name] + ", " + @venue[:categories].first[:parents].first) : "", :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
     
     if @activity_detail.save
     else

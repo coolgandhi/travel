@@ -21,6 +21,7 @@
     return
     
   site_wide_namespace.setCustomVar = (index, name, value, scope) ->
+    console.log (index + " " + name + " " + value + " " + scope)
     _gaq.push(['_setCustomVar', index, name, value, scope])   
     return
     
