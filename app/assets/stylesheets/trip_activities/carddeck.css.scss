@@ -370,6 +370,9 @@ img.relative_image{
   color: none;
   font-size: $baseFontSize;
   font-family: $sansFontFamily;
+  a{
+    color: $linkColor;
+  }
 } 
 
 .rightcaption .ui-accordion-content, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
