@@ -17,9 +17,9 @@ module ApplicationHelper
         # do nothing
       end
     end
-    @venue[:tags].each { |ven_tag|
-         tag = tag + ven_tag + " "
-    }
+    # @venue[:tags].each { |ven_tag|
+    #      tag = tag + ven_tag + " "
+    # }
     tag
   end
   
