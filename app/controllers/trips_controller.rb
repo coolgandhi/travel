@@ -100,6 +100,7 @@ class TripsController < ApplicationController
     @author_info = AuthorInfo.find_by_email((params[:author_info][:email]).downcase)
     if @author_info.nil?
       @author_info = AuthorInfo.new(params[:author_info])
+      @author_info.email = @author_info.email.downcase 
     else
       @author_info.author_name = (params[:author_info][:author_name] and params[:author_info][:author_name] != "") ? params[:author_info][:author_name]: @author_info.author_name;
       @author_info.about = (params[:author_info][:about] and params[:author_info][:about] != "") ? params[:author_info][:about]: @author_info.about;
@@ -109,23 +110,22 @@ class TripsController < ApplicationController
       @author_info.state = (params[:author_info][:state] and params[:author_info][:state] != "") ? params[:author_info][:state]: @author_info.state;
       @author_info.country = (params[:author_info][:country] and params[:author_info][:country] != "") ? params[:author_info][:country]: @author_info.country;
     end
+
     
     respond_to do |format|
       if @author_info.save
         @trip.author_id = @author_info.id
+        if @trip.save
+          format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+          format.json { render json: @trip, status: :created, location: @trip }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @trip.errors, status: :unprocessable_entity }
+        end
       else
         #@trip.author_id = "a"
-        format.html { render action: "new" }
+        format.html { render :action => :new }
         format.json { render json: @author_info.errors, status: :unprocessable_entity }
-        return
-      end
-      
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render json: @trip, status: :created, location: @trip }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -135,7 +135,19 @@ class TripsController < ApplicationController
   def update
     begin  
       @trip = Trip.find(params[:id])
-      @author_info = @trip.author_info
+      @author_info = AuthorInfo.find_by_email((params[:author_info][:email]).downcase)
+      update_author = 0
+      if @author_info.nil?
+        update_author = 1
+        @author_info = AuthorInfo.new(params[:author_info])
+        @author_info.email = @author_info.email.downcase
+      else
+        if (@trip.author_id != @author_info.id.to_s)
+          @trip.author_id = @author_info.id
+          update_author = 2
+        end
+      end
+      
       if (params[:selected_images] != "")
         @trip.image_url = params[:selected_images]
       end
@@ -146,9 +158,21 @@ class TripsController < ApplicationController
     end 
 
     respond_to do |format|
-      if @trip.update_attributes(params[:trip]) and @author_info.update_attributes(params[:author_info])
+      if update_author == 0 and @trip.update_attributes(params[:trip]) and @author_info.update_attributes(params[:author_info])
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
+      elsif update_author == 1 and @author_info.save
+        @trip.author_id = @author_info.id
+        if @trip.update_attributes(params[:trip])
+          format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+          format.json { head :no_content }        
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @trip.errors, status: :unprocessable_entity }          
+        end
+      elsif update_author == 2 and @trip.update_attributes(params[:trip])
+        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        format.json { head :no_content }        
       else
         format.html { render action: "edit" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
