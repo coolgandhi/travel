@@ -30,12 +30,12 @@
         </h3>
         <div>
           <p class="caption_large" id="user_description">
-            <%= auto_link(@trip_activity.activity[:description]) %>
+            <%= auto_link(@trip_activity.activity[:description], :html => { :target => '_blank' }) %>
           </p>
           
           <% unless @trip_activity.activity[:quick_tip].blank? %>
             <div class="well well-small caption_quick_tip caption_medium">
-              Quick Tip: <%= auto_link(@trip_activity.activity[:quick_tip]) %> 
+              Quick Tip: <%= auto_link(@trip_activity.activity[:quick_tip], :html => { :target => '_blank' }) %> 
             </div>
           <% else %>
           <% end %>

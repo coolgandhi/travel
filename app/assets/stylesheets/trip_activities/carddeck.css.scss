@@ -500,9 +500,11 @@ img.relative_image{
 .rightcaption .ui-widget-content, .rightcaption .ui-widget-header{
   border: none; 
   background: none;
+  background-color: none;
   color: none;
   font-size: $baseFontSize;
   font-family: $sansFontFamily;
+  filter: none;
   a{
     color: $linkColor;
   }
@@ -511,11 +513,13 @@ img.relative_image{
 .rightcaption .ui-accordion-content, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
   border: none; 
   background: none;
+  background-color: none;
   font-size: $baseFontSize;
   font-family: $sansFontFamily;
   font-weight: inherit;
   color: inherit;
   text-shadow: none;
+  filter: none;
   @include box-shadow(none);
 }
 
@@ -524,6 +528,7 @@ img.relative_image{
   font-family: $sansFontFamily;
   margin: auto;
   font-family: inherit;
+  filter: none;
 }
 
 .rightcaption{
@@ -648,6 +653,12 @@ h3#more_info_accordion{
 
 div.rightcaption .ui-accordion-content {
   padding: 0 1em;
+  @include respond-to(portrait){
+    min-height: 160px
+  }
+  @include respond-to(small){
+    min-height: 160px
+  }
 }
 
 #user_description{
@@ -673,7 +684,7 @@ div.rightcaption .ui-accordion-content {
   // font-size: .95em;
   // line-height: 1em;
   // font-weight: 200;
-  max-height: 300px;
+  max-height: 270px;
   padding: 0 1em;
 
   @include respond-to(portrait){
