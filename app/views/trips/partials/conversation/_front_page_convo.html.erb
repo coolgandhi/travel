@@ -14,17 +14,21 @@
 
   <!--Begin Trip Result Thumbnail Wrapper-->
   <div class="thumbnail trip_result_thumbnail_div">
-    
+
+
     <div class="result_thumb_wrap">
     <i class="icon-map-marker icon-4x"></i>
     </div>
 
     <!--Begin Trip Result Caption-->
     <div class="caption trip_results_caption">
-
+      <div class = "front_convo_social_btn">
+        <%= link_to image_tag('/assets/logos/f_logo.png', :class=> "front_convo_social_icon"), raw("https://www.facebook.com/pages/Chaloio/365850670194567"), :target => "_blank"%>
+        <%= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "front_convo_social_icon"), raw("https://twitter.com/intent/user?screen_name=chalodotio"), :target => "_blank"%>
+      </div>
       <h3 class="caption_trip_title caption_title">Your Awesome Trip Summary</h3>
       <p class="caption_trip_subtitle caption_subtitle">  3 Days in AwesomeTown <span class="divider">|</span> by You </p>
-      <p class="caption_trip_summary caption_subtitle">We're working hard to make it easy for you to contribute your trip summaries. If you can't wait, <a href="mailto:info@chalo.io">email us</a> or <a href="https://twitter.com/intent/user?screen_name=chalodotio">follow us</a> to contribute today. <p>
+      <p class="caption_trip_summary caption_subtitle">We're working hard to make it easy for you to contribute your trip summaries. If you can't wait, <a href="mailto:info@chalo.io">email us</a> to contribute today. <p>
 
     </div>
     <!-- Begin MailChimp Signup Form -->
