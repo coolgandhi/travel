@@ -1,0 +1,15 @@
+
+<%= form_tag update_individual_trips_path, :method => :put, :class => "form-horizontal" do %>
+  <% for trip in @trips %>
+    <%= fields_for "trips[]", trip do |f| %>
+      <h2><%= h trip.trip_name %></h2>
+      <% trip.errors.messages.each do |attr, msg| %>
+   		<li><%= msg.first %></li>
+   	  <% end %>		
+      <%= render "trips/partials/trips_admin/multiple_fields", :f => f %>
+    <% end %>
+    <hr style="border-color:black;">
+  <% end %>
+  <p><%= submit_tag "Submit" %></p>
+<% end %>
+<%= link_to "Back", trips_admin_trips_path %>

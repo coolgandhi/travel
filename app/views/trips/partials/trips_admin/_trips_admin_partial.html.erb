@@ -1,0 +1,45 @@
+<%= form_tag edit_individual_trips_path do %>
+  <table class ="table table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Trip Rank Score</th>
+      <th>Featured Trip?</th>
+      <th>Trip Name</th>
+      <th>Trip Summary</th>
+      <th>Traveller Type</th>
+      <th>Author</th>
+      <th>Location</th>
+      <th>Duration</th>
+      <th>Admin</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%  for trip in @trips %>
+    <tr>
+      <td><%= check_box_tag "trip_ids[]", trip.id %></td>
+      <td><%= trip.rank_score %></td>
+      <td><%= trip.featured_trip_flag %></td>
+      <td><%= trip.trip_name %></td>
+      <td><%= trip.trip_summary %></td>
+      <td><%= trip.traveler_type[:traveler_type_name] %></td>
+      <td><%= trip.author_info.author_name %></td>
+      <td><%= trip.location[:place] %></td>
+      <td><%= trip.duration %></td>
+      
+      <% if admin? %>
+        <td><%= link_to 'Show', trip_path(trip) %></td>
+        <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+        <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      
+    </tr>
+  <% end %>
+  </tbody >
+  </table>
+  
+  <p><%= select_tag :field, options_for_select([["All Fields", ""], ["Rank", "rank_score"], ["Featured", "featured_trip_flag"], ["Name", "trip_name"], ["Summary", "trip_summary"], ["Traveler Type", "traveler_type_id"], ["Author", "author_id"], ["Location", "location_id"], ["Duration", "duration"]])%></p>
+
+  <p><%= submit_tag "Edit Checked" %></p>
+<% end %>

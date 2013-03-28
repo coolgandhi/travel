@@ -217,14 +217,28 @@ class TripsController < ApplicationController
     render :partial => "#{@partial_layout}", :layout => false
   end
 
-  # def admin
-  #   @trips = Trip.all
+  def trips_admin
+    @trips = Trip.all
     
-  #   respond_to do |format|
-  #     format.html # index.html.erb
-  #     format.json { render json: @trip_activities }
-  #   end
-  # end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @trip_activities }
+    end
+  end
+
+  def edit_individual
+    @trips = Trip.find(params[:trip_ids])      
+  end
+
+  def update_individual
+    @trips = Trip.update(params[:trips].keys, params[:trips].values).reject { |p| p.errors.empty? }
+    if @trips.empty? 
+      flash[:notice] = "Products updated"
+      redirect_to trips_admin_trips_path
+    else
+      render :action => 'edit_individual'
+    end
+  end
 
   private
 

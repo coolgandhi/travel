@@ -42,6 +42,11 @@ Travel::Application.routes.draw do
     member do
       get 'showpartial'
     end
+    collection do
+      get 'trips_admin'
+      post 'edit_individual'
+      put 'update_individual'
+    end
     resources :trip_activities do
       member do
         get 'mapinfo'

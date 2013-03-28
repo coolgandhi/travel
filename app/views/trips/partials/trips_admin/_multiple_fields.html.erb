@@ -1,0 +1,62 @@
+<% if params[:field].blank? || params[:field] == "trip_name" %>
+	<div class="control-group">
+	    <%= f.label :trip_name, :class => "control-label" %>
+	    <div class="controls">
+	    	<%= f.text_field :trip_name %>
+	    </div>
+	</div>
+<% end %>
+
+<% if params[:field].blank? || params[:field] == "rank_score" %>
+  <div class="control-group">
+    <%= f.label :rank_score , :class => "control-label" %>
+    <div class="controls">
+  	  <%= f.text_field :rank_score %>
+  	</div>
+  </div>
+<% end %>
+
+<% if params[:field].blank? || params[:field] == "featured_trip_flag" %>
+  <div class="control-group">
+    <%= f.label :featured_trip_flag, 'Featured Trip', :class => "control-label" %>: 
+    <div class="controls">
+      <%= f.check_box :featured_trip_flag %>
+    </div>
+  </div>
+<% end %>
+
+<% if params[:field].blank? || params[:field] == "trip_summary" %>
+  <div class="control-group">
+    <%= f.label :trip_summary, :class => "control-label" %>
+    <div class="controls">
+  	<%= f.text_area :trip_summary, :rows => "4" %>
+  	</div>
+  </div>
+<% end %>
+
+<% if params[:field].blank? || params[:field] == "traveler_type_id" %>
+  <div class="control-group">
+    <%= f.label :traveler_type_id, 'For', :class => "control-label" %>: 
+    <div class ="controls">
+      <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name %>
+    </div>
+  </div>
+<% end %>
+
+<% if params[:field].blank? || params[:field] == "author_id" %>
+  <div class="control-group">
+    <%= f.label :author_id, :class => "control-label" %>
+    <div class ="controls">
+    <%= f.text_field :author_id %>
+    </div>
+  </div>
+<% end %>
+
+<% if params[:field].blank? || params[:field] == "duration" %>
+  <div class="control-group">
+    <%= f.label :duration, :class => "control-label" %>
+    <div class ="controls">
+    <%= f.text_field :duration %>
+	</div>
+  </div>
+<% end %>
