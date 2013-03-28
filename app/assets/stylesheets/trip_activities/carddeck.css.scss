@@ -68,6 +68,7 @@ $lastrowheight: 10%;
   .trip_title_main_text{
     // font-family: 'Oswald', Helvetica, Arial, sans-serif;
     white-space: nowrap;
+    text-transform: capitalize;
     // font-weight: 400;
     // text-shadow: 1px 1px 1px $grayLight;
 
@@ -369,6 +370,9 @@ img.relative_image{
   color: none;
   font-size: $baseFontSize;
   font-family: $sansFontFamily;
+  a{
+    color: $linkColor;
+  }
 } 
 
 .rightcaption .ui-accordion-content, .rightcaption .ui-accordion-header, .rightcaption .ui-accordion-header-active, .rightcaption .ui-state-active, .rightcaption .ui-state-default{
@@ -797,6 +801,7 @@ div.rightcaption .ui-accordion-content {
     white-space: nowrap;
     font-weight: inherit;
     line-height: inherit;
+    text-transform: capitalize;
   }
   
   .modal-body{

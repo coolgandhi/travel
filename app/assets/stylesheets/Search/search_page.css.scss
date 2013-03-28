@@ -544,8 +544,9 @@ $resultThumbHeight: 60%;
   }
   .trip_results_caption{
     @include box-sizing(border-box);
-    min-height: 80%;
+    min-height: 50%;
     border-top: 6px solid $myPrimaryBlue;
+    padding: 1% 9px;
     a{
       color: $linkColor;
     }
@@ -553,8 +554,13 @@ $resultThumbHeight: 60%;
 }
 
 //Begin Mailchimp embedded form
+#mc_embed_signup{
+  border-top: 1px solid $borderGray;
+}
+
 #mc-embedded-subscribe-form{
   margin: 0;
+  padding: 2% 3%;
 }
 
 #mc_embed_signup label{

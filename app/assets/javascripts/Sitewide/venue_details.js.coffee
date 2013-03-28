@@ -24,7 +24,7 @@
       url: window.location.protocol + "//" + window.location.host + "/venues/get_venue_photos.json"
       dataType: "json"
       data: 
-        total: 60
+        total: 100
         latitude: latitude
         longitude: longitude
         place: place
