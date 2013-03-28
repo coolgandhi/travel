@@ -65,5 +65,9 @@ module Travel
 
     # adding the path for fonts for the asset pipelin
     config.assets.paths << "../app/assets/fonts"
+    
+    config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+         r301 %r{^/(.*)/$}, '/$1'
+        end
   end
 end
