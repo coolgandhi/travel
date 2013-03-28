@@ -8,8 +8,14 @@ class FoursquareInteraction
   end
   
   def self.suggest_venues latlong, term, total
-   get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
-   suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
+    term = term.strip
+    suggestions = ""
+    if term.length > 2   
+      get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
+      suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
+    end
+
+    suggestions
   end
 
   def self.venue_info venue_id
