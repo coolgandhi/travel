@@ -23,11 +23,12 @@
 
 </br>
 
-<div class="span12">
-  Footer
-  <% if admin? %>
+
+<% if admin? %>
+  <div class="span12">
     <%= link_to 'Add Activity', new_trip_trip_activity_path(@trip) %> <br/>
     <%= link_to 'Edit', edit_trip_path(@trip) %> | <%= link_to 'Back', root_url %> 
-  <% end %>
-</div>
+  </div>
+<% end %>
+
 
