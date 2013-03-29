@@ -268,8 +268,11 @@ $colorBorderWeight: 6px solid;
 /* Results Container */
 
 .featured_results_title{
-  margin: 1% 0 1% 0;
+  margin: 1% 0 0.5% 0;
   // font-weight: normal;
+}
+.featured_results_subtitle{
+  margin-bottom: em(30px);
 }
 
 .results_title{
@@ -604,7 +607,7 @@ $resultThumbHeight: 60%;
 }
 
 .front_page_convo_header{
-  height: 15%;
+  height: 20%;
   padding: 1%;
 }
 
