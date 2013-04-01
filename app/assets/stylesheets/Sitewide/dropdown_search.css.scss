@@ -26,7 +26,10 @@
     margin-right: 10px;
   }
   .day_form_input_append{
-    float: right;
+    select{
+      width: 65px;
+    }
+    float: left;
   }
   // .dropdown-from-datefield{
   //   float: left;

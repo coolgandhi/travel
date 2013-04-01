@@ -34,12 +34,14 @@
             <div class = "hero_form_left">
               <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler_type_multiselect" %>                    
             </div>
+            <!--
             <div class="input-prepend hero_from_prepend">
               <span class="add-on">from</span>
               <%= text_field_tag :from, params[:from], :class => "from-datefield input-small", :id => "from-datefield" %> 
             </div>
+            -->
             <div class="input-append hero_days_append">
-              <%= text_field_tag :days, params[:days], :placeholder=>"#", :value=>3 %>
+              <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s}", s]}, "3"), :class => "results_day_field", :id => "results_day_field" %>
               <span class="add-on">days</span>
             </div> 
             <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button' %>
