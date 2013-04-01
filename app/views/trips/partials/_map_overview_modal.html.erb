@@ -1,0 +1,54 @@
+<!-- Container that fills the screen: do not remove! -->    
+    <div class="mapModalMask"></div>
+
+<!-- Map Modal -->
+  <div id="mapModal" class="modal hide fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+  
+  <div class="modal-body">
+    
+    <!-- Begin Button Group -->  
+    <div id="mapHideGroup">
+      <div id="mapHide" class="icon-remove"></div>
+    </div>
+    <!-- End Button Group -->  
+    <div class = "map_overview_tabs">
+      <ul class="nav nav-tabs" id="map_tabs">
+        <% n = @trip.duration.to_i > 6 ? 6 : @trip.duration.to_i %>
+        <% for i in 1..n %>
+          <li><a href=<%= "#map_day_#{i}" %> data-day="<%= i %>"><%= "Day #{i}" %></a></li>
+        <% end %>
+
+        <% unless @trip.duration.to_i < 6 %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              More Days
+              <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu">
+              <% n = @trip.duration.to_i %>
+              <% for i in 6..n %>
+              <li><a href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="map_day_1">
+        <div class = "modal_map" id="modal_map_1"></div>
+      </div>
+      
+      <% n = @trip.duration.to_i %>
+      <% for i in 2..n %>
+        <div class="tab-pane" id=<%= "map_day_#{i}"%>>
+          <div class = "modal_map" id=<%= "modal_map_#{i}"%>></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- End Map Modal -->

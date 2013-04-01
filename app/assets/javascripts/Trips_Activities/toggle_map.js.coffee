@@ -16,10 +16,10 @@
     $('#mapModal').modal('hide')
     $('.mapModalMask').fadeOut('slow')
 
-  jQuery ->
-    $("#swipewrapper").on "click", "#mapShow", (e) ->
-      $('#mapModal').modal('show')
-      $('.mapModalMask').fadeIn('slow')
+  # jQuery ->
+  #   $("#swipewrapper").on "click", "#mapShow", (e) ->
+  #     $('#mapModal').modal('show')
+  #     $('.mapModalMask').fadeIn('slow')
 
   jQuery ->
     $("#mapHide").click ->
@@ -50,12 +50,45 @@
   #         addpolyline(data, mapcontainer)
   #         return             
   jQuery ->
-    $("#swipewrapper").on "click", "#mapShow", (e) ->
-      req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
-      mapcontainer = $('#modal_map')
+    $("#map_tabs a").click (e) ->
+      e.preventDefault()
+      # $(this).tab('show')
+      # console.log($(this).data('day') + "hello")
+      req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/daymapinfo"
+      map_day = $(this).data('day')
+      map_day_index = $(this).data('day') - 1 
+      mapcontainer = $("#modal_map_"+ map_day)
+
       $.ajax
         beforeSend: ->
           $(".swipe_loading_indicator").show()
+          $('#map_tabs li:eq(' + map_day_index + ') a').tab('show')
+        type: "GET"
+        url: req
+        data: {activity_day: map_day}
+        dataType: "json"
+        context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
+        complete: ->
+          $(".swipe_loading_indicator").hide()
+        success: (data) ->
+          restore(mapcontainer)
+          addmarkers(data, mapcontainer)
+          addpolyline(data, mapcontainer)
+          return       
+
+
+    $("#swipewrapper").on "click", "#mapShow", (e) ->
+      req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
+      map_day = trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday
+      map_day_index = trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday - 1 
+      mapcontainer = $("#modal_map_"+ map_day)
+
+      $.ajax
+        beforeSend: ->
+          $(".swipe_loading_indicator").show()
+          $('#mapModal').modal('show')
+          $('.mapModalMask').fadeIn('slow')
+          $('#map_tabs li:eq(' + map_day_index + ') a').tab('show')
         type: "GET"
         url: req
         dataType: "json"
@@ -108,15 +141,17 @@
               name: "infowindow"
             )
             if infowindow
-              # infowindow.setOptions({maxWidth:50, pixelOffset:new google.maps.Size(0, 0)})
+              # infowindow.setOptions({maxWidth:50, pixelOffset:new google.maps.Size(0, 60)})
+              infowindow.setOptions({disableAutoPan: true})
               infowindow.open map, marker
-              infowindow.setContent context.data 
+              infowindow.setContent context.data           
               return
             else
               $(this).gmap3 infowindow:
                 anchor: marker
                 options:
                   content: context.data
+                  disableAutoPan: true
               return
           mouseout: ->
             infowindow = $(this).gmap3(get:

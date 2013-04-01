@@ -240,6 +240,27 @@ class TripsController < ApplicationController
     end
   end
 
+  def daymapinfo
+    begin
+      @trip = Trip.find(params[:id])
+      @trip_details = @trip.trip_activities.where("activity_day = ?", params[:activity_day]).order('activity_sequence_number')
+      @current_activity = @trip_details.first.id
+      logger.info { "\n\ntripdetails...  #{@trip_details.inspect} #{@current_activity}"}
+    
+      @day_map_info = view_context.get_trip_map_info @trip_details, @current_activity
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+    
+    respond_to do |format|
+      format.html # mapinfo.html.erb
+      format.json { render json: @day_map_info  } 
+    end
+  end
+
+
   private
 
   def resolve_layout

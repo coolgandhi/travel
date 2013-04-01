@@ -41,6 +41,7 @@ Travel::Application.routes.draw do
   resources :trips do
     member do
       get 'showpartial'
+      get 'daymapinfo'
     end
     collection do
       get 'trips_admin'

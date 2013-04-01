@@ -234,7 +234,7 @@ class TripActivitiesController < ApplicationController
       @current_activity = params[:id]
       #logger.info { "\n\ntripdetails...  #{@trip_details.inspect}"}
     
-      @trip_map_info = get_trip_map_info @trip_details, @current_activity
+      @trip_map_info = view_context.get_trip_map_info @trip_details, @current_activity
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
