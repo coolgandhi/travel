@@ -20,8 +20,7 @@
         </div>
         -->
         <div class="input-append hero_days_append">
-          <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s}", s]}, params[:days]), :class => "results_day_field", :id => "results_day_field" %>
-          <span class="add-on">days</span>
+          <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, params[:days]), :class => "results_day_field", :id => "results_day_field" %>
         </div>  
         <%= submit_tag "New Search", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button', :id => "search_submit_button"  %>
       <% end %>

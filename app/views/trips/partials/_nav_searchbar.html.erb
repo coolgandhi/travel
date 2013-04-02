@@ -18,8 +18,7 @@
         </div>
       -->
       <div class="input-append day_form_input_append">
-        <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s}", s]}, "3"), :class => "results_day_field", :id => "results_day_field" %>
-        <span class="add-on">days</span>
+        <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, "3"), :class => "results_day_field", :id => "results_day_field" %>
       </div>
     </div>
   </div>
