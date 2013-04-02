@@ -1,56 +1,58 @@
+<% count=0 %>
+<% for i in 0..(@sorted_activities.length - 2) %> 
+  <% count+=1 %>
+  <% if @sorted_activities[i][:activityday] != @sorted_activities[i-1][:activityday] %>
+    <div class = "filmstrip_day_dividers">Day <%= @sorted_activities[i][:activityday] %></div>
+    <% count=1 %>
+  <% else %>
+  <% end %>
+  <li class="media <%=i == 0 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= i %>)">
 
-          <% for i  in 0..(@sorted_activities.length - 2) %>
-            <% if @sorted_activities[i][:activityday] != @sorted_activities[i-1][:activityday] %>
-              <div class = "filmstrip_day_dividers">Day <%= @sorted_activities[i][:activityday] %></div>
-            <% else %>
-            <% end %>
-            <li class="media <%=i == 0 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= i %>)">
+  <!-- thumb_wrapper div -->  
+  <div class="thumb_wrap"> 
+    <!-- image -->              
+    <div data-picture data-alt="<%=thumbnail_name(i)%>" data-class="thumb_image">
+      <div data-src="<%=show_thumbnail(i,100)%>" > </div>
+      <div data-src="<%=show_thumbnail(i,100)%>" data-media="(min-width: 480px)"></div>
+      <div data-src="<%=show_thumbnail(i, 300)%>" data-media="(min-width: 767px)"></div>
 
-            <!-- thumb_wrapper div -->  
-            <div class="thumb_wrap"> 
-              <!-- image -->              
-              <div data-picture data-alt="<%=thumbnail_name(i)%>" data-class="thumb_image">
-                <div data-src="<%=show_thumbnail(i,100)%>" > </div>
-                <div data-src="<%=show_thumbnail(i,100)%>" data-media="(min-width: 480px)"></div>
-                <div data-src="<%=show_thumbnail(i, 300)%>" data-media="(min-width: 767px)"></div>
+      <!--[if (lt IE 9) & (!IEMobile)]>
+      <div data-src="<%=show_thumbnail(i, 100)%>"></div>
+      <![endif]-->
+      
+      <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+      <noscript>
+          <img src="<%=show_thumbnail(i,100)%>" alt="<%=thumbnail_name(i)%>">
+      </noscript>
+    </div>
+      <!-- thumb_description div -->  
+      <div class="thumb_description">
+        <!-- description content --> 
+        <p class='description_content caption_small'><%= "#{count}.#{thumbnail_name(i)}"%></p>
+        <!-- end description content -->     
+      </div>
+      <!-- end description div -->
+    </div>
+    <!-- end wrapper div -->  
 
-                <!--[if (lt IE 9) & (!IEMobile)]>
-                <div data-src="<%=show_thumbnail(i, 100)%>"></div>
-                <![endif]-->
-                
-                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
-                <noscript>
-                    <img src="<%=show_thumbnail(i,100)%>" alt="<%=thumbnail_name(i)%>">
-                </noscript>
-              </div>
-                <!-- thumb_description div -->  
-                <div class="thumb_description">
-                  <!-- description content --> 
-                  <p class='description_content caption_small'><%=thumbnail_name(i)%></p>
-                  <!-- end description content -->     
-                </div>
-                <!-- end description div -->
-              </div>
-              <!-- end wrapper div -->  
+  </li>
+<% end %>
 
-            </li>
-          <% end %>
+<!-- About the Author Last Slide -->
+ <li class="media <%=@sorted_activities.length == 1 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= @sorted_activities.length == 1 ? (@sorted_activities.length - 1)  : @sorted_activities.length %>)">
+  <!-- thumb_wrapper div -->  
+  <div class="thumb_wrap thumb_author"> 
+    <!-- image -->              
+    <div class="icon-user"></div>
+      <!-- thumb_description div -->  
+      <div class="thumb_description">
+        <!-- description content --> 
+        <p class='description_content caption_small'>About the Author</p>
+        <!-- end description content -->     
+      </div>
+      <!-- end description div -->
+    </div>
+    <!-- end wrapper div -->  
 
-          <!-- About the Author Last Slide -->
-           <li class="media <%=@sorted_activities.length == 1 ? "selected" : "" %>" onclick="trips_namespace.gallery.goToPage(<%= @sorted_activities.length == 1 ? (@sorted_activities.length - 1)  : @sorted_activities.length %>)">
-            <!-- thumb_wrapper div -->  
-            <div class="thumb_wrap thumb_author"> 
-              <!-- image -->              
-              <div class="icon-user"></div>
-                <!-- thumb_description div -->  
-                <div class="thumb_description">
-                  <!-- description content --> 
-                  <p class='description_content caption_small'>About the Author</p>
-                  <!-- end description content -->     
-                </div>
-                <!-- end description div -->
-              </div>
-              <!-- end wrapper div -->  
-
-            </li>
-            <!--End About Author Last Slide --> 
+  </li>
+  <!--End About Author Last Slide --> 

@@ -243,7 +243,7 @@ class TripsController < ApplicationController
   def daymapinfo
     begin
       @trip = Trip.find(params[:id])
-      @trip_details = @trip.trip_activities.where("activity_day = ?", params[:activity_day]).order('activity_sequence_number')
+      @trip_details = @trip.trip_activities.where("activity_day = ?", params[:activity_day]).first.prev_activities_sequence_number
       @current_activity = @trip_details.first.id
       logger.info { "\n\ntripdetails...  #{@trip_details.inspect} #{@current_activity}"}
     
