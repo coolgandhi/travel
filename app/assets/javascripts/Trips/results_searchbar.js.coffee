@@ -15,7 +15,7 @@
   #Calling Multi-select
   trips_namespace.fireResultsTravelerTypeMultiSelect = ->
     $(".results_traveler_type_multiselect").multiselect(
-      noneSelectedText: 'Who else is with you?'
+      noneSelectedText: 'Who are you going with?'
       selectedList: 4
       classes : "results_traveler_type_multiselect"
       height: 'auto'
