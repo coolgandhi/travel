@@ -118,7 +118,7 @@ $colorBorderWeight: 6px solid;
   font-size: $baseFontSize;
   .form_centering{
   	position: relative;
-  	max-width: 800px;
+  	max-width: 720px;
   	margin: 0 auto;
     color: white;
     // background-color: rgba(0,0,0,.6);
@@ -126,7 +126,7 @@ $colorBorderWeight: 6px solid;
     @include border-radius($myDivBorderRadius);
     @include clearfix;  
     @include respond-to(portrait){
-      max-width: 500px;
+      max-width: 680px;
     }
   	.hero_form{
       // margin: 0 auto;
@@ -553,7 +553,10 @@ $resultThumbHeight: 60%;
   @extend .trip_result_thumbnail_li;
   @include box-sizing(border-box);
   .trip_result_thumbnail_div{
-    height: 280px;  
+    height: 280px; 
+    @include respond-to(portrait){
+      height: 350px;
+    } 
   }
   .result_thumb_wrap{
     height: 20%;
@@ -601,6 +604,10 @@ $resultThumbHeight: 60%;
   text-indent: em(5px);
   width: 58%;
   min-width: 130px;
+  @include respond-to(portrait){
+    min-width: 80px;
+    width: 50%;
+  }
 }
 
 #mc_embed_signup input.button{
@@ -614,6 +621,9 @@ $resultThumbHeight: 60%;
 
 .front_page_convo_wrapper{
   height: 280px;
+  @include respond-to(portrait){
+    height: 350px;
+  } 
   float: left;
   overflow: hidden;
   margin-bottom: 1%;
