@@ -21,7 +21,7 @@ set :user, "ec2-user" # for aws
 #set :password, "vagrant" # for vagrant
 
 #set :location, "192.168.33.10"  
-set :location, "ec2-54-245-132-108.us-west-2.compute.amazonaws.com"  # for aws
+set :location, "54.244.117.217"  # for aws
 
 set :rails_env, "production"
 set :branch, "master"
