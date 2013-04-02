@@ -219,8 +219,8 @@ $colorBorderWeight: 6px solid;
   @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
   @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%));
-  // margin-bottom: 1%;
-  margin-bottom: 0;
+  margin-bottom: 1%;
+  // margin-bottom: 0;
   padding: 1% 0;
   height: 30px;
 }
@@ -472,17 +472,34 @@ $resultThumbHeight: 60%;
   margin-left: 0.5%;
 }
 
+.filter_by_bar_tab{
+  border: $myDivBorderWidth solid $borderGray;
+  border-bottom: 0;
+  margin-bottom: -1px;
+  float: left;
+  position: relative;
+  z-index: 2;
+  background-color: $white;
+  padding: 0.5% 1%;
+  font-weight: bold;
+  @include border-radius($myDivBorderRadius $myDivBorderRadius 0 0);
+  @include clearfix;
+}
+
 .filter_by_bar{
+  float: left;
+  position: relative;
+  @include clearfix;
   width: 100%;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
   border-style: solid;
-  border-top: 0;
-  @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
+  // border-top: 0;
+  @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   background-color: #fafafa;//rgba(255, 255, 255, 0.7);
-  padding: 0.25% 1%;
-  margin: 0 0 1% 0;
+  padding: 0.5% 1%;
+  margin: 0% 0 2% 0;
   @include box-sizing(border-box);
   font-size: 1em;
   color: dimgrey;
@@ -494,7 +511,10 @@ $resultThumbHeight: 60%;
   border: 0;
   border-top: 1px solid $borderGray;
 }
-
+.filter_by_bar_fix{
+  position: relative;
+  z-index: 3; 
+}
 .location_filter_bar, .restaurant_filter_bar{
   padding: 0;
   margin: 0;

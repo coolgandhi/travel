@@ -21,11 +21,6 @@
       <%= render 'trips/partials/results_searchbar' %>
     </div>
 
-    <% if @trips or @trips_to_add %>
-      <div id="trips_landmark_container">
-        <%= render 'trips/partials/landmarks_filtering' %>
-      </div>
-    <% end %>
   </div>
 <% end %>
 
@@ -40,6 +35,12 @@
     </div>
   <% end %>  
       
+  <% if @trips or @trips_to_add %>
+    <div id="trips_landmark_container">
+      <%= render 'trips/partials/landmarks_filtering' %>
+    </div>
+  <% end %>
+
   <div id="trips_results_container">
     <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1")) %>
       <%= render 'trips' %>

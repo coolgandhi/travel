@@ -1,8 +1,10 @@
 <!--Begin Filter by Landmarks Div Bar -->
 <!--begin a. check if there is a trip_location_id param -->
 <% unless params["trip_location_id"].blank? %>
+  <div class = "filter_by_bar_tab">Find Trips Containing These Activities</div>
   <div class = "filter_by_bar">
     <!--begin b. check if there is @locations -->
+    <div class ="filter_by_bar_fix">
     <% if @locations.length > 0 %>
       <ul class="breadcrumb location_filter_bar">
         <li>Filter <i class="icon-picture"></i> <span class="divider">|</span></li>
@@ -84,6 +86,7 @@
     </ul>
   <% end %>
   <!-- end e. check if there is @restaurants -->
+  </div>
   </div>
 <% end %>
 <!--end a. check if there is a trip_location_id param -->
