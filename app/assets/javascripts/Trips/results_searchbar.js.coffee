@@ -3,13 +3,17 @@
   # passing values to hidden fields for results search bar
   trips_namespace.fireResultsPlaceDropdownField = -> 
     $('.results_place_dropdown_field').change ->
+      if $('select.results_place_dropdown_field option:selected').text() != "Where would you like to go?"
+        $("#search_submit_button").val("Start Searching")
+      else
+        $("#search_submit_button").val("Search Trips")
       $('.results_trip_location_id').val($('.results_place_dropdown_field').val())
       $('.results_hidden_place_field').val($('select.results_place_dropdown_field option:selected').text())
   
   #Calling Multi-select
   trips_namespace.fireResultsTravelerTypeMultiSelect = ->
     $(".results_traveler_type_multiselect").multiselect(
-      noneSelectedText: 'For what travel style?'
+      noneSelectedText: 'Who else is with you?'
       selectedList: 4
       classes : "results_traveler_type_multiselect"
       height: 'auto'
