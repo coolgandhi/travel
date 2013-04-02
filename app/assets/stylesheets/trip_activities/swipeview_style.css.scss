@@ -45,7 +45,7 @@
 #navswipe {
 	z-index:100;
 	@include border-radius($myDivBorderRadius);
-	margin-bottom: 6em;
+	// margin-bottom: 6em;
 	margin-top: 0.5em;
 	width: 100%;
 }

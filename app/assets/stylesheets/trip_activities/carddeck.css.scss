@@ -342,7 +342,7 @@ img.relative_image{
 #moreShowHideGroup{
   z-index: 6;
   position: absolute;
-  bottom: 2%;
+  top: 2%;
   right: 0%;
   height: 10px;
   min-width: 100%;
@@ -357,21 +357,139 @@ img.relative_image{
   }
 }
 
-#mapShow{
+#trip_overview_show{
+  // position: absolute;
+  // top: 2%;
+  // right: 2%;
+  float: left;
+  position: relative;
+  background: rgba(0,0,0,0.6) no-repeat center;
+  background-image: "icon-list";
+  width: 65px;
+  height: 50px;
+  border-radius: 10px 0 0 10px;
+  border: 2px solid $white;
+  border-right: 0;
+  text-align: center;
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  cursor:pointer;
+
+  i{
+    position:relative;
+    top: 0%;
+    left: -13%;
+    margin:0;
+  }
+  &:hover{
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    // border: 3px solid $gray;
+  }
+  &.active{
+    font-size: 35px;
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    border: 2px solid $gray;
+      &:hover{
+        color: $white;
+        background: rgba(0,0,0,0.6) no-repeat center;
+        border: 2px solid $white;
+      }
+  }
+}
+
+.show_mapoverview_group{
   position: absolute;
-  bottom: 2%;
-  right: 2%;
+  top: 2%;
+  right: 1%;
+}
+
+.show_button_text{
+  font-size: 12px;
+  line-height: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+
+#mapShow{
+  // position: absolute;
+  // top: 2%;
+  // right: 2%;
+  position: relative;
+  float: left;
   background: rgba(0,0,0,0.6) no-repeat center;
   background-image: "icon-globe";
-  width: 50px;
+  width: 65px;
   height: 50px;
+  border-radius: 0 10px 10px 0;
+  border: 2px solid $white;
+  text-align: center;
+  color: $white;
+  font-size: 25px;
+  text-align: center;
+  line-height: 40px;
+  cursor:pointer;
+
+  i{
+    position:relative;
+    top: 0%;
+    left: -13%;
+    margin:0;
+  }
+  &:hover{
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    // border: 3px solid $gray;
+  }
+  &.active{
+    font-size: 35px;
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    border: 2px solid $gray;
+      &:hover{
+        color: $white;
+        background: rgba(0,0,0,0.6) no-repeat center;
+        border: 2px solid $white;
+      }
+  }
+}
+
+#mapHideGroup{
+  z-index: 6;
+  position: absolute;
+  top: 0.5%;
+  right: 0.5%;
+  height: 10px;
+  min-width: 10%;
+  padding:5px;
+  @include respond-to(portrait){
+    z-index: 4;
+  }
+  @include respond-to(small){
+  z-index: 4;
+  }
+}
+
+
+#mapHide{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  background: rgba(0,0,0,0.6) no-repeat center;
+  background-image: "icon-remove";
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 3px solid $white;
   text-align: center;
   color: $white;
-  font-size: 35px;
+  font-size: 15px;
   text-align: center;
-  line-height: 50px;
+  line-height: 20px;
   cursor:pointer;
 
   i{
@@ -398,27 +516,10 @@ img.relative_image{
   }
 }
 
-#mapHideGroup{
-  z-index: 6;
+#overviewHide{
   position: absolute;
   top: 0.5%;
   right: 0.5%;
-  height: 10px;
-  min-width: 100%;
-  padding:5px;
-  @include respond-to(portrait){
-    z-index: 4;
-  }
-  @include respond-to(small){
-  z-index: 4;
-  }
-}
-
-
-#mapHide{
-  position: absolute;
-  top: 0%;
-  right: 0%;
   background: rgba(0,0,0,0.6) no-repeat center;
   background-image: "icon-remove";
   width: 20px;
@@ -769,9 +870,13 @@ div.rightcaption .ui-accordion-content {
 
 .map_overview_tabs{
   height: 8%;
+  background-color: $white;
   #map_tabs{
     margin-bottom: 0;
     margin-left: 1%;
+    .nav-tabs > .active > a, .nav-tabs > .active > a:hover{
+      font-weight: bold;
+    }
   }  
 }
 
@@ -939,7 +1044,7 @@ div.rightcaption .ui-accordion-content {
   background-color: rgba(255,255,255,0.9);
   @include border-radius($myDivBorderRadius);
   border-color: $borderGray;
-  z-index: 99;
+  z-index: 102;
   overflow: hidden;
 
   .modal-header{
@@ -954,12 +1059,12 @@ div.rightcaption .ui-accordion-content {
   }
   
   .modal-body{
-    max-height: 73%;
+    max-height: 85%;
     overflow: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     @include respond-to(portrait){
-      min-height: 78%;
+      min-height: 85%;
     }
 
   tr{

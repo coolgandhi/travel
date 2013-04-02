@@ -3,7 +3,9 @@
 <div id="trip_overview_modal" class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
   
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <!-- Begin Button Group -->  
+      <div id="overviewHide" class="icon-remove"></div>
+    <!-- End Button Group -->  
     <h3 id="myModalLabel" class="title"><%=@trip.trip_name%> - An Overview</h3>
   </div>
       
@@ -70,7 +72,7 @@
   </div>
   <!-- End Modal Body -->
   
-  <div class="modal-footer">
+<!--   <div class="modal-footer">
     <button class="btn-flat btn-flat-inverse" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div>
+  </div> -->
 </div>
