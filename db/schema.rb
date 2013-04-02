@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327220108) do
+ActiveRecord::Schema.define(:version => 20130401211618) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"

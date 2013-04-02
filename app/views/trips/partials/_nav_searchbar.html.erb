@@ -11,20 +11,22 @@
   
   <div class="control-group">
     <div class="controls">
-    <div class="input-prepend from_prepend">
-      <span class="add-on">from</span>  
-      <%= text_field_tag :from, params[:from], :class => "dropdown-from-datefield input-small", :id => "dropdown-from-datefield" %>
-    </div>
-    <div class="input-append day_form_input_append">
-      <%= text_field_tag :days, params[:days], :class => "input-mini dropdown-days-field", :placeholder=>"# of", :id => "dropdown-day-field", :value=>3 %>
-      <span class="add-on">days</span>
-    </div>
+      <!--
+        <div class="input-prepend from_prepend">
+          <span class="add-on">from</span>  
+          <%= text_field_tag :from, params[:from], :class => "dropdown-from-datefield input-small", :id => "dropdown-from-datefield" %>
+        </div>
+      -->
+      <div class="input-append day_form_input_append">
+        <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s}", s]}, "3"), :class => "results_day_field", :id => "results_day_field" %>
+        <span class="add-on">days</span>
+      </div>
     </div>
   </div>
   
   <div class="control-group button-control-group">
   <button type="button" class="btn-flat btn-flat-danger dropdown-close-button">Cancel</button>
-  <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary dropdown-search-button' %>
+  <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary dropdown-search-button', :id => "search_submit_button"  %>
   </div>
 <% end %>
 <div class = "small_error_msg"></div>

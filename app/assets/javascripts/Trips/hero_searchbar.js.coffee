@@ -3,13 +3,17 @@
   # passing values to hidden fields for hero search bar
   trips_namespace.firePlaceDropdownField = -> 
     $('.place_dropdown_field').change ->
+      if $('select.place_dropdown_field option:selected').text() != "Where would you like to go?"
+        $("#search_submit_button").val("Start Searching")
+      else
+        $("#search_submit_button").val("Search Trips")
       $('.hero_trip_location_id').val($('.place_dropdown_field').val())
       $('.hero-hidden-place-field').val($('select.place_dropdown_field option:selected').text())
   
   #Calling Multi-select
   trips_namespace.fireTravelerTypeMultiSelect = ->
     $(".traveler_type_multiselect").multiselect(
-      noneSelectedText: 'For what travel style?'
+      noneSelectedText: 'Who else is with you?'
       selectedList: 4
       classes : "traveler_type_multiselect"
       height: 'auto'
