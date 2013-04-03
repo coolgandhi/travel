@@ -66,10 +66,6 @@ module Travel
     # adding the path for fonts for the asset pipelin
     config.assets.paths << "../app/assets/fonts"
     
-    # attempt to fix bug: Missing template errors (google bot)
-    # http://stackoverflow.com/questions/5557010/missing-template-blogs-index-on-ruby-on-rails-project
-    config.action_dispatch.ignore_accept_header = true
-    
     config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
          r301 %r{^/(.*)/$}, '/$1'
         end

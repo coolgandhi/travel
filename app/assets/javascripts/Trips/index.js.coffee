@@ -76,7 +76,7 @@
         # alert $("#place_dropdown_field").val() + " " + $("#traveler_type_id").val() + " " + $("#from-datefield").val() + " " + $("#days").val()
         site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val().toString(), 3) if $("#place_dropdown_field").val() != null and $("#place_dropdown_field").val() != ""
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#traveler_type_id").val().toString(), 3) if $("#traveler_type_id").val() != null and $("#traveler_type_id").val() != ""
-        site_wide_namespace.setCustomVar(3, "start_date", $("#from-datefield").val().toString(), 3) if $("#from-datefield").val() != null and $("#from-datefield").val() != ""
+        # site_wide_namespace.setCustomVar(3, "start_date", $("#from-datefield").val().toString(), 3) if $("#from-datefield").val() != null and $("#from-datefield").val() != ""
         site_wide_namespace.setCustomVar(4, "number_of_days", $("#days").val().toString(), 3) if $("#days").val() != null and $("#days").val() != ""
         site_wide_namespace.trackEvent("search", "click", "big_box")
         #console.log ($("#place_dropdown_field").val())
@@ -85,7 +85,7 @@
         # alert $("#droptoggle_searchbar_id").val() + " " + $("#dropdown_traveler_type_id").val() + " " + $("#dropdown-from-datefield").val() + " " + $("#dropdown_day_field").val() 
         site_wide_namespace.setCustomVar(1, "place", $("#droptoggle_searchbar_id").val().toString(), 3) if $("#droptoggle_searchbar_id").val() != null and $("#droptoggle_searchbar_id").val() != "" 
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#dropdown_traveler_type_id").val().toString(), 3) if $("#dropdown_traveler_type_id").val() != null and $("#dropdown_traveler_type_id").val() != ""
-        site_wide_namespace.setCustomVar(3, "start_date", $("#dropdown-from-datefield").val().toString(), 3)  if $("#dropdown-from-datefield").val() != null and $("#dropdown-from-datefield").val() != ""
+        # site_wide_namespace.setCustomVar(3, "start_date", $("#dropdown-from-datefield").val().toString(), 3)  if $("#dropdown-from-datefield").val() != null and $("#dropdown-from-datefield").val() != ""
         site_wide_namespace.setCustomVar(4, "number_of_days", $("#dropdown-day-field").val().toString(), 3) if $("#dropdown-day-field").val() != null and $("#dropdown-day-field").val() != ""
         site_wide_namespace.trackEvent("search", "click", "small_box")
         return true
@@ -94,7 +94,7 @@
         #      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
         site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val().toString(), 3) if $("#place_dropdown_field").val() != null and $("#place_dropdown_field").val() != ""
         site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val().toString(), 3) if $("#results_traveler_type_id").val() != null and $("#results_traveler_type_id").val() != ""
-        site_wide_namespace.setCustomVar(3, "start_date", $("#from").val().toString(), 3) if $("#from").val() != null and $("#from").val() != ""
+      #  site_wide_namespace.setCustomVar(3, "start_date", $("#from").val().toString(), 3) if $("#from").val() != null and $("#from").val() != ""
         site_wide_namespace.setCustomVar(4, "number_of_days", $("#results_day_field").val().toString(), 3) if $("#results_day_field").val() != null and $("#results_day_field").val() != ""
         site_wide_namespace.trackEvent "search", "click", "results_search_box"
         return true
@@ -138,7 +138,7 @@
       #      #alert ($("#place_dropdown_field").val() + " " + $("#results_traveler_type_id").val() + " " + $("#from").val() + " " + $("#results_day_field").val());
       site_wide_namespace.setCustomVar(1, "place", $("#place_dropdown_field").val().toString(), 3) if $("#place_dropdown_field").val() != null and $("#place_dropdown_field").val() != ""
       site_wide_namespace.setCustomVar(2, "traveler_type", $("#results_traveler_type_id").val().toString(), 3) if $("#results_traveler_type_id").val() != null and $("#results_traveler_type_id").val() != ""
-      site_wide_namespace.setCustomVar(3, "start_date", $("#from").val().toString(), 3) if $("#from").val() != null and $("#from").val() != ""
+    #  site_wide_namespace.setCustomVar(3, "start_date", $("#from").val().toString(), 3) if $("#from").val() != null and $("#from").val() != ""
       site_wide_namespace.setCustomVar(4, "number_of_days", $("#results_day_field").val().toString(), 3) if $("#results_day_field").val() != null and $("#results_day_field").val() != ""
       site_wide_namespace.trackEvent "search", "click", "results_search_box"
       return true
