@@ -3,7 +3,7 @@
   <meta property="og:title" content=<%= (params[:place] == nil) ? "chalo.io": params[:place] %> />
   <meta property="og:type"  content="website" /> 
   <meta property="og:url"   content="<%= "#{request.url}" %>"/> 
-  <meta property="og:image" content="<%= "#{request.env['rack.url_scheme']}" + "://" + "#{request.host_with_port}" + asset_path("logos/chalo_right_alpha_black.png")  %>" /> 
+  <meta property="og:image" content="<%= "#{request.env['rack.url_scheme']}" + "://" + "#{request.host_with_port}" + asset_path("logos/fb_profile_chaloio_180x180.png")  %>" /> 
   <meta property="og:description" content="<%= "We make your travel planning easy. Check out trip summaries " + ((params[:place] == nil) ? "to your favorite destinations at chalo.io": ("to" + params[:place]) + " at chalo.io")  %>" />
   <meta property="og:site_name" content=<%= request.env["HTTP_HOST"] %> />
   <meta property="og:locale" content="en_US" />
