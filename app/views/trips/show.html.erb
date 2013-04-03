@@ -6,8 +6,7 @@
   <meta property="og:image" content="<%= select_image_given_image_urls(@trip.image_url, 100) %>" />
   <meta property="og:description" content="<%= @trip.trip_summary %>" />
   <meta property="og:site_name" content=<%= request.env["HTTP_HOST"] %>/>
-  <meta property="fb:admins" content="371948146237702" />
-  <meta property="fb:app_id" content="537855380,3406777"/>
+  <meta property="fb:app_id" content="371948146237702"/>
 <% end %>
 
 <%= render "sideswipe" %>
