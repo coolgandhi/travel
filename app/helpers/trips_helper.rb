@@ -110,7 +110,7 @@ module TripsHelper
 
   def traveler_type_badge_class(traveler)
     case traveler
-    when "Solo Traveller" then 
+    when "Solo" then 
       'solo-badge'
     when "Couple" then 
       'couples-badge'
