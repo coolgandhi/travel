@@ -162,7 +162,8 @@ $colorBorderWeight: 6px solid;
 .ui-multiselect.traveler_type_multiselect{
   margin-bottom: 0;
   height: 30px;
-  font-size: 13px;
+  font-size: 14px;
+  color: #555;
   @include respond-to(portrait){
     margin-bottom: 2%;
   }
