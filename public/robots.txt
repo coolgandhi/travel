@@ -4,5 +4,6 @@
 # User-Agent: *
 # Disallow: 
 User-Agent: *
+Disallow: /images/flags/*.png$
 Disallow: /images/flags/gr.png
 Disallow: /images/flags/ec.png
