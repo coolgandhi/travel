@@ -3,7 +3,9 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-Agent: *
 # Disallow: 
+
 User-Agent: *
 Disallow: /images/flags/*.png$
-Disallow: /images/flags/gr.png
-Disallow: /images/flags/ec.png
+
+# Disallow: /images/flags/gr.png
+# Disallow: /images/flags/ec.png
