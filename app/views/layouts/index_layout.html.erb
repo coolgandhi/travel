@@ -13,6 +13,9 @@
     <%= javascript_include_tag "index" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
+    <% if Rails.env.production? %>	
+      <%= render :partial => 'layouts/ga' %>
+    <% end %>
   </head>
   
   <body>
@@ -26,8 +29,6 @@
 
     <%= yield %>
  
-    <% if Rails.env.production? %>	
-      <%= render :partial => 'layouts/ga' %>
-    <% end %>
+
   </body>
 </html>
