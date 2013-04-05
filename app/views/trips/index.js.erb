@@ -24,7 +24,7 @@
   $('#trips_results_container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
   $('#trips_landmark_container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks_filtering")) %>').fadeIn('slow');
   $('.results_searchbar_container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');
-  $('#results_breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results_breadcrumbs")) %>').fadeIn('slow');
+  // $('#results_breadcrumbs').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/results_breadcrumbs")) %>').fadeIn('slow');
   // fire resize on the results thumbnails
   trips_namespace.fireResizeResultsPic();
   $(document).ready(function() {
