@@ -6,7 +6,7 @@
 </h3>
 
 <p class = "results_subtitle_params title_subtitle">  
-  <% unless params["traveler_type_id"].blank? %>
+  <% unless params["traveler_type_id"].blank? or @traveler_types.nil? %>
     for
     <% @traveler_types.each do |traveler_type| %>
       <%= traveler_type[:traveler_type_name] %><% unless @traveler_types.last == traveler_type %>, <% end %>
