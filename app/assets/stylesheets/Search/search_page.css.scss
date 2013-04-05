@@ -157,6 +157,7 @@ $colorBorderWeight: 6px solid;
   @include respond-to(portrait){
     margin-bottom: 2%;
   }
+
 }
 
 .ui-multiselect.traveler_type_multiselect{
@@ -186,6 +187,12 @@ $colorBorderWeight: 6px solid;
   position: relative;
   margin-right: 5px;
   margin-bottom: 0;
+  div.bootstrap-select{
+    margin-bottom: 0;
+    span.caret{
+      border-top-color:#888888;
+    }
+  }
 }
 
 .hero_from_prepend{
@@ -200,15 +207,25 @@ $colorBorderWeight: 6px solid;
   color: $black;
   margin-right: 5px;
   margin-bottom: 0;
-  select{
+  .bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"]{
     width: 100px;
-  }
+    margin-bottom: 0px;
+    span.caret{
+      border-top-color:#888888;
+    }
+  }  
+  // select{
+  //   width: 100px;
+  // }
 }
 
 .splash_submit_button{
   float: left;
 }
 
+#search_submit_button{
+  height: 30px;
+}
 /* Results Searchbar */
 
 .results_searchbar{

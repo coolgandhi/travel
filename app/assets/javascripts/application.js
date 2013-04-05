@@ -30,4 +30,6 @@
 //= require swipeview
 //= require jquery.multiselect
 //= require jquery.history
-//= require infobox
+//= require bootstrap-select
+
+

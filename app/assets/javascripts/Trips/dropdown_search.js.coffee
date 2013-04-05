@@ -1,7 +1,7 @@
 ((trips_namespace, $, undefined_) ->
   #Toggles the dropdown on 'focus' of search bar
   jQuery ->
-    $('.droptoggle_searchbar').focus ->
+    $('.droptoggle_searchbar').click ->
       $('.droptoggle_menu').show()
 
     $('.dropdown-close-button').click ->
