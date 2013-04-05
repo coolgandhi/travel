@@ -15,6 +15,9 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/apple_touch_icons' %>
     <%= yield(:head) %>
+    <% if Rails.env.production? %>	
+      <%= render :partial => 'layouts/ga' %>
+    <% end %>
   </head>
 
 
@@ -40,9 +43,5 @@
         <footer></footer>
       </div> <!--! end of .container -->
     </div> <!--! end of .page-wrap -->
-
-    <% if Rails.env.production? %>	
-      <%= render :partial => 'layouts/ga' %>
-    <% end %>
   </body>
 </html>
