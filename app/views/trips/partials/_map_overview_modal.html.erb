@@ -27,7 +27,7 @@
 
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
-              <% for i in 6..n %>
+              <% for i in 7..n %>
               <li><a href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>
