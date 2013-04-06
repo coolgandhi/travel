@@ -50,7 +50,7 @@
   #         addpolyline(data, mapcontainer)
   #         return             
   jQuery ->
-    $("#map_tabs a").click (e) ->
+    $("#map_tabs a.daymapinfo").click (e) ->
       e.preventDefault()
       # $(this).tab('show')
       # console.log($(this).data('day') + "hello")
