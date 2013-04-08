@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401211618) do
+ActiveRecord::Schema.define(:version => 20130406004940) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -45,16 +45,26 @@ ActiveRecord::Schema.define(:version => 20130401211618) do
     t.string   "country"
     t.string   "postal_code"
     t.string   "phone"
-    t.string   "email"
+    t.string   "email",                  :default => "", :null => false
     t.string   "website"
     t.string   "twitter_handle"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "state"
     t.string   "about"
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true
+  add_index "author_infos", ["reset_password_token"], :name => "index_author_infos_on_reset_password_token", :unique => true
 
   create_table "food_activities", :force => true do |t|
     t.string   "activity_id"

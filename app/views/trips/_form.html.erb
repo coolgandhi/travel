@@ -27,7 +27,7 @@
       </div>
       <div class = "field">
         <%= a.label :email, 'Author Email' %>:
-        <%= a.text_field :email %>
+        <%= a.text_field :email, :value => current_author_info.email %>
       </div>
       <div class = "field">
         <%= a.label :twitter_handle, 'Twitter Handle' %>:

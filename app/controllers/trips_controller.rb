@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   include TripsHelper
   before_filter :authorize, :except => [:index, :show, :showpartial, :daymapinfo]
+  before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo]
   layout :resolve_layout
   # GET /trips
   # GET /trips.json

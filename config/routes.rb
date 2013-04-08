@@ -1,5 +1,7 @@
 Travel::Application.routes.draw do
   
+  devise_for :author_infos
+
   get "login" => "sessions#new"
   get "logout" => "sessions#del"
   match "sessions" => "sessions#create", :via => :post

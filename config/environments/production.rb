@@ -75,4 +75,7 @@ Travel::Application.configure do
       :port => 587,
       :authentication => :plain
     }
+    
+    # Url used by devise  
+    config.action_mailer.default_url_options = { :host => 'chalo.io' }
 end

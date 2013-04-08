@@ -1,37 +1,48 @@
 <header class="navbar navbar-fixed-top">
   <nav class="navbar-inner">
     <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <%=link_to root_url, :class => "navigation_logo" do %>
-            <%= image_tag("logos/chalo_right_alpha_96x35.png") %>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%=link_to root_url, :class => "navigation_logo" do %>
+        <%= image_tag("logos/chalo_right_alpha_96x35.png") %>
+      <% end %>
+      <%# link_to 'Chalo', root_url, :class=>"brand", :id =>"homepagelink"%>
+
+      <!-- The drop down menu -->
+      <% unless @trip.nil? %>
+        <ul class="nav pull-left">
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+              <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar selectpicker" %>
+
+            <div class="dropdown-menu droptoggle_menu">
+              <!-- Login form here -->
+              <%= render 'trips/partials/nav_searchbar' %>
+            </div>
+
+          </li>
+        </ul>
+      <% end %>
+      <!-- End drop down menu -->
+      <ul class="nav pull-center">
+        </ul>
+
+      <div class="nav-collapse collapse">
+        <ul class="nav pull-right">
+          <% if author_info_signed_in? %>
+           <li> Hi <%= current_author_info.email %> </li>
+           <li> <%= link_to 'Edit profile', edit_author_info_registration_path %> </li>
+           <li> <%= link_to "Logout", destroy_author_info_session_path, method: :delete %> </li>
+          <% else %>
+           <li> <%= link_to "Sign up", new_author_info_registration_path %> </li>
+           <li> <%= link_to "Login", new_author_info_session_path %> </li>
           <% end %>
-          <%# link_to 'Chalo', root_url, :class=>"brand", :id =>"homepagelink"%>
-
-          <!-- The drop down menu -->
-          <% unless @trip.nil? %>
-            <ul class="nav pull-left">
-              <li class="divider-vertical"></li>
-              <li class="dropdown">
-                  <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar selectpicker" %>
-
-                <div class="dropdown-menu droptoggle_menu">
-                  <!-- Login form here -->
-                  <%= render 'trips/partials/nav_searchbar' %>
-                </div>
-
-              </li>
-            </ul>
-          <% end %>
-          <!-- End drop down menu -->
-
-          <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <li><%=link_to "About", about_path %></li>
-            </ul>
+          <li><%=link_to "About", about_path %></li>
+        </ul>
+      </div>
     </div>
   </nav>
   <%= image_tag("/assets/spinners/ajax_loader_header.gif", :class => "swipe_loading_indicator_header") %>
