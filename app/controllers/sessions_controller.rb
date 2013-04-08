@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    logger.info "#{params[:password]}"
+    #logger.info "#{params[:password]}"
     session[:password] = params[:password]
     flash[:notice] = "Successfully logged in"
     redirect_to root_path

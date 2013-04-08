@@ -25,6 +25,7 @@ gem 'acts_as_list', '~> 0.2.0'
 gem 'rack-rewrite', '~> 1.0.0'
 gem 'rails_autolink'
 gem 'devise'
+gem 'omniauth-facebook'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
