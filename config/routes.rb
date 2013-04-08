@@ -1,6 +1,6 @@
 Travel::Application.routes.draw do
   
-  devise_for :author_infos
+  devise_for :author_infos, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
   get "login" => "sessions#new"
   get "logout" => "sessions#del"
