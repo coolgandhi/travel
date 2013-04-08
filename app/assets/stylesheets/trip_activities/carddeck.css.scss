@@ -412,6 +412,7 @@ img.relative_image{
   line-height: 0;
   margin: 0;
   font-weight: bold;
+  font-family: $sansFontFamily;
 }
 
 
@@ -869,7 +870,7 @@ div.rightcaption .ui-accordion-content {
 }
 
 .map_overview_tabs{
-  height: 8%;
+  height: 15%;
   background-color: $white;
   #map_tabs{
     margin-bottom: 0;
@@ -881,11 +882,11 @@ div.rightcaption .ui-accordion-content {
 }
 
 .modal_map{
- height: 92%;
+ height: 85%;
  width: 100%;
  position: absolute;
  left:0;
- top:8%;
+ top:15%;
  img{max-width:none}
 }
 

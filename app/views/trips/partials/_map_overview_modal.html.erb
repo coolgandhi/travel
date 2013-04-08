@@ -15,10 +15,10 @@
       <ul class="nav nav-tabs" id="map_tabs">
         <% n = @trip.duration.to_i > 6 ? 6 : @trip.duration.to_i %>
         <% for i in 1..n %>
-          <li><a href=<%= "#map_day_#{i}" %> data-day="<%= i %>"><%= "Day #{i}" %></a></li>
+          <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>"><%= "Day #{i}" %></a></li>
         <% end %>
 
-        <% unless @trip.duration.to_i < 6 %>
+        <% unless @trip.duration.to_i < 7 %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               More Days
@@ -27,8 +27,8 @@
 
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
-              <% for i in 6..n %>
-              <li><a href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
+              <% for i in 7..n %>
+              <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>
           </li>
