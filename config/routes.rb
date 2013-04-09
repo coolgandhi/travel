@@ -47,6 +47,7 @@ Travel::Application.routes.draw do
     end
     collection do
       get 'trips_admin'
+      get 'publish_trip'
       post 'edit_individual'
       put 'update_individual'
     end
