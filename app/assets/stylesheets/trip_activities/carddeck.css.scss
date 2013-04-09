@@ -49,7 +49,7 @@ $lastrowheight: 10%;
 
   @include box-sizing(border-box);
   padding: 1%;
-  overflow: hidden;
+  // overflow: hidden;
   background-color: rgba(255,255,255,0.3);
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -87,7 +87,7 @@ $lastrowheight: 10%;
   position: absolute;
   right: 1%;
   bottom: 5%;
-  overflow: hidden;
+  // overflow: hidden;
 
   @include respond-to(small){
   font-size: .75em;
