@@ -870,7 +870,7 @@ div.rightcaption .ui-accordion-content {
 }
 
 .map_overview_tabs{
-  height: 15%;
+  height: 40px;
   background-color: $white;
   #map_tabs{
     margin-bottom: 0;
@@ -882,11 +882,11 @@ div.rightcaption .ui-accordion-content {
 }
 
 .modal_map{
- height: 85%;
+ height: 100%;
  width: 100%;
  position: absolute;
  left:0;
- top:15%;
+ top:40px;
  img{max-width:none}
 }
 
