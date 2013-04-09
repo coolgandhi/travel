@@ -78,4 +78,13 @@ Travel::Application.configure do
     
     # Url used by devise  
     config.action_mailer.default_url_options = { :host => 'chalo.io' }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.live.com",
+      :port                 => 587,
+      :domain               => 'chalo.io',
+      :user_name            => 'social@chalo.io',
+      :password             => 'every1ne',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true  }
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406004940) do
+ActiveRecord::Schema.define(:version => 20130408235141) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20130406004940) do
   create_table "author_infos", :force => true do |t|
     t.string   "author_id"
     t.string   "author_name"
-    t.string   "bithday"
     t.string   "address1"
     t.string   "address2"
     t.string   "address3"
@@ -61,6 +60,10 @@ ActiveRecord::Schema.define(:version => 20130406004940) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "provider"
+    t.string   "uid"
+    t.date     "birthday"
+    t.datetime "password_expire_at"
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true

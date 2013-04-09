@@ -79,6 +79,7 @@ GEM
     hashie (1.2.0)
     highline (1.6.15)
     hike (1.2.1)
+    httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.2.1)
@@ -88,6 +89,8 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     libv8 (3.11.8.12)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -104,6 +107,20 @@ GEM
     net-ssh (2.6.5)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -199,6 +216,7 @@ DEPENDENCIES
   json
   libv8 (= 3.11.8.12)
   mysql2
+  omniauth-facebook
   rack (~> 1.4.0)
   rack-mini-profiler
   rack-rewrite (~> 1.0.0)
