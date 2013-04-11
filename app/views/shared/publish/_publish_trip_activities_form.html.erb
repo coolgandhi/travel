@@ -14,6 +14,7 @@ TO INSERT FORM HERE for a TRIP_ACTIVITY BUT NEED TO ASSOCIATE TO A @trip
   <div class = "rightcaption">
     <input type="text" placeholder="Must See?">
 
+    <!--specifying the url allows for specifying which action in the trip_activities controller to hit -->
     <%= form_for([@trip, @trip_activity], :url => { :action => :create }, :remote => true ) do |f| %>
 
       <%= hidden_field_tag :trip_activity_latlong, @latlong %>
