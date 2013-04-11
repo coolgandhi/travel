@@ -264,6 +264,7 @@ class TripsController < ApplicationController
   # GET /trips/publish_trip
   def publish_trip
     @trip = Trip.new
+    @trip_activity = @trip.trip_activities.new
     @author_info = AuthorInfo.new
     @location_val = ""
     respond_to do |format|
