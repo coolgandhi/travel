@@ -18,7 +18,7 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'compass-rails'
 gem 'will_paginate', '~> 3.0'
-gem 'resque'
+gem 'resque', :require => "resque/server"
 gem 'exception_notification'
 gem 'rack-mini-profiler'
 gem 'acts_as_list', '~> 0.2.0'
@@ -26,6 +26,11 @@ gem 'rack-rewrite', '~> 1.0.0'
 gem 'rails_autolink'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'carrierwave'
+gem "mini_magick"
+gem 'carrierwave_backgrounder'
+gem 'fog'
+gem "resque_exception_notification"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

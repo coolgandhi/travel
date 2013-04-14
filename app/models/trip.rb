@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score
+  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image
   has_many :trip_comments, :dependent => :destroy
   has_many :trip_activities, :dependent => :destroy
   has_one  :trip_stat, :dependent => :destroy
@@ -10,6 +10,9 @@ class Trip < ActiveRecord::Base
   belongs_to :traveler_type, :primary_key => :traveler_type_id
   belongs_to :author_info, :foreign_key => :author_id
 
+  mount_uploader :self_image, ImageUploader
+  store_in_background :self_image
+  
   validates :author_id, :presence => { :message => "" }
   validates :location_id, :presence => { :message => "choose a location" }
   validates :trip_name, :presence => { :message => "enter trip name" }, :length => { :minimum => 2, :maximum => 40, :too_short => "trip name must have at least %{count} characters in the trip name", :too_long  => "trip name can have at most %{count} characters" }

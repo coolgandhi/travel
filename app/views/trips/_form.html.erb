@@ -1,6 +1,6 @@
 <div class = "overflow_form">
 
-  <%= form_for(@trip) do |f| %>
+  <%= form_for(@trip, :html => {:multipart => true}) do |f| %>
   
     <% if @trip.errors.any? or @author_info.errors.any? %>
       <div id="error_explanation">
@@ -82,16 +82,19 @@
     </div>
 
 
-      <div class="field">
-          <%= f.label :duration, 'Length of trip' %>: <%= f.text_field :duration %>
-      </div>  
-    
-    
-      <div class="field">
-          <%= f.label :trip_summary, 'Summary of the trip ' %>:<br/> <%= f.text_area :trip_summary, :rows => "4" %>
-      </div>
-
+    <div class="field">
+        <%= f.label :duration, 'Length of trip' %>: <%= f.text_field :duration %>
+    </div>  
   
+  
+    <div class="field">
+        <%= f.label :trip_summary, 'Summary of the trip ' %>:<br/> <%= f.text_area :trip_summary, :rows => "4" %>
+    </div>
+    <br/>
+    <div class="field">
+        Images <%= f.file_field :self_image %>
+    </div>
+    <br/>    
     <div class="actions">
       <%= f.submit  :id => "trip_form_submit" %>
     </div>

@@ -218,7 +218,7 @@ Devise.setup do |config|
     config.omniauth :facebook, CONFIG[:FB_APP_ID], CONFIG[:FB_APP_SECRET], :scope => 'email,user_birthday', :display => 'popup' 
   else
     config.omniauth :facebook, CONFIG[:FB_APP_ID_TEST], CONFIG[:FB_APP_SECRET_TEST], :scope => 'email,user_birthday'
-    end
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
