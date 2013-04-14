@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412070730) do
+ActiveRecord::Schema.define(:version => 20130413151417) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(:version => 20130412070730) do
     t.boolean  "featured_trip_flag"
     t.integer  "rank_score",         :limit => 8
     t.text     "self_image"
+    t.text     "self_image_tmp"
   end
 
 end

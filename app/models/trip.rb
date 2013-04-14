@@ -11,7 +11,7 @@ class Trip < ActiveRecord::Base
   belongs_to :author_info, :foreign_key => :author_id
 
   mount_uploader :self_image, ImageUploader
-  process_in_background :self_image
+  store_in_background :self_image
   
   validates :author_id, :presence => { :message => "" }
   validates :location_id, :presence => { :message => "choose a location" }
