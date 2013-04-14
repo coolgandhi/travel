@@ -1,0 +1,79 @@
+<!-- Begin Trip Activities Ordering Container -->
+<div class="publish_trip_activities_ordering_container">
+
+To show only after an instance of @trip is created. Default show 1 Day and add day button.
+Also add activity button here.
+
+<ul class="nav nav-tabs">
+  <li class ="active"><a href="#home" data-toggle="tab">Day 1</a></li>
+  <li><a href="#profile" data-toggle="tab">Day 2</a></li>
+  <li><a href="#messages" data-toggle="tab">Day 3</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class = "publish_form_activities_list">
+    <div class = "publish_form_time">
+      Morning
+    </div>
+    
+    <div class = "publish_form_activity_item">
+    Activity 1</br>
+    Category
+    </div>
+
+    <div class = "publish_form_time">
+      Afternoon
+    </div>
+
+    <div class = "publish_form_activity_item">
+    Activity 2</br>
+    Category
+    </div>
+
+    <div class = "publish_form_time">
+      Evening
+    </div>
+
+    <div class = "publish_form_activity_item">
+    Activity 3</br>
+    Category
+    </div>
+
+
+  </div>
+</div>
+<!--commenting out this block -->
+<% if false %>
+
+<div class = "map_overview_tabs">
+  <ul class="nav nav-tabs" id="map_tabs">
+    <% n = @trip.duration.to_i > 6 ? 6 : @trip.duration.to_i %>
+    <% for i in 1..n %>
+      <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>"><%= "Day #{i}" %></a></li>
+    <% end %>
+
+    <% unless @trip.duration.to_i < 7 %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          More Days
+          <b class="caret"></b>
+        </a>
+
+        <ul class="dropdown-menu">
+          <% n = @trip.duration.to_i %>
+          <% for i in 7..n %>
+          <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="tab-content">
+</div>
+<% end %> 
+
+</div>
+<!-- End Trip Activities Ordering Container -->
