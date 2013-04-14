@@ -12,18 +12,33 @@
   <div class="thumb_wrap"> 
     <!-- image -->              
     <div data-picture data-alt="<%=thumbnail_name(i)%>" data-class="thumb_image">
-      <div data-src="<%=show_thumbnail(i,100)%>" > </div>
-      <div data-src="<%=show_thumbnail(i,100)%>" data-media="(min-width: 480px)"></div>
-      <div data-src="<%=show_thumbnail(i, 300)%>" data-media="(min-width: 767px)"></div>
+      <% if @sorted_activities[i][:is_self_image] == true %>
+        <div data-src="<%=@sorted_activities[i][:passport_image_url]%>" > </div>
+        <div data-src="<%=@sorted_activities[i][:passport_image_url]%>" data-media="(min-width: 480px)"></div>
+        <div data-src="<%=@sorted_activities[i][:thumb_image_url]%>" data-media="(min-width: 767px)"></div>
 
-      <!--[if (lt IE 9) & (!IEMobile)]>
-      <div data-src="<%=show_thumbnail(i, 100)%>"></div>
-      <![endif]-->
+        <!--[if (lt IE 9) & (!IEMobile)]>
+        <div data-src="<%=@sorted_activities[i][:thumb_image_url]%>"></div>
+        <![endif]-->
+    
+        <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+        <noscript>
+            <img src="<%=@sorted_activities[i][:thumb_image_url]%>" alt="<%=thumbnail_name(i)%>">
+        </noscript>      
+      <% else %>
+        <div data-src="<%=show_thumbnail(i,100)%>" > </div>
+        <div data-src="<%=show_thumbnail(i,100)%>" data-media="(min-width: 480px)"></div>
+        <div data-src="<%=show_thumbnail(i, 300)%>" data-media="(min-width: 767px)"></div>
+
+        <!--[if (lt IE 9) & (!IEMobile)]>
+        <div data-src="<%=show_thumbnail(i, 100)%>"></div>
+        <![endif]-->
       
-      <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
-      <noscript>
-          <img src="<%=show_thumbnail(i,100)%>" alt="<%=thumbnail_name(i)%>">
-      </noscript>
+        <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+        <noscript>
+            <img src="<%=show_thumbnail(i,100)%>" alt="<%=thumbnail_name(i)%>">
+        </noscript>
+      <% end %>
     </div>
       <!-- thumb_description div -->  
       <div class="thumb_description">

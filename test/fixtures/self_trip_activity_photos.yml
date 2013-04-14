@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  self_photo: MyText
+  self_photo_tmp: MyText
+  activity_id: MyString
+
+two:
+  self_photo: MyText
+  self_photo_tmp: MyText
+  activity_id: MyString

@@ -116,7 +116,8 @@ class TripActivitiesController < ApplicationController
             @activity.location_detail = @activity_detail
           end
         end   
-      
+        
+        
         if @activity_detail == nil or @activity_detail.errors.any?
           if @activity_detail.nil?
           else
@@ -134,14 +135,28 @@ class TripActivitiesController < ApplicationController
             :activity_day => params[:trip_activity][:activity_day], \
             :activity_sequence_number => params[:trip_activity][:activity_sequence_number], \
             :activity_time_type => params[:trip_activity][:activity_time_type])
-            if @trip_activity.save
-              format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
-              format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+            if params[:self_trip_activity_photos] != nil
+             @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
+             logger.info  "photo info #{@photo.inspect}"
+             if @photo.save
+               format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
+               format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+             else
+               @activity.destroy # clean up
+               @latlong = find_location_latlong @trip
+               format.html { render action: "new", notice: @photo.errors.full_messages.to_sentence  }
+               format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+             end
             else
-              @activity.destroy # clean up
-              @latlong = find_location_latlong @trip
-              format.html { render action: "new", notice: @trip_activity.errors.full_messages.to_sentence  }
-              format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+              if @trip_activity.save
+                format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
+                format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+              else
+                @activity.destroy # clean up
+                @latlong = find_location_latlong @trip
+                format.html { render action: "new", notice: @trip_activity.errors.full_messages.to_sentence  }
+                format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+              end
             end
           end
         end

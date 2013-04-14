@@ -1,6 +1,6 @@
 <div class = "overflow_form">
 
-<%= form_for([@trip, @trip_activity]) do |f| %>
+<%= form_for([@trip, @trip_activity], :html => {:multipart => true}) do |f| %>
   <% if ((@trip_activity and @trip_activity.errors.any?) or (@activity and @activity.errors.any?)) %>
     <div id="error_explanation">
       <h2><%#= pluralize(@trip_activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
@@ -110,6 +110,11 @@
           <%= fa.collection_select :transport_type_id, TransportType.all, :transport_type_id, :transport_name %>
       </div>
     <% end %> <br/> <br/>
+  <% end %>
+  
+  <%= fields_for @trip_activity.self_trip_activity_photos.new do |trip_image| %>
+    <%= trip_image.label :self_photo, "Upload Activity Image:" %>
+    <%= trip_image.file_field :self_photo, name: "self_trip_activity_photos[self_photo]" %>
   <% end %>
   
   <div class="actions">

@@ -3,6 +3,9 @@ class TripActivity < ActiveRecord::Base
   belongs_to :trip
   belongs_to :activity,  :polymorphic => true
   belongs_to :activity_time_types, :primary_key => :activity_time_type_id
+  has_many :self_trip_activity_photos, :primary_key => :id, :dependent => :destroy 
+  accepts_nested_attributes_for :self_trip_activity_photos 
+  
   attr_accessible :activity, :trip_id, :activity_day, :activity_id, :activity_sequence_number, :activity_time_type, :activity_type
 
   validates :activity, :presence => { :message => "" } 

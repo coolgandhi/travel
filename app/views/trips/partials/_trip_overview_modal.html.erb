@@ -57,7 +57,12 @@
         <% end %>
         <tr onclick="trips_namespace.gallery.goToPage(<%= i %>); $('#trip_overview_modal').modal('hide')">
           <td class = "thumbnail_td">
-            <%= image_tag(select_activity_img(-1, @sorted_activities[i][:image_url], 50), :alt => @sorted_activities[i][:activity_venue_name]) %>
+            <% if @sorted_activities[i][:is_self_image] %>
+              <% image_url = @sorted_activities[i][:thumb_image_url] %>
+            <% else %>
+              <% image_url = select_activity_img(-1, @sorted_activities[i][:image_url], 50)  %>
+            <% end %>
+            <%= image_tag(image_url, :alt => @sorted_activities[i][:activity_venue_name]) %>
           </td>
           <td>
             <%= @sorted_activities[i][:activity_venue_name] %> (<%=@sorted_activities[i][:category] %>) 

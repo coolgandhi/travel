@@ -9,11 +9,14 @@ module TripsHelper
     
     mapped_activities = Array.new
     trip_activities.each {|trip_activity| 
+        is_self_image = false
         image_url = ""
         activity_venue_name = ""
         lay_out = ""
         category = ""
         duration = ""
+        passport_image_url = ""
+        thumb_image_url = ""
         activity = nil
         case trip_activity.activity_type 
             when "FoodActivity" then 
@@ -45,7 +48,15 @@ module TripsHelper
               lay_out= "transportactivitypartial"
         end
       
-        if activity.image_urls and activity.image_urls != "" 
+        if (trip_activity.self_trip_activity_photos != nil)
+          self_image = trip_activity.self_trip_activity_photos.first
+          if self_image != nil
+            is_self_image = true
+            image_url = self_image.self_photo
+            passport_image_url = self_image.self_photo_url(:passport)
+            thumb_image_url = self_image.self_photo_url(:thumb)
+          end
+        elsif activity.image_urls and activity.image_urls != "" 
           image_url = activity.image_urls # select image from the activity if chosen by the author
         end
         
@@ -65,6 +76,9 @@ module TripsHelper
             :timetype => trip_activity.activity_time_type,
             :category => category,
             :image_url => image_url,
+            :passport_image_url => passport_image_url,
+            :thumb_image_url => thumb_image_url,
+            :is_self_image => is_self_image,
             :activity_venue_name => activity_venue_name,
             :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial", 
             :layout => lay_out   

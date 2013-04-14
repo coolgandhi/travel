@@ -17,7 +17,6 @@
       <% self_image = (trip.self_image == "" or trip.self_image == nil) ? "" : trip.self_image_url(:thumb) %>
       <% other_image = select_image_given_image_urls(trip.image_url, 600) %>
       <% final_image = (self_image != "" and self_image != nil) ? self_image : other_image %>
-      <% Rails.logger.info " #{self_image} oo #{other_image} opp #{final_image}"%>
       <%= image_tag(final_image, {:class => "image_link_thumbnail"}) %>
     <% end %>
     </div>
