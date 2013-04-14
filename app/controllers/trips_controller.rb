@@ -261,6 +261,17 @@ class TripsController < ApplicationController
     end
   end
 
+  # GET /trips/publish_trip
+  def publish_trip
+    @trip = Trip.new
+    @trip_activity = @trip.trip_activities.new
+    @author_info = AuthorInfo.new
+    @location_val = ""
+    respond_to do |format|
+      format.html # publish_trip.html.erb
+    end
+  end
+
 
   private
 
@@ -268,7 +279,7 @@ class TripsController < ApplicationController
     case action_name
     when "show"
       "showtriplayout"
-    when "index"
+    when "index", "publish_trip"
       "index_layout"
     else
       "application"
