@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery.ui.datepicker
+//= require jquery-fileupload/basic
 //= require Sitewide/analytics_apis.js
 //= require Sitewide/preload.js
 //= require Sitewide/venue_details.js

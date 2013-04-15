@@ -6,6 +6,5 @@
 
 <%= form_for @trip_activity.self_trip_activity_photos.new, :method => :post,   :url => { :action => "add_new_photo" }  do |trip_image| %>
   <%= trip_image.label :self_photo, "Upload Activity Image:" %>
-  <%= trip_image.file_field :self_photo, multiple: true, name: "self_trip_activity_photos[self_photo]" %>
-  <br/><%= trip_image.submit %>
+  <%= trip_image.file_field :self_photo, multiple: true, name: "self_trip_activity_photos[self_photo]", id: "fileupload" %>
 <% end %>

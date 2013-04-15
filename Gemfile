@@ -30,7 +30,8 @@ gem 'carrierwave'
 gem "mini_magick"
 gem 'carrierwave_backgrounder'
 gem 'fog'
-gem "resque_exception_notification"
+gem 'resque_exception_notification'
+gem 'jquery-fileupload-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

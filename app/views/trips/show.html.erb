@@ -3,7 +3,10 @@
   <meta property="og:title" content="chalo.io: <%= @trip.trip_name %>" />
   <meta property="og:type"  content="website" /> 
   <meta property="og:url"   content="<%= "#{request.url}" %>"/>  
-  <meta property="og:image" content="<%= select_image_given_image_urls(@trip.image_url, 100) %>" />
+  <% self_image = (@trip.self_image == "" or @trip.self_image == nil) ? "" : @trip.self_image_url(:passport) %>
+  <% other_image = select_image_given_image_urls(@trip.image_url, 100) %>
+  <% final_image = (self_image != "" and self_image != nil) ? self_image : other_image %>
+  <meta property="og:image" content="<%= final_image %>" />
   <meta property="og:description" content="<%= @trip.trip_summary %>" />
   <meta property="og:site_name" content=<%= request.env["HTTP_HOST"] %>/>
   <meta property="fb:app_id" content="371948146237702"/>
