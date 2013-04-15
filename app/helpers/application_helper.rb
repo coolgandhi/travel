@@ -118,16 +118,40 @@ module ApplicationHelper
       return nil
     end
     @venue_tips = FoursquareInteraction.venue_tips(venue_id)
+    
+    Rails.logger.info "venue: #{@venue.inspect} \n"
+    Rails.logger.info "venue tips: #{@venue_tips.inspect} \n"
+        
     @venue_photos = FoursquareInteraction.venue_photos(venue_id)
     tag = get_tag_from_venue(@venue)
     photos = get_photos_from_venue_photos(@venue_photos)
     open_hours = get_open_hours_from_venue(@venue)
     
     @activity_detail = update == 0 ? RestaurantDetail.new : RestaurantDetail.find_by_restaurant_detail_id(@venue[:id])
-    
     category = get_categories_from_venue(@venue)
     
-    @activity_detail.attributes = { :restaurant_detail_id => @venue[:id], :address1 => empty_string_if_value_nil(@venue[:location][:address]), :city => empty_string_if_value_nil(@venue[:location][:city]), :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), :country => empty_string_if_value_nil(@venue[:location][:country]), :state => empty_string_if_value_nil(@venue[:location][:state]), :latitude => empty_string_if_value_nil(@venue[:location][:lat].to_s), :longitude => empty_string_if_value_nil(@venue[:location][:lng].to_s), :phone => empty_string_if_value_nil(@venue[:contact][:formattedPhone]), :zip => empty_string_if_value_nil(@venue[:location][:postalCode]), :name => empty_string_if_value_nil(@venue[:name]), :website => empty_string_if_value_nil(@venue[:url]), :category => category, :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
+    @activity_detail.attributes = { 
+      :restaurant_detail_id => @venue[:id], 
+      :address1 => empty_string_if_value_nil(@venue[:location][:address]), 
+      :city => empty_string_if_value_nil(@venue[:location][:city]), 
+      :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), 
+      :country => empty_string_if_value_nil(@venue[:location][:country]), 
+      :state => empty_string_if_value_nil(@venue[:location][:state]), 
+      :latitude => empty_string_if_value_nil(@venue[:location][:lat].to_s), 
+      :longitude => empty_string_if_value_nil(@venue[:location][:lng].to_s), 
+      :phone => empty_string_if_value_nil(@venue[:contact][:formattedPhone]), 
+      :zip => empty_string_if_value_nil(@venue[:location][:postalCode]), 
+      :name => empty_string_if_value_nil(@venue[:name]), 
+      :website => empty_string_if_value_nil(@venue[:url]), 
+      :category => category, 
+      :description => tag, 
+      :open_hours => open_hours, 
+      :image_urls => photos, 
+      :location_id => location_id,
+      :rating => empty_string_if_value_nil(@venue[:rating]),
+      :twitter => empty_string_if_value_nil(@venue[:contact][:twitter]),
+      :source => "foursquare"
+    }
 
 
     if @activity_detail.save
@@ -155,7 +179,28 @@ module ApplicationHelper
     
     category = get_categories_from_venue(@venue)
         
-    @activity_detail.attributes = { :location_detail_id => @venue[:id], :address1 => empty_string_if_value_nil(@venue[:location][:address]), :city => empty_string_if_value_nil(@venue[:location][:city]), :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), :country => empty_string_if_value_nil(@venue[:location][:country]), :state => empty_string_if_value_nil(@venue[:location][:state]), :latitude => empty_string_if_value_nil(@venue[:location][:lat].to_s), :longitude => empty_string_if_value_nil(@venue[:location][:lng].to_s), :phone => empty_string_if_value_nil(@venue[:contact][:formattedPhone]), :zip => empty_string_if_value_nil(@venue[:location][:postalCode]), :name => empty_string_if_value_nil(@venue[:name]), :website => empty_string_if_value_nil(@venue[:url]), :category => category, :description => tag, :open_hours => open_hours, :image_urls => photos, :location_id => location_id}
+    @activity_detail.attributes = { 
+      :location_detail_id => @venue[:id], 
+      :address1 => empty_string_if_value_nil(@venue[:location][:address]), 
+      :city => empty_string_if_value_nil(@venue[:location][:city]), 
+      :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), 
+      :country => empty_string_if_value_nil(@venue[:location][:country]), 
+      :state => empty_string_if_value_nil(@venue[:location][:state]), 
+      :latitude => empty_string_if_value_nil(@venue[:location][:lat].to_s), 
+      :longitude => empty_string_if_value_nil(@venue[:location][:lng].to_s), 
+      :phone => empty_string_if_value_nil(@venue[:contact][:formattedPhone]), 
+      :zip => empty_string_if_value_nil(@venue[:location][:postalCode]), 
+      :name => empty_string_if_value_nil(@venue[:name]), 
+      :website => empty_string_if_value_nil(@venue[:url]), 
+      :category => category, 
+      :description => tag, 
+      :open_hours => open_hours, 
+      :image_urls => photos, 
+      :location_id => location_id,
+      :rating => empty_string_if_value_nil(@venue[:rating]),
+      :twitter => empty_string_if_value_nil(@venue[:contact][:twitter]),
+      :source => "foursquare"
+    }
     
     if @activity_detail.save
     else

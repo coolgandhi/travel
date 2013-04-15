@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414143000) do
+ActiveRecord::Schema.define(:version => 20130415210839) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -113,10 +113,13 @@ ActiveRecord::Schema.define(:version => 20130414143000) do
     t.string   "zip"
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.text     "image_urls"
     t.string   "location_id"
+    t.string   "rating"
+    t.string   "twitter"
+    t.string   "source",             :default => "foursquare"
   end
 
   add_index "location_details", ["location_detail_id"], :name => "location_detail_index", :unique => true
@@ -152,10 +155,13 @@ ActiveRecord::Schema.define(:version => 20130414143000) do
     t.string   "zip"
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.text     "image_urls"
     t.string   "location_id"
+    t.string   "rating"
+    t.string   "twitter"
+    t.string   "source",               :default => "foursquare"
   end
 
   add_index "restaurant_details", ["restaurant_detail_id"], :name => "restaurant_detail_index", :unique => true
