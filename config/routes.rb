@@ -56,6 +56,8 @@ Travel::Application.routes.draw do
         get 'mapinfo'
         get 'carddeck'
         get 'showpartial'
+        get 'show_activity_photos'
+        post 'add_new_photo'
       end
       collection do
         get 'move'

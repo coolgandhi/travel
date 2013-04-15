@@ -137,7 +137,6 @@ class TripActivitiesController < ApplicationController
             :activity_time_type => params[:trip_activity][:activity_time_type])
             if params[:self_trip_activity_photos] != nil
              @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
-             logger.info  "photo info #{@photo.inspect}"
              if @photo.save
                format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Trip activity was successfully created.' }
                format.json { render json: @trip_activity, status: :created, location: @trip_activity }
@@ -277,8 +276,42 @@ class TripActivitiesController < ApplicationController
       format.js # index.js.erb
     end
   end
-
-
+  
+  def show_activity_photos
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+      @self_images = @trip_activity.self_trip_activity_photos
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end  
+   respond_to do |format|
+     format.html # showactivityimages.html.erb
+     format.json { render json: @self_images.self_photo  } 
+   end
+  end
+  
+  def add_new_photo
+    begin
+    @trip_activity = @trip.trip_activities.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end  
+    
+    respond_to do |format|
+      @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
+      if @photo.save
+       format.html { redirect_to show_activity_photos_trip_trip_activity_path(@trip, @trip_activity), notice: 'Photo added successfully.' }
+      else
+       format.html { render action: "new", notice: @photo.errors.full_messages.to_sentence  }
+       format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def load_trip
     begin
       @trip = Trip.find(params[:trip_id])

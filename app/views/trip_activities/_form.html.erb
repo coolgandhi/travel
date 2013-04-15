@@ -114,7 +114,7 @@
   
   <%= fields_for @trip_activity.self_trip_activity_photos.new do |trip_image| %>
     <%= trip_image.label :self_photo, "Upload Activity Image:" %>
-    <%= trip_image.file_field :self_photo, name: "self_trip_activity_photos[self_photo]" %>
+    <%= trip_image.file_field :self_photo, multiple: true, name: "self_trip_activity_photos[self_photo]" %>
   <% end %>
   
   <div class="actions">

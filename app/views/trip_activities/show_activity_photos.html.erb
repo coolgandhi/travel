@@ -1,0 +1,11 @@
+<% @self_images.each do |self_image|%>
+  
+  <p><%= image_tag self_image.self_photo_url(:thumb) %></p>
+  
+<% end %>
+
+<%= form_for @trip_activity.self_trip_activity_photos.new, :method => :post,   :url => { :action => "add_new_photo" }  do |trip_image| %>
+  <%= trip_image.label :self_photo, "Upload Activity Image:" %>
+  <%= trip_image.file_field :self_photo, multiple: true, name: "self_trip_activity_photos[self_photo]" %>
+  <br/><%= trip_image.submit %>
+<% end %>
