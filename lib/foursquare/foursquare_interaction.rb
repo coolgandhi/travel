@@ -41,7 +41,7 @@ class FoursquareInteraction
   
   
   def self.venue_tips venue_id
-    tips = @@client.venue_tips(venue_id, options = {:limit => '5'})
+    tips = @@client.venue_tips(venue_id, options = {:sort => "recent", :limit => "25"})
     tips
   end
 

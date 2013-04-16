@@ -117,11 +117,8 @@ module ApplicationHelper
       Rails.logger.info " errors #{error}"
       return nil
     end
-    @venue_tips = FoursquareInteraction.venue_tips(venue_id)
-    
-    Rails.logger.info "venue: #{@venue.inspect} \n"
-    Rails.logger.info "venue tips: #{@venue_tips.inspect} \n"
-        
+    #options = {:sort => "recent", :limit => 25}
+    @venue_tips = FoursquareInteraction.venue_tips(venue_id)     
     @venue_photos = FoursquareInteraction.venue_photos(venue_id)
     tag = get_tag_from_venue(@venue)
     photos = get_photos_from_venue_photos(@venue_photos)
@@ -155,8 +152,40 @@ module ApplicationHelper
 
 
     if @activity_detail.save
+      if  update == 1
+        @activity_detail.restaurant_comments.delete_all
+      end
+      
+      if @venue_tips[:count] 
+        count = @venue_tips[:count].to_i
+        iteration = 0
+        @venue_tips[:items].each { |venue_tip|
+          venue_comment = RestaurantComment.new
+          name = empty_string_if_value_nil(venue_tip[:user][:firstName]) + " " + empty_string_if_value_nil(venue_tip[:user][:lastName])
+          venue_comment.attributes = {
+            :created_time => Time.at(venue_tip[:createdAt]), 
+            :follow_post_id => "", 
+            :log => empty_string_if_value_nil(venue_tip[:text]), 
+            :name => name, 
+            :photo => "", 
+            :restaurant_detail_id => @venue[:id], 
+            :source => "foursquare", 
+            :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
+            :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
+          }
+          
+          if venue_comment.save
+          else
+            Rails.logger.info "error #{venue_tip.errors} \n" #todo instrumentation
+            raise "Venue tips savings error #{venue_tip.errors} "
+          end          
+          iteration = iteration + 1
+          break if iteration > 25 
+        }
+      end 
     else
-      Rails.logger.info "error #{@activity_detail.errors}" #todo instrumentation
+      Rails.logger.info "error #{@activity_detail.errors} \n" #todo instrumentation
+      raise "Venue savings error #{@activity_detail.errors} "
     end
     @activity_detail
   end
@@ -203,8 +232,40 @@ module ApplicationHelper
     }
     
     if @activity_detail.save
+      if update == 1
+        @activity_detail.location_comments.delete_all
+      end
+      
+      if @venue_tips[:count] 
+        count = @venue_tips[:count].to_i
+        iteration = 0
+        @venue_tips[:items].each { |venue_tip|
+          venue_comment = LocationComment.new
+          name = empty_string_if_value_nil(venue_tip[:user][:firstName]) + " " + empty_string_if_value_nil(venue_tip[:user][:lastName])
+          venue_comment.attributes = {
+            :created_time => Time.at(venue_tip[:createdAt]), 
+            :follow_post_id => "", 
+            :log => empty_string_if_value_nil(venue_tip[:text]), 
+            :name => name, 
+            :photo => "", 
+            :location_detail_id => @venue[:id], 
+            :source => "foursquare", 
+            :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
+            :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
+          }
+          
+          if venue_comment.save
+          else
+            Rails.logger.info "error #{venue_tip.errors} \n" 
+            raise "Venue tips savings error #{venue_tip.errors} "
+          end          
+          iteration = iteration + 1
+          break if iteration > 25 
+        }
+      end
     else
-      Rails.logger.info "error #{@activity_detail.errors}" #todo instrumentation
+      Rails.logger.info "error #{@activity_detail.errors} \n" 
+      raise "Venue savings error #{@activity_detail.errors} "
     end
     @activity_detail
   end

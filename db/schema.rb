@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415210839) do
+ActiveRecord::Schema.define(:version => 20130416020806) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -96,6 +96,20 @@ ActiveRecord::Schema.define(:version => 20130415210839) do
 
   add_index "location_activities", ["location_detail_id"], :name => "location_detail_index"
 
+  create_table "location_comments", :force => true do |t|
+    t.string   "source"
+    t.string   "url"
+    t.string   "name"
+    t.string   "photo"
+    t.datetime "created_time"
+    t.string   "summary"
+    t.string   "location_detail_id"
+    t.string   "follow_post_id"
+    t.text     "log"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "location_details", :force => true do |t|
     t.string   "location_detail_id"
     t.string   "name"
@@ -137,6 +151,20 @@ ActiveRecord::Schema.define(:version => 20130415210839) do
   end
 
   add_index "locations", ["location_id"], :name => "location_index", :unique => true
+
+  create_table "restaurant_comments", :force => true do |t|
+    t.string   "source"
+    t.string   "url"
+    t.string   "name"
+    t.string   "photo"
+    t.datetime "created_time"
+    t.string   "summary"
+    t.string   "restaurant_detail_id"
+    t.string   "follow_post_id"
+    t.text     "log"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "restaurant_details", :force => true do |t|
     t.string   "restaurant_detail_id"
