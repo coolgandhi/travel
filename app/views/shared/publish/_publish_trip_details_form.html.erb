@@ -27,10 +27,10 @@
 
     <div class="controls controls-row">
 
-      <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name,{:prompt => 'Traveler Type'}, :class => "span4" %>
+      <%= f.collection_select :traveler_type_id, TravelerType.all, :traveler_type_id, :traveler_type_name,{:prompt => 'Traveler Type'}, :class => "trip_publish_traveler_select span4 selectpicker" %>
 
    
-      <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Trip Summary", :class => "span8" %>
+      <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Trip Summary", :class => "span7" %>
    
     </div>
 

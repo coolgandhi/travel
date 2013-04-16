@@ -60,6 +60,12 @@
   }
 }
 
+.trip_publish_traveler_select.selectpicker{
+  .bootstrap-select{
+    float: left;
+  }
+}
+
 /* 3. TRIP ACTIVITIES SELECTOR */
 .publish_trip_image{
   width: 100%;

@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(:version => 20130416020806) do
     t.string   "country"
     t.string   "postal_code"
     t.string   "phone"
-    t.string   "email",                  :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
     t.string   "website"
     t.string   "twitter_handle"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "state"
     t.string   "about"
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20130416020806) do
     t.string   "uid"
     t.date     "birthday"
     t.datetime "password_expire_at"
-    t.boolean  "admin"
+    t.boolean  "admin",                  :default => false
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true
