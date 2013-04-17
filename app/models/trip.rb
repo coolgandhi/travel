@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image
+  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image, :tags
   has_many :trip_comments, :dependent => :destroy
   has_many :trip_activities, :dependent => :destroy
   has_one  :trip_stat, :dependent => :destroy
@@ -13,13 +13,13 @@ class Trip < ActiveRecord::Base
   mount_uploader :self_image, ImageUploader
   store_in_background :self_image
   
-  validates :author_id, :presence => { :message => "" }
+  validates :author_id, :presence => { :message => "please check if you are signed in" }
   validates :location_id, :presence => { :message => "choose a location" }
   validates :trip_name, :presence => { :message => "enter trip name" }, :length => { :minimum => 2, :maximum => 40, :too_short => "trip name must have at least %{count} characters in the trip name", :too_long  => "trip name can have at most %{count} characters" }
   validates :trip_summary, :presence => { :message => "enter trip summary" }, :length => { :minimum => 2, :maximum => 200, :too_short => "trip summary must have at least %{count} characters", :too_long  => "trip summary can have at most %{count} characters" }
-  validates :duration, :presence => { :message => "enter a valid duration for the trip" }
+  #validates :duration, :presence => { :message => "enter a valid duration for the trip" }
   validates_numericality_of :duration, :message => "enter a valid length of the trip" 
-  validates :rank_score, :presence => { :message => "enter a score" }, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :message => "score should be between 0 and 100"}
+  validates :rank_score, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :message => "score should be between 0 and 100"}
   
   def self.search params, find_exact_match_only
     message_with_trip_render = ""

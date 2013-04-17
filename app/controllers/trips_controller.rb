@@ -261,17 +261,34 @@ class TripsController < ApplicationController
     end
   end
 
-  # GET /trips/publish_trip
-  def publish_trip
+  # GET /trips/publish_new
+  def publish_new
     @trip = Trip.new
-    @trip_activity = @trip.trip_activities.new
-    @author_info = AuthorInfo.new
     @location_val = ""
     respond_to do |format|
       format.html # publish_trip.html.erb
     end
   end
 
+  # Post /trips/publish_create
+  def publish_create
+    @trip = Trip.new(params[:trip])
+    @trip.image_url = (params[:selected_images].nil?) ? "": params[:selected_images];
+    @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
+                 ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
+                 ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 
+    @trip.author_id = current_author_info.id
+    respond_to do |format|
+      if @trip.save
+        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.json { render json: @trip, status: :created, location: @trip }
+      else
+        logger.info "#{@trip.errors.inspect} \n"
+        format.html { render action: "new" }
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
 
@@ -279,7 +296,7 @@ class TripsController < ApplicationController
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_trip"
+    when "index", "publish_new", "publish_edit"
       "index_layout"
     else
       "application"

@@ -1,6 +1,6 @@
 <!-- Begin Trip Details Form Container -->
 <div class="publish_trip_details_container">
-  <%= form_for @trip, :html => {:class => "form-horizontal"} do |f| %>
+  <%= form_for @trip, :url => {:action => "publish_create"}, :html => {:class => "form-horizontal"} do |f| %>
   
     <% if @trip.errors.any? %>
       <div id="error_explanation">
@@ -61,9 +61,9 @@
   <div class="control-group">
     <label class="control-label">Optional: 3 tags that best describes this trip</label>
     <div class="controls">
-      <input class="span2" type="text" placeholder="Relax">
-      <input class="span2" type="text" placeholder="Party">
-      <input class="span2" type="text" placeholder="Sightseeing">
+      <input name="tag1" class="span2" type="text" placeholder="Relax">
+      <input name="tag2" class="span2" type="text" placeholder="Party">
+      <input name="tag3" class="span2" type="text" placeholder="Sightseeing">
     </div>
   </div>
     

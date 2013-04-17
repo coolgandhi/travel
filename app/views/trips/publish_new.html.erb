@@ -23,34 +23,33 @@
   
   <!-- Begin Collapse 1-->
   <div class = "publish_trip_collapse_header">
-    Trip Details
-    <div class = "collapser_icon"><i class = "icon-chevron-up"></i></div>
+  Trip Details
+  <div class = "collapser_icon"><i class = "icon-chevron-up"></i></div>
   </div>
-
   <div class = "publish_trip_collapse_content">
     <%= render "shared/publish/publish_trip_details_form" %>
     <button type="button" class="btn btn-flat-primary dummy_next_step">Dummy Next Step</button>
   </div>
   <!-- End Collapse 1-->
 
-  <!-- Begin Collapse 1-->
+  <!-- Begin Collapse 2-->
   <div class = "publish_trip_collapse_header publish_form_activity_details">
     Activity Details
     <div class = "collapser_icon"><i class = "icon-chevron-down"></i></div>
   </div>
-
+  
   <div class = "publish_trip_collapse_content publish_form_activity_details_content">
     <div class = "publish_trip_sort_activities">
-      <%= render "shared/publish/publish_trip_activity_order" %>
+       <%#= render "shared/publish/publish_trip_activity_order" %> 
     </div>
     <div class = "publish_trip_create_activities">
-      <%= render :partial => "shared/publish/publish_trip_activities_form"%>
+      <%#= render :partial => "shared/publish/publish_trip_activities_form"%>
     </div>
+  </div> 
+  <!-- End Collapse 2-->
+  
   </div>
-  <!-- End Collapse 1-->
-
+  <!-- End Row -->
 </div>
 <!-- End Collapser Container-->
-</div>
-<!-- End Row-->
 </div>
