@@ -1,22 +1,31 @@
 /* STYLING FOR PUBLISHING PAGE
   1. COLLAPSER STYLES
-  2. TRIP DETAILS FORM CONTAINER
-  3. TRIP ACTIVITIES SELECTOR
-  4. TRIP ACTIVITIES ORDERING
-  5. FORM COMPLETION STATUS
+  2. STRUCTURE
+  3. TRIP DETAILS FORM CONTAINER
+  4. TRIP ACTIVITIES SELECTOR
+  5. TRIP ACTIVITIES ORDERING
+  6. FORM COMPLETION STATUS
+  7. COUNTDOWN TWITTER STYLES
 */
 
 /* 1. COLLAPSER STYLES */
 .publish_trip_collapser{
+  @include box-sizing(border-box);
+  @include border-radius($myDivBorderRadius);
+  border: $myDivBorderWidth solid $borderGray;
   position: relative;
   float: left;
 }
 
 .publish_trip_collapse_header{
   background-color: $myPrimaryBlue;
+  border: $myDivBorderWidth solid $borderGray;
   @include box-sizing(border-box);
   padding: 1%;
   position: relative;
+  min-width: 100%;
+  color: $white;
+  font-weight: bold;
   cursor:pointer;	
 }
 
@@ -24,7 +33,8 @@
   @include box-sizing(border-box);
   @include clearfix;
   padding: 1%;
-  border: solid 1px black;	
+  // border: solid 1px black;	
+  min-width: 100%;
 }
 
 .collapser_icon{
@@ -53,14 +63,14 @@
   border: solid 1px black;
 }
 
-/* 2. TRIP DETAILS FORM CONTAINER */
+/* 3. TRIP DETAILS FORM CONTAINER */
 .publish_trip_details_container{
   #place_text_field{
-    margin-right: 1%;
+    // margin-right: 1%;
   }
 }
 
-/* 3. TRIP ACTIVITIES SELECTOR */
+/* 4. TRIP ACTIVITIES SELECTOR */
 .publish_trip_image{
   width: 100%;
   position: relative;
@@ -93,7 +103,7 @@
   height: 100px;
 }
 
-/* 4. TRIP ACTIVITIES ORDERING */
+/* 5. TRIP ACTIVITIES ORDERING */
 .publish_form_time{
   background-color: orange;
 }
@@ -101,7 +111,7 @@
   border: 1px solid grey;
 }
 
-/* 5. FORM COMPLETION STATUS */
+/* 6. FORM COMPLETION STATUS */
 .publish_trip_completion_status{
   width: 400px;
   height: 30px;
@@ -125,4 +135,10 @@
   .stage3{
     background-color: gray;  
   } 
+}
+
+/* 7. FORM COMPLETION STATUS */
+.countdown_over{
+  color: red;
+  font-weight: bold;
 }
