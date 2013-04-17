@@ -62,6 +62,15 @@
   @include box-sizing(border-box);
   border: solid 1px black;
 }
+.publish_trip_details_container{
+  .required_publish_form_field{
+    background-color: #FAFAD2;
+  }
+}
+
+.publish_form_required_label{
+  font-weight: bold;
+}
 
 /* 3. TRIP DETAILS FORM CONTAINER */
 .publish_trip_details_container{
