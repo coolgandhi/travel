@@ -1,6 +1,6 @@
 <!-- Begin Trip Details Form Container -->
 <div class="publish_trip_details_container">
-  <%= form_for(@trip) do |f| %>
+  <%= form_for(@trip, :url => {:action => "publish_create"}) do |f| %>
   
     <% if @trip.errors.any? %>
       <div id="error_explanation">
@@ -36,9 +36,9 @@
 
     <div class="controls controls-row">
       <label>Optional: List 3 tags separated by commas (i.e. beach, relaxation, party)</label>
-      <input class="span2 offset10" type="text" placeholder="Tag 1">
-      <input class="span2 offset10" type="text" placeholder="Tag 2">
-      <input class="span2 offset10" type="text" placeholder="Tag 3">
+      <input name="tag1" class="span2 offset10" type="text" placeholder="Tag 1">
+      <input name="tag2" class="span2 offset10" type="text" placeholder="Tag 2">
+      <input name="tag3" class="span2 offset10" type="text" placeholder="Tag 3">
       <%# f.text_field :tag_1, :placeholder => "Tag 1", :class => "span2 offset4" %>
       <%# f.text_field :tag_2, :placeholder => "Tag 2", :class => "span2" %>
       <%# f.text_field :tag_3, :placeholder => "Tag 3", :class => "span2" %>
