@@ -63,4 +63,10 @@ class VenuesController < ApplicationController
                                   }}
     end
   end
+  
+  private
+  
+  def use_https?
+    false # Override in other controllers
+  end
 end

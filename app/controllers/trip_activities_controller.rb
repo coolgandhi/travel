@@ -322,4 +322,15 @@ class TripActivitiesController < ApplicationController
     end
   end
 
+  private
+  
+  def use_https?
+    #case params[:action]
+    #when 
+      
+    #else
+    #  false # Override in other controllers
+    #end
+    false
+  end
 end

@@ -24,4 +24,10 @@ class LocationsController < ApplicationController
       format.json { render json: @location_matches }
     end
   end
+  
+  private
+  
+  def use_https?
+    false # Override in other controllers
+  end
 end
