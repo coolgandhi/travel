@@ -8,4 +8,10 @@ class InfoController < ApplicationController
 
   def tos
   end
+  
+  private
+  
+  def use_https?
+    false # Override in other controllers
+  end
 end

@@ -36,6 +36,20 @@ class ApplicationController < ActionController::Base
   end
   
   private
+  def https_redirect
+    if CONFIG[:ENABLE_HTTPS] == "yes"
+      if request.ssl? && !use_https? || !request.ssl? && use_https?
+        protocol = request.ssl? ? "http" : "https"
+        flash.keep
+        redirect_to protocol: "#{protocol}://", status: :moved_permanently
+      end
+    end
+  end
+
+  def use_https?
+    true # Override in other controllers
+  end
+  
   def render_error(status, exception)
 
     logger.info "System Error: Tried to access '#{request.fullpath}'.\n#{exception.class} error was raised for path .\n#{exception.message}"
