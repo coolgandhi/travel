@@ -5,6 +5,7 @@
   4. TRIP ACTIVITIES SELECTOR
   5. TRIP ACTIVITIES ORDERING
   6. FORM COMPLETION STATUS
+  7. COUNTDOWN TWITTER STYLES
 */
 
 /* 1. COLLAPSER STYLES */
@@ -134,4 +135,10 @@
   .stage3{
     background-color: gray;  
   } 
+}
+
+/* 7. FORM COMPLETION STATUS */
+.countdown_over{
+  color: red;
+  font-weight: bold;
 }
