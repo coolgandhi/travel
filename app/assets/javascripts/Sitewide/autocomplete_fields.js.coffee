@@ -33,6 +33,8 @@
         $(this).val ui.item.label
         $(this).siblings('#place_text_field').val splitarrayvalue[0]
         site_wide_namespace.fetchlocationimages splitarraylabel[0], splitarrayvalue[1], splitarrayvalue[2], $("#location_images")
+        if $('#trip_trip_summary') then $('#trip_trip_summary').val("Tell us more about the time you went to " + ui.item.label) #on select put an auto summary
+        if $('#trip_trip_name') then $('#trip_trip_name').val("My Awesome Time in "+ ui.item.label) #on select put an auto title
         return
     return
   return
