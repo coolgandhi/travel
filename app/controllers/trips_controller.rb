@@ -266,7 +266,7 @@ class TripsController < ApplicationController
     @trip = Trip.new
     @location_val = ""
     respond_to do |format|
-      format.html # publish_trip.html.erb
+      format.html # publish_new.html.erb
     end
   end
 
@@ -284,7 +284,7 @@ class TripsController < ApplicationController
         format.json { render json: @trip, status: :created, location: @trip }
       else
         logger.info "#{@trip.errors.inspect} \n"
-        format.html { render action: "new" }
+        format.html { render :action => "publish_new" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
@@ -296,7 +296,7 @@ class TripsController < ApplicationController
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit"
+    when "index", "publish_new", "publish_edit", "publish_create"
       "index_layout"
     else
       "application"

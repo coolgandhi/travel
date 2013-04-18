@@ -61,9 +61,9 @@
   <div class="control-group">
     <label class="control-label">Optional: 3 tags that best describes this trip</label>
     <div class="controls">
-      <input name="tag1" class="span2" type="text" placeholder="Relax">
-      <input name="tag2" class="span2" type="text" placeholder="Party">
-      <input name="tag3" class="span2" type="text" placeholder="Sightseeing">
+      <input name="tag1" class="span2" type="text" placeholder="Relax" value= <%=params[:tag1].nil? ? "" : params[:tag1] %>>
+      <input name="tag2" class="span2" type="text" placeholder="Party"  value= <%= params[:tag2].nil? ? "" : params[:tag2] %>>
+      <input name="tag3" class="span2" type="text" placeholder="Sightseeing"  value= <%= params[:tag3].nil? ? "" : params[:tag3] %>>
     </div>
   </div>
     
