@@ -44,13 +44,15 @@ Travel::Application.routes.draw do
     member do
       get 'showpartial'
       get 'daymapinfo'
+      get 'publish_edit'
+      put 'publish_update'
+      put 'update_individual'
     end
     collection do
       get 'trips_admin'
       get 'publish_new'
       post 'publish_create'
       post 'edit_individual'
-      put 'update_individual'
     end
     resources :trip_activities do
       member do

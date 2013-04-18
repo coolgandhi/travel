@@ -1,6 +1,6 @@
 <!-- Begin Trip Details Form Container -->
 <div class="publish_trip_details_container">
-  <%= form_for @trip, :url => {:action => "publish_create"}, :html => {:class => "form-horizontal"} do |f| %>
+  <%= form_for @trip, :url => {:action => @trip_publish}, :html => {:class => "form-horizontal"} do |f| %>
   
     <% if @trip.errors.any? %>
       <div id="error_explanation">
@@ -68,7 +68,7 @@
   </div>
     
     <div class="actions">
-      <%= f.submit "Create Trip", :id => "trip_form_submit", :class => "pull-right" %>
+      <%= f.submit @trip_message, :name => @trip_name,:id => "trip_form_submit", :class => "pull-right" %>
     </div>
   <% end %>
 

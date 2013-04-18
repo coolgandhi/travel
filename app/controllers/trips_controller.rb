@@ -246,7 +246,7 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
       @trip_details = @trip.trip_activities.where("activity_day = ?", params[:activity_day]).first.prev_activities_sequence_number
       @current_activity = @trip_details.first.id
-      logger.info { "\n\ntripdetails...  #{@trip_details.inspect} #{@current_activity}"}
+      #logger.info { "\n\ntripdetails...  #{@trip_details.inspect} #{@current_activity}"}
     
       @day_map_info = view_context.get_trip_map_info @trip_details, @current_activity
     rescue ActiveRecord::RecordNotFound
@@ -265,6 +265,7 @@ class TripsController < ApplicationController
   def publish_new
     @trip = Trip.new
     @location_val = ""
+    @trip_message = "Create Trip"
     respond_to do |format|
       format.html # publish_new.html.erb
     end
@@ -278,6 +279,8 @@ class TripsController < ApplicationController
                  ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
                  ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 
     @trip.author_id = current_author_info.id
+    @trip_message = "Create Trip"
+    @trip_publish = "publish_create"
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
@@ -290,13 +293,59 @@ class TripsController < ApplicationController
     end
   end
 
+
+  # GET /trips/1/publish_edit
+  def publish_edit
+    begin  
+      @trip = Trip.find(params[:id])
+      @location_detail = Location.find_by_location_id(@trip.location_id)
+      @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+      @trip_message = "Update Trip"
+      @trip_publish = "publish_update"
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end 
+  end
+  
+  # PUT /trips/1/publish_update
+  def publish_update
+    begin  
+      @trip = Trip.find(params[:id])
+      @trip.image_url = (params[:selected_images].nil?) ? "": params[:selected_images];
+      @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
+                   ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
+                   ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 
+      
+       @location_detail = Location.find_by_location_id(@trip.location_id)
+       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+       @trip_message = "Update Trip"
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+    respond_to do |format|
+      if @trip.update_attributes(params[:trip])
+        @trip_publish = "publish_update"
+        format.html { render action: "publish_edit", notice: 'Trip was successfully updated.' }
+        format.json { head :no_content }
+      else
+        @trip_publish = "publish_edit"
+        format.html { render action: "publish_update" }
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   private
 
   def resolve_layout
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update"
       "index_layout"
     else
       "application"
