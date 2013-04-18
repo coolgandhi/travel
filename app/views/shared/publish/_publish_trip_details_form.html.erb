@@ -21,7 +21,8 @@
     <div class="control-group">
       <label class="control-label">Where did you go?</label>
       <div class="controls">
-        <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span4">
+        <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span4 required_publish_form_field">
+        <span class ="help-inline publish_form_required_label">* required</span>
       </div>
     </div>
 
@@ -29,8 +30,11 @@
       <label class="control-label">Who is this best for?</label>
       <div class = "controls">
         <%= f.collection_select :traveler_type_id, TravelerType.find(:all, :limit => 4), :traveler_type_id, :traveler_type_name,{:prompt => 'Traveler Type'}, :class => "span4" %>
+        <span class ="help-inline publish_form_required_label">* required</span>
       </div>
     </div>
+
+    <hr>
 
     <div class="control-group">
       <label class="control-label">Add a title</label>

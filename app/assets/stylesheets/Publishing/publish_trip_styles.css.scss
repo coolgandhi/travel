@@ -32,7 +32,7 @@
 .publish_trip_collapse_content{
   @include box-sizing(border-box);
   @include clearfix;
-  padding: 1%;
+  // padding: 1%;
   // border: solid 1px black;	
   min-width: 100%;
 }
@@ -51,16 +51,28 @@
 
 /* 2. STRUCTURE */
 .publish_trip_sort_activities{
-  @include col(4);
+  @include col(5);
   margin-left: 0;
   @include box-sizing(border-box);
-  border: solid 1px black;
+  border-right: solid 2px $borderGray;
+  padding: 1%;
 }
 
 .publish_trip_create_activities{
-  @include col(8);
+  @include col(7);
   @include box-sizing(border-box);
   border: solid 1px black;
+}
+.publish_trip_details_container{
+  padding: 1%;
+  @include box-sizing(border-box);
+  .required_publish_form_field{
+    background-color: #FAFAD2;
+  }
+}
+
+.publish_form_required_label{
+  font-weight: bold;
 }
 
 /* 3. TRIP DETAILS FORM CONTAINER */
@@ -105,10 +117,55 @@
 
 /* 5. TRIP ACTIVITIES ORDERING */
 .publish_form_time{
+  @include clearfix;
+  padding: 1%;
   background-color: orange;
 }
+
 .publish_form_activity_item{
-  border: 1px solid grey;
+  @include clearfix;
+  border: 1px solid black;  
+  height: 50px;
+}
+
+.publish_form_activity_desc{
+  position: relative;
+  float: left;
+  padding: 1%;
+  height: 100%;
+  width: 92%;
+  @include box-sizing(border-box);
+}
+
+.publish_form_order_button_group{
+  width: 8%;
+  height: 100%;
+  float: left;
+  position: relative;
+  text-align: center;
+  @include box-sizing(border-box);
+  .activity_order_up, .activity_order_down{
+    @include box-sizing(border-box);
+    border: 1px solid black;
+    height: 50%;
+    padding: 2px;
+    cursor: pointer;
+    &:hover{
+      color: grey;
+    }
+  }
+}
+
+.publish_trip_activities_ordering_container .publish_trip_add_day{
+  float: right;
+}
+
+.publish_form_add_activity_button{
+  float: right;
+}
+
+.publish_form_edit_activity{
+  float: right;
 }
 
 /* 6. FORM COMPLETION STATUS */
