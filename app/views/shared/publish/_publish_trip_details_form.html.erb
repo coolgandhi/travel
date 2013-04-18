@@ -1,6 +1,6 @@
 <!-- Begin Trip Details Form Container -->
 <div class="publish_trip_details_container">
-  <%= form_for @trip, :url => {:action => @trip_publish}, :html => {:class => "form-horizontal"} do |f| %>
+  <%= form_for @trip, :url => @trip_publish, :html => {:class => "form-horizontal"} do |f| %>
   
     <% if @trip.errors.any? %>
       <div id="error_explanation">

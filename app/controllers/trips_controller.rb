@@ -266,6 +266,7 @@ class TripsController < ApplicationController
     @trip = Trip.new
     @location_val = ""
     @trip_message = "Create Trip"
+    @trip_publish = "publish_create"
     respond_to do |format|
       format.html # publish_new.html.erb
     end
@@ -283,10 +284,14 @@ class TripsController < ApplicationController
     @trip_publish = "publish_create"
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        @trip_message = "Update Trip"
+        @location_detail = Location.find_by_location_id(@trip.location_id)
+        @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+        
+        @trip_publish = publish_update_trip_url(@trip)
+        format.html { render action: "publish_edit", notice: 'Trip was successfully updated.' }
         format.json { render json: @trip, status: :created, location: @trip }
       else
-        logger.info "#{@trip.errors.inspect} \n"
         format.html { render :action => "publish_new" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
@@ -321,6 +326,7 @@ class TripsController < ApplicationController
        @location_detail = Location.find_by_location_id(@trip.location_id)
        @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
        @trip_message = "Update Trip"
+       @trip_publish = "publish_update"
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -328,11 +334,9 @@ class TripsController < ApplicationController
     end
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
-        @trip_publish = "publish_update"
         format.html { render action: "publish_edit", notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
-        @trip_publish = "publish_edit"
         format.html { render action: "publish_update" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
