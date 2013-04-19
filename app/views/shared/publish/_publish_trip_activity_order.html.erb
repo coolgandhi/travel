@@ -1,45 +1,15 @@
 <!-- Begin Trip Activities Ordering Container -->
 <div class="publish_trip_activities_ordering_container">
-<% for i in 1..@trip.days_in_trip.to_i %>
-"day 1"
-  </br>
-  <%= "morning" %>
-  </br>
-  <% morning = @sorted_activities.select { |x| x[:activityday] == i.to_s and (x[:timetype] == '1' or x[:timetype] == '2')} %>
-  <% morning.each do |x| %>
-    <%= x[:activity_venue_name] %>
-    </br>
-  <% end %>
-  <%# morning[0][:activity_venue_name] %>
-  <%# morning %>
-  </br>
-  <%= "afternoon" %>
-  </br>
-  <% afternoon = @sorted_activities.select { |x| x[:activityday] == i.to_s and (x[:timetype] == '3' or x[:timetype] == '4')} %>
-  <% afternoon.each do |x| %>
-    <%= x[:activity_venue_name] %>
-    </br>
-  <% end %>
-  </br>
-  <%= "evening" %>
-  </br>
-  <% evening = @sorted_activities.select { |x| x[:activityday] == i.to_s and (x[:timetype] == '5' or x[:timetype] == '6')} %>
-  <% evening.each do |x| %>
-    <%= x[:activity_venue_name] %>
-    </br>
-  <% end %>
-<% end %>
-
 
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs">
 
-  <li class ="active"><a href="#home" data-toggle="tab">Day 1</a></li>
+  <li class ="active"><a href="#publish_activities_day_1" data-toggle="tab">Day 1</a></li>
   
   <%if @trip %>
     <% n = @trip.duration.to_i > 3 ? 3 : @trip.duration.to_i %>
         <% for i in 2..n %>
-          <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>"><%= "Day #{i}" %></a></li>
+          <li><a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "Day #{i}" %></a></li>
         <% end %>
 
         <% unless @trip.duration.to_i < 4 %>
@@ -52,7 +22,7 @@
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
               <% for i in 4..n %>
-                <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
+                <li><a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>
 
@@ -68,80 +38,108 @@
 <!-- End Tabs -->
 
 <!-- Begin Tab Content -->
+<button class="btn btn-primary publish_form_add_activity_button" type="button">+ Activity</button>
 <div class="tab-content">
-  <div class = "publish_form_activities_list">
-    <div class = "publish_form_time">
-      Morning
-      <button class="btn btn-primary publish_form_add_activity_button" type="button">+ Activity</button>
-    </div>
-    
-    <div class = "publish_form_activity_item">
-    
-      <div class = "publish_form_order_button_group">
-        <div class = "activity_order_up"><i class ="icon-arrow-up"></i></div>
-        <div class = "activity_order_down"><i class ="icon-arrow-down"></i></div>
+  
+  <% for i in 1..@trip.days_in_trip.to_i %>
+    <% if i == 1 %>
+      <div class="tab-pane active" id=<%= "publish_activities_day_#{i}"%>>
+    <% else %>
+      <div class="tab-pane" id=<%= "publish_activities_day_#{i}"%>>
+    <% end %>
+
+      <div class = "publish_form_activities_list">
+        <div class = "publish_form_time">
+          Morning
+        </div>
+
+        <% morning = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == '1' or x.activity_time_type == '2')} %>
+        <%= morning.blank? ? "No Activities" : "" %>
+        <% morning.each do |x| %>
+
+          <div class = "publish_form_activity_item">
+          
+            <div class = "publish_form_order_button_group">
+              <div class = "activity_order_up"><i class ="icon-arrow-up"></i></div>
+              <div class = "activity_order_down"><i class ="icon-arrow-down"></i></div>
+            </div>
+            
+            <div class = "publish_form_activity_desc">
+
+              <%= (which_detail_type(x,"name")) %>
+              </br>
+              (<%= (which_detail_type(x,"category")) %>)
+              <span class="publish_form_edit_activity">
+                <!-- <a href="#">edit</a> -->
+                <%= link_to 'Edit', edit_trip_trip_activity_path(@trip, x) %>
+              </span>
+            </div>
+
+          </div>
+        <% end %>
+
+
+        <div class = "publish_form_time">
+          Afternoon
+        </div>
+
+        <% afternoon = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == '3' or x.activity_time_type == '4')} %>
+        <%= afternoon.blank? ? "No Activities" : "" %>
+        <% afternoon.each do |x| %>
+
+          <div class = "publish_form_activity_item">
+          
+            <div class = "publish_form_order_button_group">
+              <div class = "activity_order_up"><i class ="icon-arrow-up"></i></div>
+              <div class = "activity_order_down"><i class ="icon-arrow-down"></i></div>
+            </div>
+            
+            <div class = "publish_form_activity_desc">
+
+              <%= (which_detail_type(x,"name")) %>
+              </br>
+
+              <span class="publish_form_edit_activity">
+                <a href="#">edit</a>
+              </span>
+            </div>
+
+          </div>
+        <% end %>
+
+        <div class = "publish_form_time">
+          Evening
+        </div>
+
+        <% evening = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == '5' or x.activity_time_type == '6')} %>
+        <%= evening.blank? ? "No Activities" : "" %>
+        <% evening.each do |x| %>
+
+          <div class = "publish_form_activity_item">
+          
+            <div class = "publish_form_order_button_group">
+              <div class = "activity_order_up"><i class ="icon-arrow-up"></i></div>
+              <div class = "activity_order_down"><i class ="icon-arrow-down"></i></div>
+            </div>
+            
+            <div class = "publish_form_activity_desc">
+
+              <%= (which_detail_type(x,"name")) %>
+              </br>
+
+              <span class="publish_form_edit_activity">
+                <a href="#">edit</a>
+              </span>
+            </div>
+
+          </div>
+        <% end %>
+
       </div>
-      
-      <div class = "publish_form_activity_desc">
-        Activity 1</br>
-        Category
-
-        <span class="publish_form_edit_activity">
-          <a href="#">edit</a>
-        </span>
-      </div>
-
     </div>
-
-    <div class = "publish_form_time">
-      Afternoon
-      <button class="btn btn-primary publish_form_add_activity_button" type="button">+ Activity</button>
-    </div>
-
-    <div class = "publish_form_activity_item">
-    
-      <div class = "publish_form_order_button_group">
-        <div class = "activity_order_up"><i class ="icon-arrow-up"></i></div>
-        <div class = "activity_order_down"><i class ="icon-arrow-down"></i></div>
-      </div>
-      
-      <div class = "publish_form_activity_desc">
-        Activity 2</br>
-        Category
-
-        <span class="publish_form_edit_activity">
-          <a href="#">edit</a>
-        </span>
-      </div>
-    
-    </div>
-
-    <div class = "publish_form_time">
-      Evening
-      <button class="btn btn-primary publish_form_add_activity_button" type="button">+ Activity</button>
-    </div>
-
-    <div class = "publish_form_activity_item">
-    
-      <div class = "publish_form_order_button_group">
-        <div class = "activity_order_up"><i class ="icon-arrow-up"></i></div>
-        <div class = "activity_order_down"><i class ="icon-arrow-down"></i></div>
-      </div>
-      
-      <div class = "publish_form_activity_desc">
-        Activity 3</br>
-        Category
-
-        <span class="publish_form_edit_activity">
-          <a href="#">edit</a>
-        </span>
-      </div>
-    
-    </div>
-
-
-  </div>
+  <% end %>
 </div>
+
 <!-- End Tab Content -->
 
 </div>
