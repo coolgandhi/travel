@@ -1,5 +1,35 @@
 <!-- Begin Trip Activities Ordering Container -->
 <div class="publish_trip_activities_ordering_container">
+<% for i in 1..@trip.days_in_trip.to_i %>
+"day 1"
+  </br>
+  <%= "morning" %>
+  </br>
+  <% morning = @sorted_activities.select { |x| x[:activityday] == i.to_s and (x[:timetype] == '1' or x[:timetype] == '2')} %>
+  <% morning.each do |x| %>
+    <%= x[:activity_venue_name] %>
+    </br>
+  <% end %>
+  <%# morning[0][:activity_venue_name] %>
+  <%# morning %>
+  </br>
+  <%= "afternoon" %>
+  </br>
+  <% afternoon = @sorted_activities.select { |x| x[:activityday] == i.to_s and (x[:timetype] == '3' or x[:timetype] == '4')} %>
+  <% afternoon.each do |x| %>
+    <%= x[:activity_venue_name] %>
+    </br>
+  <% end %>
+  </br>
+  <%= "evening" %>
+  </br>
+  <% evening = @sorted_activities.select { |x| x[:activityday] == i.to_s and (x[:timetype] == '5' or x[:timetype] == '6')} %>
+  <% evening.each do |x| %>
+    <%= x[:activity_venue_name] %>
+    </br>
+  <% end %>
+<% end %>
+
 
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs">
@@ -21,7 +51,7 @@
 
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
-              <% for i in 7..n %>
+              <% for i in 4..n %>
                 <li><a class="daymapinfo" href=<%= "#map_day_#{i}" %> data-day="<%= i %>" ><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>

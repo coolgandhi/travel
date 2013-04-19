@@ -92,7 +92,7 @@
         <div class= "front">
           <div class="main_pic_wrap" id="bloop">
             <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
-              <% if @trip_activity.self_trip_activity_photos != nil %>
+              <% unless @trip_activity.self_trip_activity_photos.blank? %>
                 <% activity_photos = @trip_activity.self_trip_activity_photos.first %>
                 <div data-src=<%=activity_photos.self_photo_url(:thumb) %> > </div>
                 <div data-src=<%=activity_photos.self_photo_url(:thumb) %> data-media="(min-width: 480px)"></div>

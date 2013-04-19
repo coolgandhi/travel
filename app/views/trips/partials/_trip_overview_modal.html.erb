@@ -17,7 +17,7 @@
       <% afternoon = 0 %>
       <% evening = 0 %>
       <% current_day = 0 %>
-      <% for i  in 0..(@sorted_activities.length - 1) %>
+      <% for i in 0..(@sorted_activities.length - 1) %>
         <% timetype_text = "" %>
         <% timetype_text_tag = "" %>
         <% if @sorted_activities[i][:activityday].nil? or @sorted_activities[i][:activityday] == "" %>
