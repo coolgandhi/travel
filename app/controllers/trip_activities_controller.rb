@@ -267,7 +267,10 @@ class TripActivitiesController < ApplicationController
      #if the incoming params contain any of these methods and a numeric trip_activity_id, 
      #let's find the activity with that id and send it the acts_as_list specific method
      #that rode in with the params from whatever link was clicked on
-       @trip.trip_activities.find(params[:trip_activity_id]).send(params[:method])
+      @trip.trip_activities.find(params[:trip_activity_id]).send(params[:method])
+      @trip.trip_activities.find(params[:trip_activity_id]).update_attribute(:activity_time_type, params[:time_type])
+    elsif ["no_move"].include?(params[:method]) and params[:trip_activity_id] =~ /^\d+$/
+      @trip.trip_activities.find(params[:trip_activity_id]).update_attribute(:activity_time_type, params[:time_type])
     end
     @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
     #after we're done updating the position (which gets done in the background
