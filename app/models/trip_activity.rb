@@ -21,7 +21,8 @@ class TripActivity < ActiveRecord::Base
   # scope_condition for acts_as_list
   def scope_condition
     "trip_id = #{trip_id} AND activity_day = #{activity_day}"
-
+  end
+  
   def max_sequence_number_day day
   #  trip.trip_activities.where("activity_day = ?", day).maximum(:activity_sequence_number)
     trip.trip_activities.maximum(:activity_sequence_number)    

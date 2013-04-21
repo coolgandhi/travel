@@ -267,7 +267,7 @@ class TripActivitiesController < ApplicationController
     #after we're done updating the position (which gets done in the background
     #because of acts_as_list, we'll use ajax to reload the page
     respond_to do |format|
-      format.js { :locals => {:day => 3} }
+      format.js
     end
   end
   
