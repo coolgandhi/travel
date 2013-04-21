@@ -21,6 +21,10 @@ class Trip < ActiveRecord::Base
   validates_numericality_of :duration, :message => "enter a valid length of the trip" 
   validates :rank_score, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :message => "score should be between 0 and 100"}
   
+  def days_in_trip
+    self.trip_activities.order("trip_activities DESC").maximum(:activity_day)
+  end
+  
   def self.search params, find_exact_match_only
     message_with_trip_render = ""
     exact_match_count = 0

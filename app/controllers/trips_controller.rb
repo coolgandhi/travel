@@ -311,6 +311,9 @@ class TripsController < ApplicationController
       @trip_message = "Update Trip"
       @trip_publish = "publish_update"
       @trip_activity_publish = "publish_trip_activity_create_trip_trip_activities"
+      # @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+      @trip_activities = @trip.trip_activities.all.sort_by {|e|
+         e[:activity_sequence_number]}
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
