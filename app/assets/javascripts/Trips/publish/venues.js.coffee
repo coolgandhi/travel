@@ -69,35 +69,36 @@
         site_wide_namespace.fetchvenueimages ui.item.value, $("#venue_images")
   
       
-	jQuery ->
-		$('#activityvenue').autocomplete
-			minLength: 3
-			source: (request, response) ->
-				$.ajax 
-					url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
-					dataType: "json"
-					data: 
-						total: 10
-						ven: request.term
-						latlong: $('#trip_activity_latlong').val()
-					success: (data) ->
-						response $.map(data, (item) ->
-							$('#venue_id').val(item.value)
-							label: item.label + ", " + item.address + ", " + item.city
-							value: item.value
-							)
-			open: ->
-				$(this).removeClass("#activityvenue").addClass "ui-corner-top"
-			close: ->
-				$(this).removeClass("ui-corner-top").addClass "ui-corner-all"
-			focus: (event, ui) ->
-				event.preventDefault()
-				$(this).val ui.item.label			 
-			select: (event, ui) ->
-				event.preventDefault()
-				$('#venue_id').val( ui.item.value )
-				$(this).val ui.item.label
-				$(this).siblings('#activityvenue').val ui.item.value	 
+  jQuery ->
+    $('.publish_trip_create_activities').on "focus", "input", ->
+      $('#activityvenue').autocomplete
+        minLength: 3
+        source: (request, response) ->
+          $.ajax 
+            url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
+            dataType: "json"
+            data: 
+              total: 10
+              ven: request.term
+              latlong: $('#trip_activity_latlong').val()
+            success: (data) ->
+              response $.map(data, (item) ->
+                $('#venue_id').val(item.value)
+                label: item.label + ", " + item.address + ", " + item.city
+                value: item.value
+                )
+        open: ->
+          $(this).removeClass("#activityvenue").addClass "ui-corner-top"
+        close: ->
+          $(this).removeClass("ui-corner-top").addClass "ui-corner-all"
+        focus: (event, ui) ->
+          event.preventDefault()
+          $(this).val ui.item.label      
+        select: (event, ui) ->
+          event.preventDefault()
+          $('#venue_id').val( ui.item.value )
+          $(this).val ui.item.label
+          $(this).siblings('#activityvenue').val ui.item.value   
       
           
   jQuery ->

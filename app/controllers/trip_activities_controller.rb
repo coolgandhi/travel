@@ -302,8 +302,27 @@ class TripActivitiesController < ApplicationController
     end
   end
   
-  # POST /trip_activities
-  # POST /trip_activities.json
+  # GET /publish_trip_activity_new
+  # GET /publish_trip_activity_new.json
+  def publish_trip_activity_new
+    begin
+      @trip_activity = @trip.trip_activities.new
+      @activity = nil
+      @activity_detail = nil
+      @trip_activity.trip_id = params[:trip_id]
+      @latlong = find_location_latlong @trip
+      
+      respond_to do |format|
+        format.js
+        format.html # publish_trip_activity_new.html.erb
+        format.json { render json: @trip_activity }
+      end
+      
+    end
+  end
+  
+  # POST /publish_trip_activity_create
+  # POST /publish_trip_activity_create.json
   def publish_trip_activity_create
     begin
       @status = 0

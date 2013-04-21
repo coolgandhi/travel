@@ -65,6 +65,7 @@ Travel::Application.routes.draw do
       end
       collection do
         get 'move'
+        get 'publish_trip_activity_new'
         post 'publish_trip_activity_create'
       end
     end

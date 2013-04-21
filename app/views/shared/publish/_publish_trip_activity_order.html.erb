@@ -38,7 +38,8 @@
 <!-- End Tabs -->
 
 <!-- Begin Tab Content -->
-<button class="btn btn-primary publish_form_add_activity_button" type="button">+ Activity</button>
+<%= button_to "+ Activity", publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id), :class => "btn btn-primary publish_form_add_activity_button", :method => :get, :remote => true %>
+      
 <div class="tab-content">
   
   <% for i in 1..@trip.days_in_trip.to_i %>
