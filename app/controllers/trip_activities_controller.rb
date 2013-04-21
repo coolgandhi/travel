@@ -302,10 +302,90 @@ class TripActivitiesController < ApplicationController
     end
   end
   
+  def publish_trip_activity_edit
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+      @latlong = find_location_latlong @trip
+      @activity = @trip_activity.activity
+      @latlong = find_location_latlong @trip
+      @update = 1
+      case @trip_activity.activity_type
+        when "LocationActivity"
+          @activity_detail = @activity.location_detail
+          params[:description] = @activity.description 
+          params[:duration] = @activity.duration 
+          params[:quick_tip] = @activity.quick_tip 
+          params[:selected_images] = @activity.image_urls 
+          params[:venueid]  = @activity.location_detail_id 
+        when "TransportActivity"
+          @activity_detail = nil
+        when "FoodActivity"
+          @activity_detail = @activity.restaurant_detail
+          params[:description] = @activity.description 
+          params[:duration] = @activity.duration 
+          params[:quick_tip] = @activity.quick_tip 
+          params[:selected_images] = @activity.image_urls 
+          params[:venueid]  = @activity.restaurant_detail_id
+      end
+      
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def publish_trip_activity_update
+    begin
+      @status = 0
+      @update = 1
+      @trip_activity = @trip.trip_activities.find(params[:id])
+      @activity = @trip_activity.activity
+      @latlong = find_location_latlong @trip
+      @activity_detail = nil
+      
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+    respond_to do |format|
+      case @trip_activity.activity_type
+        when "LocationActivity"
+          @activity.image_urls = (params[:selected_images].blank?) ? @activity.image_urls : params[:selected_images] 
+          @activity.description = params[:description]
+          @activity.duration = params[:duration]
+          @activity.quick_tip = params[:quick_tip]
+        when "TransportActivity"
+          
+        when "FoodActivity"
+          @activity.image_urls = (params[:selected_images].blank?) ? @activity.image_urls : params[:selected_images] 
+          @activity.description = params[:description]
+          @activity.duration = params[:duration]
+          @activity.quick_tip = params[:quick_tip]
+      end
+      
+      if !(@activity and @activity.save)
+        format.js
+      else
+        if @trip_activity.update_attributes(params[:trip_activity])
+          @status = 1
+          format.js
+        else
+          format.js
+        end
+      end
+    end
+  end
+  
   # GET /publish_trip_activity_new
   # GET /publish_trip_activity_new.json
   def publish_trip_activity_new
     begin
+      @update = 0
       @trip_activity = @trip.trip_activities.new
       @activity = nil
       @activity_detail = nil
@@ -316,8 +396,7 @@ class TripActivitiesController < ApplicationController
         format.js
         format.html # publish_trip_activity_new.html.erb
         format.json { render json: @trip_activity }
-      end
-      
+      end   
     end
   end
   
@@ -325,6 +404,7 @@ class TripActivitiesController < ApplicationController
   # POST /publish_trip_activity_create.json
   def publish_trip_activity_create
     begin
+      @update = 0
       @status = 0
       @trip_activity = @trip.trip_activities.new(params[:trip_activity])
       
@@ -338,7 +418,6 @@ class TripActivitiesController < ApplicationController
       @trip_activity.activity_type = @category
       @trip_activity.activity_sequence_number = @trip_activity.max_sequence_number_day(@trip_activity.activity_day).to_i
       
-      logger.info "#{@trip_activity.inspect} seq number\n"
       case @category
         when "FoodActivity"
           logger.info " food activity \n"

@@ -72,7 +72,7 @@
               (<%= (which_detail_type(x,"category")) %>)
               <span class="publish_form_edit_activity">
                 <!-- <a href="#">edit</a> -->
-                <%= link_to 'Edit', edit_trip_trip_activity_path(@trip, x) %>
+                <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true %>
               </span>
             </div>
 

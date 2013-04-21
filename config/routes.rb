@@ -61,6 +61,8 @@ Travel::Application.routes.draw do
         get 'carddeck'
         get 'showpartial'
         get 'show_activity_photos'
+        get 'publish_trip_activity_edit'
+        put 'publish_trip_activity_update'
         post 'add_new_photo'
       end
       collection do
