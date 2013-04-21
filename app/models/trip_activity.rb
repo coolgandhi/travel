@@ -26,6 +26,12 @@ class TripActivity < ActiveRecord::Base
   #   trip.trip_activities.where("activity_sequence_number < ?", activity_sequence_number).first
   # end
 
+  def max_sequence_number_day day
+  #  trip.trip_activities.where("activity_day = ?", day).maximum(:activity_sequence_number)
+    trip.trip_activities.maximum(:activity_sequence_number)
+    
+  end
+  
   def prev_activities_sequence_number
     day = (activity_day.nil? or activity_day == "") ? "0" : activity_day
     sequence = (activity_sequence_number.nil? ) ? 0: activity_sequence_number

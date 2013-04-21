@@ -32,16 +32,6 @@ class TripActivitiesController < ApplicationController
       format.json { render json: @trip_activity }
     end
   end
-
-  def find_location_latlong trip
-    location_detail = Location.find_by_location_id(trip.location_id)
-    if (location_detail)
-      latlong = location_detail.latitude + "," + location_detail.longitude
-    else
-      latlong = "37.77493,-122.41942"  # use SF by default
-    end
-    latlong
-  end
   
   # GET /trip_activities/new
   # GET /trip_activities/new.json
@@ -294,7 +284,7 @@ class TripActivitiesController < ApplicationController
   
   def add_new_photo
     begin
-    @trip_activity = @trip.trip_activities.find(params[:id])
+      @trip_activity = @trip.trip_activities.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -312,6 +302,105 @@ class TripActivitiesController < ApplicationController
     end
   end
   
+  # POST /trip_activities
+  # POST /trip_activities.json
+  def publish_trip_activity_create
+    begin
+      @status = 0
+      @trip_activity = @trip.trip_activities.new(params[:trip_activity])
+      
+      logger.info "#{@trip_activity.inspect}  number\n"
+      @venue, error = FoursquareInteraction.venue_info(params[:venueid])
+      #logger.info "#{@venue.inspect} \n"
+      @category = get_closest_category(@venue[:categories])
+      @latlong = find_location_latlong(@trip)
+      @activity = nil
+      @activity_detail = nil
+      @trip_activity.activity_type = @category
+      @trip_activity.activity_sequence_number = @trip_activity.max_sequence_number_day(@trip_activity.activity_day).to_i
+      
+      logger.info "#{@trip_activity.inspect} seq number\n"
+      case @category
+        when "FoodActivity"
+          logger.info " food activity \n"
+          @activity = FoodActivity.new
+          @activity.description = params[:description]
+          @activity.duration = params[:duration]
+          @activity.quick_tip = params[:quick_tip]
+          @activity.image_urls = params[:selected_images]
+          @activity.restaurant_detail_id = params[:venueid]
+          @activity_detail = @activity.restaurant_detail
+          if (@activity_detail.nil? or @activity_detail == 0)
+            @activity_detail = create_food_venue(@venue[:id], params[:location_id], 0, @venue)
+            @activity.restaurant_detail = @activity_detail
+          end
+        when "TransportActivity"
+          logger.info " transport activity \n"
+          @activity_detail = ""
+          @activity = TransportActivity.new(params[:transport_activity])        
+        else
+          logger.info " location activity \n"
+          @activity = LocationActivity.new
+          @activity.description = params[:description]
+          @activity.duration = params[:duration]
+          @activity.quick_tip = params[:quick_tip]
+          @activity.image_urls = params[:selected_images]
+          @activity.location_detail_id = params[:venueid]
+          @activity_detail = @activity.location_detail
+          if (@activity_detail.nil? or @activity_detail == 0)
+            @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)
+            @activity.location_detail = @activity_detail
+        end
+      end
+      
+      respond_to do |format|
+        if @activity_detail == nil or @activity_detail.errors.any?
+          if @activity_detail.nil?
+          else
+            logger.info "activity detail errors #{@activity_detail.inspect.errors} "
+          end
+          format.js
+          format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Error during activity creation, retry.'  }
+          format.json { render json: @activity_detail.errors, status: :unprocessable_entity }    
+        else
+          if !(@activity and @activity.save)
+            logger.info "\n activity errors #{@activity.errors.messages} "
+            format.js
+            format.html { redirect_to new_trip_trip_activity_path(@trip), notice: @activity.errors.full_messages.to_sentence }
+            format.json { render json: @activity.errors, status: :unprocessable_entity }    
+          else        
+            if params[:self_trip_activity_photos] != nil
+             @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
+             if @photo.save
+               format.html {  redirect_to trip_trip_activities_path(@trip), notice: 'Trip photo was successfully added.' }
+               format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+             else
+               @activity.destroy # clean up
+               format.js
+               format.html {  redirect_to trip_trip_activities_path(@trip), notice: @photo.errors.full_messages.to_sentence  }
+               format.json { render json: @photo.errors, status: :unprocessable_entity }
+             end
+            else
+              @trip_activity.activity = @activity
+              if @trip_activity.save
+                @status = 1
+                format.js 
+                format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully created.' }
+                format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+              else
+                logger.info "activity detail errors #{@trip_activity.errors.inspect}"
+                @activity.destroy # clean up
+                format.js
+                format.html {  redirect_to trip_trip_activities_path(@trip), notice: @trip_activity.errors.full_messages.to_sentence  }
+                format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+              end
+            end
+          end
+        end
+      end     
+    end
+  end
+  
   def load_trip
     begin
       @trip = Trip.find(params[:trip_id])
@@ -321,7 +410,7 @@ class TripActivitiesController < ApplicationController
       return
     end
   end
-
+  
   private
   
   def use_https?

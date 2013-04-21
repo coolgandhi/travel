@@ -110,12 +110,16 @@ module ApplicationHelper
     category
   end
   
-  def create_food_venue(venue_id, location_id, update=0)
+  def create_food_venue(venue_id, location_id, update=0, venue=0)
     FoursquareInteraction.foursquare_client
-    @venue, error = FoursquareInteraction.venue_info(venue_id)
-    if error != ""
-      Rails.logger.info " errors #{error}"
-      return nil
+    if venue.blank?
+      @venue, error = FoursquareInteraction.venue_info(venue_id)
+      if error != ""
+        Rails.logger.info " errors #{error}"
+        return nil
+      end
+    else
+      @venue = venue
     end
     #options = {:sort => "recent", :limit => 25}
     @venue_tips = FoursquareInteraction.venue_tips(venue_id)     
@@ -192,12 +196,17 @@ module ApplicationHelper
   
   
   
-  def create_location_venue(venue_id, location_id, update=0)
+  def create_location_venue(venue_id, location_id, update=0, venue=0)
     FoursquareInteraction.foursquare_client
-    @venue, error = FoursquareInteraction.venue_info(venue_id)
-    if error != ""
-      return nil
+    if venue.blank?
+      @venue, error = FoursquareInteraction.venue_info(venue_id)
+      if error != ""
+        return nil
+      end
+    else
+      @venue = venue
     end
+    
     @venue_tips = FoursquareInteraction.venue_tips(venue_id)
     @venue_photos = FoursquareInteraction.venue_photos(venue_id)
     tag = get_tag_from_venue(@venue)
@@ -264,7 +273,7 @@ module ApplicationHelper
         }
       end
     else
-      Rails.logger.info "error #{@activity_detail.errors} \n" 
+      Rails.logger.info "error #{@activity_detail.errors.inspect} \n" 
       raise "Venue savings error #{@activity_detail.errors} "
     end
     @activity_detail
@@ -356,5 +365,49 @@ module ApplicationHelper
     trip_map_info
   end
 
-
+  def get_closest_category(categories)
+    ret_category = "LocationActivity"
+    categories.each {|category|
+      if category[:parents]
+        category[:parents].each { |category_parent|
+          if category_parent.downcase.include? "food"
+            ret_category = "FoodActivity"
+            break
+          end
+          if category_parent.downcase.include? "cafeteria"
+            ret_category = "FoodActivity"
+            break
+          end
+        }
+      end
+      
+      if category[:name].downcase.include? "food"
+        ret_category = "FoodActivity"
+        break      
+      end
+      if category[:name].downcase.include? "cafeteria"
+        ret_category = "FoodActivity"
+        break
+      end
+      
+      case category[:id]
+        when "4bf58dd8d48988d1ef931735", "4bf58dd8d48988d119951735", "4bf58dd8d48988d186941735", "50aa9e744b90af0d42d5de0e", "4bf58dd8d48988d118951735", "4bf58dd8d48988d1f5941735", "4bf58dd8d48988d120951735", "4bf58dd8d48988d10e951735", "4bf58dd8d48988d1fa941735", "4bf58dd8d48988d11e951735", "4bf58dd8d48988d11d951735", "4bf58dd8d48988d1f9941735", "4bf58dd8d48988d128941735", "4d4b7105d754a06374d81259", "503288ae91d4c4b30a586d67", "4bf58dd8d48988d1c8941735", "4bf58dd8d48988d14e941735", "4bf58dd8d48988d152941735", "4bf58dd8d48988d107941735", "4bf58dd8d48988d142941735", "4bf58dd8d48988d169941735", "4bf58dd8d48988d1df931735", "4bf58dd8d48988d179941735", "4bf58dd8d48988d16a941735", "4bf58dd8d48988d16b941735", "4bf58dd8d48988d143941735", "50327c8591d4c4b30a586d5d", "4bf58dd8d48988d16c941735", "4bf58dd8d48988d153941735", "4bf58dd8d48988d16d941735", "4bf58dd8d48988d17a941735", "4bf58dd8d48988d144941735", "4bf58dd8d48988d145941735", "4bf58dd8d48988d1e0931735", "4bf58dd8d48988d154941735", "4bf58dd8d48988d1bc941735", "4bf58dd8d48988d146941735", "4bf58dd8d48988d1d0941735", "4bf58dd8d48988d1f5931735", "4bf58dd8d48988d147941735", "4e0e22f5a56208c4ea9a85a0", "4bf58dd8d48988d148941735", "4bf58dd8d48988d108941735", "4bf58dd8d48988d109941735", "4bf58dd8d48988d10a941735", "4bf58dd8d48988d10b941735", "4bf58dd8d48988d16e941735", "4eb1bd1c3b7b55596b4a748f", "4edd64a0c7ddd24ca188df1a", "4bf58dd8d48988d1cb941735", "4bf58dd8d48988d10c941735", "4d4ae6fc7a7b7dea34424761", "4bf58dd8d48988d155941735", "4bf58dd8d48988d10d941735", "4c2cd86ed066bed06c3c5209", "4bf58dd8d48988d10e941735", "4bf58dd8d48988d16f941735", "4bf58dd8d48988d1c9941735", "4bf58dd8d48988d10f941735", "4deefc054765f83613cdba6f", "4bf58dd8d48988d110941735", "4bf58dd8d48988d111941735", "4bf58dd8d48988d112941735", "4bf58dd8d48988d113941735", "4bf58dd8d48988d1be941735", "4bf58dd8d48988d1bf941735", "4bf58dd8d48988d156941735", "4bf58dd8d48988d1c0941735", "4bf58dd8d48988d1c1941735", "4bf58dd8d48988d115941735", "4bf58dd8d48988d1c2941735", "4eb1d5724b900d56c88a45fe", "4bf58dd8d48988d1c3941735", "4bf58dd8d48988d157941735", "4eb1bfa43b7b52c0e1adc2e8", "4bf58dd8d48988d1ca941735", "4def73e84765ae376e57713a", "4bf58dd8d48988d1d1941735", "4bf58dd8d48988d1c4941735", "4bf58dd8d48988d1bd941735", "4bf58dd8d48988d1c5941735", "4bf58dd8d48988d1c6941735", "4bf58dd8d48988d1ce941735", "4bf58dd8d48988d1c7941735", "4bf58dd8d48988d1dd931735", "4bf58dd8d48988d1cd941735", "4bf58dd8d48988d14f941735", "4bf58dd8d48988d150941735", "4bf58dd8d48988d1cc941735", "4bf58dd8d48988d1d2941735", "4bf58dd8d48988d158941735", "4bf58dd8d48988d151941735", "4bf58dd8d48988d1db931735", "4bf58dd8d48988d1dc931735", "4bf58dd8d48988d149941735", "4f04af1f2fb6e1c99f3db0bb", "4bf58dd8d48988d1d3941735", "4bf58dd8d48988d14a941735", "4bf58dd8d48988d14b941735", "4bf58dd8d48988d14c941735", "512e7cae91d4cbb4e5efe0af"
+        ret_category = "FoodActivity"
+        break 
+      end
+    }
+    
+    ret_category
+  end
+  
+  
+  def find_location_latlong trip
+    location_detail = Location.find_by_location_id(trip.location_id)
+    if (location_detail)
+      latlong = location_detail.latitude + "," + location_detail.longitude
+    else
+      latlong = "37.77493,-122.41942"  # use SF by default
+    end
+    latlong
+  end
 end

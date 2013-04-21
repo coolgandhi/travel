@@ -15,6 +15,7 @@ Travel::Application.routes.draw do
   get "venues/pick"
   get "venues/get_venue_info"
   get "venues/get_venue_photos"
+  get "venues/get_venue_details"
 
   get "locations/pick"
 
@@ -64,6 +65,7 @@ Travel::Application.routes.draw do
       end
       collection do
         get 'move'
+        post 'publish_trip_activity_create'
       end
     end
   end # I nested trip_activities into trips so that we can have routes with /trip/:trip_id/trip_activities/:id hkl

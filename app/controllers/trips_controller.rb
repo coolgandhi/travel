@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  include ApplicationHelper
   include TripsHelper
   before_filter :authorize, :except => [:index, :show, :showpartial, :daymapinfo]
   before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo]
@@ -303,10 +304,13 @@ class TripsController < ApplicationController
   def publish_edit
     begin  
       @trip = Trip.find(params[:id])
+      @trip_activity = @trip.trip_activities.new
       @location_detail = Location.find_by_location_id(@trip.location_id)
       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+      @latlong = find_location_latlong(@trip)
       @trip_message = "Update Trip"
       @trip_publish = "publish_update"
+      @trip_activity_publish = "publish_trip_activity_create_trip_trip_activities"
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
