@@ -1,5 +1,5 @@
 class TripActivity < ActiveRecord::Base
-  acts_as_list :column => :activity_sequence_number, :scope => :trip
+  acts_as_list :column => :activity_sequence_number
   belongs_to :trip
   belongs_to :activity,  :polymorphic => true
   belongs_to :activity_time_types, :primary_key => :activity_time_type_id
@@ -17,15 +17,12 @@ class TripActivity < ActiveRecord::Base
   validates :activity_type, :presence => { :message => "enter activity type" }
   
   # validates_uniqueness_of :trip_id, :scope => [:activity_day, :activity_sequence_number], :message => "trip with same activity day and sequence number already present"
+
+  # scope_condition for acts_as_list
+  def scope_condition
+    "trip_id = #{trip_id} AND activity_day = #{activity_day}"
+  end
   
-  # def next
-  #   trip.trip_activities.where("activity_sequence_number > ?", activity_sequence_number).first
-  # end
-
-  # def prev
-  #   trip.trip_activities.where("activity_sequence_number < ?", activity_sequence_number).first
-  # end
-
   def prev_activities_sequence_number
     day = (activity_day.nil? or activity_day == "") ? "0" : activity_day
     sequence = (activity_sequence_number.nil? ) ? 0: activity_sequence_number

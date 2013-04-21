@@ -6,7 +6,8 @@ class TripActivitiesController < ApplicationController
   # GET /trip_activities
   # GET /trip_activities.json
   def index
-    @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+    # @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
+    @trip_activities = @trip.trip_activities.all(:order => "activity_day asc, activity_sequence_number asc")
     # if ["move_lower", "move_higher", "move_to_top", "move_to_bottom"].include?(params[:method]) and params[:trip_activity_id] =~ /^\d+$/
     #   TripActivity.find(params[:trip_activity_id]).send(params[:method])
     # end
@@ -276,7 +277,7 @@ class TripActivitiesController < ApplicationController
     #after we're done updating the position (which gets done in the background
     #because of acts_as_list, we'll use ajax to reload the page
     respond_to do |format|
-      format.js # index.js.erb
+      format.js { :locals => {:day => 3} }
     end
   end
   
