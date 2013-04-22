@@ -42,171 +42,87 @@
       
 <div class="tab-content">
   
-  <% for i in 1..@trip.days_in_trip.to_i %>
+  <% for i in 1..@trip.duration.to_i %>
     <% if i == 1 %>
       <div class="tab-pane active" id=<%= "publish_activities_day_#{i}"%>>
     <% else %>
       <div class="tab-pane" id=<%= "publish_activities_day_#{i}"%>>
     <% end %>
 
-      <div class = "publish_form_activities_list">
-        <div class = "publish_form_time">
-          Morning
-        </div>
-
-        <% morning = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == '1' or x.activity_time_type == '2')} %>
-        <%= morning.blank? ? "No Activities" : "" %>
-        <% morning.each_with_index do |x, index| %>
-          
-          <% if index == 0 %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "no_move" %>
-            <% down_action = "move_lower" %>
-          <% elsif index == morning.find_index(morning.last) %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = "3" %>
-            <% up_action = "move_higher" %>
-            <% down_action = "no_move" %>
-          <% else %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "move_higher" %>
-            <% down_action = "move_lower" %>
-          <%end %>
-
-          <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
-          
-            <div class = "publish_form_order_button_group">
-              <div class = "activity_order_up">
-                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
+      <!-- Begin Loop Through time_type -->
+      <% ["morning", "afternoon", "evening"].each do |timeof| %>
+        <div class = "publish_form_activities_list">
+          <div class = "publish_form_time">
+            <%= "#{timeof}" %>
+          </div>
+          <% dayof_group = @trip_activities.select { |x| x.activity_day == i.to_s } %>
+          <% timeof_group = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == (timeof == "morning" ? '1' : timeof == "afternoon" ? "3" : timeof == "evening" ? "5" : "6") or x.activity_time_type == (timeof == "morning" ? '2' : timeof == "afternoon" ? "4" : timeof == "evening" ? "6" : "6"))} %>
+          <%= timeof_group.blank? ? "No Activities" : "" %>
+          <!-- Begin Loop activities within each time type -->
+          <% timeof_group.each_with_index do |x, index| %>
+            <!-- Begin Logic on up and down buttons -->
+            <% if timeof_group.length != 1 and index == 0 %> <!-- if first in time_type -->
+              <% up_time_type_switch = (timeof == "morning" ? x.activity_time_type : timeof == "afternoon" ? "2" : timeof == "evening" ? "4" : "6") %>
+              <% down_time_type_switch = x.activity_time_type %>
+              <% up_action = "no_move" %>
+              <% down_action = "move_lower" %>
+            <% elsif timeof_group.length != 1 and index == timeof_group.find_index(timeof_group.last) %> <!-- if last in time_type -->
+              <% up_time_type_switch = x.activity_time_type %>
+              <% down_time_type_switch = (timeof == "morning" ? "3" : timeof == "afternoon" ? "5" : timeof == "evening" ? x.activity_time_type : "6") %>
+              <% up_action = "move_higher" %>
+              <% down_action = "no_move" %>
+            <% elsif timeof_group.length == 1 %> <!-- if solo -->
+              <% up_time_type_switch = (timeof == "morning" ? x.activity_time_type : timeof == "afternoon" ? "2" : timeof == "evening" ? "4" : "6") %>
+              <% down_time_type_switch = (timeof == "morning" ? "3" : timeof == "afternoon" ? "5" : timeof == "evening" ? x.activity_time_type : "6") %>
+              <% up_action = "no_move" %>
+              <% down_action = "no_move" %>
+            <% else %>
+              <% up_time_type_switch = x.activity_time_type %>
+              <% down_time_type_switch = x.activity_time_type %>
+              <% up_action = "move_higher" %>
+              <% down_action = "move_lower" %>
+            <%end %>
+            <!-- End Logic on up and down buttons -->
+            <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
+            
+              <div class = "publish_form_order_button_group">
+                <div class = "activity_order_up">
+                  <% if x.activity_sequence_number != (dayof_group.find_index(dayof_group.first).to_i + 1) %>
+                    <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
+                  <% else %>
+                    
+                  <% end %>
+                </div>
+                
+                <div class = "activity_order_down">
+                  <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.last).to_i + 1) && x.activity_time_type == ("5" || "6") %>
+                  <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
+                  <% else %>
+                    
+                  <% end %>
+                </div>
               </div>
               
-              <div class = "activity_order_down">
-                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
+              <div class = "publish_form_activity_desc">
+                <%= (which_detail_type(x,"name")) %>
+                </br>
+                (<%= (which_detail_type(x,"category")) %>) <%= x.activity_sequence_number %> 
+                <span class="publish_form_edit_activity">
+                  <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true %>
+                </span>
               </div>
             </div>
-            
-            <div class = "publish_form_activity_desc">
-
-              <%= (which_detail_type(x,"name")) %>
-              </br>
-              (<%= (which_detail_type(x,"category")) %>) <%= x.activity_sequence_number %>
-              <span class="publish_form_edit_activity">
-                <!-- <a href="#">edit</a> -->
-                <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true %>
-              </span>
-            </div>
-
-          </div>
-        <% end %>
-
-
-        <div class = "publish_form_time">
-          Afternoon
-        </div>
-
-        <% afternoon = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == '3' or x.activity_time_type == '4')} %>
-        <%= afternoon.blank? ? "No Activities" : "" %>
-        <% afternoon.each_with_index do |x, index| %>
           
-          <% if index == 0 %>
-            <% up_time_type_switch = "2" %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "no_move" %>
-            <% down_action = "move_lower" %>
-          <% elsif index == afternoon.find_index(afternoon.last) %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = "5" %>
-            <% up_action = "move_higher" %>
-            <% down_action = "no_move" %>
-          <% else %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "move_higher" %>
-            <% down_action = "move_lower" %>
-          <%end %>
+          <% end %>
+          <!-- End Loop activities within each time type -->  
+        </div>        
+      <% end %>
 
-          <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
-          
-            <div class = "publish_form_order_button_group">
-              <div class = "activity_order_up">
-                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
-              </div>
-              
-              <div class = "activity_order_down">
-                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
-              </div>
-            </div>
-            
-            <div class = "publish_form_activity_desc">
 
-              <%= (which_detail_type(x,"name")) %>
-              </br>
-              (<%= (which_detail_type(x,"category")) %>) - <%= x.activity_sequence_number %>
 
-              <span class="publish_form_edit_activity">
-                <a href="#">edit</a>
-              </span>
-            </div>
-
-          </div>
-        <% end %>
-
-        <div class = "publish_form_time">
-          Evening
-        </div>
-
-        <% evening = @trip_activities.select { |x| x.activity_day == i.to_s and (x.activity_time_type == '5' or x.activity_time_type == '6')} %>
-        <%= evening.blank? ? "No Activities" : "" %>
-        <% evening.each_with_index do |x, index| %>
-
-          <% if index == 0 %>
-            <% up_time_type_switch = "4" %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "no_move" %>
-            <% down_action = "move_lower" %>
-          <% elsif index == evening.find_index(evening.last) %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "move_higher" %>
-            <% down_action = "no_move" %>
-          <% else %>
-            <% up_time_type_switch = x.activity_time_type %>
-            <% down_time_type_switch = x.activity_time_type %>
-            <% up_action = "move_higher" %>
-            <% down_action = "move_lower" %>
-          <%end %>
-
-          <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
-          
-            <div class = "publish_form_order_button_group">
-              <div class = "activity_order_up">
-                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
-              </div>
-              
-              <div class = "activity_order_down">
-                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
-              </div>
-            </div>
-            
-            <div class = "publish_form_activity_desc">
-
-              <%= (which_detail_type(x,"name")) %>
-              </br>
-              (<%= (which_detail_type(x,"category")) %>) <%= x.activity_sequence_number %>
-
-              <span class="publish_form_edit_activity">
-                <a href="#">edit</a>
-              </span>
-            </div>
-
-          </div>
-        <% end %>
-
-      </div>
     </div>
   <% end %>
+  <!-- End Loop Through time_type -->
 </div>
 
 <!-- End Tab Content -->
