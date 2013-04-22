@@ -514,6 +514,29 @@ class TripActivitiesController < ApplicationController
     end
   end
   
+  # DELETE /publish_trip_activity_destroy/1
+  def publish_trip_activity_destroy
+    begin
+      @trip_activity = @trip.trip_activities.find(params[:id])
+      @activity = @trip_activity.activity
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+    
+    @success_msg = "Trip Activity Removed Successfully!"
+    respond_to do |format|
+      @activity.destroy
+      @trip_activity.destroy      
+      format.js
+      format.html { redirect_to @trip }
+      format.json { head :no_content }        
+    end
+  end
+  
+  private
+  
   def load_trip
     begin
       @trip = Trip.find(params[:trip_id])
@@ -523,8 +546,6 @@ class TripActivitiesController < ApplicationController
       return
     end
   end
-  
-  private
   
   def use_https?
     #case params[:action]

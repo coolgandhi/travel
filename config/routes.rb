@@ -64,6 +64,7 @@ Travel::Application.routes.draw do
         get 'publish_trip_activity_edit'
         put 'publish_trip_activity_update'
         post 'add_new_photo'
+        delete 'publish_trip_activity_destroy'
       end
       collection do
         get 'move'
