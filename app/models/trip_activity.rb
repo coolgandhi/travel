@@ -22,10 +22,12 @@ class TripActivity < ActiveRecord::Base
   def scope_condition
     "trip_id = #{trip_id} AND activity_day = #{activity_day}"
   end
+  def max_sequence_activity_time_type day
+    trip.trip_activities.select([:activity_time_type, 'MAX(activity_sequence_number)']).where("activity_day = ?", day).group(:activity_day)
+  end
   
   def max_sequence_number_day day
-  #  trip.trip_activities.where("activity_day = ?", day).maximum(:activity_sequence_number)
-    trip.trip_activities.maximum(:activity_sequence_number)    
+    trip.trip_activities.where("activity_day = ?", day).maximum(:activity_sequence_number)
   end
   
   def prev_activities_sequence_number
