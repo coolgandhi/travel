@@ -38,8 +38,8 @@
         <input type="text" placeholder="Must See?"> <br/>
         <%= hidden_field_tag :trip_activity_latlong, @latlong %>
         <%= hidden_field_tag :trip_id, @trip_activity.trip_id %>
-        <%= f.hidden_field :activity_day, :value => '1'%>
-        <%= f.hidden_field :activity_time_type,  :value => '1' %>
+        <%= f.hidden_field :activity_day, :value => @trip_activity.activity_day.blank? ? '1' : @trip_activity.activity_day %>
+        <%= f.hidden_field :activity_time_type,  :value => @trip_activity.activity_time_type.blank? ? '1' : @trip_activity.activity_time_type %>
         <%#= f.hidden_field :activity_day, :value => params[:trip_activity].nil? and params[:trip_activity][:activity_day].nil? ? '1' : params[:trip_activity][:activity_day] %> 
         <%#= f.hidden_field :activity_time_type,  :value =>  params[:trip_activity][:activity_time_type].nil? ? '1' : params[:trip_activity][:activity_time_type] %>
         <input type="hidden" id="venue_id" name="venueid" value=<%= params[:venueid].nil?  ? '' : params[:venueid] %> ></br>
