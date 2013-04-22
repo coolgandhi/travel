@@ -391,6 +391,15 @@ class TripActivitiesController < ApplicationController
     begin
       @update = 0
       @trip_activity = @trip.trip_activities.new
+      if params[:day]
+        @trip_activity.activity_day = params[:day]
+      end
+      
+      @sequence = @trip_activity.max_sequence_activity_time_type(@trip_activity.activity_day)
+      if !(@sequence.blank? or @sequence.first.blank?)
+        @trip_activity.activity_time_type = @sequence.first.activity_time_type
+      end 
+      
       @activity = nil
       @activity_detail = nil
       @trip_activity.trip_id = params[:trip_id]
@@ -412,15 +421,17 @@ class TripActivitiesController < ApplicationController
       @status = 0
       @trip_activity = @trip.trip_activities.new(params[:trip_activity])
       
-      logger.info "#{@trip_activity.inspect}  number\n"
       @venue, error = FoursquareInteraction.venue_info(params[:venueid])
-      #logger.info "#{@venue.inspect} \n"
       @category = get_closest_category(@venue[:categories])
       @latlong = find_location_latlong(@trip)
       @activity = nil
       @activity_detail = nil
       @trip_activity.activity_type = @category
-      @trip_activity.activity_sequence_number = @trip_activity.max_sequence_number_day(@trip_activity.activity_day).to_i
+      @trip_activity.activity_sequence_number = 1
+      @day = @trip_activity.max_sequence_number_day(@trip_activity.activity_day)
+      if !@day.blank?
+        @trip_activity.activity_sequence_number = @trip_activity.max_sequence_number_day(@trip_activity.activity_day).to_i + 1
+      end
       
       case @category
         when "FoodActivity"
