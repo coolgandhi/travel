@@ -2,9 +2,9 @@
 <div class="publish_trip_activities_ordering_container">
 
 <!-- Begin Tabs -->
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" id="publish_day_tabs">
 
-  <li class ="active"><a href="#publish_activities_day_1" data-toggle="tab">Day 1</a></li>
+  <li class ="active"><a class="publish_order_day_tabs" href="#publish_activities_day_1" data-toggle="tab">Day 1</a></li>
   
   <%if @trip %>
     <% n = @trip.duration.to_i > 3 ? 3 : @trip.duration.to_i %>
@@ -76,15 +76,15 @@
             <% down_action = "move_lower" %>
           <%end %>
 
-          <div class = "publish_form_activity_item">
+          <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
           
             <div class = "publish_form_order_button_group">
               <div class = "activity_order_up">
-                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch), :remote => true %>
+                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
               </div>
               
               <div class = "activity_order_down">
-                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch), :remote => true %>
+                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
               </div>
             </div>
             
@@ -128,15 +128,15 @@
             <% down_action = "move_lower" %>
           <%end %>
 
-          <div class = "publish_form_activity_item">
+          <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
           
             <div class = "publish_form_order_button_group">
               <div class = "activity_order_up">
-                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch), :remote => true %>
+                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
               </div>
               
               <div class = "activity_order_down">
-                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch), :remote => true %>
+                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
               </div>
             </div>
             
@@ -179,15 +179,15 @@
             <% down_action = "move_lower" %>
           <%end %>
 
-          <div class = "publish_form_activity_item">
+          <div class = "publish_form_activity_item" id = <%="publish_form_activity_#{x.id}" %> >
           
             <div class = "publish_form_order_button_group">
               <div class = "activity_order_up">
-                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch), :remote => true %>
+                <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
               </div>
               
               <div class = "activity_order_down">
-                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch), :remote => true %>
+                <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
               </div>
             </div>
             
