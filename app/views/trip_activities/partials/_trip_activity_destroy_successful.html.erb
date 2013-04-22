@@ -1,0 +1,20 @@
+<% if ((@trip_activity and @trip_activity.errors.any?) or (@activity and @activity.errors.any?)) %>
+  <div id="error_explanation">
+   <h2><%#= pluralize(@trip_activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+   <ul>
+     <% if @trip_activity %>
+       <% @trip_activity.errors.messages.each do |attr, msg| %>
+         <li><%= msg.first %></li>
+       <% end %>
+     <% end %>
+     <% if @activity %>
+       <% @activity.errors.messages.each do |attr, msg| %>
+         <li><%= msg.first %></li>
+       <% end %>
+     <% end %>
+   </ul>
+  </div>
+<% else %>
+  <%= @success_msg %>
+<% end %>

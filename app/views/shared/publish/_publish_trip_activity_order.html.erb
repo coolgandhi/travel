@@ -110,6 +110,7 @@
                 (<%= (which_detail_type(x,"category")) %>) <%= x.activity_sequence_number %> 
                 <span class="publish_form_edit_activity">
                   <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true %>
+                  <%= link_to "Delete", publish_trip_activity_destroy_trip_trip_activity_url(:trip_id => @trip.id, :id => x), :method => :delete, :remote => true %>
                 </span>
               </div>
             </div>
