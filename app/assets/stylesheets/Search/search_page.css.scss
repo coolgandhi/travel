@@ -700,7 +700,7 @@ $resultThumbHeight: 60%;
   @include clearfix;
   height: 15%;
   min-height: 150px;
-  width: 15%;
+  width: 20%;
   min-width: 150px;
   top: 6%;
   right: 0;
@@ -716,7 +716,8 @@ $resultThumbHeight: 60%;
   #mc_embed_signup{
     border-top: none;
     float: left;
-    input.btn-flat-mini{
+    width: 100%;
+    input.btn-flat{
       float: right;
       width: 35%;
       min-width: 90px;
