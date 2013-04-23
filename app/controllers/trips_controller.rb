@@ -350,13 +350,37 @@ class TripsController < ApplicationController
     end
   end
   
+  def publish_add_day
+    begin
+      @trip = Trip.find(params[:id])
+      @status = 0
+      @day = (@trip.duration.to_i + 1)
+      @trip.duration = @day.to_s
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+
+    @success_msg = ""    
+    respond_to do |format|
+      if @trip.save
+        @success_msg = "Trip Day Added Successfully!"
+        @status = 1
+      end      
+      format.js
+      format.html { redirect_to @trip }
+      format.json { head :no_content }        
+    end
+  end
+  
   private
 
   def resolve_layout
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update", "publish_add_day"
       "index_layout"
     else
       "application"
