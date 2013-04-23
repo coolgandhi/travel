@@ -10,6 +10,7 @@
   * OVERVIEW MODAL AND TABLE
   * SEARCH VALIDATION
   * FRONT PAGE CONVERSATION
+  * FLOATING FRONT PAGE CONVERSATION
 */
 
 
@@ -690,4 +691,85 @@ $resultThumbHeight: 60%;
 .front_convo_social_icon{
   height: 18px;
   width: 18px;
+}
+
+/* FLOATING FRONT PAGE CONVERSATION */
+
+.floating_front_page_convo{
+  position: fixed;
+  @include clearfix;
+  height: 15%;
+  min-height: 150px;
+  width: 15%;
+  min-width: 150px;
+  top: 6%;
+  right: 0;
+  background-color: rgba(241,241,241,0.9);
+  border: $myDivBorderWidth solid $borderGray;
+  z-index: 10000;
+  @include border-radius($myDivBorderRadius 0 0 $myDivBorderRadius);
+  @include respond-to(portrait){
+    min-width: 180px;
+    min-height: 140px;
+  }
+
+  #mc_embed_signup{
+    border-top: none;
+    float: left;
+    input.btn-flat-mini{
+      float: right;
+      width: 35%;
+      min-width: 90px;
+      margin: 0;
+      margin-top: 2%;
+      // margin-right: %;
+    }
+  }
+
+  #mc_embed_signup input.email{
+    float: left;
+    margin: 0;
+    margin-right: 1%;
+    text-indent: em(5px);
+    width: 95%;
+    min-width: 130px;
+    @include respond-to(portrait){
+      min-width: 80px;
+      width: 90%;
+    }
+  }
+  #mc_embed_signup label{
+    font-size: em(12px);
+    padding-bottom: 0;
+    font-weight: bold;
+    line-height: 12px;
+    margin-top: 2%;
+  }
+
+}
+
+.floating_email_form{
+  float: left;
+  position: relative;
+  border-top: 1px solid $borderGray;
+  width: 100%;
+}
+
+.floating_front_convo_social_btn{
+  position: relative;
+  float: right;
+  margin: 2%;
+  margin-right: 5%;
+
+  .front_convo_social_icon{
+  height: 30px;
+  width: 30px;
+  }
+}
+
+.floating_convo_follow{
+  float:left;
+  padding: 2% 3%;
+  font-size: em(14px);
+  font-weight: bold;
 }
