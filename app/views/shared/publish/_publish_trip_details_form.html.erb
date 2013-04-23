@@ -19,18 +19,27 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label">Where did you go?</label>
+      <label class="control-label">Where did you go? *</label>
       <div class="controls">
-        <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span4 required_publish_form_field">
-        <span class ="help-inline publish_form_required_label">* required</span>
+        <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span3 required_publish_form_field">
+        <span class ="help-inline publish_form_required_label">Required</span>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label">Who is this best for?</label>
+      <label class="control-label">Who is this best for? *</label>
       <div class = "controls">
-        <%= f.collection_select :traveler_type_id, TravelerType.find(:all, :limit => 4), :traveler_type_id, :traveler_type_name,{:prompt => 'Traveler Type'}, :class => "span4" %>
-        <span class ="help-inline publish_form_required_label">* required</span>
+        <%= f.collection_select :traveler_type_id, TravelerType.find(:all, :limit => 4), :traveler_type_id, :traveler_type_name,{:prompt => 'Traveler Type'}, :class => "span3" %>
+        <span class ="help-inline publish_form_required_label">Required</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Add a cover picture</label>
+      <div class="controls">
+        <div class="btn-group">
+          <button class="btn btn-primary" type="button">Upload Your Own</button>
+        </div>
       </div>
     </div>
 
@@ -39,7 +48,7 @@
     <div class="control-group">
       <label class="control-label">Add a title</label>
       <div class="controls">
-        <%= f.text_field :trip_name, :placeholder => "Pigging Out in San Francisco", :class => "span9 message40" %>
+        <%= f.text_field :trip_name, :placeholder => "Pigging Out in San Francisco", :class => "span6 message40" %>
         <p class ="countdown40"></p>
       </div>
     </div>
@@ -47,20 +56,10 @@
     <div class="control-group">
       <label class="control-label">Give a short summary</label>
       <div class="controls">
-        <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Who did you go with? What did you do? Why did you go?", :class => "span9 message200" %>
+        <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Who did you go with? What did you do? Why did you go?", :class => "span6 message200" %>
         <p class ="countdown200"></p>
       </div>
     </div>
-
-    <div class="control-group">
-      <label class="control-label">Add a cover picture</label>
-    <div class="controls">
-      <div class="btn-group">
-        <button class="btn btn-primary" type="button">From Foursquare</button>
-        <button class="btn btn-primary" type="button">Upload Your Own</button>
-      </div>
-    </div>
-  </div>
 
   <div class="control-group">
     <label class="control-label">Optional: 3 tags that best describes this trip</label>
@@ -72,7 +71,7 @@
   </div>
     
     <div class="actions">
-      <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "pull-right" %>
+      <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary pull-right" %>
     </div>
   <% end %>
 

@@ -4,6 +4,19 @@
 
 ((trips_activities_namespace, $, undefined_) ->
 
+  trips_activities_namespace.populate_venue_detail = (foursquare_id) ->
+    $.ajax 
+      url: window.location.protocol + "//" + window.location.host + "/venues/get_venue_details.json"
+      dataType: "json"
+      data: 
+        venueid: foursquare_id
+      success: (data) ->
+        # console.log(foursquare_id)
+        $.map(data, (item) ->
+          $('.publish_trip_selected_activity_desc').html(item.address1 + ", " + item.city);
+          console.log(item.city)
+        )
+
   totalSelectedImages = 0;
 
   jQuery ->        
@@ -98,7 +111,8 @@
           event.preventDefault()
           $('#venue_id').val( ui.item.value )
           $(this).val ui.item.label
-          $(this).siblings('#activityvenue').val ui.item.value   
+          $(this).siblings('#activityvenue').val ui.item.value
+          trips_activities_namespace.populate_venue_detail (ui.item.value)   
       
           
   jQuery ->

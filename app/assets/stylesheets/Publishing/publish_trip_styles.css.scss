@@ -66,6 +66,7 @@
 .publish_trip_details_container{
   padding: 1%;
   @include box-sizing(border-box);
+  @include clearfix;
   .required_publish_form_field{
     background-color: #FAFAD2;
   }
@@ -202,5 +203,6 @@
 
 .countdown40, .countdown200{
   margin-bottom:0;
+  clear: both;
 }
 
