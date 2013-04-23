@@ -47,6 +47,7 @@ Travel::Application.routes.draw do
       get 'daymapinfo'
       get 'publish_edit'
       get 'publish_add_day'
+      get 'publish_delete_day'
       put 'publish_update'
       put 'update_individual'
     end

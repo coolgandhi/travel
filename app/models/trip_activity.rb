@@ -8,7 +8,7 @@ class TripActivity < ActiveRecord::Base
   
   attr_accessible :activity, :trip_id, :activity_day, :activity_id, :activity_sequence_number, :activity_time_type, :activity_type
 
-  validates :activity, :presence => { :message => "" } 
+  validates :activity, :presence => { :message => "activity is invalid" } 
   validates :activity_day, :presence => { :message => "choose an activity day" } 
   validates_numericality_of :activity_day, :only_integer => true, :message => "enter a valid day" 
   validates :activity_time_type, :presence => { :message => "choose the activity time" }

@@ -1,5 +1,19 @@
 module ApplicationHelper
 
+  
+  def get_photos venue_id, tot
+    FoursquareInteraction.foursquare_client
+    venue_photos = FoursquareInteraction.venue_photos(venue_id, tot)
+    venue_photos_com = get_photos_from_venue_photos(venue_photos, tot)
+    #logger.info "#{@venue_photos_com.inspect}"
+     
+    venue_photos_com = get_photos_from_venue_photos_with_json(venue_photos_com, true)
+    
+    venue_photos_first = get_photos_from_venue_photos_first_resolution(venue_photos, tot)
+    venue_photos_first = get_photos_from_venue_photos_with_json(venue_photos_first, false)
+    return venue_photos_first, venue_photos_com
+  end
+  
   def empty_string_if_value_nil(value)
     ret_value = (value.nil?) ? "" : value
     ret_value

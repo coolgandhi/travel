@@ -276,7 +276,20 @@ class TripsController < ApplicationController
   # Post /trips/publish_create
   def publish_create
     @trip = Trip.new(params[:trip])
-    @trip.image_url = (params[:selected_images].nil?) ? "": params[:selected_images];
+    @location_detail = Location.find_by_location_id(@trip.location_id)
+    @update = 0
+    if (params[:selected_images].blank?)
+      FoursquareInteraction.foursquare_client
+      @venue_id = FoursquareInteraction.find_closest_venue(@location_detail.latitude, @location_detail.longitude, @location_detail.city)
+      if (@venue_id != "")
+        @venue_photos_first, @venue_photos_com = self.get_photos(@venue_id, 4)
+        @trip.image_url = @venue_photos_com.first
+      else
+        @trip.image_url = ""
+      end
+    else
+      @trip.image_url =  params[:selected_images]
+    end
     @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
                  ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
                  ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 
@@ -286,13 +299,13 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.save
         @trip_message = "Update Trip"
-        @location_detail = Location.find_by_location_id(@trip.location_id)
         @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
         
         @trip_publish = publish_update_trip_url(@trip)
         format.html { render action: "publish_edit", notice: 'Trip was successfully updated.' }
         format.json { render json: @trip, status: :created, location: @trip }
       else
+        logger.info "#{@trip.errors.inspect}"
         format.html { render :action => "publish_new" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
@@ -374,6 +387,42 @@ class TripsController < ApplicationController
     end
   end
   
+  
+  def publish_delete_day
+     begin
+       @trip = Trip.find(params[:id])
+       @day = "0"
+       if (params[:day])
+         @day = params[:day]
+         @trip_activities_day =  TripActivity.find(:all, :conditions => {:trip_id => @trip.id, :activity_day => @day})
+         @trip_activities_day.each { |trip_activity|
+           activity = trip_activity.activity
+           activity.destroy if !activity.nil?
+         }
+         
+         TripActivity.destroy_all(:trip_id => @trip.id, :activity_day => @day)
+         @trip_activities_greater_day = TripActivity.where( 'trip_id = ? and activity_day > ?', @trip.id, @day)
+         @trip_activities_greater_day.each {|trip_activity_greater_day|
+           trip_activity_greater_day.activity_day = (trip_activity_greater_day.activity_day.to_i - 1).to_s
+           trip_activity_greater_day.save           
+         }
+         @trip.duration = (@trip.duration.to_i - 1).to_s
+         @trip.save
+       end
+     rescue ActiveRecord::RecordNotFound
+       flash[:notice] = "Trip activity not found"
+       redirect_to :controller => 'trips', :action => 'index'
+       return
+     end
+
+     @success_msg = "Trip day deleted successfully!"    
+     respond_to do |format|
+       format.js # publish_delete_day
+       format.html { redirect_to @trip }
+       format.json { head :no_content }        
+     end
+   end
+   
   private
 
   def resolve_layout
