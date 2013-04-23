@@ -282,8 +282,9 @@ class TripsController < ApplicationController
       FoursquareInteraction.foursquare_client
       @venue_id = FoursquareInteraction.find_closest_venue(@location_detail.latitude, @location_detail.longitude, @location_detail.city)
       if (@venue_id != "")
-        @venue_photos_first, @venue_photos_com = self.get_photos(@venue_id, 4)
-        @trip.image_url = @venue_photos_com.first
+        @venue_photos_com = self.get_photos(@venue_id, 4, false)
+        images = @venue_photos_com.to_s.split(";")
+        @trip.image_url = images.length > 0 ? images[0]: ""
       else
         @trip.image_url = ""
       end
