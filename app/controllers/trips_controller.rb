@@ -424,13 +424,32 @@ class TripsController < ApplicationController
      end
    end
    
+   
+  def publish_trip_partial_format
+    begin
+      logger.info " Reached here"
+      @trip = Trip.find(params[:id])
+      @trip_activities = @trip.trip_activities
+  
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+
+    respond_to do |format|
+       format.js 
+       format.json { head :no_content }        
+    end
+  end
+   
   private
 
   def resolve_layout
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update", "publish_add_day"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update", "publish_add_day", "publish_trip_partial_format"
       "index_layout"
     else
       "application"
