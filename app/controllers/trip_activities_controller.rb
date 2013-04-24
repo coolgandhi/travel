@@ -377,6 +377,7 @@ class TripActivitiesController < ApplicationController
       else
         if @trip_activity.update_attributes(params[:trip_activity])
           @status = 1
+          flash.now[:success] = "Successfully updated trip activity." 
           format.js
         else
           format.js
@@ -498,6 +499,7 @@ class TripActivitiesController < ApplicationController
               if @trip_activity.save
                 @status = 1
                 format.js 
+                flash.now[:success] = "Successfully added new activity" 
                 format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully created.' }
                 format.json { render json: @trip_activity, status: :created, location: @trip_activity }
               else
@@ -530,6 +532,7 @@ class TripActivitiesController < ApplicationController
       @activity.destroy
       @trip_activity.destroy      
       format.js
+      flash.now[:success] = @success_msg
       format.html { redirect_to @trip }
       format.json { head :no_content }        
     end

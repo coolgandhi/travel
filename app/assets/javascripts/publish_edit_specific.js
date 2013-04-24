@@ -1,0 +1,1 @@
+//= require_directory ./Trips/publish/publish_edit

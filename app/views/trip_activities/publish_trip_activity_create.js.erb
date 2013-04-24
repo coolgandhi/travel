@@ -2,5 +2,6 @@
 	$(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
 <% end %>
 <% if @status == 1 %>
-	$(".publish_trip_create_activities").html('<%= escape_javascript(render("trip_activities/partials/trip_activity_creation_successful")) %>');
+	$('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
+	// $(".publish_trip_create_activities").html('<%= escape_javascript(render("trip_activities/partials/trip_activity_creation_successful")) %>');
 <% end %>

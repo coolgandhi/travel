@@ -1,1 +1,2 @@
-$(".publish_trip_create_activities").html('<%= escape_javascript(render("trip_activities/partials/trip_activity_destroy_successful")) %>');
+// $(".publish_trip_create_activities").html('<%= escape_javascript(render("trip_activities/partials/trip_activity_destroy_successful")) %>');
+$('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");

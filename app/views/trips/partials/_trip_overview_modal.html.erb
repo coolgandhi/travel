@@ -65,7 +65,7 @@
             <%= image_tag(image_url, :alt => @sorted_activities[i][:activity_venue_name]) %>
           </td>
           <td>
-            <%= @sorted_activities[i][:activity_venue_name] %> (<%=@sorted_activities[i][:category] %>) 
+            <%= @sorted_activities[i][:activity_venue_name] %> (<%=@sorted_activities[i][:category].split(', ').first %>) 
             <% unless @sorted_activities[i][:duration].blank? %> 
               for <%= @sorted_activities[i][:duration] %> 
             <% end %>
