@@ -48,6 +48,7 @@ Travel::Application.routes.draw do
       get 'publish_edit'
       get 'publish_add_day'
       get 'publish_delete_day'
+      get 'publish_trip_partial_format'
       put 'publish_update'
       put 'update_individual'
     end
