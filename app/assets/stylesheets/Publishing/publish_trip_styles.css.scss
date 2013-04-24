@@ -133,17 +133,48 @@
 }
 
 /* 5. TRIP ACTIVITIES ORDERING */
+.publish_order_day_tab_title{
+  color: black;
+  font-weight: bold;
+  &:hover{
+    background-color: transparent;
+  }
+  a{
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    &:hover{
+      color: inherit;
+    }
+  }
+}
+
+#publish_day_tabs{
+  margin-bottom: 2%;
+}
+
 .publish_form_time{
   @include clearfix;
   padding: 1%;
   background-color: #18add7;
   text-transform: capitalize;
+  color: white;
+  font-weight: bold;
 }
 
 .publish_form_activity_item{
   @include clearfix;
-  border: 1px solid black;  
+  border-bottom: 1px solid $borderGray;  
   height: 50px;
+}
+
+.publish_full_activities_list{
+  padding-bottom: 2%;
+  border-bottom: 2px solid $borderGray;
+}
+
+.publish_form_activities_list :last-child.publish_form_activity_item{
+  border-bottom: none;
 }
 
 .publish_form_activity_desc{
@@ -166,7 +197,7 @@
     filter: alpha(opacity=1);
   }
   &:hover{
-    background-color: $grayLighter;
+    background-color: $grayLight;
   }
 }
 
@@ -179,7 +210,7 @@
   @include box-sizing(border-box);
   .activity_order_up, .activity_order_down{
     @include box-sizing(border-box);
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 50%;
     padding: 2px;
     cursor: pointer;
@@ -191,15 +222,28 @@
       z-index: 2;
       top: 0;
       left: 0;
-    }
-    &:hover{
-      color: grey;
+      color: $myPrimaryBlue;
+      &:hover{
+        color: $borderGray;
+      }
+      i{
+        color: inherit;
+      }
     }
   }
 }
 
 .publish_trip_activities_ordering_container .publish_trip_add_day{
   float: right;
+}
+
+.publish_form_delete_day{
+  float: right;
+  margin: 2% 0;
+}
+
+.publish_form_add_activity_form{
+  margin-bottom: 2%;
 }
 
 .publish_form_add_activity_button{
@@ -210,12 +254,30 @@
   float: right;
 }
 
+//delete activities link
 .publish_form_delete_link{
   position: absolute;
   bottom: 1%;
   right: 1%;
   z-index: 4;
+  font-size: em(12px);
+  display: none;
+  &:hover{
+    text-decoration: underline;
+  }
 }
+
+.touch .publish_form_delete_link{
+  display: block;
+}
+
+.publish_form_edit_link:hover + .publish_form_delete_link{
+  display: block;
+}
+
+.publish_form_edit_link:hover + .publish_form_delete_link:hover{
+  text-decoration: underline;
+} 
 /* 6. FORM COMPLETION STATUS */
 $completionStatusHeight: 30px;
 .publish_trip_completion_status{
@@ -224,7 +286,8 @@ $completionStatusHeight: 30px;
   position: relative;
   float: left;
   margin-bottom: 1%;
-  border: 2px solid $gray;
+  border: 2px solid $borderGray;
+  color: $borderGray;
   background-color: #fafafa;
   @include border-radius($myDivBorderRadius);
   .completion_status{
@@ -239,8 +302,8 @@ $completionStatusHeight: 30px;
     @include box-sizing(border-box);
 
     &.middle_borders{
-      border-left: 2px solid $gray;
-      border-right: 2px solid $gray;
+      border-left: 2px solid $borderGray;
+      border-right: 2px solid $borderGray;
     }
   }
   .completion_status_active{
