@@ -57,7 +57,6 @@ class VenuesController < ApplicationController
     if params[:venueid]
       FoursquareInteraction.foursquare_client
       @venue, error = FoursquareInteraction.venue_info(params[:venueid])
-      logger.info " #{@venue.inspect} \n"
       @venue_details[:venue_id] = @venue[:id]
       @venue_details[:canonicalUrl] = empty_string_if_value_nil(@venue[:canonicalUrl])
       @venue_details[:address1] = empty_string_if_value_nil(@venue[:location][:address])

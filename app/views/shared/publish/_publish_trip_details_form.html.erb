@@ -1,6 +1,6 @@
 <!-- Begin Trip Details Form Container -->
 <div class="publish_trip_details_container">
-  <%= form_for @trip, :url => @trip_publish, :html => {:class => "form-horizontal"} do |f| %>
+  <%= form_for @trip, :url => @trip_publish, :html => {:class => "form-horizontal", :multipart => true} do |f| %>
   
     <% if @trip.errors.any? %>
       <div id="error_explanation">
@@ -38,15 +38,24 @@
       <label class="control-label">Add a cover picture</label>
       <div class="controls">
         <div class="btn-group">
-          <button class="btn btn-primary" type="button">Upload Your Own</button>
+              Images <%= f.file_field :self_image %>
         </div>
         <span class ="help-inline publish_form_required_label">We'll select an image from Foursquare if you don't have one</span>
       </div>
-    </div>
+    </div>      
+
+    <% if !@trip.self_image.blank? %>
+      <div>
+        <%= image_tag(@trip.self_image_url(:thumb), {:size => '100x100'}) %>
+      </div>
+    <% end %>
+    <hr>
+
 
     <hr class = "publish_form_hr">
     <span class ="help-inline publish_form_required_label">You'll have another chance to edit the following before publishing.</span>
     <br><br>
+
     <div class="control-group">
       <label class="control-label">Add a title</label>
       <div class="controls">
