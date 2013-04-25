@@ -50,16 +50,16 @@
     <div class="control-group">
       <label class="control-label">Add a title</label>
       <div class="controls">
-        <%= f.text_field :trip_name, :placeholder => "Pigging Out in San Francisco", :class => "span6 message40" %>
-        <p class ="countdown40"></p>
+        <%= f.text_field :trip_name, :placeholder => "Pigging Out in San Francisco", :class => "span6 word_count", :maxcharacters => "40" %>
+        <p class ="counter"></p>
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">Give a short summary</label>
       <div class="controls">
-        <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Who did you go with? What did you do? Why did you go?", :class => "span6 message200" %>
-        <p class ="countdown200"></p>
+        <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Who did you go with? What did you do? Why did you go?", :class => "span6 word_count", :maxcharacters => "200" %>
+        <p class ="counter"></p>
       </div>
     </div>
 

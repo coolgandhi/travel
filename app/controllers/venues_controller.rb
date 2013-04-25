@@ -75,6 +75,7 @@ class VenuesController < ApplicationController
       @venue_details[:twitter] = empty_string_if_value_nil(@venue[:contact][:twitter])
       @venue_details[:source] = "foursquare"      
       @venue_details[:category] = get_closest_category(@venue[:categories])
+      @venue_details[:venue_stats] = empty_string_if_value_nil(@venue[:stats])
     end
     
     respond_to do |format|

@@ -13,6 +13,7 @@ class TripActivity < ActiveRecord::Base
   validates_numericality_of :activity_day, :only_integer => true, :message => "enter a valid day" 
   validates :activity_time_type, :presence => { :message => "choose the activity time" }
   validates :activity_sequence_number, :presence => { :message => "enter activity sequence" }
+  validates_numericality_of :activity_sequence_number, :only_integer => true , :allow_nil => false
   validates_numericality_of :activity_sequence_number, :only_integer => true, :message => "enter a valid sequence number" 
   validates :activity_type, :presence => { :message => "enter activity type" }
   

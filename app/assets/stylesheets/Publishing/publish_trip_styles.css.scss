@@ -36,7 +36,7 @@
   // padding: 1%;
   // border: solid 1px black;	
   min-width: 100%;
-  overflow: auto;
+  // overflow: auto;
   background-color: #fafafa;
 }
 
@@ -54,7 +54,8 @@
 
 /* 2. STRUCTURE */
 .publish_trip_sort_activities{
-  @include col(6);
+  width: 50%;
+  float: left;
   margin-left: 0;
   @include box-sizing(border-box);
   border-right: solid 2px $borderGray;
@@ -63,9 +64,12 @@
 }
 
 .publish_trip_create_activities{
-  @include col(6);
+  width: 50%;
+  float: left;
   @include box-sizing(border-box);
-  border: solid 1px black;
+  margin-left: 0;
+  padding: 1%;
+  // border: solid 1px black;
   overflow: auto;
 }
 .publish_trip_details_container{
@@ -100,6 +104,15 @@
 }
 
 /* 4. TRIP ACTIVITIES SELECTOR */
+
+.publish_trip_activities_container{
+  // margin-top: 2%;
+  position: relative;
+  float: left;
+  width: 100%;
+  @include clearfix;
+}
+
 .publish_trip_image{
   width: 100%;
   position: relative;
@@ -116,20 +129,95 @@
     height: 90%;
     background-color: black;
     padding: 1%;
-    @include box-sizing(border-box)
+    @include box-sizing(border-box);
   }
 }
 
+.form_activity_confirm_box{
+  @include box-sizing(border-box);
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 120px;
+  border: $myDivBorderWidth solid $borderGray;
+}
+
+.publish_trip_confirm_name{
+  font-size: em(16px);
+  margin-bottom: 0;
+}
+
+.publish_trip_confirm_address{
+  font-size: em(12px);
+  line-height: em(12px);
+}
+
+.publish_trip_confirm_stats{
+  font-size: em(12px);
+  line-height: em(12px);
+}
+
 .publish_trip_selected_activity_desc{
-  @include col(3);
-  background-color: gray;
-  height: 100px;
+  @include box-sizing(border-box);
+  width: 60%;
+  padding: 2%;
+  float: left;
+  height: 100%;
 }
 
 .publish_trip_activity_pic_select{
-  @include col(9);
-  background-color: gray;
-  height: 100px;
+  @include box-sizing(border-box);
+  width: 40%;
+  float: left;
+  height: 100%;
+}
+
+.fields_inline{
+  @include box-sizing(border-box);
+  position: relative;
+  float: left;
+  width: 98%;
+
+  #activityvenue{
+    width: 95%;
+  }
+  
+  #activitycity{
+    width: 100%;
+  }
+
+  .fields_cell_50{
+    @include box-sizing(border-box);
+    position: relative;
+    float: left;
+    width: 50%;
+    padding-right: 1%;
+
+    select{
+      width: 90%;
+    }
+  }
+
+  .fields_cell_40{
+    @include box-sizing(border-box);
+    position: relative;
+    float: left;
+    width: 40%;
+    padding-right: 1%;
+  }
+
+  .fields_cell_60{
+    @include box-sizing(border-box);
+    position: relative;
+    float: left;
+    width: 60%;
+    padding-right: 1%;
+  }
+}
+.publish_form_user_description, .publish_form_quicktip{
+  float: left;
+  width: 98%;
+  margin-bottom: 0;
 }
 
 /* 5. TRIP ACTIVITIES ORDERING */
@@ -273,6 +361,7 @@
 
 .publish_form_edit_link:hover + .publish_form_delete_link{
   display: block;
+  text-decoration: underline;
 }
 
 .publish_form_edit_link:hover + .publish_form_delete_link:hover{
@@ -318,8 +407,8 @@ $completionStatusHeight: 30px;
   font-weight: bold;
 }
 
-.countdown40, .countdown200{
-  margin-bottom:0;
+.counter{
+  margin-bottom:1%;
   clear: both;
   font-size: em(12px);
 }

@@ -51,7 +51,7 @@
     <% if i == 1 %>
       <div class="publish_full_activities_list tab-pane active" id=<%= "publish_activities_day_#{i}"%>>
     <% else %>
-      <div class="tab-pane" id=<%= "publish_activities_day_#{i}"%>>
+      <div class="publish_full_activities_list tab-pane" id=<%= "publish_activities_day_#{i}"%>>
     <% end %>
 
       <%= button_to "Add Activity", publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id, :day => i), :class => "btn-flat btn-flat-success btn-flat-block publish_form_add_activity_button", :method => :get, :remote => true, :form_class => "publish_form_add_activity_form" %>
@@ -95,7 +95,7 @@
             
                 <div class = "publish_form_order_button_group">
                   <div class = "activity_order_up">
-                    <% if x.activity_sequence_number != (dayof_group.find_index(dayof_group.first).to_i + 1) %>
+                    <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.first).to_i + 1) && x.activity_time_type == ("1"||"2") %>
                       <%= link_to content_tag(:span, '<i class ="icon-arrow-up"></i>'.html_safe), move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
                     <% else %>
                     

@@ -13,8 +13,17 @@
       success: (data) ->
         # console.log(foursquare_id)
         $.map(data, (item) ->
-          $('.publish_trip_selected_activity_desc').html(item.address1 + ", " + item.city);
-          console.log(item.city)
+          $('.publish_trip_confirm_name').html(
+            "<strong>" + item.name + "</strong>" 
+          );
+          $('.publish_trip_confirm_address').html(
+            "<address>" + item.address1 + "</br>" + "(" + item.address2 + ")" +
+            "</br>" + item.city + ", " + item.state + " " + item.zip + "</address>" 
+          );
+          $('.publish_trip_confirm_stats').html(            
+            "Total Check-ins: " + item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</br>" +
+            "4sq Rating: " + (Math.round( item.rating * 10 ) / 10)
+          );
         )
 
   totalSelectedImages = 0;

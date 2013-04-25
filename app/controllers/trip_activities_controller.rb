@@ -350,7 +350,15 @@ class TripActivitiesController < ApplicationController
       @activity = @trip_activity.activity
       @latlong = find_location_latlong @trip
       @activity_detail = nil
-      
+
+      # if(@trip_activity.activity_day > params[:trip_activity][:activity_day])
+      #   logger.info("hello #{@trip_activity.activity_day} yolo #{params[:trip_activity][:activity_day]}")
+      #   @trip.trip_activities.find(:all, :conditions => ["activity_sequence_number >= ? AND activity_sequence_number < ?", params[:trip_activity][:activity_sequence_number],@trip_activity.activity_sequence_number]).each {|c| c.update_attribute(:activity_sequence_number, c.activity_sequence_number + 1)}
+      # else
+      #   logger.info("hello #{@trip_activity.activity_day} lolo #{params[:trip_activity][:activity_day]}")
+      #   @trip.trip_activities.find(:all, :conditions => ["activity_sequence_number <= ? AND activity_sequence_number > ?", params[:trip_activity][:activity_sequence_number],@trip_activity.activity_sequence_number]).each {|c| c.update_attribute(:activity_sequence_number, c.activity_sequence_number - 1)}
+      # end
+
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
