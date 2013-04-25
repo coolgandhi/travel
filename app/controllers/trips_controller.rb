@@ -429,7 +429,7 @@ class TripsController < ApplicationController
     begin
       logger.info " Reached here"
       @trip = Trip.find(params[:id])
-      @trip_activities = @trip.trip_activities
+      @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
   
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"

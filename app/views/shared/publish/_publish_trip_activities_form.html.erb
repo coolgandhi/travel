@@ -35,7 +35,6 @@
     <div class = "rightcaption">
       <!--specifying the url allows for specifying which action in the trip_activities controller to hit -->
       <%= form_for([@trip, @trip_activity], :url => @update == 0 ? publish_trip_activity_create_trip_trip_activities_url(:trip_id => @trip.id) : publish_trip_activity_update_trip_trip_activity_url(:trip_id => @trip.id), :html => {:multipart => true}) do |f| %>        
-        <input type="text" placeholder="Must See?"> <br/>
         
         <%= f.label :cant_miss, 'You have to do this' %>: <%= f.check_box :cant_miss %> </br>
         

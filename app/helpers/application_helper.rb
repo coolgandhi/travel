@@ -428,4 +428,20 @@ module ApplicationHelper
     end
     latlong
   end
+
+  # flash_display for ajax / jquery
+  def flash_display
+    response = ""
+    flash.each do |name, msg|
+      case name 
+        when :notice then "info"
+        when :error then "error"
+        when :success then "success"
+        when :alert then "warning"
+      end
+      response = response + "<div class='alert alert-#{name}'><a class='close' data-dismiss='alert'>&#215;</a>" + content_tag(:div, msg, :id => "flash_#{name}") + '</div>'
+    end
+    flash.discard
+    response
+  end
 end

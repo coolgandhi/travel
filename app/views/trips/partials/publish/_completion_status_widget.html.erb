@@ -1,0 +1,14 @@
+<div class = "publish_trip_completion_status">
+  
+  <div class = "completion_status <%= controller.action_name == "publish_new" ? 'completion_status_active' : '' %>" >
+    1. Create Trip
+  </div>
+  
+  <div class = "completion_status middle_borders <%= controller.action_name == "publish_edit" ? 'completion_status_active' : '' %>" >
+    2. Add Activities
+  </div>
+
+  <div class = "completion_status <%= controller.action_name == "publish_share" ? 'completion_status_active' : '' %>" >
+    3. Share Trip
+  </div>
+</div>

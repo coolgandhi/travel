@@ -15,6 +15,7 @@
   border: $myDivBorderWidth solid $borderGray;
   position: relative;
   float: left;
+  margin-bottom: 2%;
 }
 
 .publish_trip_collapse_header{
@@ -35,6 +36,8 @@
   // padding: 1%;
   // border: solid 1px black;	
   min-width: 100%;
+  overflow: auto;
+  background-color: #fafafa;
 }
 
 .collapser_icon{
@@ -51,17 +54,19 @@
 
 /* 2. STRUCTURE */
 .publish_trip_sort_activities{
-  @include col(5);
+  @include col(6);
   margin-left: 0;
   @include box-sizing(border-box);
   border-right: solid 2px $borderGray;
   padding: 1%;
+  overflow: auto;
 }
 
 .publish_trip_create_activities{
-  @include col(7);
+  @include col(6);
   @include box-sizing(border-box);
   border: solid 1px black;
+  overflow: auto;
 }
 .publish_trip_details_container{
   padding: 1%;
@@ -74,6 +79,17 @@
 
 .publish_form_required_label{
   font-weight: bold;
+}
+
+.required_star{
+  font-weight: bold;
+  color: $myPrimaryBlue;
+  font-size: em(16px);
+}
+
+.publish_form_hr{
+  border-top: 2px solid gray;
+  margin: 10px 0;
 }
 
 /* 3. TRIP DETAILS FORM CONTAINER */
@@ -117,16 +133,48 @@
 }
 
 /* 5. TRIP ACTIVITIES ORDERING */
+.publish_order_day_tab_title{
+  color: black;
+  font-weight: bold;
+  &:hover{
+    background-color: transparent;
+  }
+  a{
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    &:hover{
+      color: inherit;
+    }
+  }
+}
+
+#publish_day_tabs{
+  margin-bottom: 2%;
+}
+
 .publish_form_time{
   @include clearfix;
   padding: 1%;
-  background-color: orange;
+  background-color: #18add7;
+  text-transform: capitalize;
+  color: white;
+  font-weight: bold;
 }
 
 .publish_form_activity_item{
   @include clearfix;
-  border: 1px solid black;  
+  border-bottom: 1px solid $borderGray;  
   height: 50px;
+}
+
+.publish_full_activities_list{
+  padding-bottom: 2%;
+  border-bottom: 2px solid $borderGray;
+}
+
+.publish_form_activities_list :last-child.publish_form_activity_item{
+  border-bottom: none;
 }
 
 .publish_form_activity_desc{
@@ -136,6 +184,21 @@
   height: 100%;
   width: 92%;
   @include box-sizing(border-box);
+  & .publish_form_edit_link {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    text-decoration:none;
+    background-color:white;
+    opacity: 0;
+    filter: alpha(opacity=1);
+  }
+  &:hover{
+    background-color: $grayLight;
+  }
 }
 
 .publish_form_order_button_group{
@@ -147,18 +210,40 @@
   @include box-sizing(border-box);
   .activity_order_up, .activity_order_down{
     @include box-sizing(border-box);
-    border: 1px solid black;
+    // border: 1px solid black;
     height: 50%;
     padding: 2px;
     cursor: pointer;
-    &:hover{
-      color: grey;
+    position: relative;
+    & span {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      color: $myPrimaryBlue;
+      &:hover{
+        color: $borderGray;
+      }
+      i{
+        color: inherit;
+      }
     }
   }
 }
 
 .publish_trip_activities_ordering_container .publish_trip_add_day{
   float: right;
+}
+
+.publish_form_delete_day{
+  float: right;
+  margin: 2% 0;
+}
+
+.publish_form_add_activity_form{
+  margin-bottom: 2%;
 }
 
 .publish_form_add_activity_button{
@@ -169,29 +254,61 @@
   float: right;
 }
 
+//delete activities link
+.publish_form_delete_link{
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  z-index: 4;
+  font-size: em(12px);
+  display: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.touch .publish_form_delete_link{
+  display: block;
+}
+
+.publish_form_edit_link:hover + .publish_form_delete_link{
+  display: block;
+}
+
+.publish_form_edit_link:hover + .publish_form_delete_link:hover{
+  text-decoration: underline;
+} 
 /* 6. FORM COMPLETION STATUS */
+$completionStatusHeight: 30px;
 .publish_trip_completion_status{
-  width: 400px;
-  height: 30px;
+  width: 60%;
+  height: $completionStatusHeight;
   position: relative;
   float: left;
   margin-bottom: 1%;
+  border: 2px solid $borderGray;
+  color: $borderGray;
+  background-color: #fafafa;
+  @include border-radius($myDivBorderRadius);
   .completion_status{
+    padding: 0 2%;
+    line-height: $completionStatusHeight;
+    font-size: em(14px);
+    font-weight: bold;
     height: 100%;
     width: 33%;
     position: relative;
     float: left;
     @include box-sizing(border-box);
-    border: 1px solid black;
+
+    &.middle_borders{
+      border-left: 2px solid $borderGray;
+      border-right: 2px solid $borderGray;
+    }
   }
-  .stage1{
-    background-color: green;  
-  } 
-  .stage2{
-    background-color: gray;  
-  } 
-  .stage3{
-    background-color: gray;  
+  .completion_status_active{
+    background-color: #3cc574;
+    color: $white;  
   } 
 }
 
@@ -204,5 +321,6 @@
 .countdown40, .countdown200{
   margin-bottom:0;
   clear: both;
+  font-size: em(12px);
 }
 

@@ -3,25 +3,31 @@
 
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs" id="publish_day_tabs">
-
-  <li class ="active"><a class="publish_order_day_tabs" href="#publish_activities_day_1" data-toggle="tab">Day 1</a></li>
-  
+  <li class = "publish_order_day_tab_title"><a>Days</a></li>
   <%if @trip %>
-    <% n = @trip.duration.to_i > 3 ? 3 : @trip.duration.to_i %>
-        <% for i in 2..n %>
-          <li><a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "Day #{i}" %></a></li>
+    <% n = @trip.duration.to_i > 5 ? 5 : @trip.duration.to_i %>
+        <% for i in 1..n %>
+          
+          <% if i == 1 %>
+            <li class ="active">
+          <% else %>
+            <li>
+          <% end %>
+          
+            <a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "#{i}" %></a>
+          </li>
         <% end %>
 
-        <% unless @trip.duration.to_i < 4 %>
+        <% unless @trip.duration.to_i < 6 %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              More Days
+              More
               <b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
-              <% for i in 4..n %>
+              <% for i in 6..n %>
                 <li><a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>
@@ -30,9 +36,9 @@
         <% end %>
     <% end %>
 
-    <li class = "publish_trip_add_day">
-      <%= button_to "+ Day", publish_add_day_trip_url(:id => @trip.id), :class => "btn btn-primary", :method => :get, :remote => true %>
-    </li>
+    
+      <%= button_to "+ Day", publish_add_day_trip_url(:id => @trip.id), :class => "btn-flat btn-flat-primary publish_trip_add_day", :method => :get, :remote => true %>
+    
 
 </ul>
 <!-- End Tabs -->
@@ -43,14 +49,12 @@
   <% for i in 1..@trip.duration.to_i %>
     
     <% if i == 1 %>
-      <div class="tab-pane active" id=<%= "publish_activities_day_#{i}"%>>
+      <div class="publish_full_activities_list tab-pane active" id=<%= "publish_activities_day_#{i}"%>>
     <% else %>
       <div class="tab-pane" id=<%= "publish_activities_day_#{i}"%>>
     <% end %>
 
-      <%= button_to "+ Activity", publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id, :day => i), :class => "btn btn-primary publish_form_add_activity_button", :method => :get, :remote => true %>
-      <%= button_to "- Day", publish_delete_day_trip_url(:id => @trip.id, :day => i), :class => "btn btn-primary publish_form_add_activity_button", :method => :get, :remote => true %>
-
+      <%= button_to "Add Activity", publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id, :day => i), :class => "btn-flat btn-flat-success btn-flat-block publish_form_add_activity_button", :method => :get, :remote => true, :form_class => "publish_form_add_activity_form" %>
 
       <!-- Begin Loop Through time_type -->
       <% ["morning", "afternoon", "evening"].each do |timeof| %>
@@ -92,7 +96,7 @@
                 <div class = "publish_form_order_button_group">
                   <div class = "activity_order_up">
                     <% if x.activity_sequence_number != (dayof_group.find_index(dayof_group.first).to_i + 1) %>
-                      <%= link_to '<i class ="icon-arrow-up"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
+                      <%= link_to content_tag(:span, '<i class ="icon-arrow-up"></i>'.html_safe), move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
                     <% else %>
                     
                     <% end %>
@@ -100,7 +104,7 @@
                 
                   <div class = "activity_order_down">
                     <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.last).to_i + 1) && x.activity_time_type == ("5" || "6") %>
-                    <%= link_to '<i class ="icon-arrow-down"></i>'.html_safe, move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
+                    <%= link_to content_tag(:span, '<i class ="icon-arrow-down"></i>'.html_safe), move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
                     <% else %>
                     
                     <% end %>
@@ -108,13 +112,13 @@
                 </div>
               
                 <div class = "publish_form_activity_desc">
-                  <%= (which_detail_type(x,"name")) %>
+                  <strong><%= x.activity_sequence_number %>. <%= (which_detail_type(x,"name")) %></strong>
                   </br>
-                  (<%= (which_detail_type(x,"category")) %>) <%= x.activity_sequence_number %> 
-                  <span class="publish_form_edit_activity">
-                    <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true %>
-                    <%= link_to "Delete", publish_trip_activity_destroy_trip_trip_activity_url(:trip_id => @trip.id, :id => x), :method => :delete, :remote => true %>
-                  </span>
+                  (<%= (which_detail_type(x,"category")).split(', ').first %>) 
+                  
+                    <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true, :class => "publish_form_edit_link" %>
+                    <%= link_to "Remove", publish_trip_activity_destroy_trip_trip_activity_url(:trip_id => @trip.id, :id => x), :method => :delete, :remote => true, :class => "publish_form_delete_link" %>
+                  
                 </div>
               </div>
           
@@ -123,12 +127,10 @@
           <% end %>
         </div>        
       <% end %>
-
-
-
     </div>
   <% end %>
   <!-- End Loop Through time_type -->
+  <%= button_to "Delete Day", publish_delete_day_trip_url(:id => @trip.id, :day => i), :class => "btn-flat btn-flat-danger publish_form_delete_day", :method => :get, :remote => true, :confirm => "Deleting this day will also delete the activities in this day. Are you sure you want to delete?" %>
 </div>
 
 <!-- End Tab Content -->
