@@ -6,7 +6,7 @@ class TripActivity < ActiveRecord::Base
   has_many :self_trip_activity_photos, :primary_key => :id, :dependent => :destroy 
   accepts_nested_attributes_for :self_trip_activity_photos 
   
-  attr_accessible :activity, :trip_id, :activity_day, :activity_id, :activity_sequence_number, :activity_time_type, :activity_type
+  attr_accessible :activity, :trip_id, :activity_day, :activity_id, :activity_sequence_number, :activity_time_type, :activity_type, :cant_miss
 
   validates :activity, :presence => { :message => "activity is invalid" } 
   validates :activity_day, :presence => { :message => "choose an activity day" } 

@@ -142,5 +142,18 @@
       $('#selected_images').val(dat)    
       return true
     return
+
+  jQuery ->
+    $('.publish_trip_create_activities').on "click", ":button", ->
+      formData = new FormData($('.publish_trip_create_activities form')[0])
+      $.ajax
+        url: $('.publish_trip_create_activities form').attr('action')
+        type: $('.publish_trip_create_activities form').attr('method')
+        data: formData
+        dataType: 'script'
+        contentType: false
+        processData: false
+      return
+    return
   
 ) window.trips_activities_namespace = window.trips_activities_namespace or {}, jQuery

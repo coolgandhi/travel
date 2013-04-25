@@ -376,8 +376,23 @@ class TripActivitiesController < ApplicationController
         format.js
       else
         if @trip_activity.update_attributes(params[:trip_activity])
-          @status = 1
-          format.js
+          if !params[:self_trip_activity_photos].blank?
+            if !@trip_activity.self_trip_activity_photos.first.blank? and !@trip_activity.self_trip_activity_photos.first.self_photo.blank?
+               @trip_activity.self_trip_activity_photos.each {|self_trip_activity_photo|
+                 self_trip_activity_photo.destroy
+               }
+            end
+            @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
+            if @photo.save
+                @status = 1
+                format.js
+            else
+              format.js
+            end
+          else
+            @status = 1
+            format.js
+          end
         else
           format.js
         end
@@ -485,8 +500,19 @@ class TripActivitiesController < ApplicationController
             if params[:self_trip_activity_photos] != nil
              @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
              if @photo.save
-               format.html {  redirect_to trip_trip_activities_path(@trip), notice: 'Trip photo was successfully added.' }
-               format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+               @trip_activity.activity = @activity
+               if @trip_activity.save
+                 @status = 1
+                 format.js 
+                 format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully created.' }
+                 format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+               else
+                 logger.info "activity detail errors #{@trip_activity.errors.inspect}"
+                 @activity.destroy # clean up
+                 format.js
+                 format.html {  redirect_to trip_trip_activities_path(@trip), notice: @trip_activity.errors.full_messages.to_sentence  }
+                 format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
+               end
              else
                @activity.destroy # clean up
                format.js
@@ -527,6 +553,11 @@ class TripActivitiesController < ApplicationController
     
     @success_msg = "Trip Activity Removed Successfully!"
     respond_to do |format|
+      if !@trip_activity.self_trip_activity_photos.first.blank? and !@trip_activity.self_trip_activity_photos.first.self_photo.blank?
+         @trip_activity.self_trip_activity_photos.each {|self_trip_activity_photo|
+           self_trip_activity_photo.destroy
+         }
+      end
       @activity.destroy
       @trip_activity.destroy      
       format.js
