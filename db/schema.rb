@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425135203) do
+ActiveRecord::Schema.define(:version => 20130425190634) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20130425135203) do
     t.string   "rating"
     t.string   "twitter"
     t.string   "source",             :default => "foursquare"
+    t.string   "canonical_url"
   end
 
   add_index "location_details", ["location_detail_id"], :name => "location_detail_index", :unique => true
@@ -190,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20130425135203) do
     t.string   "rating"
     t.string   "twitter"
     t.string   "source",               :default => "foursquare"
+    t.string   "canonical_url"
   end
 
   add_index "restaurant_details", ["restaurant_detail_id"], :name => "restaurant_detail_index", :unique => true

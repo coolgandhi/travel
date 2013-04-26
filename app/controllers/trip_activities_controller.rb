@@ -416,15 +416,19 @@ class TripActivitiesController < ApplicationController
     begin
       @update = 0
       @trip_activity = @trip.trip_activities.new
+      @trip_activity.activity_day = '1'
+      
       if params[:day]
         @trip_activity.activity_day = params[:day]
       end
       
       @sequence = @trip_activity.max_sequence_activity_time_type(@trip_activity.activity_day)
+      # logger.info "  \nhererwerw   #{@sequence.inspect} \n"
       if !(@sequence.blank? or @sequence.first.blank?)
         @trip_activity.activity_time_type = @sequence.first.activity_time_type
       end 
       
+      logger.info "  \nhere   #{@sequence.inspect}   \n #{@trip_activity.inspect} \n efew"
       @activity = nil
       @activity_detail = nil
       @trip_activity.trip_id = params[:trip_id]

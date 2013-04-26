@@ -24,7 +24,7 @@ class TripActivity < ActiveRecord::Base
     "trip_id = #{trip_id} AND activity_day = #{activity_day}"
   end
   def max_sequence_activity_time_type day
-    trip.trip_activities.select([:activity_time_type, 'MAX(activity_sequence_number)']).where("activity_day = ?", day).group(:activity_day)
+    trip.trip_activities.select(['MAX(activity_time_type) as activity_time_type', 'MAX(activity_sequence_number)']).where("activity_day = ?", day)
   end
   
   def max_sequence_number_day day

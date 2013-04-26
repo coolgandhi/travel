@@ -1,3 +1,14 @@
 $(".publish_trip_create_activities").html('<%= escape_javascript(render("trips/partials/trip_add_day_message")) %>');
-
-var request = $.ajax({ url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', type: 'get', dataType:'script' });
+var request = $.ajax({ 
+  url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', 
+  type: 'get', 
+  dataType:'script', 
+  complete: function(){
+    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= @day %> + '"]').tab('show');   
+    var request_2 = $.ajax({ 
+      url:'<%= publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id, :day => @day) %>', 
+      type: 'get', 
+      dataType:'script'
+      });       
+    }
+  });

@@ -14,16 +14,22 @@
         # console.log(foursquare_id)
         $.map(data, (item) ->
           $('.publish_trip_confirm_name').html(
-            "<strong>" + item.name + "</strong>" 
+            "<strong><a href='" + item.canonicalUrl + "' target='_blank'>" + item.name + "</a></strong>" 
           );
+          $('.publish_trip_confirm_category').html(item.category_name);
           $('.publish_trip_confirm_address').html(
             "<address>" + item.address1 + "</br>" + "(" + item.address2 + ")" +
             "</br>" + item.city + ", " + item.state + " " + item.zip + "</address>" 
           );
-          $('.publish_trip_confirm_stats').html(            
-            "Total Check-ins: " + item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</br>" +
-            "4sq Rating: " + (Math.round( item.rating * 10 ) / 10)
+          $('.publish_trip_confirm_stats').html();
+          $('.stats_checkins').html(
+            item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
           );
+          $('.stats_rating').html(
+            (Math.round( item.rating * 10 ) / 10) + " / 10"
+          );
+          $('.stats_rating_header').html('<strong>4sq Rating</strong>');
+          $('.stats_checkins_header').html('<strong>Total Check-ins</strong>');
         )
 
   totalSelectedImages = 0;
