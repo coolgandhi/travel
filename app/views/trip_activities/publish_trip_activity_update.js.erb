@@ -3,5 +3,14 @@
 <% end %>
 <% if @status == 1 %>
 	$('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
-	var request = $.ajax({ url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', type: 'get', dataType:'script' });
+	var request = $.ajax({ 
+	  url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', 
+	  type: 'get', 
+	  dataType:'script', 
+	  complete: function(){
+	    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= params[:trip_activity][:activity_day] %> + '"]').tab('show');
+	    $('#publish_form_activity_' + <%= params[:id] %>).effect("highlight", {}, 1000);
+	    $('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");	
+	    }
+	  }); 
 <% end %>

@@ -1,1 +1,4 @@
 $(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
+trips_namespace.fireResizePublishImages();
+$(".publish_form_activity_item").removeClass("selected_highlight");
+$('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");

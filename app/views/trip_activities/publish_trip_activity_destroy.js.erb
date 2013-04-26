@@ -1,3 +1,9 @@
 $('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
-var request = $.ajax({ url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', type: 'get', dataType:'script' });
-
+var request = $.ajax({ 
+  url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', 
+  type: 'get', 
+  dataType:'script', 
+  complete: function(){
+    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= @trip_activity.activity_day %> + '"]').tab('show');	
+    }
+  });

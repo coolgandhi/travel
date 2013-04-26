@@ -6,6 +6,7 @@
   5. TRIP ACTIVITIES ORDERING
   6. FORM COMPLETION STATUS
   7. COUNTDOWN TWITTER STYLES
+  8. FILE UPLOADER STYLES
 */
 
 /* 1. COLLAPSER STYLES */
@@ -55,6 +56,7 @@
 /* 2. STRUCTURE */
 .publish_trip_sort_activities{
   width: 50%;
+  min-height: 400px;
   float: left;
   margin-left: 0;
   @include box-sizing(border-box);
@@ -65,6 +67,7 @@
 
 .publish_trip_create_activities{
   width: 50%;
+  height: 100%;
   float: left;
   @include box-sizing(border-box);
   margin-left: 0;
@@ -138,8 +141,9 @@
   position: relative;
   float: left;
   width: 100%;
-  height: 120px;
+  // height: 120px;
   border: $myDivBorderWidth solid $borderGray;
+  margin-bottom: 2%;
 }
 
 .publish_trip_confirm_name{
@@ -147,19 +151,55 @@
   margin-bottom: 0;
 }
 
+.publish_trip_confirm_category{
+  font-size: em(11px);
+  line-height: em(11px);
+  color: gray;
+  font-weight: bold;  
+}
+
 .publish_trip_confirm_address{
-  font-size: em(12px);
-  line-height: em(12px);
+  font-size: em(11px);
+  address{
+    margin-bottom: 0;
+    line-height: 1.45454545455em; // 16px/11px
+    font-weight: bold;
+  }
 }
 
 .publish_trip_confirm_stats{
-  font-size: em(12px);
-  line-height: em(12px);
+  font-size: em(11px);
+  line-height: em(11px);
+  color: gray;
+  font-weight: bold;
+  .stats_checkins_header, .stats_rating_header{
+    font-size: 1em;
+    line-height: 1em;
+    color: gray;
+  }
+  .stats_rating, .stats_checkins{
+    color: black;
+    font-weight: bold;
+    display: block;
+  }
+}
+
+.confirm_box_parent_cell{
+  float: left;
+  width: 100%;
+  @include box-sizing(border-box);
+
+  .confirm_box_child_cell{
+    float: left;
+    padding: 1%;
+    padding-right: 10%;
+    @include box-sizing(border-box);
+  }
 }
 
 .publish_trip_selected_activity_desc{
   @include box-sizing(border-box);
-  width: 60%;
+  width: 45%;
   padding: 2%;
   float: left;
   height: 100%;
@@ -167,9 +207,44 @@
 
 .publish_trip_activity_pic_select{
   @include box-sizing(border-box);
-  width: 40%;
+  width: 55%;
   float: left;
   height: 100%;
+  border-left: 1px solid $borderGray;
+  padding: 1%;
+}
+
+.pt_activity_upload_img{
+  max-width: none;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.uploaded_image_preview{
+  position: relative;
+  float:left;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.yes_upload_div{
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;  
+}
+
+.no_upload_div{
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background-color: $grayLight;
 }
 
 .fields_inline{
@@ -254,6 +329,12 @@
   @include clearfix;
   border-bottom: 1px solid $borderGray;  
   height: 50px;
+  &.selected_highlight{
+    background-color: $grayLight;
+  }
+  &:hover{
+    background-color: $grayLight;
+  }
 }
 
 .publish_full_activities_list{
@@ -283,9 +364,6 @@
     background-color:white;
     opacity: 0;
     filter: alpha(opacity=1);
-  }
-  &:hover{
-    background-color: $grayLight;
   }
 }
 
@@ -319,6 +397,9 @@
       }
     }
   }
+}
+.publish_trip_activities_ordering_container{
+  height: 100%;
 }
 
 .publish_trip_activities_ordering_container .publish_trip_add_day{
@@ -413,3 +494,42 @@ $completionStatusHeight: 30px;
   font-size: em(12px);
 }
 
+/* 8. FILE UPLOADER STYLES */
+
+.publish_trip_upload_field{
+  width: 100%;
+  float: left;
+  @include box-sizing(border-box);
+  margin-top: 1%;
+}
+
+.pt_upload_field{
+  margin-bottom: 0;
+}
+
+.pt_upload_field input[type="file"]{
+  z-index: 999;
+  line-height: 20px;
+  font-size: 12px;
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity = 0);-ms-filter: "alpha(opacity=0)";
+  cursor: pointer;
+  _cursor: hand;
+  margin: 0;
+  padding:0;
+  left:0;
+}
+
+.pt_upload_field .pt_upload_button{
+  width:33%;
+  @include box-sizing(border-box);
+}
+
+.pt_upload_field .pt_upload_path{
+float:left;
+// line-height: 20px;
+width: 60%;
+margin-right: 2%;
+// @include box-sizing(border-box);
+}

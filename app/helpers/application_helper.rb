@@ -169,6 +169,7 @@ module ApplicationHelper
       :location_id => location_id,
       :rating => empty_string_if_value_nil(@venue[:rating]),
       :twitter => empty_string_if_value_nil(@venue[:contact][:twitter]),
+      :canonical_url => empty_string_if_value_nil(@venue[:canonicalUrl]),
       :source => "foursquare"
     }
 
@@ -255,6 +256,7 @@ module ApplicationHelper
       :location_id => location_id,
       :rating => empty_string_if_value_nil(@venue[:rating]),
       :twitter => empty_string_if_value_nil(@venue[:contact][:twitter]),
+      :canonical_url => empty_string_if_value_nil(@venue[:canonicalUrl]),
       :source => "foursquare"
     }
     
