@@ -13,7 +13,7 @@ class AuthorInfoController < ApplicationController
     @author_info = AuthorInfo.find(current_author_info.id);
 
     respond_to do |format|
-      if @author_info.update_attributes(params[:authro_info])
+      if @author_info.update_attributes(params[:author_info])
         flash[:notice] = "Author info was successfully updated."
         format.html # about_update.html.erb
       else

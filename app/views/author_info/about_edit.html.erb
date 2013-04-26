@@ -16,6 +16,19 @@
     <%= a.text_field :author_name %>
   </div>
   <div class = "field">
+    <%= a.label :self_image, 'Add your profile photo' %>:
+    <%= a.file_field :self_image %>
+  </div>
+  <% if !@author_info.self_image.blank? %>
+    <div>
+      <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+    </div>
+  <% end %>
+  <br/>
+  
+  
+  
+  <div class = "field">
     <%= a.label :about, 'About the author' %>:
     <%= a.text_field :about %>
   </div>

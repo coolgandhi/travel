@@ -10,8 +10,13 @@ Phone: <%= @author_info.phone %> <br/>
 Twitter: <%= @author_info.twitter_handle %> <br/>
 Website: <%= @author_info.website %> <br/>
 About: <%= @author_info.about %> <br/>
-Birthday: <%= @author_info.birthday %> <br/> <br/>
+Birthday: <%= @author_info.birthday %> <br/> 
 
+<% if !@author_info.self_image.blank? %>
+  <div>
+    <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+  </div>
+<% end %> <br/> <br/>
 
 <% if @trips.blank? %>
   No trips belonging to the author

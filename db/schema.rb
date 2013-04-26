@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425190634) do
+ActiveRecord::Schema.define(:version => 20130426191054) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20130425190634) do
     t.date     "birthday"
     t.datetime "password_expire_at"
     t.boolean  "admin"
+    t.text     "self_image"
+    t.text     "self_image_tmp"
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true
