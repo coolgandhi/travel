@@ -23,7 +23,11 @@ class AuthorInfoController < ApplicationController
   end
 
   def author_page
-    @author_info = AuthorInfo.find(current_author_info.id);
+    @use_id = current_author_info.id
+    if params[:id] 
+      @use_id = params[:id]
+    end
+    @author_info = AuthorInfo.find(@use_id);
     @trips = @author_info.trips
     
     respond_to do |format|
