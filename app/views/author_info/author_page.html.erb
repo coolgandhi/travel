@@ -1,0 +1,27 @@
+Author Information
+
+Name: <%= @author_info.author_name %> <br/>
+Address: <%= @author_info.address1 %> <br/>
+City: <%= @author_info.city %> <br/>
+State: <%= @author_info.state %> <br/>
+Country: <%= @author_info.country %> <br/>
+Email: <%= @author_info.email %> <br/>
+Phone: <%= @author_info.phone %> <br/>
+Twitter: <%= @author_info.twitter_handle %> <br/>
+Website: <%= @author_info.website %> <br/>
+About: <%= @author_info.about %> <br/>
+Birthday: <%= @author_info.birthday %> <br/> <br/>
+
+
+<% if @trips.blank? %>
+  No trips belonging to the author
+<% else %>
+  <% @trips.each do |trip| %>
+    Duration: <%= trip.duration %> Title: <%= trip.trip_name %> Summary: <%= trip. trip_summary %> <br/>
+    <%= link_to "View Trip", trip_url(trip) %>
+    <%= link_to "Edit Trip", publish_edit_trip_url(trip) %>
+    <%= link_to "Delete Trip", trip, :method => :delete, :confirm => "Are you sure ?"%><br/> <br/>
+  <% end %>
+<% end %>
+
+<%= link_to "Add New Trip", publish_new_trips_url() %>

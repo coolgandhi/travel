@@ -189,16 +189,21 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
       
       @trip.trip_activities.each {|trip_activity| 
-        trip_activity.activity.destroy }
+        if !trip_activity.self_trip_activity_photos.first.blank? and !trip_activity.self_trip_activity_photos.first.self_photo.blank?
+          trip_activity.self_trip_activity_photos.each { |self_trip_activity_photo|
+            self_trip_activity_photo.destroy }
+        end
+        trip_activity.activity.destroy
+      }
       @trip.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to :controller => 'author_info', :action => 'author_page'
       return
     end 
 
     respond_to do |format|
-      format.html { redirect_to trips_url }
+      format.html { redirect_to :controller => 'author_info', :action => 'author_page', notice: 'Trip was successfully deleted.' }
       format.json { head :no_content }
     end
   end
