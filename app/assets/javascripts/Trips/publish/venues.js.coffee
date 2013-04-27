@@ -5,11 +5,15 @@
 ((trips_activities_namespace, $, undefined_) ->
 
   trips_activities_namespace.populate_venue_detail = (foursquare_id) ->
-    $.ajax 
+    $.ajax
+      beforeSend: ->
+        $(".confirm_box_spinner").show()
       url: window.location.protocol + "//" + window.location.host + "/venues/get_venue_details.json"
       dataType: "json"
       data: 
         venueid: foursquare_id
+      complete: ->
+        $(".confirm_box_spinner").hide()
       success: (data) ->
         # console.log(foursquare_id)
         $.map(data, (item) ->

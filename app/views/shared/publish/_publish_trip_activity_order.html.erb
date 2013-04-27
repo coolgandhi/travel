@@ -37,7 +37,7 @@
     <% end %>
 
     
-      <%= button_to "+ Day", publish_add_day_trip_url(:id => @trip.id), :class => "btn-flat btn-flat-primary publish_trip_add_day", :method => :get, :remote => true %>
+      <%= link_to '<i class="icon-plus-sign"></i> Day'.html_safe, publish_add_day_trip_url(:id => @trip.id), :class => "btn-flat btn-flat-primary publish_trip_add_day", :method => :get, :remote => true %>
     
 
 </ul>
@@ -54,7 +54,7 @@
       <div class="publish_full_activities_list tab-pane" id=<%= "publish_activities_day_#{i}"%>>
     <% end %>
 
-      <%= button_to "Add Activity", publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id, :day => i), :class => "btn-flat btn-flat-success btn-flat-block publish_form_add_activity_button", :method => :get, :remote => true, :form_class => "publish_form_add_activity_form" %>
+      <%= link_to '<i class="icon-plus-sign"></i> Add Activity'.html_safe, publish_trip_activity_new_trip_trip_activities_url(:trip_id => @trip.id, :day => i), :class => "btn-flat btn-flat-success btn-flat-block publish_form_add_activity_button", :method => :get, :remote => true, :form_class => "publish_form_add_activity_form" %>
 
       <!-- Begin Loop Through time_type -->
       <% ["morning", "afternoon", "evening"].each do |timeof| %>

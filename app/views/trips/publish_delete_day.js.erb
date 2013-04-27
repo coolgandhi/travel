@@ -1,4 +1,4 @@
-$(".publish_trip_create_activities").html('<%= escape_javascript(render("trips/partials/trip_delete_day_message")) %>');
+$('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
 
 
 var request = $.ajax({ url:'<%= publish_trip_partial_format_trip_url(:id => @trip.id) %>', type: 'get', dataType:'script' });

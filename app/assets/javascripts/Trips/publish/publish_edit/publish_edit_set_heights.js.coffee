@@ -3,7 +3,7 @@
   trips_namespace.publish_activity_div_heights = ->
     # create a jQuery deferred object
     r = $.Deferred()
-    $('.publish_form_activity_details_content').css "height", "" + Math.round(.5 * $(window).height())
+    $('.publish_form_activity_details_content').css "height", "" + Math.round(.7 * $(window).height())
     # $('.publish_trip_sort_activities').css "height", "" + Math.round(.5 * $(window).height())
     # $('.publish_trip_create_activities').css "height", "" + Math.round(.5 * $(window).height())
     setTimeout (->  

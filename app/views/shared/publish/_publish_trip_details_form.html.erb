@@ -21,8 +21,12 @@
     <div class="control-group">
       <label class="control-label">Where did you go? <span class="required_star">*</span></label>
       <div class="controls">
-        <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span3 required_publish_form_field">
-        <span class ="help-inline publish_form_required_label">Required</span>
+        <% if controller.action_name == "publish_new" %>
+          <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span3 required_publish_form_field">
+          <span class ="help-inline publish_form_required_label">Required</span>
+        <% else %>
+          <span class="control-label"><strong><%= @location_val %></strong></span>
+        <% end %>
       </div>
     </div>
 
@@ -37,19 +41,38 @@
     <div class="control-group">
       <label class="control-label">Add a cover picture</label>
       <div class="controls">
-        <div class="btn-group">
-              Images <%= f.file_field :self_image %>
-        </div>
-        <span class ="help-inline publish_form_required_label">We'll select an image from Foursquare if you don't have one</span>
-      </div>
-    </div>      
+          <%# f.file_field :self_image %>
+          
+          <!-- Begin Uploaded Image Preview -->
+          <div class = "uploaded_image_preview">
+            <% if !@trip.self_image.blank? %>
+              <div class = "yes_upload_div" id = "yes_upload_div">
+                <%= image_tag(@trip.self_image_url(:thumb), :class => "pt_activity_upload_img") %>
+              </div>
+            <% else %>
+              <div class = "no_upload_div">
+                <i class = "icon-picture icon-4x"></i>
+                </br>
+                <strong>Add your own image or we'll grab one from Foursquare.</strong>
+              </div>
+            <% end %>
+          </div>
+          <!-- End Uploaded Image Preview -->
 
-    <% if !@trip.self_image.blank? %>
-      <div>
-        <%= image_tag(@trip.self_image_url(:thumb), {:size => '100x100'}) %>
+          <!-- Begin Upload Field -->
+          <p class="pt_upload_field form-horizontal">
+            <input type="text" class="pt_upload_path" />
+            <label class="pt_upload_button btn-flat btn-flat-primary">
+              Choose
+              <span>
+                <%= f.file_field :self_image, :class => "pt_upload_file"%>
+             </span>
+           </label>
+          </p>
+          <!-- End Upload Field -->
       </div>
-    <% end %>
-    <hr>
+    </div> 
+
 
 
     <hr class = "publish_form_hr">

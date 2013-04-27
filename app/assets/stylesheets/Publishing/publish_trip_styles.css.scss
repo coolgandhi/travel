@@ -56,7 +56,7 @@
 /* 2. STRUCTURE */
 .publish_trip_sort_activities{
   width: 50%;
-  min-height: 400px;
+  height: 100%;
   float: left;
   margin-left: 0;
   @include box-sizing(border-box);
@@ -197,7 +197,23 @@
   }
 }
 
+.confirm_box_spinner{
+  width:30px;
+  height:30px;
+  position:absolute;
+  left:45%; 
+  top:50%; 
+  background-image:url(/assets/spinners/ajax-loader-transparent.gif); /* path to your loading animation */
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size: 20px auto;
+  background-color: $black;
+  @include border-radius($myDivBorderRadius);
+  display: none;
+}
+
 .publish_trip_selected_activity_desc{
+  position: relative;
   @include box-sizing(border-box);
   width: 45%;
   padding: 2%;
@@ -212,10 +228,11 @@
   height: 100%;
   border-left: 1px solid $borderGray;
   padding: 1%;
+  position: relative;
 }
 
 .pt_activity_upload_img{
-  max-width: none;
+  max-width: 250px;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -223,17 +240,22 @@
 
 .uploaded_image_preview{
   position: relative;
-  float:left;
+  clear: both;
+  // float:left;
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  height: 200px;
   min-height: 200px;
+  max-width: 250px;
   overflow: hidden;
+  margin-bottom: 1%;
 }
 
 .yes_upload_div{
   position: relative;
   float: left;
   width: 100%;
+  // height: 100%;
   height: 200px;
   overflow: hidden;  
 }
@@ -242,9 +264,13 @@
   position: relative;
   float: left;
   width: 100%;
-  height: 100%;
-  min-height: 200px;
+  height: 200px;
+  overflow: hidden;
   background-color: $grayLight;
+  color: gray;
+  text-align: center;
+  padding: 25% 2%;
+  @include box-sizing(border-box);    
 }
 
 .fields_inline{
@@ -330,10 +356,10 @@
   border-bottom: 1px solid $borderGray;  
   height: 50px;
   &.selected_highlight{
-    background-color: $grayLight;
+    background-color: rgba(151,194,224,1);
   }
   &:hover{
-    background-color: $grayLight;
+    background-color: rgba(151,194,224,0.5);
   }
 }
 
@@ -416,7 +442,7 @@
 }
 
 .publish_form_add_activity_button{
-  // float: right;
+  margin-bottom: 2%;
 }
 
 .publish_form_edit_activity{
@@ -505,6 +531,7 @@ $completionStatusHeight: 30px;
 
 .pt_upload_field{
   margin-bottom: 0;
+  max-width: 250px;
 }
 
 .pt_upload_field input[type="file"]{
@@ -518,12 +545,14 @@ $completionStatusHeight: 30px;
   _cursor: hand;
   margin: 0;
   padding:0;
-  left:0;
+  right:0;
+  bottom: 0;
 }
 
 .pt_upload_field .pt_upload_button{
   width:33%;
   @include box-sizing(border-box);
+  position: relative;
 }
 
 .pt_upload_field .pt_upload_path{

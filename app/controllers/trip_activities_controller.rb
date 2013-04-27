@@ -566,7 +566,7 @@ class TripActivitiesController < ApplicationController
       return
     end
     
-    @success_msg = "Trip Activity Removed Successfully!"
+    @success_msg = "Trip activity was removed successfully!"
     respond_to do |format|
       if !@trip_activity.self_trip_activity_photos.first.blank? and !@trip_activity.self_trip_activity_photos.first.self_photo.blank?
          @trip_activity.self_trip_activity_photos.each {|self_trip_activity_photo|

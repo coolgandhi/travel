@@ -303,7 +303,7 @@ class TripsController < ApplicationController
         @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
         
         @trip_publish = publish_update_trip_url(@trip)
-        format.html { render action: "publish_edit", notice: 'Trip was successfully updated.' }
+        format.html { redirect_to publish_edit_trip_url(@trip), notice: 'Trip was successfully updated.' }
         format.json { render json: @trip, status: :created, location: @trip }
       else
         logger.info "#{@trip.errors.inspect}"
@@ -320,7 +320,7 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
       @trip_activity = @trip.trip_activities.new
       @location_detail = Location.find_by_location_id(@trip.location_id)
-      @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+      @location_val = @location_detail.city + ", " +  @location_detail.state + ", " + @location_detail.country
       @latlong = find_location_latlong(@trip)
       @trip_message = "Update Trip"
       @trip_publish = "publish_update"
@@ -355,10 +355,10 @@ class TripsController < ApplicationController
     end
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
-        format.html { render action: "publish_edit", notice: 'Trip was successfully updated.' }
+        format.html { redirect_to publish_edit_trip_url(@trip), notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "publish_update" }
+        format.html { render action: "publish_edit" }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
@@ -382,6 +382,7 @@ class TripsController < ApplicationController
         @success_msg = "Trip Day Added Successfully!"
         @status = 1
       end      
+      flash.now[:success] = @success_msg
       format.js
       format.html { redirect_to @trip }
       format.json { head :no_content }        
@@ -411,13 +412,14 @@ class TripsController < ApplicationController
          @trip.save
        end
      rescue ActiveRecord::RecordNotFound
-       flash[:notice] = "Trip activity not found"
+       flash[:notice] = "Trip Day not found"
        redirect_to :controller => 'trips', :action => 'index'
        return
      end
 
      @success_msg = "Trip day deleted successfully!"    
      respond_to do |format|
+       flash.now[:success] = @success_msg 
        format.js # publish_delete_day
        format.html { redirect_to @trip }
        format.json { head :no_content }        
