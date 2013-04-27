@@ -61,10 +61,12 @@ class TripsController < ApplicationController
     end 
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { 
-          render :json => { :compressed_activity => @compressed_activities } 
-      }
+      if @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id == current_author_info.id.to_s)
+        format.html # show.html.erb
+      else
+        flash[:notice] = "Trip not found"
+        format.html { redirect_to root_url()}         
+      end
     end
   end
 
@@ -270,6 +272,7 @@ class TripsController < ApplicationController
   # GET /trips/publish_new
   def publish_new
     @trip = Trip.new
+    @trip.share_status = 0
     @location_val = ""
     @trip_message = "Create Trip"
     @trip_publish = "publish_create"
@@ -281,6 +284,7 @@ class TripsController < ApplicationController
   # Post /trips/publish_create
   def publish_create
     @trip = Trip.new(params[:trip])
+  #  @trip.share_status = 0
     @location_detail = Location.find_by_location_id(@trip.location_id)
     @update = 0
     if (params[:selected_images].blank?)
@@ -432,7 +436,6 @@ class TripsController < ApplicationController
    
   def publish_trip_partial_format
     begin
-      logger.info " Reached here"
       @trip = Trip.find(params[:id])
       @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
   
@@ -447,6 +450,51 @@ class TripsController < ApplicationController
        format.json { head :no_content }        
     end
   end
+  
+  
+  # GET /trips/1/publish_confirm
+  def publish_confirm
+    begin
+      @trip = Trip.find(params[:id])
+      @trip.share_status = 1
+      @location_detail = Location.find_by_location_id(@trip.location_id)
+      @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+      @latlong = find_location_latlong(@trip)
+      @trip_message = "Publish Trip"
+      @trip_publish = "publish_confirm_update"
+      @trip_activities = @trip.trip_activities.all.sort_by {|e|
+         e[:activity_sequence_number]}
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip activity not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+  end
+
+  # PUT /trips/1/publish_update
+  def publish_confirm_update
+    begin  
+      @trip = Trip.find(params[:id])
+      @location_detail = Location.find_by_location_id(@trip.location_id)
+      @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
+      @latlong = find_location_latlong(@trip)
+      @trip_message = "Publish Trip"
+      @trip_publish = "publish_confirm_update"
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to :controller => 'trips', :action => 'index'
+      return
+    end
+    respond_to do |format|
+      if @trip.update_attributes(params[:trip])
+        format.html { redirect_to @trip, notice: 'Trip was successfully published.'  }
+        format.json { head :no_content }
+      else
+        format.html { render action: "publish_confirm" }
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+      end
+    end
+  end
    
   private
 
@@ -454,7 +502,7 @@ class TripsController < ApplicationController
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update", "publish_add_day", "publish_trip_partial_format"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm"
       "index_layout"
     else
       "application"

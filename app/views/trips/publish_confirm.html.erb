@@ -1,0 +1,52 @@
+<div class = "container">
+  
+  <div class = "row">
+    <!-- Begin Span 12 -->
+    <div class = "span12">
+      <!-- Begin Form Completion Status Container -->
+      <%= render "trips/partials/publish/completion_status_widget" %>
+      <!-- End Form Completion Status Container -->
+    </div>
+  <!-- End Span 12 -->
+  </div>
+
+  <div class="publish_flash_message">
+    <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+  </div>
+
+  <!-- Begin Row-->
+  <div class = "row">
+    <!-- Begin Collapser Container-->
+    <div class = "publish_trip_collapser span12">
+      Before you share it with others, personalize title and about the trip. :)
+      <!-- Begin Collapse 1-->
+      <div class = "publish_trip_collapse_header">
+        Trip Details
+        <div class = "collapser_icon"><i class = "icon-chevron-up"></i></div>
+      </div>
+      
+      <div class = "publish_trip_collapse_content">
+        <%= form_for @trip, :url => @trip_publish, :html => {:class => "form-horizontal", :multipart => true} do |f| %>
+
+          <% if @trip.errors.any? %>
+            <div id="error_explanation">
+              <ul>      
+                <% @trip.errors.messages.each do |attr, msg| %>
+                  <li><%= msg.first %></li>
+                <% end %>
+              </ul>      
+            </div>
+          <% end %>
+
+          <%= render "shared/publish/publish_trip_confirm_form", :f => f  %>
+          <div class="actions">
+            <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary pull-right" %>
+          </div>
+        <% end %>
+      </div>
+      <!-- End Collapse 1-->
+    </div>
+    <!-- End Collapser Container-->  
+  </div>
+  <!-- End Row -->
+</div>

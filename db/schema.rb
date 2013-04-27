@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426191054) do
+ActiveRecord::Schema.define(:version => 20130426223127) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(:version => 20130426191054) do
     t.text     "self_image"
     t.text     "self_image_tmp"
     t.text     "tags"
+    t.integer  "share_status",       :default => 1
   end
 
 end

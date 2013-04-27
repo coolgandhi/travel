@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image, :tags
+  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image, :tags, :share_status
   has_many :trip_comments, :dependent => :destroy
   has_many :trip_activities, :dependent => :destroy
   has_one  :trip_stat, :dependent => :destroy
@@ -31,8 +31,8 @@ class Trip < ActiveRecord::Base
     if ((params[:trip_location_id] and params[:trip_location_id] != "") or params[:featured])
       # duration = (DateTime.strptime(params[:to], "%m/%d/%Y") - DateTime.strptime(params[:from], "%m/%d/%Y"))
       duration = params[:days]
-      query = ""
-      query = (params[:trip_location_id] and params[:trip_location_id] != "")? " location_id IN ( " + params[:trip_location_id] + ") and " : ""
+      query = "share_status = 1 and "
+      query += (params[:trip_location_id] and params[:trip_location_id] != "")? " location_id IN ( " + params[:trip_location_id] + ") and " : ""
       query += (params[:traveler_type_id] and params[:traveler_type_id] != "")? "traveler_type_id IN (" + params[:traveler_type_id].join(" , ") + ") and " : "" 
       query += (duration and duration != "") ? " duration >= " + duration.to_i.to_s + " and duration <= " + duration.to_i.to_s + " and " : "" 
       query += (params[:featured])? " featured_trip_flag = " + params[:featured]  : " featured_trip_flag is NOT NULL" 
@@ -67,7 +67,7 @@ class Trip < ActiveRecord::Base
       
       return trips, exact_match_count, message_with_trip_render
     else
-      return scoped, exact_match_count, message_with_trip_render
+      return scoped(:conditions => 'share_status = 1', :limit => exact_match_count.to_i), exact_match_count, message_with_trip_render
     end
    end
 
