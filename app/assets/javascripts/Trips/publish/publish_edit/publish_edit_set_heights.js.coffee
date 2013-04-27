@@ -18,7 +18,6 @@
     trips_namespace.publish_activity_div_heights()
     $(".publish_form_activity_details_content").on "click", ".publish_order_day_tabs", (e) ->
       trips_namespace.publish_activity_div_heights()
-      console.log("rezieadheights")
     $(window).on "resize", -> trips_namespace.publish_activity_div_heights()
     $(window).on "orientationchange", -> trips_namespace.publish_activity_div_heights()
 

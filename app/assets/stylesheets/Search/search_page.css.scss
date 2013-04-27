@@ -242,6 +242,7 @@ $colorBorderWeight: 6px solid;
   // margin-bottom: 0;
   padding: 1% 0;
   height: 30px;
+  @include clearfix;
 }
 
 .results_form_centering{
@@ -559,6 +560,7 @@ $resultThumbHeight: 60%;
   float: left;
   width: 100%;
   text-align: left;
+  color: red;
 }
 
 /* FRONT PAGE CONVERSATION */

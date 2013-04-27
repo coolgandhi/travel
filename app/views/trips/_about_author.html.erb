@@ -3,9 +3,14 @@
 	<div class ="about_author_main">
   	<h3 class = "author_title">About the Author</h3>
   	<hr class="auth_hr">
-  	<div class="auth_picture"><%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
+  	<% if !@trip.author_info.self_image.blank? %>
+       <div class="auth_picture">
+         <%= image_tag(@trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
+       </div>
+    <% else %>
+    	<div class="auth_picture"><%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
   	</div>
-  	
+  	<% end %>
   	<div class="auth_description">
   		<h4><%= @trip.author_info.author_name %></br><small class="auth_city"><%= @trip.author_info.city %>, <%= @trip.author_info.state %> </small></h4>
   		<!-- <div class="auth_social_link"><%#= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "auth_social_icon"), raw("https://twitter.com/#{@author.twitter_handle}"), :target => "_blank"%>

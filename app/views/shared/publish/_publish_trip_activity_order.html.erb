@@ -95,7 +95,7 @@
             
                 <div class = "publish_form_order_button_group">
                   <div class = "activity_order_up">
-                    <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.first).to_i + 1) && x.activity_time_type == ("1"||"2") %>
+                    <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.first).to_i + 1) && ["1","2"].include?(x.activity_time_type) %>
                       <%= link_to content_tag(:span, '<i class ="icon-arrow-up"></i>'.html_safe), move_trip_trip_activities_path(@trip, :method => up_action, :trip_activity_id => x.id, :time_type => up_time_type_switch, :activity_day => x.activity_day), :remote => true %>
                     <% else %>
                     
@@ -103,7 +103,7 @@
                   </div>
                 
                   <div class = "activity_order_down">
-                    <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.last).to_i + 1) && x.activity_time_type == ("5" || "6") %>
+                    <% unless x.activity_sequence_number == (dayof_group.find_index(dayof_group.last).to_i + 1) && ["5","6"].include?(x.activity_time_type) %>
                     <%= link_to content_tag(:span, '<i class ="icon-arrow-down"></i>'.html_safe), move_trip_trip_activities_path(@trip, :method => down_action, :trip_activity_id => x.id, :time_type => down_time_type_switch, :activity_day => x.activity_day), :remote => true %>
                     <% else %>
                     

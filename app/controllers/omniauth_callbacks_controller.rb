@@ -1,6 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
-    logger.info "here you go #{request.env["omniauth.auth"]} \n"
     author_info = AuthorInfo.from_omniauth(request.env["omniauth.auth"])
     if author_info.persisted?
      flash.notice = "Signed in!"

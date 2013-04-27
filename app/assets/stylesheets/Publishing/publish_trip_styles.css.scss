@@ -116,6 +116,12 @@
   @include clearfix;
 }
 
+.pt_activity_edit_or_create_title{
+  font-size: em(16px);
+  font-weight: bold;
+  color: gray;
+}
+
 .publish_trip_image{
   width: 100%;
   position: relative;
@@ -144,6 +150,7 @@
   // height: 120px;
   border: $myDivBorderWidth solid $borderGray;
   margin-bottom: 2%;
+  @include border-radius($myDivBorderRadius);
 }
 
 .publish_trip_confirm_name{
@@ -277,7 +284,7 @@
   @include box-sizing(border-box);
   position: relative;
   float: left;
-  width: 98%;
+  width: 100%;
 
   #activityvenue{
     width: 95%;
@@ -315,6 +322,17 @@
     padding-right: 1%;
   }
 }
+
+.pt_form_bg{
+  @include box-sizing(border-box);
+  background-color: $grayLight;
+  @include border-radius($myDivBorderRadius);
+  padding: 1% 2%;
+  margin-bottom: 1%;
+  // float: left;
+  // width: 100%;
+}
+
 .publish_form_user_description, .publish_form_quicktip{
   float: left;
   width: 98%;
@@ -476,6 +494,7 @@
 } 
 /* 6. FORM COMPLETION STATUS */
 $completionStatusHeight: 30px;
+$completionGreen: #3cc574;
 .publish_trip_completion_status{
   width: 60%;
   height: $completionStatusHeight;
@@ -484,7 +503,7 @@ $completionStatusHeight: 30px;
   margin-bottom: 1%;
   border: 2px solid $borderGray;
   color: $borderGray;
-  background-color: #fafafa;
+  background-color: $completionGreen;
   @include border-radius($myDivBorderRadius);
   .completion_status{
     padding: 0 2%;
@@ -492,9 +511,10 @@ $completionStatusHeight: 30px;
     font-size: em(14px);
     font-weight: bold;
     height: 100%;
-    width: 33%;
+    width: 33.33333%;
     position: relative;
     float: left;
+    background-color: #fafafa;
     @include box-sizing(border-box);
 
     &.middle_borders{
@@ -503,7 +523,7 @@ $completionStatusHeight: 30px;
     }
   }
   .completion_status_active{
-    background-color: #3cc574;
+    background-color: $completionGreen;
     color: $white;  
   } 
 }

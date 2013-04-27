@@ -1,0 +1,34 @@
+  <div class="control-group">
+    <label class="control-label">Add a title</label>
+    <div class="controls">
+      <%= f.text_field :trip_name, :placeholder => "Pigging Out in San Francisco", :class => "span6 word_count", :maxcharacters => "40" %>
+      <p class ="counter"></p>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Give a short summary</label>
+    <div class="controls">
+      <%= f.text_area :trip_summary, :rows => "4", :placeholder => "Who did you go with? What did you do? Why did you go?", :class => "span6 word_count", :maxcharacters => "200" %>
+      <p class ="counter"></p>
+    </div>
+  </div>
+
+<div class="control-group">
+  <label class="control-label">Optional: 3 tags that best describes this trip</label>
+  <div class="controls">
+    <input name="tag1" class="span2" type="text" placeholder="Relax" value= <%=params[:tag1].nil? ? "" : params[:tag1] %>>
+    <input name="tag2" class="span2" type="text" placeholder="Party"  value= <%= params[:tag2].nil? ? "" : params[:tag2] %>>
+    <input name="tag3" class="span2" type="text" placeholder="Sightseeing"  value= <%= params[:tag3].nil? ? "" : params[:tag3] %>>
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label">Include your trip summary in search results</label>    
+  <div class="controls">
+    <label class = "checkbox">
+      <%= f.check_box :share_status, :class => "checkbox", :value =>true  %>
+      Make the trip public
+    </label>
+  </div>
+</div>

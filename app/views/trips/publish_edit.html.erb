@@ -14,7 +14,7 @@
   <!-- End Span -->
   <!-- Begin Span -->
   <div class = "span2">
-    <button class="btn-flat btn-flat-primary" type="button">Publish</button>
+    <%= link_to "Publish Trip", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right" %>
   </div>
   <!-- End Span -->
 </div>
@@ -25,6 +25,7 @@
 
 <!-- Begin Row-->
 <div class = "row">
+  
 <!-- Begin Collapser Container-->
 <div class = "publish_trip_collapser span12">
   

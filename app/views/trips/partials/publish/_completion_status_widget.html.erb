@@ -5,10 +5,10 @@
   </div>
   
   <div class = "completion_status middle_borders <%= controller.action_name == "publish_edit" ? 'completion_status_active' : '' %>" >
-    <%= controller.action_name == "publish_edit" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check' style='color:#3cc574;'></i>".html_safe %> 2. Add Activities
+    <%= ["publish_new","publish_edit"].include?(controller.action_name) ? "<i class='icon-check-empty'></i>".html_safe: "<i class='icon-check' style='color:#3cc574;'></i>".html_safe %> 2. Add Activities
   </div>
 
-  <div class = "completion_status <%= controller.action_name == "publish_share" ? 'completion_status_active' : '' %>" >
-    <%= controller.action_name == "publish_share" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check-empty'></i>".html_safe %>  3. Share Trip
+  <div class = "completion_status <%= controller.action_name == "publish_confirm" ? 'completion_status_active' : '' %>" >
+    <%= controller.action_name == "publish_confirm" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check-empty'></i>".html_safe %>  3. Publish Trip
   </div>
 </div>

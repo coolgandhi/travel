@@ -24,26 +24,19 @@
     </div>
   <% end %>
   
-  <fieldset>
-    <legend>
-      <%= controller.action_name == "publish_trip_activity_edit" ? "Edit Activity" : "Create Activity" %>
-    </legend>
-  </fieldset>
-  
+  <span class="pt_activity_edit_or_create_title">
+    <%= controller.action_name == "publish_trip_activity_edit" ? "Edit Day #{@trip_activity.activity_day} Activity" : "Create Day #{params[:day]} Activity" %>
+  </span>
+  <hr class = "publish_form_hr">
   <% if controller.action_name == "publish_trip_activity_new" %>
     <div class = "fields_inline">
-      <div class = "fields_cell_60">
-        <input id="activityvenue" type="text" name="activityvenue" placeholder="Activity Name" value="" />
-      </div>
-      <div class = "fields_cell_40">
-        <input id="activitycity" type="text" placeholder="City">
-      </div>
+      <input id="activityvenue" type="text" name="activityvenue" placeholder="Search name of Activity (i.e. Statue of Liberty)" value="" />
     </div>
     </br>
   <% end %>
 
       <!--specifying the url allows for specifying which action in the trip_activities controller to hit -->
-      <%= form_for([@trip, @trip_activity], :url => @update == 0 ? publish_trip_activity_create_trip_trip_activities_url(:trip_id => @trip.id) : publish_trip_activity_update_trip_trip_activity_url(:trip_id => @trip.id), :html => {:multipart => true}) do |f| %>        
+      <%= form_for([@trip, @trip_activity], :url => @update == 0 ? publish_trip_activity_create_trip_trip_activities_url(:trip_id => @trip.id) : publish_trip_activity_update_trip_trip_activity_url(:trip_id => @trip.id), :html => {:multipart => true, :class => "pt_trip_activity_form"}) do |f| %>        
 
         <!-- Begin Activity Confirm Box -->
         <div class = "form_activity_confirm_box" >
@@ -98,48 +91,37 @@
         <%#= f.hidden_field :activity_time_type,  :value =>  params[:trip_activity][:activity_time_type].nil? ? '1' : params[:trip_activity][:activity_time_type] %>
         <input type="hidden" id="venue_id" name="venueid" value=<%= params[:venueid].nil?  ? '' : params[:venueid] %> >
           
-          <!-- Begin Fields Inline (Duration and Day) -->
-          <div class = "fields_inline">
-            <div class = "fields_cell_50">
-
-              <label><strong>Duration</strong></label>
-              <select name="duration">
-                  <option>How much time?</option>
-                  <% ActivityDurationType.all.each do |activity| %>
-                    <option value="<%= activity.activity_duration_type_id %>" <%= params[:duration] == activity.activity_duration_type_id  ? "selected" : "" %> >
-                      <%= activity.activity_duration_name %>
-                    </option>
-                  <% end %>
-              </select>
-
-            </div>
-
-            <div class = "fields_cell_50">  
-            
-              <label><strong>Day</strong></label>
-              <%= controller.action_name == "publish_trip_activity_edit" ? "Day #{@trip_activity.activity_day}" : "Day #{params[:day]}" %>
-            
-            </div>
-
-          </div>
-          <!-- End Fields Inline -->
-
           <label><strong>Short Description</strong></label>
           <textarea rows="4" name="description" placeholder="User Description" class="publish_form_user_description word_count" maxcharacters="200"><%= params[:description].nil?  ? '' : params[:description] %></textarea>
           <p class ="counter"></p>
           <label><strong>Quick Tip (Optional)</strong></label>
           <textarea rows="3" name="quick_tip" placeholder="Quick Tip" class="publish_form_quicktip word_count" maxcharacters="140"><%= params[:quick_tip].nil?  ? '' : params[:quick_tip] %></textarea>
           <p class ="counter"></p>
-          
-          <label class = "checkbox">
-            <%= f.check_box :cant_miss, :class => "checkbox"  %>
-            You definitely should not miss this activity
-          </label>
+
+          <!-- Begin Duration Field-->
+          <label><strong>Duration</strong></label>
+          <select name="duration">
+              <option>How much time?</option>
+              <% ActivityDurationType.all.each do |activity| %>
+                <option value="<%= activity.activity_duration_type_id %>" <%= params[:duration] == activity.activity_duration_type_id  ? "selected" : "" %> >
+                  <%= activity.activity_duration_name %>
+                </option>
+              <% end %>
+          </select>
+          <!-- End Fields Inline -->
+
+          <div class = "pt_form_bg">
+            <label class = "checkbox">
+              <%= f.check_box :cant_miss, :class => "checkbox"  %>
+              You definitely should not miss this activity
+            </label>
+          </div>
           
           <input type="button" class="btn-flat btn-flat-primary pull-right" id="trip_activity_form_button" value="<%= controller.action_name == "publish_trip_activity_new" ? 'Add Activity' : 'Save Changes' %>" />
 
         </fieldset>        
 
       <% end %>
+      <div class="error_msg"></div>
 </div>
 <!-- Begin Trip Activities Form Container -->

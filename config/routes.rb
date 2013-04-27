@@ -1,5 +1,9 @@
 Travel::Application.routes.draw do
   
+  get "author_info/about_edit"
+  put "author_info/about_update"
+  get "author_info/author_page"
+
   devise_for :author_infos, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
   get "login" => "sessions#new"
@@ -46,11 +50,13 @@ Travel::Application.routes.draw do
       get 'showpartial'
       get 'daymapinfo'
       get 'publish_edit'
+      get 'publish_confirm'
       get 'publish_add_day'
       get 'publish_delete_day'
       get 'publish_trip_partial_format'
       put 'publish_update'
       put 'update_individual'
+      put 'publish_confirm_update'
     end
     collection do
       get 'trips_admin'
