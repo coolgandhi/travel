@@ -2,7 +2,7 @@ class AuthorInfoController < ApplicationController
   before_filter :authenticate_author_info!, :except => [:author_page]
   
   def about_edit
-    @author_info = AuthorInfo.find(current_author_info.id);
+    @author_info = AuthorInfo.find(current_author_info.id)
 
     respond_to do |format|
       format.html # about_edit.html.erb
@@ -10,7 +10,7 @@ class AuthorInfoController < ApplicationController
   end
 
   def about_update
-    @author_info = AuthorInfo.find(current_author_info.id);
+    @author_info = AuthorInfo.find(current_author_info.id)
 
     respond_to do |format|
       if @author_info.update_attributes(params[:author_info])
@@ -33,7 +33,7 @@ class AuthorInfoController < ApplicationController
     
     respond_to do |format|
       if !@use_id.blank?
-        @author_info = AuthorInfo.find(@use_id);
+        @author_info = AuthorInfo.find(@use_id)
         @trips_all = @author_info.trips
         @trips = @trips_all.where("share_status = ?", 1)
         @trips_unpublished = @trips_all.where("share_status = ?", 0)
