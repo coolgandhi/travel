@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag 'author_info/author_info' %>  
 <% end %>
 
-<%= form_for(@author_info, :url => author_info_about_update_url(), :html => {:multipart => true, :class => "form-horizontal"}) do |a| %>
+<%= form_for(@author_info, :url => author_info_about_update_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes"), :html => {:multipart => true, :class => "form-horizontal"}) do |a| %>
 
   <% if @author_info.errors.any? %>
     <div id="error_explanation">

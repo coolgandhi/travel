@@ -230,7 +230,7 @@ class TripsController < ApplicationController
     @trips = Trip.all
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @trip_activities }
     end
   end

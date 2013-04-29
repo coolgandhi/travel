@@ -23,17 +23,24 @@ class AuthorInfoController < ApplicationController
   end
 
   def author_page
-    @use_id = current_author_info.id
+    @use_id = nil
+    if !current_author_info.blank?
+      @use_id = current_author_info.id
+    end
     if params[:id] 
       @use_id = params[:id]
     end
-    @author_info = AuthorInfo.find(@use_id);
-    @trips_all = @author_info.trips
-    @trips = @trips_all.where("share_status = ?", 1)
-    @trips_unpublished = @trips_all.where("share_status = ?", 0)
     
     respond_to do |format|
-      format.html # about_edit.html.erb
+      if !@use_id.blank?
+        @author_info = AuthorInfo.find(@use_id);
+        @trips_all = @author_info.trips
+        @trips = @trips_all.where("share_status = ?", 1)
+        @trips_unpublished = @trips_all.where("share_status = ?", 0)
+        format.html # about_edit.html.erb
+      else
+        format.html { redirect_to root_url() }
+      end
     end        
   end
   
@@ -41,6 +48,13 @@ class AuthorInfoController < ApplicationController
   private
   
   def use_https?
-    false # Override in other controllers
+    use = false
+    case action_name
+      when "about_edit"
+        use = true
+      when "about_update"
+        use = true
+    end
+    use
   end
 end
