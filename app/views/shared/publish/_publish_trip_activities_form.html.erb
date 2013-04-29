@@ -30,7 +30,7 @@
   <hr class = "publish_form_hr">
   <% if controller.action_name == "publish_trip_activity_new" %>
     <div class = "fields_inline">
-      <input id="activityvenue" type="text" name="activityvenue" placeholder="Search name of Activity (i.e. Statue of Liberty)" value="" />
+      <input id="activityvenue" type="text" name="activityvenue" placeholder="Search name of Activity (i.e. Statue of Liberty)" value="" autofocus = true />
     </div>
     </br>
   <% end %>
@@ -50,6 +50,12 @@
                 <div class = "yes_upload_div" id = "yes_upload_div">
                   <%= image_tag(@trip_activity.self_trip_activity_photos.first.self_photo_url(:thumb), :class => "pt_activity_upload_img") %>
                 </div>
+              <% elsif !@trip_activity.self_trip_activity_photos.first.blank? and !@trip_activity.self_trip_activity_photos.first.self_photo_tmp.blank? %>
+                <div class = "no_upload_div">
+                  <i class = "icon-spinner icon-4x"></i>
+                  </br>
+                  <strong>We're processing the image that you have uploaded.</strong>
+                </div>               
               <% else %>
                 <div class = "no_upload_div">
                   <i class = "icon-picture icon-4x"></i>
@@ -91,24 +97,9 @@
         <%#= f.hidden_field :activity_time_type,  :value =>  params[:trip_activity][:activity_time_type].nil? ? '1' : params[:trip_activity][:activity_time_type] %>
         <input type="hidden" id="venue_id" name="venueid" value=<%= params[:venueid].nil?  ? '' : params[:venueid] %> >
           
-          <label><strong>Short Description</strong></label>
+          <label><strong>Short Description<span class="required_star">*</span></strong></label>
           <textarea rows="4" name="description" placeholder="User Description" class="publish_form_user_description word_count" maxcharacters="200"><%= params[:description].nil?  ? '' : params[:description] %></textarea>
           <p class ="counter"></p>
-          <label><strong>Quick Tip (Optional)</strong></label>
-          <textarea rows="3" name="quick_tip" placeholder="Quick Tip" class="publish_form_quicktip word_count" maxcharacters="140"><%= params[:quick_tip].nil?  ? '' : params[:quick_tip] %></textarea>
-          <p class ="counter"></p>
-
-          <!-- Begin Duration Field-->
-          <label><strong>Duration</strong></label>
-          <select name="duration">
-              <option>How much time?</option>
-              <% ActivityDurationType.all.each do |activity| %>
-                <option value="<%= activity.activity_duration_type_id %>" <%= params[:duration] == activity.activity_duration_type_id  ? "selected" : "" %> >
-                  <%= activity.activity_duration_name %>
-                </option>
-              <% end %>
-          </select>
-          <!-- End Fields Inline -->
 
           <div class = "pt_form_bg">
             <label class = "checkbox">
@@ -117,11 +108,33 @@
             </label>
           </div>
           
-          <input type="button" class="btn-flat btn-flat-primary pull-right" id="trip_activity_form_button" value="<%= controller.action_name == "publish_trip_activity_new" ? 'Add Activity' : 'Save Changes' %>" />
+          <label><strong>Quick Tip</strong></label>
+          <textarea rows="3" name="quick_tip" placeholder="Quick Tip" class="publish_form_quicktip word_count" maxcharacters="140"><%= params[:quick_tip].nil?  ? '' : params[:quick_tip] %></textarea>
+          <p class ="counter"></p>
+
+          <!-- Begin Duration Field-->
+          <label><strong>Time Spent Here</strong></label>
+          <select name="duration">
+              <!-- <option>How much time?</option> -->
+              <% ActivityDurationType.all.each do |activity| %>
+                <option value="<%= activity.activity_duration_type_id %>" <%= params[:duration] == activity.activity_duration_type_id  ? "selected" : "" %> >
+                  <%= activity.activity_duration_name %>
+                </option>
+              <% end %>
+          </select>
+          <!-- End Fields Inline -->
+
+          <div class="control-group">
+            <div class="error_msg"></div>
+            <div class="controls">
+              <input type="button" class="btn-flat btn-flat-success pull-right" id="trip_activity_form_button" value="<%= controller.action_name == "publish_trip_activity_new" ? 'Add Activity' : 'Save Changes' %>" />
+            </div>
+          </div>
+          
 
         </fieldset>        
 
       <% end %>
-      <div class="error_msg"></div>
+      
 </div>
 <!-- Begin Trip Activities Form Container -->

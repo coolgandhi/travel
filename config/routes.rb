@@ -2,7 +2,6 @@ Travel::Application.routes.draw do
   
   get "author_info/about_edit"
   put "author_info/about_update"
-  get "author_info/author_page"
 
   devise_for :author_infos, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
@@ -44,6 +43,11 @@ Travel::Application.routes.draw do
   end
   
   #resources :trips
+  resources :author_info do
+    member do
+      get 'author_page'
+    end
+  end  
   resources :trip_activities
   resources :trips do
     member do

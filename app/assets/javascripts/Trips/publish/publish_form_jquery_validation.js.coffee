@@ -15,6 +15,7 @@
 
     trips_namespace.pubDuration_rule =
       required: true
+      min: 1
 
     trips_namespace.pubUserDescription_message = "Please enter a Description with less than 200 characters"
     

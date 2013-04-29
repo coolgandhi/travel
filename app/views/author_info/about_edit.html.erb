@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag 'author_info/author_info' %>  
 <% end %>
 
-<%= form_for(@author_info, :url => author_info_about_update_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes"), :html => {:multipart => true, :class => "form-horizontal"}) do |a| %>
+<%= form_for(@author_info, :url => author_info_about_update_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes") ? "https": "http"), :html => {:multipart => true, :class => "form-horizontal"}) do |a| %>
 
   <% if @author_info.errors.any? %>
     <div id="error_explanation">
@@ -30,38 +30,44 @@
       </div>
     </div>
 
-<div class="control-group">
-    <label class="control-label">Profile Picture</label>
-      <div class="controls">
-        <!-- Begin Uploaded Image Preview -->
-        <div class = "uploaded_image_preview">
-          <% if !@author_info.self_image.blank? %>
-            <div class = "yes_upload_div" id = "yes_upload_div">
-              <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+    <div class="control-group">
+        <label class="control-label">Profile Picture</label>
+          <div class="controls">
+            <!-- Begin Uploaded Image Preview -->
+            <div class = "uploaded_image_preview">
+              <% if !@author_info.self_image.blank? %>
+                <div class = "yes_upload_div" id = "yes_upload_div">
+                  <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+                </div>
+              <% elsif !@author_info.self_image_tmp.blank? %>
+                <div class = "no_upload_div">
+                  <i class = "icon-spinner icon-2x"></i>
+                  </br>
+                  <strong>We're processing the image that you have uploaded.</strong>
+                </div> 
+              <% else %>
+                <div class = "no_upload_div">
+                  <i class = "icon-picture icon-4x"></i>
+                  </br>
+                  <strong>Add a profile picture</strong>
+                </div>
+              <% end %>
             </div>
-          <% else %>
-            <div class = "no_upload_div">
-              <i class = "icon-picture icon-4x"></i>
-              </br>
-              <strong>Add a profile picture</strong>
-            </div>
-          <% end %>
-        </div>
-        <!-- End Uploaded Image Preview -->
+            <!-- End Uploaded Image Preview -->
 
-        <!-- Begin Upload Field -->
-        <p class="pt_upload_field form-horizontal">
-          <input type="text" class="pt_upload_path" />
-          <label class="pt_upload_button btn-flat btn-flat-primary">
-            Choose
-            <span>
-              <%= a.file_field :self_image, :class => "pt_upload_file"%>
-           </span>
-         </label>
-        </p>
-          <!-- End Upload Field -->
-      </div>
-</div> 
+            <!-- Begin Upload Field -->
+            <p class="pt_upload_field form-horizontal">
+              <input type="text" class="pt_upload_path" />
+              <label class="pt_upload_button btn-flat btn-flat-primary">
+                Choose
+                <span>
+                  <%= a.file_field :self_image, :class => "pt_upload_file"%>
+               </span>
+             </label>
+            </p>
+              <!-- End Upload Field -->
+          </div>
+    </div> 
 
 
     <div class="control-group">
@@ -126,6 +132,6 @@
         <%= a.submit  :id => "author_info_update_form_submit", :class => "btn-flat btn-flat-primary" %>
       </div>
     </div>
-  </fieldset>
 
-<% end %>
+  </fieldset>
+  <% end %>

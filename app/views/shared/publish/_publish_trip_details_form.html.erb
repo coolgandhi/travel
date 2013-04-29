@@ -49,6 +49,12 @@
               <div class = "yes_upload_div" id = "yes_upload_div">
                 <%= image_tag(@trip.self_image_url(:thumb), :class => "pt_activity_upload_img") %>
               </div>
+            <% elsif !@trip.self_image_tmp.blank? %>
+              <div class = "no_upload_div">
+                <i class = "icon-spinner icon-2x"></i>
+                </br>
+                <strong>We're processing the image that you have uploaded.</strong>
+              </div> 
             <% else %>
               <div class = "no_upload_div">
                 <i class = "icon-picture icon-4x"></i>
@@ -75,14 +81,21 @@
     </div> 
     
     <hr class = "publish_form_hr">
-    <span class ="help-inline publish_form_required_label">You'll have another chance to edit the following before publishing.</span>
-    <br><br>
-    
-    <%= render 'shared/publish/publish_trip_confirm_form', :f => f %>
-    
-    <div class="actions">
-      <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary pull-right" %>
+   
+    <div class = "pt_gray_box">
+      <span class ="help-inline publish_form_required_label">
+        You'll have another chance to edit the following before publishing.
+      </span>
+      <br><br>
+      <%= render 'shared/publish/publish_trip_confirm_form', :f => f %>
     </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
+      </div>
+    </div>
+
   <% end %>
 
 </div>

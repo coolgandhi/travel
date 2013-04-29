@@ -9,7 +9,7 @@ class AuthorInfo < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
   include Author_Validators
-  attr_accessible :author_id, :address1, :address2, :address3, :author_name, :city, :state, :country, :email, :phone, :postal_code, :twitter_handle, :website, :about, :password, :password_confirmation, :remember_me, :birthday, :admin, :self_image
+  attr_accessible :author_id, :address1, :address2, :address3, :author_name, :city, :state, :country, :email, :phone, :postal_code, :twitter_handle, :website, :about, :password, :password_confirmation, :remember_me, :birthday, :admin, :self_image, :self_image_tmp
   has_many :trips, :foreign_key => :author_id
   #validates :author_name, :presence => { :message => "enter author name" }
   validates :email, :presence => { :message => "enter author email" }, :email => true

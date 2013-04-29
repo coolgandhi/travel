@@ -6,15 +6,18 @@
 
 <div class = "row">
   <!-- Begin Span -->
-  <div class = "span10">
+  <div class = "span8">
     <!-- Begin Form Completion Status Container -->
     <%= render "trips/partials/publish/completion_status_widget" %>
     <!-- End Form Completion Status Container -->
   </div>
   <!-- End Span -->
   <!-- Begin Span -->
-  <div class = "span2">
-    <%= link_to "Publish Trip", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right" %>
+  <div class = "span4">
+    <p>
+      <%= link_to "Publish Trip", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right pt_publish_button" %>
+      <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-inverse pull-right", :target => "_blank" %>
+    </p>
   </div>
   <!-- End Span -->
 </div>
