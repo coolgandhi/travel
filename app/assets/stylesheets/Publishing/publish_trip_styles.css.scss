@@ -99,11 +99,23 @@
   margin: 10px 0;
 }
 
+.pt_publish_button{
+  margin-left: 2%;
+}
+
 /* 3. TRIP DETAILS FORM CONTAINER */
 .publish_trip_details_container{
   #place_text_field{
     // margin-right: 1%;
   }
+}
+
+.pt_gray_box{
+  background-color: #F2F2F2;
+  padding: 1%;
+  @include border-radius($myDivBorderRadius);
+  border: 1px solid $borderGray;
+  margin-bottom: 1%;
 }
 
 /* 4. TRIP ACTIVITIES SELECTOR */
@@ -283,8 +295,9 @@
 
 .pt_form_bg{
   @include box-sizing(border-box);
-  background-color: $grayLight;
+  background-color: #F2F2F2;
   @include border-radius($myDivBorderRadius);
+  border: 1px solid $borderGray;
   padding: 1% 2%;
   margin-bottom: 1%;
   // float: left;
@@ -454,7 +467,7 @@
 $completionStatusHeight: 30px;
 $completionGreen: #3cc574;
 .publish_trip_completion_status{
-  width: 60%;
+  width: 90%;
   height: $completionStatusHeight;
   position: relative;
   float: left;

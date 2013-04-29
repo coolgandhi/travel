@@ -39,6 +39,12 @@
             <div class = "yes_upload_div" id = "yes_upload_div">
               <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
             </div>
+          <% elsif !@author_info.self_image_tmp.blank? %>
+            <div class = "no_upload_div">
+              <i class = "icon-spinner icon-2x"></i>
+              </br>
+              <strong>We're processing the image that you have uploaded.</strong>
+            </div> 
           <% else %>
             <div class = "no_upload_div">
               <i class = "icon-picture icon-4x"></i>

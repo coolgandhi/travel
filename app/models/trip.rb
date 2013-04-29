@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image, :tags, :share_status
+  attr_accessible :trip_id, :author_id, :duration, :location_id, :traveler_type_id, :trip_name, :trip_summary, :image_url, :featured_trip_flag, :rank_score, :self_image, :self_image_tmp, :tags, :share_status
   has_many :trip_comments, :dependent => :destroy
   has_many :trip_activities, :dependent => :destroy
   has_one  :trip_stat, :dependent => :destroy

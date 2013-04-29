@@ -23,12 +23,15 @@
   </div>
 </div>
 
-<div class="control-group">
-  <label class="control-label">Include your trip summary in search results</label>    
-  <div class="controls">
-    <label class = "checkbox">
-      <%= f.check_box :share_status, :class => "checkbox", :value =>true  %>
-      Make the trip public
-    </label>
+<% if controller.action_name == "publish_confirm" %>
+  <div class="control-group">
+    <label class="control-label">Make your trip public and include your trip summary in search results</label>    
+    <div class="controls">
+      <label class = "checkbox">
+        <%= f.check_box :share_status, :class => "checkbox", :value =>true  %>
+        Make the trip public
+      </label>
+    </div>
   </div>
-</div>
+<% end %>
+

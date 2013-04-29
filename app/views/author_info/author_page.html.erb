@@ -78,12 +78,12 @@
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs" id="trips_by_author_tabs">
   <li class ="active">
-    <a class="author_trip_tabs" href=<%= "#author_trip_tabs_1" %> data-toggle="tab" ><%= "Published Trips" %></a>
+    <a class="author_trip_tabs" href=<%= "#author_trip_tabs_1" %> data-toggle="tab" ><%= "Public Trips" %></a>
   </li>
   
   <% if @author_info.id.to_s == current_author_info.id.to_s %>
     <li>
-      <a class="author_trip_tabs" href=<%= "#author_trip_tabs_2" %> data-toggle="tab" ><%= "Unpublished Trips" %></a>
+      <a class="author_trip_tabs" href=<%= "#author_trip_tabs_2" %> data-toggle="tab" ><%= "Private Trips" %></a>
     </li>
   <% end %>
 

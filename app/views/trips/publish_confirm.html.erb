@@ -1,13 +1,18 @@
 <div class = "container">
   
   <div class = "row">
-    <!-- Begin Span 12 -->
-    <div class = "span12">
+    <!-- Begin Span -->
+    <div class = "span8">
       <!-- Begin Form Completion Status Container -->
       <%= render "trips/partials/publish/completion_status_widget" %>
       <!-- End Form Completion Status Container -->
     </div>
-  <!-- End Span 12 -->
+  <!-- End Span -->
+    <div class = "span4">
+      <p>
+        <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-inverse pull-right", :target => "_blank" %>
+      </p>
+    </div>
   </div>
 
   <div class="publish_flash_message">
@@ -27,7 +32,7 @@
       <div class = "publish_trip_collapse_content publish_form_trip_details">
         <div class="publish_trip_details_container">
           <span class="help-inline publish_form_required_label">
-            Before you share it with others, personalize title and about the trip. :)
+            Personalize the title and tell us more about the trip before you share this trip with the world. :)
           </span>
           <br>
           <br>
@@ -42,11 +47,17 @@
               </ul>      
             </div>
           <% end %>
-
-          <%= render "shared/publish/publish_trip_confirm_form", :f => f  %>
-          <div class="actions">
-            <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary pull-right" %>
+          
+          <div class = "pt_gray_box">
+            <%= render "shared/publish/publish_trip_confirm_form", :f => f  %>
           </div>
+          
+          <div class="control-group">
+            <div class="controls">
+              <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
+            </div>
+          </div>
+
         <% end %>
         <div class="error_msg"></div>
         </div>
