@@ -6,7 +6,7 @@
   	  
     </div>
     <div class = "front_page_convo_body cust_scroll_thin">
-      <fb:comments href="<%=  (Rails.env == "production") ? "#{request.url}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
+      <fb:comments href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
     </div>  
   </div>
 
