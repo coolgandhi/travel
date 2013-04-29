@@ -23,7 +23,7 @@ Birthday: <%= @author_info.birthday %> <br/>
 <% else %>
   <% @trips.each do |trip| %>
     Duration: <%= trip.duration %> Title: <%= trip.trip_name %> Summary: <%= trip. trip_summary %> <br/>
-    <% if trip.author_id == current_author_info.id.to_s %>
+    <% if !current_author_info.blank? and trip.author_id == current_author_info.id.to_s %>
       <%= link_to "View Trip", trip_url(trip) %>
       <%= link_to "Edit Trip", publish_edit_trip_url(trip) %>
       <%= link_to "Delete Trip", trip, :method => :delete, :confirm => "Are you sure ?"%><br/><br/>

@@ -1,4 +1,4 @@
-<%= form_for(@author_info, :url => author_info_about_update_url(), :html => {:multipart => true}) do |a| %>
+<%= form_for(@author_info, :url => author_info_about_update_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :html => {:multipart => true}) do |a| %>
 
   <% if @author_info.errors.any? %>
     <div id="error_explanation">
