@@ -1,34 +1,133 @@
-Author Information
-
-Name: <%= @author_info.author_name %> <br/>
-Address: <%= @author_info.address1 %> <br/>
-City: <%= @author_info.city %> <br/>
-State: <%= @author_info.state %> <br/>
-Country: <%= @author_info.country %> <br/>
-Email: <%= @author_info.email %> <br/>
-Phone: <%= @author_info.phone %> <br/>
-Twitter: <%= @author_info.twitter_handle %> <br/>
-Website: <%= @author_info.website %> <br/>
-About: <%= @author_info.about %> <br/>
-Birthday: <%= @author_info.birthday %> <br/> 
-
-<% if !@author_info.self_image.blank? %>
-  <div>
-    <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
-  </div>
-<% end %> <br/> <br/>
-
-<% if @trips.blank? %>
-  No trips belonging to the author
-<% else %>
-  <% @trips.each do |trip| %>
-    Duration: <%= trip.duration %> Title: <%= trip.trip_name %> Summary: <%= trip. trip_summary %> <br/>
-    <% if trip.author_id == current_author_info.id.to_s %>
-      <%= link_to "View Trip", trip_url(trip) %>
-      <%= link_to "Edit Trip", publish_edit_trip_url(trip) %>
-      <%= link_to "Delete Trip", trip, :method => :delete, :confirm => "Are you sure ?"%><br/><br/>
-    <% end %>      
-  <% end %>
+<!-- CSS Specific to Author Page -->
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'author_info/author_info' %>  
 <% end %>
 
-<%= link_to "Add New Trip", publish_new_trips_url() %>
+<div class = "container">
+  <div class = "row">
+  <%= link_to "Add New Trip", publish_new_trips_url(), :class => "btn-flat btn-flat-primary pull-right author_page_add_trip_btn" %>
+  </div>
+
+  <!-- Begin Row -->
+  <div class = "row">
+    <!-- Begin Span12 -->
+    <div class = "span12">
+<!--       <div class = "page-header">
+        <h1>Author Profile</h1>
+      </div> -->
+
+      <!-- Begin author_profile_header_box -->  
+      <div class = "author_profile_header_box">
+
+        <div class = "author_profile_picture_div">
+          <% if !@author_info.self_image.blank? %>
+            <div>
+              <%= image_tag(@author_info.self_image_url(:thumb), {:size => '200x200'}) %>
+            </div>
+          <% else %>
+            <div>
+              <%= image_tag avatar_url(@author_info), :alt => "profile", :class => "auth_img_tag" %>
+            </div>    
+          <% end %>    
+        </div>
+      
+        <div class = "author_profile_info_div">
+          <h3 class = "author_profile_name"><%= @author_info.author_name %></h3>
+          
+          <p><%= @author_info.city unless @author_info.city.blank?%><%= ", #{@author_info.state}" unless @author_info.state.blank? %><%= ", #{@author_info.country}" unless @author_info.country.blank? %></p>
+          
+          <p class = "lead author_profile_about"><%= @author_info.about %> </p>
+
+          <%unless @author_info.twitter_handle.blank? %>
+            <div>
+              <iframe allowtransparency="true" frameborder="0" scrolling="no"
+              src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author_info.twitter_handle %>"
+              style="width:300px; height:20px;"></iframe>
+            </div>
+          <% end %>
+                    
+          <p><%= "Website: #{link_to @author_info.website, @author_info.website, :target => "_blank"}" unless @author_info.website.blank? %> </p>
+
+          <!-- Begin Author Stats -->
+          <ul class = "author_stats_box">
+            <li>
+            <%= @trips.length %> Trips
+            </li>
+            <li>
+            [00] Likes
+            </li>
+            <li>
+            [00] Views
+            </li>
+          </ul>
+          <!-- Begin Author Stats -->
+          </br></br> 
+        </div>
+      </div>
+      <!-- End author_profile_header_box -->  
+    </div>
+    <!-- End Span12 -->
+  </div>
+  <!-- End Row -->
+
+  <!-- Begin Row -->
+  <div class = "row">
+    <div class = "span12">
+      <h3 class = "featured_results_title title_large">Trip Summaries by <%= @author_info.author_name %></h3>
+
+<!-- Begin Tabs -->
+<ul class="nav nav-tabs" id="trips_by_author_tabs">
+  <li class ="active">
+    <a class="author_trip_tabs" href=<%= "#author_trip_tabs_1" %> data-toggle="tab" ><%= "Published Trips" %></a>
+  </li>
+  
+  <% if @author_info.id.to_s == current_author_info.id.to_s %>
+    <li>
+      <a class="author_trip_tabs" href=<%= "#author_trip_tabs_2" %> data-toggle="tab" ><%= "Unpublished Trips" %></a>
+    </li>
+  <% end %>
+
+</ul>
+<!-- End Tabs -->
+
+<!-- Begin Tab Content -->
+<div class="tab-content">
+  <div class="tab-pane active" id=<%= "author_trip_tabs_1"%>>
+
+      <% if @trips.blank? %>
+        No published trips belonging to the author
+      <% else %>
+        <ul class="thumbnails">
+          
+          <% @trips.each do |trip| %>
+            <%= render "author_info/partials/trip_by_author_single_unit", :trip => trip %>
+          <% end %>
+        
+        </ul>
+      <% end %>
+  
+  </div>
+  <% if @author_info.id.to_s == current_author_info.id.to_s %>
+    <div class="tab-pane" id=<%= "author_trip_tabs_2"%>>
+
+        <% if @trips_unpublished.blank? %>
+          No unpublished trips belonging to the author
+        <% else %>
+          <ul class="thumbnails">
+            
+            <% @trips_unpublished.each do |trip| %>
+              <%= render "author_info/partials/trip_by_author_single_unit", :trip => trip %>
+            <% end %>
+          
+          </ul>
+        <% end %>
+
+    </div>
+  <% end %>
+</div>
+<!-- End Tab Content -->
+
+  </div>
+  <!-- End Row -->
+</div>
+

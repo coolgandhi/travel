@@ -8,7 +8,7 @@
         
     trips_namespace.pubQuickTip_rule =
       required: false      
-      max: 140
+      maxlength: 140
     
     trips_namespace.pubVenueId_rule =
       required: true
@@ -28,14 +28,14 @@
       ignore: [] 
       rules:
         description: trips_namespace.pubUserDescription_rule
-        # quick_tip: trips_namespace.pubQuickTip_rule
-        # venueid: trips_namespace.pubVenueId_rule
-        # duration: trips_namespace.pubDuration_rule
+        quick_tip: trips_namespace.pubQuickTip_rule
+        venueid: trips_namespace.pubVenueId_rule
+        duration: trips_namespace.pubDuration_rule
       messages: 
         description: trips_namespace.pubUserDescription_message
-        # quick_tip: trips_namespace.pubQuickTip_message
-        # venueid: trips_namespace.pubVenueId_message
-        # duration: trips_namespace.pubDuration_message
+        quick_tip: trips_namespace.pubQuickTip_message
+        venueid: trips_namespace.pubVenueId_message
+        duration: trips_namespace.pubDuration_message
       success: (label, element) ->
         return
       showErrors: (errorMap, errorList) ->
@@ -77,9 +77,10 @@
       onkeyup: false
       onclick: false
       
-    $('.publish_trip_create_activities').on "click", (e) ->
-      console.log('hello')
-      $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+    # $('.publish_trip_create_activities').on "click", (e) ->
+    #   console.log('hello')
+    #   $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
 
     $(".pt_confirm_form").validate(trips_namespace.pubFormConfirmRules);
+    
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

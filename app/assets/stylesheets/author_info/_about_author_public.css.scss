@@ -1,0 +1,83 @@
+/* STYLING FOR PUBLISHING PAGE
+  1. PUBLIC PROFILE - AUTHOR STATS
+  2. AUTHOR'S TRIPS
+*/
+
+/* 1. PUBLIC PROFILE - AUTHOR STATS */
+.author_profile_header_box{
+ @include border-radius($myDivBorderRadius);
+ border: $myDivBorderWidth solid $borderGray;
+ @include box-sizing(border-box);
+ float: left;
+ position: relative;
+ width: 100%;
+ margin-bottom: 2%;
+ min-height: 200px;
+}
+
+.author_profile_picture_div{
+ @include col(3);
+ margin-left: 0;
+}
+
+.author_profile_info_div{
+ @include col(9);
+}
+
+.author_profile_stats{
+  @include col(12);
+  height: 15%;	
+}
+
+.author_profile_name{
+  margin-bottom: 0;	
+}
+
+.author_profile_about{
+  margin-bottom: 1%;
+}
+
+/** Author Stats **/
+.author_stats_box{
+  // position: absolute;
+  // right: 2%;
+  // top: 50%;
+  float: left;
+  @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%));	
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  background-color: $myDivBg;
+  padding: 0;
+  margin: 0;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  @include box-sizing(border-box);
+
+  li{
+  	float: left;
+  	display: inline;
+  	min-width: 90px;
+  	height: 30px;
+  	margin: 0;
+  	padding: 2%;
+  	border-left: 1px solid #ccc;
+  	@include box-sizing(border-box);
+  	font-weight: bold;
+  	color: gray;
+  	text-align: center;
+  } 
+  
+  li:first-child{
+  	border-left: 0;
+  }
+}
+
+.author_page_add_trip_btn{
+  margin-bottom: 1%;
+}
+
+/* 2. AUTHOR'S TRIPS  */
+@import "search/trip_results_single_containers";

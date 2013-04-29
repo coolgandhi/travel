@@ -1,31 +1,72 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal"}) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <fieldset>
+    <div id="legend">
+      <legend class="">Edit <%= resource_name.to_s.humanize %></legend>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="control-group">
+      <!-- Email -->
+      <%= f.label :email, 'E-mail', :class=> "control-label", :for => "email" %>
+      <div class="controls">
+        <%= f.email_field :email, :class => "input-xlarge", :id => "email", :autofocus => true %>
+        <p class="help-block">Your e-mail address</p>
+      </div>
+    </div>
+    
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
   
-  <% if f.object.encrypted_password.present? %>
-    <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, :autocomplete => "off" %></div>
+    <% if f.object.encrypted_password.present? %>
+      <div class="control-group">
+        <!-- Password -->
+        <%= f.label :password, 'New Password', :class=> "control-label", :for => "password" %>
+        <div class="controls">
+          <%= f.email_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
+          <p class="help-block"><i>Leave this blank if you don't want to change it</i></p>
+        </div>
+      </div>
 
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
+      <div class="control-group">
+        <!-- Confirm Password -->
+        <%= f.label :password_confirmation, 'Confirm New Password', :class=> "control-label", :for => "password_confirmation" %>
+        <div class="controls">
+          <%= f.email_field :password_confirmation, :class => "input-xlarge", :id => "password_confirmation" %>
+          <p class="help-block"><i>To make sure you entered your new password correctly</i></p>
+        </div>
+      </div>
 
-    <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password %></div>
-  <% end %>
+      <div class="control-group">
+        <!-- Current Password -->
+        <%= f.label :current_password, 'Current Password', :class=> "control-label", :for => "current_password" %>
+        <div class="controls">
+          <%= f.email_field :current_password, :class => "input-xlarge", :id => "current_password" %>
+          <p class="help-block"><i>We need your current password to confirm your changes</i></p>
+        </div>
+      </div>
+
+    <% end %>
   
-  <div><%= f.submit "Update" %></div>
+    <div class="control-group">
+      <!-- Button Update-->
+      <div class="controls">
+        <%= f.submit "Update", :class => "btn-flat btn-flat-primary" %>
+      </div>
+    </div>
+  </fieldset>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class = "row">
+  <div class="control-group pull-right">
+    <!-- Button Cancel-->
+    <div class="controls">
+      <%= button_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn-flat btn-flat-danger btn-flat-mini" %>
+    </div>
+  </div>
+</div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+<div class = "row">
+  <%= link_to "Back", :back %>
+</div>

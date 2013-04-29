@@ -1,0 +1,157 @@
+/* Trip Results Thumbnail Containers */ 
+
+/* Variables */
+$resultSubtitleColor: dimgrey;///#08c;
+$colorBorderWeight: 6px solid;
+
+/* Individual Trip Thumbnail */
+.trip_result_thumbnail_li{
+  @include col(4);
+  background-color: #fafafa;//$myDivBg;
+  border-color: $borderGray;
+  border-width: $myDivBorderWidth;
+  border-style: solid;
+  margin-bottom: 1%;
+  @include box-sizing(border-box);
+  @include border-radius($myDivBorderRadius);
+  @include box-shadow($myDivBoxShadow);
+  &:hover{
+    border-color: darken($borderGray, 10%);
+    border-width: $myDivBorderWidth + 0px;
+    @include box-shadow(0px 0px 3px 3px rgba(0,0,0,0.1))
+  }
+  &.not_exact_result{
+    border-style: dashed;
+    border-width: $myDivBorderWidth+1;
+    background-color: #f1f1f1;
+  }
+}
+
+.trip_result_thumbnail_div{
+  height: 440px;
+  padding: 0;
+  position: relative;
+  border: none;
+}
+
+$resultThumbHeight: 60%;
+.result_thumb_wrap{
+  @include box-sizing(border-box);
+  height: $resultThumbHeight;
+  overflow: hidden;
+  position: relative;
+  @include respond-to(portrait){
+    height: $resultThumbHeight - 10%;
+  }
+}
+
+.image_link_thumbnail{
+  // display: block;
+  // margin: 0 auto;
+  // max-width: 100%;
+  height: auto;
+  width: 100%;
+  max-width: none;
+  position: absolute;
+}
+
+.trip_results_caption{
+  // border-top: 5px solid $myPrimaryBlue;
+  min-height: 100-$resultThumbHeight;
+  overflow: hidden;
+  a{
+    color: $black;
+  }
+  .caption_trip_title{
+    margin: 0;
+    margin-bottom: 1px;
+    color: $black;
+    // font-weight: 200;
+    text-transform: capitalize;
+  }
+  .caption_trip_subtitle{
+    color: $resultSubtitleColor;
+    margin: em(4px) 0 0 0;
+  }
+  .caption_trip_summary{
+    color: $black;
+    margin: em(4px) 0 0 0;
+  }
+}
+
+.solo-badge_border_top{
+  border-top: $colorBorderWeight #18ADD7;
+}
+
+.couples-badge_border_top{
+  border-top: $colorBorderWeight #B3564B; //#FF9284;  
+}
+
+.family-badge_border_top{
+  border-top: $colorBorderWeight #00B1AB;
+}
+
+.group-badge_border_top{
+  border-top: $colorBorderWeight #FFBF22;//#FF9A19;  
+}
+
+.other-badge_border_top{
+  border-top: $colorBorderWeight #CD3542;  
+}
+
+.caption_box_social{
+  position: absolute;
+  bottom: 100-$resultThumbHeight+2;
+  right: 2%;
+  z-index: 1;
+  @include respond-to(portrait){
+    bottom: 100-$resultThumbHeight+2+10;
+  }
+}
+
+/* Caption Badges */
+.caption_badge_buttons{
+  text-align: center;
+  float: right;
+  margin-right: 1%;
+}
+
+.caption_badges-ul{
+  // @include clearfix;
+  // width: 100px;
+  margin: 0 auto;
+
+  li{
+    float: left;
+    text-align: center;
+    margin-left: 1%;
+    width: 40px;
+    position: relative;
+    display: inline;
+    a{
+      display: block;
+      position: relative;
+      margin: 0; //half of the difference in width of li 40px-25px = 15px / 2 = 7.5px
+      width: 40px;
+    }
+    p{
+      text-align: center;
+      font-size: 0.75em;
+      line-height: 10px;
+      font-weight: bold;
+    }
+  }
+}
+
+/* Only if you are the author */
+.current_author_admin{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.9);
+  width: 50%;
+  text-align: left;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 2%;
+}

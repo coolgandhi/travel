@@ -39,9 +39,9 @@
               <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li> <%= link_to 'Public Page', author_info_author_page_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-                <li> <%= link_to 'Edit account settings', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-                <li> <%= link_to 'Edit profile', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+                <li> <%= link_to 'Public Profile', author_info_author_page_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+                <li> <%= link_to 'Edit Profile', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+                <li> <%= link_to 'Account Settings', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
                 <li> <%= link_to "Logout", destroy_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes") ? "https": "http"), method: :delete %> </li>
               </ul>
           </li>

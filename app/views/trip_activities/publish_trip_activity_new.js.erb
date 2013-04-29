@@ -1,1 +1,5 @@
 $(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
+
+$(document).ready(function() {
+  $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+});
