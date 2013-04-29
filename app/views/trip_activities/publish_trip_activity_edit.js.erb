@@ -1,4 +1,19 @@
 $(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
-trips_namespace.fireResizePublishImages();
-$(".publish_form_activity_item").removeClass("selected_highlight");
-$('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");
+
+$(document).ready(function() {
+  trips_namespace.fireResizePublishImages();
+  $(".publish_form_activity_item").removeClass("selected_highlight");
+  $('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");
+  $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+
+  $('#trip_activity_form_button').click(function(e){
+    e.preventDefault();
+    $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+    $(".pt_trip_activity_form").valid(trips_namespace.pubFormAddActivityRules);
+    console.log($(".pt_trip_activity_form").valid(trips_namespace.pubFormAddActivityRules));
+    if ($(".pt_trip_activity_form").valid(trips_namespace.pubFormAddActivityRules) != true)
+      e.preventDefault();
+  	else
+  	  return
+  });
+});

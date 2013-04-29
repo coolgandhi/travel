@@ -20,7 +20,7 @@
     trips_namespace.place_err_message = "Please select where would you like to go"
       
     trips_namespace.searchformrules_on_page_box = 
-      ignore: []  
+      ignore: []
       rules:
         days: trips_namespace.day_rule
         place_dropdown_field: trips_namespace.place_rule

@@ -4,9 +4,9 @@
     $('#trip_overview_modal').modal('hide')
     $('.mapModalMask').fadeOut('slow')
 
-  # Open Trip Overview Modal on load 
+  # Open Trip Overview Modal on load if show:true, set show:false for not show on load
   jQuery ->
-    $('#trip_overview_modal').modal({show: false})
+    $('#trip_overview_modal').modal({show: true})
 
     $("#swipewrapper").on "click", "#trip_overview_show", (e) ->
       $('#trip_overview_modal').modal('show')

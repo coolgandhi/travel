@@ -103,6 +103,7 @@
 
     //close the map modal
     trips_activities_namespace.closeMapModal();
+    trips_namespace.closeOverviewModal();
 
     });
 

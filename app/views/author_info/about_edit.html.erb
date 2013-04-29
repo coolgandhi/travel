@@ -1,4 +1,9 @@
-<%= form_for(@author_info, :url => author_info_about_update_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :html => {:multipart => true}) do |a| %>
+<!-- CSS Specific to Author Page -->
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'author_info/author_info' %>  
+<% end %>
+
+<%= form_for(@author_info, :url => author_info_about_update_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes"), :html => {:multipart => true, :class => "form-horizontal"}) do |a| %>
 
   <% if @author_info.errors.any? %>
     <div id="error_explanation">
@@ -10,62 +15,117 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class = "field">
-    <%= a.label :author_name, 'Author Name' %>:
-    <%= a.text_field :author_name %>
-  </div>
-  <div class = "field">
-    <%= a.label :self_image, 'Add your profile photo' %>:
-    <%= a.file_field :self_image %>
-  </div>
-  <% if !@author_info.self_image.blank? %>
-    <div>
-      <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+
+  <fieldset>
+    <div id="legend">
+      <legend class="">Edit Profile</legend>
     </div>
-  <% end %>
-  <br/>
-  
-  
-  
-  <div class = "field">
-    <%= a.label :about, 'About the author' %>:
-    <%= a.text_field :about %>
-  </div>
-  <div class = "field">
-    <%= a.label :twitter_handle, 'Twitter Handle (without the @ symbol)' %>:
-    <%= a.text_field :twitter_handle %>
-  </div>
-  <div class = "field">
-    <%= a.label :website, 'Website' %>:
-    <%= a.text_field :website %>
-  </div>
-  <div class = "field">
-    <%= a.label :phone, 'Phone' %>:
-    <%= a.text_field :phone %>
-  </div>
-  <div class = "field">
-    <%= a.label :address1, 'Address' %>:
-    <%= a.text_field :address1 %>
-  </div>  
-  <div class = "field">
-    <%= a.label :city, 'City' %>:
-    <%= a.text_field :city %>
-  </div>
-  <div class = "field">
-    <%= a.label :state, 'State' %>:
-    <%= a.text_field :state %>
-  </div>
-  <div class = "field">
-    <%= a.label :country, 'Country' %>:
-    <%= a.text_field :country %>
-  </div>
-  <div class = "field">
-    <%= a.label :birthday, 'Birthday' %>:
-    <%= a.text_field :birthday %>
-  </div>
-  
-  <div class="actions">
-    <%= a.submit  :id => "author_info_update_form_submit" %>
-  </div>
+
+    <div class="control-group">
+      <!-- Username -->
+      <%= a.label :author_name, 'Author Name', :class=> "control-label", :for => "author_name" %>
+      <div class="controls">
+        <%= a.text_field :author_name, :class => "input-xlarge", :id => "author_name" %>
+        <p class="help-block">What's your name?</p>
+      </div>
+    </div>
+
+<div class="control-group">
+    <label class="control-label">Profile Picture</label>
+      <div class="controls">
+        <!-- Begin Uploaded Image Preview -->
+        <div class = "uploaded_image_preview">
+          <% if !@author_info.self_image.blank? %>
+            <div class = "yes_upload_div" id = "yes_upload_div">
+              <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+            </div>
+          <% else %>
+            <div class = "no_upload_div">
+              <i class = "icon-picture icon-4x"></i>
+              </br>
+              <strong>Add a profile picture</strong>
+            </div>
+          <% end %>
+        </div>
+        <!-- End Uploaded Image Preview -->
+
+        <!-- Begin Upload Field -->
+        <p class="pt_upload_field form-horizontal">
+          <input type="text" class="pt_upload_path" />
+          <label class="pt_upload_button btn-flat btn-flat-primary">
+            Choose
+            <span>
+              <%= a.file_field :self_image, :class => "pt_upload_file"%>
+           </span>
+         </label>
+        </p>
+          <!-- End Upload Field -->
+      </div>
+</div> 
+
+
+    <div class="control-group">
+      <!-- About -->
+      <%= a.label :about, 'About The Author', :class=> "control-label", :for => "about" %>
+      <div class="controls">
+        <%= a.text_area :about, :class => "input-xlarge word_count", :id => "about", :rows => "4", :maxcharacters => "200" %>
+        <p class ="counter"></p>
+        <p class="help-block">Please say a little bit about yourself</p>
+        
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- About -->
+      <%= a.label :twitter_handle, 'Twitter Handle', :class=> "control-label", :for => "twitter_handle" %>
+      <div class="controls">
+        <%= a.text_field :twitter_handle, :class => "input-xlarge", :id => "twitter_handle" %>
+        <p class="help-block">Twitter Handle (do not include the @ symbol)</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- About -->
+      <%= a.label :website, 'Website', :class=> "control-label", :for => "website" %>
+      <div class="controls">
+        <%= a.text_field :website, :class => "input-xlarge", :id => "website" %>
+        <p class="help-block">Enter the URL for your website</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- About -->
+      <%= a.label :city, 'City', :class=> "control-label", :for => "city" %>
+      <div class="controls">
+        <%= a.text_field :city, :class => "input-xlarge", :id => "city" %>
+        <p class="help-block">What city is home base for you?</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- About -->
+      <%= a.label :state, 'State', :class=> "control-label", :for => "state" %>
+      <div class="controls">
+        <%= a.text_field :state, :class => "input-xlarge", :id => "state" %>
+        <p class="help-block">State</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- About -->
+      <%= a.label :country, 'Country', :class=> "control-label", :for => "country" %>
+      <div class="controls">
+        <%= a.text_field :country, :class => "input-xlarge", :id => "country" %>
+        <p class="help-block">Country</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <%= a.submit  :id => "author_info_update_form_submit", :class => "btn-flat btn-flat-primary" %>
+      </div>
+    </div>
+  </fieldset>
+
 <% end %>

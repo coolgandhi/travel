@@ -34,7 +34,8 @@ class AuthorInfoController < ApplicationController
     respond_to do |format|
       if !@use_id.blank?
         @author_info = AuthorInfo.find(@use_id);
-        @trips = @author_info.trips
+        @trips = @author_info.trips.where("share_status = ?", 1)
+        @trips_unpublished = @author_info.trips.where("share_status = ?", 0)
         format.html # about_edit.html.erb
       else
         format.html { redirect_to root_url() }
