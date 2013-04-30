@@ -7,6 +7,7 @@
   6. FORM COMPLETION STATUS
   7. COUNTDOWN TWITTER STYLES
   8. FILE UPLOADER STYLES
+  9. PORTRAIT MODE
 */
 
 /* 1. COLLAPSER STYLES */
@@ -20,13 +21,13 @@
 }
 
 .publish_trip_collapse_header{
-  background-color: $myPrimaryBlue;
-  border: $myDivBorderWidth solid $borderGray;
+  background-color: $grayLighter;
+  border-bottom: $myDivBorderWidth solid $borderGray;
   @include box-sizing(border-box);
   padding: 1%;
   position: relative;
   min-width: 100%;
-  color: $white;
+  color: $gray;
   font-weight: bold;
   cursor:pointer;	
 }
@@ -43,7 +44,7 @@
 
 .collapser_icon{
   border-radius: 50%;
-  border:  2px solid rgba(255,255,255,0.6);
+  border:  2px solid $gray;
   font-size: 15px;
   line-height: 20px;
   width: 20px;
@@ -53,7 +54,11 @@
   right: 2%;
 }
 
+.publish_form_activity_details{
+  border-top: $myDivBorderWidth solid $borderGray;
+}
 /* 2. STRUCTURE */
+
 .publish_trip_sort_activities{
   width: 50%;
   height: 100%;
@@ -350,9 +355,11 @@
 .publish_form_time{
   @include clearfix;
   padding: 1%;
-  background-color: #18add7;
+  background-color: $grayLighter;//#18add7;
+  border-bottom: 2px solid $borderGray;
+  border-top: 2px solid $borderGray;
   text-transform: capitalize;
-  color: white;
+  color: $gray;
   font-weight: bold;
 }
 
@@ -481,13 +488,13 @@
 } 
 /* 6. FORM COMPLETION STATUS */
 $completionStatusHeight: 30px;
-$completionGreen: #3cc574;
+$completionGreen: #afcfe4;
 .publish_trip_completion_status{
-  width: 90%;
+  // width: 90%;
   height: $completionStatusHeight;
   position: relative;
   float: left;
-  margin-bottom: 1%;
+  margin-bottom: 3%;
   border: 2px solid $borderGray;
   color: $borderGray;
   background-color: $completionGreen;
@@ -498,7 +505,8 @@ $completionGreen: #3cc574;
     font-size: em(14px);
     font-weight: bold;
     height: 100%;
-    width: 33.33333%;
+    // width: 33.33333%;
+    min-width: 150px;
     position: relative;
     float: left;
     background-color: #fafafa;
@@ -511,7 +519,7 @@ $completionGreen: #3cc574;
   }
   .completion_status_active{
     background-color: $completionGreen;
-    color: $white;  
+    color: $gray;  
   } 
 }
 
@@ -530,3 +538,32 @@ $completionGreen: #3cc574;
 /* 8. FILE UPLOADER STYLES */
 
 @import "file_upload_styles";
+
+/* 9. PORTRAIT MODE */
+#warning-message{ 
+  display: none; 
+  position: fixed;
+  text-align: center;
+  top: 35%;
+  width: 60%;
+  padding: 5% 10%;
+  margin: 0 20%;
+  font-size: 2em;
+  line-height: 1.2em;
+  color: $white;
+  background-color: $gray;
+  border: 1px solid $borderGray;
+  z-index: 100000;
+  @include border-radius($myDivBorderRadius);
+  @include box-sizing(border-box);
+}
+
+.touch{
+  @media only screen and (orientation:portrait) and (max-width: $break-large - 1){
+    .publish_container { display:none; }
+    #warning-message { display:block; }
+  }
+}
+@media only screen and (orientation:landscape){
+    #warning-message { display:none; }
+}
