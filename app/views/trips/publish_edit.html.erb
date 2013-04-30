@@ -2,7 +2,11 @@
   <%= javascript_include_tag 'publish_edit_specific' %>  
 <% end %>
 
-<div class = "container">
+<!-- End Message if in Portrait Mode -->
+<%= render "shared/publish/portrait_mode_message" %>
+<!-- End Message if in Portrait Mode -->
+
+<div class = "container publish_container">
 
 <div class = "row">
   <!-- Begin Span -->
@@ -16,7 +20,7 @@
   <div class = "span4">
     <p>
       <%= link_to "Publish Trip", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right pt_publish_button" %>
-      <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-inverse pull-right", :target => "_blank" %>
+      <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
     </p>
   </div>
   <!-- End Span -->
@@ -53,7 +57,10 @@
        <%= render "shared/publish/publish_trip_activity_order" %> 
     </div>
     <div class = "publish_trip_create_activities">
-      <%# render :partial => "shared/publish/publish_trip_activities_form"%>
+      <div class = "pt_empty_activity_form_div">
+        <i class="icon-star-empty icon-4x"></i>
+        <p>Please create a new activity or select an activity to edit.</p>
+      </div>
     </div>
   </div> 
   <!-- End Collapse 2-->

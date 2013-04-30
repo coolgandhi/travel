@@ -1,4 +1,8 @@
-<div class = "container">
+<!-- End Message if in Portrait Mode -->
+<%= render "shared/publish/portrait_mode_message" %>
+<!-- End Message if in Portrait Mode -->
+
+<div class = "container publish_container">
   
   <div class = "row">
     <!-- Begin Span -->
@@ -10,7 +14,7 @@
   <!-- End Span -->
     <div class = "span4">
       <p>
-        <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-inverse pull-right", :target => "_blank" %>
+        <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
       </p>
     </div>
   </div>

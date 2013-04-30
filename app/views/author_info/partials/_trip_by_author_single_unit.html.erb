@@ -39,7 +39,7 @@
       <!-- Only if you IS the author -->
       <% if !current_author_info.blank? and trip.author_id == current_author_info.id.to_s %>
         <div class = "current_author_admin">
-          <%= link_to "Edit", publish_edit_trip_url(trip) %>
+          <%= link_to "Edit", publish_edit_trip_url(trip) %> | 
           <%= link_to "Delete", trip, :method => :delete, :confirm => "Are you sure you want to delete this trip summary?"%>
         </div>
       <% end %>

@@ -63,6 +63,7 @@ $lastrowheight: 10%;
 
   div.trip_title_text{
     float: left;
+    width: 90%;
   }
 
   .trip_title_main_text{
@@ -80,6 +81,7 @@ $lastrowheight: 10%;
     margin-top: 1%;
     color: dimgray;
     font-weight: normal;
+    float: left;
   }
 }
 
@@ -96,6 +98,13 @@ $lastrowheight: 10%;
   }
 }
 
+.trip_title_auth_pic{
+  float: left;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  margin: 0 5px;
+}
 
 /* 3. FILMSTRIP NAVIGATION */
 .wrapper_film{

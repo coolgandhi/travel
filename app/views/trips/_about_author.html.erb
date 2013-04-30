@@ -8,8 +8,9 @@
          <%= image_tag(@trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
        </div>
     <% else %>
-    	<div class="auth_picture"><%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
-  	</div>
+    	<div class="auth_picture">
+        <%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
+  	 </div>
   	<% end %>
   	<div class="auth_description">
   		<h4><%= @trip.author_info.author_name %></br><small class="auth_city"><%= @trip.author_info.city %>, <%= @trip.author_info.state %> </small></h4>
