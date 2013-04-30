@@ -74,6 +74,7 @@
   padding: 1%;
   // border: solid 1px black;
   overflow: auto;
+  position: relative;
 }
 .publish_trip_details_container{
   padding: 1%;
@@ -309,6 +310,21 @@
   width: 98%;
   margin-bottom: 0;
 }
+
+.pt_empty_activity_form_div{
+  position: absolute;
+  top: 35%;
+  // left: 50%;
+  text-align: center;
+  color: $grayLight;
+  padding: 0 10%;
+  p{
+    font-size: 2em;
+    line-height: 1.2em;
+
+  }
+}
+
 
 /* 5. TRIP ACTIVITIES ORDERING */
 .publish_order_day_tab_title{

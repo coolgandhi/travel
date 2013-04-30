@@ -1,0 +1,24 @@
+/*  AUTHOR POPOVER  */
+.trip_title_auth_pic_popover{
+  height: 40px;
+  width: 40px;
+  float: left;
+  margin-right: 2%;
+}
+
+.author_popover_outside{
+  width: 400px;
+}
+
+.author_popover_inner{
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+#author_popover_box{
+  .author_profile_about{
+  	margin-bottom: 1%;
+  	color: gray;
+  }
+}

@@ -1,0 +1,31 @@
+<div id="author_popover_box">
+  
+  <% if !trip.author_info.self_image.blank? %>
+     <div class="trip_title_auth_pic_popover">
+       <%= image_tag(trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
+     </div>
+  <% else %>
+    <div class="trip_title_auth_pic_popover">
+      <%= image_tag avatar_url(trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
+    </div>
+  <% end %>
+
+  <p class = "ap_author_city">
+    <strong><%= trip.author_info.city unless trip.author_info.city.blank? %><%= ", #{trip.author_info.state}" unless trip.author_info.state.blank? %></strong>
+  </p>
+  <p class = "author_profile_about">
+    <%= trip.author_info.about %> adfadfjldfasadfasdf asdfasf asdfadf asdfasf asdfadsfafasdfasf asdfas
+  </p>
+
+  <p><%= "Website: #{link_to trip.author_info.website, trip.author_info.website, :target => "_blank"}" unless trip.author_info.website.blank? %> 
+  </p>
+
+  <%unless trip.author_info.twitter_handle.blank? %>
+    <div>
+      <iframe allowtransparency="true" frameborder="0" scrolling="no"
+      src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= trip.author_info.twitter_handle %>"
+      style="width:300px; height:20px;"></iframe>
+    </div>
+  <% end %>
+            
+</div>
