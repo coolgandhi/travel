@@ -1,11 +1,12 @@
 class TripsController < ApplicationController
   include ApplicationHelper
   include TripsHelper
-  before_filter :authorize, :except => [:index, :show, :showpartial, :daymapinfo]
+  before_filter :authorize, :only => [:new, :edit, :create, :update, :trips_admin]
   before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo]
+  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo]
   layout :resolve_layout
   # GET /trips
-  # GET /trips.json
+  # GET /trips.json 
   def index
     find_exact_match_only = false
     if (params[:restaurant] or params[:location] )
@@ -511,6 +512,16 @@ class TripsController < ApplicationController
     end
   end
 
+  def allow_owner_change_only
+    if (params[:id])  
+      @trip = Trip.find(params[:id])
+      if ((!current_author_info.blank? and @trip.author_id != current_author_info.id.to_s) and !self.authorize)
+         flash[:notice] = "Unauthorized Access"
+         redirect_to root_url() 
+      end
+    end
+  end
+  
   def use_https?
     #case params[:action]
     #when 
