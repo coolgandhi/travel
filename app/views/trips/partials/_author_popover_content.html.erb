@@ -14,7 +14,7 @@
     <strong><%= trip.author_info.city unless trip.author_info.city.blank? %><%= ", #{trip.author_info.state}" unless trip.author_info.state.blank? %></strong>
   </p>
   <p class = "author_profile_about">
-    <%= trip.author_info.about %> adfadfjldfasadfasdf asdfasf asdfadf asdfasf asdfadsfafasdfasf asdfas
+    <%= trip.author_info.about %>
   </p>
 
   <p><%= "Website: #{link_to trip.author_info.website, trip.author_info.website, :target => "_blank"}" unless trip.author_info.website.blank? %> 
