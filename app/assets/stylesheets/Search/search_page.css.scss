@@ -567,7 +567,7 @@
   right: 0;
   background-color: rgba(241,241,241,0.9);
   border: $myDivBorderWidth solid $borderGray;
-  z-index: 10000;
+  z-index: 1000;
   @include border-radius($myDivBorderRadius 0 0 $myDivBorderRadius);
   @include respond-to(portrait){
     min-width: 180px;

@@ -24,7 +24,7 @@
         <!-- Password -->
         <%= f.label :password, 'New Password', :class=> "control-label", :for => "password" %>
         <div class="controls">
-          <%= f.email_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
+          <%= f.password_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
           <p class="help-block"><i>Leave this blank if you don't want to change it</i></p>
         </div>
       </div>
@@ -33,7 +33,7 @@
         <!-- Confirm Password -->
         <%= f.label :password_confirmation, 'Confirm New Password', :class=> "control-label", :for => "password_confirmation" %>
         <div class="controls">
-          <%= f.email_field :password_confirmation, :class => "input-xlarge", :id => "password_confirmation" %>
+          <%= f.password_field :password_confirmation, :class => "input-xlarge", :id => "password_confirmation" %>
           <p class="help-block"><i>To make sure you entered your new password correctly</i></p>
         </div>
       </div>
@@ -42,7 +42,7 @@
         <!-- Current Password -->
         <%= f.label :current_password, 'Current Password', :class=> "control-label", :for => "current_password" %>
         <div class="controls">
-          <%= f.email_field :current_password, :class => "input-xlarge", :id => "current_password" %>
+          <%= f.password_field :current_password, :class => "input-xlarge", :id => "current_password" %>
           <p class="help-block"><i>We need your current password to confirm your changes</i></p>
         </div>
       </div>
@@ -65,8 +65,4 @@
       <%= button_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn-flat btn-flat-danger btn-flat-mini" %>
     </div>
   </div>
-</div>
-
-<div class = "row">
-  <%= link_to "Back", :back %>
 </div>
