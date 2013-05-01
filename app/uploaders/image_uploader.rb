@@ -39,11 +39,11 @@ class ImageUploader < CarrierWave::Uploader::Base
      #{}"#{Rails.root}/private/files/#{model.id}"
   end
      
-  # def cache_dir
-  #   "uploads/tmp/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  def cache_dir
+    "uploads/tmp/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   #  # "/vagrant/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   #  #{}"#{Rails.root}/private/files/#{model.id}"
-  # end
+  end
   
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
