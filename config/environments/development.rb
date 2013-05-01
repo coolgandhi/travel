@@ -41,9 +41,7 @@ Travel::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.live.com",
     :port                 => 587,
-    :domain               => 'chalo.io',
     :user_name            => 'social@chalo.io',
     :password             => 'every1ne',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+    :authentication       => :plain  }
 end
