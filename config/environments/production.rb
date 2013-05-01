@@ -82,11 +82,9 @@ Travel::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.live.com",
     :port                 => 587,
-    :domain               => 'chalo.io',
     :user_name            => 'social@chalo.io',
     :password             => 'every1ne',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+    :authentication       => :plain }
     
   # force ssl on devise in production https://github.com/plataformatec/devise/wiki/How-To%3a-Use-SSL-%28HTTPS%29
   #in config/environments/production.rb
