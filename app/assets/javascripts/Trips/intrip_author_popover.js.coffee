@@ -8,8 +8,6 @@
       placement: "bottom"
       title: "Title"
       template: '<div class="popover author_popover_outside" onmouseover="$(this).mouseleave(function() {$(this).hide(); });"><div class="arrow"></div><div class="popover-inner author_popover_inner"><div class="popover-content"><p></p></div></div></div>'
-    ).click((e) ->
-      e.preventDefault()
     ).mouseenter (e) ->
       $(this).popover "show"
 
