@@ -861,7 +861,7 @@ div.rightcaption .ui-accordion-content {
   left: 0;
   margin-left: 2%;
   margin-top: 0%;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,1);
   @include border-radius($myDivBorderRadius);
   border-color: $borderGray;
   z-index: 102;
@@ -1051,7 +1051,7 @@ div.rightcaption .ui-accordion-content {
   left: 0;
   margin-left: 1%;
   margin-top: 2.5%;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,1);
   @include border-radius($myDivBorderRadius);
   border-color: $borderGray;
   z-index: 102;
