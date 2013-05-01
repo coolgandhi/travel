@@ -11,7 +11,6 @@
         <%= f.label :email, 'E-mail', :class=> "control-label", :for => "email" %>
         <div class="controls">
           <%= f.email_field :email, :class => "input-xlarge", :id => "email", :autofocus => true %>
-          <p class="help-block">Your e-mail address</p>
         </div>
       </div>
 
@@ -20,7 +19,8 @@
   <% if f.object.password_required? %>
 
       <div class="control-group">
-        <!-- Confirm Password -->
+        <!-- Create Password -->
+        <%= f.label :password, 'Create a New Password', :class=> "control-label", :for => "confirmation" %>
         <div class="controls">
           <%= f.password_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
         </div>

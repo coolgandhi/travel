@@ -38,18 +38,10 @@ $lastrowheight: 10%;
 //   height: 86%;
 //   }
 // }
-
-.triptitlebox{
+.it_title_box_wrap{
   @include col(12);
-  // min-height: $titlerowheight;
-  height: auto;
-  position: relative;
-  overflow: visible;
   margin-bottom: 1%;
-
   @include box-sizing(border-box);
-  padding: 1%;
-  // overflow: hidden;
   background-color: rgba(255,255,255,0.3);
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -57,6 +49,22 @@ $lastrowheight: 10%;
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
 
+}
+.triptitlebox{
+  // @include col(8);
+  width: 75%;
+  float: left;
+  position: relative;
+  // min-height: $titlerowheight;
+  // height: auto;
+  height: 100%;
+  position: relative;
+  overflow: visible;
+  // margin-bottom: 1%;
+
+  @include box-sizing(border-box);
+  padding: 1%;
+  // overflow: hidden;
   p{
     margin: 0;
   }
@@ -78,10 +86,32 @@ $lastrowheight: 10%;
   .trip_title_sub_text{
     // font-family: 'Oswald', Helvetica, Arial, sans-serif;
     white-space: nowrap;
-    margin-top: 1%;
+    // margin-top: 1%;
     color: dimgray;
     font-weight: normal;
     float: left;
+  }
+}
+
+.authortitlebox{
+  // @include col(4);
+  width: 25%;
+  float: left;
+  position: relative;
+  height: 100%;
+  position: relative;
+  overflow: visible;
+  // margin-bottom: 1%;
+  @include box-sizing(border-box);
+  padding: 1%;
+  border-left: $myDivBorderWidth solid $borderGray;
+  .ab_author_name{
+    color: black;
+    text-overflow: ellipsis;
+    font-size: 22px;
+  }
+  .ab_author_website{
+    margin-bottom: 0;
   }
 }
 
@@ -89,7 +119,9 @@ $lastrowheight: 10%;
   position: absolute;
   right: 1%;
   bottom: 5%;
+  min-width: 216px;
   // overflow: hidden;
+  @include box-sizing(border-box);
 
   @include respond-to(small){
   font-size: .75em;
@@ -99,16 +131,21 @@ $lastrowheight: 10%;
 }
 
 .it_facebook_share{
-  display: block;
+  // display: block;
+  float: left;
+  margin-right: 2%;
+  @include box-sizing(border-box);
 }
 
 .it_share_this{
-  float: right;
+  float: left;
+  // margin-left: 2%;
+  @include box-sizing(border-box);
 }
 .trip_title_auth_pic{
   float: left;
-  width: 30px;
-  height: 30px;
+  width: 55px;
+  height: 55px;
   overflow: hidden;
   margin: 0 5px;
 }

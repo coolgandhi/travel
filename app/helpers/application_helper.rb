@@ -446,4 +446,9 @@ module ApplicationHelper
     flash.discard
     response
   end
+
+  def url_with_protocol(url)
+    /^http/.match(url) ? url : "http://#{url}"
+  end
+
 end

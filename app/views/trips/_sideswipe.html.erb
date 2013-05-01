@@ -1,57 +1,71 @@
-<div class="triptitlebox">
-  <div class = "badge_buttons">
-    <ul class = "unstyled badges-ul">
-    <li>
-      <a class= <%=traveler_type_badge_class(@trip.traveler_type[:traveler_type_name])%> ></a>
-      <p><%=@trip.traveler_type[:traveler_type_name]%></p>
-    </li>
-    </ul>
-  </div>
+<!--Begin Trip Title Wrap -->
+<div class = "it_title_box_wrap">
 
-  <div class="trip_title_text">
-    <p>
-      <span class="trip_title_main_text title_large"><%= @trip.trip_name %></span> 
-    </p>
-    
-      <!--Begin show overview button that shows up only on small screens-->
-      <label class="toggle-menu" href="#trip_overview_modal" role="button" data-toggle="modal">
-        <i class="icon-reorder icon-border"></i>
-      </label>
-      <!--End show overview button that shows up only on small screens -->
-    
-    <span class="trip_title_sub_text caption_large"><%= @trip.duration %> Days in <%= @trip.location[:place] %> | by </span>
-    
-    <span class="trip_title_sub_text caption_large author_intrip_popover" data-content = '<%= render "trips/partials/author_popover_content", :trip => @trip %>'>
-      <% if !@trip.author_info.self_image.blank? %>
-         <div class="trip_title_auth_pic">
-           <%= image_tag(@trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
-         </div>
-      <% else %>
-        <div class="trip_title_auth_pic">
-          <%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
+  <!--Begin Trip Title Box -->
+  <div class="triptitlebox">
+    <div class = "badge_buttons">
+      <ul class = "unstyled badges-ul">
+      <li>
+        <a class= <%=traveler_type_badge_class(@trip.traveler_type[:traveler_type_name])%> ></a>
+        <p><%=@trip.traveler_type[:traveler_type_name]%></p>
+      </li>
+      </ul>
+    </div>
+
+    <div class="trip_title_text">
+      <p>
+        <span class="trip_title_main_text title_large"><%= @trip.trip_name %></span> 
+      </p>
+      
+        <!--Begin show overview button that shows up only on small screens-->
+        <label class="toggle-menu" href="#trip_overview_modal" role="button" data-toggle="modal">
+          <i class="icon-reorder icon-border"></i>
+        </label>
+        <!--End show overview button that shows up only on small screens -->
+      
+      <span class="trip_title_sub_text caption_large"><%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
+    </div>
+
+
+
+    <div class="socialmediabox">
+      <div class = "it_facebook_share">
+        <div id="fb-root"></div>
+        <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
         </div>
-      <% end %>
+      </div>
 
-      <%= link_to @trip.author_info.author_name, author_page_author_info_path(@trip.author_info.id), :target => "_blank" %>
-
-    </span>
-  </div>
-
-
-
-  <div class="socialmediabox">
-    <div class = "it_facebook_share">
-      <div id="fb-root"></div>
-      <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
+      <div class ="it_share_this">
+        <span class='st_email'></span>
       </div>
     </div>
 
-    <div class ="it_share_this">
-      <span class='st_email'></span>
-    </div>
   </div>
+  <!--End Trip Title Box -->
 
+  <!--Begin Trip Author Box -->
+  <div class="authortitlebox">
+    <span class="trip_title_sub_text caption_large author_intrip_popover" data-content = '<%= render "trips/partials/author_popover_content", :trip => @trip %>'>
+        <%= link_to author_page_author_info_path(@trip.author_info.id),:target => "_blank" do %>
+          <% if !@trip.author_info.self_image.blank? %>
+             <div class="trip_title_auth_pic">
+               <%= image_tag(@trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
+             </div>
+          <% else %>
+            <div class="trip_title_auth_pic">
+              <%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= link_to @trip.author_info.author_name, author_page_author_info_path(@trip.author_info.id), :target => "_blank", :class => "ab_author_name title" %>
+    </span>
+      <p class = "ab_author_website"><%= link_to @trip.author_info.website, url_with_protocol(@trip.author_info.website), :target => "_blank", :class => "trip_title_sub_text" unless @trip.author_info.website.blank? %> 
+    </p>
+  </div>
+  <!-- End Trip Author Box -->
 </div>
+<!--End Trip Title Wrap -->
 
 <div class= "wrapper_film" id="filmstrip-scroll">
   
