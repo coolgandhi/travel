@@ -78,13 +78,14 @@ Travel::Application.configure do
     
   # Url used by devise  
   config.action_mailer.default_url_options = { :host => 'chalo.io' }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.live.com",
     :port                 => 587,
     :user_name            => 'social@chalo.io',
     :password             => 'every1ne',
-    :authentication       => :plain }
+    :authentication       => :plain,
+    :openssl_verify_mode  => 'none' }
     
   # force ssl on devise in production https://github.com/plataformatec/devise/wiki/How-To%3a-Use-SSL-%28HTTPS%29
   #in config/environments/production.rb
