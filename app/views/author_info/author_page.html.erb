@@ -3,6 +3,16 @@
   <%= stylesheet_link_tag 'author_info/author_info' %>  
 <% end %>
 
+<%= content_for :title do %>
+  Chalo Author Profile: <%= @author_info.author_name %>
+<% end %>
+
+<%= content_for :description do %>
+  <%= @author_info.about %>
+<% end %>
+
+
+
 <div class = "container">
   <% if !current_author_info.blank? and @author_info.id.to_s == current_author_info.id.to_s %>
     <div class = "row">

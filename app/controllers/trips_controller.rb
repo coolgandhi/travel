@@ -505,7 +505,7 @@ class TripsController < ApplicationController
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create", "publish_edit", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm"
       "index_layout"
     else
       "application"

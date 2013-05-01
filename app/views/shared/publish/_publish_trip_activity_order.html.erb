@@ -117,7 +117,7 @@
                   (<%= (which_detail_type(x,"category")).split(', ').first %>) 
                   
                     <%= link_to 'Edit', publish_trip_activity_edit_trip_trip_activity_url(@trip.id, x), :method => :get, :remote => true, :class => "publish_form_edit_link" %>
-                    <%= link_to "Remove", publish_trip_activity_destroy_trip_trip_activity_url(:trip_id => @trip.id, :id => x), :method => :delete, :remote => true, :class => "publish_form_delete_link" %>
+                    <%= link_to "Remove", publish_trip_activity_destroy_trip_trip_activity_url(:trip_id => @trip.id, :id => x), :method => :delete, :remote => true, :class => "publish_form_delete_link", :confirm => "Are you sure you want to delete this activity?" %>
                   
                 </div>
               </div>
