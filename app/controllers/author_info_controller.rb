@@ -15,9 +15,9 @@ class AuthorInfoController < ApplicationController
     respond_to do |format|
       if @author_info.update_attributes(params[:author_info])
         flash[:notice] = "Author info was successfully updated."
-        format.html # about_update.html.erb
+        format.html { redirect_to author_page_author_info_path(@author_info) }
       else
-        format.html { render :action => "publish_new" }
+        format.html { render :action => "publish_edit" }
       end
     end
   end

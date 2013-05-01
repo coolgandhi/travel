@@ -40,9 +40,19 @@
 
 
   <div class="socialmediabox">
-    <div id="fb-root"></div>
+    <div class = "it_facebook_share">
+      <div id="fb-root"></div>
       <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
       </div>
+    </div>
+
+    <div class ="it_share_this">
+      <span class='st_twitter'></span>
+      <span class='st_googleplus'></span>
+      <span class='st_pinterest'></span>
+      <span class='st_email'></span>
+      <span class='st_sharethis'></span>
+    </div>
   </div>
 
 </div>

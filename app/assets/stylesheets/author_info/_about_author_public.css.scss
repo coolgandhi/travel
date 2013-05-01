@@ -23,6 +23,7 @@
 
 .author_profile_info_div{
  @include col(9);
+ p{margin:0;}
 }
 
 .author_profile_stats{
@@ -31,19 +32,23 @@
 }
 
 .author_profile_name{
-  margin-bottom: 0;	
+  margin: 0;	
 }
 
 .author_profile_about{
-  margin-bottom: 1%;
+  margin: 0;
+  line-height: 1.4em;
 }
 
+.twitter_follow_box{
+  margin-top: 1%;
+}
 /** Author Stats **/
 .author_stats_box{
-  // position: absolute;
-  // right: 2%;
-  // top: 50%;
-  float: left;
+  position: absolute;
+  right: 0.25%;
+  bottom: 1%;
+  // float: left;
   @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%));	
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);

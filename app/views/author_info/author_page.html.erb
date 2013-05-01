@@ -50,16 +50,16 @@
           
           <p class = "lead author_profile_about"><%= @author_info.about %> </p>
 
+          <p><%= link_to @author_info.website, @author_info.website, :target => "_blank" unless @author_info.website.blank? %> </p>
+
           <%unless @author_info.twitter_handle.blank? %>
-            <div>
+            <div class = "twitter_follow_box">
               <iframe allowtransparency="true" frameborder="0" scrolling="no"
               src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author_info.twitter_handle %>"
               style="width:300px; height:20px;"></iframe>
             </div>
           <% end %>
                     
-          <p><%= "Website: #{link_to @author_info.website, @author_info.website, :target => "_blank"}" unless @author_info.website.blank? %> </p>
-
           <!-- Begin Author Stats -->
           <ul class = "author_stats_box">
             <li>
@@ -73,7 +73,6 @@
             </li> -->
           </ul>
           <!-- Begin Author Stats -->
-          </br></br> 
         </div>
       </div>
       <!-- End author_profile_header_box -->  
