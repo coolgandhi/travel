@@ -47,8 +47,9 @@ module TripsHelper
               category = ""
               lay_out= "transportactivitypartial"
         end
-      
-        if (trip_activity.self_trip_activity_photos != nil)
+        
+
+        if (!trip_activity.self_trip_activity_photos.first.blank? and !trip_activity.self_trip_activity_photos.first.self_photo.blank?)
           self_image = trip_activity.self_trip_activity_photos.first
           if self_image != nil
             is_self_image = true
@@ -56,7 +57,7 @@ module TripsHelper
             passport_image_url = self_image.self_photo_url(:passport)
             thumb_image_url = self_image.self_photo_url(:thumb)
           end
-        elsif activity.image_urls and activity.image_urls != "" 
+        elsif !activity.image_urls.blank? 
           image_url = activity.image_urls # select image from the activity if chosen by the author
         end
         
