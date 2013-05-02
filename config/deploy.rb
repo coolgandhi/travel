@@ -96,7 +96,7 @@ namespace :deploy do
 end
 # to run a rake command in production, uncomment "namespace :rake do" and "end" 
 # and do "cap rake:super_awesome" from host box comment those 2 line once done
-namespace :rake do 
+#namespace :rake do 
   desc "Run the super-awesome rake task"
   task :super_awesome do
     rake = fetch(:rake, 'rake')
@@ -104,4 +104,4 @@ namespace :rake do
 
     run "cd '#{current_path}' && #{rake} db:migrate RAILS_ENV=#{rails_env}"
   end
-end
+#end

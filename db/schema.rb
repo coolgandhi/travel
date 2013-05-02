@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426223127) do
+ActiveRecord::Schema.define(:version => 20130502055531) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -201,7 +201,7 @@ ActiveRecord::Schema.define(:version => 20130426223127) do
   create_table "self_trip_activity_photos", :force => true do |t|
     t.text     "self_photo"
     t.text     "self_photo_tmp"
-    t.string   "trip_activity_id"
+    t.integer  "trip_activity_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

@@ -380,6 +380,7 @@ class TripActivitiesController < ApplicationController
                }
             end
             @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
+            
             if @photo.save
                 @status = 1
                 flash.now[:success] = "Successfully updated trip activity." 
@@ -417,7 +418,6 @@ class TripActivitiesController < ApplicationController
         @trip_activity.activity_time_type = @sequence.first.activity_time_type
       end 
       
-      logger.info "  \nhere   #{@sequence.inspect}   \n #{@trip_activity.inspect} \n efew"
       @activity = nil
       @activity_detail = nil
       @trip_activity.trip_id = params[:trip_id]
@@ -501,28 +501,31 @@ class TripActivitiesController < ApplicationController
             format.json { render json: @activity.errors, status: :unprocessable_entity }    
           else        
             if params[:self_trip_activity_photos] != nil
-             @photo = @trip_activity.self_trip_activity_photos.new(params[:self_trip_activity_photos])
-             if @photo.save
-               @trip_activity.activity = @activity
-               if @trip_activity.save
-                 @status = 1
-                 format.js 
-                 format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully created.' }
-                 format.json { render json: @trip_activity, status: :created, location: @trip_activity }
-               else
-                 logger.info "activity detail errors #{@trip_activity.errors.inspect}"
-                 @activity.destroy # clean up
-                 format.js
-                 format.html {  redirect_to trip_trip_activities_path(@trip), notice: @trip_activity.errors.full_messages.to_sentence  }
-                 format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
-               end
-             else
+              @photo = SelfTripActivityPhoto.new(params[:self_trip_activity_photos])
+              @trip_activity.activity = @activity
+              if @trip_activity.save
+                 @photo.trip_activity_id = @trip_activity.id.to_s
+                 if @photo.save
+                    @status = 1
+                    format.js 
+                    format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully created.' }
+                    format.json { render json: @trip_activity, status: :created, location: @trip_activity }
+                  else
+                    logger.info "activity detail errors #{@photo.errors.inspect}"
+                    @activity.destroy # clean up
+                    @trip_activity.destroy 
+                    format.js
+                    format.html {  redirect_to trip_trip_activities_path(@trip), notice: @photo.errors.full_messages.to_sentence  }
+                    format.json { render json: @photo.errors, status: :unprocessable_entity } 
+                  end
+              else
+               logger.info "activity detail errors #{@trip_activity.errors.inspect}"
                @activity.destroy # clean up
                format.js
-               format.html {  redirect_to trip_trip_activities_path(@trip), notice: @photo.errors.full_messages.to_sentence  }
-               format.json { render json: @photo.errors, status: :unprocessable_entity }
+               format.html {  redirect_to trip_trip_activities_path(@trip), notice: @trip_activity.errors.full_messages.to_sentence  }
+               format.json { render json: @trip_activity.errors, status: :unprocessable_entity }
              end
-            else
+           else
               @trip_activity.activity = @activity
               if @trip_activity.save
                 @status = 1
