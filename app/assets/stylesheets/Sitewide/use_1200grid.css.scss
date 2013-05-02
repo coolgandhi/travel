@@ -1,6 +1,12 @@
 //make the grid wide when widescreen! a 1200px grid
-.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container, .row{
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container, .row, .span12{
   @include respond-to(widescreen){
     width: 1180px;
   }
+}
+
+.alert{
+  @include respond-to(widescreen){
+    margin-left: 2%;
+  }  	
 }
