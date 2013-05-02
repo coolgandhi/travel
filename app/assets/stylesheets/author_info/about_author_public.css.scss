@@ -19,6 +19,8 @@
 .author_profile_picture_div{
  @include col(3);
  margin-left: 0;
+ height: 200px;
+ overflow:hidden;
 }
 
 .author_profile_info_div{
@@ -85,6 +87,12 @@
   margin-bottom: 1%;
 }
 
+.ap_auth_img_tag{
+  position: relative;
+  max-width: none;
+  width: 100%;
+  overflow: hidden;
+}
 /* 2. AUTHOR'S TRIPS  */
 @import "Search/trip_results_single_containers";
 
