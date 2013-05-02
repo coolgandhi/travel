@@ -34,11 +34,11 @@
         <div class = "author_profile_picture_div">
           <% if !@author_info.self_image.blank? %>
             <div>
-              <%= image_tag(@author_info.self_image_url(:thumb), {:size => '200x200'}) %>
+              <%= image_tag(@author_info.self_image_url(:thumb), {:size => '200x200', :class => "ap_auth_img_tag"}) %>
             </div>
           <% else %>
             <div>
-              <%= image_tag avatar_url(@author_info), :alt => "profile", :class => "auth_img_tag" %>
+              <%= image_tag avatar_url(@author_info), :alt => "profile", :class => "ap_auth_img_tag" %>
             </div>    
           <% end %>    
         </div>

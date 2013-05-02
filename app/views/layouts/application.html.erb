@@ -12,6 +12,7 @@
     <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "show_trip" %>
+    <%= javascript_include_tag "author_info" if ["author_page", "about_edit"].include?(controller.action_name) %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/apple_touch_icons' %>
     <%= yield(:head) %>

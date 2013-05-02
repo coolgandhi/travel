@@ -2,7 +2,7 @@
   
   <% if !trip.author_info.self_image.blank? %>
      <div class="trip_title_auth_pic_popover">
-       <%= image_tag(trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
+       <%= image_tag(trip.author_info.self_image_url(:passport), :alt => "profile", :class => "auth_img_tag") %>
      </div>
   <% else %>
     <div class="trip_title_auth_pic_popover">

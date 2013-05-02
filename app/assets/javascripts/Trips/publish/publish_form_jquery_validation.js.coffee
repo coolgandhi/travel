@@ -53,7 +53,7 @@
 
     trips_namespace.pubTitle_rule =
       required: true      
-      max: 40
+      maxlength: 40
 
     #jQuery Validate Rules for the Publish Confirm Form
     trips_namespace.pubFormConfirmRules = 

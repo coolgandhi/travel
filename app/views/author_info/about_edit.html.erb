@@ -35,9 +35,9 @@
           <div class="controls">
             <!-- Begin Uploaded Image Preview -->
             <div class = "uploaded_image_preview">
-              <% if !@author_info.self_image.blank? %>
+              <% if !@author_info.self_image.blank? and @author_info.self_image_tmp.blank? %>
                 <div class = "yes_upload_div" id = "yes_upload_div">
-                  <%= image_tag(@author_info.self_image_url(:thumb), {:size => '100x100'}) %>
+                  <%= image_tag(@author_info.self_image_url(:thumb), :class => "pt_activity_upload_img") %>
                 </div>
               <% elsif !@author_info.self_image_tmp.blank? %>
                 <div class = "no_upload_div">

@@ -285,7 +285,7 @@ class TripsController < ApplicationController
   # Post /trips/publish_create
   def publish_create
     @trip = Trip.new(params[:trip])
-  #  @trip.share_status = 0
+    @trip.share_status = 0
     @location_detail = Location.find_by_location_id(@trip.location_id)
     @update = 0
     if (params[:selected_images].blank?)
