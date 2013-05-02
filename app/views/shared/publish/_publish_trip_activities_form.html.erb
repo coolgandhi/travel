@@ -73,11 +73,11 @@
                   <input type="text" class="pt_upload_path" />
                   <label class="pt_upload_button btn-flat btn-flat-primary">
                     Choose
-                    <span>
-                      <%= trip_image.file_field :self_photo, name: "self_trip_activity_photos[self_photo]", :class => "pt_upload_file"%>
+                    <span> 
+                      <%= trip_image.file_field :self_photo, :name => "self_trip_activity_photos[self_photo]", :class => "pt_upload_file"%>
                    </span>
                  </label>
-                </p>
+                </p> 
                 <!-- End Upload Field -->
               <% end %>
             </div>
