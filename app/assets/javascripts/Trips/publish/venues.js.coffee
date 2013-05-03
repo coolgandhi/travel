@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 ((trips_activities_namespace, $, undefined_) ->
-
+  #this makes an ajax call to pull foursquare data given a foursquare ID and then change a div on front-end
   trips_activities_namespace.populate_venue_detail = (foursquare_id) ->
     $.ajax
       beforeSend: ->
