@@ -1,0 +1,41 @@
+/** IMAGE SELECT STYLES **/
+
+.pe_select_image_4SQ_modal{
+  width: 80%;
+  left: 10%;
+  top: 10%;
+  margin: 0;
+  .modal-body{
+    min-height: 400px;
+  }
+}
+
+.pe_select_image_4SQ_modal img{
+  border: 1 px solid black;
+  @include box-sizing(border-box);
+  cursor: pointer;
+
+  &:hover{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+}
+
+.pe_selected_pic{
+  border: 5px solid green;
+}
+
+.select_image_spinner{
+  width:50px;
+  height:50px;
+  position:absolute;
+  left:50%; 
+  top:50%; 
+  background-image:url(/assets/spinners/ajax-loader-transparent.gif); /* path to your loading animation */
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size: 30px auto;
+  background-color: $black;
+  @include border-radius($myDivBorderRadius);
+  display: none;
+}

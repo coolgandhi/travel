@@ -9,12 +9,15 @@
         venueid: venueid
       success: (data) ->
         container.empty()
-        $.each data.venue_photos, (i, name) ->
+        $.each data.venue_photos_100, (i, name) ->
           container.append("<img data id=" + "img_" + i  + " class='venue_image' src='" + name.img + "'/>")
           return
         $.each data.venue_photos_com, (i, name) ->
           $('#img_' + i).data('img', name)
           return
+      complete: ->
+        trips_activities_namespace.make_venue_images_selectable();
+        $(".select_image_spinner").hide();
         return
     return  
   

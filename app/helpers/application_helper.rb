@@ -12,7 +12,10 @@ module ApplicationHelper
     
       venue_photos_first = get_photos_from_venue_photos_first_resolution(venue_photos, tot)
       venue_photos_first = get_photos_from_venue_photos_with_json(venue_photos_first, false)
-      return venue_photos_first, venue_photos_com
+
+      venue_photos_100 = get_photos_from_venue_photos_100_resolution(venue_photos, tot)
+      venue_photos_100 = get_photos_from_venue_photos_with_json(venue_photos_100, false)
+      return venue_photos_first, venue_photos_com, venue_photos_100
     else
       return venue_photos_com
     end
@@ -94,7 +97,25 @@ module ApplicationHelper
     end
     photos_ret
   end
-  
+
+  def get_photos_from_venue_photos_100_resolution(photos, limit=5)
+    photos_ret = ""
+    count = 0;
+    if photos[:items]
+      photos[:items].each {|photo|
+        if photo[:sizes][:items]
+          photos_ret = photos_ret + photo[:sizes][:items][-2][:url] + ","
+        end
+        count = count + 1
+        if count > limit 
+          break
+        end
+      }
+      photos_ret.chomp!(',')   
+    end
+    photos_ret
+  end
+
   def get_photos_from_venue_photos_with_json(photos, use_semi_colon)
     photos_ret = ""
     if photos != ""
