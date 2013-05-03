@@ -1,6 +1,9 @@
 /** IMAGE SELECT STYLES **/
+button.ta_pick_from_foursquare{
+  
+}
 
-.pe_select_image_4SQ_modal{
+.pe_select_image_4SQ_modal, .cover_select_modal{
   width: 80%;
   left: 10%;
   top: 10%;
@@ -10,7 +13,7 @@
   }
 }
 
-.pe_select_image_4SQ_modal img{
+.pe_select_image_4SQ_modal img, .cover_select_modal img{
   border: 1 px solid black;
   @include box-sizing(border-box);
   cursor: pointer;
@@ -23,9 +26,11 @@
 
 .pe_selected_pic{
   border: 5px solid green;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
-.select_image_spinner{
+.select_image_spinner, .select_cover_image_spinner{
   width:50px;
   height:50px;
   position:absolute;

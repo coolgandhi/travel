@@ -12,7 +12,9 @@
       </div>
     <% end %>
 
-    <%= hidden_field_tag :selected_images, @selectedimages %>
+    <%= f.hidden_field :image_url, :class => "selected_images" %>
+    <%= hidden_field_tag :latlong, @latlong %>
+    <%= hidden_field_tag :locationval, @location_val %>
 
     <div class="field">
       <%= f.hidden_field :location_id %>
@@ -76,6 +78,8 @@
            </label>
           </p>
           <!-- End Upload Field -->
+      
+          <button class = "btn-flat btn-flat-block btn-flat-info trip_cover_pick_foursquare_btn">Select From Foursquare</button>
       </div>
 
     </div> 

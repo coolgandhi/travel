@@ -349,7 +349,7 @@ class TripsController < ApplicationController
   def publish_update
     begin  
       @trip = Trip.find(params[:id])
-      @trip.image_url = (params[:selected_images].blank? ) ? @trip.image_url: params[:selected_images]
+      # @trip.image_url = (params[:image_url].blank? ) ? @trip.image_url: params[:image_url]
       @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
                    ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
                    ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 

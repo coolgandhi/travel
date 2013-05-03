@@ -36,13 +36,16 @@
         if data.venue_photos == null
           alert ("no images extracted")
           return
-        $.each data.venue_photos, (i, name) ->
+        $.each data.venue_photos_100, (i, name) ->
           container.append("<img data id=" + "img_" + i  + " class='venue_image' src='" + name.img + "'/>")
           return
         $.each data.venue_photos_com, (i, name) ->
           $('#img_' + i).data('img', name)
           return
         return
+      complete: ->
+        trips_activities_namespace.make_cover_images_selectable();
+        $(".select_cover_image_spinner").hide();
     return
   return
       
