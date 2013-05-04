@@ -87,10 +87,12 @@ Travel::Application.configure do
     :authentication       => :plain,
     :openssl_verify_mode  => 'none' }
     
-  # force ssl on devise in production https://github.com/plataformatec/devise/wiki/How-To%3a-Use-SSL-%28HTTPS%29
-  #in config/environments/production.rb
-  # config.to_prepare { Devise::SessionsController.force_ssl }
-  #  config.to_prepare { Devise::RegistrationsController.force_ssl }
-  #  config.to_prepare { Devise::PasswordsController.force_ssl }
-  # or your customized controller, extending from Devise
+  if CONFIG[:ENABLE_HTTPS] == "yes"  
+    # force ssl on devise in production https://github.com/plataformatec/devise/wiki/How-To%3a-Use-SSL-%28HTTPS%29
+    #in config/environments/production.rb
+    config.to_prepare { Devise::SessionsController.force_ssl }
+    config.to_prepare { Devise::RegistrationsController.force_ssl }
+    config.to_prepare { Devise::PasswordsController.force_ssl }
+    # or your customized controller, extending from Devise
+  end
 end
