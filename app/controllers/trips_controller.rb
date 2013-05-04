@@ -288,7 +288,6 @@ class TripsController < ApplicationController
     @trip.share_status = 0
     @location_detail = Location.find_by_location_id(@trip.location_id)
     @update = 0
-    logger.info("blahbabhl #{params[:trip][:image_url]}")
     if (params[:trip][:image_url].blank?)
       FoursquareInteraction.foursquare_client
       @venue_id = FoursquareInteraction.find_closest_venue(@location_detail.latitude, @location_detail.longitude, @location_detail.city)

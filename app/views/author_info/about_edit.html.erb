@@ -34,24 +34,26 @@
         <label class="control-label">Profile Picture</label>
           <div class="controls">
             <!-- Begin Uploaded Image Preview -->
-            <div class = "uploaded_image_preview">
-              <% if !@author_info.self_image.blank? and @author_info.self_image_tmp.blank? %>
-                <div class = "yes_upload_div" id = "yes_upload_div">
-                  <%= image_tag(@author_info.self_image_url(:thumb), :class => "pt_activity_upload_img") %>
-                </div>
-              <% elsif !@author_info.self_image_tmp.blank? %>
-                <div class = "no_upload_div">
-                  <i class = "icon-spinner icon-2x"></i>
-                  </br>
-                  <strong>We're processing the image that you have uploaded.</strong>
-                </div> 
-              <% else %>
-                <div class = "no_upload_div">
-                  <i class = "icon-picture icon-4x"></i>
-                  </br>
-                  <strong>Upload your own profile picture (or we'll use one from Gravatar) </strong>
-                </div>
-              <% end %>
+            <div class ="td_select_an_image_div">
+              <div class = "uploaded_image_preview">
+                <% if !@author_info.self_image.blank? and @author_info.self_image_tmp.blank? %>
+                  <div class = "yes_upload_div" id = "yes_upload_div">
+                    <%= image_tag(@author_info.self_image_url(:thumb), :class => "pt_activity_upload_img") %>
+                  </div>
+                <% elsif !@author_info.self_image_tmp.blank? %>
+                  <div class = "no_upload_div">
+                    <i class = "icon-spinner icon-2x"></i>
+                    </br>
+                    <strong>We're processing the image that you have uploaded.</strong>
+                  </div> 
+                <% else %>
+                  <div class = "no_upload_div">
+                    <i class = "icon-picture icon-4x"></i>
+                    </br>
+                    <strong>Upload your own profile picture (or we'll use one from Gravatar) </strong>
+                  </div>
+                <% end %>
+              </div>
             </div>
             <!-- End Uploaded Image Preview -->
 
