@@ -56,19 +56,29 @@
       return true
     return
 
+  trips_activities_namespace.activityimage_btn_tooltip = ->
+    $('.ta_pick_from_foursquare').tooltip
+      placement: "bottom"
+      title: "Please enter an Activity Venue"
+      trigger: "click"
+
+
+  trips_activities_namespace.coverimage_btn_tooltip = ->
+    $('.trip_cover_pick_foursquare_btn').tooltip
+      placement: "bottom"
+      title: "Please enter a City for this Trip"
+      trigger: "click"
+
 
   jQuery ->
     trips_activities_namespace.populate_selected_images_field();
     $('.publish_trip_create_activities').on "click", ".ta_pick_from_foursquare", (e) ->
       e.preventDefault();
-      $('.pe_select_image_4SQ_modal').modal('show');
-      $(".select_image_spinner").show();
-      foursquare_id = $('#venue_id').val();
-      site_wide_namespace.fetchvenueimages(foursquare_id, $(".4SQ_images_select_div"));
-      # trips_activities_namespace.make_venue_images_selectable();
-      # trips_activities_namespace.populate_selected_images_field();
-    
-    $(".pe_select_image_4SQ_modal").on "show", (e) ->
+      unless $('#venue_id').val() is ""
+        $('.pe_select_image_4SQ_modal').modal('show');
+        $(".select_image_spinner").show();
+        foursquare_id = $('#venue_id').val();
+        site_wide_namespace.fetchvenueimages(foursquare_id, $(".4SQ_images_select_div"));
     
     $(".pe_select_image_4SQ_modal").on "hide", (e) ->
       $(".4SQ_images_select_div").empty();
@@ -84,15 +94,20 @@
   #Select Cover Image
   jQuery ->
     trips_activities_namespace.populate_coverimages_field();
+    trips_activities_namespace.coverimage_btn_tooltip() if $('#locationval').val() is ""
+    $('.trip_cover_pick_foursquare_btn').mouseout ->
+      $('.trip_cover_pick_foursquare_btn').tooltip('hide')
+
     $('.trip_cover_pick_foursquare_btn').click (e) ->
       e.preventDefault();
-      $('.cover_select_modal').modal('show');
-      $(".select_cover_image_spinner").show();
-      place = $('#locationval').val().split(",")[0];
-      latlong = $('#latlong').val();
-      lat = latlong.split(",")[0]
-      long = latlong.split(",")[1]
-      site_wide_namespace.fetchlocationimages(place, lat, long, $(".cover_images_select_div"))
+      unless $('#locationval').val() is ""
+        $('.cover_select_modal').modal('show');
+        $(".select_cover_image_spinner").show();
+        place = $('#locationval').val().split(",")[0];
+        latlong = $('#latlong').val();
+        lat = latlong.split(",")[0]
+        long = latlong.split(",")[1]
+        site_wide_namespace.fetchlocationimages(place, lat, long, $(".cover_images_select_div"))
 
     $(".cover_select_modal").on "hide", (e) ->
       $(".cover_images_select_div").empty();

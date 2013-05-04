@@ -468,8 +468,24 @@ module ApplicationHelper
     response
   end
 
+  # helper method to add the http in front of a user submitted url. need this or rails will try to prepend the domain in front of url
   def url_with_protocol(url)
     /^http/.match(url) ? url : "http://#{url}"
+  end
+
+  #helper method to return user uploaded url or foursquare image url
+  def upload_or_foursquare_image_url_picker (object, self_image_size=:thumb, foursquare_image_width=250, foursquare_image_index=0)
+    case object.class.name
+      when 'Trip'
+        if !object.self_image.blank?
+          use_this_url = object.self_image_url(self_image_size)
+        elsif !object.image_url.blank?
+          use_this_url = select_image_given_image_urls(object.image_url, foursquare_image_width, foursquare_image_index)
+        else
+          which_detail_type(object, 'image_urls')
+    
+      end
+    end
   end
 
 end
