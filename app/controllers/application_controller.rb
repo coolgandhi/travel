@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :miniprofiler
+  before_filter :https_redirect
+  
   
   #session :session_key => '_chaloio_session_id'
   # added a customizable error message for unknown paths user access 
