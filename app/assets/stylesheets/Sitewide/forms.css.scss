@@ -7,9 +7,10 @@
 
 .venue_image{
   border: 1px solid black;
-  height: 250px;
-  width: 250px;
+  height: 100px;
+  width: 100px;
   display:inline;
+  @include box-sizing(border-box);
 }
 
 .overflow_form{

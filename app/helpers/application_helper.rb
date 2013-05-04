@@ -12,7 +12,10 @@ module ApplicationHelper
     
       venue_photos_first = get_photos_from_venue_photos_first_resolution(venue_photos, tot)
       venue_photos_first = get_photos_from_venue_photos_with_json(venue_photos_first, false)
-      return venue_photos_first, venue_photos_com
+
+      venue_photos_100 = get_photos_from_venue_photos_100_resolution(venue_photos, tot)
+      venue_photos_100 = get_photos_from_venue_photos_with_json(venue_photos_100, false)
+      return venue_photos_first, venue_photos_com, venue_photos_100
     else
       return venue_photos_com
     end
@@ -94,7 +97,25 @@ module ApplicationHelper
     end
     photos_ret
   end
-  
+
+  def get_photos_from_venue_photos_100_resolution(photos, limit=5)
+    photos_ret = ""
+    count = 0;
+    if photos[:items]
+      photos[:items].each {|photo|
+        if photo[:sizes][:items]
+          photos_ret = photos_ret + photo[:sizes][:items][-2][:url] + ","
+        end
+        count = count + 1
+        if count > limit 
+          break
+        end
+      }
+      photos_ret.chomp!(',')   
+    end
+    photos_ret
+  end
+
   def get_photos_from_venue_photos_with_json(photos, use_semi_colon)
     photos_ret = ""
     if photos != ""
@@ -447,8 +468,46 @@ module ApplicationHelper
     response
   end
 
+  # helper method to add the http in front of a user submitted url. need this or rails will try to prepend the domain in front of url
   def url_with_protocol(url)
     /^http/.match(url) ? url : "http://#{url}"
+  end
+
+  #helper method to return user uploaded url or foursquare image url
+  def upload_or_foursquare_image_url_picker (object, self_image_size=:thumb, foursquare_image_width=250, foursquare_image_index=0)
+    case object.class.name
+      when 'Trip'
+        if !object.self_image.blank?
+          use_this_url = object.self_image_url(self_image_size)
+          which_url_msg = "Image Uploaded by User"
+        elsif !object.image_url.blank?
+          #def select_image_given_image_urls(image_urls, width, index = 0)
+          use_this_url = select_image_given_image_urls(object.image_url, foursquare_image_width, foursquare_image_index)
+          which_url_msg = "Image Selected from Foursquare"
+        elsif !object.self_image_tmp.blank?
+          use_this_url = "/assets/temp-img-holder.png"
+          which_url_msg = "We're processing your image"
+        else
+          use_this_url = "/assets/no-img-holder.png"
+          which_url_msg = "Please Select an Image"
+        end
+      when 'TripActivity'
+        if !object.self_trip_activity_photos.first.blank? and !object.self_trip_activity_photos.first.self_photo.blank?
+          use_this_url = self_image_size == :original ? object.self_trip_activity_photos.first.self_photo : object.self_trip_activity_photos.first.self_photo_url(self_image_size)
+          which_url_msg = "Image Uploaded by User"
+        elsif !object.activity.image_urls.blank?
+          use_this_url = select_image_given_image_urls(object.activity.image_urls, foursquare_image_width, foursquare_image_index)
+          which_url_msg = "Image Selected from Foursquare"
+        elsif !object.self_trip_activity_photos.first.blank? and !object.self_trip_activity_photos.first.self_photo_tmp.blank?
+          use_this_url = "/assets/temp-img-holder.png" 
+          which_url_msg = "We're processing your image"
+        else
+          url_from_details = which_detail_type(object, 'image_urls')
+          use_this_url = !url_from_details.blank? ? select_image_given_image_urls(url_from_details, foursquare_image_width, foursquare_image_index): "/assets/no-img-holder.png"
+          which_url_msg = "Please Select an Image"
+        end
+    end
+      return use_this_url, which_url_msg 
   end
 
 end

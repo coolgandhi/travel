@@ -25,6 +25,7 @@ class VenuesController < ApplicationController
     tot = 20
     @venue_photos_first = nil
     @venue_photos_com = nil
+    @venue_photos_100 = nil
     if params[:total]
       begin
         tot = Integer(params[:total]) 
@@ -34,19 +35,20 @@ class VenuesController < ApplicationController
     end
     
     if params[:venueid]
-      @venue_photos_first, @venue_photos_com = get_photos(params[:venueid], tot)
+      @venue_photos_first, @venue_photos_com, @venue_photos_100 = get_photos(params[:venueid], tot)
     elsif params[:latitude] and params[:longitude] and params[:place]
       FoursquareInteraction.foursquare_client
       @venue_id = FoursquareInteraction.find_closest_venue(params[:latitude], params[:longitude], params[:place] )
       if (@venue_id != "")
-        @venue_photos_first, @venue_photos_com = get_photos(@venue_id, tot)
+        @venue_photos_first, @venue_photos_com, @venue_photos_100 = get_photos(@venue_id, tot)
       end
     end
     
     respond_to do |format|
       format.json { render json: { 
                                   :venue_photos => @venue_photos_first, 
-                                  :venue_photos_com => @venue_photos_com                                                     
+                                  :venue_photos_com => @venue_photos_com,
+                                  :venue_photos_100 => @venue_photos_100                                                     
                                   }}
     end
   end

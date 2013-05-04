@@ -2,4 +2,13 @@ $(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/
 
 $(document).ready(function() {
   $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+  
+  if ($('#venue_id').val() === "") {
+    trips_activities_namespace.activityimage_btn_tooltip();
+  }
+  
+  $('.ta_pick_from_foursquare').mouseout(function() {
+    return $('.ta_pick_from_foursquare').tooltip('hide');
+  });
+
 });

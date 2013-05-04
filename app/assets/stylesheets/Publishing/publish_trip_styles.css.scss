@@ -8,6 +8,7 @@
   7. COUNTDOWN TWITTER STYLES
   8. FILE UPLOADER STYLES
   9. PORTRAIT MODE
+  10. PICTURE SELECT STYLES
 */
 
 /* 1. COLLAPSER STYLES */
@@ -27,7 +28,7 @@
   padding: 1%;
   position: relative;
   min-width: 100%;
-  color: $gray;
+  color: gray;
   font-weight: bold;
   cursor:pointer;	
 }
@@ -44,7 +45,7 @@
 
 .collapser_icon{
   border-radius: 50%;
-  border:  2px solid $gray;
+  border:  2px solid gray;
   font-size: 15px;
   line-height: 20px;
   width: 20px;
@@ -124,6 +125,9 @@
   margin-bottom: 1%;
 }
 
+.td_select_an_image_div{
+  width: 33%;
+}
 /* 4. TRIP ACTIVITIES SELECTOR */
 
 .publish_trip_activities_container{
@@ -519,7 +523,7 @@ $completionGreen: #afcfe4;
   }
   .completion_status_active{
     background-color: $completionGreen;
-    color: $gray;  
+    color: gray;  
   } 
 }
 
@@ -567,3 +571,6 @@ $completionGreen: #afcfe4;
 @media only screen and (orientation:landscape){
     #warning-message { display:none; }
 }
+
+/* 10. PICTURE SELECT STYLES */
+@import "picture_select_styles";
