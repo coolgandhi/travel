@@ -12,7 +12,10 @@ module ApplicationHelper
     
       venue_photos_first = get_photos_from_venue_photos_first_resolution(venue_photos, tot)
       venue_photos_first = get_photos_from_venue_photos_with_json(venue_photos_first, false)
-      return venue_photos_first, venue_photos_com
+
+      venue_photos_100 = get_photos_from_venue_photos_100_resolution(venue_photos, tot)
+      venue_photos_100 = get_photos_from_venue_photos_with_json(venue_photos_100, false)
+      return venue_photos_first, venue_photos_com, venue_photos_100
     else
       return venue_photos_com
     end
@@ -94,7 +97,25 @@ module ApplicationHelper
     end
     photos_ret
   end
-  
+
+  def get_photos_from_venue_photos_100_resolution(photos, limit=5)
+    photos_ret = ""
+    count = 0;
+    if photos[:items]
+      photos[:items].each {|photo|
+        if photo[:sizes][:items]
+          photos_ret = photos_ret + photo[:sizes][:items][-2][:url] + ","
+        end
+        count = count + 1
+        if count > limit 
+          break
+        end
+      }
+      photos_ret.chomp!(',')   
+    end
+    photos_ret
+  end
+
   def get_photos_from_venue_photos_with_json(photos, use_semi_colon)
     photos_ret = ""
     if photos != ""
@@ -447,8 +468,24 @@ module ApplicationHelper
     response
   end
 
+  # helper method to add the http in front of a user submitted url. need this or rails will try to prepend the domain in front of url
   def url_with_protocol(url)
     /^http/.match(url) ? url : "http://#{url}"
+  end
+
+  #helper method to return user uploaded url or foursquare image url
+  def upload_or_foursquare_image_url_picker (object, self_image_size=:thumb, foursquare_image_width=250, foursquare_image_index=0)
+    case object.class.name
+      when 'Trip'
+        if !object.self_image.blank?
+          use_this_url = object.self_image_url(self_image_size)
+        elsif !object.image_url.blank?
+          use_this_url = select_image_given_image_urls(object.image_url, foursquare_image_width, foursquare_image_index)
+        else
+          which_detail_type(object, 'image_urls')
+    
+      end
+    end
   end
 
 end

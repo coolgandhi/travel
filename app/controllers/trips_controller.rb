@@ -190,7 +190,7 @@ class TripsController < ApplicationController
   def destroy
     begin
       @trip = Trip.find(params[:id])
-      
+      @author_info = @trip.author_info
       @trip.trip_activities.each {|trip_activity| 
         if !trip_activity.self_trip_activity_photos.first.blank? and !trip_activity.self_trip_activity_photos.first.self_photo.blank?
           trip_activity.self_trip_activity_photos.each { |self_trip_activity_photo|
@@ -201,12 +201,12 @@ class TripsController < ApplicationController
       @trip.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'author_info', :action => 'author_page'
+      redirect_to author_page_author_info_path(@author_info)
       return
     end 
 
     respond_to do |format|
-      format.html { redirect_to :controller => 'author_info', :action => 'author_page', notice: 'Trip was successfully deleted.' }
+      format.html { redirect_to author_page_author_info_path(@author_info), notice: 'Trip was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -288,7 +288,8 @@ class TripsController < ApplicationController
     @trip.share_status = 0
     @location_detail = Location.find_by_location_id(@trip.location_id)
     @update = 0
-    if (params[:selected_images].blank?)
+    logger.info("blahbabhl #{params[:trip][:image_url]}")
+    if (params[:trip][:image_url].blank?)
       FoursquareInteraction.foursquare_client
       @venue_id = FoursquareInteraction.find_closest_venue(@location_detail.latitude, @location_detail.longitude, @location_detail.city)
       if (@venue_id != "")
@@ -299,7 +300,7 @@ class TripsController < ApplicationController
         @trip.image_url = ""
       end
     else
-      @trip.image_url =  params[:selected_images]
+      @trip.image_url = params[:trip][:image_url]
     end
     @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
                  ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
@@ -349,7 +350,7 @@ class TripsController < ApplicationController
   def publish_update
     begin  
       @trip = Trip.find(params[:id])
-      @trip.image_url = (params[:selected_images].blank? ) ? @trip.image_url: params[:selected_images]
+      # @trip.image_url = (params[:image_url].blank? ) ? @trip.image_url: params[:image_url]
       @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
                    ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
                    ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 

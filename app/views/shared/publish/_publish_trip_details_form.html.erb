@@ -12,7 +12,9 @@
       </div>
     <% end %>
 
-    <%= hidden_field_tag :selected_images, @selectedimages %>
+    <%= f.hidden_field :image_url, :class => "selected_images" %>
+    <%= hidden_field_tag :latlong, @latlong %>
+    <%= hidden_field_tag :locationval, @location_val %>
 
     <div class="field">
       <%= f.hidden_field :location_id %>
@@ -42,7 +44,8 @@
       <label class="control-label">Add a cover picture</label>
       <div class="controls">
           <%# f.file_field :self_image %>
-          
+        <!-- Begin Select an Image Wrapper -->
+        <div class = "td_select_an_image_div">
           <!-- Begin Uploaded Image Preview -->
           <div class = "uploaded_image_preview">
             <% if !@trip.self_image.blank? %>
@@ -59,7 +62,7 @@
               <div class = "no_upload_div">
                 <i class = "icon-picture icon-4x"></i>
                 </br>
-                <strong>Add your own image or we'll grab one from Foursquare.</strong>
+                <strong>Add your own image or grab one from Foursquare.</strong>
               </div>
             <% end %>
           </div>
@@ -69,13 +72,16 @@
           <p class="pt_upload_field form-horizontal">
             <input type="text" class="pt_upload_path" />
             <label class="pt_upload_button btn-flat btn-flat-primary">
-              Choose
+              Upload
               <span>
                 <%= f.file_field :self_image, :class => "pt_upload_file"%>
              </span>
            </label>
           </p>
           <!-- End Upload Field -->
+      </div>
+      <!-- End Select an Image Wrapper -->
+          <button class = "btn-flat btn-flat-block btn-flat-info trip_cover_pick_foursquare_btn">Select From Foursquare</button>
       </div>
 
     </div> 

@@ -60,7 +60,7 @@
                 <div class = "no_upload_div">
                   <i class = "icon-picture icon-4x"></i>
                   </br>
-                  <strong>Add your own image or we'll grab one from Foursquare.</strong>
+                  <strong>Add your own image or grab one from Foursquare.</strong>
                 </div>  
               <% end %>
             </div>
@@ -72,7 +72,7 @@
                 <p class="pt_upload_field form-horizontal">
                   <input type="text" class="pt_upload_path" />
                   <label class="pt_upload_button btn-flat btn-flat-primary">
-                    Choose
+                    Add Pic
                     <span> 
                       <%= trip_image.file_field :self_photo, :name => "self_trip_activity_photos[self_photo]", :class => "pt_upload_file"%>
                    </span>
@@ -83,11 +83,11 @@
             </div>
 
 
-
+            <button class = "btn-flat btn-flat-block btn-flat-info ta_pick_from_foursquare">Select From Foursquare</button>
           </div>
         </div>
         <!-- End Activity Confirm Box -->
-
+        <%= hidden_field_tag :selected_images, @selectedimages, :id => "ta_selected_images_field", :value => @trip_activity.activity.nil? ? '' : @trip_activity.activity.image_urls.blank? ? '' : @trip_activity.activity.image_urls %>
         <%= hidden_field_tag :trip_activity_latlong, @latlong %>
         <%= hidden_field_tag :trip_id, @trip_activity.trip_id %>
         <%= f.hidden_field :activity_day, :value => @trip_activity.activity_day.blank? ? '1' : @trip_activity.activity_day %>
@@ -103,7 +103,7 @@
 
           <div class = "pt_form_bg">
             <label class = "checkbox">
-              <%= f.check_box :cant_miss, :class => "checkbox"  %>
+              <%= f.check_box :cant_miss, :class => "checkbox" %>
               You definitely should not miss this activity
             </label>
           </div>
@@ -135,6 +135,5 @@
         </fieldset>        
 
       <% end %>
-      
 </div>
 <!-- Begin Trip Activities Form Container -->
