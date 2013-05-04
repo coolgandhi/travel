@@ -41,8 +41,8 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 // Typography
 // -------------------------
 $customFontFamily:"Text Me One", Helvetica, Arial, sans-serif !default; //custom font
-@import url(http://fonts.googleapis.com/css?family=Text+Me+One);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic);
+@import url(//fonts.googleapis.com/css?family=Text+Me+One);
+@import url(//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic);
 
 $sansFontFamily:        Helvetica, Arial, sans-serif !default; //"Helvetica Neue Light"
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
