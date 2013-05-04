@@ -14,10 +14,8 @@
     </div>
     <div class="result_thumb_wrap">  
     <%= link_to trip do %>
-      <% self_image = (trip.self_image == "" or trip.self_image == nil) ? "" : trip.self_image_url(:thumb) %>
-      <% other_image = select_image_given_image_urls(trip.image_url, 600) %>
-      <% final_image = (self_image != "" and self_image != nil) ? self_image : other_image %>
-      <%= image_tag(final_image, {:class => "image_link_thumbnail"}) %>
+      <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip, :thumb, 600, 0) %>
+      <%= image_tag(use_this_url, {:class => "image_link_thumbnail"}) %>
     <% end %>
     </div>
 
