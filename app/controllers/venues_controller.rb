@@ -70,8 +70,8 @@ class VenuesController < ApplicationController
       @venue_details[:zip] = empty_string_if_value_nil(@venue[:location][:postalCode])
       @venue_details[:name] = empty_string_if_value_nil(@venue[:name]) 
       @venue_details[:website] = empty_string_if_value_nil(@venue[:url]) 
-      @venue_details[:category_name] = empty_string_if_value_nil(@venue[:categories].first[:name]) 
-      @venue_details[:category_parent] = empty_string_if_value_nil(@venue[:categories].first[:parents].first) 
+      @venue_details[:category_name] = empty_string_if_value_nil(!@venue[:categories].first.blank? ? @venue[:categories].first[:name] : "") 
+      @venue_details[:category_parent] = empty_string_if_value_nil(!@venue[:categories].first.blank? ? @venue[:categories].first[:parents].first : "") 
       @venue_details[:rating] = empty_string_if_value_nil(@venue[:rating])
       @venue_details[:twitter] = empty_string_if_value_nil(@venue[:contact][:twitter])
       @venue_details[:source] = "foursquare"      
