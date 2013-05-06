@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   
   private
   def https_redirect
-    if CONFIG[:ENABLE_HTTPS] == "yes"
+    if CONFIG[:ENABLE_HTTPS] == "yes" and Rails.env.production?
       if request.ssl? && !use_https? || !request.ssl? && use_https?
         protocol = request.ssl? ? "http" : "https"
         flash.keep
