@@ -104,7 +104,7 @@ module ApplicationHelper
     if photos[:items]
       photos[:items].each {|photo|
         if photo[:sizes][:items]
-          photos_ret = photos_ret + photo[:sizes][:items][-2][:url] + ","
+          photos_ret = photos_ret + photo[:sizes][:items][-3][:url] + ","
         end
         count = count + 1
         if count > limit 

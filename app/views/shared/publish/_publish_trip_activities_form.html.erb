@@ -69,8 +69,12 @@
               <% end %>
             </div>
 
+            <% if !@trip_activity.activity.blank? and !@trip_activity.activity.image_urls.blank? %>
+              <button class = "btn-flat btn-flat-block btn-flat-success ta_pick_from_foursquare">Foursquare Images Selected</button>
+            <% else %>
+              <button class = "btn-flat btn-flat-block btn-flat-info ta_pick_from_foursquare">Select From Foursquare</button>
+            <% end %>
 
-            <button class = "btn-flat btn-flat-block btn-flat-info ta_pick_from_foursquare">Select From Foursquare</button>
           </div>
         </div>
         <!-- End Activity Confirm Box -->

@@ -67,7 +67,13 @@
            </label>
           </p>
           <!-- End Upload Field -->
-        <button class = "btn-flat btn-flat-block btn-flat-info trip_cover_pick_foursquare_btn">Select From Foursquare</button>
+
+          <% if !@trip.image_url.blank? %>
+           <button class = "btn-flat btn-flat-block btn-flat-success trip_cover_pick_foursquare_btn">Foursquare Images Selected</button>
+          <% else %>
+            <button class = "btn-flat btn-flat-block btn-flat-info trip_cover_pick_foursquare_btn">Select From Foursquare</button>
+          <% end %>
+
       </div>
       <!-- End Select an Image Wrapper -->
           

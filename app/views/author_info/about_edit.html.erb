@@ -54,20 +54,21 @@
                   </div>
                 <% end %>
               </div>
+
+              <!-- Begin Upload Field -->
+              <p class="pt_upload_field form-horizontal">
+                <input type="text" class="pt_upload_path" />
+                <label class="pt_upload_button btn-flat btn-flat-primary">
+                  Choose
+                  <span>
+                    <%= a.file_field :self_image, :class => "pt_upload_file"%>
+                 </span>
+               </label>
+              </p>
+                <!-- End Upload Field -->
+
             </div>
             <!-- End Uploaded Image Preview -->
-
-            <!-- Begin Upload Field -->
-            <p class="pt_upload_field form-horizontal">
-              <input type="text" class="pt_upload_path" />
-              <label class="pt_upload_button btn-flat btn-flat-primary">
-                Choose
-                <span>
-                  <%= a.file_field :self_image, :class => "pt_upload_file"%>
-               </span>
-             </label>
-            </p>
-              <!-- End Upload Field -->
           </div>
     </div> 
 
