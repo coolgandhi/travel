@@ -9,7 +9,6 @@ module TripsHelper
     
     mapped_activities = Array.new
     trip_activities.each {|trip_activity| 
-        is_self_image = false
         image_url = ""
         activity_venue_name = ""
         lay_out = ""
@@ -48,18 +47,13 @@ module TripsHelper
               lay_out= "transportactivitypartial"
         end
         
+        use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip_activity,:original, 767, 0)
+        use_this_url_thumb, which_url_msg_thumb = upload_or_foursquare_image_url_picker(trip_activity,:thumb, 480, 0)
+        use_this_url_passport, which_url_msg_passport = upload_or_foursquare_image_url_picker(trip_activity,:passport, 480, 0)
 
-        if (!trip_activity.self_trip_activity_photos.first.blank? and !trip_activity.self_trip_activity_photos.first.self_photo.blank?)
-          self_image = trip_activity.self_trip_activity_photos.first
-          if self_image != nil
-            is_self_image = true
-            image_url = self_image.self_photo
-            passport_image_url = self_image.self_photo_url(:passport)
-            thumb_image_url = self_image.self_photo_url(:thumb)
-          end
-        elsif !activity.image_urls.blank? 
-          image_url = activity.image_urls # select image from the activity if chosen by the author
-        end
+        image_url = use_this_url
+        passport_image_url = use_this_url_passport
+        thumb_image_url = use_this_url_thumb
         
         mapped_activities.push (
           { 
@@ -79,7 +73,6 @@ module TripsHelper
             :image_url => image_url,
             :passport_image_url => passport_image_url,
             :thumb_image_url => thumb_image_url,
-            :is_self_image => is_self_image,
             :activity_venue_name => activity_venue_name,
             :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial", 
             :layout => lay_out   

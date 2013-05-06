@@ -58,17 +58,5 @@ module TripActivitiesHelper
     alt_name
   end
   
-  def which_detail_type(activity_var, detail)
-  	which_detail = case activity_var.activity_type 
-  		when "FoodActivity"
-  			"restaurant_detail"
-  		when "TransportActivity"
-  			# do nothing
-  		when "LocationActivity"
-  			"location_detail"
-  		end
-  	#send allows calling of method as a string on the receiver. 	
-  	activity_var.activity.send("#{which_detail}").send(detail.to_sym)
-  end
 
 end

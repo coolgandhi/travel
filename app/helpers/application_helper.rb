@@ -474,6 +474,19 @@ module ApplicationHelper
     /^http/.match(url) ? url : "http://#{url}"
   end
 
+  def which_detail_type(activity_var, detail)
+    which_detail = case activity_var.activity_type 
+      when "FoodActivity"
+        "restaurant_detail"
+      when "TransportActivity"
+        # do nothing
+      when "LocationActivity"
+        "location_detail"
+      end
+    #send allows calling of method as a string on the receiver.   
+    activity_var.activity.send("#{which_detail}").send(detail.to_sym)
+  end
+
   #helper method to return user uploaded url or foursquare image url
   def upload_or_foursquare_image_url_picker (object, self_image_size=:thumb, foursquare_image_width=250, foursquare_image_index=0)
     case object.class.name
@@ -515,5 +528,7 @@ module ApplicationHelper
     end
       return use_this_url, which_url_msg 
   end
+
+
 
 end
