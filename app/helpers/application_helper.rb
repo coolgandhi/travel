@@ -166,8 +166,10 @@ module ApplicationHelper
     tag = get_tag_from_venue(@venue)
     photos = get_photos_from_venue_photos(@venue_photos)
     open_hours = get_open_hours_from_venue(@venue)
-    
-    @activity_detail = update == 0 ? RestaurantDetail.new : RestaurantDetail.find_by_restaurant_detail_id(@venue[:id])
+  
+    @restaurant_detail = RestaurantDetail.find_by_restaurant_detail_id(@venue[:id])
+    create_new = @restaurant_detail.blank? ? 1 : 0
+    @activity_detail = (update == 0 and @restaurant_detail.blank?) ? RestaurantDetail.new : @restaurant_detail
     category = get_categories_from_venue(@venue)
     
     @activity_detail.attributes = { 
@@ -195,41 +197,43 @@ module ApplicationHelper
     }
 
 
-    if @activity_detail.save
-      if  update == 1
-        @activity_detail.restaurant_comments.delete_all
-      end
+    if create_new == 1 or update == 1
+      if @activity_detail.save
+        if update == 1
+          @activity_detail.restaurant_comments.delete_all
+        end
       
-      if @venue_tips[:count] 
-        count = @venue_tips[:count].to_i
-        iteration = 0
-        @venue_tips[:items].each { |venue_tip|
-          venue_comment = RestaurantComment.new
-          name = empty_string_if_value_nil(venue_tip[:user][:firstName]) + " " + empty_string_if_value_nil(venue_tip[:user][:lastName])
-          venue_comment.attributes = {
-            :created_time => Time.at(venue_tip[:createdAt]), 
-            :follow_post_id => "", 
-            :log => empty_string_if_value_nil(venue_tip[:text]), 
-            :name => name, 
-            :photo => "", 
-            :restaurant_detail_id => @venue[:id], 
-            :source => "foursquare", 
-            :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
-            :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
-          }
+        if @venue_tips[:count] 
+          count = @venue_tips[:count].to_i
+          iteration = 0
+          @venue_tips[:items].each { |venue_tip|
+            venue_comment = RestaurantComment.new
+            name = empty_string_if_value_nil(venue_tip[:user][:firstName]) + " " + empty_string_if_value_nil(venue_tip[:user][:lastName])
+            venue_comment.attributes = {
+              :created_time => Time.at(venue_tip[:createdAt]), 
+              :follow_post_id => "", 
+              :log => empty_string_if_value_nil(venue_tip[:text]), 
+              :name => name, 
+              :photo => "", 
+              :restaurant_detail_id => @venue[:id], 
+              :source => "foursquare", 
+              :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
+              :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
+            }
           
-          if venue_comment.save
-          else
-            Rails.logger.info "error #{venue_tip.errors} \n" #todo instrumentation
-            raise "Venue tips savings error #{venue_tip.errors} "
-          end          
-          iteration = iteration + 1
-          break if iteration > 25 
-        }
-      end 
-    else
-      Rails.logger.info "error #{@activity_detail.errors} \n" #todo instrumentation
-      raise "Venue savings error #{@activity_detail.errors} "
+            if venue_comment.save
+            else
+              Rails.logger.info "error #{venue_tip.errors} \n" #todo instrumentation
+              raise "Venue tips savings error #{venue_tip.errors} "
+            end          
+            iteration = iteration + 1
+            break if iteration > 25 
+          }
+        end 
+      else
+        Rails.logger.info "error #{@activity_detail.errors} \n" #todo instrumentation
+        raise "Venue savings error #{@activity_detail.errors} "
+      end
     end
     @activity_detail
   end
@@ -253,10 +257,14 @@ module ApplicationHelper
     open_hours = get_open_hours_from_venue(@venue)
     photos = get_photos_from_venue_photos(@venue_photos)
     
-    @activity_detail = update == 0 ? LocationDetail.new : LocationDetail.find_by_location_detail_id(@venue[:id])
     
-    category = get_categories_from_venue(@venue)
+    @location_detail = LocationDetail.find_by_location_detail_id(@venue[:id])
+    create_new = @location_detail.blank? ? 1 : 0
+    
+    @activity_detail = (update == 0 and @location_detail.blank?) ? LocationDetail.new : @location_detail
         
+    category = get_categories_from_venue(@venue)
+    
     @activity_detail.attributes = { 
       :location_detail_id => @venue[:id], 
       :address1 => empty_string_if_value_nil(@venue[:location][:address]), 
@@ -281,41 +289,43 @@ module ApplicationHelper
       :source => "foursquare"
     }
     
-    if @activity_detail.save
-      if update == 1
-        @activity_detail.location_comments.delete_all
-      end
+    if create_new == 1 or update == 1
+      if @activity_detail.save
+        if update == 1
+          @activity_detail.location_comments.delete_all
+        end
       
-      if @venue_tips[:count] 
-        count = @venue_tips[:count].to_i
-        iteration = 0
-        @venue_tips[:items].each { |venue_tip|
-          venue_comment = LocationComment.new
-          name = empty_string_if_value_nil(venue_tip[:user][:firstName]) + " " + empty_string_if_value_nil(venue_tip[:user][:lastName])
-          venue_comment.attributes = {
-            :created_time => Time.at(venue_tip[:createdAt]), 
-            :follow_post_id => "", 
-            :log => empty_string_if_value_nil(venue_tip[:text]), 
-            :name => name, 
-            :photo => "", 
-            :location_detail_id => @venue[:id], 
-            :source => "foursquare", 
-            :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
-            :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
-          }
+        if @venue_tips[:count] 
+          count = @venue_tips[:count].to_i
+          iteration = 0
+          @venue_tips[:items].each { |venue_tip|
+            venue_comment = LocationComment.new
+            name = empty_string_if_value_nil(venue_tip[:user][:firstName]) + " " + empty_string_if_value_nil(venue_tip[:user][:lastName])
+            venue_comment.attributes = {
+              :created_time => Time.at(venue_tip[:createdAt]), 
+              :follow_post_id => "", 
+              :log => empty_string_if_value_nil(venue_tip[:text]), 
+              :name => name, 
+              :photo => "", 
+              :location_detail_id => @venue[:id], 
+              :source => "foursquare", 
+              :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
+              :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
+            }
           
-          if venue_comment.save
-          else
-            Rails.logger.info "error #{venue_tip.errors} \n" 
-            raise "Venue tips savings error #{venue_tip.errors} "
-          end          
-          iteration = iteration + 1
-          break if iteration > 25 
-        }
+            if venue_comment.save
+            else
+              Rails.logger.info "error #{venue_tip.errors} \n" 
+              raise "Venue tips savings error #{venue_tip.errors} "
+            end          
+            iteration = iteration + 1
+            break if iteration > 25 
+          }
+        end
+      else
+        Rails.logger.info "error #{@activity_detail.errors.inspect} \n" 
+        raise "Venue savings error #{@activity_detail.errors} "
       end
-    else
-      Rails.logger.info "error #{@activity_detail.errors.inspect} \n" 
-      raise "Venue savings error #{@activity_detail.errors} "
     end
     @activity_detail
   end

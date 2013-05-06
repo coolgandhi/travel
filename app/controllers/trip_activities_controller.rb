@@ -461,7 +461,7 @@ class TripActivitiesController < ApplicationController
           @activity.image_urls = params[:selected_images]
           @activity.restaurant_detail_id = params[:venueid]
           @activity_detail = @activity.restaurant_detail
-          if (@activity_detail.nil? or @activity_detail == 0)
+          if (@activity_detail.blank?)
             @activity_detail = create_food_venue(@venue[:id], params[:location_id], 0, @venue)
             @activity.restaurant_detail = @activity_detail
           end
@@ -478,7 +478,7 @@ class TripActivitiesController < ApplicationController
           @activity.image_urls = params[:selected_images]
           @activity.location_detail_id = params[:venueid]
           @activity_detail = @activity.location_detail
-          if (@activity_detail.nil? or @activity_detail == 0)
+          if (@activity_detail.blank?)
             @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)
             @activity.location_detail = @activity_detail
         end
