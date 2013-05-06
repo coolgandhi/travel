@@ -1,12 +1,17 @@
 $(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
 
 $(document).ready(function() {
-  $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+  //resize the upload images to parent divs
   trips_namespace.fireResizePublishImages();
+  //front-end form validation
+  $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
+  //remove highlights from the activity ordering form when in a create new activity form
+  $(".publish_form_activity_item").removeClass("selected_highlight");
+  //if there is no venue_id (the venue hasn't been selected), the fire the tooltip on the foursquare button.
   if ($('#venue_id').val() === "") {
     trips_activities_namespace.activityimage_btn_tooltip();
   }
-  
+  //hide the tooltip on mouseout of the foursquare image select button
   $('.ta_pick_from_foursquare').mouseout(function() {
     return $('.ta_pick_from_foursquare').tooltip('hide');
   });

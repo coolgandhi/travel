@@ -25,7 +25,14 @@
           dat = dat + da.img + ";"
           return
       $('#ta_selected_images_field').val(dat);
-      $('.pe_select_image_4SQ_modal').modal('hide');    
+      $('.pe_select_image_4SQ_modal').modal('hide');
+      # change foursquare image select button on select
+      if $('#ta_selected_images_field').val().length > 1
+        $('.ta_pick_from_foursquare').html('Foursquare Images Selected')
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-info").addClass("btn-flat-success")
+      else
+        $('.ta_pick_from_foursquare').html('Select From Foursquare')
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-success").addClass("btn-flat-info")
       return true
     return
 
@@ -52,7 +59,14 @@
           dat = dat + da.img + ";"
           return
       $('.selected_images').val(dat);
-      $('.cover_select_modal').modal('hide');    
+      $('.cover_select_modal').modal('hide');
+      # change the foursquare selected button if images selected
+      if $('.selected_images').val().length > 1
+        $('.trip_cover_pick_foursquare_btn').html('Foursquare Images Selected')
+        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-info").addClass("btn-flat-success")
+      else
+        $('.trip_cover_pick_foursquare_btn').html('Select From Foursquare')
+        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-success").addClass("btn-flat-info")
       return true
     return
 
@@ -68,7 +82,6 @@
       placement: "bottom"
       title: "Please enter a City for this Trip"
       trigger: "click"
-
 
   jQuery ->
     trips_activities_namespace.populate_selected_images_field();
@@ -90,7 +103,16 @@
 
     $(document).bind "keydown", (e) ->
       $('.pe_select_image_4SQ_modal').modal('hide') if e.which is 27
-  
+    
+    #change the foursquare select image button when images have been selected  
+    $('#ta_selected_images_field').change ->
+      if $('#ta_selected_images_field').val().length > 1
+        $('.ta_pick_from_foursquare').html('Foursquare Images Selected')
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-info").addClass("btn-flat-primary")
+      else 
+        $('.ta_pick_from_foursquare').html('Select From Foursquare')
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-primary").addClass("btn-flat-info")
+      
   #Select Cover Image
   jQuery ->
     trips_activities_namespace.populate_coverimages_field();

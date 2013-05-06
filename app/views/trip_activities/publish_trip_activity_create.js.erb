@@ -9,6 +9,8 @@
 	  dataType:'script', 
 	  complete: function(){
 	    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= params[:trip_activity][:activity_day] %> + '"]').tab('show');
+	    $('.publish_trip_create_activities').scrollTop(0);
+	    $('.publish_trip_create_activities').effect("highlight", {}, 1000);
 	    // $('#publish_form_activity_' + <%= @trip_activity.id %>).effect("highlight", {}, 1000);
 	    // $('#publish_form_activity_' + <%= @trip_activity.id %>).addClass("selected_highlight");
 		var request_2 = $.ajax({ 

@@ -7,8 +7,8 @@
 
 .venue_image{
   border: 1px solid black;
-  height: 100px;
-  width: 100px;
+  height: 160px;
+  width: 160px;
   display:inline;
   @include box-sizing(border-box);
 }

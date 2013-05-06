@@ -107,11 +107,16 @@ $lastrowheight: 10%;
   border-left: $myDivBorderWidth solid $borderGray;
   .ab_author_name{
     color: black;
+    white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
     font-size: 22px;
   }
   .ab_author_website{
     margin-bottom: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 

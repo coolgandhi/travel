@@ -1,6 +1,6 @@
 <%= content_for :head do %>
   <html xmlns:fb="http://ogp.me/ns/fb#">
-  <meta property="og:title" content="chalo.io: <%= @trip.trip_name %>" />
+  <meta property="og:title" content="chalo.io: <%= @trip.trip_name.titleize %>" />
   <meta property="og:type"  content="website" /> 
   <meta property="og:url"   content="<%= "#{request.url}" %>"/>  
   <% self_image = (@trip.self_image == "" or @trip.self_image == nil) ? "" : @trip.self_image_url(:passport) %>
@@ -17,7 +17,7 @@
 <% end %>
 
 <%= content_for :title do %>
-  <%= @trip.trip_name.capitalize %>: <%= @trip.duration %> Days in <%= @trip.location[:place] %> by <%= @trip.author_info.author_name %>
+  <%= @trip.trip_name.titleize %>: <%= @trip.duration %> Days in <%= @trip.location[:place] %> by <%= @trip.author_info.author_name %>
 <% end %>
 
 <%= content_for :description do %>
