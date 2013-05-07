@@ -529,10 +529,9 @@ class TripsController < ApplicationController
   def allow_owner_change_only
     if (params[:id])  
       @trip = Trip.find(params[:id])
-      if ((!current_author_info.blank? and @trip.author_id != current_author_info.id.to_s) and !self.authorize)
-         flash[:notice] = "Unauthorized Access"
-         redirect_to root_url() 
-         return
+      if ((!current_author_info.blank? and @trip.author_id != current_author_info.id.to_s) and !self.admin? )
+        flash[:notice] = "Unauthorized Access"
+        redirect_to root_url 
       end
     end
   end
