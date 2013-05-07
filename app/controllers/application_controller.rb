@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   
   def render_error(status, exception)
 
-    logger.info "System Error: Tried to access '#{request.fullpath}'.\n#{exception.class} error was raised for path .\n#{exception.message}"
+    logger.info "System Error: Tried to access '#{request.fullpath}'.\n#{exception.class} error was raised for path .\n#{exception.message} status: #{status} exception: #{exception}"
     ExceptionNotifier::Notifier.exception_notification(request.env, exception,
         :data => {:message => "chalo.io error: please check"}).deliver
   

@@ -532,6 +532,7 @@ class TripsController < ApplicationController
       if ((!current_author_info.blank? and @trip.author_id != current_author_info.id.to_s) and !self.authorize)
          flash[:notice] = "Unauthorized Access"
          redirect_to root_url() 
+         return
       end
     end
   end

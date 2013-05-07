@@ -1,5 +1,8 @@
 module ApplicationHelper
 
+  def url_with_protocol(url)
+    /^http/.match(url) ? url : "http://#{url}"
+  end
   
   def get_photos venue_id, tot, ret_json=true
     FoursquareInteraction.foursquare_client

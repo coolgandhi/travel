@@ -49,8 +49,7 @@
           <p><%= @author_info.city unless @author_info.city.blank?%><%= ", #{@author_info.state}" unless @author_info.state.blank? %><%= ", #{@author_info.country}" unless @author_info.country.blank? %></p>
           
           <p class = "lead author_profile_about"><%= @author_info.about %> </p>
-
-          <p><%= link_to @author_info.website, @author_info.website, :target => "_blank" unless @author_info.website.blank? %> </p>
+          <p><%= link_to("Website", self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> </p>
 
           <%unless @author_info.twitter_handle.blank? %>
             <div class = "twitter_follow_box">
