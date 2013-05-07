@@ -44,6 +44,10 @@
 <!-- Begin Collapser Container-->
 <div class = "publish_trip_collapser span12">
   
+  <!-- Being Mask When Loading -->
+  <div class = "trip_activity_form_mask"></div>
+  <!-- Being Mask When Loading -->
+
   <!-- Begin Collapse 1-->
   <div class = "publish_trip_collapse_header">
   Trip Details
@@ -61,10 +65,13 @@
   </div>
   
   <div class = "publish_trip_collapse_content publish_form_activity_details_content">
+
     <div class = "publish_trip_sort_activities">
        <%= render "shared/publish/publish_trip_activity_order" %> 
     </div>
     <div class = "publish_trip_create_activities">
+
+
       <div class = "pt_empty_activity_form_div">
         <i class="icon-star-empty icon-4x"></i>
         <p>Please create a new activity or select an activity to edit.</p>

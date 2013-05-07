@@ -12,7 +12,7 @@
 	    $('#publish_form_activity_' + <%= params[:id] %>).effect("highlight", {}, 1000);
 	    $('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");
 	    $('.publish_trip_create_activities').scrollTop(0);
-	    $('.publish_trip_create_activities').effect("highlight", {}, 1000);
+	    $('.publish_trip_create_activities').effect("highlight", {color: "#dff0d8"}, 1000);
 		var request_2 = $.ajax({ 
 		  url:'<%= publish_trip_activity_edit_trip_trip_activity_url(:trip_id => @trip.id, :id => @trip_activity.id) %>', 
 		  type: 'get', 
