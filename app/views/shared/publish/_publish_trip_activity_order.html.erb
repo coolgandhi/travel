@@ -3,7 +3,7 @@
 
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs" id="publish_day_tabs">
-  <li class = "publish_order_day_tab_title"><a>Days</a></li>
+  <li class = "publish_order_day_tab_title"><a>Day</a></li>
   <%if @trip %>
     <% n = @trip.duration.to_i > 5 ? 5 : @trip.duration.to_i %>
         <% for i in 1..n %>

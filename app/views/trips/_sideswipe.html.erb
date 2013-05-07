@@ -7,14 +7,18 @@
       <ul class = "unstyled badges-ul">
       <li>
         <a class= <%=traveler_type_badge_class(@trip.traveler_type[:traveler_type_name])%> ></a>
-        <p><%=@trip.traveler_type[:traveler_type_name]%></p>
+        <p>
+          <%=@trip.traveler_type[:traveler_type_name]%>
+        </p>
       </li>
       </ul>
     </div>
 
     <div class="trip_title_text">
       <p>
-        <span class="trip_title_main_text title_large" data-content = '<%= render "trips/partials/summary_text_popover_content", :trip => @trip %>'><%= @trip.trip_name %></span> 
+        <span class="trip_title_main_text title_large" data-content = '<%= render "trips/partials/summary_text_popover_content", :trip => @trip %>'>
+          <%= @trip.trip_name %>
+        </span> 
       </p>
       
         <!--Begin show overview button that shows up only on small screens-->

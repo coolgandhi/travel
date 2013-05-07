@@ -36,7 +36,6 @@
         if $('#trip_trip_summary') then $('#trip_trip_summary').val("Tell us more about the time you went to " + splitarraylabel[0]) #on select put an auto summary
         if $('#trip_trip_name') then $('#trip_trip_name').val("My Awesome Time in "+ splitarraylabel[0]) #on select put an auto title
         $('#latlong').val (splitarrayvalue[1]+","+splitarrayvalue[2])
-        console.log(splitarrayvalue[1]+","+splitarrayvalue[2])
         $('#locationval').val (splitarraylabel[0])
         return
     return
