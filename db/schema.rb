@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502055531) do
+ActiveRecord::Schema.define(:version => 20130507192447) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -276,10 +276,10 @@ ActiveRecord::Schema.define(:version => 20130502055531) do
     t.string   "trip_name",          :default => ""
     t.string   "trip_summary",       :default => ""
     t.string   "duration",           :default => "1"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.text     "image_url"
-    t.boolean  "featured_trip_flag"
+    t.boolean  "featured_trip_flag", :default => false
     t.integer  "rank_score",         :default => 0
     t.text     "self_image"
     t.text     "self_image_tmp"
