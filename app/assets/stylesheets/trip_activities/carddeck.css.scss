@@ -75,12 +75,14 @@ $lastrowheight: 10%;
   }
 
   .trip_title_main_text{
-    // font-family: 'Oswald', Helvetica, Arial, sans-serif;
     white-space: nowrap;
     text-transform: capitalize;
-    // font-weight: 400;
-    // text-shadow: 1px 1px 1px $grayLight;
-
+    cursor: pointer;
+    font-style: underline;
+    text-decoration: underline;
+    &:hover{
+      color: gray;
+    }
   }
 
   .trip_title_sub_text{
@@ -91,6 +93,10 @@ $lastrowheight: 10%;
     font-weight: normal;
     float: left;
   }
+}
+
+.summary_text_popover_outside, .summary_text_popover_inner{
+  width: 500px;
 }
 
 .authortitlebox{
@@ -111,6 +117,9 @@ $lastrowheight: 10%;
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 22px;
+    &:hover{
+      color: gray;
+    }
   }
   .ab_author_website{
     margin-bottom: 0;

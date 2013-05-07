@@ -3,4 +3,4 @@
 // else
   $(".publish_trip_sort_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activity_order")) %>');
   $('#publish_day_tabs a[href="#publish_activities_day_' + <%= params[:activity_day] %> + '"]').tab('show')
-  $('#publish_form_activity_' + <%= params[:trip_activity_id] %>).effect("highlight", {}, 2000);
+  $('#publish_form_activity_' + <%= params[:trip_activity_id] %>).effect("highlight", {color: "#dff0d8"}, 2000);
