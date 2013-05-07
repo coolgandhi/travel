@@ -8,13 +8,27 @@
   text-align: center;
 }
 
+
+ul.info_align_center{
+  li{
+    padding: 0 5%;
+  }
+}
+
 /* About The Team Info */
 .team_social_link{
   // text-align: left;
   float: left;
+  @include box-sizing(border-box);
 }
 
 .team_social_icon{
   height: 25px;
   width: 25px;
+}
+
+.team_title_p{
+ span{
+   display: block;	
+ }
 }

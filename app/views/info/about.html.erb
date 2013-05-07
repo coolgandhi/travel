@@ -1,3 +1,11 @@
+<%= content_for :title do %>
+  About chalo.io
+<% end %>
+
+<%= content_for :description do %>
+  <%= "We make your travel planning easy. Check out trip summaries " + ((params[:place] == nil) ? "to your favorite destinations at chalo.io": ("to" + params[:place]) + " at chalo.io")  %>
+<% end %>
+
 <%= render 'pill_nav' %>
 
 <div class="row span12">
@@ -13,7 +21,11 @@
   <li>
   	
   	<div class="team_social_link">
-  		Hung Kien Luu</br>
+  	<p class = "team_title_p">
+      <span>Hung Kien Luu</span>
+      <span>Co-Founder</span>
+    </p>
+
   		<%= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "team_social_icon"), raw("https://twitter.com/hungkienluu"), :target => "_blank"%>
 
   		<%= link_to image_tag('/assets/logos/LinkedIn_Logo16px.png', :class=> "team_social_icon"), raw("http://www.linkedin.com/in/hungkienluu"), :target => "_blank"%>
@@ -23,11 +35,30 @@
   
   <li>
   	<div class="team_social_link">
-	Sachin Gandhi</br>
+    <p class = "team_title_p">
+      <span>Sachin Gandhi</span>
+      <span>Co-Founder</span>
+    </p>
+
 	<%= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "team_social_icon"), raw("https://twitter.com/speaksachin"), :target => "_blank"%>
 
 	<%= link_to image_tag('/assets/logos/LinkedIn_Logo16px.png', :class=> "team_social_icon"), raw("http://www.linkedin.com/in/sachinga"), :target => "_blank"%>
 	</div>
+  </li>
+
+  <li>
+    
+    <div class="team_social_link">
+    <p class = "team_title_p">
+      <span>Izzy Park</span>
+      <span>Professional Barista</span>
+    </p>
+      
+      <%= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "team_social_icon"), raw("https://twitter.com/izzy_park"), :target => "_blank"%>
+
+      <%= link_to image_tag('/assets/logos/LinkedIn_Logo16px.png', :class=> "team_social_icon"), raw("www.linkedin.com/in/isabellepark"), :target => "_blank"%>
+    </div>
+      
   </li> 
 </ul>
 
