@@ -19,12 +19,16 @@
     <div class="field">
       <%= f.hidden_field :location_id %>
     </div>
-
+             
     <div class="control-group">
       <label class="control-label">Where did you go? <span class="required_star">*</span></label>
       <div class="controls">
         <% if controller.action_name == "publish_new" %>
-          <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span3 required_publish_form_field">
+
+          <%= select_tag :publish_place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Which city?", :class => "publish_place_dropdown_field" %>
+
+          <!-- <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span3 required_publish_form_field"> -->
+
           <span class ="help-inline publish_form_required_label">Required</span>
         <% else %>
           <span class="control-label"><strong><%= @location_val %></strong></span>

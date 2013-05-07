@@ -1,5 +1,6 @@
 <div id="summary_text_popover_box">
   <p>  
-    <%= auto_link(trip.trip_summary, :html => { :target => '_blank' }) %>
+    <!-- have to do html escape the trip summary to catch random quotations and also do autolink to catch links -->
+    <%= auto_link(html_escape(trip.trip_summary), :html => { :target => '_blank' }) %>
   </p>            
 </div>
