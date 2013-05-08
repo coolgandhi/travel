@@ -19,6 +19,7 @@
       selectedList: 4
       classes : "traveler_type_multiselect"
       height: 'auto'
+      header: false
     )  
 
   #calling date from field datepicker

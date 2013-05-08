@@ -19,6 +19,7 @@
       selectedList: 4
       classes : "results_traveler_type_multiselect"
       height: 'auto'
+      header: false
     )
     $('.ui-multiselect.results_traveler_type_multiselect').css('width', '200px');  
 

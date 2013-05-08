@@ -17,9 +17,13 @@
           <%= text_field_tag :from, params[:from], :class => "dropdown-from-datefield input-small", :id => "dropdown-from-datefield" %>
         </div>
       -->
-      <div class="input-append day_form_input_append">
-        <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, "3"), :class => "results_day_field selectpicker", :id => "results_day_field" %>
-      </div>
+      
+      <!-- BEGIN COMMENTING OUT THE DAYS FIELD -->
+<!--       <div class="input-append day_form_input_append">
+        <%# select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, "3"), :class => "results_day_field selectpicker", :id => "results_day_field" %>
+      </div> -->
+      <!-- END COMMENTING OUT THE DAYS FIELD -->
+
     </div>
   </div>
   

@@ -37,12 +37,15 @@
             <!--
             <div class="input-prepend hero_from_prepend">
               <span class="add-on">from</span>
-              <%= text_field_tag :from, params[:from], :class => "from-datefield input-small", :id => "from-datefield" %> 
+              <%# text_field_tag :from, params[:from], :class => "from-datefield input-small", :id => "from-datefield" %> 
             </div>
             -->
-            <div class="input-append hero_days_append">
-              <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, "3"), :class => "results_day_field selectpicker", :id => "results_day_field" %>
-            </div> 
+            <!-- BEGIN COMMENTING OUT THE DAYS FIELD -->
+<!--             <div class="input-append hero_days_append">
+              <%# select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, "3"), :class => "results_day_field selectpicker", :id => "results_day_field" %>
+            </div> --> 
+            <!-- END COMMENTING OUT THE DAYS FIELD -->
+            
             <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button', :id => "search_submit_button" %>
           <% end %>
           <div class = "error_msg"></div>
