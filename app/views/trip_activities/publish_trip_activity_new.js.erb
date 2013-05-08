@@ -3,6 +3,7 @@ $(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/
 $(document).ready(function() {
   //resize the upload images to parent divs
   trips_namespace.fireResizePublishImages();
+  trips_namespace.updateCountdown();
   //front-end form validation
   $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
   //remove highlights from the activity ordering form when in a create new activity form

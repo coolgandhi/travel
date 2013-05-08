@@ -2,6 +2,9 @@
 
 
   trips_namespace.updateCountdown = -> 
+    $(".word_count").each ->
+      $this = $(this)
+      $this.next(".counter").text (($this.attr("maxcharacters")- $this.val().length) + " characters remaining")
     $(".word_count").on "input keyup keydown focus", ->
       $this = $(this)
       maxcharacters = $this.attr("maxcharacters")

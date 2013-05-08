@@ -33,26 +33,28 @@
       <div class="nav-collapse collapse">
         <ul class="nav pull-right">
           <% if author_info_signed_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Hi <%= current_author_info.email %>
-              <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li> <%= link_to 'Add New Trip', publish_new_trips_url() %> </li>
-                <li> <%= link_to 'Public Profile', author_page_author_info_url(current_author_info.id, :protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-                <li> <%= link_to 'Edit Profile', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-                <li> <%= link_to 'Edit Account Settings', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-                <li> <%= link_to "Logout", destroy_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes") ? "https": "http"), method: :delete %> </li>
-              </ul>
-          </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Hi <%= current_author_info.email %>
+                <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li> <%= link_to 'Your Profile', author_page_author_info_url(current_author_info.id, :protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+                  <li> <%= link_to 'Edit Profile', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+                  <li> <%= link_to 'Edit Account Settings', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+                  <li> <%= link_to "Log Out", destroy_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes") ? "https": "http"), method: :delete %> </li>
+                </ul>
+            </li>
 
           <% else %>
-           <li> <%= link_to "Sign up", new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-           <li> <%= link_to "Login", new_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+              <li> <%= link_to "Sign Up", new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+              <li> <%= link_to "Log In", new_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
           <% end %>
           <li><%=link_to "About", about_path %></li>
+          <li class="divider-vertical"></li>
+          <%= link_to 'Create Trip', publish_new_trips_url(), :class => "btn-flat btn-flat-info nav_create_trip_button" %>
         </ul>
+
       </div>
     </div>
   </nav>
