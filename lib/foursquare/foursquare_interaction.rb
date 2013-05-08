@@ -20,7 +20,7 @@ class FoursquareInteraction
 
   def self.venue_info venue_id
     begin
-      error =""
+      error = nil
       venue = @@client.venue venue_id
       venue
    rescue Exception => exc
@@ -29,6 +29,10 @@ class FoursquareInteraction
           error = exc.inspect
         end
     end
+    if !error.nil? or venue.nil?
+      Rails.logger.info "Error #{error} ab #{error.inspect} \n"
+    end
+    
     return venue, error
   end
   
