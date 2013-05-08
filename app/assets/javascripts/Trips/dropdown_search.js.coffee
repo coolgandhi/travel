@@ -28,6 +28,7 @@
       selectedList: 4
       classes : "dropdown_traveler_type_multiselect"
       height: 'auto'
+      header: false
     )
     $('.ui-multiselect.dropdown_traveler_type_multiselect').css('width', '280px');  
 
