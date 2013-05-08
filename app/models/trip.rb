@@ -51,7 +51,7 @@ class Trip < ActiveRecord::Base
       if trips.length < 3 and find_exact_match_only == false # find trips from same location as a minimum 
         
         order_by = (!params[:traveler_type_id].blank?) ? "  FIELD(traveler_type_id, " + params[:traveler_type_id].join(" , ") + ") DESC, " : "" 
-        trips_notmatch = Trip.where("location_id = ?", params[:trip_location_id]).order(order_by + " rank_score DESC")
+        trips_notmatch = Trip.where("share_status = 1 and location_id = ?", params[:trip_location_id]).order(order_by + " rank_score DESC")
         if trips.length == 0
           message_with_trip_render = "None of the trip summaries matched your specific criteria. Showing other trip summaries to #{params["place_text_field"].split(/,/).first}."
         else
