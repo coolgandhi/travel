@@ -466,11 +466,11 @@ class TripsController < ApplicationController
   def publish_confirm
     begin
       @trip = Trip.find(params[:id])
-      @trip.share_status = 1
+      # @trip.share_status = 1
       @location_detail = Location.find_by_location_id(@trip.location_id)
       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
       @latlong = find_location_latlong(@trip)
-      @trip_message = "Publish Trip"
+      # @trip_message = "Publish Trip"
       @trip_publish = "publish_confirm_update"
       @trip_activities = @trip.trip_activities.all.sort_by {|e|
          e[:activity_sequence_number]}
@@ -495,7 +495,7 @@ class TripsController < ApplicationController
       @location_detail = Location.find_by_location_id(@trip.location_id)
       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
       @latlong = find_location_latlong(@trip)
-      @trip_message = "Publish Trip"
+      # @trip_message = "Publish Trip"
       @trip_publish = "publish_confirm_update"
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
@@ -504,7 +504,8 @@ class TripsController < ApplicationController
     end
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
-        format.html { redirect_to @trip, notice: 'Trip was successfully published.'  }
+        format.html { redirect_to @trip, notice: @trip.share_status == 0 ? 'Trip has been Unpublished' : 
+        'Trip was successfully Published'  }
         format.json { head :no_content }
       else
         format.html { render action: "publish_confirm" }

@@ -9,6 +9,6 @@
   </div>
 
   <div class = "completion_status <%= controller.action_name == "publish_confirm" ? 'completion_status_active' : '' %>" >
-    <%= controller.action_name == "publish_confirm" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check-empty'></i>".html_safe %>  <%= controller.action_name == "publish_edit" ? link_to("3. Publish Trip", publish_confirm_trip_url(@trip)) : "3. Publish Trip" %>
+    <%= controller.action_name == "publish_confirm" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check-empty'></i>".html_safe %>  <%= controller.action_name == "publish_edit" ? link_to(@trip.share_status == 0 ? "Publish Trip" : "3. Unpublish Trip", publish_confirm_trip_url(@trip)) : @trip.share_status == 0 ? "Publish Trip" : "3. Unpublish Trip" %>
   </div>
 </div>

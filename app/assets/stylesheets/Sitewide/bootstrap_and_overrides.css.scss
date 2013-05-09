@@ -94,7 +94,7 @@ $btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 5%) !defau
 $btnInfoBackground:                 #5bc0de !default;
 $btnInfoBackgroundHighlight:        #2f96b4 !default;
 
-$btnSuccessBackground:              #62c462 !default;
+$btnSuccessBackground:              rgb(111,181,12) !default; //#62c462
 $btnSuccessBackgroundHighlight:     #51a351 !default;
 
 $btnWarningBackground:              lighten($orange, 15%) !default;
