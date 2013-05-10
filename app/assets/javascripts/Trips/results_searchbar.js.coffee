@@ -4,7 +4,7 @@
   trips_namespace.fireResultsPlaceDropdownField = -> 
     $('.results_place_dropdown_field').change ->
       if $('select.results_place_dropdown_field option:selected').text() != "Where would you like to go?"
-        $("#search_submit_button").val("Start Searching")
+        $("#search_submit_button").val("Chalo!")
         $("#search_submit_button").removeClass("btn-flat-primary").addClass("btn-flat-success")
       else
         $("#search_submit_button").val("Search Trips")

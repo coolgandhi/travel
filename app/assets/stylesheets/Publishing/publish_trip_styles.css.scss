@@ -58,6 +58,17 @@
 .publish_form_activity_details{
   border-top: $myDivBorderWidth solid $borderGray;
 }
+
+.pe_flash_message_container{
+  border-bottom: 1px solid $borderGray;
+
+  .publish_flash_message{
+    div.alert{
+      margin-bottom: 0;
+    }
+  }
+}
+
 /* 2. STRUCTURE */
 
 .publish_trip_sort_activities{

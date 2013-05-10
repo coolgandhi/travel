@@ -5,5 +5,5 @@ $(document).ready(function() {
   $(".publish_form_activity_item").removeClass("selected_highlight");
   $('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");
   $(".pt_trip_activity_form").validate(trips_namespace.pubFormAddActivityRules);
-  trips_namespace.updateCountdown()
+  trips_namespace.updateCountdown();
 });

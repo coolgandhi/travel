@@ -50,7 +50,7 @@
   #         addpolyline(data, mapcontainer)
   #         return             
   jQuery ->
-    $("#map_tabs a.daymapinfo").click (e) ->
+    $("#map_tabs a.daymapinfo, #map_tabs li.dropdown ul.dropdown-menu li a.daymapinfo").click (e) ->
       e.preventDefault()
       # $(this).tab('show')
       # console.log($(this).data('day') + "hello")
@@ -62,7 +62,7 @@
       $.ajax
         beforeSend: ->
           $(".swipe_loading_indicator").show()
-          $('#map_tabs li:eq(' + map_day_index + ') a').tab('show')
+          $('#map_tabs a.class_map_day_'+map_day).tab('show')
         type: "GET"
         url: req
         data: {activity_day: map_day}

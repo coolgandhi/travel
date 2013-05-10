@@ -14,7 +14,7 @@
             <li>
           <% end %>
           
-            <a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "#{i}" %></a>
+            <a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" data-daytab = "<%= "#{i}" %>" data-tripid = "<%= "#{@trip.id}" %>" ><%= "#{i}" %></a>
           </li>
         <% end %>
 
@@ -28,7 +28,7 @@
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
               <% for i in 6..n %>
-                <li><a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" ><%= "Day #{i}" %></a></li>
+                <li><a class="publish_order_day_tabs" href=<%= "#publish_activities_day_#{i}" %> data-toggle="tab" data-daytab = "<%= "#{i}" %>" data-tripid = "<%= "#{@trip.id}" %>" ><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>
 
