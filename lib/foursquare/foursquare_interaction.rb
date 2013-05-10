@@ -25,7 +25,8 @@ class FoursquareInteraction
       venue
    rescue Exception => exc
       case exc
-        when Foursquare2::APIError 
+        when Foursquare2::APIError
+          puts "Exception #{exc}! \nError Exception Message #{exc.message}  \nException Inspect #{exc.inspect}\n" 
           error = exc.inspect
         end
     end

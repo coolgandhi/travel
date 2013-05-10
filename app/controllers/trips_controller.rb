@@ -2,8 +2,8 @@ class TripsController < ApplicationController
   include ApplicationHelper
   include TripsHelper
   before_filter :authorize, :only => [:new, :edit, :create, :update, :trips_admin]
-  before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo]
-  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo]
+  before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote]
+  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote]
   layout :resolve_layout
   # GET /trips
   # GET /trips.json 
@@ -54,7 +54,7 @@ class TripsController < ApplicationController
     begin
       @trip = Trip.find(params[:id], :include => [:author_info, :location], :select => "trips.*, author_infos.*, locations.*")
       @sorted_activities, @compressed_activities = sorted_trip_activities @trip
-    
+      @trip_stats = @trip.trip_stat
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -198,6 +198,10 @@ class TripsController < ApplicationController
         end
         trip_activity.activity.destroy
       }
+      @trip_stat = @trip.trip_stat 
+      if !@trip_stat.blank?
+        @trip_stat.destroy
+      end
       @trip.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
@@ -309,6 +313,8 @@ class TripsController < ApplicationController
     @trip_publish = "publish_create"
     respond_to do |format|
       if @trip.save
+        @trip_stat = TripStat.new(:trip_id => @trip.id)
+        @trip_stat.save # no check here if trip_stat row doesn't get created
         @trip_message = "Update Trip"
         @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
         
@@ -513,6 +519,39 @@ class TripsController < ApplicationController
       end
     end
   end
+  
+  def publish_up_vote
+    begin
+      @status = 0
+      @trip_stat = TripStat.find_by_trip_id(params[:id])
+      if @trip_stat.nil?
+        @trip = Trip.find(params[:id])
+        @trip_stat = TripStat.new
+        #@trip.trip_stat.new(:trip_id => @trip.id)
+        @trip_stat.trip_id = @trip.id
+        @trip_stat.useful = 1
+        if @trip_stat.save # no check here if trip_stat row doesn't get created
+          @status = 1
+        end
+      else
+        @trip_stat.useful = @trip_stat.useful + 1
+        if @trip_stat.save
+          @status = 1
+        end
+      end
+        
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Trip not found"
+      redirect_to root_url
+      return
+    end
+    
+    respond_to do |format|
+      format.html 
+      format.js  
+    end
+  end
+  
    
   private
 
@@ -520,7 +559,7 @@ class TripsController < ApplicationController
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm", "publish_up_vote"
       "index_layout"
     else
       "application"

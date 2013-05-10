@@ -31,7 +31,17 @@
     </div>
 
 
-
+    <div class="likebox">
+      <%= submit_tag 'Trip Useful?', :type => 'button', :id => 'useful_button', :data =>  publish_up_vote_trip_url(@trip) %>
+      <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
+        <%= @trip_stats.useful %>
+        <% if @trip_stats.useful == 1 %> 
+           person found the trip useful 
+        <% else %> 
+          people found the trip useful 
+        <% end %>
+      <% end %>
+    </div>
     <div class="socialmediabox">
       <div class = "it_facebook_share">
         <div id="fb-root"></div>

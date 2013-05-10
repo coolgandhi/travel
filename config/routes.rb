@@ -58,6 +58,7 @@ Travel::Application.routes.draw do
       get 'publish_add_day'
       get 'publish_delete_day'
       get 'publish_trip_partial_format'
+      get 'publish_up_vote'
       put 'publish_update'
       put 'update_individual'
       put 'publish_confirm_update'
