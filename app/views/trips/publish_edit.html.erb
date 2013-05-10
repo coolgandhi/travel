@@ -39,9 +39,9 @@
   <!-- End Span -->
 </div>
 
-<div class="publish_flash_message">
-  <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
-</div>
+<!-- <div class="publish_flash_message">
+  <%# render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+</div> -->
 
 <!-- Begin Row-->
 <div class = "row">
@@ -59,6 +59,13 @@
   <div class = "collapser_icon"><i class = "icon-chevron-up"></i></div>
   </div>
   <div class = "publish_trip_collapse_content publish_form_trip_details">
+    
+    <!-- Flash Message -->
+    <div class="publish_flash_message">
+      <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+    </div>
+    <!-- Flash Message -->
+    
     <%= render "shared/publish/publish_trip_details_form" %>
   </div>
   <!-- End Collapse 1-->
@@ -70,6 +77,13 @@
   </div>
   
   <div class = "publish_trip_collapse_content publish_form_activity_details_content">
+    <div class ="pe_flash_message_container">
+      <!-- Flash Message -->
+      <div class="publish_flash_message">
+        <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+      </div>
+      <!-- Flash Message -->
+    </div>
 
     <div class = "publish_trip_sort_activities">
        <%= render "shared/publish/publish_trip_activity_order" %> 

@@ -8,6 +8,7 @@
     #change icon on hide / show
     $(".publish_trip_collapse_content").on "show", ->
       $(this).prev(".publish_trip_collapse_header").find(".collapser_icon i").removeClass("icon-chevron-down").addClass("icon-chevron-up")
+      $('.alert').hide();
 
     $(".publish_trip_collapse_content").on "hide", ->
       $(this).prev(".publish_trip_collapse_header").find(".collapser_icon i").removeClass("icon-chevron-up").addClass("icon-chevron-down")

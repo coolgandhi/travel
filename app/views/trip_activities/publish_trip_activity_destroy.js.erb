@@ -4,6 +4,7 @@ var request = $.ajax({
   type: 'get', 
   dataType:'script', 
   complete: function(){
-    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= @trip_activity.activity_day %> + '"]').tab('show');	
+    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= @trip_activity.activity_day %> + '"]').tab('show');
+    trips_namespace.changeDayTabNewActivity();	
     }
   });

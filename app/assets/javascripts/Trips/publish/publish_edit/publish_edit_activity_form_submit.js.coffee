@@ -1,4 +1,4 @@
-((trips_activities_namespace, $, undefined_) ->
+((trips_namespace, $, undefined_) ->
   
   jQuery ->
     $('.publish_trip_create_activities').on "click", "#trip_activity_form_button", ->
@@ -20,4 +20,4 @@
 	  	   e.preventDefault();     
     	return
 
-) window.trips_activities_namespace = window.trips_activities_namespace or {}, jQuery
+) window.trips_namespace = window.trips_namespace or {}, jQuery
