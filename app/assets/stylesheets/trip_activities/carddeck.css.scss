@@ -133,7 +133,7 @@ $lastrowheight: 10%;
   position: absolute;
   right: 1%;
   bottom: 5%;
-  min-width: 216px;
+  // min-width: 220px;
   // overflow: hidden;
   @include box-sizing(border-box);
 
@@ -147,14 +147,19 @@ $lastrowheight: 10%;
 .it_facebook_share{
   // display: block;
   float: left;
-  margin-right: 2%;
   @include box-sizing(border-box);
 }
 
 .it_share_this{
   float: left;
-  // margin-left: 2%;
+  padding-left: 2%;
   @include box-sizing(border-box);
+}
+
+.likebox{
+  position: absolute;
+  top: 5%;
+  right: 1%;
 }
 .trip_title_auth_pic{
   float: left;

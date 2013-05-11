@@ -1,5 +1,5 @@
 <% if @status == 0 %>
 	$(".likebox").html('Some problem happened!')
 <% else %>
-	$(".likebox").html('Thanks for the feedback!')
+	$(".likebox").html('<%= escape_javascript(render("trips/partials/trip_stats/number_useful_votes")) %>');
 <% end %>

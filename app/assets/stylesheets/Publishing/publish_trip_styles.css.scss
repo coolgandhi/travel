@@ -561,34 +561,7 @@ $completionGreen: #afcfe4;
 
 @import "_file_upload_styles";
 
-/* 9. PORTRAIT MODE */
-#warning-message{ 
-  display: none; 
-  position: fixed;
-  text-align: center;
-  top: 35%;
-  width: 60%;
-  padding: 5% 10%;
-  margin: 0 20%;
-  font-size: 2em;
-  line-height: 1.2em;
-  color: $white;
-  background-color: $gray;
-  border: 1px solid $borderGray;
-  z-index: 100000;
-  @include border-radius($myDivBorderRadius);
-  @include box-sizing(border-box);
-}
 
-.touch{
-  @media only screen and (orientation:portrait) and (max-width: $break-large - 1){
-    .publish_container { display:none; }
-    #warning-message { display:block; }
-  }
-}
-@media only screen and (orientation:landscape){
-    #warning-message { display:none; }
-}
 
 /* 10. PICTURE SELECT STYLES */
 @import "picture_select_styles";

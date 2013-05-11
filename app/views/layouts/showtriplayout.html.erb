@@ -33,6 +33,11 @@
     <!-- removed render of offcanvas partial here -->
     <div class="page-wrap">
       <%= render 'layouts/navigation' %>
+      
+      <!-- End Message if in Portrait Mode -->
+        <%= render "shared/publish/portrait_mode_message" %>
+      <!-- End Message if in Portrait Mode -->
+        
       <div class="container" id="maincontainer">
         <div class="content">
           <div class="row">

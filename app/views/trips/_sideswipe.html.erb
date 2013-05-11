@@ -30,9 +30,8 @@
       <span class="trip_title_sub_text caption_large"><%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
     </div>
 
-
     <div class="likebox">
-      <%= submit_tag 'Trip Useful?', :type => 'button', :id => 'useful_button', :data =>  publish_up_vote_trip_url(@trip) %>
+      <%= submit_tag 'Trip Useful?', :type => 'button', :class => 'btn-flat', :id => 'useful_button', :data => { :usefulurl =>publish_up_vote_trip_url(@trip) }  %>
       <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
         <%= @trip_stats.useful %>
         <% if @trip_stats.useful == 1 %> 
@@ -45,7 +44,7 @@
     <div class="socialmediabox">
       <div class = "it_facebook_share">
         <div id="fb-root"></div>
-        <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
+        <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
         </div>
       </div>
 

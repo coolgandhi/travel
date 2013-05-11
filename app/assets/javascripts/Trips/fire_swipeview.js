@@ -12,7 +12,7 @@
     // dots2 = document.querySelectorAll('#navswipe2 li'),
     trips_namespace.slides = $('#loadjs').data('activities') //this returns an array of hashes formatted in trip_helper.rb
 
-    trips_namespace.gallery = new SwipeView('#swipewrapper', { numberOfPages: trips_namespace.slides.length, hastyPageFlip: true, loop: true, handleMouseSwiping: true });
+    trips_namespace.gallery = new SwipeView('#swipewrapper', { numberOfPages: trips_namespace.slides.length, hastyPageFlip: true, loop: true, handleMouseSwiping: false });
     // prevent swipeview from resizing itself on orientation change, instead use `resize` event per git issue 16
     // window.removeEventListener('swipeview-touchstart', this.preventDefault(), false);
 

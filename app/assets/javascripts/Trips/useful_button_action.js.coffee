@@ -1,9 +1,10 @@
 ((trips_namespace, $, undefined_) ->
   
   jQuery ->
-    $("#useful_button").click ->
+    $("#useful_button").click (e) ->
+      e.preventDefault();
       $.ajax 
-        url: $("#useful_button").attr('data')
+        url: $("#useful_button").data('usefulurl')
         type: 'get'
         dataType: 'script'
         contentType: false
