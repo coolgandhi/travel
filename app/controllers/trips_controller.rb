@@ -2,8 +2,8 @@ class TripsController < ApplicationController
   include ApplicationHelper
   include TripsHelper
   before_filter :authorize, :only => [:new, :edit, :create, :update, :trips_admin]
-  before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote]
-  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote]
+  before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
+  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
   layout :resolve_layout
   # GET /trips
   # GET /trips.json 
@@ -55,6 +55,7 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id], :include => [:author_info, :location], :select => "trips.*, author_infos.*, locations.*")
       @sorted_activities, @compressed_activities = sorted_trip_activities @trip
       @trip_stats = @trip.trip_stat
+      @trip_feedback = @trip.trip_feedbacks.new
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -552,14 +553,19 @@ class TripsController < ApplicationController
     end
   end
   
-   
+  def publish_chalo_feedback  
+    @trip = Trip.find(params[:id])
+    @trip_feedback = @trip.trip_feedbacks.new(params[:trip_feedback])
+    @trip_feedback.save
+  end
+  
   private
 
   def resolve_layout
     case action_name
     when "show"
       "showtriplayout"
-    when "index", "publish_new", "publish_edit", "publish_create", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm", "publish_up_vote"
+    when "index", "publish_new", "publish_edit", "publish_create", "publish_update", "publish_add_day", "publish_trip_partial_format", "publish_confirm", "publish_up_vote", "publish_chalo_feedback"
       "index_layout"
     else
       "application"

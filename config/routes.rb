@@ -62,6 +62,7 @@ Travel::Application.routes.draw do
       put 'publish_update'
       put 'update_individual'
       put 'publish_confirm_update'
+      post 'publish_chalo_feedback'
     end
     collection do
       get 'trips_admin'
