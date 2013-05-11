@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510001039) do
+ActiveRecord::Schema.define(:version => 20130511005359) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -251,6 +251,13 @@ ActiveRecord::Schema.define(:version => 20130510001039) do
   create_table "trip_comments", :force => true do |t|
     t.string   "trip_id"
     t.string   "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "trip_feedbacks", :force => true do |t|
+    t.string   "trip_id"
+    t.text     "feedback"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,0 +1,14 @@
+<div class="modal hide trip_chalo_feedback_modal"> 
+  <div class="modal-header">
+    <h4>Message to Chalo</h4>
+  </div>
+  <div class="modal-body">
+    <%= form_for @trip_feedback, :url => publish_chalo_feedback_trip_url(:id => @trip.id), :remote=>true, :html => { :method => :post } do |f| %>  
+        <%= f.hidden_field :trip_id %>
+        <%= f.text_area :feedback, :rows => "4", :placeholder => "Chalo, email me this super fun intinerary or Chalo, I don't like the useful button you made me click. Please send us your own message, Thanks!", :class => "span6 word_count", :maxcharacters => "400" %>
+      <a href="#" class="btn" id="cover_select_cancel_button">Cancel</a>   
+      <%= f.submit "Chalo", :id => "trip_feedback_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>  
+    <% end %>
+  </div> 
+  
+ </div> 
