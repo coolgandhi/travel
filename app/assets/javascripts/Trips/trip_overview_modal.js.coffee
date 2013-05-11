@@ -17,6 +17,8 @@
 
     $("#trip_overview_modal").on "show", (e) ->
       $('.mapModalMask').fadeIn('slow')
+    $("#trip_overview_modal").on "hide", (e) ->
+      $('.mapModalMask').fadeOut('slow')
     # $("#swipewrapper").on "click", "#trip_overview_show", (e) ->
     #   trips_activities_namespace.closeMapModal()
     # $('#trip_overview_modal').modal('show') #commented out so doesnt show on load

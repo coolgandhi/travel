@@ -9,6 +9,7 @@
   7. MISC
   8. OVERVIEW MODAL AND TABLE
   9. TIME DAY SWATCH
+  10. USEFUL BUTTON / FEEDBACK MODAL
 */
 
 
@@ -61,9 +62,10 @@ $lastrowheight: 10%;
   position: relative;
   overflow: visible;
   // margin-bottom: 1%;
+  border-right: $myDivBorderWidth solid $borderGray;
 
   @include box-sizing(border-box);
-  padding: 1%;
+  padding: 0.5% 1%;
   // overflow: hidden;
   p{
     margin: 0;
@@ -109,8 +111,8 @@ $lastrowheight: 10%;
   overflow: visible;
   // margin-bottom: 1%;
   @include box-sizing(border-box);
-  padding: 1%;
-  border-left: $myDivBorderWidth solid $borderGray;
+  padding: 0.5% 1%;
+  // border-left: $myDivBorderWidth solid $borderGray;
   .ab_author_name{
     color: black;
     white-space: nowrap;
@@ -130,11 +132,13 @@ $lastrowheight: 10%;
 }
 
 .socialmediabox{
-  position: absolute;
-  right: 1%;
-  bottom: 5%;
-  // min-width: 220px;
-  // overflow: hidden;
+  // position: absolute;
+  // right: 1%;
+  // bottom: 5%;
+  position: relative;
+  float: left;
+  margin-left: 1%;
+  margin-top: 4px;
   @include box-sizing(border-box);
 
   @include respond-to(small){
@@ -156,11 +160,6 @@ $lastrowheight: 10%;
   @include box-sizing(border-box);
 }
 
-.likebox{
-  position: absolute;
-  top: 5%;
-  right: 1%;
-}
 .trip_title_auth_pic{
   float: left;
   width: 55px;
@@ -1223,15 +1222,79 @@ td.thumbnail_td{
   }
 }
 
+/* 10. USEFUL BUTTON / FEEDBACK MODAL */
+.likebox{
+  position: absolute;
+  bottom: 10%;
+  right: 1%;
+  min-width: 250px;
+}
 
+.trip_useful_message{
+  float: left;
+  margin-right: 4px;
+  line-height: 30px;
+  // font-weight: bold;
+  color: black;
+  font-size: em(16px);
+}
+#useful_button{
+  float: left;
+  i{
+    color: $red;
+  }
+}
+
+.counter_o{
+  float: left;
+  @include box-sizing(border-box);
+  // height: 30px;
+  max-width: 100%;
+  border: #bbb solid 1px;
+  background: #fff;
+  @include border-radius($myDivBorderRadius);
+  min-height: 18px;
+  min-width: 15px;
+  position: relative;
+  margin: 0 0 0 5px;
+  margin-top: 2px;
+}
+
+.counter_o i, .counter_o u{
+  position: absolute;
+  zoom: 1;
+  line-height: 0;
+  width: 0;
+  height: 0;
+  left: 0;
+  top: 50%;
+  margin: -4px 0 0 -9px;
+  border: 4px transparent solid;
+  border-right-color: #aaa;
+}
+
+.counter_o u{
+  margin-left: -8px;
+  border-right-color: #fff;
+}
+
+.trip_useful_counter_div{
+  // width: 30px;
+  // height: 30px;
+  // border: 1px solid $borderGray;
+  // @include border-radius($myDivBorderRadius);
+  @include box-sizing(border-box);
+  padding: 0 3px;
+  font-size: em(12px);
+  white-space: nowrap;
+  color: #333;
+}
 
 
 .trip_chalo_feedback_modal {
-  width: 50%;
-  left: 50%;
-  top: 10%;
-  margin: 0;
-  .modal-body{
-    min-height: 200px;
-  }
+  top: 65%;
+  // position: fixed;
+  // width: 50%;
+  // left: 25%;
+  // margin: 0;
 }

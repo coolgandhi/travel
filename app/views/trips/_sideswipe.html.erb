@@ -1,5 +1,6 @@
 <!-- Begin Trip Feedback form -->
-<%= render "trips/partials/feedback_form" %>
+  <%= render "trips/partials/feedback_form" %>
+<!-- End Trip Feedback Form -->
 
 <!--Begin Trip Title Wrap -->
 <div class = "it_title_box_wrap">
@@ -31,31 +32,37 @@
         <!--End show overview button that shows up only on small screens -->
       
       <span class="trip_title_sub_text caption_large"><%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
+  
+      <!--Begin Social Media Box -->
+      <div class="socialmediabox">
+        <div class = "it_facebook_share">
+          <div id="fb-root"></div>
+          <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
+          </div>
+        </div>
+
+        <div class ="it_share_this">
+          <span class='st_email'></span>
+        </div>
+      </div>
+      <!--End Social Media Box -->
+
     </div>
 
     <div class="likebox">
-      <%= submit_tag 'Trip Useful?', :type => 'button', :class => 'btn-flat', :id => 'useful_button', :data => { :usefulurl =>publish_up_vote_trip_url(@trip) }  %>
-      <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
-        <%= @trip_stats.useful %>
-        <% if @trip_stats.useful == 1 %> 
-           person found the trip useful 
-        <% else %> 
-          people found the trip useful 
+      <span class = "trip_useful_message">Was this trip summary</span>
+      <button type="submit" class="btn-flat btn-flat-small" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="useful_button" name="commit" type="button" >
+        <i class="icon-heart-empty icon-large"></i> Useful?
+      </button>
+      <span class = "counter_o">
+        <i></i>
+        <u></u>
+        <span class = "trip_useful_counter_div">
+        <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
+          <%= @trip_stats.useful %>
         <% end %>
-      <% end %>
-    </div>
-
-
-    <div class="socialmediabox">
-      <div class = "it_facebook_share">
-        <div id="fb-root"></div>
-        <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
-        </div>
-      </div>
-
-      <div class ="it_share_this">
-        <span class='st_email'></span>
-      </div>
+        </span>
+      </span>
     </div>
 
   </div>
@@ -63,6 +70,7 @@
 
   <!--Begin Trip Author Box -->
   <div class="authortitlebox">
+
     <span class="trip_title_sub_text caption_large author_intrip_popover" data-content = '<%= render "trips/partials/author_popover_content", :trip => @trip %>'>
         <%= link_to author_page_author_info_path(@trip.author_info.id),:target => "_blank" do %>
           <% if !@trip.author_info.self_image.blank? %>

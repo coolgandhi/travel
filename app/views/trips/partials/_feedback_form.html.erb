@@ -1,14 +1,26 @@
-<div class="modal hide trip_chalo_feedback_modal"> 
+<div class="modal hide trip_chalo_feedback_modal" data-backdrop="true"> 
   <div class="modal-header">
-    <h4>Message to Chalo</h4>
+    <h4>You found this trip summary useful!</h4>
   </div>
   <div class="modal-body">
-    <%= form_for @trip_feedback, :url => publish_chalo_feedback_trip_url(:id => @trip.id), :remote=>true, :html => { :method => :post } do |f| %>  
-        <%= f.hidden_field :trip_id %>
-        <%= f.text_area :feedback, :rows => "4", :placeholder => "Chalo, email me this super fun intinerary or Chalo, I don't like the useful button you made me click. Please send us your own message, Thanks!", :class => "span6 word_count", :maxcharacters => "400" %>
-      <a href="#" class="btn" id="cover_select_cancel_button">Cancel</a>   
-      <%= f.submit "Chalo", :id => "trip_feedback_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>  
-    <% end %>
+    <div class="row-fluid">
+      <div class="span12">
+        <p>Please tell us what you liked, didn't like and what you want more of.  Thank you for helping us make your travel planning easy!
+        </p>
+      </div>
+      <div class="span12">
+        
+        <%= form_for @trip_feedback, :url => publish_chalo_feedback_trip_url(:id => @trip.id), :remote=>true, :html => { :method => :post, :class => "span11" } do |f| %>  
+            <%= f.hidden_field :trip_id %>
+            <%= f.text_area :feedback, :rows => "4", :placeholder => "Do want a printable e-mail of this trip summary? Don't like this useful button? Let us know your feedback! Thank you!", :class => "useful_feedback_form_textarea span12 word_count", :maxcharacters => "400" %>
+
+          <a href="#" class="btn-flat" id="feedback_cancel_button">Close</a>   
+          
+          <%= f.submit "Send Feedback", :id => "trip_feedback_form_submit", :class => "btn-flat btn-flat-primary pull-right" %>  
+        <% end %>
+
+      </div>
+    </div>
   </div> 
   
  </div> 
