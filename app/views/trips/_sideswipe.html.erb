@@ -33,39 +33,46 @@
       
       <span class="trip_title_sub_text caption_large"><%= @trip.duration %> Days in <%= @trip.location[:place] %></span>
   
-      <!--Begin Social Media Box -->
-      <div class="socialmediabox">
-        <div class = "it_facebook_share">
-          <div id="fb-root"></div>
-          <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
+    </div>
+
+    <!-- Begin Title Social Media -->
+    <div class = "title_social_media">
+        <!--Begin Social Media Box -->
+        <div class="socialmediabox">
+          <div class = "it_facebook_share">
+            <div id="fb-root"></div>
+            <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
+            </div>
+          </div>
+
+          <div class ="it_share_this">
+            <span class='st_email'></span>
           </div>
         </div>
+        <!--End Social Media Box -->
 
-        <div class ="it_share_this">
-          <span class='st_email'></span>
-        </div>
-      </div>
-      <!--End Social Media Box -->
-
-    </div>
-
-    <div class="likebox">
-      <span class = "trip_useful_message">Was this trip summary</span>
-      <button type="submit" class="btn-flat btn-flat-small" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="useful_button" name="commit" type="button" >
-        <i class="icon-heart-empty icon-large"></i> Useful?
-      </button>
-      <span class = "counter_o">
-        <i></i>
-        <u></u>
-        <span class = "trip_useful_counter_div">
-        <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
-          <%= @trip_stats.useful %>
-        <% else %>
-          0  
-        <% end %>
+      <!-- Begin Like Box -->
+      <div class="likebox">
+        <span class = "trip_useful_message">Was this trip summary</span>
+        <button type="submit" class="btn-flat btn-flat-small" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="useful_button" name="commit" type="button" >
+          <i class="icon-heart-empty icon-large"></i> Useful?
+        </button>
+        <span class = "counter_o">
+          <i></i>
+          <u></u>
+          <span class = "trip_useful_counter_div">
+          <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
+            <%= @trip_stats.useful %>
+          <% else %>
+            0  
+          <% end %>
+          </span>
         </span>
-      </span>
+      </div>
+      <!-- End Like Box -->
+      
     </div>
+    <!-- Begin Title Social Media -->
 
   </div>
   <!--End Trip Title Box -->
@@ -96,6 +103,8 @@
     </p>
   </div>
   <!-- End Trip Author Box -->
+
+
 </div>
 <!--End Trip Title Wrap -->
 

@@ -5,7 +5,7 @@
     $(".word_count").each ->
       $this = $(this)
       $this.next(".counter").text (($this.attr("maxcharacters")- $this.val().length) + " characters remaining")
-    $(".word_count").on "input keyup keydown focus", ->
+    $(".word_count").on "keydown", ->
       $this = $(this)
       maxcharacters = $this.attr("maxcharacters")
       value = $this.val()
@@ -19,7 +19,7 @@
   jQuery ->  
     trips_namespace.updateCountdown()
 
-    $(".publish_trip_create_activities").on "input keyup keydown focus", ".word_count", (e) ->
+    $(".publish_trip_create_activities").on "focus", ".word_count", (e) ->
       trips_namespace.updateCountdown()    
 
 

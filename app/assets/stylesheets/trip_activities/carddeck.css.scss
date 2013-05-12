@@ -41,7 +41,7 @@ $lastrowheight: 10%;
 // }
 .it_title_box_wrap{
   @include col(12);
-  margin-bottom: 1%;
+  margin-bottom: 0.5%;
   @include box-sizing(border-box);
   background-color: rgba(255,255,255,0.3);
   border-color: $borderGray;
@@ -65,7 +65,7 @@ $lastrowheight: 10%;
   border-right: $myDivBorderWidth solid $borderGray;
 
   @include box-sizing(border-box);
-  padding: 0.5% 1%;
+  padding: 0.25% 1%;
   // overflow: hidden;
   p{
     margin: 0;
@@ -137,7 +137,7 @@ $lastrowheight: 10%;
   // bottom: 5%;
   position: relative;
   float: left;
-  margin-left: 1%;
+  // margin-left: 1%;
   margin-top: 4px;
   @include box-sizing(border-box);
 
@@ -151,6 +151,7 @@ $lastrowheight: 10%;
 .it_facebook_share{
   // display: block;
   float: left;
+  padding: 0 2%;
   @include box-sizing(border-box);
 }
 
@@ -1223,11 +1224,19 @@ td.thumbnail_td{
 }
 
 /* 10. USEFUL BUTTON / FEEDBACK MODAL */
+.title_social_media{
+  width: 100%;
+  float: left;
+  position: relative;
+}
+
 .likebox{
-  position: absolute;
-  bottom: 10%;
-  right: 1%;
-  min-width: 250px;
+  // position: absolute;
+  // bottom: 1%;
+  // right: 1%;
+  // min-width: 250px;
+  position: relative;
+  float: right;
 }
 
 .trip_useful_message{
@@ -1236,7 +1245,7 @@ td.thumbnail_td{
   line-height: 30px;
   // font-weight: bold;
   color: black;
-  font-size: em(16px);
+  font-size: em(14px);
 }
 #useful_button{
   float: left;
