@@ -59,24 +59,29 @@ class VenuesController < ApplicationController
     if params[:venueid]
       FoursquareInteraction.foursquare_client
       @venue, error = FoursquareInteraction.venue_info(params[:venueid])
-      @venue_details[:venue_id] = @venue[:id]
-      @venue_details[:canonicalUrl] = empty_string_if_value_nil(@venue[:canonicalUrl])
-      @venue_details[:address1] = empty_string_if_value_nil(@venue[:location][:address])
-      @venue_details[:city] = empty_string_if_value_nil(@venue[:location][:city]) 
-      @venue_details[:address2] = empty_string_if_value_nil(@venue[:location][:crossStreet]) 
-      @venue_details[:country] = empty_string_if_value_nil(@venue[:location][:country]) 
-      @venue_details[:state] = empty_string_if_value_nil(@venue[:location][:state]) 
-      @venue_details[:phone] = empty_string_if_value_nil(@venue[:contact][:formattedPhone]) 
-      @venue_details[:zip] = empty_string_if_value_nil(@venue[:location][:postalCode])
-      @venue_details[:name] = empty_string_if_value_nil(@venue[:name]) 
-      @venue_details[:website] = empty_string_if_value_nil(@venue[:url]) 
-      @venue_details[:category_name] = empty_string_if_value_nil(!@venue[:categories].first.blank? ? @venue[:categories].first[:name] : "") 
-      @venue_details[:category_parent] = empty_string_if_value_nil(!@venue[:categories].first.blank? ? @venue[:categories].first[:parents].first : "") 
-      @venue_details[:rating] = empty_string_if_value_nil(@venue[:rating])
-      @venue_details[:twitter] = empty_string_if_value_nil(@venue[:contact][:twitter])
-      @venue_details[:source] = "foursquare"      
-      @venue_details[:category] = get_closest_category(@venue[:categories])
-      @venue_details[:venue_stats] = empty_string_if_value_nil(@venue[:stats])
+      
+      if !@venue.blank?
+        @venue_details[:venue_id] = @venue[:id]
+        @venue_details[:canonicalUrl] = empty_string_if_value_nil(@venue[:canonicalUrl])
+        @venue_details[:address1] = empty_string_if_value_nil(@venue[:location][:address])
+        @venue_details[:city] = empty_string_if_value_nil(@venue[:location][:city]) 
+        @venue_details[:address2] = empty_string_if_value_nil(@venue[:location][:crossStreet]) 
+        @venue_details[:country] = empty_string_if_value_nil(@venue[:location][:country]) 
+        @venue_details[:state] = empty_string_if_value_nil(@venue[:location][:state]) 
+        @venue_details[:phone] = empty_string_if_value_nil(@venue[:contact][:formattedPhone]) 
+        @venue_details[:zip] = empty_string_if_value_nil(@venue[:location][:postalCode])
+        @venue_details[:name] = empty_string_if_value_nil(@venue[:name]) 
+        @venue_details[:website] = empty_string_if_value_nil(@venue[:url]) 
+        @venue_details[:category_name] = empty_string_if_value_nil(!@venue[:categories].first.blank? ? @venue[:categories].first[:name] : "") 
+        @venue_details[:category_parent] = empty_string_if_value_nil(!@venue[:categories].first.blank? ? @venue[:categories].first[:parents].first : "") 
+        @venue_details[:rating] = empty_string_if_value_nil(@venue[:rating])
+        @venue_details[:twitter] = empty_string_if_value_nil(@venue[:contact][:twitter])
+        @venue_details[:source] = "foursquare"      
+        @venue_details[:category] = get_closest_category(@venue[:categories])
+        @venue_details[:venue_stats] = empty_string_if_value_nil(@venue[:stats])
+      else
+        @venue_details = nil
+      end
     end
     
     respond_to do |format|

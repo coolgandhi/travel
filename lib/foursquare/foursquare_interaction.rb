@@ -1,6 +1,5 @@
 class FoursquareInteraction
   include ActiveSupport::Rescuable
-  
   @@client = nil
   def self.foursquare_client
     @@client ||= Foursquare2::Client.new(:client_id => CONFIG[:FOURSQUARE_CLIENT_ID], :client_secret => CONFIG[:FOURSQUARE_CLIENT_SECRET])
@@ -8,13 +7,20 @@ class FoursquareInteraction
   end
   
   def self.suggest_venues latlong, term, total
-    term = term.strip
-    suggestions = ""
-    if term.length > 2   
-      get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
-      suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
-    end
-
+    begin
+      term = term.strip
+      suggestions = ""
+      if term.length > 2   
+        get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
+        suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
+      end
+    rescue Exception => exc
+      suggestions = nil
+      Rails.logger.info "Exception #{exc}! \nError Exception Message #{exc.message}  \nException Inspect #{exc.inspect}\n"
+      ExceptionNotifier::Notifier.exception_notification($request.env, exc, :data => {:message => "chalo.io error: please check"}).deliver 
+      error = exc.inspect
+    end  
+    
     suggestions
   end
 
@@ -22,16 +28,10 @@ class FoursquareInteraction
     begin
       error = nil
       venue = @@client.venue venue_id
-      venue
    rescue Exception => exc
-      case exc
-        when Foursquare2::APIError
-          puts "Exception #{exc}! \nError Exception Message #{exc.message}  \nException Inspect #{exc.inspect}\n" 
-          error = exc.inspect
-        end
-    end
-    if !error.nil? or venue.nil?
-      Rails.logger.info "Error #{error} ab #{error.inspect} \n"
+      Rails.logger.info "Exception #{exc}! \nError Exception Message #{exc.message}  \nException Inspect #{exc.inspect}\n"
+      ExceptionNotifier::Notifier.exception_notification($request.env, exc, :data => {:message => "chalo.io error: please check"}).deliver 
+      error = exc.inspect
     end
     
     return venue, error
