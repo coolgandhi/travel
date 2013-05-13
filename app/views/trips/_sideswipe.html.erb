@@ -57,7 +57,7 @@
         <button type="submit" class="btn-flat btn-flat-small" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="useful_button" name="commit" type="button" >
           <i class="icon-heart-empty icon-large"></i> Useful?
         </button>
-        <span class = "counter_o">
+        <span class = "counter_o" style = "display: <%= (!@trip_stats.blank? and @trip_stats.useful > 0) ? "block" : "none" %>">
           <i></i>
           <u></u>
           <span class = "trip_useful_counter_div">
