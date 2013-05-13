@@ -21,8 +21,9 @@
             "<strong><a href='" + item.canonicalUrl + "' target='_blank'>" + item.name + "</a></strong>" 
           );
           $('.publish_trip_confirm_category').html(item.category_name);
+          secondAddress = if (!item.address2) then "" else ("</br>" + "(" + item.address2 + ")")
           $('.publish_trip_confirm_address').html(
-            "<address>" + item.address1 + "</br>" + "(" + item.address2 + ")" +
+            "<address>" + item.address1 + secondAddress +
             "</br>" + item.city + ", " + item.state + " " + item.zip + "</address>" 
           );
           $('.publish_trip_confirm_stats').html();

@@ -513,7 +513,7 @@ module ApplicationHelper
           which_url_msg = "We're processing your image"
         else
           use_this_url = "/assets/no-img-holder.png"
-          which_url_msg = "Please Select an Image"
+          which_url_msg = "Upload image or Choose from Foursquare"
         end
       when 'TripActivity'
         if !object.self_trip_activity_photos.first.blank? and !object.self_trip_activity_photos.first.self_photo.blank?
@@ -532,7 +532,7 @@ module ApplicationHelper
             which_url_msg = "Please Select an Image"
           else 
             use_this_url = "/assets/no-img-holder.png"
-            which_url_msg = "Please Select an Image"
+            which_url_msg = "Upload image or Choose from Foursquare"
           end
         end
     end
