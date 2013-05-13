@@ -79,6 +79,16 @@ class VenuesController < ApplicationController
         @venue_details[:source] = "foursquare"      
         @venue_details[:category] = get_closest_category(@venue[:categories])
         @venue_details[:venue_stats] = empty_string_if_value_nil(@venue[:stats])
+        
+        @category = get_closest_category(@venue[:categories])
+        case @category
+          when "FoodActivity"
+             @activity_detail = create_food_venue(@venue[:id], params[:location_id], 0, @venue)
+          when "TransportActivity"
+          
+          else
+            @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)  
+        end
       else
         @venue_details = nil
       end

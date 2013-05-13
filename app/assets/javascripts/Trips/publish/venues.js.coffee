@@ -18,7 +18,7 @@
         $.map(data, (item) ->
           if item == null
             $('.publish_trip_confirm_name').html(
-              "<strong>Something went wrong on our servers. Please try this request once again after 5 minutes. Sorry!</strong>" 
+              "<strong>Something went wrong on our servers. Please try again in few minutes. Sorry!</strong>" 
             );
           else
             $('.publish_trip_confirm_name').html(
@@ -127,7 +127,7 @@
                   )
               else
                 $('.publish_trip_confirm_name').html(
-                  "<strong>Something went wrong on our servers. Please try this request once again after 5 minutes. Sorry!</strong>" 
+                  "<strong>Something went wrong on our servers. Please try again in few minutes. Sorry!</strong>" 
                 )
         open: ->
           $(this).removeClass("#activityvenue").addClass "ui-corner-top"
