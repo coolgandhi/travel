@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
   
   private
   def https_redirect
+    $request = request
     if CONFIG[:ENABLE_HTTPS] == "yes" and Rails.env.production?
       if request.ssl? && !use_https? || !request.ssl? && use_https?
         protocol = request.ssl? ? "http" : "https"

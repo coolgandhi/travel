@@ -15,27 +15,31 @@
       complete: ->
         $(".confirm_box_spinner").hide()
       success: (data) ->
-        # console.log(foursquare_id)
         $.map(data, (item) ->
-          $('.publish_trip_confirm_name').html(
-            "<strong><a href='" + item.canonicalUrl + "' target='_blank'>" + item.name + "</a></strong>" 
-          );
-          $('.publish_trip_confirm_category').html(item.category_name);
-          secondAddress = if (!item.address2) then "" else ("</br>" + "(" + item.address2 + ")")
-          $('.publish_trip_confirm_address').html(
-            "<address>" + item.address1 + secondAddress +
-            "</br>" + item.city + ", " + item.state + " " + item.zip + "</address>" 
-          );
-          $('.publish_trip_confirm_stats').html();
-          $('.stats_checkins').html(
-            item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-          );
-          $('.stats_rating').html(
-            (Math.round( item.rating * 10 ) / 10) + " / 10"
-          );
-          $('.stats_rating_header').html('<strong>4sq Rating</strong>');
-          $('.stats_checkins_header').html('<strong>Total Check-ins</strong>');
-        )
+          if item == null
+            $('.publish_trip_confirm_name').html(
+              "<strong>Something went wrong on our servers. Please try again in few minutes. Sorry!</strong>" 
+            );
+          else
+            $('.publish_trip_confirm_name').html(
+              "<strong><a href='" + item.canonicalUrl + "' target='_blank'>" + item.name + "</a></strong>" 
+            );
+            $('.publish_trip_confirm_category').html(item.category_name);
+            secondAddress = if (!item.address2) then "" else ("</br>" + "(" + item.address2 + ")")
+            $('.publish_trip_confirm_address').html(
+              "<address>" + item.address1 + secondAddress +
+              "</br>" + item.city + ", " + item.state + " " + item.zip + "</address>" 
+            );
+            $('.publish_trip_confirm_stats').html();
+            $('.stats_checkins').html(
+              item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            );
+            $('.stats_rating').html(
+              (Math.round( item.rating * 10 ) / 10) + " / 10"
+            );
+            $('.stats_rating_header').html('<strong>4sq Rating</strong>');
+            $('.stats_checkins_header').html('<strong>Total Check-ins</strong>');
+          )
 
   totalSelectedImages = 0;
 
@@ -111,14 +115,20 @@
             url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
             dataType: "json"
             data: 
-              total: 10
+              total: 15
               ven: request.term
               latlong: $('#trip_activity_latlong').val()
             success: (data) ->
-              response $.map(data, (item) ->
-                $('#venue_id').val(item.value)
-                label: item.label + ", " + item.address + ", " + item.city
-                value: item.value
+              if data != null
+                response $.map(data, (item) ->
+                  if item != null
+                    $('#venue_id').val(item.value)
+                    label: item.label + ", " + item.address + ", " + item.city
+                    value: item.value
+                  )
+              else
+                $('.publish_trip_confirm_name').html(
+                  "<strong>Something went wrong on our servers. Please try again in few minutes. Sorry!</strong>" 
                 )
         open: ->
           $(this).removeClass("#activityvenue").addClass "ui-corner-top"
@@ -129,10 +139,15 @@
           $(this).val ui.item.label      
         select: (event, ui) ->
           event.preventDefault()
-          $('#venue_id').val( ui.item.value )
-          $(this).val ui.item.label
-          $(this).siblings('#activityvenue').val ui.item.value
-          trips_activities_namespace.populate_venue_detail (ui.item.value)   
+          if ui.item == null
+            $('.publish_trip_confirm_name').html(
+              "<strong>Something went wrong on our servers. Please try this request once again after 5 minutes. Sorry!</strong>" 
+            );
+          else
+            $('#venue_id').val( ui.item.value )
+            $(this).val ui.item.label
+            $(this).siblings('#activityvenue').val ui.item.value
+            trips_activities_namespace.populate_venue_detail (ui.item.value)   
       
           
   jQuery ->

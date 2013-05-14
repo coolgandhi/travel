@@ -153,8 +153,7 @@ module ApplicationHelper
     FoursquareInteraction.foursquare_client
     if venue.blank?
       @venue, error = FoursquareInteraction.venue_info(venue_id)
-      if !error.nil?
-        Rails.logger.info " errors #{error}"
+      if @venue.blank?
         return nil
       end
     else
@@ -244,7 +243,7 @@ module ApplicationHelper
     FoursquareInteraction.foursquare_client
     if venue.blank?
       @venue, error = FoursquareInteraction.venue_info(venue_id)
-      if !error.nil?
+      if @venue.blank?
         return nil
       end
     else

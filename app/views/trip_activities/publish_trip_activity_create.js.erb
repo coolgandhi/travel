@@ -1,5 +1,6 @@
 <% if @status == 0 %>
-	$(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
+//	$(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
+	$('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
 <% end %>
 <% if @status == 1 %>
 	var request = $.ajax({ 

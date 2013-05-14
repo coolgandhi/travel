@@ -370,6 +370,7 @@ class TripActivitiesController < ApplicationController
       end
       
       if !(@activity and @activity.save)
+        flash.now[:error] = "Something went wrong on our servers. Please try again in few minutes. Sorry!" 
         format.js
       else
         if @trip_activity.update_attributes(params[:trip_activity])
@@ -386,6 +387,7 @@ class TripActivitiesController < ApplicationController
                 flash.now[:success] = "Successfully updated trip activity." 
                 format.js
             else
+              flash.now[:error] = "Something went wrong on our servers. Please try again in few minutes. Sorry!" 
               format.js
             end
           else
@@ -394,6 +396,7 @@ class TripActivitiesController < ApplicationController
             format.js
           end
         else
+          flash.now[:error] = "Something went wrong on our servers. Please try again in few minutes. Sorry!" 
           format.js
         end
       end
@@ -438,64 +441,93 @@ class TripActivitiesController < ApplicationController
       @update = 0
       @status = 0
       @trip_activity = @trip.trip_activities.new(params[:trip_activity])
+      @venue = nil
+      enter = 0
       
-      @venue, error = FoursquareInteraction.venue_info(params[:venueid])
-      @category = get_closest_category(@venue[:categories])
-      @latlong = find_location_latlong(@trip)
-      @activity = nil
-      @activity_detail = nil
-      @trip_activity.activity_type = @category
-      @trip_activity.activity_sequence_number = 1
-      @day = @trip_activity.max_sequence_number_day(@trip_activity.activity_day)
-      if !@day.blank?
-        @trip_activity.activity_sequence_number = @trip_activity.max_sequence_number_day(@trip_activity.activity_day).to_i + 1
-      end
-      
-      case @category
-        when "FoodActivity"
-          logger.info " food activity \n"
-          @activity = FoodActivity.new
-          @activity.description = params[:description]
-          @activity.duration = params[:duration]
-          @activity.quick_tip = params[:quick_tip]
-          @activity.image_urls = params[:selected_images]
-          @activity.restaurant_detail_id = params[:venueid]
-          @activity_detail = @activity.restaurant_detail
-          if (@activity_detail.blank?)
-            @activity_detail = create_food_venue(@venue[:id], params[:location_id], 0, @venue)
-            @activity.restaurant_detail = @activity_detail
+      @category = "LocationActivity"       
+      @activity_detail = LocationDetail.find_by_location_detail_id(params[:venueid])
+      if @activity_detail.blank?
+        @activity_detail = RestaurantDetail.find_by_restaurant_detail_id(params[:venueid])
+        if @activity_detail.blank?
+          @venue, error = FoursquareInteraction.venue_info(params[:venueid])
+          if !@venue.blank?
+            @category = get_closest_category(@venue[:categories])
+          else
+            enter = 1
           end
-        when "TransportActivity"
-          logger.info " transport activity \n"
-          @activity_detail = ""
-          @activity = TransportActivity.new(params[:transport_activity])        
+          @activity = nil
+          @activity_detail = nil      
         else
-          logger.info " location activity \n"
-          @activity = LocationActivity.new
-          @activity.description = params[:description]
-          @activity.duration = params[:duration]
-          @activity.quick_tip = params[:quick_tip]
-          @activity.image_urls = params[:selected_images]
-          @activity.location_detail_id = params[:venueid]
-          @activity_detail = @activity.location_detail
-          if (@activity_detail.blank?)
-            @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)
-            @activity.location_detail = @activity_detail
+          enter = 1
+          @category = "FoodActivity"            
         end
+      else
+        enter = 1
+        @category = "LocationActivity"
       end
+
+      if !@activity_detail.blank? and @activity_detail.location_id.blank?
+        @activity_detail.location_id = @trip.location_id
+        @activity_detail.save # save the location id if not present
+      end
+            
+      if enter == 1
+        @latlong = find_location_latlong(@trip)
+        @trip_activity.activity_type = @category
+        @trip_activity.activity_sequence_number = 1
+        @day = @trip_activity.max_sequence_number_day(@trip_activity.activity_day)
+        if !@day.blank?
+          @trip_activity.activity_sequence_number = @trip_activity.max_sequence_number_day(@trip_activity.activity_day).to_i + 1
+        end
+      
+        case @category
+          when "FoodActivity"
+            logger.info " food activity \n"
+            @activity = FoodActivity.new
+            @activity.description = params[:description]
+            @activity.duration = params[:duration]
+            @activity.quick_tip = params[:quick_tip]
+            @activity.image_urls = params[:selected_images]
+            @activity.restaurant_detail_id = params[:venueid]
+            @activity_detail = @activity_detail.blank? ? @activity.restaurant_detail : @activity_detail
+            if (@activity_detail.blank?)
+              @activity_detail = create_food_venue(@venue[:id], params[:location_id], 0, @venue)
+              @activity.restaurant_detail = @activity_detail
+            end
+          when "TransportActivity"
+            logger.info " transport activity \n"
+            @activity_detail = ""
+            @activity = TransportActivity.new(params[:transport_activity])        
+          else
+            logger.info " location activity \n"
+            @activity = LocationActivity.new
+            @activity.description = params[:description]
+            @activity.duration = params[:duration]
+            @activity.quick_tip = params[:quick_tip]
+            @activity.image_urls = params[:selected_images]
+            @activity.location_detail_id = params[:venueid]
+            @activity_detail = @activity_detail.blank? ? @activity.location_detail : @activity_detail
+            if (@activity_detail.blank?)
+              @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)
+              @activity.location_detail = @activity_detail
+            end
+        end
+      end  
       
       respond_to do |format|
-        if @activity_detail == nil or @activity_detail.errors.any?
-          if @activity_detail.nil?
-          else
+        if enter == 0 or @activity_detail.blank? or @activity_detail.errors.any?
+          flash.now[:error] = "Something went wrong on our servers. Please try again in few minutes. Sorry!" 
+          if !@activity_detail.blank? and @activity_detail.errors.any?
             logger.info "activity detail errors #{@activity_detail.inspect.errors} "
           end
           format.js
           format.html { redirect_to new_trip_trip_activity_path(@trip), notice: 'Error during activity creation, retry.'  }
           format.json { render json: @activity_detail.errors, status: :unprocessable_entity }    
         else
-          if !(@activity and @activity.save)
-            logger.info "\n activity errors #{@activity.errors.messages} "
+          if @activity.blank? or !@activity.save
+            if !@activity.blank? and @activity.errors.any? 
+              logger.info "\n activity errors #{@activity.errors.messages} "
+            end
             format.js
             format.html { redirect_to new_trip_trip_activity_path(@trip), notice: @activity.errors.full_messages.to_sentence }
             format.json { render json: @activity.errors, status: :unprocessable_entity }    
