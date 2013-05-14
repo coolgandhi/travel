@@ -1,7 +1,6 @@
 ((trips_namespace, $, undefined_) ->
   
-  jQuery ->
-    
+  jQuery ->    
     trips_namespace.changeDayTabNewActivity = ->
       $('a.publish_order_day_tabs').click ->  
         whichTrip = $(this).data('tripid')

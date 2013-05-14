@@ -38,7 +38,7 @@ Travel::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   
-  %w[about privacy tos].each do |page|
+  %w[about privacy tos why].each do |page|
     get page, :controller => "info", :action => page
   end
   

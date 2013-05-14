@@ -32,3 +32,153 @@ ul.info_align_center{
    display: block;	
  }
 }
+
+/* How this works styles */
+.module{
+  @include box-sizing(border-box);
+  padding: 2%;
+  a.anchor{display: block; position: relative; top: -120px; visibility: hidden;}
+  h2{
+    text-align: center;
+  }
+}
+
+.grey_back{
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1),0 -1px 2px rgba(0, 0, 0, 0.1));
+  background-color: #e9eaed;//#efefe9;
+}
+
+#why_navigation{
+  background-color: $bodyBackground;
+  @include box-shadow(0 4px 2px -2px rgba(0, 0, 0, 0.1));
+}
+
+#why_navigation.showing{
+  position: fixed;
+  top: 40px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.wn_signup_button{
+  float: left;
+}
+
+section.first_module{
+  margin-top: 60px;
+}
+
+.feature-list{
+  @include box-sizing(border-box);
+  margin: 20px auto 36px;
+  list-style: none;
+  display: inline-block;
+  width: 100%;
+  .feature{
+    @include box-sizing(border-box);
+    display: inline-block;
+    margin-right: 1%; 
+    text-align: center;
+    vertical-align: top;
+    h3{
+      font-size: em(18px);
+      color: black;//#484848;
+      font-weight: normal;
+    }
+    p{
+      width: 90%;
+      margin: 0 auto;
+      color: rgb(77,77,77);//#a3a3a3;
+      line-height: em(24px);
+    }
+    a{
+      font-weight: bold;
+    }
+  }
+  .illustration{
+    margin: 0 auto;
+    width: 320px;
+    height: 250px;
+  }
+  &.three .feature{
+    width: 32%;
+  }
+  
+  &.two .feature{
+    width: 48.5%;
+  }
+}
+
+.why_container .container{
+  width: 1180px;
+}
+
+.why_container .module h2.header{
+  padding: 24px 0;
+  margin: 0;
+  text-align: center;
+  font-size: em(32px);
+  line-height: 1em;
+  color: #444;
+}
+
+.long_img .illustration{
+  margin: 0 auto;
+  width: 375px;
+  height: 200px;
+}
+
+#signup .container{
+  text-align: center;
+  min-height: 400px;
+}
+
+/** How Images **/
+/* COMPASS TO SPRITE How_Images DIRECTORY */
+@import "how_images/*.png";
+@include all-how_images-sprites;
+
+@mixin how_image_sizes{
+  background-position:center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  // float: left;
+  // position: relative;
+  @include box-sizing(border-box);  
+}
+
+.how_create_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_create);
+}
+
+.how_show_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_show);
+}
+
+.how_talk_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_talk);
+}
+
+.how_talk_long_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_talk_long);
+}
+
+.how_create_detailed_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_create_detailed);
+}
+
+.how_publish_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_publish);
+}
+
+.how_search_img{
+  @include how_image_sizes;
+  @include how_images-sprite(how_search);
+}

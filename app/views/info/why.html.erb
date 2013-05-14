@@ -1,0 +1,145 @@
+<%= content_for :title do %>
+  chalo.io - Why Sign Up? 
+<% end %>
+
+<%= content_for :description do %>
+  <%= "We make your travel planning easy. Check out trip summaries " + ((params[:place] == nil) ? "to your favorite destinations at chalo.io": ("to" + params[:place]) + " at chalo.io")  %>
+<% end %>
+
+<div class = "why_container">
+<section id="why_navigation" class = "showing">
+  <div class = "container">
+    <ul class="nav nav-pills pull-right nav_pill_parent">
+      <li>
+        <a id ="nav_section1" href="#how" class="pill_make_active">How It Works</a>
+      </li>
+      <li><a id ="nav_section2" href="#create" class="pill_make_active">Create</a></li>
+      <li><a id ="nav_section3" href="#show" class="pill_make_active">Show</a></li>
+      <li><a id ="nav_section4" href="#talk" class="pill_make_active">Discuss</a></li>
+        <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-success wn_signup_button" %>
+    </ul>
+  </div>
+</section>
+
+<section class = "module first_module">
+  <a class="anchor" id="how"></a>
+  <div class = "container">
+    <h2 class = "header">How It Works</h2>
+      <ul class = "feature-list three">
+        <li class = "feature">
+          <div class="illustration">
+            <div class = "how_create_img"></div>
+          </div>
+          <h3>Create</h3>
+          <p>Creating a trip summary is easy and fun. Just tell us where you went in a sequence.</p>
+          <a id ="nav_section2" href="#create" class="pill_make_active">Learn More</a>
+        </li>
+        <li class = "feature">
+          <div class="illustration">
+            <div class = "how_show_img"></div>
+          </div>
+          <h3>Show</h3>
+          <p>Show where you went and what you did in a simple and beautiful trip summary. All in a perfect sequence that anyone can easily follow. <a href = "http://eepurl.com/zwj59" target = "_blank">Sign Up</a> to our newsletter for a heads up as trips are added.</p>
+          <a id ="nav_section2" href="#show" class="pill_make_active">Learn More</a>
+        </li>
+        <li class = "feature">
+          <div class="illustration">
+            <div class = "how_talk_img"></div>
+          </div>
+          <h3>Discuss</h3>
+          <p>Easily share your trip summary and inspire other travelers. Get feedback and be helpful by engaging with them.</p>
+          <a id ="nav_section2" href="#talk" class="pill_make_active">Learn More</a>
+        </li>
+      </ul>
+  </div>
+</section>
+
+<section class = "module grey_back">
+  <a class="anchor" id="create"></a>
+  <div class = "container">
+    <h2 class = "header">Trip Summaries Are Easy to Create</h2>
+    <ul class = "feature-list two">
+      
+      <li class = "feature">
+        <div class="illustration">
+          <div class = "how_create_detailed_img"></div>
+        </div>
+        <h3>Add Activities</h3>
+        <p>Simply use our location database (powered by Foursquare) to tell us where you went each day (in a sequence). Provide a short comment and choose a picture. Voila.</p>
+      </li>
+
+      <li class = "feature">
+        <div class="illustration">
+          <div class = "how_publish_img"></div>
+        </div>
+        <h3>Title and Publish</h3>
+        <p>When you are completely done, add an interesting title and description. Hit publish and share your trip!</p>
+      </li>
+    </ul>  
+  </div>
+</section>
+
+<section class = "module">
+  <a class="anchor" id="show"></a>
+  <div class = "container">
+    <h2 class = "header">Show Your Trip Summaries to Inspire and to Help</h2>
+
+    <ul class = "feature-list two"> 
+      <li class = "feature">
+        <div class="illustration">
+          <div class = "how_search_img"></div>
+        </div>
+        <h3>Discover</h3>
+        <p>Your trips help other travelers easily decide what they want to do. Easily search and filter with Chalo to find the trip summary that works best for you.</p>
+      </li>
+
+      <li class = "feature">
+        <div class="illustration">
+          <div class = "how_show_img"></div>
+        </div>
+        <h3>Explore and Be Inspired</h3>
+        <p>A trip summary presents activities in a meaningful sequence. It provides visual inspiration and also useful information to help you decide what you should go do on your trip.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class = "module grey_back">
+  <a class="anchor" id="talk"></a>
+  <div class = "container">
+    <h2 class = "header">Discuss and Share Trip Summaries With Others</h2>
+
+    <ul class = "feature-list three long_img"> 
+      <div class="illustration ">
+        <div class = "how_talk_long_img"></div>
+      </div>
+
+      <li class = "feature">
+        <h3>Share</h3>
+        <p>Easily share your trips anywhere with a link or through social channels.</p>
+      </li>
+
+      <li class = "feature">
+        <h3>Comments</h3>
+        <p>Travelers can comment or ask questions about your trip. Provide follow-up tips or receive ideas that you can try next time.</p>
+      </li>
+
+      <li class = "feature">
+        <h3>Feedback</h3>
+        <p>Viewers can provide feedback on how useful a trip summary is or recommend the trip to a friend!</p>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+
+<section id="signup" class = "module">
+  <div class = "container">
+    <h2 class = "header">Sign Up To Join Chalo Today</h2>
+    <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-large btn-flat-success" %>
+    <br><br>
+    <p>If you are not ready to create, <a href = "http://eepurl.com/zwj59" target = "_blank">Sign Up</a> for our newsletter to get updates.</p>
+  </div>
+</section>
+</div>
