@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511005359) do
+ActiveRecord::Schema.define(:version => 20130514080612) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(:version => 20130511005359) do
     t.string   "country"
     t.string   "postal_code"
     t.string   "phone"
-    t.string   "email",                  :default => "",    :null => false
+    t.string   "email",                  :default => "", :null => false
     t.string   "website"
     t.string   "twitter_handle"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "state"
     t.string   "about"
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20130511005359) do
     t.string   "uid"
     t.date     "birthday"
     t.datetime "password_expire_at"
-    t.boolean  "admin",                  :default => false
+    t.boolean  "admin"
     t.text     "self_image"
     t.text     "self_image_tmp"
   end
@@ -271,9 +271,13 @@ ActiveRecord::Schema.define(:version => 20130511005359) do
     t.integer  "fb_shared"
     t.integer  "pinned"
     t.integer  "emailed"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "useful",        :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "useful",          :default => 0
+    t.string   "author_info_id"
+    t.integer  "trip_views",      :default => 0
+    t.integer  "trip_activities", :default => 0
+    t.integer  "trip_durations",  :default => 0
   end
 
   create_table "trips", :force => true do |t|
@@ -281,11 +285,11 @@ ActiveRecord::Schema.define(:version => 20130511005359) do
     t.string   "author_id"
     t.string   "location_id"
     t.string   "traveler_type_id",   :default => "1"
-    t.string   "trip_name",          :default => "My Fun Trip"
-    t.string   "trip_summary",       :default => "Please add a quick summary"
+    t.string   "trip_name",          :default => ""
+    t.string   "trip_summary",       :default => ""
     t.string   "duration",           :default => "1"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.text     "image_url"
     t.boolean  "featured_trip_flag", :default => false
     t.integer  "rank_score",         :default => 0

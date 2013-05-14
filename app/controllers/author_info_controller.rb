@@ -36,6 +36,20 @@ class AuthorInfoController < ApplicationController
         @author_info = AuthorInfo.find(@use_id)
         @trips_all = @author_info.trips
         @trips = @trips_all.where("share_status = ?", 1)
+        
+        
+        @useful_count = 0
+        @trip_count = @trips.size 
+        @trip_duration_count = 0
+        @trip_activities_count = 0
+        @trip_view_count = 0
+        
+        @trip_stats = @author_info.trip_stats
+        if !@trip_stats.blank?
+          @trips_stats.each { |trip_stat|
+            
+          }
+        end
         @trips_unpublished = @trips_all.where("share_status = ?", 0)
         format.html # about_edit.html.erb
       else
