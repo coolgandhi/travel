@@ -4,6 +4,6 @@ namespace :rake do
     rake = fetch(:rake, 'rake')
     rails_env = fetch(:rails_env, 'production')
 
-    run "cd '#{current_path}' && #{rake} ./lib/tasks/travelertypemetadata.r db:populate RAILS_ENV=#{rails_env}"
+    run "cd '#{current_path}' && #{rake} ./lib/tasks/travelertypemetadata.rake db:populate RAILS_ENV=#{rails_env}"
   end
 end

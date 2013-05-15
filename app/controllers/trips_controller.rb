@@ -54,7 +54,11 @@ class TripsController < ApplicationController
     begin
       @trip = Trip.find(params[:id], :include => [:author_info, :location], :select => "trips.*, author_infos.*, locations.*")
       @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+      
       @trip_stats = @trip.trip_stat
+      if !@trip_stats.blank?
+        TripStat.increment_counter(:trip_views, @trip_stats.id)
+      end
       @trip_feedback = @trip.trip_feedbacks.new
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
@@ -314,7 +318,7 @@ class TripsController < ApplicationController
     @trip_publish = "publish_create"
     respond_to do |format|
       if @trip.save
-        @trip_stat = TripStat.new(:trip_id => @trip.id)
+        @trip_stat = TripStat.new(:trip_id => @trip.id, :author_info_id => @trip.author_id)
         @trip_stat.save # no check here if trip_stat row doesn't get created
         @trip_message = "Update Trip"
         @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
@@ -403,6 +407,17 @@ class TripsController < ApplicationController
     @success_msg = ""    
     respond_to do |format|
       if @trip.save
+        @trip_stats = @trip.trip_stat
+        if @trip.share_status == 1          
+          if !@trip_stats.blank?
+            TripStat.increment_counter(:trip_durations, @trip_stats.id)
+          end
+        else 
+          if !@trip_stats.blank?
+            @trip_stats.duration = 0
+            @trip_stats.save
+          end
+        end
         @success_msg = "Trip Day Added Successfully!"
         @status = 1
       end      
@@ -418,10 +433,13 @@ class TripsController < ApplicationController
      begin
        @trip = Trip.find(params[:id])
        @day = "0"
+       count_activities = 0
        if (params[:day])
          @day = params[:day]
          @trip_activities_day =  TripActivity.find(:all, :conditions => {:trip_id => @trip.id, :activity_day => @day})
+         
          @trip_activities_day.each { |trip_activity|
+           count_activities = count_activities + 1
            activity = trip_activity.activity
            activity.destroy if !activity.nil?
          }
@@ -434,6 +452,17 @@ class TripsController < ApplicationController
          }
          @trip.duration = (@trip.duration.to_i - 1).to_s
          @trip.save
+         @trip_stats = @trip.trip_stat
+         if !@trip_stats.blank?
+           if @trip.share_status == 1                     
+             @trip_stats.trip_durations = @trip_stats.trip_durations - 1
+             @trip_stats.trip_activities = @trip_stats.trip_activities - count_activities
+           else 
+             @trip_stats.trip_activities = 0
+             @trip_stats.duration = 0
+           end
+           @trip_stats.save
+         end       
        end
      rescue ActiveRecord::RecordNotFound
        flash[:notice] = "Trip Day not found"
@@ -473,7 +502,6 @@ class TripsController < ApplicationController
   def publish_confirm
     begin
       @trip = Trip.find(params[:id])
-      # @trip.share_status = 1
       @location_detail = Location.find_by_location_id(@trip.location_id)
       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
       @latlong = find_location_latlong(@trip)
@@ -499,11 +527,14 @@ class TripsController < ApplicationController
   def publish_confirm_update
     begin  
       @trip = Trip.find(params[:id])
+      @trip_stats = @trip.trip_stat 
       @location_detail = Location.find_by_location_id(@trip.location_id)
       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
       @latlong = find_location_latlong(@trip)
       # @trip_message = "Publish Trip"
       @trip_publish = "publish_confirm_update"
+              
+        
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -511,6 +542,16 @@ class TripsController < ApplicationController
     end
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
+        if !@trip_stats.blank?
+          if @trip.share_status == 1  
+            @trip_stats.trip_activities = @trip.trip_activities.size
+            @trip_stats.trip_durations = @trip.duration.to_i
+          else 
+            @trip_stats.trip_activities = 0
+            @trip_stats.trip_durations = 0 
+          end
+          @trip_stats.save
+        end
         format.html { redirect_to @trip, notice: @trip.share_status == 0 ? 'Trip has been Unpublished' : 
         'Trip was successfully Published'  }
         format.json { head :no_content }
@@ -530,6 +571,7 @@ class TripsController < ApplicationController
         @trip_stat = TripStat.new
         #@trip.trip_stat.new(:trip_id => @trip.id)
         @trip_stat.trip_id = @trip.id
+        @trip_stat.author_info_id = @trip.author_id
         @trip_stat.useful = 1
         if @trip_stat.save # no check here if trip_stat row doesn't get created
           @status = 1
