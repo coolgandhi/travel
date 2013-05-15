@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(:version => 20130514080612) do
     t.string   "country"
     t.string   "postal_code"
     t.string   "phone"
-    t.string   "email",                  :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
     t.string   "website"
     t.string   "twitter_handle"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "state"
     t.string   "about"
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -64,9 +64,10 @@ ActiveRecord::Schema.define(:version => 20130514080612) do
     t.string   "uid"
     t.date     "birthday"
     t.datetime "password_expire_at"
-    t.boolean  "admin"
+    t.boolean  "admin",                  :default => false
     t.text     "self_image"
     t.text     "self_image_tmp"
+    t.string   "badge_level",            :default => ""
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true
@@ -285,11 +286,11 @@ ActiveRecord::Schema.define(:version => 20130514080612) do
     t.string   "author_id"
     t.string   "location_id"
     t.string   "traveler_type_id",   :default => "1"
-    t.string   "trip_name",          :default => ""
-    t.string   "trip_summary",       :default => ""
+    t.string   "trip_name",          :default => "My Fun Trip"
+    t.string   "trip_summary",       :default => "Please add a quick summary"
     t.string   "duration",           :default => "1"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
     t.text     "image_url"
     t.boolean  "featured_trip_flag", :default => false
     t.integer  "rank_score",         :default => 0

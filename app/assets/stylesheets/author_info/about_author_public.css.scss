@@ -68,14 +68,15 @@
   	float: left;
   	display: inline;
   	min-width: 90px;
-  	height: 30px;
+  	// height: 30px;
   	margin: 0;
-  	padding: 4% 2%;
+  	padding: 1% 2%;
   	border-left: 1px solid #ccc;
   	@include box-sizing(border-box);
   	font-weight: bold;
   	color: gray;
   	text-align: center;
+    font-size: em(12px);
   } 
   
   li:first-child{
