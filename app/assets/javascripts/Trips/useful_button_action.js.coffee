@@ -2,7 +2,7 @@
   
   jQuery ->
     trips_namespace.fireUsefulButton = ->
-      $("#useful_button").click ->
+      $("#useful_button").unbind("click").click ->
         $this = $(this)
         trips_namespace.closeOverviewModal();
         trips_activities_namespace.closeMapModal();
