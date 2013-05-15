@@ -21,15 +21,15 @@
 
 .about_author_main{
   position: relative;
-  width: 80%;
+  width: 90%;
   float: left;
   background-color: rgba(0,0,0,.6);
   @include border-radius($myDivBorderRadius);
   @include box-shadow($myDivBoxShadow);
   border: $myDivBorderWidth solid $borderGray;
-  height: 80%;
-  margin-top: 6%;
-  margin-left: 10%; 
+  height: 100%;
+  margin-top: 0;
+  margin-left: 5%; 
   @include box-sizing(border-box);
   padding: 2% 5%;
   color: $white;
@@ -88,15 +88,15 @@
 }
 
 .auth_call_action{
+  background-color: gray;
   float: left;
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
-  width: 90%;
+  position: relative;
+  width: 100%;
   @include border-radius($myDivBorderRadius);
   border: 1px solid $borderGray;
   @include box-sizing(border-box);
-  padding: 2%;
+  padding: 1%;
+  margin-top: 1%;
   text-align: center;
   p{
     font-size: em(18px);
