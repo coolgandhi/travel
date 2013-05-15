@@ -109,6 +109,14 @@ $resultThumbHeight: 60%;
   }
 }
 
+.caption_box_social{
+  .cb_social_item{
+    float: left;
+    position: relative;
+    margin-right: 5px;
+  }
+}
+
 /* Caption Badges */
 .caption_badge_buttons{
   text-align: center;
