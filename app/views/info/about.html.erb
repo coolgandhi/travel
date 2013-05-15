@@ -9,7 +9,7 @@
 <%= render 'pill_nav' %>
 <hr>
 <div class="row span12">
-<h2>About</h2>
+<h1>About</h1>
 
 <p>
 	"Chalo" translates to "Let's Go" in Hindi, a very popular language spoken in India. "Chalo" represents our thirst for exploration, knowledge and shared experiences. </br></br>Planning a new trip is exciting. But it can get time consuming and frustrating. You'll spend hours researching online through an overload of information to piece together the perfect sequence of activities.<br/><br/><b>Chalo helps you search and discover real trips taken by fellow travelers just like you.</b><br/><br/> 
@@ -18,15 +18,15 @@
 </div>
 <div class="row span12">
   <hr>
-<h2 class="info_align_left">The Caravan</h2>
+<h1 class="info_align_left">The Caravan</h1>
 <div class="row">
   <div class="span4">
   	<p>
-      <span>Hung Kien Luu,</span>
-      <span>Co-Founder</span>
+      <span><h3>Hung Kien Luu</h3></span>
     </p>
+    <p>Planning trips for my big family of 10 drives me insane. I wish I had something like this.</p>
       <%= image_tag('/assets/headshot/hungluu.jpg', :class=>"team_profile_icon")%>
-
+      Co-founder
   		<%= link_to image_tag('/assets/logos/izzy_twitter.png', :class=> "team_social_icon"), raw("https://twitter.com/hungkienluu"), :target => "_blank"%>
 
   		<%= link_to image_tag('/assets/logos/izzy_linkedin.png', :class=> "team_social_icon"), raw("http://www.linkedin.com/in/hungkienluu"), :target => "_blank"%>
@@ -35,10 +35,11 @@
 <div class="span4">
   
     <p>
-      <span>Sachin Gandhi,</span>
-      <span>Co-Founder</span>
+      <span><h3>Sachin Gandhi</h3></span>
     </p>
+    <p>It's not the Top 25 things you can do. It's how you do it.</p>
       <%= image_tag('/assets/headshot/sachinga2.jpg', :class=>"team_profile_icon")%>
+      Co-founder
 	    <%= link_to image_tag('/assets/logos/izzy_twitter.png', :class=> "team_social_icon"), raw("https://twitter.com/speaksachin"), :target => "_blank"%>
 	   <%= link_to image_tag('/assets/logos/izzy_linkedin.png', :class=> "team_social_icon"), raw("http://www.linkedin.com/in/sachinga"), :target => "_blank"%>
 </div>
@@ -46,14 +47,20 @@
 
     <div class="span4">
     <p>
-      <span>Izzy Park,</span>
-      <span>Trailblazer-in-Residence</span>
+      <span><h3>Izzy Park</h3></span>
     </p>
+    <p>Traveling makes you realize how much I don't know about the world. Lifelong student.</p>
       <%= image_tag('/assets/headshot/izzy.jpg', :class=>"team_profile_icon")%>
+      Aspiring Barista
       <%= link_to image_tag('/assets/logos/izzy_twitter.png', :class=> "team_social_icon"), raw("https://twitter.com/izzy_park"), :target => "_blank"%>
 
       <%= link_to image_tag('/assets/logos/izzy_linkedin.png', :class=> "team_social_icon"), raw("http://www.linkedin.com/in/isabellepark"), :target => "_blank"%>
     </div>
-  
+  <div class="span12"><hr>
+    <p><span>Connect with us</span>
+      <%= link_to image_tag('/assets/logos/izzy_facebook.png', :class=> "team_social_icon"), raw("https://facebook.com/chalodotio"), :target => "_blank"%>
+      <%= link_to image_tag('/assets/logos/izzy_twitter.png', :class=> "team_social_icon"), raw("https://twitter.com/chalodotio"), :target => "_blank"%>
+      <%= link_to image_tag('/assets/logos/izzy_instagram.png', :class=> "team_social_icon"), raw("https://instagram.com/chalodotio"), :target => "_blank"%>
+    </p>
 
 </div>
