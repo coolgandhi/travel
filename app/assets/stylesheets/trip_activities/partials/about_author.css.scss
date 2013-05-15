@@ -16,9 +16,11 @@
   height: 100%;
   margin-left: 0.5%;
   overflow: hidden;
+  position: relative;
 }
 
 .about_author_main{
+  position: relative;
   width: 80%;
   float: left;
   background-color: rgba(0,0,0,.6);
@@ -83,4 +85,41 @@
 .auth_moreinfo{
 	width: 100%;
 	float: left;
+}
+
+.auth_call_action{
+  float: left;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 90%;
+  @include border-radius($myDivBorderRadius);
+  border: 1px solid $borderGray;
+  @include box-sizing(border-box);
+  padding: 2%;
+  text-align: center;
+  p{
+    font-size: em(18px);
+  }
+}
+
+.auth_call_action .likebox{
+  display: inline-block;
+  @include box-sizing(border-box);
+  margin-bottom: 3%;
+  float: none;
+  .trip_useful_message{
+    color: white;
+  }
+}
+
+.auth_call_action #swipeview_useful_button{
+  float: left;
+  i{
+    color: $red;
+  }  
+}
+
+.auth_call_action .wn_signup_button{
+  float: none;
 }
