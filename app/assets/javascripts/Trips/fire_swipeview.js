@@ -48,6 +48,7 @@
         // trips_namespace.bodyBackgroundImageSwitch();
         trips_namespace.daySwatchSwitch();
         trips_namespace.makeCaptionAccordion();
+        // trips_namespace.fireSwipeViewUsefulButton();
       }
     });
     }
@@ -89,6 +90,7 @@
             // trips_namespace.bodyBackgroundImageSwitch();
             trips_namespace.daySwatchSwitch();
             trips_namespace.makeCaptionAccordion();
+            trips_namespace.fireSwipeViewUsefulButton();
           }
         });
       }
