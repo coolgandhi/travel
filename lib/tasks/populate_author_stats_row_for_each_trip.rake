@@ -9,7 +9,7 @@ namespace :db do
      trip_stat = trip.trip_stat
       if trip_stat.blank?
        trip_stat = TripStat.new
-       trip_stat = TripStat.new(:trip_id => trip.id, :author_info_id => trip.author_id, :trip_activities => trip.trip_activities.size, :trip_durations => trip.durations.to_i)
+       trip_stat = TripStat.new(:trip_id => trip.id, :author_info_id => trip.author_id, :trip_activities => trip.trip_activities.size, :trip_durations => trip.duration.to_i)
        trip_stat.save
       else
         if trip_stat.author_info_id.blank?

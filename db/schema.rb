@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20130514080612) do
     t.boolean  "admin"
     t.text     "self_image"
     t.text     "self_image_tmp"
+    t.string   "badge_level",            :default => ""
   end
 
   add_index "author_infos", ["email"], :name => "auth_email_index", :unique => true
