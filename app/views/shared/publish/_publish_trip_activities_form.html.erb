@@ -85,17 +85,19 @@
         <%= f.hidden_field :activity_day, :value => @trip_activity.activity_day.blank? ? '1' : @trip_activity.activity_day %>
         <%= f.hidden_field :activity_time_type,  :value => @trip_activity.activity_time_type.blank? ? '1' : @trip_activity.activity_time_type %>
         <input type="hidden" id="venue_id" name="venueid" value=<%= params[:venueid].nil?  ? '' : params[:venueid] %> >
-          
-          <label><strong>Short Description<span class="required_star">*</span></strong></label>
-          <textarea rows="4" name="description" placeholder="User Description" class="publish_form_user_description word_count" maxcharacters="200"><%= params[:description].nil?  ? '' : params[:description] %></textarea>
-          <p class ="counter"></p>
-
-          <div class = "pt_form_bg">
+    
+          <div class = "pt_form_bg full_width">
             <label class = "checkbox">
               <%= f.check_box :cant_miss, :class => "checkbox" %>
               You definitely should not miss this activity
             </label>
           </div>
+
+          <label><strong>Short Description<span class="required_star">*</span></strong></label>
+          <textarea rows="4" name="description" placeholder="User Description" class="publish_form_user_description word_count" maxcharacters="200"><%= params[:description].nil?  ? '' : params[:description] %></textarea>
+          <p class ="counter"></p>
+
+
           
           <label><strong>Quick Tip</strong></label>
           <textarea rows="3" name="quick_tip" placeholder="Quick Tip" class="publish_form_quicktip word_count" maxcharacters="140"><%= params[:quick_tip].nil?  ? '' : params[:quick_tip] %></textarea>

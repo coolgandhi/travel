@@ -77,7 +77,6 @@
   float: left;
   margin-left: 0;
   @include box-sizing(border-box);
-  border-right: solid 2px $borderGray;
   padding: 1%;
   overflow: auto;
 }
@@ -85,7 +84,9 @@
 .publish_trip_create_activities{
   width: 55%;
   height: 100%;
+  min-height: 600px;
   float: left;
+  border-left: solid 2px $borderGray;
   @include box-sizing(border-box);
   margin-left: 0;
   // padding: 1%;
@@ -322,6 +323,11 @@
   margin-bottom: 1%;
   // float: left;
   // width: 100%;
+  &.full_width{
+    position: relative;
+    width: 100%;
+    display: inline-block;
+  }
 }
 
 .publish_form_user_description, .publish_form_quicktip{
