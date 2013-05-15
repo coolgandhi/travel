@@ -407,6 +407,17 @@ class TripsController < ApplicationController
     @success_msg = ""    
     respond_to do |format|
       if @trip.save
+        @trip_stats = @trip.trip_stat
+        if @trip.share_status == 1          
+          if !@trip_stats.blank?
+            TripStat.increment_counter(:trip_durations, @trip_stats.id)
+          end
+        else 
+          if !@trip_stats.blank?
+            @trip_stats.duration = 0
+            @trip_stats.save
+          end
+        end
         @success_msg = "Trip Day Added Successfully!"
         @status = 1
       end      
@@ -422,10 +433,13 @@ class TripsController < ApplicationController
      begin
        @trip = Trip.find(params[:id])
        @day = "0"
+       count_activities = 0
        if (params[:day])
          @day = params[:day]
          @trip_activities_day =  TripActivity.find(:all, :conditions => {:trip_id => @trip.id, :activity_day => @day})
+         
          @trip_activities_day.each { |trip_activity|
+           count_activities = count_activities + 1
            activity = trip_activity.activity
            activity.destroy if !activity.nil?
          }
@@ -438,6 +452,17 @@ class TripsController < ApplicationController
          }
          @trip.duration = (@trip.duration.to_i - 1).to_s
          @trip.save
+         @trip_stats = @trip.trip_stat
+         if !@trip_stats.blank?
+           if @trip.share_status == 1                     
+             @trip_stats.trip_durations = @trip_stats.trip_durations - 1
+             @trip_stats.trip_activities = @trip_stats.trip_activities - count_activities
+           else 
+             @trip_stats.trip_activities = 0
+             @trip_stats.duration = 0
+           end
+           @trip_stats.save
+         end       
        end
      rescue ActiveRecord::RecordNotFound
        flash[:notice] = "Trip Day not found"
@@ -517,14 +542,16 @@ class TripsController < ApplicationController
     end
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
-        if @trip.share_status == true  
-          @trip_stats.trip_activities = @trip.trip_activities.size
-          @trip_stats.trip_durations = @trip.duration.to_i
-        else 
-          @trip_stats.trip_activities = 0
-          @trip_stats.trip_durations = 0 
+        if !@trip_stats.blank?
+          if @trip.share_status == 1  
+            @trip_stats.trip_activities = @trip.trip_activities.size
+            @trip_stats.trip_durations = @trip.duration.to_i
+          else 
+            @trip_stats.trip_activities = 0
+            @trip_stats.trip_durations = 0 
+          end
+          @trip_stats.save
         end
-        
         format.html { redirect_to @trip, notice: @trip.share_status == 0 ? 'Trip has been Unpublished' : 
         'Trip was successfully Published'  }
         format.json { head :no_content }

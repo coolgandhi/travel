@@ -46,8 +46,11 @@ class AuthorInfoController < ApplicationController
         
         @trip_stats = @author_info.trip_stats
         if !@trip_stats.blank?
-          @trips_stats.each { |trip_stat|
-            
+          @trip_stats.each { |trip_stat|
+            @useful_count = @useful_count + trip_stat.useful
+            @trip_duration_count = @trip_duration_count + trip_stat.trip_durations
+            @trip_activities_count = @trip_activities_count + trip_stat.trip_activities
+            @trip_view_count = @trip_view_count + trip_stat.trip_views            
           }
         end
         @trips_unpublished = @trips_all.where("share_status = ?", 0)

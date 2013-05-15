@@ -441,6 +441,7 @@ class TripActivitiesController < ApplicationController
       @update = 0
       @status = 0
       @trip_activity = @trip.trip_activities.new(params[:trip_activity])
+      @trip_stats = @trip.trip_stat
       @venue = nil
       enter = 0
       
@@ -538,6 +539,14 @@ class TripActivitiesController < ApplicationController
               if @trip_activity.save
                  @photo.trip_activity_id = @trip_activity.id.to_s
                  if @photo.save
+                    if !@trip_stats.blank?
+                      if @trip.share_status == 1  
+                        TripStat.increment_counter(:trip_activities, @trip_stats.id)
+                      else 
+                        @trip_stats.trip_activities = 0
+                        @trip_stats.save
+                      end
+                    end
                     @status = 1
                     format.js 
                     format.html { redirect_to trip_trip_activities_path(@trip), notice: 'Trip activity was successfully created.' }
@@ -560,6 +569,14 @@ class TripActivitiesController < ApplicationController
            else
               @trip_activity.activity = @activity
               if @trip_activity.save
+                if !@trip_stats.blank?
+                  if @trip.share_status == 1  
+                    TripStat.increment_counter(:trip_activities, @trip_stats.id)
+                  else 
+                    @trip_stats.trip_activities = 0
+                    @trip_stats.save
+                  end
+                end
                 @status = 1
                 format.js 
                 flash.now[:success] = "Successfully added new activity" 
@@ -584,6 +601,16 @@ class TripActivitiesController < ApplicationController
     begin
       @trip_activity = @trip.trip_activities.find(params[:id])
       @activity = @trip_activity.activity
+      @trip_stats = @trip.trip_stat
+      
+      if !@trip_stats.blank?
+        if @trip.share_status == 1  
+          TripStat.decrement_counter(:trip_activities, @trip_stats.id)
+        else 
+          @trip_stats.trip_activities = 0
+          @trip_stats.save
+        end
+      end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
