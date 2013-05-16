@@ -15,6 +15,17 @@ ul.info_align_center{
   }
 }
 
+.info_align_left{
+  text-align: left;
+}
+
+
+ul.info_align_center{
+  li{
+    padding: 0 5%;
+  }
+}
+
 /* About The Team Info */
 .team_social_link{
   // text-align: left;
@@ -27,6 +38,10 @@ ul.info_align_center{
   width: 25px;
 }
 
+.team_profile_icon{
+  width: 105px;
+  height: 105px;
+}
 .team_title_p{
  span{
    display: block;	
