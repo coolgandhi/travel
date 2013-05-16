@@ -5,10 +5,10 @@
     $('.place_dropdown_field').change ->
       if $('select.place_dropdown_field option:selected').text() != "Where would you like to go?"
         $("#search_submit_button").val("Chalo!")
-        $("#search_submit_button").removeClass("btn-flat-primary").addClass("btn-flat-success")
+        $("#search_submit_button").removeClass("btn-flat-primary").addClass("btn-flat-warning")
       else
         $("#search_submit_button").val("Search Trips")
-        $("#search_submit_button").removeClass("btn-flat-success").addClass("btn-flat-primary")
+        $("#search_submit_button").removeClass("btn-flat-warning").addClass("btn-flat-primary")
       $('.hero_trip_location_id').val($('.place_dropdown_field').val())
       $('.hero-hidden-place-field').val($('select.place_dropdown_field option:selected').text())
   

@@ -29,10 +29,10 @@
       # change foursquare image select button on select
       if $('#ta_selected_images_field').val().length > 1
         $('.ta_pick_from_foursquare').html('Foursquare Image Selected')
-        $('.ta_pick_from_foursquare').removeClass("btn-flat-info").addClass("btn-flat-success")
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-info").addClass("btn-flat-warning")
       else
         $('.ta_pick_from_foursquare').html('Select From Foursquare')
-        $('.ta_pick_from_foursquare').removeClass("btn-flat-success").addClass("btn-flat-info")
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-warning").addClass("btn-flat-info")
       return true
     return
 
@@ -63,10 +63,10 @@
       # change the foursquare selected button if images selected
       if $('.selected_images').val().length > 1
         $('.trip_cover_pick_foursquare_btn').html('Foursquare Image Selected')
-        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-info").addClass("btn-flat-success")
+        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-info").addClass("btn-flat-warning")
       else
         $('.trip_cover_pick_foursquare_btn').html('Select From Foursquare')
-        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-success").addClass("btn-flat-info")
+        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-warning").addClass("btn-flat-info")
       return true
     return
 

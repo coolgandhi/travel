@@ -4,37 +4,22 @@
 
 <div class = "container publish_container">
   
-  <div class = "row">
-    <!-- Begin Span -->
-    <div class = "span8">
-      <!-- Begin Form Completion Status Container -->
-      <%= render "trips/partials/publish/completion_status_widget" %>
-      <!-- End Form Completion Status Container -->
-    </div>
-  <!-- End Span -->
-  </div>
-
   <div class="publish_flash_message">
     <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
   </div>
 
   <!-- Begin Row-->
   <div class = "row">
-    <!-- Begin Collapser Container-->
-    <div class = "publish_trip_collapser span12">
-      
-      <!-- Begin Collapse 1-->
-      <div class = "publish_trip_collapse_header">
-        Trip Details
-        <div class = "collapser_icon"><i class = "icon-chevron-up"></i></div>
-      </div>
-      
-      <div class = "publish_trip_collapse_content">
+      <!-- Begin Form Completion Status Container -->
+      <%= render "trips/partials/publish/completion_status_widget" %>
+      <!-- End Form Completion Status Container -->
+    
+    <div class="tab-content">
+      <div class="tab-pane active" id="trip_details">
         <%= render "shared/publish/publish_trip_details_form" %>
       </div>
-      <!-- End Collapse 1-->
+
     </div>
-    <!-- End Collapser Container-->  
   </div>
   <!-- End Row -->
 
