@@ -40,8 +40,9 @@
         <!--Begin Social Media Box -->
         <div class="socialmediabox">
           <div class = "sm_box_item view_count">
-            <i class="icon-eye-open"></i>
+            
             <% if !@trip_stats.blank? and @trip_stats.trip_views >  0 %>
+              <i class="icon-eye-open"></i>
               <span class="sm_stat_text"><%= @trip_stats.trip_views %> Views</span>
             <% end %>
           </div>
@@ -108,10 +109,10 @@
     </span>
       <p class = "ab_author_website"><%= link_to '<i class="icon-link"></i> website'.html_safe, url_with_protocol(@trip.author_info.website), :class => "trip_title_sub_text", :target => "_blank" unless @trip.author_info.website.blank? %> 
       </p>
-    <div class = "ab_author_stats">
+<!--     <div class = "ab_author_stats">
       <div class = "ab_author_stats_item useful"><i class="icon-heart"></i> <%= @trip.author_info.agg_author_usefuls %></div>
       <div class = "ab_author_stats_item view_count"><i class="icon-eye-open"></i> <%= @trip.author_info.agg_author_views %></div>
-    </div>
+    </div> -->
   </div>
   <!-- End Trip Author Box -->
 
