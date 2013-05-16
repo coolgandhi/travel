@@ -17,7 +17,7 @@
     $(".publish_trip_create_activities").on "click", ".pt_upload_button", (e) ->
       trips_namespace.firePublishPhotoUploaderBox();
 
-    $('.publish_trip_collapse_content').on "show", (e) ->
+    $("a[data-toggle=\"tab\"]").on "shown", (e) ->
       trips_namespace.fireResizePublishImages();
 
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

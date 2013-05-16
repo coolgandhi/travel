@@ -2,6 +2,10 @@
   <%= javascript_include_tag 'publish_edit_specific' %>  
 <% end %>
 
+<%= content_for :title do %>
+  chalo.io - Add Activities to Trip Summary
+<% end %>
+
 <div class = "container publish_container">
 
   <!-- Begin 4SQ Modal Image Select for Trip Activities-->
@@ -37,7 +41,7 @@
       <!-- Being Mask When Loading -->
 
       <!-- Flash Message -->
-      <div class="publish_flash_message">
+      <div class="publish_edit_flash_message">
         <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
       </div>
       <!-- Flash Message -->

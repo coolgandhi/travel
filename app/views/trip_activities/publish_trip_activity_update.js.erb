@@ -1,6 +1,6 @@
 <% if @status == 0 %>
 	//$(".publish_trip_create_activities").html('<%= escape_javascript(render("shared/publish/publish_trip_activities_form")) %>');
-	$('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
+	$('.publish_edit_flash_message').html("<%= escape_javascript raw(flash_display) %>");
 <% end %>
 <% if @status == 1 %>
 	var request = $.ajax({ 
@@ -12,7 +12,7 @@
 	    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= params[:trip_activity][:activity_day] %> + '"]').tab('show');
 	    $('#publish_form_activity_' + <%= params[:id] %>).effect("highlight", {}, 1000);
 	    $('#publish_form_activity_' + <%= params[:id] %>).addClass("selected_highlight");
-	    $('.publish_trip_create_activities').scrollTop(0);
+	    $(window).scrollTop(0);
 	    $('.publish_trip_create_activities').effect("highlight", {color: "#dff0d8"}, 1000);
 	    trips_namespace.changeDayTabNewActivity();
 		var request_2 = $.ajax({ 
