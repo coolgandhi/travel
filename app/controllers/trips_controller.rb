@@ -414,7 +414,7 @@ class TripsController < ApplicationController
           end
         else 
           if !@trip_stats.blank?
-            @trip_stats.duration = 0
+            @trip_stats.trip_durations = 0
             @trip_stats.save
           end
         end
@@ -459,7 +459,7 @@ class TripsController < ApplicationController
              @trip_stats.trip_activities = @trip_stats.trip_activities - count_activities
            else 
              @trip_stats.trip_activities = 0
-             @trip_stats.duration = 0
+             @trip_stats.trip_durations = 0
            end
            @trip_stats.save
          end       
