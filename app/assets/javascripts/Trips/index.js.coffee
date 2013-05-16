@@ -125,8 +125,22 @@
         $(window).scroll()
       return
 
+    trips_namespace.scrollToComments = ->  
+      $("#scrolltocomments").click (e) ->
+        e.preventDefault()
+        full_url = this.href
+        parts = full_url.split("#")
+        trgt = parts[1]
+        target_offset = $("#" + trgt).offset()
+        target_top = target_offset.top
+        $("html, body").animate
+          scrollTop: target_top
+        , 500
+        $('#bottom_actionlinks').effect("highlight", {color: "#dff0d8"}, 1000);
+
     jQuery ->    
-      trips_namespace.continuousScrollPagination()
+      trips_namespace.continuousScrollPagination();
+      trips_namespace.scrollToComments();
 
   trips_namespace.remoteLoadIndexFire = ->
     trips_namespace.fireResultSearchBarJs()

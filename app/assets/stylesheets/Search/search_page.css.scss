@@ -634,7 +634,9 @@
   float:left;
   padding: 2% 3%;
   font-size: em(14px);
+  line-height: em(30px);
   font-weight: bold;
+  margin-bottom: 0;
 }
 
 .hide_floating_convo{
@@ -642,4 +644,14 @@
   bottom: 2%;
   left: 2%;
   font-size: em(12px);
+}
+
+.floating_sign_up{
+  padding: 2%;
+  .wn_signup_button{
+    float: none;
+  }
+  .smaller_text{
+    font-size: em(12px);
+  }
 }

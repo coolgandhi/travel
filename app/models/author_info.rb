@@ -20,6 +20,28 @@ class AuthorInfo < ActiveRecord::Base
   mount_uploader :self_image, ImageUploader
   store_in_background :self_image
   
+  def agg_author_views
+    author_trip_stats = self.trip_stats
+    agg_author_view_count = 0
+    unless author_trip_stats.blank?
+      author_trip_stats.each { |trip|
+        agg_author_view_count = agg_author_view_count + trip.trip_views            
+      }
+    end
+    agg_author_view_count
+  end
+
+  def agg_author_usefuls
+    author_trip_stats = self.trip_stats
+    agg_author_usefuls = 0
+    unless author_trip_stats.blank?
+      author_trip_stats.each { |trip|
+        agg_author_usefuls = agg_author_usefuls + trip.useful            
+      }
+    end
+    agg_author_usefuls
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |author_info|
       author_info.provider = auth.provider

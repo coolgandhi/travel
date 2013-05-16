@@ -1,9 +1,10 @@
 <% if @status == 0 %>
 	$(".likebox").html('Too useful, button malfunctioned!')
 <% else %>
-	$(".trip_useful_message").html('This trip summary is');
-	$("#useful_button").html('<i class="icon-heart icon-large"></i> Useful!');
-	$("#useful_button").addClass('disabled');
+	$(".trip_useful_message").html('This trip summary is useful!');
+	$(".useful_button").html('<i class="icon-heart"></i>');
+	$(".useful_button").addClass('disabled');
+	$(".useful_button").unbind('click');
 	$(".counter_o").show();
 	$(".trip_useful_counter_div").html('<%= escape_javascript(render("trips/partials/trip_stats/number_useful_votes")) %>');
 <% end %>

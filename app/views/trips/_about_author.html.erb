@@ -24,13 +24,47 @@
           style="width:300px; height:20px;"></iframe>
         </div>
       <% end %>
+
+      <!-- begin auth_moreinfo -->
+      <div class="auth_moreinfo">
+        <lead><%= @trip.author_info.about %></lead>
+      </div>
+      <!-- end auth_moreinfo -->
   	</div>
   	    
-    <!-- begin auth_moreinfo -->
-  	<div class="auth_moreinfo">
-      <lead><%= @trip.author_info.about %></lead>
+
+    
+    <div class="auth_call_action centerize">
+      <p>We hope you enjoyed this trip summary as much as we did showing it.</p>
+      <!-- Begin Like Box -->
+      <div class="likebox">
+        <span class = "trip_useful_message">Was this trip summary useful?</span>
+        <span type="submit" class="useful_button" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="swipeview_useful_button" name="commit">
+          <i class="icon-heart-empty"></i>
+        </span>
+        <span class = "counter_o" style = "display: <%= (!@trip_stats.blank? and @trip_stats.useful > 0) ? "block" : "none" %>">
+          <i></i>
+          <u></u>
+          <span class = "trip_useful_counter_div">
+          <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
+            <%= @trip_stats.useful %>
+          <% else %>
+            0  
+          <% end %>
+          </span>
+        </span>
+      </div>
+      <!-- End Like Box -->
+
+      <hr class="auth_hr">
+
+      <p>Join Chalo to Share Your Awesome Trips</p>
+      <p class = "centerize">
+      <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-success wn_signup_button" %>
+      </p>
+    
     </div>
-  	<!-- end auth_moreinfo -->
+
 	</div>
 </div>
 

@@ -14,7 +14,7 @@
 
 
 /* 1. MAIN BODY STYLES*/
-
+$viewCountColor: $black;
 /* 2. TITLE DIV */ 
 
 $titlerowheight: 10%;
@@ -129,22 +129,49 @@ $lastrowheight: 10%;
     text-overflow: ellipsis;
     overflow: hidden;
   }
+  .ab_author_stats{
+    float: left;
+    position: relative;
+    .ab_author_stats_item{
+      float: left;
+      position: relative;
+      margin-right: 5px;
+      color: gray;
+      &.useful i{
+        color: $red;
+      }
+      &.view_count i{
+        color: $viewCountColor;
+      }
+    }
+  }
+
 }
 
 .socialmediabox{
-  // position: absolute;
-  // right: 1%;
-  // bottom: 5%;
   position: relative;
   float: left;
-  // margin-left: 1%;
   margin-top: 4px;
+  display: inline;
   @include box-sizing(border-box);
 
   @include respond-to(small){
   font-size: .75em;
   right: 1%;
   top: 60%;
+  }
+}
+
+.socialmediabox .sm_box_item{
+  float: left;
+  position: relative;
+  margin-right: 5px;
+  color: gray;
+  & .sm_stat_text{
+    font-size: em(12px);
+  }
+  &.view_count i{
+    color: $viewCountColor;
   }
 }
 
@@ -159,6 +186,9 @@ $lastrowheight: 10%;
   float: left;
   padding-left: 2%;
   @include box-sizing(border-box);
+  .share_this_email_text{
+    font-size: em(12px);
+  }
 }
 
 .trip_title_auth_pic{
@@ -1040,6 +1070,25 @@ div.rightcaption .ui-accordion-content {
 
 /* 7. MISC */
 
+#scrolltocomments{
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  width:100px;
+  background-color: #EEEEEE;
+  background-color: rgba(238, 238, 238, 0.9);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#99EEEEEE',EndColorStr='#99EEEEEE');
+  text-align:center;
+  padding:5px;
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  cursor:pointer;
+  color:#444;
+  text-decoration:none;
+  border:1px solid #C9C9C9;  
+}
+
 /* bottom rails things */ 
 #bottom_actionlinks{
   @include col(12);
@@ -1247,8 +1296,19 @@ td.thumbnail_td{
   color: black;
   font-size: em(14px);
 }
-#useful_button{
+.useful_button{
   float: left;
+  line-height: 30px;
+  cursor: pointer;
+  &.disabled{
+    cursor:default;
+  }
+  &:hover{
+    font-size: em(15px);
+  }
+  &.disabled:hover{
+    font-size: em(14px);
+  }
   i{
     color: $red;
   }

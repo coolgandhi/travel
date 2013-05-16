@@ -28,13 +28,13 @@ $colorBorderWeight: 6px solid;
 }
 
 .trip_result_thumbnail_div{
-  height: 440px;
+  height: 400px;
   padding: 0;
   position: relative;
   border: none;
 }
 
-$resultThumbHeight: 60%;
+$resultThumbHeight: 52.5%;
 .result_thumb_wrap{
   @include box-sizing(border-box);
   height: $resultThumbHeight;
@@ -101,11 +101,28 @@ $resultThumbHeight: 60%;
 
 .caption_box_social{
   position: absolute;
-  bottom: 100-$resultThumbHeight+2;
-  right: 2%;
+  bottom: 0; //100-$resultThumbHeight+2;
+  right: 0%;
   z-index: 1;
+  padding: 1%;
   @include respond-to(portrait){
     bottom: 100-$resultThumbHeight+2+10;
+  }
+}
+
+.caption_box_social{
+  .cb_social_item{
+    float: right;
+    position: relative;
+    margin-right: 5px;
+    font-size: em(12px);
+    color: gray;
+    i.icon-heart{
+      color: $red;
+    }
+    i.icon-eye-open{
+      color: $black;
+    }
   }
 }
 

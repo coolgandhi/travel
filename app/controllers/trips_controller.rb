@@ -225,7 +225,7 @@ class TripsController < ApplicationController
     begin
       @trip = Trip.find(params[:id])
       @author = @trip.author_info
-    
+      @trip_stats = @trip.trip_stat    
       @partial_layout = params[:layout]
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"

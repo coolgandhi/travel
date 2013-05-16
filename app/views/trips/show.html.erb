@@ -6,11 +6,10 @@
   <% self_image = (@trip.self_image == "" or @trip.self_image == nil) ? "" : @trip.self_image_url(:passport) %>
   <% other_image = select_image_given_image_urls(@trip.image_url, 100) %>
   <% final_image = (self_image != "" and self_image != nil) ? self_image : other_image %>
-  <meta property="og:image" content="<%= final_image %>" />
+  <meta property="og:image" content="<%= url_with_protocol(final_image) %>" />
   <meta property="og:description" content="<%= @trip.trip_summary %>" />
   <meta property="og:site_name" content="CHALO" />
   <meta property="fb:app_id" content="371948146237702"/>
-
   <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
   <script type="text/javascript">stLight.options({publisher: "8d7f464a-c114-4ca6-89c9-828dcf70ec3c", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});</script>
@@ -26,11 +25,13 @@
 
 <%= render "sideswipe" %>
 
+<a href='#bottom_actionlinks' id='scrolltocomments'>Ask a Question</a>
+
 <div id ="bottom_actionlinks">
-  <div class = "buffer_comments"><p class= "caption_title"> Leave a Comment About This Trip </p>
+  <div class = "buffer_comments"><p class= "caption_title">Ask a Question or Leave a Comment for this Trip </p>
   </div>
   <div class ="div_fb_comments">
-    <fb:comments href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
+    <fb:comments href="<%=  (Rails.env == "production") ? "#{url_for(:protocol => "", :only_path => false)}" : "//espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
   </div> 
 </div>
 

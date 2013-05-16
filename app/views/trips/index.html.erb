@@ -20,7 +20,10 @@
 <% end %>
 
 
+<% unless author_info_signed_in? %>
   <%= render 'trips/partials/conversation/floating_front_page_convo' %>
+<% end %>
+
 <% if (params[:featured] == "1") %>
   <%= render 'trips/partials/hero_unit' %>
 <% end %>  

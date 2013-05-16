@@ -1,49 +1,51 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  
-  <fieldset>
-      <div id="legend">
-        <legend class="">Sign up for Chalo</legend>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="span4 offset4 well">
+      <legend>Sign Up For Chalo</legend>
 
-      <div class="control-group">
-        <!-- Email -->
-        <%= f.label :email, 'E-mail', :class=> "control-label", :for => "email" %>
-        <div class="controls">
-          <%= f.email_field :email, :class => "input-xlarge", :id => "email", :autofocus => true %>
-        </div>
-      </div>
-
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+              <div class="control-group">
+                <!-- Email -->
+                <%= f.label :email, 'E-mail', :class=> "control-label", :for => "email" %>
+                <div class="controls">
+                  <%= f.email_field :email, :class => "input-xlarge", :id => "email", :autofocus => true %>
+                </div>
+              </div>
 
 
-  <% if f.object.password_required? %>
 
-      <div class="control-group">
-        <!-- Create Password -->
-        <%= f.label :password, 'Create a New Password', :class=> "control-label", :for => "confirmation" %>
-        <div class="controls">
-          <%= f.password_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
-        </div>
-      </div>
+          <% if f.object.password_required? %>
 
-      <div class="control-group">
-        <!-- Confirm Password -->
-        <%= f.label :password_confirmation, 'Confirm New Password', :class=> "control-label", :for => "password_confirmation" %>
-        <div class="controls">
-          <%= f.password_field :password_confirmation, :class => "input-xlarge", :id => "password_confirmation" %>
-        </div>
-      </div>
+              <div class="control-group">
+                <!-- Create Password -->
+                <%= f.label :password, 'Create a New Password', :class=> "control-label", :for => "confirmation" %>
+                <div class="controls">
+                  <%= f.password_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
+                </div>
+              </div>
 
-  <% end %>
-  
-      <div class="control-group">
-        <!-- Button Update-->
-        <div class="controls">
-          <%= f.submit "Sign Up", :class => "btn-flat btn-flat-primary" %>
-        </div>
-      </div>
+              <div class="control-group">
+                <!-- Confirm Password -->
+                <%= f.label :password_confirmation, 'Confirm New Password', :class=> "control-label", :for => "password_confirmation" %>
+                <div class="controls">
+                  <%= f.password_field :password_confirmation, :class => "input-xlarge", :id => "password_confirmation" %>
+                </div>
+              </div>
 
-  </fieldset>
-<% end %>
+          <% end %>
+          
+              <div class="control-group">
+                <!-- Button Update-->
+                <div class="controls">
+                  <%= f.submit "Sign Up", :class => "btn-flat btn-flat-primary" %>
+                </div>
+              </div>
 
-<%= render "devise/shared/links" %>
+        <% end %>
+
+      <%= render "devise/shared/links" %>
+
+    </div>
+  </div>
+</div>

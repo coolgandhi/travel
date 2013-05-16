@@ -39,6 +39,13 @@
     <div class = "title_social_media">
         <!--Begin Social Media Box -->
         <div class="socialmediabox">
+          <div class = "sm_box_item view_count">
+            
+            <% if !@trip_stats.blank? and @trip_stats.trip_views >  0 %>
+              <i class="icon-eye-open"></i>
+              <span class="sm_stat_text"><%= @trip_stats.trip_views %> Views</span>
+            <% end %>
+          </div>
           <div class = "it_facebook_share">
             <div id="fb-root"></div>
             <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
@@ -46,17 +53,18 @@
           </div>
 
           <div class ="it_share_this">
-            <span class='st_email'></span>
+            <% use_this_url_st, which_url_msg_st = upload_or_foursquare_image_url_picker(@trip, :thumb, 600, 0) %>
+            <span class="st_email" st_url="<%= "#{request.url}" %>" st_title="chalo.io: <%= @trip.trip_name.titleize %>" st_image="<%= url_with_protocol(use_this_url_st) %>" st_summary = "<%= @trip.trip_summary %>"></span><span class = "share_this_email_text">Email</span>
           </div>
         </div>
         <!--End Social Media Box -->
 
       <!-- Begin Like Box -->
       <div class="likebox">
-        <span class = "trip_useful_message">Was this trip summary</span>
-        <button type="submit" class="btn-flat btn-flat-small" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="useful_button" name="commit" type="button" >
-          <i class="icon-heart-empty icon-large"></i> Useful?
-        </button>
+        <span class = "trip_useful_message">Was this trip summary useful?</span>
+        <span type="submit" class="useful_button" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="useful_button" name="commit" >
+          <i class="icon-heart-empty"></i>
+        </span>
         <span class = "counter_o" style = "display: <%= (!@trip_stats.blank? and @trip_stats.useful > 0) ? "block" : "none" %>">
           <i></i>
           <u></u>
@@ -100,7 +108,11 @@
         <% end %>
     </span>
       <p class = "ab_author_website"><%= link_to '<i class="icon-link"></i> website'.html_safe, url_with_protocol(@trip.author_info.website), :class => "trip_title_sub_text", :target => "_blank" unless @trip.author_info.website.blank? %> 
-    </p>
+      </p>
+<!--     <div class = "ab_author_stats">
+      <div class = "ab_author_stats_item useful"><i class="icon-heart"></i> <%= @trip.author_info.agg_author_usefuls %></div>
+      <div class = "ab_author_stats_item view_count"><i class="icon-eye-open"></i> <%= @trip.author_info.agg_author_views %></div>
+    </div> -->
   </div>
   <!-- End Trip Author Box -->
 

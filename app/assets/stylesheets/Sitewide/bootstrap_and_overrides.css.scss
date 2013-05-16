@@ -234,3 +234,10 @@ $myDivBg:rgba(255,255,255,.3);
 /* custom variables for rgba's that I like */
 $transWhite: rgba(255,255,255,.6);
 $transBlack: rgba(0,0,0,.6);
+
+/* Custom Classes */
+.centerize {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
