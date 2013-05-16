@@ -1,6 +1,20 @@
 <!-- CSS Specific to Author Page -->
 <% content_for :head do %>
+  
+  <html xmlns:fb="http://ogp.me/ns/fb#">     
   <%= stylesheet_link_tag 'author_info/author_info' %>  
+  
+  <meta property="og:title" content="chalo.io: <%= @author_info.author_name %>" />
+  <meta property="og:type"  content="website" /> 
+  <meta property="og:url"   content="<%= "#{request.url}" %>"/>  
+  <% self_image = (@author_info.self_image.blank?) ? "" : @author_info.self_image_url(:passport) %>
+  <% other_image = avatar_url(@author_info) %>
+  <% other_image = other_image.blank? ? "" : other_image %>  
+  <% final_image = (!self_image.blank?) ? self_image : other_image %>
+  <meta property="og:image" content="<%= final_image %>" />
+  <meta property="og:description" content="<%= @author_info.about %>" />
+  <meta property="og:site_name" content="CHALO" />
+  <meta property="fb:app_id" content="371948146237702"/>
 <% end %>
 
 <%= content_for :title do %>
