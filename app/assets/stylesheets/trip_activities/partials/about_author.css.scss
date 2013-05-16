@@ -83,8 +83,9 @@
 }
 
 .auth_moreinfo{
-	width: 100%;
+	// width: 100%;
 	float: left;
+  position: relative;
 }
 
 .auth_call_action{
@@ -96,7 +97,7 @@
   border: 1px solid $borderGray;
   @include box-sizing(border-box);
   padding: 1%;
-  margin-top: 1%;
+  margin-top: 2%;
   text-align: center;
   p{
     font-size: em(18px);

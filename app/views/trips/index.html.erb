@@ -18,7 +18,10 @@
   <%= "We make your travel planning easy. Check out trip summaries " + ((params[:place] == nil) ? "to your favorite destinations at chalo.io": ("to" + params[:place]) + " at chalo.io")  %>
 <% end %>
 
+<% unless author_info_signed_in? %>
   <%= render 'trips/partials/conversation/floating_front_page_convo' %>
+<% end %>
+
 <% if (params[:featured] == "1") %>
   <%= render 'trips/partials/hero_unit' %>
 <% end %>  

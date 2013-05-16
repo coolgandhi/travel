@@ -27,8 +27,9 @@
         </ul>
       <% end %>
       <!-- End drop down menu -->
-      
-      <p class = "nav_center_linked"><%= link_to 'Why Sign Up?', why_path %></p>
+      <% unless author_info_signed_in? %>
+        <p class = "nav_center_linked"><%= link_to 'Why Sign Up?', why_path %></p>
+      <% end %>
 
       <div class="nav-collapse collapse">
         <ul class="nav pull-right">

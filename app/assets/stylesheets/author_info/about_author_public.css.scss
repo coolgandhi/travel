@@ -77,6 +77,12 @@
   	color: gray;
   	text-align: center;
     font-size: em(12px);
+    i.icon-heart{
+      color: $red;
+    }
+    i.icon-eye-open{
+      color: $black;
+    }
   } 
   
   li:first-child{

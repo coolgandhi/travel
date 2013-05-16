@@ -17,9 +17,9 @@
         $('.trip_chalo_feedback_modal').modal('show')
     
     trips_namespace.fireSwipeViewUsefulButton = ->
-      if ($("#useful_button").length and $("#useful_button").is(":disabled"))
-        $(".trip_useful_message").html('This trip summary is');
-        $(".useful_button").html "<i class=\"icon-heart icon-large\"></i> Useful!"
+      if ($("#useful_button").length and $("#useful_button").hasClass("disabled"))
+        $(".trip_useful_message").html('This trip summary is useful!');
+        $(".useful_button").html "<i class=\"icon-heart\"></i>"
         $(".useful_button").addClass "disabled"
       else
         requestRunning = false;
@@ -27,7 +27,6 @@
           return
         requestRunning = true;
         $("#swipeview_useful_button").unbind("click").click ->
-          console.log('cliedk swipeview useful button')
           $this2 = $(this)
           trips_namespace.closeOverviewModal();
           trips_activities_namespace.closeMapModal();
@@ -38,6 +37,7 @@
             contentType: false
             processData: false
             complete: ->
+              $(".useful_button").unbind('click');
               $(".useful_button").attr("disabled", true);
               requestRunning = false;
           $('.trip_chalo_feedback_modal').modal('show')

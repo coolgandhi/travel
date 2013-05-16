@@ -24,22 +24,24 @@
           style="width:300px; height:20px;"></iframe>
         </div>
       <% end %>
+
+      <!-- begin auth_moreinfo -->
+      <div class="auth_moreinfo">
+        <lead><%= @trip.author_info.about %></lead>
+      </div>
+      <!-- end auth_moreinfo -->
   	</div>
   	    
-    <!-- begin auth_moreinfo -->
-  	<div class="auth_moreinfo">
-      <lead><%= @trip.author_info.about %></lead>
-    </div>
-  	<!-- end auth_moreinfo -->
+
     
     <div class="auth_call_action centerize">
       <p>We hope you enjoyed this trip summary as much as we did showing it.</p>
       <!-- Begin Like Box -->
       <div class="likebox">
-        <span class = "trip_useful_message">Was this trip summary</span>
-        <button type="submit" class="btn-flat btn-flat-small useful_button" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="swipeview_useful_button" name="commit" type="button" >
-          <i class="icon-heart-empty icon-large"></i> Useful?
-        </button>
+        <span class = "trip_useful_message">Was this trip summary useful?</span>
+        <span type="submit" class="useful_button" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="swipeview_useful_button" name="commit">
+          <i class="icon-heart-empty"></i>
+        </span>
         <span class = "counter_o" style = "display: <%= (!@trip_stats.blank? and @trip_stats.useful > 0) ? "block" : "none" %>">
           <i></i>
           <u></u>

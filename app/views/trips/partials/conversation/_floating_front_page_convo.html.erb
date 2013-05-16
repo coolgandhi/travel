@@ -1,5 +1,5 @@
 <div class = "floating_front_page_convo">
-    <label class = "floating_convo_follow">Follow us!</label>
+    <p class = "floating_convo_follow">Follow us!</p>
     <div class = "floating_front_convo_social_btn">
 
       <%= link_to image_tag('/assets/logos/f_logo.png', :class=> "front_convo_social_icon"), raw("https://www.facebook.com/pages/Chaloio/365850670194567"), :target => "_blank"%>
@@ -7,16 +7,25 @@
     </div>
 
   <div class = "floating_email_form">
-    <!-- Begin MailChimp Signup Form -->  
-    <div id="mc_embed_signup">
-    <form action="http://chalo.us4.list-manage.com/subscribe/post?u=51fee95a443a83f1df1e8b6fb&amp;id=293689fc0f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <label for="mce-EMAIL">Subscribe to our mailing list for updates</label>
-      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
 
-      <div class="clear"><input type="submit" value="Notify Me" name="subscribe" id="mc-embedded-subscribe" class="btn-flat btn-flat-primary"></div>
-    </form>
+    <div class = "floating_sign_up centerize">
+      <p><strong>Join Chalo Today!</strong></p>
+      <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-success wn_signup_button" %>
+      <p class = "smaller_text"><strong><%= link_to 'Why Sign Up?', why_path %></strong></p>
     </div>
+
+
+    <!-- Begin MailChimp Signup Form -->  
+<!--     <div id="mc_embed_signup">
+      <form action="http://chalo.us4.list-manage.com/subscribe/post?u=51fee95a443a83f1df1e8b6fb&amp;id=293689fc0f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <label for="mce-EMAIL">Subscribe to our mailing list for updates</label>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+
+        <div class="clear"><input type="submit" value="Notify Me" name="subscribe" id="mc-embedded-subscribe" class="btn-flat btn-flat-primary"></div>
+      </form>
+    </div> -->
     <!--End mc_embed_signup-->
+
   </div>
 
   <span class = "hide_floating_convo">
