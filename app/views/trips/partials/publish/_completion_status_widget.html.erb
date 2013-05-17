@@ -1,14 +1,82 @@
-<div class = "publish_trip_completion_status">
-  
-  <div class = "completion_status <%= controller.action_name == "publish_new" ? 'completion_status_active' : '' %>" >
-    <%= controller.action_name == "publish_new" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check' style='color:#3cc574;'></i>".html_safe %> 1. Create Trip
-  </div>
-  
-  <div class = "completion_status middle_borders <%= controller.action_name == "publish_edit" ? 'completion_status_active' : '' %>" >
-    <%= ["publish_new","publish_edit"].include?(controller.action_name) ? "<i class='icon-check-empty'></i>".html_safe: "<i class='icon-check' style='color:#3cc574;'></i>".html_safe %> <%= controller.action_name == "publish_confirm" ? link_to("2. Add Activities", publish_edit_trip_url(@trip)) : "2. Add Activities" %>
-  </div>
-
-  <div class = "completion_status <%= controller.action_name == "publish_confirm" ? 'completion_status_active' : '' %>" >
-    <%= controller.action_name == "publish_confirm" ? "<i class='icon-check-empty'></i>".html_safe : "<i class='icon-check-empty'></i>".html_safe %>  <%= controller.action_name == "publish_edit" ? link_to(@trip.share_status == 0 ? "Publish Trip" : "3. Unpublish Trip", publish_confirm_trip_url(@trip)) : @trip.share_status == 0 ? "Publish Trip" : "3. Unpublish Trip" %>
-  </div>
-</div>
+<ul class="nav nav-tabs" id="publish_create_tabs">
+  <!-- First Tab -->
+  <li class="<%= case controller.action_name 
+  					when "publish_new"
+  					  'active'
+  					when "publish_edit"
+  					  ''
+  					when "publish_confirm"
+  					  'disabled'
+  					else
+  					  'disabled'
+  					end 
+  			%>">
+  	<%= case controller.action_name 
+		  when "publish_new"
+		    "<a><i class='icon-check-empty'></i> 1. Trip Info</a>".html_safe
+		  when "publish_edit"
+		    "<a href='#trip_details' data-toggle='tab'><i class='icon-check' style='color:#3cc574;'></i> 1. Trip Info</a>".html_safe
+		  when "publish_confirm"
+		   	"<a><i class='icon-check' style='color:#3cc574;'></i> 1. Trip Info</a>".html_safe
+		  else
+		    "<a>1. Trip Info</a>".html_safe
+		  end
+	%> 	
+  </li>
+  <!-- Second Tab -->
+  <li class="<%= case controller.action_name 
+  					when "publish_new"
+  					  'disabled'
+  					when "publish_edit"
+  					  'active'
+  					when "publish_confirm"
+  					  ''
+  					else
+  					  'disabled'
+  					end 
+  			%>">
+  	<%= case controller.action_name 
+		  when "publish_new"
+		    "<a><i class='icon-check-empty'></i> 2. Add Activities</a>".html_safe
+		  when "publish_edit"
+		    "<a href='#add_activities' data-toggle='tab'><i class='icon-check-empty'></i> 2. Add Activities</a>".html_safe
+		  when "publish_confirm"
+		   	link_to("<i class='icon-check' style='color:#3cc574;'></i> 2. Add Activities".html_safe, publish_edit_trip_url(@trip))
+		  else
+		    "<a>2. Add Activities</a>".html_safe
+		  end
+	%> 	
+  </li>
+   <!-- Third Tab -->
+  <li class="<%= case controller.action_name 
+  					when "publish_new"
+  					  'disabled'
+  					when "publish_edit"
+  					  ''
+  					when "publish_confirm"
+  					  'active'
+  					else
+  					  'disabled'
+  					end 
+  			%>">
+  	<%= case controller.action_name 
+		  when "publish_new"
+		    "<a><i class='icon-check-empty'></i> 3. Review</a>".html_safe
+		  when "publish_edit"
+		  	if @trip.share_status == 0
+		  	  link_to("<i class='icon-check-empty'></i> 3. Review".html_safe,publish_confirm_trip_url(@trip))
+		    elsif @trip.share_status == 1
+		      link_to("<i class='icon-check-empty'></i> 3. Review".html_safe,publish_confirm_trip_url(@trip))
+		    end
+		  when "publish_confirm"
+		  	if @trip.share_status == 0
+		      "<a><i class='icon-check-empty'></i> 3. Review</a>".html_safe
+		    elsif @trip.share_status == 1
+		      "<a><i class='icon-check-empty'></i> 3. Review</a>".html_safe	
+		    end
+		  else
+		    "<a>3. Publish Trip</a>".html_safe
+		  end
+	%> 	
+  </li> 
+</ul>

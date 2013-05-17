@@ -58,7 +58,13 @@
         </div>
       
         <div class = "author_profile_info_div">
-          <h3 class = "author_profile_name"><%= @author_info.author_name %></h3>
+          <h3 class = "author_profile_name">
+            <% if @author_info.author_name.blank? %>
+              <%= "Author #{@author_info.id}" %>
+            <% else %>
+              <%= @author_info.author_name %>
+            <% end %>
+          </h3>
           
           <p><%= @author_info.city unless @author_info.city.blank?%><%= ", #{@author_info.state}" unless @author_info.state.blank? %><%= ", #{@author_info.country}" unless @author_info.country.blank? %></p>
           

@@ -42,7 +42,7 @@
         <div class = "form_activity_confirm_box" >
           
           <%= render "shared/publish/publish_confirm_venue_box" %>  
-          <div class ="publish_trip_activity_pic_select">
+          <div class ="publish_trip_activity_pic_select upload_pic_parent_box">
             <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(@trip_activity) %>
             <div class = "uploaded_image_msg"><%= which_url_msg %></div>
             <!-- Begin Uploaded Image Preview -->
@@ -70,7 +70,7 @@
             </div>
             <p class = "p_upload_or_foursquare">&#8212; or &#8212;</p>
             <% if !@trip_activity.activity.blank? and !@trip_activity.activity.image_urls.blank? %>
-              <button class = "btn-flat btn-flat-block btn-flat-success ta_pick_from_foursquare">Foursquare Image Selected</button>
+              <button class = "btn-flat btn-flat-block btn-flat-warning ta_pick_from_foursquare">Foursquare Image Selected</button>
             <% else %>
               <button class = "btn-flat btn-flat-block btn-flat-info ta_pick_from_foursquare">Select From Foursquare</button>
             <% end %>

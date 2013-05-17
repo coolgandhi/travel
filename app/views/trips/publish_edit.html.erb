@@ -2,98 +2,79 @@
   <%= javascript_include_tag 'publish_edit_specific' %>  
 <% end %>
 
+<%= content_for :title do %>
+  chalo.io - Add Activities to Trip Summary
+<% end %>
+
 <div class = "container publish_container">
 
-<!-- Begin 4SQ Modal Image Select for Trip Activities-->
-<%= render "shared/publish/select_image_4SQ_modal" %>
-<!-- End 4SQ Modal Image Select for Trip Activities-->
+  <!-- Begin 4SQ Modal Image Select for Trip Activities-->
+  <%= render "shared/publish/select_image_4SQ_modal" %>
+  <!-- End 4SQ Modal Image Select for Trip Activities-->
 
-<!-- Begin Cover Image Select for Trip-->
-<%= render "shared/publish/cover_select_image_modal" %>
-<!-- End Cover Image Select for Trip-->
-
-<div class = "row">
-  <!-- Begin Span -->
-  <div class = "span8">
-    <!-- Begin Form Completion Status Container -->
-    <%= render "trips/partials/publish/completion_status_widget" %>
-    <!-- End Form Completion Status Container -->
-  </div>
-  <!-- End Span -->
-  <!-- Begin Span -->
-  <div class = "span4">
-    <p>
-      <% if @trip.share_status == 0 %>
-        <%= link_to "Publish", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right pt_publish_button" %>
-      <% elsif @trip.share_status == 1 %>
-        <%= link_to "Unpublish", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-danger pull-right pt_publish_button" %>
-      <% end %>
-
-      <%= link_to "Preview", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
-    </p>
-  </div>
-  <!-- End Span -->
-</div>
-
-<!-- <div class="publish_flash_message">
-  <%# render :partial => 'layouts/messages', :locals => { :flash => flash } %>
-</div> -->
+  <!-- Begin Cover Image Select for Trip-->
+  <%= render "shared/publish/cover_select_image_modal" %>
+  <!-- End Cover Image Select for Trip-->
 
 <!-- Begin Row-->
 <div class = "row">
-  
-<!-- Begin Collapser Container-->
-<div class = "publish_trip_collapser span12">
-  
-  <!-- Being Mask When Loading -->
-  <div class = "trip_activity_form_mask"></div>
-  <!-- Being Mask When Loading -->
 
-  <!-- Begin Collapse 1-->
-  <div class = "publish_trip_collapse_header">
-  Trip Details
-  <div class = "collapser_icon"><i class = "icon-chevron-up"></i></div>
-  </div>
-  <div class = "publish_trip_collapse_content publish_form_trip_details">
-    
-    <!-- Flash Message -->
-    <div class="publish_flash_message">
-      <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
-    </div>
-    <!-- Flash Message -->
-    
-    <%= render "shared/publish/publish_trip_details_form" %>
-  </div>
-  <!-- End Collapse 1-->
+    <% if @trip.share_status == 0 %>
+      <%= link_to "Publish", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right pt_publish_button" %>
+    <% elsif @trip.share_status == 1 %>
+      <%= link_to "Unpublish", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-danger pull-right pt_publish_button" %>
+    <% end %>
 
-  <!-- Begin Collapse 2-->
-  <div class = "publish_trip_collapse_header publish_form_activity_details">
-    Activity Details
-    <div class = "collapser_icon"><i class = "icon-chevron-down"></i></div>
-  </div>
-  
-  <div class = "publish_trip_collapse_content publish_form_activity_details_content">
-    <div class ="pe_flash_message_container">
+    <%= link_to "Preview", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
+
+  <!-- Begin Form Completion Status Container -->
+    <%= render "trips/partials/publish/completion_status_widget" %>
+  <!-- End Form Completion Status Container -->
+
+  <div class="tab-content">
+
+    <!-- Begin Collapse 1-->
+    <div class="tab-pane" id="trip_details">
+
+      <!-- Being Mask When Loading -->
+      <div class = "trip_activity_form_mask"></div>
+      <!-- Being Mask When Loading -->
+
       <!-- Flash Message -->
-      <div class="publish_flash_message">
+      <div class="publish_edit_flash_message">
         <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
       </div>
       <!-- Flash Message -->
+    
+      <%= render "shared/publish/publish_trip_details_form" %>
     </div>
+    <!-- End Collapse 1-->
 
-    <div class = "publish_trip_sort_activities">
-       <%= render "shared/publish/publish_trip_activity_order" %> 
-    </div>
-    <div class = "publish_trip_create_activities">
+    <!-- Begin Collapse 2-->
+    <div class="tab-pane active" id="add_activities">
 
-
-      <div class = "pt_empty_activity_form_div">
-        <i class="icon-star-empty icon-4x"></i>
-        <p>Please create a new activity or select an activity to edit.</p>
+        
+      <div class ="pe_flash_message_container">
+        <!-- Flash Message -->
+        <div class="publish_flash_message">
+          <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
+        </div>
+        <!-- Flash Message -->
       </div>
+
+      <div class = "publish_trip_sort_activities">
+         <%= render "shared/publish/publish_trip_activity_order" %> 
+      </div>
+
+      <div class = "publish_trip_create_activities">
+        <div class = "pt_empty_activity_form_div">
+          <i class="icon-star-empty icon-4x"></i>
+          <p>Please create a new activity or select an activity to edit.</p>
+        </div>
+      </div>
+    
     </div>
-  </div> 
-  <!-- End Collapse 2-->
+    <!-- End Collapse 2-->
   
   </div>
   <!-- End Collapser Container-->  

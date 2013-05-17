@@ -27,12 +27,14 @@
       $('#ta_selected_images_field').val(dat);
       $('.pe_select_image_4SQ_modal').modal('hide');
       # change foursquare image select button on select
+      $('.publish_trip_activity_pic_select').find('.uploaded_image_preview').html('<p class = "update_image_p"><i class="icon-bell icon-3x"></i></br>Please Click Update to Save Your Change</p>')
+      $('.publish_trip_activity_pic_select').find('.uploaded_image_msg').html("You've Selected A New 4SQ Image")
       if $('#ta_selected_images_field').val().length > 1
         $('.ta_pick_from_foursquare').html('Foursquare Image Selected')
-        $('.ta_pick_from_foursquare').removeClass("btn-flat-info").addClass("btn-flat-success")
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-info").addClass("btn-flat-warning")
       else
         $('.ta_pick_from_foursquare').html('Select From Foursquare')
-        $('.ta_pick_from_foursquare').removeClass("btn-flat-success").addClass("btn-flat-info")
+        $('.ta_pick_from_foursquare').removeClass("btn-flat-warning").addClass("btn-flat-info")
       return true
     return
 
@@ -60,13 +62,16 @@
           return
       $('.selected_images').val(dat);
       $('.cover_select_modal').modal('hide');
+      # change the image when new foursquare image selected
+      $('.td_select_an_image_div').find('.uploaded_image_preview').html('<p class = "update_image_p"><i class="icon-bell icon-3x"></i></br>Please Click Update to Save Your Change</p>')
+      $('.td_select_an_image_div').find('.uploaded_image_msg').html("You've Selected A New 4SQ Image")
       # change the foursquare selected button if images selected
       if $('.selected_images').val().length > 1
         $('.trip_cover_pick_foursquare_btn').html('Foursquare Image Selected')
-        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-info").addClass("btn-flat-success")
+        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-info").addClass("btn-flat-warning")
       else
         $('.trip_cover_pick_foursquare_btn').html('Select From Foursquare')
-        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-success").addClass("btn-flat-info")
+        $('.trip_cover_pick_foursquare_btn').removeClass("btn-flat-warning").addClass("btn-flat-info")
       return true
     return
 

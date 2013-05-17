@@ -9,8 +9,8 @@
 	  dataType:'script', 
 	  complete: function(){
 	    $('#publish_day_tabs a[href="#publish_activities_day_' + <%= params[:trip_activity][:activity_day] %> + '"]').tab('show');
-	    $('.publish_flash_message').html("<%= escape_javascript raw(flash_display) %>");
-	    $('.publish_trip_create_activities').scrollTop(0);
+	    $('.publish_edit_flash_message').html("<%= escape_javascript raw(flash_display) %>");
+	    $(window).scrollTop(0);
 	    $('.publish_trip_create_activities').effect("highlight", {color: "#dff0d8"}, 1000);
 	    trips_namespace.changeDayTabNewActivity();
 	    // $('#publish_form_activity_' + <%= @trip_activity.id %>).effect("highlight", {}, 1000);

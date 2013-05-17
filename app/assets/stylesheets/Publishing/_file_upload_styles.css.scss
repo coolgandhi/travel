@@ -60,6 +60,10 @@ margin-right: 2%;
   // max-width: 250px;
   overflow: hidden;
   margin-bottom: 1%;
+  @include box-sizing(border-box);
+  border: 2px solid $borderGray;
+  border-top: 0;
+  // padding: 1%;
 }
 
 .yes_upload_div{
@@ -70,7 +74,7 @@ margin-right: 2%;
   height: 150px;
   overflow: hidden;  
   @include box-sizing(border-box);
-  border: 2px solid black;    
+  // border: 2px solid black;    
 }
 
 .no_upload_div{
@@ -108,4 +112,11 @@ margin-right: 2%;
   margin-bottom: 0;
   font-size: em(12px);
   color: gray;
+}
+
+.update_image_p{
+  text-align: center;
+  font-size: em(18px);
+  color: gray;
+  margin-top: 10%;
 }
