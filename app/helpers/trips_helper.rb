@@ -168,4 +168,25 @@ module TripsHelper
     
     return trips, exact_match_count_passed_in, message_with_trip_render
   end
+
+  def trip_author_missing_profile (author_x)
+    ap = author_x
+    ap_name = ap.author_name
+    ap_about = ap.about
+    ap_image = ap.self_image
+    blank_fields = []
+    ap_hash = {"Name"=> ap_name, "About Blurb"=> ap_about, "Profile Picture"=> ap_image}
+    
+    ap_hash.each do |k, v|
+      if v.blank? then blank_fields << k end
+    end
+    
+    if blank_fields.length > 1
+      return "Your Author Profile would be better with your: #{blank_fields.to_sentence}. Would you like to update your profile to make your trip summary more useful?"
+    else
+      "Your Author Profile looks good. Check it out."
+    end
+
+  end
+
 end

@@ -40,6 +40,14 @@
             <%= render "shared/publish/publish_trip_confirm_form", :f => f  %>
           </div>
           
+          <div class = "row">
+            <div class = "span12">
+            <p class = "centerize"><%= trip_author_missing_profile(@trip.author_info) %>
+              <%= link_to 'Edit Profile', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :target => "_blank" %>
+            </p>
+            </div>
+          </div>
+
           <div class="control-group">
             <div class="controls">
               <% if @trip.share_status == 0 %>
