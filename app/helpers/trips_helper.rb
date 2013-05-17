@@ -181,11 +181,7 @@ module TripsHelper
       if v.blank? then blank_fields << k end
     end
     
-    if blank_fields.length > 1
-      return "Your Author Profile would be better with your: #{blank_fields.to_sentence}. Would you like to update your profile to make your trip summary more useful?"
-    else
-      "Your Author Profile looks good. Check it out."
-    end
+    return blank_fields, "#{blank_fields.to_sentence}"
 
   end
 

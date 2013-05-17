@@ -42,9 +42,18 @@
           
           <div class = "row">
             <div class = "span12">
-            <p class = "centerize"><%= trip_author_missing_profile(@trip.author_info) %>
-              <%= link_to 'Edit Profile', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :target => "_blank" %>
-            </p>
+              <p class = "centerize">
+                <strong>
+                <% blank_fields, bf_sentence = trip_author_missing_profile(@trip.author_info) %>
+                <% if blank_fields.length > 1 %>
+                  Your Author Profile would be better with your: <%= bf_sentence %>.</br>
+                  Would you like to update it to make your trip summary more useful?
+                <% else %>
+                  Your profile looks good!
+                <% end %>
+                <%= link_to 'Edit Profile', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :target => "_blank" %>
+                </strong>
+              </p>
             </div>
           </div>
 
