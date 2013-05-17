@@ -538,6 +538,29 @@ module ApplicationHelper
       return use_this_url, which_url_msg 
   end
 
-
+  def author_level(author_x)
+    author_trip_stats = author_x.trip_stats
+    agg_author_usefuls = 0
+    unless author_trip_stats.blank?
+      author_trip_stats.each { |trip|
+        agg_author_usefuls = agg_author_usefuls + trip.useful            
+      }
+    end
+    # case agg_author_usefuls
+    if ( agg_author_usefuls <= 25 )
+      author_level = "Rookie"
+    elsif ( (agg_author_usefuls >= 26) and (agg_author_usefuls <= 100) )
+      author_level = "Explorer"
+    elsif ( (agg_author_usefuls >= 101) and (agg_author_usefuls <= 500) )
+      author_level = "Captain"
+    elsif ( (agg_author_usefuls >= 501) and (agg_author_usefuls <= 1000) )
+      author_level = "Superstar"
+    elsif ( agg_author_usefuls > 1001 )
+      author_level = "Secret Status"
+    else
+      author_level = "Rookie"
+    end
+    return author_level
+  end
 
 end

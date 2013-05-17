@@ -13,13 +13,13 @@
   			%>">
   	<%= case controller.action_name 
 		  when "publish_new"
-		    "<a><i class='icon-check-empty'></i> 1. Create Trip</a>".html_safe
+		    "<a><i class='icon-check-empty'></i> 1. Trip Info</a>".html_safe
 		  when "publish_edit"
-		    "<a href='#trip_details' data-toggle='tab'><i class='icon-check' style='color:#3cc574;'></i> 1. Create Trip</a>".html_safe
+		    "<a href='#trip_details' data-toggle='tab'><i class='icon-check' style='color:#3cc574;'></i> 1. Trip Info</a>".html_safe
 		  when "publish_confirm"
-		   	"<a><i class='icon-check' style='color:#3cc574;'></i> 1. Create Trip</a>".html_safe
+		   	"<a><i class='icon-check' style='color:#3cc574;'></i> 1. Trip Info</a>".html_safe
 		  else
-		    "<a>1. Create Trip</a>".html_safe
+		    "<a>1. Trip Info</a>".html_safe
 		  end
 	%> 	
   </li>
@@ -61,18 +61,18 @@
   			%>">
   	<%= case controller.action_name 
 		  when "publish_new"
-		    "<a><i class='icon-check-empty'></i> 3. Publish Trip</a>".html_safe
+		    "<a><i class='icon-check-empty'></i> 3. Review</a>".html_safe
 		  when "publish_edit"
 		  	if @trip.share_status == 0
-		  	  link_to("<i class='icon-check-empty'></i> 3. Publish Trip".html_safe,publish_confirm_trip_url(@trip))
+		  	  link_to("<i class='icon-check-empty'></i> 3. Review".html_safe,publish_confirm_trip_url(@trip))
 		    elsif @trip.share_status == 1
-		      link_to("<i class='icon-check-empty'></i> 3. Unpublish Trip".html_safe,publish_confirm_trip_url(@trip))
+		      link_to("<i class='icon-check-empty'></i> 3. Review".html_safe,publish_confirm_trip_url(@trip))
 		    end
 		  when "publish_confirm"
 		  	if @trip.share_status == 0
-		      "<a><i class='icon-check-empty'></i> 3. Publish Trip</a>".html_safe
+		      "<a><i class='icon-check-empty'></i> 3. Review</a>".html_safe
 		    elsif @trip.share_status == 1
-		      "<a><i class='icon-check-empty'></i> 3. Unpublish Trip</a>".html_safe	
+		      "<a><i class='icon-check-empty'></i> 3. Review</a>".html_safe	
 		    end
 		  else
 		    "<a>3. Publish Trip</a>".html_safe
