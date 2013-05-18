@@ -1,0 +1,41 @@
+/* COMPASS TO SPRITE AUTHOR LEVEL BADGES DIRECTORY */
+@import "author_level/*.png";
+@include all-author_level-sprites;
+
+@mixin author_level_badge_sizes{
+  background-position:center;
+  background-repeat: no-repeat;
+  height: 95px;
+  width: 96px;
+  @include box-sizing(border-box);  	
+}
+
+.level_1_badge{
+  @include author_level_badge_sizes;
+  @include author_level-sprite(rookiebadge);	
+}
+
+.level_2_badge{
+  @include author_level_badge_sizes;
+  @include author_level-sprite(explorerbadge);	
+}
+
+.level_3_badge{
+  @include author_level_badge_sizes;
+  @include author_level-sprite(captainbadge);	
+}
+
+.level_4_badge{
+  @include author_level_badge_sizes;
+  @include author_level-sprite(superstarbadge);	
+}
+
+/* SIZING AUTHOR LEVEL BADGE CONTAINERS */
+.al_badge_container{
+  height: 95px;
+  width: 95px;
+  @include box-sizing(border-box);
+  position: absolute;
+  top: 0;
+  right: 0;
+}

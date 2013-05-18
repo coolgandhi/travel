@@ -549,18 +549,36 @@ module ApplicationHelper
     # case agg_author_usefuls
     if ( agg_author_usefuls <= 25 )
       author_level = "Rookie"
+      author_level_class = "level_1_badge"
+      min_useful = 0
+      next_level = 26 - agg_author_usefuls
     elsif ( (agg_author_usefuls >= 26) and (agg_author_usefuls <= 100) )
       author_level = "Explorer"
+      author_level_class = "level_2_badge"
+      min_useful = 26
+      next_level = 101 - agg_author_usefuls
     elsif ( (agg_author_usefuls >= 101) and (agg_author_usefuls <= 500) )
       author_level = "Captain"
+      min_useful = 101
+      next_level = 501 - agg_author_usefuls
+      author_level_class = "level_3_badge"
     elsif ( (agg_author_usefuls >= 501) and (agg_author_usefuls <= 1000) )
       author_level = "Superstar"
+      author_level_class = "level_4_badge"
+      min_useful = 501
+      next_level = 1001 - agg_author_usefuls
     elsif ( agg_author_usefuls > 1001 )
       author_level = "Secret Status"
+      author_level_class = "level_5_badge"
+      min_useful = 1001
+      next_level = "a lot more"
     else
       author_level = "Rookie"
+      author_level_class = "level_1_badge"
+      min_useful = 0
+      next_level = 26 - agg_author_usefuls
     end
-    return author_level
+    return author_level, author_level_class, min_useful, next_level
   end
 
 end
