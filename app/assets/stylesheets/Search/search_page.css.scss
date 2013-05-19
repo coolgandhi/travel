@@ -555,6 +555,13 @@
   width: 18px;
 }
 
+.disqus_thread_front_page{
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2%;
+  @include box-sizing(border-box);  
+}
+
 /* FLOATING FRONT PAGE CONVERSATION */
 
 .floating_front_page_convo{
