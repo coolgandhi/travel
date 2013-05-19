@@ -6,7 +6,9 @@
   	  
     </div>
     <div class = "front_page_convo_body cust_scroll_thin">
-      <fb:comments href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>  
   </div>
 

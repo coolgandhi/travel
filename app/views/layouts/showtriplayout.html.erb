@@ -19,7 +19,12 @@
     <%= yield(:head) %>
     <% if Rails.env.production? %>	
       <%= render :partial => 'layouts/ga' %>
+      <%= render :partial => 'layouts/disqus', :disqus_id => request.fullpath.downcase %>
+    <% else %>
+      <%= render :partial => 'layouts/disqus', :disqus_id => request.url.downcase %>
     <% end %>
+    
+    
     <meta name="p:domain_verify" content="5d853b27e826e5b9dc41d0dbb85800fe"/>
   </head>
 

@@ -27,12 +27,13 @@
 
 <a href='#bottom_actionlinks' id='scrolltocomments'>Ask a Question</a>
 
-<div id ="bottom_actionlinks">
+<div id ="bottom_actionlinks"> 
   <div class = "buffer_comments"><p class= "caption_title">Ask a Question or Leave a Comment for this Trip </p>
   </div>
-  <div class ="div_fb_comments">
-    <fb:comments href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" num_posts="10" id="comments" colorscheme="light" mobile=false></fb:comments>
-  </div> 
+    
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
 
 </br>

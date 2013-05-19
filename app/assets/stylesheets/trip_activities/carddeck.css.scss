@@ -1108,7 +1108,7 @@ div.rightcaption .ui-accordion-content {
       //this is here because iScroll4 needs a header to scroll the main body item.
       padding: 1%;
     } 
-    .div_fb_comments{
+    .div_fb_comments, .disqus_thread{
       // position: absolute;
       // width: 100%;
       height: 85%; //having this works for all except for android browser (sticky scrolling)
