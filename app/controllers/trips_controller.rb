@@ -56,7 +56,7 @@ class TripsController < ApplicationController
       @sorted_activities, @compressed_activities = sorted_trip_activities @trip
       
       @trip_stats = @trip.trip_stat
-      if !@trip_stats.blank?
+      if !@trip_stats.blank? and @trip.share_status == 1  
         TripStat.increment_counter(:trip_views, @trip_stats.id)
       end
       @trip_feedback = @trip.trip_feedbacks.new
