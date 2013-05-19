@@ -19,9 +19,9 @@
     <%= yield(:head) %>
     <% if Rails.env.production? %>	
       <%= render :partial => 'layouts/ga' %>
-      <%= render :partial => 'layouts/disqus', :disqus_id => request.fullpath.downcase %>
+      <%= render :partial => 'layouts/disqus', :locals => {:disqus_id => "#{request.fullpath.downcase}"} %>
     <% else %>
-      <%= render :partial => 'layouts/disqus', :disqus_id => request.url.downcase %>
+      <%= render :partial => 'layouts/disqus', :locals => {:disqus_id => "#{request.url.downcase}"} %>
     <% end %>
     
     

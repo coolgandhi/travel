@@ -17,9 +17,9 @@
     <%= yield(:head) %>
     <% if Rails.env.production? %>	
       <%= render :partial => 'layouts/ga' %>
-      <%= render :partial => 'layouts/disqus', :disqus_id => "frontpage" %>
+      <%= render :partial => 'layouts/disqus', :locals => { :disqus_id => "frontpage"} %>
     <% else %>
-      <%= render :partial => 'layouts/disqus', :disqus_id => "#{request.url}" %>
+      <%= render :partial => 'layouts/disqus', :locals => { :disqus_id => "#{request.url}"} %>
     <% end %>
         
     

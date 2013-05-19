@@ -3,9 +3,9 @@
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'chaloio'; // required: replace example with your forum shortname
         <% if Rails.env.production? %>	
-          var disqus_identifier = <%= disqus_id %>
+          var disqus_identifier = '<%= disqus_id %>';
         <% end %>
-
+        
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
