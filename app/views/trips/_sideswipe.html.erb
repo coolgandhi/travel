@@ -88,6 +88,14 @@
   <!--Begin Trip Author Box -->
   <div class="authortitlebox">
 
+    <!-- BEGIN AUTHOR LEVEL BADGE -->
+    <% author_level_name, author_level_class, min_useful, next_level = author_level(@trip.author_info) %>
+    <div class = "al_badge_container centerize author_level_tooltip" data-toggle="tooltip" data-placement="left" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
+      <div class = "<%= author_level_class %>"></div>
+      <span class = "al_badge_name"><%= author_level_name %></span>
+    </div>
+    <!-- END AUTHOR LEVEL BADGE -->
+
     <span class="trip_title_sub_text caption_large author_intrip_popover" data-content = '<%= render "trips/partials/author_popover_content", :trip => @trip %>'>
         <%= link_to author_page_author_info_path(@trip.author_info.id),:target => "_blank" do %>
           <% if !@trip.author_info.self_image.blank? %>

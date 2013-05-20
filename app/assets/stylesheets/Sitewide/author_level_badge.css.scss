@@ -5,37 +5,43 @@
 @mixin author_level_badge_sizes{
   background-position:center;
   background-repeat: no-repeat;
-  height: 95px;
-  width: 96px;
+  height: 100%;
+  width: 100%;
+  margin-left: 2px;
   @include box-sizing(border-box);  	
 }
 
 .level_1_badge{
   @include author_level_badge_sizes;
-  @include author_level-sprite(rookiebadge);	
+  @include author_level-sprite(rookie-40x40);	
 }
 
 .level_2_badge{
   @include author_level_badge_sizes;
-  @include author_level-sprite(explorerbadge);	
+  @include author_level-sprite(explorer-40x40);	
 }
 
 .level_3_badge{
   @include author_level_badge_sizes;
-  @include author_level-sprite(captainbadge);	
+  @include author_level-sprite(captain-40x40);	
 }
 
 .level_4_badge{
   @include author_level_badge_sizes;
-  @include author_level-sprite(superstarbadge);	
+  @include author_level-sprite(superstar-40x40);	
 }
 
 /* SIZING AUTHOR LEVEL BADGE CONTAINERS */
 .al_badge_container{
-  height: 95px;
-  width: 95px;
+  height: 40px;
+  width: 40px;
   @include box-sizing(border-box);
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1%;
+  right: 1%;
+  span.al_badge_name{
+    font-size: em(12px);
+    font-weight: bold;  
+  }
+
 }
