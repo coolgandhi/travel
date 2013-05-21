@@ -109,7 +109,7 @@
           <%= link_to "Author #{@trip.author_info.id}", author_page_author_info_path(@trip.author_info.id), :class => "ab_author_name title" %>
         <% end %>
     </span>
-      <p class = "ab_author_website"><%= link_to '<i class="icon-link"></i> website'.html_safe, url_with_protocol(@trip.author_info.website), :class => "trip_title_sub_text", :target => "_blank" unless @trip.author_info.website.blank? %> 
+      <p class = "ab_author_website"><%= link_to "website", url_with_protocol(@trip.author_info.website), :class => "trip_title_sub_text", :target => "_blank" unless @trip.author_info.website.blank? %> 
       </p>
     </div>
     <!-- END it_al_left_wrap -->
