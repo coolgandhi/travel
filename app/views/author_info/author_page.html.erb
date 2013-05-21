@@ -85,7 +85,7 @@
               
               <span class = "ap_float_left_span">
                 <h3 class = "author_profile_from">
-                  <%= "| #{@author_info.city unless @author_info.city.blank?}" %><%= ", #{@author_info.state}" unless @author_info.state.blank? %>
+                  <%= "| #{@author_info.city}" unless @author_info.city.blank? %><%= ", #{@author_info.state}" unless @author_info.state.blank? %>
                 </h3>
               </span>
             </div>
@@ -144,7 +144,9 @@
   <!-- Begin Row -->
   <div class = "row">
     <div class = "span12">
-      <h3 class = "featured_results_title title_large">Trip Summaries by <%= @author_info.author_name %></h3>
+      <h3 class = "featured_results_title title_large">
+        Trip Summaries <%= "by #{@author_info.author_name}" unless @author_info.author_name.blank? %>
+      </h3>
 
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs" id="trips_by_author_tabs">
@@ -166,7 +168,18 @@
   <div class="tab-pane active" id=<%= "author_trip_tabs_1"%>>
 
       <% if @trips.blank? %>
-        No published trips belonging to the author
+        <div class = "centerize">
+          <% if !current_author_info.blank? and @author_info.id.to_s == current_author_info.id.to_s %>
+            <h4>Welcome to Chalo! Share your travel experience with fellow travelers.</h4>
+            <%= link_to 'Add A Trip Summary', publish_new_trips_url(), :class => "btn-flat btn-flat-success btn-flat-large" %>
+            <% if !@trips_unpublished.blank? %>
+              </br></br>  
+              <p>We noticed that you have unpublished trips. Ready to share them with fellow travelers? Please publish them.</p>
+            <% end %>
+          <% else %>
+            No published trips belonging to the author
+          <% end %>
+        </div>
       <% else %>
         <ul class="thumbnails">
           

@@ -2,7 +2,7 @@
 
   jQuery ->
     $('.publish_place_dropdown_field').change ->
-      console.log($('select.publish_place_dropdown_field option:selected').text().split(',')[0])
+      # console.log($('select.publish_place_dropdown_field option:selected').text().split(',')[0])
       $('#trip_location_id').val($('.publish_place_dropdown_field').val())
       
       $.ajax 

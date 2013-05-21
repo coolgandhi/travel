@@ -91,7 +91,7 @@
     <!-- BEGIN it_al_left_wrap -->
     <div class = "it_al_left_wrap">
     <span class="trip_title_sub_text caption_large author_intrip_popover" data-content = '<%= render "trips/partials/author_popover_content", :trip => @trip %>'>
-        <%= link_to author_page_author_info_path(@trip.author_info.id),:target => "_blank" do %>
+        <%= link_to author_page_author_info_path(@trip.author_info.id) do %>
           <% if !@trip.author_info.self_image.blank? %>
              <div class="trip_title_auth_pic">
                <%= image_tag(@trip.author_info.self_image_url(:passport), :alt => "profile", :class => "auth_img_tag") %>
@@ -106,7 +106,11 @@
         <% if !@trip.author_info.author_name.blank? %>
           <%= link_to @trip.author_info.author_name, author_page_author_info_path(@trip.author_info.id), :class => "ab_author_name title" %>
         <% else %>
-          <%= link_to "Author #{@trip.author_info.id}", author_page_author_info_path(@trip.author_info.id), :class => "ab_author_name title" %>
+          <% if !current_author_info.blank? and @trip.author_info.id.to_s == current_author_info.id.to_s %>
+            <%= link_to 'Your Name is Missing', author_info_about_edit_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %>
+          <% else %>
+            <%= link_to "Author #{@trip.author_info.id}", author_page_author_info_path(@trip.author_info.id), :class => "ab_author_name title" %>
+          <% end %>
         <% end %>
     </span>
       <p class = "ab_author_website"><%= link_to "website", url_with_protocol(@trip.author_info.website), :class => "trip_title_sub_text", :target => "_blank" unless @trip.author_info.website.blank? %> 
