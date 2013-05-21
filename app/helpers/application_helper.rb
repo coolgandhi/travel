@@ -503,20 +503,20 @@ module ApplicationHelper
         if !object.self_image.blank?
           use_this_url = object.self_image_url(self_image_size)
           which_url_msg = "Image Uploaded by User"
+        elsif !object.self_image_tmp.blank?
+          use_this_url = "/assets/temp-img-holder.png"
+          which_url_msg = "We're processing your image"        
         elsif !object.image_url.blank?
           #def select_image_given_image_urls(image_urls, width, index = 0)
           use_this_url = select_image_given_image_urls(object.image_url, foursquare_image_width, foursquare_image_index)
           which_url_msg = "Image Selected from Foursquare"
-        elsif !object.self_image_tmp.blank?
-          use_this_url = "/assets/temp-img-holder.png"
-          which_url_msg = "We're processing your image"
         else
           use_this_url = "/assets/no-img-holder.png"
           which_url_msg = "Upload image or Choose from Foursquare"
         end
       when 'TripActivity'
         if !object.self_trip_activity_photos.first.blank? and !object.self_trip_activity_photos.first.self_photo.blank?
-          use_this_url = self_image_size == :original ? object.self_trip_activity_photos.first.self_photo : object.self_trip_activity_photos.first.self_photo_url(self_image_size)
+          use_this_url = self_image_size == :card ? object.self_trip_activity_photos.first.self_photo : object.self_trip_activity_photos.first.self_photo_url(self_image_size)
           which_url_msg = "Image Uploaded by User"
         elsif !object.activity.blank? and !object.activity.image_urls.blank?
           use_this_url = select_image_given_image_urls(object.activity.image_urls, foursquare_image_width, foursquare_image_index)
@@ -552,33 +552,39 @@ module ApplicationHelper
       author_level_class = "level_1_badge"
       min_useful = 0
       next_level = 26 - agg_author_usefuls
+      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become an Explorer. Click useful to help this #{author_level} get there."
     elsif ( (agg_author_usefuls >= 26) and (agg_author_usefuls <= 100) )
       author_level = "Explorer"
       author_level_class = "level_2_badge"
       min_useful = 26
       next_level = 101 - agg_author_usefuls
+      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become a Captain. Click useful to help this #{author_level} get there."
     elsif ( (agg_author_usefuls >= 101) and (agg_author_usefuls <= 500) )
       author_level = "Captain"
       min_useful = 101
       next_level = 501 - agg_author_usefuls
       author_level_class = "level_3_badge"
+      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become a Superstar. Click useful to help this #{author_level} get there."
     elsif ( (agg_author_usefuls >= 501) and (agg_author_usefuls <= 1000) )
       author_level = "Superstar"
       author_level_class = "level_4_badge"
       min_useful = 501
       next_level = 1001 - agg_author_usefuls
-    elsif ( agg_author_usefuls > 1001 )
-      author_level = "Secret Status"
-      author_level_class = "level_5_badge"
-      min_useful = 1001
-      next_level = "a lot more"
+      tooltip_msg = "#{author_level} has #{agg_author_usefuls} useful votes."
+    # elsif ( agg_author_usefuls > 1001 )
+    #   author_level = "Secret Status"
+    #   author_level_class = "level_5_badge"
+    #   min_useful = 1001
+    #   next_level = "a lot more"
+    #   tooltip_msg = "#{author_level} has #{agg_author_usefuls} useful votes."
     else
       author_level = "Rookie"
       author_level_class = "level_1_badge"
       min_useful = 0
       next_level = 26 - agg_author_usefuls
+      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become an Explorer. Click useful to help this #{author_level} get there."
     end
-    return author_level, author_level_class, min_useful, next_level
+    return author_level, author_level_class, min_useful, next_level, tooltip_msg
   end
 
 end

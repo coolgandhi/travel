@@ -47,7 +47,7 @@ module TripsHelper
               lay_out= "transportactivitypartial"
         end
         
-        use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip_activity,:original, 767, 0)
+        use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip_activity,:card, 767, 0)
         use_this_url_thumb, which_url_msg_thumb = upload_or_foursquare_image_url_picker(trip_activity,:thumb, 480, 0)
         use_this_url_passport, which_url_msg_passport = upload_or_foursquare_image_url_picker(trip_activity,:passport, 480, 0)
 
