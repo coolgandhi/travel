@@ -13,22 +13,53 @@
  position: relative;
  width: 100%;
  margin-bottom: 2%;
- min-height: 200px;
+ height: 200px;
 }
 
 .author_profile_picture_div{
- @include col(3);
+ width: 20%;
+float: left;
+ position: relative;
  margin-left: 0;
  height: 200px;
  overflow:hidden;
 }
 
 .author_profile_info_div{
- @include col(9);
+ width: 80%;
+ height: 100%;
+ float: left;
+ position: relative;
  p{
   margin:0;
   // font-size: em(16px);
   }
+}
+
+.ap_info_div_top{
+  padding: 1% 2%;
+}
+
+.ap_name_div{
+  // float: left;
+  display: inline-block;
+  position: relative;
+  margin-left: 2%;
+  @include box-sizing(border-box);
+}
+
+.ap_badge_div{
+  float: left;
+  position: relative;
+  @include box-sizing(border-box);
+  @include clearfix;
+  padding-top: 3px;
+}
+
+.ap_float_left_span{
+  float: left;
+  position: relative;
+  margin-left: 5px;
 }
 
 .author_profile_stats{
@@ -40,32 +71,31 @@
   margin: 0;	
 }
 
+.author_profile_from{
+  margin: 0;
+  font-weight: normal;
+}
+
 .author_profile_about{
   margin: 0;
   line-height: 1.4em;
   font-size: em(16px);
+  display: inline-block;
 }
 
-.twitter_follow_box{
-  margin-top: 1%;
-}
 /** Author Stats **/
 .author_stats_box{
   position: absolute;
-  right: 0.25%;
-  bottom: 1%;
+  right: 0%;
+  bottom: 0%;
+  width: 100%;
   // float: left;
   @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%));	
-  @include border-radius($myDivBorderRadius);
-  @include box-shadow($myDivBoxShadow);
   background-color: $myDivBg;
   padding: 0;
   margin: 0;
-  border-color: $borderGray;
-  border-width: $myDivBorderWidth;
-  border-style: solid;
-  @include border-radius($myDivBorderRadius);
-  @include box-shadow($myDivBoxShadow);
+  border-top: $borderGray $myDivBorderWidth solid;
+  // @include border-radius($myDivBorderRadius);
   @include box-sizing(border-box);
 
   li{
@@ -75,7 +105,7 @@
   	// height: 30px;
   	margin: 0;
   	padding: 1% 2%;
-  	border-left: 1px solid #ccc;
+  	border-right: 1px solid #ccc;
   	@include box-sizing(border-box);
   	font-weight: bold;
   	color: gray;
@@ -89,9 +119,9 @@
     }
   } 
   
-  li:first-child{
-  	border-left: 0;
-  }
+  // li:first-child{
+  // 	border-left: 0;
+  // }
 }
 
 .author_page_add_trip_btn{

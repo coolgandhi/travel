@@ -20,7 +20,7 @@
     <% if Rails.env.production? %>	
       <%= render :partial => 'layouts/ga' %>
       <%= render :partial => 'layouts/disqus', :locals => {:disqus_id => "application"} %>
-    <% else %      
+    <% else %>     
       <%= render :partial => 'layouts/disqus',:locals => {:disqus_id => "#{request.url.downcase}"} %>
       
     <% end %>

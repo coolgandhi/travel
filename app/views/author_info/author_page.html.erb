@@ -38,21 +38,10 @@
   <div class = "row">
     <!-- Begin Span12 -->
     <div class = "span12">
-<!--       <div class = "page-header">
-        <h1>Author Profile</h1>
-      </div> -->
 
       <!-- Begin author_profile_header_box -->  
       <div class = "author_profile_header_box">
-<%# if false %>    
-        <!-- BEGIN AUTHOR LEVEL BADGE -->
-        <% author_level_name, author_level_class, min_useful, next_level = author_level(@author_info) %>
-        <div class = "al_badge_container centerize author_level_tooltip" data-toggle="tooltip" data-placement="left" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
-          <div class = "<%= author_level_class %>"></div>
-          <span class = "al_badge_name"><%= author_level_name %></span>
-        </div>
-        <!-- END AUTHOR LEVEL BADGE -->
-<%# end %>
+
         <div class = "author_profile_picture_div">
           <% if !@author_info.self_image.blank? %>
             <div>
@@ -64,29 +53,62 @@
             </div>    
           <% end %>    
         </div>
-      
-        <div class = "author_profile_info_div">
-          <h3 class = "author_profile_name">
-            <% if @author_info.author_name.blank? %>
-              <%= "Author #{@author_info.id}" %>
-            <% else %>
-              <%= @author_info.author_name %>
-            <% end %>
-          </h3>
-          
-          <p><%= @author_info.city unless @author_info.city.blank?%><%= ", #{@author_info.state}" unless @author_info.state.blank? %><%= ", #{@author_info.country}" unless @author_info.country.blank? %></p>
-          
-          <p class = "lead author_profile_about"><%= @author_info.about %> </p>
-          <p><%= link_to("Website", self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> </p>
 
-          <%unless @author_info.twitter_handle.blank? %>
-            <div class = "twitter_follow_box">
-              <iframe allowtransparency="true" frameborder="0" scrolling="no"
-              src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author_info.twitter_handle %>"
-              style="width:300px; height:20px;"></iframe>
+        <!-- Begin Author Info Wrapper Div-->
+        <div class = "author_profile_info_div">
+          <!-- Begin Author Info Top -->
+          <div class = "ap_info_div_top">
+  
+            <!-- BEGIN AUTHOR LEVEL BADGE -->
+            <% author_level_name, author_level_class, min_useful, next_level = author_level(@author_info) %>
+            <div class = "ap_badge_div author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
+              
+              <div class = "al_badge_container centerize">
+                <div class = "<%= author_level_class %>"></div>
+              </div>
+              <span class = "al_badge_name"><%= author_level_name %></span>
             </div>
-          <% end %>
-                    
+            <!-- END AUTHOR LEVEL BADGE -->
+
+            <div class = "ap_name_div">
+              <span class = "ap_float_left_span">
+                <h3 class = "author_profile_name">
+                  <% if @author_info.author_name.blank? %>
+                    <%= "Author #{@author_info.id}" %>
+                  <% else %>
+                    <%= @author_info.author_name %>
+                  <% end %>    
+                </h3>
+              </span>
+              
+              <span class = "ap_float_left_span">
+                <h3 class = "author_profile_from">
+                  <%= "| #{@author_info.city unless @author_info.city.blank?}" %><%= ", #{@author_info.state}" unless @author_info.state.blank? %>
+                </h3>
+              </span>
+            </div>
+
+            <div class = "ap_name_div">
+
+              <span class = "ap_float_left_span">
+                <%= link_to("Website", self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> 
+              </span>
+
+              <%unless @author_info.twitter_handle.blank? %>
+                <span class = "ap_float_left_span"> | </span> 
+                <span class = "ap_float_left_span">
+                  <iframe allowtransparency="true" frameborder="0" scrolling="no"
+                  src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author_info.twitter_handle %>"
+                  style="width:300px; height:20px;"></iframe>
+                </span>
+              <% end %>
+
+            </div>
+          
+            <p class = "lead author_profile_about"><%= @author_info.about %> </p>
+          </div>            
+          <!-- End Author Info Top -->
+          
           <!-- Begin Author Stats -->
           <ul class = "author_stats_box">
             <li>
@@ -109,6 +131,7 @@
           </ul>
           <!-- Begin Author Stats -->
         </div>
+        <!-- End Author Info Wrapper Div-->
       </div>
       <!-- End author_profile_header_box -->  
     </div>

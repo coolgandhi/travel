@@ -1,6 +1,6 @@
 /* COMPASS TO SPRITE AUTHOR LEVEL BADGES DIRECTORY */
 @import "author_level/*.png";
-@include all-author_level-sprites;
+// @include all-author_level-sprites;
 
 @mixin author_level_badge_sizes{
   background-position:center;
@@ -32,20 +32,53 @@
 }
 
 /* SIZING AUTHOR LEVEL BADGE CONTAINERS */
+.al_badge_bg_blur{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.8);
+  padding: 1%;
+  @include box-sizing(border-box);
+}
+
 .al_badge_container{
   height: 40px;
   width: 40px;
   @include box-sizing(border-box);
-  position: absolute;
-  top: 1%;
-  right: 1%;
-  span.al_badge_name{
-    font-size: em(12px);
-    font-weight: bold;  
-  }
+  position: relative;
+  float: left;
+  z-index: 5;
+  // position: absolute;
+  // top: 1%;
+  // right: 1%;
+}
+
+span.al_badge_name{
+  font-size: em(12px);
+  font-weight: bold;  
 }
 
 .al_badge_container.in_trip{
   position: relative;
   float: right;
+}
+
+.it_al_badge_wrap{
+  position: relative;
+  height: 100%;
+  float: right;
+  z-index: 100;
+}
+
+.al_solid_bg{
+  opacity: 1;
+  & .tooltip-inner, & .tooltip-arrow{
+    opacity: 1;
+    // background-color: $red;
+  }
+}
+
+.al_solid_bg.in {
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
