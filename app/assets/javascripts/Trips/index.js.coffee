@@ -116,6 +116,7 @@
             $('.continuous_loading_indicator_wrapper').show()
             $.getScript(url).done ->
               $('.continuous_loading_indicator_wrapper').hide()
+              trips_namespace.fireAuthorPopOver()
               # history.pushState {state:1}, document.title, url
             return
           if $(window).scrollTop() > 0

@@ -36,7 +36,7 @@
       <!--End Traveler Type Badge -->
       
       <h3 class="caption_trip_title caption_title"><%= link_to trip.trip_name, trip %></h3>
-      <p class="caption_trip_subtitle caption_subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %> <span class="divider">|</span> by <%= (trip.author_info and trip.author_info.author_name) ? trip.author_info.author_name : "unknown" %> </p>
+      <p class="caption_trip_subtitle caption_subtitle"> <%= trip.duration %> Days in <%= (trip.location_id && trip.location) ? trip.location[:place] : "unknown" %> <span class="divider">|</span> by <%= (trip.author_info and trip.author_info.author_name) ? (!trip.author_info.author_name.blank? ? trip.author_info.author_name : "Author #{trip.author_info.id}") : "unknown" %> </p>
       <p class="caption_trip_summary caption_subtitle"><%= auto_link(trip.trip_summary, :html => { :target => '_blank' }) %><p>
 
       <!-- Only if you IS the author -->
