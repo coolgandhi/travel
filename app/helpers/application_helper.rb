@@ -552,19 +552,19 @@ module ApplicationHelper
       author_level_class = "level_1_badge"
       min_useful = 0
       next_level = 26 - agg_author_usefuls
-      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become an Explorer. Click useful to help this #{author_level} get there."
+      tooltip_msg = "#{author_level} becomes an Explorer after getting #{next_level} more useful votes on their trips. Click useful to help this #{author_level} get there."
     elsif ( (agg_author_usefuls >= 26) and (agg_author_usefuls <= 100) )
       author_level = "Explorer"
       author_level_class = "level_2_badge"
       min_useful = 26
       next_level = 101 - agg_author_usefuls
-      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become a Captain. Click useful to help this #{author_level} get there."
+      tooltip_msg = "#{author_level} will become a Captain after getting #{next_level} more useful votes on their trips. Click useful to help this #{author_level} get there."
     elsif ( (agg_author_usefuls >= 101) and (agg_author_usefuls <= 500) )
       author_level = "Captain"
       min_useful = 101
       next_level = 501 - agg_author_usefuls
       author_level_class = "level_3_badge"
-      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become a Superstar. Click useful to help this #{author_level} get there."
+      tooltip_msg = "#{author_level} becomes a Superstar after getting #{next_level} more useful votes on their trips. Click useful to help this #{author_level} get there."
     elsif ( (agg_author_usefuls >= 501) and (agg_author_usefuls <= 1000) )
       author_level = "Superstar"
       author_level_class = "level_4_badge"
@@ -582,7 +582,7 @@ module ApplicationHelper
       author_level_class = "level_1_badge"
       min_useful = 0
       next_level = 26 - agg_author_usefuls
-      tooltip_msg = "#{author_level} needs #{next_level} more useful votes to become an Explorer. Click useful to help this #{author_level} get there."
+      tooltip_msg = "#{author_level} becomes an Explorer after getting #{next_level} more useful votes on their trips. Click useful to help this #{author_level} get there."
     end
     return author_level, author_level_class, min_useful, next_level, tooltip_msg
   end

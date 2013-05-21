@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   
+  def after_sign_in_path_for(resource)
+     request.env['omniauth.origin'] || stored_location_for(resource) || author_page_author_info_url(current_author_info.id, :protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http")
+   end
+   
   helper_method :admin?
 
   protected
