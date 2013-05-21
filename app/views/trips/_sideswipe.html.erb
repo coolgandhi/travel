@@ -88,16 +88,8 @@
   <!--Begin Trip Author Box -->
   <div class="authortitlebox">
 
-    <!-- BEGIN AUTHOR LEVEL BADGE -->
-    <% author_level_name, author_level_class, min_useful, next_level = author_level(@trip.author_info) %>
-    <div class = "it_al_badge_wrap author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
-      <div class = "al_badge_container in_trip centerize" >
-        <div class = "<%= author_level_class %>"></div>
-        <span class = "al_badge_name"><%= author_level_name %></span>
-      </div>
-    </div>
-    <!-- END AUTHOR LEVEL BADGE -->
-
+    <!-- BEGIN it_al_left_wrap -->
+    <div class = "it_al_left_wrap">
     <span class="trip_title_sub_text caption_large author_intrip_popover" data-content = '<%= render "trips/partials/author_popover_content", :trip => @trip %>'>
         <%= link_to author_page_author_info_path(@trip.author_info.id),:target => "_blank" do %>
           <% if !@trip.author_info.self_image.blank? %>
@@ -119,6 +111,21 @@
     </span>
       <p class = "ab_author_website"><%= link_to '<i class="icon-link"></i> website'.html_safe, url_with_protocol(@trip.author_info.website), :class => "trip_title_sub_text", :target => "_blank" unless @trip.author_info.website.blank? %> 
       </p>
+    </div>
+    <!-- END it_al_left_wrap -->
+
+    <div class = "it_al_right_wrap">
+      <!-- BEGIN AUTHOR LEVEL BADGE -->
+      <% author_level_name, author_level_class, min_useful, next_level = author_level(@trip.author_info) %>
+      <div class = "it_al_badge_wrap author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
+        <div class = "al_badge_container in_trip centerize" >
+          <div class = "<%= author_level_class %>"></div>
+          <span class = "al_badge_name"><%= author_level_name %></span>
+        </div>
+      </div>
+      <!-- END AUTHOR LEVEL BADGE -->
+    </div>
+
 <!--     <div class = "ab_author_stats">
       <div class = "ab_author_stats_item useful"><i class="icon-heart"></i> <%= @trip.author_info.agg_author_usefuls %></div>
       <div class = "ab_author_stats_item view_count"><i class="icon-eye-open"></i> <%= @trip.author_info.agg_author_views %></div>
