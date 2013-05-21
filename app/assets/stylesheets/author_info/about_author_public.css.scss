@@ -56,6 +56,7 @@ float: left;
   @include box-sizing(border-box);
   @include clearfix;
   padding-top: 3px;
+  width: 50px;
 }
 
 .ap_float_left_span{
