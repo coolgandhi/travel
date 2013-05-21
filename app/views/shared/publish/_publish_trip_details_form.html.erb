@@ -94,7 +94,7 @@
       <br><br>
       <%= render 'shared/publish/publish_trip_confirm_form', :f => f %>
     </div>
-
+    <div class="error_msg"></div>
     <div class="control-group">
       <div class="controls">
         <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
@@ -102,6 +102,6 @@
     </div>
 
   <% end %>
-
+  
 </div>
 <!-- End Trip Details Form Container -->
