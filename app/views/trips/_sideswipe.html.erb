@@ -118,7 +118,7 @@
       <!-- BEGIN AUTHOR LEVEL BADGE -->
       <% author_level_name, author_level_class, min_useful, next_level = author_level(@trip.author_info) %>
       <div class = "it_al_badge_wrap author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
-        <div class = "al_badge_container in_trip centerize" >
+        <div class = "al_badge_container centerize" >
           <div class = "<%= author_level_class %>"></div>
           <span class = "al_badge_name"><%= author_level_name %></span>
         </div>

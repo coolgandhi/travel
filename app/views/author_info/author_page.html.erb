@@ -58,7 +58,7 @@
         <div class = "author_profile_info_div">
           <!-- Begin Author Info Top -->
           <div class = "ap_info_div_top">
-  
+            <div class = "ap_id_top_left">
             <!-- BEGIN AUTHOR LEVEL BADGE -->
             <% author_level_name, author_level_class, min_useful, next_level = author_level(@author_info) %>
             <div class = "ap_badge_div author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="This author is a #{author_level_name} after attaining #{min_useful} useful votes! #{next_level} more votes to level up."%>" >
@@ -69,7 +69,9 @@
               <span class = "al_badge_name"><%= author_level_name %></span>
             </div>
             <!-- END AUTHOR LEVEL BADGE -->
+            </div>
 
+            <div class = "ap_id_top_right">
             <div class = "ap_name_div">
               <span class = "ap_float_left_span">
                 <h3 class = "author_profile_name">
@@ -104,7 +106,7 @@
               <% end %>
 
             </div>
-          
+            </div>
             <p class = "lead author_profile_about"><%= @author_info.about %> </p>
           </div>            
           <!-- End Author Info Top -->

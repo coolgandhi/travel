@@ -5,9 +5,10 @@
 @mixin author_level_badge_sizes{
   background-position:center;
   background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-  margin-left: 2px;
+  height: 40px;
+  width: 40px;
+  // margin-left: 3px;
+  display: inline-block;
   @include box-sizing(border-box);  	
 }
 
@@ -43,7 +44,7 @@
 
 .al_badge_container{
   height: 40px;
-  width: 40px;
+  width: 50px;
   @include box-sizing(border-box);
   position: relative;
   float: left;
@@ -56,6 +57,9 @@
 span.al_badge_name{
   font-size: em(12px);
   font-weight: bold;  
+  display: inline-block;
+  text-align: center;
+  width: 50px;
 }
 
 .al_badge_container.in_trip{

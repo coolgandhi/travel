@@ -38,13 +38,15 @@ float: left;
 
 .ap_info_div_top{
   padding: 1% 2%;
+  position: relative;
 }
 
 .ap_name_div{
-  // float: left;
-  display: inline-block;
+  float: left;
+  // display: inline-block;
   position: relative;
-  margin-left: 2%;
+  // margin-left: 2%;
+  width: 100%;
   @include box-sizing(border-box);
 }
 
@@ -81,6 +83,17 @@ float: left;
   line-height: 1.4em;
   font-size: em(16px);
   display: inline-block;
+}
+
+.ap_id_top_right{
+  width: 90%;
+  float: left;
+}
+
+.ap_id_top_left{
+  width: 10%;
+  float: left;
+
 }
 
 /** Author Stats **/
