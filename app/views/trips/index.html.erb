@@ -65,9 +65,11 @@
     <% end %>  
   </div>
 
-  <div id="page-pagination-div">
-    <%= will_paginate @trips %>
-  </div>
+  <% if params[:featured] != '1' %>
+    <div id="page-pagination-div">
+      <%= will_paginate @trips %>
+    </div>
+  <% end %>
   <a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
 
   <div class ='continuous_loading_indicator_wrapper'>

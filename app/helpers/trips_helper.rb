@@ -185,4 +185,21 @@ module TripsHelper
 
   end
 
+  def get_featured_trips params, total_per_place
+    trips = nil
+    i = 0
+    Location.all.each { |loc|
+      trip = Trip.search_by_location loc.location_id, params[:featured], total_per_place 
+      i = i + 1
+      if trip.size > 0
+        if trips.blank?        
+          trips = trip
+        else
+          trips = ( trips + trip ).uniq
+        end
+      end
+      break if i == 3
+    }
+    trips
+  end
 end
