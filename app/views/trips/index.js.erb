@@ -1,17 +1,10 @@
 <% if @trips.next_page %>
-  <% temp_continuous_param_change = 0 %>
-  <% if params[:continuous] == "1" %> // make sure that any pagination happens withous continuation parameter being set as it would redraw the whole results div page
-    <% params[:continuous] = "0"; temp_continuous_param_change = 1 %>
-  <% end %>
   if ($('.pagination').length == 0) {
     $("#page-pagination-div").append('<%= j will_paginate(@trips) %>');
   } 
   else {
     $('.pagination').replaceWith('<%= j will_paginate(@trips) %>');
   }
-  <% if params[:continuous] == "0" and temp_continuous_param_change == 1 %>
-    <% params[:continuous] = "1" %>
-  <% end %>
 <% else %>
   $('.pagination').remove();
 <% end %>
@@ -20,7 +13,7 @@
   $('#trips_results_container').html('');
   $('#trips_results_container').html('<%= escape_javascript(render("trips/partials/featured_trips")) %>');
 
-<% elsif (@trips.current_page == 1 or (params[:continuous] and params[:continuous] == "1")) %>
+<% elsif (@trips.current_page == 1) %>
   $('#trips_results_container').fadeOut('slow').html('<%= escape_javascript(render("trips")) %>').fadeIn('slow');
   $('#trips_landmark_container').fadeOut('slow').html('<%= escape_javascript(render("trips/partials/landmarks_filtering")) %>').fadeIn('slow');
   $('.results_searchbar_container').html('<%= escape_javascript(render("trips/partials/results_searchbar")) %>');
@@ -49,11 +42,7 @@
 
 
 try {
-  // FB.XFBML.parse(document.getElementById('<%= "trips_page_other" %>'));  // triggering fb xml parse on the newly added trips_page div only
-  // FB.XFBML.parse(document.getElementById('<%= "trips_page_after_conv" %>'));  // triggering fb xml parse on the newly added trips_page div only
   FB.XFBML.parse(document.getElementById('<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>'));  // triggering fb xml parse on the newly added trips_page div only
 } catch (ex) {}
 
-
-<% #sleep 2 %>
   
