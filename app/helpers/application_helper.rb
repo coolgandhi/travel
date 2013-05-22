@@ -516,7 +516,7 @@ module ApplicationHelper
         end
       when 'TripActivity'
         if !object.self_trip_activity_photos.first.blank? and !object.self_trip_activity_photos.first.self_photo.blank?
-          use_this_url = self_image_size == :card ? object.self_trip_activity_photos.first.self_photo : object.self_trip_activity_photos.first.self_photo_url(self_image_size)
+          use_this_url = self_image_size == :original ? object.self_trip_activity_photos.first.self_photo : object.self_trip_activity_photos.first.self_photo_url(self_image_size)
           which_url_msg = "Image Uploaded by User"
         elsif !object.activity.blank? and !object.activity.image_urls.blank?
           use_this_url = select_image_given_image_urls(object.activity.image_urls, foursquare_image_width, foursquare_image_index)
