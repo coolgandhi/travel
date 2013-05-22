@@ -17,11 +17,10 @@ class TripsController < ApplicationController
     @locations = nil
     @restaurants = nil
     @traveler_types = nil
-    @trips_to_add = nil
     @conv_rendered = false
     trips_per_page_default = 3
 
-    if (params[:trip_location_id] and params[:trip_location_id] != "" and (params[:page] == nil or params[:page] == "1" or params[:continuous] == "1"))
+    if (params[:trip_location_id] and params[:trip_location_id] != "" and (params[:page] == nil or params[:page] == "1"))
       # generate landmark of interest only for the initial trip search with location, not while paginating 
       @locations = LocationDetail.search(params[:trip_location_id])
       @restaurants = RestaurantDetail.search(params[:trip_location_id])
@@ -33,10 +32,6 @@ class TripsController < ApplicationController
     @trips_per_page = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : trips_per_page_default
     page  = (params[:page])? params[:page].to_i : 1
     @exact_match_count = @exact_match_count - (page - 1) * @trips_per_page
-    if ( params[:continuous] == "1" and params[:page] != nil and params[:page] != "1" )
-        @trips_to_add = Array.new      
-        @trips_to_add = @trips[0, (params[:page].to_i - 1) * @trips_per_page]
-    end
     
     @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page)
     

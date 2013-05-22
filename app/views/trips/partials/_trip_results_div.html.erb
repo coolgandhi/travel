@@ -1,31 +1,6 @@
  <!--Begin Trip Result ul group -->
   <ul class="thumbnails">
     <% exact_matched_trip = false; iter = 0%>
-    <div id = "<%= "trips_page_other" %>" >
-      <% if  @trips_to_add != nil %>
-        <% @trips_to_add.each do |trip| %>
-          <% exact_matched_trip = false %>
-          <% if @exact_match_count > 0 %>
-            <% @exact_match_count = @exact_match_count - 1 %>
-            <% exact_matched_trip = true %>
-          <% end %>
-          <%= render 'trips/partials/trip_div', :trip => trip, :exact_matched_trip => exact_matched_trip %>
-          <% iter = iter + 1 %>
-          <% if params[:feature] = "1" and iter >  @trips_per_page and @conv_rendered == false %>
-            </div>
-            <%= render 'trips/partials/conversation/front_page_convo' %>
-            <% @conv_rendered = true %>
-            <div id = "<%= "trips_page_after_conv" %>" >
-          <% end %>
-        <% end %>
-        <% if params[:feature] = "1" and @conv_rendered == false %>
-          </div>
-          <%= render 'trips/partials/conversation/front_page_convo' %>
-          <% @conv_rendered = true %>
-          <div id = "<%= "trips_page_after_conv" %>" >
-        <% end %>
-      <% end %>
-    </div>
     <!--Begin Trip Result Pagination Div -->
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
         <% @trips.each do |trip| %>

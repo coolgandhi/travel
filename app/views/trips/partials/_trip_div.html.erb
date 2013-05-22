@@ -4,10 +4,6 @@
 
   <!--Begin Trip Result Thumbnail Wrapper-->
   <div class="thumbnail trip_result_thumbnail_div">
-      <% url_to_append = url_for(params.except(:utf8).merge(:continuous => "1")) %>
-      <%# raw (request.env['HTTP_HOST'] + url_to_append) %>
-      <%= hidden_field_tag :request_uri_hidden, url_to_append %>
-
     <div class="caption_box_social">
 
       <div class = "cb_social_item">
