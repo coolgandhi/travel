@@ -188,6 +188,12 @@ $lastrowheight: 10%;
   &.view_count i{
     color: $viewCountColor;
   }
+  &.comment_count i{
+    color: $blue;
+  }
+  &.comment_count a{
+    color: $black;
+  }
 }
 
 .it_facebook_share{
