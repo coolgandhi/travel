@@ -6,35 +6,90 @@
     <!-- Begin Button Group -->  
       <div id="overviewHide" class="icon-remove"></div>
     <!-- End Button Group -->  
-    <h3 id="myModalLabel" class="title"><%=@trip.trip_name%> - An Overview</h3>
+    <h3 id="myModalLabel"><%=@trip.trip_name%> - An Overview</h3>
   </div>
       
   <!-- Begin Modal Body -->
   <div class="modal-body" id="scroll-modal-body">
-    <!-- Begin Table -->
-    <table class="table table-bordered table-condensed table-hover">
+    
+<!-- Begin Tabs -->
+<ul class="nav nav-tabs" id="overview_modal_day_tabs">
+  <li class = "disabled day_heading_tab"><a>Day</a></li>
+    <% n = @trip.duration.to_i > 10 ? 10 : @trip.duration.to_i %>
+        <% for i in 1..n %>
+          
+          <% if i == 1 %>
+            <li class ="active">
+          <% else %>
+            <li>
+          <% end %>
+          
+            <a class="overview_modal_day_tabs" href=<%= "#overview_modal_day_#{i}" %> data-toggle="tab"><%= "#{i}" %></a>
+          </li>
+        <% end %>
+
+        <% unless @trip.duration.to_i < 11 %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              More
+              <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu">
+              <% n = @trip.duration.to_i %>
+              <% for i in 11..n %>
+                <li><a class="overview_modal_day_tabs" href=<%= "#overview_modal_day_#{i}" %> data-toggle="tab"><%= "Day #{i}" %></a></li>
+              <% end %>
+            </ul>
+
+          </li>
+        <% end %>
+</ul>
+<!-- End Tabs -->
+
+  
+  <!-- Begin Compiled Tab Content -->
+    <div class="tab-content om_tab_content">
+    
       <% morning = 0 %>
       <% afternoon = 0 %>
       <% evening = 0 %>
       <% current_day = 0 %>
+      <% activity_count=0 %>
       <% for i in 0..(@sorted_activities.length - 1) %>
+        <% activity_count+=1 %>
         <% timetype_text = "" %>
         <% timetype_text_tag = "" %>
+
         <% if @sorted_activities[i][:activityday].nil? or @sorted_activities[i][:activityday] == "" %>
+          
           <% nil %>
           <% next %>
         <% end %>
+
         <% if @sorted_activities[i][:activityday] != current_day %>
           <% morning = 0 %>
           <% afternoon = 0 %>
           <% evening = 0 %>
           <% current_day = @sorted_activities[i][:activityday] %>
-          <tr class = "day_tr">
-            <td colspan="2">
-              <%= "Day #{@sorted_activities[i][:activityday]}" %>
-            </td>
-          </tr>
+          <% activity_count=1 %>
+        
+        <!-- Begin Individual Tab Content -->
+        <% if @sorted_activities[i][:activityday] == "1" %>
+          <div class="overview_modal_activities_list tab-pane active" id="<%="overview_modal_day_#{@sorted_activities[i][:activityday]}"%>">
+        <% else %>
+          <div class="overview_modal_activities_list tab-pane" id="<%= "overview_modal_day_#{@sorted_activities[i][:activityday]}"%>">
         <% end %>
+
+          <!-- Begin Table -->
+          <table class="table table-bordered table-condensed">  
+            <tr class = "day_tr">
+              <td colspan="2">
+                <%= "Day #{@sorted_activities[i][:activityday]}" %>
+              </td>
+            </tr>
+        <% end %>
+
         <% if ((@sorted_activities[i][:timetype] == "1" or @sorted_activities[i][:timetype] == "2") and morning == 0)  %>
           <% timetype_text = "Morning" %>
           <% timetype_text_tag = "morning_tr" %>
@@ -48,6 +103,7 @@
           <% timetype_text_tag = "evening_tr" %>
           <% evening = 1 %>
         <% end %>
+
         <% if timetype_text != "" and timetype_text_tag != "" %>
           <tr class="<%= timetype_text_tag %>">
             <td colspan="2">
@@ -55,25 +111,39 @@
             </td>
           </tr>      
         <% end %>
-        <tr onclick="trips_namespace.gallery.goToPage(<%= i %>); $('#trip_overview_modal').modal('hide')">
+
+        <tr class = "overview_table_hover_tr" onclick="trips_namespace.gallery.goToPage(<%= i %>); $('#trip_overview_modal').modal('hide')">
           <td class = "thumbnail_td">
             <% image_url = @sorted_activities[i][:thumb_image_url] %>
             <%= image_tag(image_url, :alt => @sorted_activities[i][:activity_venue_name]) %>
           </td>
           <td>
-            <%= @sorted_activities[i][:activity_venue_name] %> (<%=@sorted_activities[i][:category].split(', ').first %>) 
+            <%= "#{activity_count}. " %>
+            <%= @sorted_activities[i][:activity_venue_name] %>
             <% unless @sorted_activities[i][:duration].blank? %> 
-              for <%= @sorted_activities[i][:duration] %> 
+             for <%= @sorted_activities[i][:duration] %> 
             <% end %>
+            </br>
+            <%=@sorted_activities[i][:category].split(', ').first %> 
+            <%= "(#{@sorted_activities[i][:foursquare_rating]}/10)" unless @sorted_activities[i][:foursquare_rating].blank? %>
           </td>
         </tr>
+
+
+        <% if ((@sorted_activities[i+1][:activityday] and @sorted_activities[i+1][:activityday] != current_day) or (i == (@sorted_activities.length - 2))) %>
+          </table>
+          <!-- End Table -->
+          </div>
+          <!-- End Individual Tab Content -->
+        <% end %>
+
+
+
       <% end %>
-    </table>
-    <!-- End Table -->
+
+  </div>
+    <!-- End Compiled Tab Content -->
   </div>
   <!-- End Modal Body -->
   
-<!--   <div class="modal-footer">
-    <button class="btn-flat btn-flat-inverse" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div> -->
 </div>

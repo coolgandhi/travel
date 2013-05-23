@@ -27,6 +27,7 @@ module TripsHelper
               image_url = activity.restaurant_detail.image_urls
               activity_venue_name = activity.restaurant_detail.name
               category = activity.restaurant_detail.category
+              foursquare_rating = activity.restaurant_detail.rating.blank? ? activity.restaurant_detail.rating : activity.restaurant_detail.rating.to_f.round(1)
               duration = (activity.activity_duration_type)? activity.activity_duration_type[:activity_duration_name] : activity.duration
               lay_out = "foodactivitypartial"
             when "LocationActivity" then 
@@ -38,6 +39,7 @@ module TripsHelper
               image_url = activity.location_detail.image_urls
               activity_venue_name = activity.location_detail.name
               category = activity.location_detail.category
+              foursquare_rating = activity.location_detail.rating.blank? ? activity.location_detail.rating : activity.location_detail.rating.to_f.round(1) 
               duration = (activity.activity_duration_type)? activity.activity_duration_type[:activity_duration_name] : activity.duration
               lay_out = "locationactivitypartial"
             else  # default transport activity
@@ -74,6 +76,7 @@ module TripsHelper
             :passport_image_url => passport_image_url,
             :thumb_image_url => thumb_image_url,
             :activity_venue_name => activity_venue_name,
+            :foursquare_rating => foursquare_rating,
             :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial", 
             :layout => lay_out   
           }

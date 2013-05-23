@@ -1203,20 +1203,20 @@ div.rightcaption .ui-accordion-content {
     font-weight: inherit;
     line-height: inherit;
     text-transform: capitalize;
+    font-size: em(18px);
   }
   
   .modal-body{
+    padding: 5px 10px;
+    height: 100%;
     max-height: 85%;
     overflow: hidden;
-    overflow-y: auto;
+    // overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     @include respond-to(portrait){
       min-height: 85%;
     }
 
-  tr{
-    cursor: pointer; 
-  }
   }
   .modal-footer{
     @include border-radius(0 0 $myDivBorderRadius $myDivBorderRadius);
@@ -1254,11 +1254,43 @@ tr.evening_tr{
 td.thumbnail_td{
   text-align: center;
   padding: 4px 0px;
+  width: 40px;
   img{
     @include border-radius($myDivBorderRadius);
     height: 36px;
     width: 36px;
     overflow: hidden;
+  }
+}
+
+.overview_table_hover_tr{
+  cursor: pointer;
+  &:hover{
+    background-color: rgba(0,0,0,.1);
+  }
+}
+
+/* overview tabs */
+.om_tab_content{
+  height: 100%;
+  .overview_modal_activities_list{
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+}
+
+#overview_modal_day_tabs{
+  margin-bottom: 2px;
+
+  .day_heading_tab > a:hover{
+    border-color: transparent;
+  }
+  .day_heading_tab{
+    a{
+      color: black;
+    }
   }
 }
 
