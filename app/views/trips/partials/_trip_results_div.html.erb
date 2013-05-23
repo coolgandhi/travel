@@ -1,18 +1,28 @@
- <!--Begin Trip Result ul group -->
-  <ul class="thumbnails">
-    <% exact_matched_trip = false; iter = 0%>
+<!--Begin Trip Result ul group -->
+<ul class="thumbnails">
+  <% exact_matched_trip = false; iter = 0%>
     <!--Begin Trip Result Pagination Div -->
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
-        <% @trips.each do |trip| %>
+      <% prev_location = 0 %>
+      <% @trips.each do |trip| %>
+        <% if (params[:featured] == '1' or params[:trip_location_id] == '0') and trip.location_id != prev_location %>
+        
+          <% prev_location = trip.location_id %>
+          <%  city_name = get_city_name trip.location_id %>
+          <% if (params[:featured] == '1') %>
+            <li class="span12"></br><p class="title_subtitle"> <strong><%= city_name %></strong></p></li>
+          <% else %>
+            <li class="span12"></br><p class="title_subtitle"> <strong><%= city_name %></strong></p></li>
+          <% end %>  
+        <% end %>
         <% exact_matched_trip = false %>
         <% if @exact_match_count > 0 %>
           <% @exact_match_count = @exact_match_count - 1 %>
           <% exact_matched_trip = true %>
         <% end %>
         <%= render 'trips/partials/trip_div', :trip => trip, :exact_matched_trip => exact_matched_trip %>
-      <% end %>
-    
-    </div>
-    <!--End Trip Result Pagination Div -->
-  </ul>
-  <!--End Trip Result ul group -->
+      <% end %>    
+  </div>
+  <!--End Trip Result Pagination Div -->
+</ul>
+<!--End Trip Result ul group -->

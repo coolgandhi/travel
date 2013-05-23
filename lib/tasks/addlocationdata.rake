@@ -1,6 +1,13 @@
 namespace :db do
   desc "Fill database with location data"
   task :addlocation => :environment do
+    Location.create(:city => "Inspire Me!", 
+                    :country => "",
+                    :latitude => "",
+                    :longitude => "",
+                    :place => "Inspire Me!",
+                    :state => "", 
+                    :location_id => "")
     Location.create(:city => "San Francisco", 
                     :country => "US",
                     :latitude => "37.77493",

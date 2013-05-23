@@ -26,7 +26,7 @@
           <h3 class="form_dialog title">See trip summaries for</h3>
           <%= form_tag trips_path, :method => 'get', :class => 'hero_form' do %>
             <div class = "hero_form_left">  
-              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "place_dropdown_field selectpicker" %>
+              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 4), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "place_dropdown_field selectpicker" %>
             </div>
               <%= hidden_field_tag "place_text_field", params[:place], :class => "hero-hidden-place-field" %>
             

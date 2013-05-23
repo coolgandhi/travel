@@ -16,7 +16,7 @@
         <ul class="nav pull-left">
           <li class="divider-vertical"></li>
           <li class="dropdown">
-              <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar selectpicker" %>
+              <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all, :limit => 4), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar selectpicker" %>
 
             <div class="dropdown-menu droptoggle_menu">
               <!-- Login form here -->

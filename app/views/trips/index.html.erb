@@ -41,33 +41,31 @@
 <% end %>
 
 <div class="container middle_results_container">
-  <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1")) %>
+  <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1" and params[:trip_location_id] != '0')) %>
     <div class="results_flash_message">
       <%= render :partial => 'layouts/messages', :locals => { :flash => flash } %>
     </div>
-  
-<!--     <div id="results_breadcrumbs">
-        <%# render 'trips/partials/results_breadcrumbs' %>
-    </div> -->
   <% end %>  
       
-  <% if @trips %>
+  <% if @trips and params[:trip_location_id] != '0' %>
     <div id="trips_landmark_container">
       <%= render 'trips/partials/landmarks_filtering' %>
     </div>
   <% end %>
 
   <div id="trips_results_container">
-    <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1")) %>
+    <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1" and params[:trip_location_id] != '0')) %>
       <%= render 'trips' %>
     <% else %>
       <%= render 'trips/partials/featured_trips' %>
     <% end %>  
   </div>
 
-  <div id="page-pagination-div">
-    <%= will_paginate @trips %>
-  </div>
+  <% if params[:featured] != '1' and params[:trip_location_id] != '0' %>
+    <div id="page-pagination-div">
+      <%= will_paginate @trips %>
+    </div>
+  <% end %>
   <a href='#' id='scrolltotop' style='display:none;'>Scroll to Top </a>
 
   <div class ='continuous_loading_indicator_wrapper'>

@@ -1,6 +1,8 @@
 class TripsController < ApplicationController
   include ApplicationHelper
   include TripsHelper
+  include LocationsHelper
+  
   before_filter :authorize, :only => [:new, :edit, :create, :update, :trips_admin]
   before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
   before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
@@ -12,12 +14,19 @@ class TripsController < ApplicationController
     if (params[:restaurant] or params[:location] )
       find_exact_match_only = true
     end
-    @trips, @exact_match_count, @message_with_trip_render = Trip.search(params, find_exact_match_only)
+    if params[:featured] == '1' or params[:trip_location_id] == '0'
+      @exact_match_count = 9 
+      @message_with_trip_render = nil
+      i = 0
+      @trips = self.get_featured_trips(params, 3)
+    else
+      @trips, @exact_match_count, @message_with_trip_render = Trip.search(params, find_exact_match_only)
+    end
+    
     @trips, @exact_match_count, @message_with_trip_render = get_trips_filtered_by_landmarks(params, @trips, @message_with_trip_render, @exact_match_count)
     @locations = nil
     @restaurants = nil
     @traveler_types = nil
-    @conv_rendered = false
     trips_per_page_default = 3
 
     if (params[:trip_location_id] and params[:trip_location_id] != "" and (params[:page] == nil or params[:page] == "1"))
@@ -33,7 +42,9 @@ class TripsController < ApplicationController
     page  = (params[:page])? params[:page].to_i : 1
     @exact_match_count = @exact_match_count - (page - 1) * @trips_per_page
     
-    @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page)
+    if params[:featured] != '1' and params[:trip_location_id] != '0'
+      @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page)
+    end
     
     respond_to do |format|
       flash.now[:notice] = @message_with_trip_render

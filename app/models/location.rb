@@ -4,6 +4,9 @@ class Location < ActiveRecord::Base
   validates_uniqueness_of :location_id, :message => "location already present"
 
   def location_label
-    "#{self.city}, #{self.state}, #{self.country}"
+    temp_label = ""
+    temp_label = self.city.blank? ? temp_label : temp_label + "#{self.city}"
+    temp_label = self.state.blank? ? temp_label : temp_label + ", #{self.state}"
+    temp_label = self.country.blank? ? temp_label : temp_label + ", #{self.country}"
   end
 end

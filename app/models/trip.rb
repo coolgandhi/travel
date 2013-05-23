@@ -26,10 +26,18 @@ class Trip < ActiveRecord::Base
     self.trip_activities.order("trip_activities DESC").maximum(:activity_day)
   end
   
+  def self.search_by_location location_id, feature_flag, total
+    query = "share_status = 1  "
+    query +=  "and featured_trip_flag = " + feature_flag 
+    query += " and location_id = " + location_id
+    trips = Trip.where( query ).order("rank_score DESC").limit(total)
+    return trips  
+  end
+  
   def self.search params, find_exact_match_only
     message_with_trip_render = ""
     exact_match_count = 0
-    if ((params[:trip_location_id] and params[:trip_location_id] != "") or params[:featured])
+    if ((params[:trip_location_id] and params[:trip_location_id] != "") )
       # duration = (DateTime.strptime(params[:to], "%m/%d/%Y") - DateTime.strptime(params[:from], "%m/%d/%Y"))
       duration = params[:days]
       query = "share_status = 1 and "

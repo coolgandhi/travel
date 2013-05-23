@@ -31,7 +31,10 @@
       </div>
       <h3 class="caption_trip_title caption_title">Your Awesome Trip Summary</h3>
       <p class="caption_trip_subtitle caption_subtitle">  3 Days in AwesomeTown <span class="divider">|</span> by You </p>
-      <p class="caption_trip_summary caption_subtitle">We're working hard to make it easy for you to contribute your trip summaries. If you can't wait, <a href="mailto:info@chalo.io">email us</a> to contribute today. <p>
+      <p class="caption_trip_summary caption_subtitle">
+        Easily share your trip summary and inspire other travelers.
+        <%= link_to 'Sign Up', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> for chalo.io to share your own trip summaries.
+      <p>
 
     </div>
     <!-- Begin MailChimp Signup Form -->
