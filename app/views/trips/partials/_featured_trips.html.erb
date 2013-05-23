@@ -1,9 +1,12 @@
-<h3 class ="featured_results_title title_large">Featured Trips</h3>
-<p class ="featured_results_subtitle title_subtitle">Check out these trips that our friends have taken</p>
+<% if (params[:featured] == '1') %>
+  <h3 class ="featured_results_title title_large">Featured Trips</h3>
+  <p class ="featured_results_subtitle title_subtitle">Check out these trips that our friends have taken</p>
+<% else %>
+  <p class ="featured_results_subtitle title_subtitle">Explore few of our best trip summaries. </p>
+<% end %>
 
 <%= render 'trips/partials/trip_results_div' %>
 
-<% if (@conv_rendered == false) %>
-  <% @conv_rendered = true %>
+<% if (params[:featured] == '1') %>
   <%= render 'trips/partials/conversation/front_page_convo' %>
 <% end %>

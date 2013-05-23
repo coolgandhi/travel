@@ -5,10 +5,15 @@
     <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
       <% prev_location = 0 %>
       <% @trips.each do |trip| %>
-        <% if params[:featured] == '1' and trip.location_id != prev_location %>
+        <% if (params[:featured] == '1' or params[:trip_location_id] == '0') and trip.location_id != prev_location %>
+        
           <% prev_location = trip.location_id %>
-          <%  location_detail = Location.find_by_location_id(trip.location_id) %>
-          <p> <strong> Featured Trips to <%= location_detail.city %></strong> </p>
+          <%  city_name = get_city_name trip.location_id %>
+          <% if (params[:featured] == '1') %>
+            <p> <strong> Featured Trips to <%= city_name %></strong> </p>
+          <% else %>
+            <p> <strong> Explore trips to <%= city_name %></strong> </p>        
+          <% end %>  
         <% end %>
         <% exact_matched_trip = false %>
         <% if @exact_match_count > 0 %>

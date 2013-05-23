@@ -189,7 +189,7 @@ module TripsHelper
     trips = nil
     i = 0
     Location.all.each { |loc|
-      trip = Trip.search_by_location loc.location_id, params[:featured], total_per_place 
+      trip = Trip.search_by_location loc.location_id, '1', total_per_place 
       i = i + 1
       if trip.size > 0
         if trips.blank?        
@@ -198,7 +198,7 @@ module TripsHelper
           trips = ( trips + trip ).uniq
         end
       end
-      break if i == 3
+      break if i == 4
     }
     trips
   end

@@ -25,11 +25,7 @@
       <div class="controls">
         <% if controller.action_name == "publish_new" %>
 
-          <%= select_tag :publish_place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Which city?", :class => "publish_place_dropdown_field" %>
-
-          <!-- <input id="place_text_field" type="text" name="location" value="<%= @location_val %>" placeholder = "Input a city (i.e. San Francisco)" class = "span3 required_publish_form_field"> -->
-
-          <!-- <span class ="help-inline publish_form_required_label">Required</span> -->
+          <%= select_tag :publish_place_dropdown_field, options_from_collection_for_select(Location.find(:all, :offset => 1, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Which city?", :class => "publish_place_dropdown_field" %>
         <% else %>
           <span class="control-label"><strong><%= @location_val %></strong></span>
         <% end %>
@@ -40,14 +36,12 @@
       <label class="control-label">Who is this best for? <span class="required_star">*</span></label>
       <div class = "controls">
         <%= f.collection_select :traveler_type_id, TravelerType.find(:all, :limit => 4), :traveler_type_id, :traveler_type_name,{:prompt => 'Traveler Type'}, :class => "span3" %>
-        <!-- <span class ="help-inline publish_form_required_label">Required</span> -->
       </div>
     </div>
 
     <div class="control-group">
       <label class="control-label">Add a cover picture</label>
       <div class="controls">
-          <%# f.file_field :self_image %>
         <!-- Begin Select an Image Wrapper -->
         <div class = "td_select_an_image_div upload_pic_parent_box">
           <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(@trip) %>
