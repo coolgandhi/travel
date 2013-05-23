@@ -26,6 +26,10 @@
     <meta name="p:domain_verify" content="5d853b27e826e5b9dc41d0dbb85800fe"/>
   </head>
   
+  <% unless !["publish_new", "publish_edit", "publish_confirm"].include?(controller.action_name) %>
+    <%= render 'layouts/ie8_message' %>
+  <% end %>
+
   <body>
     <div id="fb-root"></div>
     <!-- Preloader -->

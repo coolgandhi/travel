@@ -1,5 +1,24 @@
-<!--[if lt IE 9]>
+<% if ["publish_new", "publish_edit", "publish_confirm"].include?(controller.action_name) %>
+	<!--[if lt IE 10]>
 
-<div class = "mobile_disclaimer_prepend">You are using a version of Internet Explorer that we do not support.  Please upgrade to Internet Explorer 9+ or visit us from another browser.  If the IT people won't let you tell them rabbits eat lettuce!</div>
+	<div class = "mobile_disclaimer_prepend">
 
-<![endif]-->
+	<p>You are using a version of Internet Explorer that we do not support for trip summary creation.  Please upgrade to Internet Explorer 10+ or visit us from another browser (Chrome or Firefox).  If the IT people won't let you tell them rabbits eat lettuce!</p>
+
+	<a onclick="this.parentNode.style.display = 'none'">Hide</a>
+	</div>
+
+	<![endif]-->
+<% else %>
+
+	<!--[if lt IE 9]>
+
+	<div class = "mobile_disclaimer_prepend">
+	<p>You are using a version of Internet Explorer that we do not support.  Please upgrade to Internet Explorer 9+ or visit us from another browser.  If the IT people won't let you tell them rabbits eat lettuce!</p>
+
+	<a onclick="this.parentNode.style.display = 'none'">Hide</a>
+	</div>
+
+	<![endif]-->
+
+<% end %>

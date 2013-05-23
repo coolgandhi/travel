@@ -3,6 +3,7 @@
   min-height: 5%;
   text-align: center;
   padding: 1%;
+  // padding-right: 5%;
   background-color: $btnDangerBackground;
   color: white;
   z-index: 1000000;
@@ -11,4 +12,7 @@
   left: 0;
   font-size: 2em;
   line-height: 1.2em;
+  a{
+    cursor: pointer;
+  }
 }

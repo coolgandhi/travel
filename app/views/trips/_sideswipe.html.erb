@@ -46,6 +46,12 @@
               <span class="sm_stat_text"><%= @trip_stats.trip_views %> Views</span>
             <% end %>
           </div>
+
+          <div class = "sm_box_item comment_count">  
+              <i class="icon-comments"></i>
+              <span class="sm_stat_text"><a href="<%="#{request.fullpath.downcase}#disqus_thread"%>" data-disqus-identifier="<%="#{request.fullpath.downcase}"%>" id='dsq_comment_count'></a> Comments</span>
+          </div>
+
           <div class = "it_facebook_share">
             <div id="fb-root"></div>
             <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for(:only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana" data-action="recommend">
