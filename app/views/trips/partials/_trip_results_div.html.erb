@@ -10,9 +10,9 @@
           <% prev_location = trip.location_id %>
           <%  city_name = get_city_name trip.location_id %>
           <% if (params[:featured] == '1') %>
-            <div class = "row"><p> <strong> Featured Trips to <%= city_name %></strong></p></div>
+            <li class="span12"></br><p class="title_subtitle"> <strong><%= city_name %></strong></p></li>
           <% else %>
-            <div class = "row"><p> <strong> Explore trips to <%= city_name %></strong></p></div>
+            <li class="span12"></br><p class="title_subtitle"> <strong><%= city_name %></strong></p></li>
           <% end %>  
         <% end %>
         <% exact_matched_trip = false %>

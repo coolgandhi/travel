@@ -291,7 +291,7 @@
   // font-weight: normal;
 }
 .featured_results_subtitle{
-  margin-bottom: em(30px);
+  margin-bottom: 0;
 }
 
 .results_title{
@@ -441,6 +441,7 @@
   }
   .result_thumb_wrap{
     height: 20%;
+    // min-height: 60px;
     text-align: center;
     background-color: #f1f1f1;
     padding-top: 2%;
@@ -501,10 +502,10 @@
 //End Mailchimp embedded form
 
 .front_page_convo_wrapper{
-  height: 280px;
-  @include respond-to(portrait){
-    height: 350px;
-  } 
+  max-height: 600px;
+  // @include respond-to(portrait){
+  //   height: 350px;
+  // } 
   float: left;
   overflow: hidden;
   margin-bottom: 1%;
@@ -525,7 +526,8 @@
 }
 
 .front_page_convo_header{
-  height: 20%;
+  // height: 20%;
+  min-height: 60px;
   padding: 1%;
   background-color: $grayLighter;
   @include box-sizing(border-box);
@@ -534,6 +536,9 @@
     font-size: 3em;
     float: left;
     margin-right: 1%;
+  }
+  p.caption_title{
+    line-height: 2em;
   }
 }
 

@@ -15,7 +15,7 @@ class TripsController < ApplicationController
       find_exact_match_only = true
     end
     if params[:featured] == '1' or params[:trip_location_id] == '0'
-      @exact_match_count = 0 
+      @exact_match_count = 9 
       @message_with_trip_render = nil
       i = 0
       @trips = self.get_featured_trips(params, 3)
