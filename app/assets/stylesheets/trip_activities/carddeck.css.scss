@@ -10,6 +10,7 @@
   8. OVERVIEW MODAL AND TABLE
   9. TIME DAY SWATCH
   10. USEFUL BUTTON / FEEDBACK MODAL
+  11. ACTIVITY NUMBERING
 */
 
 
@@ -492,9 +493,10 @@ img.relative_image{
   background-image: "icon-list";
   width: 65px;
   height: 50px;
-  border-radius: 10px 0 0 10px;
+  @include border-radius(10px);
+  // border-radius: 10px 0 0 10px;
   border: 2px solid $white;
-  border-right: 0;
+  // border-right: 0;
   text-align: center;
   color: $white;
   font-size: 20px;
@@ -1006,12 +1008,22 @@ div.rightcaption .ui-accordion-content {
   }  
 }
 
-.modal_map{
- height: 100%;
- width: 100%;
+.modal_map_b{
+  height: 100%;
+  width: 100%;
  position: absolute;
  left:0;
  top:40px;
+ img{max-width:none}
+}
+
+.modal_map{
+ height: 100%;
+ width: 100%;
+ // position: absolute;
+ // left:0;
+ // top:40px;
+ position: relative;
  img{max-width:none}
 }
 
@@ -1182,12 +1194,12 @@ div.rightcaption .ui-accordion-content {
 #trip_overview_modal{
   @include box-sizing(border-box);
   width: 98%;
-  height: 90%;
+  height: 95%;
   position: absolute;
   top: 0;
   left: 0;
   margin-left: 1%;
-  margin-top: 2.5%;
+  margin-top: 1%;
   background-color: rgba(255,255,255,1);
   @include border-radius($myDivBorderRadius);
   border-color: $borderGray;
@@ -1230,6 +1242,28 @@ div.rightcaption .ui-accordion-content {
   }
 }
 
+.om_left_side{
+  width: 45%;
+  float: left;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 40px;
+  position: relative;
+  @include box-sizing(border-box);
+}
+
+.om_right_side{
+  width: 54%;
+  float: left;
+  height: 100%;
+  position: relative;
+  @include box-sizing(border-box);
+  @include border-radius(4px);
+  border: 1px solid $borderGray;
+  margin-left: 1%;
+}
+
 /* overview table formatting */
 tr.day_tr{
   background-color: $grayLight;
@@ -1237,29 +1271,38 @@ tr.day_tr{
 }
 
 tr.morning_tr{
-  background-color: #E7B15B;
+  background-color: #f1f1f1;//#E7B15B;
   font-weight: bold;
 }
 
 tr.afternoon_tr{
-  background-color: #5B94FA;
+  background-color: #f1f1f1;//#5B94FA;
   font-weight: bold;
 }
 
 tr.evening_tr{
-  background-color: #7291A1;
+  background-color: #f1f1f1;//#7291A1;
   font-weight: bold;
 }
 
-td.thumbnail_td{
+td.activity_count_cell{
+  width: 25px;
   text-align: center;
-  padding: 4px 0px;
-  width: 40px;
+  vertical-align: middle;
+}
+
+.thumbnail_td{
+  text-align: center;
+  padding: 2px;
+  float: left;
+  margin-right: 5px;
   img{
     @include border-radius($myDivBorderRadius);
     height: 36px;
     width: 36px;
     overflow: hidden;
+    border: 1px solid $borderGray;
+    @include box-sizing(border-box);
   }
 }
 
@@ -1270,14 +1313,20 @@ td.thumbnail_td{
   }
 }
 
+.om_subtitle{
+  font-size: em(12px);
+  color: gray;
+}
 /* overview tabs */
 .om_tab_content{
   height: 100%;
+  @include box-sizing(border-box);
   .overview_modal_activities_list{
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-bottom: 20px;
+    height: 90%;
+    overflow: hidden;
+    @include box-sizing(border-box);
+    // overflow-y: auto;
+    // padding-bottom: 20px;
   }
 }
 
@@ -1424,3 +1473,23 @@ td.thumbnail_td{
   // left: 25%;
   // margin: 0;
 }
+
+/* 11. ACTIVITY NUMBERING */
+.activity_count_box{
+  @include box-sizing(border-box);
+  height: 25px;
+  width: 25px;
+  margin: 0 auto;
+  line-height: 25px;
+  font-size: em(12px);
+  font-weight: bold;
+  text-align: center;
+  float: left;
+  background: #2a658d;//$myPrimaryBlue;
+  padding: 1px;
+  color: #FFF;
+  text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0;
+  @include box-shadow(1px 1px 1px gray);
+  @include border-radius(50%);
+}
+

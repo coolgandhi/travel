@@ -395,7 +395,7 @@ module ApplicationHelper
               trip_map_info[i] =  { name: "<b>" + trip_activity.activity.restaurant_detail[:name] + "</b>",
                                     address: "<address>" + check_empty_detail(trip_activity.activity.restaurant_detail[:address1])+ "<br>" + check_empty_detail(trip_activity.activity.restaurant_detail[:city])+ ", " + check_empty_detail(trip_activity.activity.restaurant_detail[:state]) + " " + check_empty_detail(trip_activity.activity.restaurant_detail[:zip]) + "</address>",
                                     location: trip_activity.activity.restaurant_detail[:latitude] + "," + trip_activity.activity.restaurant_detail[:longitude],
-                                    logo: trip_activity.id.to_i == current_activity.to_i ? "map-markers-red-food.png" : "map-markers-blue-food.png"
+                                    logo: "map-markers-blue-food.png"#trip_activity.id.to_i == current_activity.to_i ? "map-markers-red-food.png" : "map-markers-blue-food.png"
                                   }
               i = i + 1
             end
@@ -406,7 +406,7 @@ module ApplicationHelper
               trip_map_info[i] =  { name: "<b>" + trip_activity.activity.location_detail[:name] + "</b>",
                                     address: "<address>" + check_empty_detail(trip_activity.activity.location_detail[:address1])+ "<br>" + check_empty_detail(trip_activity.activity.location_detail[:city])+ ", " + check_empty_detail(trip_activity.activity.location_detail[:state]) + " " + check_empty_detail(trip_activity.activity.location_detail[:zip])  + "</address>",
                                     location: trip_activity.activity.location_detail[:latitude] + "," + trip_activity.activity.location_detail[:longitude],
-                                    logo: trip_activity.id.to_i == current_activity.to_i ? "map-markers-red-location.png" : "map-markers-blue-location.png"
+                                    logo: "map-markers-blue-location.png" #trip_activity.id.to_i == current_activity.to_i ? "map-markers-red-location.png" : "map-markers-blue-location.png"
                                   }
               i = i + 1
             end
@@ -538,6 +538,7 @@ module ApplicationHelper
       return use_this_url, which_url_msg 
   end
 
+  #author level badge logic
   def author_level(author_x)
     author_trip_stats = author_x.trip_stats
     agg_author_usefuls = 0
@@ -585,6 +586,18 @@ module ApplicationHelper
       tooltip_msg = "#{author_level} becomes an Explorer after getting #{next_level} more useful votes on their trips. Click useful to help this #{author_level} get there."
     end
     return author_level, author_level_class, min_useful, next_level, tooltip_msg
+  end
+
+  #foursquare rating box logic
+  def ratings_box(rating)
+    if rating < 7
+      color_class = "neutral"
+    elsif rating >= 7
+      color_class = "positive"
+    else
+      color_class = "neutral"
+    end
+    return color_class
   end
 
 end

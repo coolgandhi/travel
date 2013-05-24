@@ -24,7 +24,7 @@
             <li>
           <% end %>
           
-            <a class="overview_modal_day_tabs" href=<%= "#overview_modal_day_#{i}" %> data-toggle="tab"><%= "#{i}" %></a>
+            <a class="<%= "overview_modal_day_tabs class_map_day_#{i}" %>" href="<%= "#overview_modal_day_#{i}" %>" data-toggle="tab" data-day="<%= i %>"><%= i %></a>
           </li>
         <% end %>
 
@@ -38,7 +38,7 @@
             <ul class="dropdown-menu">
               <% n = @trip.duration.to_i %>
               <% for i in 11..n %>
-                <li><a class="overview_modal_day_tabs" href=<%= "#overview_modal_day_#{i}" %> data-toggle="tab"><%= "Day #{i}" %></a></li>
+                <li><a class="<%= "overview_modal_day_tabs class_map_day_#{i}" %>" href=<%= "#overview_modal_day_#{i}" %> data-toggle="tab" data-day="<%= i %>"><%= "Day #{i}" %></a></li>
               <% end %>
             </ul>
 
@@ -80,7 +80,8 @@
         <% else %>
           <div class="overview_modal_activities_list tab-pane" id="<%= "overview_modal_day_#{@sorted_activities[i][:activityday]}"%>">
         <% end %>
-
+          <!-- Begin overview modal left side -->
+          <div class = "om_left_side">
           <!-- Begin Table -->
           <table class="table table-bordered table-condensed">  
             <tr class = "day_tr">
@@ -113,26 +114,44 @@
         <% end %>
 
         <tr class = "overview_table_hover_tr" onclick="trips_namespace.gallery.goToPage(<%= i %>); $('#trip_overview_modal').modal('hide')">
-          <td class = "thumbnail_td">
-            <% image_url = @sorted_activities[i][:thumb_image_url] %>
-            <%= image_tag(image_url, :alt => @sorted_activities[i][:activity_venue_name]) %>
+          <td class = "activity_count_cell">
+              <span class = "activity_count_box"><%= "#{activity_count}" %></span>
           </td>
+
           <td>
-            <%= "#{activity_count}. " %>
+            <span class = "thumbnail_td">
+              <% image_url = @sorted_activities[i][:thumb_image_url] %>
+              <%= image_tag(image_url, :alt => @sorted_activities[i][:activity_venue_name]) %>
+            </span>
             <%= @sorted_activities[i][:activity_venue_name] %>
             <% unless @sorted_activities[i][:duration].blank? %> 
              for <%= @sorted_activities[i][:duration] %> 
             <% end %>
             </br>
-            <%=@sorted_activities[i][:category].split(', ').first %> 
-            <%= "(#{@sorted_activities[i][:foursquare_rating]}/10)" unless @sorted_activities[i][:foursquare_rating].blank? %>
+            
+            <% unless @sorted_activities[i][:foursquare_rating].blank? %>
+              <% venue_score_color = ratings_box(@sorted_activities[i][:foursquare_rating]) %>
+              <span class = "venue_metadata">
+                <span class = "venue_score <%= venue_score_color %>" title="<%= "#{@sorted_activities[i][:foursquare_rating]}/10 - Rating from Foursquare" %>">
+                  <%= @sorted_activities[i][:foursquare_rating] %> <span class = "venue_score_of_ten">/ 10</span>
+                </span>
+              </span>
+            <% end %>
+            
+            <span class = "om_subtitle"><%=@sorted_activities[i][:category].split(', ').first %></span>
+
           </td>
         </tr>
 
 
         <% if ((@sorted_activities[i+1][:activityday] and @sorted_activities[i+1][:activityday] != current_day) or (i == (@sorted_activities.length - 2))) %>
-          </table>
-          <!-- End Table -->
+              </table>
+              <!-- End Table -->
+            </div>
+            <!-- End overview modal left side -->
+            <div class = "om_right_side">
+              <div class = "modal_map" id="<%= "modal_map_#{@sorted_activities[i][:activityday]}"%>"></div>
+            </div>
           </div>
           <!-- End Individual Tab Content -->
         <% end %>

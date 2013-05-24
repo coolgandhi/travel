@@ -29,35 +29,37 @@
     $(document).bind "keydown", (e) ->
       $('.mapModalMask').fadeOut('slow') if e.which is 27
 
+    trips_activities_namespace.fireAjaxMapCall = (map_day) ->
+      req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/daymapinfo"
+      mapcontainer = $("#modal_map_"+ map_day)
+      $.ajax
+        beforeSend: ->
+          $(".swipe_loading_indicator").show()
+          $('#map_tabs a.class_map_day_'+map_day).tab('show')
+        type: "GET"
+        url: req
+        data: {activity_day: map_day}
+        dataType: "json"
+        context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
+        complete: ->
+          $(".swipe_loading_indicator").hide()
+        success: (data) ->
+          restore(mapcontainer)
+          addmarkers(data, mapcontainer)
+          # addpolyline(data, mapcontainer)
+          return     
+
+    # fire map day 1 on load
+    trips_activities_namespace.fireAjaxMapCall(1);
 
 
-  # jQuery ->
-  #   $("#swipewrapper").on "click", "#mapShowHide", (e) ->
-  #     req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
-  #     mapcontainer = $(this).parents('#moreShowHideGroup').siblings('.flip-container').find('#trip_map')
-  #     $.ajax
-  #       beforeSend: ->
-  #         $(".swipe_loading_indicator").show()
-  #       type: "GET"
-  #       url: req  
-  #       dataType: "json"
-  #       context: mapcontainer #maintaining the context of $this to pass forward into success callback functions
-  #       complete: ->
-  #         $(".swipe_loading_indicator").hide()
-  #       success: (data) ->
-  #         restore(mapcontainer)
-  #         addmarkers(data, mapcontainer)
-  #         addpolyline(data, mapcontainer)
-  #         return             
   jQuery ->
     $("#map_tabs a.daymapinfo, #map_tabs li.dropdown ul.dropdown-menu li a.daymapinfo").click (e) ->
       e.preventDefault()
-      # $(this).tab('show')
-      # console.log($(this).data('day') + "hello")
       req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/daymapinfo"
       map_day = $(this).data('day')
       map_day_index = $(this).data('day') - 1 
-      mapcontainer = $("#modal_map_"+ map_day)
+      mapcontainer = $("#b_modal_map_"+ map_day)
 
       $.ajax
         beforeSend: ->
@@ -74,14 +76,23 @@
           restore(mapcontainer)
           addmarkers(data, mapcontainer)
           addpolyline(data, mapcontainer)
-          return       
+          return     
+
+          
+  jQuery ->
+    #this is for the combined map and overview list view.
+    $("#overview_modal_day_tabs a.overview_modal_day_tabs, #overview_modal_day_tabs li.dropdown ul.dropdown-menu li a.overview_modal_day_tabs").click (e) ->
+      e.preventDefault()
+      map_day = $(this).data('day')
+      map_day_index = $(this).data('day') - 1 
+      trips_activities_namespace.fireAjaxMapCall(map_day);
 
 
     $("#swipewrapper").on "click", "#mapShow", (e) ->
       req = trips_namespace.slides[trips_namespace.gallery.pageIndex].tripid + "/trip_activities/" + trips_namespace.slides[trips_namespace.gallery.pageIndex].activityid + "/mapinfo"
       map_day = trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday
       map_day_index = trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday - 1 
-      mapcontainer = $("#modal_map_"+ map_day)
+      mapcontainer = $("#b_modal_map_"+ map_day)
 
       $.ajax
         beforeSend: ->

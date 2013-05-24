@@ -39,13 +39,13 @@
 
     <div class="tab-content">
       <div class="tab-pane active" id="map_day_1">
-        <div class = "modal_map" id="modal_map_1"></div>
+        <div class = "modal_map_b" id="b_modal_map_1"></div>
       </div>
       
       <% n = @trip.duration.to_i %>
       <% for i in 2..n %>
         <div class="tab-pane" id=<%= "map_day_#{i}"%>>
-          <div class = "modal_map" id=<%= "modal_map_#{i}"%>></div>
+          <div class = "modal_map_b" id=<%= "b_modal_map_#{i}"%>></div>
         </div>
       <% end %>
     </div>

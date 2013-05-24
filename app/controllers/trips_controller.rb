@@ -280,7 +280,7 @@ class TripsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html # mapinfo.html.erb
+      # format.html # mapinfo.html.erb
       format.json { render json: @day_map_info  } 
     end
   end

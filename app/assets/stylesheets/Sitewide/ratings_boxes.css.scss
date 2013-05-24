@@ -1,0 +1,31 @@
+/* FILE CONTAINS STYLING FOR ALL RATINGS (4SQ) */
+
+
+/* Small Ratings Box */
+  
+.venue_metadata .venue_score{
+  float: left;
+  margin-right: 5px;
+  padding: 1px 5px;
+  width: auto;
+}
+
+.venue_score{
+  color: #fff;
+  cursor: default;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0;
+  @include border-radius(2px);
+  & .venue_score_of_ten{
+  	font-size: 8px;
+  }
+  &.positive{
+  	background: #69bf13
+  }
+  &.neutral{
+  	background: #bfbfbf;
+  }
+}
