@@ -47,7 +47,8 @@
         $('.relative_image').resizeToParent({parent: '#bloop'});
         // trips_namespace.bodyBackgroundImageSwitch();
         trips_namespace.daySwatchSwitch();
-        trips_namespace.makeCaptionAccordion();
+        trips_namespace.scrollToComments();
+        // trips_namespace.makeCaptionAccordion();
         // trips_namespace.fireSwipeViewUsefulButton();
       }
     });
@@ -89,7 +90,8 @@
             $('.relative_image').resizeToParent({parent: '#bloop'});
             // trips_namespace.bodyBackgroundImageSwitch();
             trips_namespace.daySwatchSwitch();
-            trips_namespace.makeCaptionAccordion();
+            trips_namespace.scrollToComments();
+            // trips_namespace.makeCaptionAccordion();
             trips_namespace.fireSwipeViewUsefulButton();
           }
         });

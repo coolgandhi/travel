@@ -496,6 +496,18 @@ module ApplicationHelper
     activity_var.activity.send("#{which_detail}").send(detail.to_sym)
   end
 
+  def comments_collection(activity_var)
+    if activity_var.activity_type == "FoodActivity"
+      detail = "restaurant_comments"
+    else activity_var.activity_type == "LocationActivity"
+      detail = "location_detail"
+    end 
+    reviews_collection = which_detail_type(activity_var, detail)
+    return reviews_collection
+  end
+
+
+
   #helper method to return user uploaded url or foursquare image url
   def upload_or_foursquare_image_url_picker (object, self_image_size=:thumb, foursquare_image_width=250, foursquare_image_index=0)
     case object.class.name

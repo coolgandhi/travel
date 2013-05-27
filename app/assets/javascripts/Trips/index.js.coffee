@@ -127,9 +127,10 @@
       return
 
     trips_namespace.scrollToComments = ->  
-      $("#scrolltocomments").click (e) ->
+      $("#scrolltocomments, #trip_comments_show").click (e) ->
         e.preventDefault()
-        full_url = this.href
+        full_url = "#bottom_actionlinks"
+        # full_url = this.href
         parts = full_url.split("#")
         trgt = parts[1]
         target_offset = $("#" + trgt).offset()

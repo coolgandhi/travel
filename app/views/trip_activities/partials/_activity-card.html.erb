@@ -2,25 +2,18 @@
 <div class = "activitycontainer">
   <!-- Begin centerimage Container -->
   <div class="centerimage">
-    <!-- Begin Button Group -->  
-    <div id="moreShowHideGroup">
-      <div class = "show_mapoverview_group">
-        <div id="trip_overview_show" class="icon-list "><p class="show_button_text">Overview</p></div>
-        <!-- <div id="mapShow" class="icon-globe"><p class="show_button_text">Map</p></div> -->
-      </div>
-    </div>
-    <!-- End Button Group -->  
-    <!-- Begin always_here -->
-    <div class="always_here">
 
       <!-- Begin rightcaption -->
       <div class="rightcaption">
-        <h3 id="activity_title">
+        <div id="activity_title">
+          
           <!-- Begin Time of Day Swatch -->
           <div class = "time_day_swatch"></div>
           <! -- End Time of Day Swatch -->
+
           <span class="activity_title title"><%= (which_detail_type(@trip_activity,"name")) %></span></br>
           <span class="activity_subtitle caption_large">Day <%= @trip_activity.activity_day %> 
+              
               <% if @trip_activity.activity.activity_duration_type %>
                 <% unless @trip_activity.activity.activity_duration_type[:activity_duration_name].blank? %>
                   <%= "( #{@trip_activity.activity.activity_duration_type[:activity_duration_name]} )" %>
@@ -28,67 +21,130 @@
               <% else %>
                 <%= "( #{@trip_activity.activity[:duration]} )" %>
               <% end %>
+          
           </span>
 
-        </h3>
-        <div>
-          <p class="caption_large" id="user_description">
-            <%= auto_link(@trip_activity.activity[:description], :html => { :target => '_blank' }) %>
-          </p>
+        </div>
+
+        <!-- Begin rc_tabs_con -->
+        <div class = "rc_tab_con">
+
+          <!-- Begin Tabs -->
+          <ul class="nav nav-tabs" id="rc_activity_tabs">
+            <li class ="active">
+              <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_1_#{@trip_activity.id}" %>" data-toggle="tab">Summary</a>
+            </li>
+            <li>
+              <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_2_#{@trip_activity.id}" %>"data-toggle="tab">More Info</a>
+            </li>
+            <li>
+              <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_3_#{@trip_activity.id}" %>" data-toggle="tab">Reviews</a>
+            </li>
+          </ul>
+          <!-- End Tabs -->
           
-          <% unless @trip_activity.activity[:quick_tip].blank? %>
-            <div class="well well-small caption_quick_tip caption_medium">
-              Quick Tip: <%= auto_link(@trip_activity.activity[:quick_tip], :html => { :target => '_blank' }) %> 
+          <!-- Begin Tab Content -->
+          <div class="tab-content">
+            <!-- Begin Tab Pane 1 -->
+            <div class="rc_activity_tabs_pane tab-pane active" id="<%= "rc_activity_tabs_1_#{@trip_activity.id}" %>">
+
+              <p class="caption_large" id="user_description">
+                <%= auto_link(@trip_activity.activity[:description], :html => { :target => '_blank' }) %>
+              </p>
+              
+              <% unless @trip_activity.activity[:quick_tip].blank? %>
+                <div class="well well-small caption_quick_tip caption_medium">
+                  Quick Tip: <%= auto_link(@trip_activity.activity[:quick_tip], :html => { :target => '_blank' }) %> 
+                </div>
+              <% end %>
+
             </div>
-          <% else %>
-          <% end %>
+            <!-- End Tab Pane 1 -->
+            
+            <!-- Begin Tab Pane 2 -->
+            <div class="rc_activity_tabs_pane tab-pane" id="<%= "rc_activity_tabs_2_#{@trip_activity.id}" %>">
+              <div class = "more_info_dl" id="more_info_id">
+                <div id = "more-info-buffer-header"></div>
+                <div id = "more-info-buffer-content">
+                  <dl class = "caption_medium">
+                  <dt>Address:</dt>
+                  <dd>
+                    <address>
+                      <%= check_empty_detail(which_detail_type(@trip_activity,"address1")) %></br>
+                      <%= check_empty_detail(which_detail_type(@trip_activity,"city")) %>, <%= check_empty_detail(which_detail_type(@trip_activity,"state")) %>
+                      <%= check_empty_detail(which_detail_type(@trip_activity,"zip")) %>
+                    </address>  
+                  </dd>
+                  <dt>Description: </dt>
+                  <dd>
+                    <%= check_empty_detail(which_detail_type(@trip_activity,"description")) %>
+                  </dd>
+                  <dt>Category: </dt>
+                  <dd>
+                    <%= check_empty_detail(which_detail_type(@trip_activity,"category")) %>
+                  </dd>
+                  <dt>Open Hours:</dt>
+                  <dd>
+                    <%= check_empty_detail(which_detail_type(@trip_activity,"open_hours")) %>
+                  </dd>
+                  <dt>Phone:</dt>
+                  <dd>
+                    <%= check_empty_detail(which_detail_type(@trip_activity,"phone")) %>
+                  </dd>
+                  <dt>Website:</dt>
+                  <dd>
+                    <%= link_to  check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, :target => "_blank", :class => "caption_subtitle" %>
+                  </dd>
+                  </dl>
+                  <div class="foursquare_attribution">Powered by <div id ="accordion_foursquare_logo"></div></div>
+                </div>
+                <!-- End more-info-buffer-content -->
+              </div>
+            </div>
+            <!-- End Tab Pane 2 -->
+            
+            <!-- Begin Tab Pane 3 -->
+            <div class="rc_activity_tabs_pane tab-pane" id="<%= "rc_activity_tabs_3_#{@trip_activity.id}" %>">
+              <% activity_reviews = comments_collection(@trip_activity) %>
+              <% if activity_reviews.blank? %>
+                <p>No Reviews are available at this time</p>
+              <% else %> 
+                <% activity_reviews.each do |review_item| %>
+                  <p>
+                    <%= review_item.log %> - <a href = "<%= review_item.url %>" target = "_blank"><%= review_item.name %></a>
+                  </p>
+
+                <% end %>
+              <% end %>
+
+            </div>
+            <!-- End Tab Pane 3 -->
 
         </div>
-        <h3 id="more_info_accordion">
-          <div class = "caption_medium">More Info</div>
-        </h3>
-        <div class = "more_info_dl" id="more_info_id">
-          <div id = "more-info-buffer-header"></div>
-          <div id = "more-info-buffer-content">
-            <dl class = "caption_medium">
-            <dt>Address:</dt>
-            <dd>
-              <address>
-                <%= check_empty_detail(which_detail_type(@trip_activity,"address1")) %></br>
-                <%= check_empty_detail(which_detail_type(@trip_activity,"city")) %>, <%= check_empty_detail(which_detail_type(@trip_activity,"state")) %>
-                <%= check_empty_detail(which_detail_type(@trip_activity,"zip")) %>
-              </address>  
-            </dd>
-            <dt>Description: </dt>
-            <dd>
-              <%= check_empty_detail(which_detail_type(@trip_activity,"description")) %>
-            </dd>
-            <dt>Category: </dt>
-            <dd>
-              <%= check_empty_detail(which_detail_type(@trip_activity,"category")) %>
-            </dd>
-            <dt>Open Hours:</dt>
-            <dd>
-              <%= check_empty_detail(which_detail_type(@trip_activity,"open_hours")) %>
-            </dd>
-            <dt>Phone:</dt>
-            <dd>
-              <%= check_empty_detail(which_detail_type(@trip_activity,"phone")) %>
-            </dd>
-            <dt>Website:</dt>
-            <dd>
-              <%= link_to  check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, check_empty_detail(which_detail_type(@trip_activity,"website")).to_s, :target => "_blank", :class => "caption_subtitle" %>
-            </dd>
-            </dl>
-            <div class="foursquare_attribution">Powered by <div id ="accordion_foursquare_logo"></div></div>
+        <!-- End Tab Content -->
+      </div>
+      <!-- End rc_tabs_con -->
+
+        <!-- Begin rc_key_buttons_con -->
+        <div class = "rc_key_buttons_con">        
+          <!-- Begin Button Group -->  
+          <div id="moreShowHideGroup">
+            <div class = "show_mapoverview_group">
+              <div id="trip_overview_show" class="icon-list"><p class="show_button_text">Overview</p></div>
+              <div id="trip_comments_show" class="icon-comments ">
+                <p class="show_button_text">
+                  Comments
+                </p>
+              </div>
+            </div>
           </div>
-          <!-- End more-info-buffer-content -->
+          <!-- End Button Group -->  
         </div>
+        <!-- End rc_key_buttons_con -->
+        
       </div>
       <!-- End rightcaption -->   
-    </div>
-    <!-- End always_here --> 
-
+ 
         <div class= "front">
           <div class="main_pic_wrap" id="bloop">
             <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">

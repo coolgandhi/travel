@@ -411,14 +411,14 @@ img.relative_image{
 .main_pic_wrap{
   height:100%;
   overflow: hidden;
-  @include border-radius($myDivBorderRadius);
+  // @include border-radius($myDivBorderRadius);
 
-  @include respond-to(portrait){
-  height: 70%;
-  }
-  @include respond-to(small){
-  height: 70%;
-  }
+  // @include respond-to(portrait){
+  // height: 70%;
+  // }
+  // @include respond-to(small){
+  // height: 70%;
+  // }
 }
 
 .centerimage{
@@ -451,28 +451,33 @@ img.relative_image{
 
 /* front pane holds the image */
 .front {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  position: relative;
+  float: left;
   z-index: 1;
-  width: 100%;
+  width: 60%;
   height: 100%;
   overflow: hidden;
   background-color: $black;
-  @include respond-to(portrait){
-    overflow: auto;
-  }
+  // @include respond-to(portrait){
+  //   overflow: auto;
+  // }
 }
 
 /* Show Hide Map Button Group */
 #moreShowHideGroup{
   z-index: 6;
-  position: absolute;
-  top: 2%;
-  right: 0%;
-  height: 10px;
-  min-width: 100%;
-  padding:5px;
+  // position: absolute;
+  // top: 2%;
+  // right: 0%;
+  float: left;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  // padding:5px;
+  @include box-sizing(border-box);
   @include respond-to(portrait){
     bottom: 42%;
     z-index: 4;
@@ -484,25 +489,21 @@ img.relative_image{
 }
 
 #trip_overview_show{
-  // position: absolute;
-  // top: 2%;
-  // right: 2%;
+  @include box-sizing(border-box);
   float: left;
   position: relative;
-  background: rgba(0,0,0,0.6) no-repeat center;
+  background-color: rgba(255,255,255,0.2);
   background-image: "icon-list";
-  width: 65px;
-  height: 50px;
-  @include border-radius(10px);
-  // border-radius: 10px 0 0 10px;
-  border: 2px solid $white;
-  // border-right: 0;
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid $white;
   text-align: center;
   color: $white;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  line-height: 40px;
+  line-height: 35px;
   cursor:pointer;
+  margin-top: 0;
 
   i{
     position:relative;
@@ -513,7 +514,47 @@ img.relative_image{
   &:hover{
     color: $gray;
     background: rgba(255, 255,255,0.6);
-    // border: 3px solid $gray;
+    background-color: rgba(255, 255,255,0.6);
+  }
+  &.active{
+    font-size: 35px;
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    border: 2px solid $gray;
+      &:hover{
+        color: $white;
+        background: rgba(0,0,0,0.6) no-repeat center;
+        border: 2px solid $white;
+      }
+  }
+}
+
+#trip_comments_show{
+  @include box-sizing(border-box);
+  float: left;
+  position: relative;
+  background-color: rgba(255,255,255,0.2);
+  background-image: "icon-list";
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  color: $white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 35px;
+  cursor:pointer;
+  margin-top: 0;
+
+  i{
+    position:relative;
+    top: 0%;
+    left: -13%;
+    margin:0;
+  }
+  &:hover{
+    color: $gray;
+    background: rgba(255, 255,255,0.6);
+    background-color: rgba(255, 255,255,0.6);
   }
   &.active{
     font-size: 35px;
@@ -529,16 +570,21 @@ img.relative_image{
 }
 
 .show_mapoverview_group{
-  position: absolute;
-  top: 2%;
-  right: 1%;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 100%;
+  @include box-sizing(border-box);
+  // position: absolute;
+  // top: 2%;
+  // right: 1%;
 }
 
 .show_button_text{
   font-size: 12px;
   line-height: 0;
   margin: 0;
-  font-weight: bold;
+  // font-weight: bold;
   font-family: $sansFontFamily;
 }
 
@@ -685,45 +731,45 @@ img.relative_image{
   }
 }
 
-.always_here{
-  // min-height: 100%;
-  // min-width: 100%;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  left:0;
-  top:0;
-  z-index: 5;
-  @include respond-to(portrait){
-    min-height: 30%;
-    bottom: 0;
-    top: auto;
-  }
-  @include respond-to(small){
-  min-height: 30%;
-  bottom: 0;
-  top: auto;
-  }  
-}
+// .always_here{
+//   // min-height: 100%;
+//   // min-width: 100%;
+//   min-height: 100%;
+//   min-width: 100%;
+//   position: absolute;
+//   left:0;
+//   top:0;
+//   z-index: 5;
+//   @include respond-to(portrait){
+//     min-height: 30%;
+//     bottom: 0;
+//     top: auto;
+//   }
+//   @include respond-to(small){
+//   min-height: 30%;
+//   bottom: 0;
+//   top: auto;
+//   }  
+// }
 
-.always_here_hide{
-  z-index: -1;
-  .rightcaption{
-    display: none;
-  }
-  @include respond-to(portrait){
-    z-index: 5;
-    .rightcaption{
-      display: block;
-    }
-  }
-  @include respond-to(small){
-    z-index: 5;
-    .rightcaption{
-      display: block;
-    }
-  }
-}
+// .always_here_hide{
+//   z-index: -1;
+//   .rightcaption{
+//     display: none;
+//   }
+//   @include respond-to(portrait){
+//     z-index: 5;
+//     .rightcaption{
+//       display: block;
+//     }
+//   }
+//   @include respond-to(small){
+//     z-index: 5;
+//     .rightcaption{
+//       display: block;
+//     }
+//   }
+// }
 /* 5. CAPTION DIV */
 
 .rightcaption .ui-widget-content, .rightcaption .ui-widget-header{
@@ -762,39 +808,41 @@ img.relative_image{
 
 .rightcaption{
   width: 40%;
-  // height: 100%;
+  height: 100%;
   color: $white;
   @include box-sizing(border-box);
   background-color: rgba(0,0,0,0.9);
-  @include border-radius($myDivBorderRadius);
-  position: absolute;
-  top: 2%;
-  left: 2%;
+  // @include border-radius($myDivBorderRadius);
+  position: relative;
+  float: left;
+  // position: absolute;
+  // top: 2%;
+  // left: 2%;
   z-index: 200; //to go over showmap button
 
-  @include respond-to(portrait){
-    background-color: rgba(0,0,0,0.9);
-    width: 100%;
-    bottom: 0%;
-    left: 0%;
-    top: auto;
-    min-height: 100%;
-    // height: 30%;
-    @include border-radius(0);
-    @include box-sizing(border-box);
-  }
+  // @include respond-to(portrait){
+  //   background-color: rgba(0,0,0,0.9);
+  //   width: 100%;
+  //   bottom: 0%;
+  //   left: 0%;
+  //   top: auto;
+  //   min-height: 100%;
+  //   // height: 30%;
+  //   @include border-radius(0);
+  //   @include box-sizing(border-box);
+  // }
 
-  @include respond-to(small){
-    background-color: rgba(0,0,0,0.9);
-    width: 100%;
-    bottom: 0%;
-    left: 0%;
-    top: auto;
-    min-height: 100%;
-    z-index: 200; //to go over showmap button
-    @include border-radius(0);
-    @include box-sizing(border-box);
-  }
+  // @include respond-to(small){
+  //   background-color: rgba(0,0,0,0.9);
+  //   width: 100%;
+  //   bottom: 0%;
+  //   left: 0%;
+  //   top: auto;
+  //   min-height: 100%;
+  //   z-index: 200; //to go over showmap button
+  //   @include border-radius(0);
+  //   @include box-sizing(border-box);
+  // }
 }
 
 //this mixin gives the active / inactive and hover styles for accordion icons
@@ -837,13 +885,13 @@ img.relative_image{
 }
 
 
-h3#activity_title{
+#activity_title{
   @include box-sizing(border-box);
   padding: 0.5em 2em 0.2em 1em; //padding-right needs to be big to make room for arrow
   font-weight: 600;
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
-  
+  height: 16%;
   border-radius: 0;
   
   @include accordion-icons;
@@ -907,14 +955,15 @@ div.rightcaption .ui-accordion-content {
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 1em;
+  padding-top: 2%;
 }
 
 .more_info_dl{
   // font-size: .95em;
   // line-height: 1em;
   // font-weight: 200;
-  max-height: 270px;
-  padding: 0 1em;
+  // max-height: 270px;
+  // padding: 0 1em;
 
   @include respond-to(portrait){
     // font-size: 1em;
@@ -969,6 +1018,77 @@ div.rightcaption .ui-accordion-content {
     margin-left: 0.5em;
   }
 }
+
+
+/* Right Caption Tabs Pane */
+.rc_key_buttons_con{
+  border-top: 1px solid $white;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 12%;
+}
+
+.rc_tab_con{
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 72%;
+  overflow: hidden;
+  .tab-content{
+    height: 95%;
+  }
+}
+
+.rc_activity_tabs_pane{
+  height: 100%;
+  overflow-x: scroll;
+  @include box-sizing(border-box);
+  padding: 0 5%;
+}
+
+#rc_activity_tabs{
+  margin-bottom: 0;
+
+  .active a{
+    background-color: rgba(255,255,255,.3);
+    color: inherit;
+  }
+  li{
+    width: 33.33%;
+    text-align: center;
+    a{
+      border-right: 1px solid $white;
+      @include border-radius(0);
+      margin: 0;
+      font-size: em(12px);
+      line-height: em(12px);
+      &:hover{
+        color: inherit;
+        background-color: rgba(255,255,255,.3);
+        border-color: inherit;
+      }
+      &:active{
+        color: inherit;
+        background-color: rgba(255,255,255,.3);
+        border-color: inherit; 
+      }
+    }
+  }
+  
+  li:last-child{
+    a{
+      border-right: 0;
+    }
+  }
+}
+.rc_activity_tabs_link{
+  background-color: transparent;
+  color: inherit;
+  @include border-radius(0);
+}
+
+/* map modal */
 
 #mapModal{
   @include box-sizing(border-box);
@@ -1350,7 +1470,7 @@ td.activity_count_cell{
   height: 0;
   padding-bottom: 3em;
   position: relative;
-  margin-top: 1%;
+  // margin-top: 1%;
   margin-right: 2%;
   float: left;
   @include border-radius($myDivBorderRadius);
