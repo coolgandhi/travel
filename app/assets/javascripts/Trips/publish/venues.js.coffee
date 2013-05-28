@@ -115,7 +115,7 @@
             url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
             dataType: "json"
             data: 
-              total: 15
+              total: 20
               ven: request.term
               latlong: $('#trip_activity_latlong').val()
             success: (data) ->

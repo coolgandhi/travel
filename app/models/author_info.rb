@@ -4,17 +4,25 @@ class AuthorInfo < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
+         #, :validatable
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
   include Author_Validators
-  attr_accessible :author_id, :address1, :address2, :address3, :author_name, :city, :state, :country, :email, :phone, :postal_code, :twitter_handle, :website, :about, :password, :password_confirmation, :remember_me, :birthday, :admin, :self_image, :self_image_tmp, :badge_level
+  attr_accessible :author_id, :address1, :address2, :address3, :author_name, :city, :state, :country, :email, :phone, :postal_code, :twitter_handle, :website, :about, :password, :password_confirmation, :remember_me, :birthday, :admin, :self_image, :self_image_tmp, :badge_level, :provider
   has_many :trips, :foreign_key => :author_id
   has_many :trip_stats
   #validates :author_name, :presence => { :message => "enter author name" }
   validates :email, :presence => { :message => "enter author email" }, :email => true
-  validates_uniqueness_of :email, :message => "email already present"
+  #validates_uniqueness_of :email, :message => "email already present"
+  
+  validates_uniqueness_of    :email, :case_sensitive => false, :allow_blank => true, :if => :email_changed?, :scope => :provider
+  validates_format_of :email, :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
+  validates_presence_of   :password, :on=>:create
+  validates_confirmation_of   :password, :on=>:create
+  validates_length_of :password, :within => Devise.password_length, :allow_blank => true
+    
   validates_length_of :about, :maximum => 200, :allow_blank => true
   
   mount_uploader :self_image, ImageUploader
@@ -67,7 +75,7 @@ class AuthorInfo < ActiveRecord::Base
   end
   
   def password_required?
-    super && provider.blank?
+    provider.blank?
   end
   
   def update_with_password(params, *options)

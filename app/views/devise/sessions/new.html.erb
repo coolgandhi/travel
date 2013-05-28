@@ -13,6 +13,8 @@
 			          <%= f.email_field :email, :class => "input-xlarge", :id => "email", :autofocus => true %>
 			        </div>
 			      </div>
+			      
+            <%= f.hidden_field :provider, :value => "normal" %>
 
 			      <div class="control-group">
 			        <!-- Password -->
