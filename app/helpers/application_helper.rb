@@ -499,8 +499,8 @@ module ApplicationHelper
   def comments_collection(activity_var)
     if activity_var.activity_type == "FoodActivity"
       detail = "restaurant_comments"
-    else activity_var.activity_type == "LocationActivity"
-      detail = "location_detail"
+    elsif activity_var.activity_type == "LocationActivity"
+      detail = "location_comments"
     end 
     reviews_collection = which_detail_type(activity_var, detail)
     return reviews_collection
