@@ -67,7 +67,7 @@ Travel::Application.configure do
   config.middleware.use ExceptionNotifier,
     :email_prefix => "chalo.io Exception :(  ",
     :sender_address => %{"notifier" <chaloiorocks@gmail.com>},
-    :exception_recipients => %w{gandhisi@gmail.com hungkienluu@gmail.com},
+    :exception_recipients => %w{gandhisi@gmail.com},
     :smtp_settings => {
       :user_name => "chaloiorocks@gmail.com",
       :password => "QAZwsx987",
