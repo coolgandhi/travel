@@ -124,11 +124,7 @@
               <%= image_tag(image_url, :alt => @sorted_activities[i][:activity_venue_name]) %>
             </span>
             <%= @sorted_activities[i][:activity_venue_name] %>
-            <% unless @sorted_activities[i][:duration].blank? %> 
-             for <%= @sorted_activities[i][:duration] %> 
-            <% end %>
             </br>
-            
             <% unless @sorted_activities[i][:foursquare_rating].blank? %>
               <% venue_score_color = ratings_box(@sorted_activities[i][:foursquare_rating]) %>
               <span class = "venue_metadata">

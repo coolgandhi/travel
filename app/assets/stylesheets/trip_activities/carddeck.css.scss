@@ -1426,8 +1426,13 @@ td.activity_count_cell{
   }
 }
 
+   
 .overview_table_hover_tr{
   cursor: pointer;
+  max-width: 53px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   &:hover{
     background-color: rgba(0,0,0,.1);
   }
