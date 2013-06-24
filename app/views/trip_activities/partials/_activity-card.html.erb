@@ -3,20 +3,20 @@
   <!-- Begin centerimage Container -->
   <div class="centerimage">
 
+      <div class = "progession_group">
+        <div class = "activity_card_day_box">Day <%= @trip_activity.activity_day %></div>    
+        <div class = "activity_card_count_box"><%= "#{@activity_count}" %></div>    
+      </div>
+
       <!-- Begin rightcaption -->
       <div class="rightcaption">
         <div id="activity_title">
-          
-          <!-- Begin Time of Day Swatch -->
-          <div class = "time_day_swatch"></div>
-          <! -- End Time of Day Swatch -->
-
           <span class="activity_title title"><%= (which_detail_type(@trip_activity,"name")) %></span></br>
-          <span class="activity_subtitle caption_large">Day <%= @trip_activity.activity_day %> 
-              
+          <span class="activity_subtitle caption_large">
+            <%= time_type_to_name(@trip_activity.activity_time_type)%>      
               <% if @trip_activity.activity.activity_duration_type %>
-                <% unless @trip_activity.activity.activity_duration_type[:activity_duration_name].blank? %>
-                  <%= "( #{@trip_activity.activity.activity_duration_type[:activity_duration_name]} )" %>
+                <% if !@trip_activity.activity.activity_duration_type[:activity_duration_name].blank? %>
+                <%= "( #{@trip_activity.activity.activity_duration_type[:activity_duration_name]} )" %> 
                 <% end %>
               <% else %>
                 <%= "( #{@trip_activity.activity[:duration]} )" %>
@@ -120,28 +120,10 @@
             </div>
             <!-- End Tab Pane 3 -->
 
-        </div>
-        <!-- End Tab Content -->
-      </div>
-      <!-- End rc_tabs_con -->
-
-        <!-- Begin rc_key_buttons_con -->
-        <div class = "rc_key_buttons_con">        
-          <!-- Begin Button Group -->  
-          <div id="moreShowHideGroup">
-            <div class = "show_mapoverview_group">
-              <div id="trip_overview_show" class="icon-list"><p class="show_button_text">Overview</p></div>
-              <div id="trip_comments_show" class="icon-comments ">
-                <p class="show_button_text">
-                  Comments
-                </p>
-              </div>
-            </div>
           </div>
-          <!-- End Button Group -->  
+          <!-- End Tab Content -->
         </div>
-        <!-- End rc_key_buttons_con -->
-        
+        <!-- End rc_tabs_con -->      
       </div>
       <!-- End rightcaption -->   
  

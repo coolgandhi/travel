@@ -225,7 +225,7 @@ $lastrowheight: 10%;
 
 /* 3. FILMSTRIP NAVIGATION */
 .wrapper_film{
-  @include col(2);
+  @include col(1.5);
   @include box-sizing(border-box);
   // padding: 1%;
   overflow: hidden;
@@ -233,36 +233,27 @@ $lastrowheight: 10%;
   background-color: $myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
-  border-style: solid;
   @include border-radius($myDivBorderRadius);
-  @include box-shadow($myDivBoxShadow);
   position:relative;
 
   @include respond-to(portrait){
-  @include col(2);
-  @include box-sizing(border-box);
-  // padding: 1%;
-  // height: 80%;
+    @include col(1.5);
+    @include box-sizing(border-box);
   }
 
   @include respond-to(small){
-  @include col(3);
-  @include box-sizing(border-box);
-  // padding: 1%;
-  // height: 80%;
-  display: none;
+    @include col(2.5);
+    @include box-sizing(border-box);
+    display: none;
   }
 }
 
 .filmstrip{
   @include box-sizing(border-box);
-  padding: 0 8%;
+  //padding: 0 8%;
   height: 100%;
-  margin-left: 1%;
-  // overflow: hidden;
-  overflow-y: auto;
-  // -webkit-overflow-scrolling: touch;
-  overflow: auto;
+  //margin-left: 1%;
+  //overflow: hidden;
 }
 
 .filmstrip_day_dividers{
@@ -447,6 +438,8 @@ img.relative_image{
   // padding: 1em;
   // margin-left: 0;
   }
+  
+
 }
 
 /* front pane holds the image */
@@ -483,8 +476,8 @@ img.relative_image{
     z-index: 4;
   }
   @include respond-to(small){
-  bottom: 42%;
-  z-index: 4;
+    bottom: 42%;
+    z-index: 4;
   }
 }
 
@@ -492,7 +485,7 @@ img.relative_image{
   @include box-sizing(border-box);
   float: left;
   position: relative;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(0, 0, 0, 1.0);
   background-image: "icon-list";
   width: 50%;
   height: 100%;
@@ -891,20 +884,13 @@ img.relative_image{
   font-weight: 600;
   border-bottom: 1px solid rgb(204,204,204);
   outline: 0;
-  height: 16%;
   border-radius: 0;
   
   @include accordion-icons;
   
   span.activity_title{
-    // text-shadow: 2px 1px 3px $black;
-    // font-weight: normal;
   }
   span.activity_subtitle{
-    // font-size: 0.7em;
-    // line-height: 0.7em;
-    // text-shadow: 1px 1px 1px $black;
-    // font-weight: normal;
   }
 }
 
@@ -1023,8 +1009,8 @@ div.rightcaption .ui-accordion-content {
 /* Right Caption Tabs Pane */
 .rc_key_buttons_con{
   border-top: 1px solid $white;
-  position: relative;
-  float: left;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   height: 12%;
 }
@@ -1033,7 +1019,7 @@ div.rightcaption .ui-accordion-content {
   position: relative;
   float: left;
   width: 100%;
-  height: 72%;
+  height: 75%;
   overflow: hidden;
   .tab-content{
     height: 95%;
@@ -1042,7 +1028,9 @@ div.rightcaption .ui-accordion-content {
 
 .rc_activity_tabs_pane{
   height: 100%;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1;
   @include box-sizing(border-box);
   padding: 0 5%;
 }
@@ -1605,16 +1593,50 @@ td.activity_count_cell{
   height: 25px;
   width: 25px;
   margin: 0 auto;
+  float: left;
   line-height: 25px;
   font-size: em(12px);
   font-weight: bold;
   text-align: center;
-  float: left;
-  background: #2a658d;//$myPrimaryBlue;
+  background: $black;  
+  //background: #2a658d;//$myPrimaryBlue;
   padding: 1px;
   color: #FFF;
   text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0;
   @include box-shadow(1px 1px 1px gray);
   @include border-radius(50%);
+}
+
+
+.activity_card_day_box{
+  position: absolute;
+  float: left;
+  height: 20px;
+  width: 60px;
+  font-size: em(20px);
+  //font-weight: bold;
+  text-align: center;
+  background: $black;
+  @include border-radius($myDivBorderRadius);
+  padding: 1px;
+  color: #FFF;
+  z-index: 2;
+  top: 2%;
+  right: 0%;
+}
+  
+.activity_card_count_box{
+  position: absolute;
+  float: left;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  font-size: em(15px);
+  font-weight: normal;
+  background: black;
+  z-index: 2;
+  top: 10%;
+  right: 2%;
+  @extend .activity_count_box;
 }
 

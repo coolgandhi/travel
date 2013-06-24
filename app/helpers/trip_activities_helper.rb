@@ -58,5 +58,30 @@ module TripActivitiesHelper
     alt_name
   end
   
-
+  def find_sequence_count(activity_id, activity_day, trip_id)
+    activities_same_day = TripActivity.find(:all, :conditions => {:trip_id => trip_id, :activity_day => activity_day}, :order => "activity_sequence_number")
+    
+    sequence = 1
+    activities_same_day.each { |trip_activity|
+       if trip_activity.activity_id == activity_id
+         break
+       end
+       sequence = sequence + 1
+     }
+     sequence = sequence.ordinalize
+     sequence
+  end
+  
+  def time_type_to_name(time_type_id)
+    name = ""
+    case time_type_id
+      when "1", "2"
+        name = "Morning"
+      when "3", "4"
+        name =  "Afternoon"
+      when "5", "6", "7"
+        name =  "Evening"
+    end
+    name
+  end
 end

@@ -14,6 +14,9 @@
 
     $("#overviewHide").click ->
       trips_namespace.closeOverviewModal()
+      document.querySelector('#navswipe .selected').className = 'mediaa';
+      dots = document.querySelectorAll('#navswipe li');
+      dots[trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday].className = 'mediaa selected';
 
     $("#trip_overview_modal").on "show", (e) ->
       $('.mapModalMask').fadeIn('slow')

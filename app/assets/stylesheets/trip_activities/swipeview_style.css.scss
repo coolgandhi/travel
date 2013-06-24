@@ -10,7 +10,7 @@
 /* 1. WRAPPER */
 
 #wrappiest{
-	@include col(10);
+	@include col(10.5);
 	position: relative;
 	// height:90%;
 	overflow: hidden;
@@ -24,12 +24,12 @@
 	-webkit-tap-highlight-color: rgba(0,0,0,0); //this disables the tap-highlight color in safari on ipad
 
 	@include respond-to(portrait){
-	  	@include col(10);
+	  	@include col(10.5);
 	  	// height: 80%;
   	}
 
   	@include respond-to(small){
-  		@include col(12);
+  		@include col(12.5);
   	}
 }
 #swipewrapper {
@@ -45,17 +45,18 @@
 #navswipe {
 	z-index:100;
 	@include border-radius($myDivBorderRadius);
+	list-style-type:square;
 	// margin-bottom: 6em;
 	margin-top: 0.5em;
+	padding-top: 5px;
 	width: 100%;
 }
 
 #navswipe li {
-	overflow:hidden;
-	text-align:center;
-	@extend .media;	
-	display: table;
-	@include border-radius($myDivBorderRadius);
+	// overflow:auto;
+	//text-align:center;
+	//@extend .media;	
+  @include border-radius($myDivBorderRadius);
 	position: relative;
 	width: 100%;
 	margin: 0.5em 0;
@@ -73,12 +74,18 @@
 	color: white;
 }
 
-#navswipe li.selected {
-	background:rgba(255,255,255,0.4);
-	border: 1px solid $myDivGlows;
-	@include border-radius($myDivBorderRadius);
-	@include box-shadow(0px 0px 9px 6px $myDivGlows);
+#navswipe li:hover, #navswipe li.selected {
+  font-weight:bold;
+  cursor: hand; 
+  cursor: pointer;
 }
+
+// #navswipe li.selected {
+//  background:rgba(255,255,255,0.4);
+//  border: 1px solid $myDivGlows;
+//  @include border-radius($myDivBorderRadius);
+//  @include box-shadow(0px 0px 9px 6px $myDivGlows);
+//}
 
 /* 3. HOVER SHOW NAV ARROWS */
 .no-touch #wrappiest:hover > .bottomnavigationbar{

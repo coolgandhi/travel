@@ -1,0 +1,11 @@
+
+<% count=0 %>
+<li id="trip_overview" class = "mediaa selected">Overview</li>
+<% for i in 0..(@sorted_activities.length - 2) %> 
+  <% count+=1 %>
+  <% if @sorted_activities[i][:activityday] != @sorted_activities[i-1][:activityday] %>
+    <li class="mediaa" onclick="trips_namespace.gallery.goToPage(<%= i %>)">Day <%= @sorted_activities[i][:activityday] %></li>
+    <% count=1 %>
+  <% else %>
+  <% end %>
+<% end %>

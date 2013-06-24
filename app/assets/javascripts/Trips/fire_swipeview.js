@@ -98,12 +98,9 @@
       }
     }
 
-    document.querySelector('#navswipe .selected').className = '';
-    dots[trips_namespace.gallery.pageIndex].className = 'selected';
-
-    //scrollTo implementation here for scrolling filmstrip container to go with what's active
-    var $scrollTarget = $('.filmstrip').find('li:eq('+ (trips_namespace.gallery.pageIndex) + ')');
-    $('.filmstrip').scrollTo($scrollTarget, 500, { offset:{ top:-150 } } );
+    document.querySelector('#navswipe .selected').className = 'mediaa';
+			dots[trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday].className = 'mediaa selected';
+	
 
     //close the map modal
     trips_activities_namespace.closeMapModal();
@@ -121,10 +118,20 @@
     });
   }
 
+
   $(document).ready(function() {
     if ($('#swipewrapper').length){
       fireSwipe();
     }
+
+
+		$('ul#navswipe li').click(function(e) {
+			if ($(this).index() == 0) {
+				$('#trip_overview_modal').modal('show');
+				document.querySelector('#navswipe .selected').className = 'mediaa';
+				$('#trip_overview').attr('class', 'mediaa selected');
+			}
+		});
   });
 
 })(window.trips_namespace = window.trips_namespace || {}, jQuery);

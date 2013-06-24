@@ -218,6 +218,7 @@ class TripActivitiesController < ApplicationController
     begin
       @trip_activity = TripActivity.find(params[:activityid])
       @partial_layout = params[:layout]
+      @activity_count = find_sequence_count(@trip_activity.activity_id, @trip_activity.activity_day, @trip_activity.trip_id)
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
