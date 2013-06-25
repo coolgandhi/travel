@@ -98,9 +98,17 @@
       }
     }
 
+		
     document.querySelector('#navswipe .selected').className = 'mediaa';
-			dots[trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday].className = 'mediaa selected';
-	
+        
+    if (trips_namespace.slides[trips_namespace.gallery.pageIndex].layout == 'about_author' )
+    {
+      dots[dots.length - 1].className = 'mediaa selected';      
+    }
+    else
+    { 
+      dots[trips_namespace.slides[trips_namespace.gallery.pageIndex].activityday].className = 'mediaa selected';
+    }
 
     //close the map modal
     trips_activities_namespace.closeMapModal();
