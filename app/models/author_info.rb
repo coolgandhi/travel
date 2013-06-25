@@ -19,9 +19,10 @@ class AuthorInfo < ActiveRecord::Base
   
   validates_uniqueness_of    :email, :case_sensitive => false, :allow_blank => true, :if => :email_changed?, :scope => :provider
   validates_format_of :email, :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
-  validates_presence_of   :password, :on=>:create
-  validates_confirmation_of   :password, :on=>:create
+  validates_presence_of   :encrypted_password, :on=>:create, :message => " missing"
+  validates_confirmation_of   :encrypted_password, :on=>:create
   validates_length_of :password, :within => Devise.password_length, :allow_blank => true
+  validate :check_password_same
     
   validates_length_of :about, :maximum => 200, :allow_blank => true
   
@@ -75,7 +76,11 @@ class AuthorInfo < ActiveRecord::Base
   end
   
   def password_required?
-    provider.blank?
+    true
+  end
+  
+  def check_password_same
+    errors.add(:password, " and confirmed password don't match") if !password.eql? password_confirmation
   end
   
   def update_with_password(params, *options)

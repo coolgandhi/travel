@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     if Rails.env.development?
       return true
     else
-      bret = session[:password] == "foobar" 
+      bret = session[:password] == "chal0iorocks" 
       bret = (true == bret)? bret : (!current_author_info.blank? and current_author_info.admin == true)
       return bret
     end
