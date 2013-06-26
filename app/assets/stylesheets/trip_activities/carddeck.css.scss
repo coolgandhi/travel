@@ -1217,17 +1217,16 @@ div.rightcaption .ui-accordion-content {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px; 
-  width:100px;
-  background-color: #EEEEEE;
-  background-color: rgba(238, 238, 238, 0.9);
+  width:50px;
+  background-color: rgba(57, 135, 189, 0.5);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#99EEEEEE',EndColorStr='#99EEEEEE');
   text-align:center;
   padding:5px;
   position:fixed;
-  bottom:10px;
-  left:10px;
+  bottom:16px;
+  left:16px;
   cursor:pointer;
-  color:#444;
+  color:white;
   text-decoration:none;
   border:1px solid #C9C9C9;  
 }
