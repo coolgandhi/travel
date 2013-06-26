@@ -149,7 +149,7 @@ module ApplicationHelper
     category
   end
   
-  def create_food_venue(venue_id, location_id, update=0, venue=0)
+  def create_food_venue(venue_id, location_id, update=0, venue=nil)
     FoursquareInteraction.foursquare_client
     if venue.blank?
       @venue, error = FoursquareInteraction.venue_info(venue_id)
@@ -239,7 +239,7 @@ module ApplicationHelper
   
   
   
-  def create_location_venue(venue_id, location_id, update=0, venue=0)
+  def create_location_venue(venue_id, location_id, update=0, venue=nil)
     FoursquareInteraction.foursquare_client
     if venue.blank?
       @venue, error = FoursquareInteraction.venue_info(venue_id)
