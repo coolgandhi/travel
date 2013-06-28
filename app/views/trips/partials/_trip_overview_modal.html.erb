@@ -58,7 +58,7 @@
                 <% if @other_cant_miss_activity_count > 0 and @eatery_cant_miss_activity_count > 0 %>  and <%= @eatery_cant_miss_activity_count %> eateries
                 <% elsif @eatery_cant_miss_activity_count > 0 %> <%= @eatery_cant_miss_activity_count %> eateries 
                 <% end %> 
-                on this trip are "can't miss" (<%= image_tag('/assets/star.png', {:class => "image_thumbnail"}) %>)
+                on this trip are highly recommended (<%= image_tag('/assets/star.png', {:class => "image_thumbnail_change_alignment"}) %>)
               </li>
             <% end %>
           </ul>  
@@ -151,7 +151,7 @@
                 </span>
               </span>
               <% if self.is_cant_miss(@sorted_activities[i][:foursquare_rating], @sorted_activities[i][:cant_miss]) %>
-                (<%= image_tag('/assets/star.png', {:class => "image_thumbnail"}) %>)
+                (<%= image_tag('/assets/star.png', {:class => "image_thumbnail_change_alignment"}) %>)
               <% end %>
             <% end %>
             

@@ -1474,9 +1474,14 @@ td.activity_count_cell{
 
 .image_thumbnail{
   max-height: 20px;
-  max-width: 20px;
+  //max-width: 20px;
+}
+
+.image_thumbnail_change_alignment{
+  @extend .image_thumbnail;
   vertical-align: top;
 }
+
 .caption_summary{
   border: 1px solid rgb(204,204,204);
   margin-bottom: 10px;
@@ -1679,8 +1684,7 @@ td.activity_count_cell{
   height: 30px;
   width: 30px;
   top: 20%;
-  z-index: 2;
-  right: 2.5%;
+  right: 2%;
   z-index: 2;
   background: black;
   @extend .activity_count_box;
