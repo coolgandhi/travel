@@ -5,7 +5,13 @@
 
       <div class = "progession_group">
         <div class = "activity_card_day_box">Day <%= @trip_activity.activity_day %></div>    
-        <div class = "activity_card_count_box"><%= "#{@activity_count}" %></div>    
+        <div class = "activity_card_count_box"><%= "#{@activity_count}" %></div>
+    
+        <% if self.is_cant_miss(check_empty_detail(which_detail_type(@trip_activity,"rating")), @trip_activity.cant_miss) %>
+          <div class = "activity_card_star_box">
+            <%= image_tag('/assets/star.png', {:class => "image_thumbnail"}) %>
+          </div>
+        <% end %>
       </div>
 
       <!-- Begin rightcaption -->

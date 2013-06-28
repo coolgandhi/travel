@@ -58,8 +58,13 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     begin
+      @eatery_activity_count = 0
+      @other_activity_count = 0
+      @eatery_cant_miss_activity_count = 0 
+      @other_cant_miss_activity_count = 0
+      
       @trip = Trip.find(params[:id], :include => [:author_info, :location], :select => "trips.*, author_infos.*, locations.*")
-      @sorted_activities, @compressed_activities = sorted_trip_activities @trip
+      @sorted_activities, @compressed_activities, @eatery_activity_count, @other_activity_count, @eatery_cant_miss_activity_count, @other_cant_miss_activity_count  = sorted_trip_activities @trip
       
       @trip_stats = @trip.trip_stat
       if !@trip_stats.blank? and @trip.share_status == 1  

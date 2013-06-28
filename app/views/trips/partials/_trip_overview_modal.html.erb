@@ -14,16 +14,12 @@
     
 <!-- Begin Tabs -->
 <ul class="nav nav-tabs" id="overview_modal_day_tabs">
-  <li class = "disabled day_heading_tab"><a>Day</a></li>
+    <li class ="active">
+      <a class="<%= "overview_modal_day_tabs class_map_day_highlights" %>" href="<%= "#overview_modal_day_highlights" %>" data-toggle="tab" data-day="highlights">Highlights</a>
+    </li>
     <% n = @trip.duration.to_i > 10 ? 10 : @trip.duration.to_i %>
         <% for i in 1..n %>
-          
-          <% if i == 1 %>
-            <li class ="active">
-          <% else %>
-            <li>
-          <% end %>
-          
+          <li>
             <a class="<%= "overview_modal_day_tabs class_map_day_#{i}" %>" href="<%= "#overview_modal_day_#{i}" %>" data-toggle="tab" data-day="<%= i %>"><%= i %></a>
           </li>
         <% end %>
@@ -50,7 +46,33 @@
   
   <!-- Begin Compiled Tab Content -->
     <div class="tab-content om_tab_content">
-    
+      <div class="overview_modal_activities_list tab-pane active" id="overview_modal_day_highlights">
+        <div class="om_left_side">
+          <ul>
+            <li> 
+              Experienced <%= @other_activity_count %> locations/activities and ate at <%= @eatery_activity_count %> eateries over <%= @trip.duration %> days <br/>     
+            </li>
+            <% if (@other_cant_miss_activity_count > 0 || @eatery_cant_miss_activity_count > 0) %>
+              <li>
+                <% if @other_cant_miss_activity_count > 0 %> <%= @other_cant_miss_activity_count %> locations/activities <% end %>
+                <% if @other_cant_miss_activity_count > 0 and @eatery_cant_miss_activity_count > 0 %>  and <%= @eatery_cant_miss_activity_count %> eateries
+                <% elsif @eatery_cant_miss_activity_count > 0 %> <%= @eatery_cant_miss_activity_count %> eateries 
+                <% end %> 
+                on this trip are "can't miss" (<%= image_tag('/assets/star.png', {:class => "image_thumbnail"}) %>)
+              </li>
+            <% end %>
+          </ul>  
+          <div class='caption_summary'>
+            <%= auto_link(@trip.trip_summary, :html => { :target => '_blank' }) %> 
+          </div>
+        </div>
+        <div class="om_right_side">
+          <%= link_to @trip do %>
+            <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(@trip, :card, 600, 0) %>
+            <%= image_tag(use_this_url, {:class => "image_link_thumbnail"}) %>
+          <% end %>
+        </div>
+      </div>
       <% morning = 0 %>
       <% afternoon = 0 %>
       <% evening = 0 %>
@@ -75,11 +97,7 @@
           <% activity_count=1 %>
         
         <!-- Begin Individual Tab Content -->
-        <% if @sorted_activities[i][:activityday] == "1" %>
-          <div class="overview_modal_activities_list tab-pane active" id="<%="overview_modal_day_#{@sorted_activities[i][:activityday]}"%>">
-        <% else %>
-          <div class="overview_modal_activities_list tab-pane" id="<%= "overview_modal_day_#{@sorted_activities[i][:activityday]}"%>">
-        <% end %>
+        <div class="overview_modal_activities_list tab-pane" id="<%= "overview_modal_day_#{@sorted_activities[i][:activityday]}"%>">
           <!-- Begin overview modal left side -->
           <div class = "om_left_side">
           <!-- Begin Table -->
@@ -132,6 +150,9 @@
                   <%= @sorted_activities[i][:foursquare_rating] %> <span class = "venue_score_of_ten">/ 10</span>
                 </span>
               </span>
+              <% if self.is_cant_miss(@sorted_activities[i][:foursquare_rating], @sorted_activities[i][:cant_miss]) %>
+                (<%= image_tag('/assets/star.png', {:class => "image_thumbnail"}) %>)
+              <% end %>
             <% end %>
             
             <span class = "om_subtitle"><%=@sorted_activities[i][:category].split(', ').first %></span>

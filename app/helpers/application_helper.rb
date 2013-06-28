@@ -1,6 +1,13 @@
 module ApplicationHelper
 
-  
+  def is_cant_miss rating, cant_miss
+    ret_cant_miss = false
+    if rating.to_f > 9.25 or cant_miss == true
+      ret_cant_miss = true
+    end
+    ret_cant_miss
+  end
+     
   def get_photos venue_id, tot, ret_json=true
     FoursquareInteraction.foursquare_client
     venue_photos = FoursquareInteraction.venue_photos(venue_id, tot)
@@ -166,13 +173,13 @@ module ApplicationHelper
     photos = get_photos_from_venue_photos(@venue_photos)
     open_hours = get_open_hours_from_venue(@venue)
   
-    @restaurant_detail = RestaurantDetail.find_by_restaurant_detail_id(@venue[:id])
+    @restaurant_detail = RestaurantDetail.find_by_restaurant_detail_id(venue_id)
     create_new = @restaurant_detail.blank? ? 1 : 0
     @activity_detail = (update == 0 and @restaurant_detail.blank?) ? RestaurantDetail.new : @restaurant_detail
     category = get_categories_from_venue(@venue)
     
     @activity_detail.attributes = { 
-      :restaurant_detail_id => @venue[:id], 
+      :restaurant_detail_id => venue_id, 
       :address1 => empty_string_if_value_nil(@venue[:location][:address]), 
       :city => empty_string_if_value_nil(@venue[:location][:city]), 
       :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), 
@@ -214,7 +221,7 @@ module ApplicationHelper
               :log => empty_string_if_value_nil(venue_tip[:text]), 
               :name => name, 
               :photo => "", 
-              :restaurant_detail_id => @venue[:id], 
+              :restaurant_detail_id => venue_id, 
               :source => "foursquare", 
               :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
               :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])
@@ -257,7 +264,7 @@ module ApplicationHelper
     photos = get_photos_from_venue_photos(@venue_photos)
     
     
-    @location_detail = LocationDetail.find_by_location_detail_id(@venue[:id])
+    @location_detail = LocationDetail.find_by_location_detail_id(venue_id)
     create_new = @location_detail.blank? ? 1 : 0
     
     @activity_detail = (update == 0 and @location_detail.blank?) ? LocationDetail.new : @location_detail
@@ -265,7 +272,7 @@ module ApplicationHelper
     category = get_categories_from_venue(@venue)
     
     @activity_detail.attributes = { 
-      :location_detail_id => @venue[:id], 
+      :location_detail_id => venue_id, 
       :address1 => empty_string_if_value_nil(@venue[:location][:address]), 
       :city => empty_string_if_value_nil(@venue[:location][:city]), 
       :address2 => empty_string_if_value_nil(@venue[:location][:crossStreet]), 
@@ -306,7 +313,7 @@ module ApplicationHelper
               :log => empty_string_if_value_nil(venue_tip[:text]), 
               :name => name, 
               :photo => "", 
-              :location_detail_id => @venue[:id], 
+              :location_detail_id => venue_id, 
               :source => "foursquare", 
               :summary => empty_string_if_value_nil(venue_tip[:likes][:summary]), 
               :url => empty_string_if_value_nil(venue_tip[:canonicalUrl])

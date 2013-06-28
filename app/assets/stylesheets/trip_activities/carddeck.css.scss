@@ -1455,6 +1455,40 @@ td.activity_count_cell{
   }
 }
 
+#overview_modal_day_highlights {
+  p {
+    margin: 10px;
+  }
+  
+  ul {
+    margin-top: 5%;
+    margin-left: 20px;
+  }
+  
+  li {
+    list-style-type: square;
+  }
+
+}
+
+
+.image_thumbnail{
+  max-height: 20px;
+  max-width: 20px;
+  vertical-align: top;
+}
+.caption_summary{
+  border: 1px solid rgb(204,204,204);
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 10%;
+  padding: 2%;
+  @include box-sizing(border-box);
+  background-color: rgba(255,255,255,1);
+  @include border-radius($myDivBorderRadius);
+}
+
 /* 9. TIME DAY SWATCH */  
 .time_day_swatch{
   opacity: .9;
@@ -1639,3 +1673,15 @@ td.activity_count_cell{
   @extend .activity_count_box;
 }
 
+.activity_card_star_box{
+  position: absolute;
+  float: left;
+  height: 30px;
+  width: 30px;
+  top: 20%;
+  z-index: 2;
+  right: 2.5%;
+  z-index: 2;
+  background: black;
+  @extend .activity_count_box;
+}

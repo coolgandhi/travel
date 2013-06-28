@@ -85,7 +85,7 @@
       e.preventDefault()
       map_day = $(this).data('day')
       map_day_index = $(this).data('day') - 1 
-      trips_activities_namespace.fireAjaxMapCall(map_day);
+      trips_activities_namespace.fireAjaxMapCall(map_day) if map_day != 'highlights'
 
 
     $("#swipewrapper").on "click", "#mapShow", (e) ->

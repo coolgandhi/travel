@@ -2,6 +2,11 @@ module TripsHelper
 
   # this helper provides the view with an arrary of trip and all activities
   def sorted_trip_activities trip
+    eatery_activity_count = 0
+    other_activity_count = 0
+    eatery_cant_miss_activity_count = 0
+    other_cant_miss_activity_count = 0
+    
     trip_location = trip.location[:place]
     trip_activities = trip.trip_activities
     
@@ -30,6 +35,8 @@ module TripsHelper
               foursquare_rating = activity.restaurant_detail.rating.blank? ? activity.restaurant_detail.rating : activity.restaurant_detail.rating.to_f.round(1)
               duration = (activity.activity_duration_type)? activity.activity_duration_type[:activity_duration_name] : activity.duration
               lay_out = "foodactivitypartial"
+              eatery_activity_count = eatery_activity_count + 1
+              eatery_cant_miss_activity_count = eatery_cant_miss_activity_count + (is_cant_miss(foursquare_rating, trip_activity.cant_miss)? 1 : 0)
             when "LocationActivity" then 
               # image_url = trip_activity.activity.location_detail[:image_urls]
               #               activity_venue_name = trip_activity.activity.location_detail[:name]
@@ -42,6 +49,8 @@ module TripsHelper
               foursquare_rating = activity.location_detail.rating.blank? ? activity.location_detail.rating : activity.location_detail.rating.to_f.round(1) 
               duration = (activity.activity_duration_type)? activity.activity_duration_type[:activity_duration_name] : activity.duration
               lay_out = "locationactivitypartial"
+              other_activity_count = other_activity_count + 1              
+              other_cant_miss_activity_count = other_cant_miss_activity_count + (is_cant_miss(foursquare_rating, trip_activity.cant_miss)? 1 : 0)
             else  # default transport activity
               image_url = ""
               activity_venue_name = ""
@@ -78,7 +87,8 @@ module TripsHelper
             :activity_venue_name => activity_venue_name,
             :foursquare_rating => foursquare_rating,
             :renderpartial => "/trips/#{trip.id}/trip_activities/#{trip_activity.id}/showpartial", 
-            :layout => lay_out   
+            :layout => lay_out,
+            :cant_miss => trip_activity.cant_miss
           }
         )             
     }
@@ -110,7 +120,7 @@ module TripsHelper
       )
     }
     
-    return sorted_activities, compressed_activities
+    return sorted_activities, compressed_activities, eatery_activity_count, other_activity_count, eatery_cant_miss_activity_count, other_cant_miss_activity_count 
   end
 
 
