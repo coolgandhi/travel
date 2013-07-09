@@ -19,10 +19,10 @@
           <%= text_field_tag :from, params[:from], :class => "results_from_datefield input-small", :value => params["from"] %> 
         </div>
         -->
-        <div class="input-append hero_days_append">
+        <div class="input-append hero_days_append hidden-phone">
           <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, params[:days].blank? ? "" : params[:days]), :prompt => "# of Days", :class => "results_day_field selectpicker", :id => "results_day_field" %>
         </div>  
-        <%= submit_tag "New Search", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button', :id => "search_submit_button"  %>
+        <%= submit_tag "New Search", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button mobile_splash_submit_button', :id => "search_submit_button"  %>
       <% end %>
   <div class = "error_msg"></div>
   </div>

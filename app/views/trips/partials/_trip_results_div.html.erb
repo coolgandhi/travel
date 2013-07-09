@@ -1,8 +1,8 @@
 <!--Begin Trip Result ul group -->
-<ul class="thumbnails">
+<ul class="thumbnails continuous-search-result">
   <% exact_matched_trip = false; iter = 0%>
     <!--Begin Trip Result Pagination Div -->
-    <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>">
+    <div id = "<%= "trips_page" + ((params[:page].nil?)? "0": params[:page]) %>", class = "trips_page">
       <% prev_location = 0 %>
       <% @trips.each do |trip| %>
         <% if (params[:featured] == '1' or params[:trip_location_id] == '0') and trip.location_id != prev_location %>

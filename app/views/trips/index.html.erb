@@ -48,7 +48,7 @@
   <% end %>  
       
   <% if @trips and params[:trip_location_id] != '0' %>
-    <div id="trips_landmark_container">
+    <div id="trips_landmark_container" class="hidden-phone">
       <%= render 'trips/partials/landmarks_filtering' %>
     </div>
   <% end %>

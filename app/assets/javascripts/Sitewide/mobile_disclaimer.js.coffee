@@ -22,7 +22,24 @@
     any: ->
       isMobile.Android() or isMobile.BlackBerry() or isMobile.iPhone() or isMobile.Opera() or isMobile.Windows()
 
-  jQuery -> 
-    $('body').prepend('<div class = "mobile_disclaimer_prepend">Please visit us on a desktop or tablet device. We are hard at work to support this device.</div>') if isMobile.any()
 
+  jQuery ->
+    if isMobile.any()
+      height = $(window).height()
+      width = $(window).width()
+      if(width < height) 	      
+        $('#warning-message').show()
+        $('.container').hide()
+
+    $(window).bind "resize", (e) ->
+      if isMobile.any()  
+        height = $(window).height()
+        width = $(window).width()
+        if(width < height) 	      
+          $('#warning-message').show()
+          $('.container').hide()
+        else
+          $('#warning-message').hide()
+          $('.container').show()
+      
 ) window.site_wide_namespace = window.site_wide_namespace or {}, jQuery

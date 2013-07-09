@@ -28,13 +28,13 @@
       <% end %>
       <!-- End drop down menu -->
       <% unless author_info_signed_in? %>
-        <p class = "nav_center_linked"><%= link_to 'Why Sign Up?', why_path %></p>
+        <p class = "nav_center_linked hidden-phone"><%= link_to 'Why Sign Up?', why_path %></p>
       <% end %>
 
-      <div class="nav-collapse collapse">
+      <div class="nav-collapse collapse navbar-responsive-collapse">
         <ul class="nav pull-right">
           <% if author_info_signed_in? %>
-            <li class="dropdown">
+            <li class="dropdown hidden-phone">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Hi <%= current_author_info.email %>
                 <b class="caret"></b>
@@ -48,12 +48,12 @@
             </li>
 
           <% else %>
-              <li> <%= link_to "Sign Up", new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
-              <li> <%= link_to "Log In", new_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") %> </li>
+              <li> <%= link_to "Sign Up", new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "hidden-phone" %> </li>
+              <li> <%= link_to "Log In", new_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "hidden-phone" %> </li>
           <% end %>
           <li><%=link_to "About", about_path %></li>
           <li class="divider-vertical"></li>
-          <%= link_to 'Add A Trip', publish_new_trips_url(), :class => "btn-flat btn-flat-inverse nav_create_trip_button" %>
+          <%= link_to 'Add A Trip', publish_new_trips_url(), :class => "btn-flat btn-flat-inverse nav_create_trip_button hidden-phone" %>
         </ul>
       </div>
     </div>

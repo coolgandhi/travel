@@ -4,13 +4,13 @@
     <!-- Begin Splash Image Container -->
     <div class = "splash_image_container">
       <!-- Begin splash_image_attribution -->
-      <div class = "splash_image_attribution">
+      <div class = "splash_image_attribution hidden-phone">
       Photo by <%= link_to "zoetnet", raw("http://www.flickr.com/photos/zoetnet/4850848041/"), :target => "_blank"%>
       </div>  
       <!-- End splash_image_attribution -->
 
       <!-- Begin text_standout_blob -->
-      <div class = "text_standout_blob">
+      <div class = "text_standout_blob hidden-phone">
       </div>  
       <!-- End text_standout_blob -->
 
@@ -23,7 +23,7 @@
             We Make Your Travel Planning Easy.
           </div>
           <!-- End Tag-Line Overlay -->
-          <h3 class="form_dialog title">See trip summaries for</h3>
+          <h3 class="form_dialog title hidden-phone">See trip summaries for</h3>
           <%= form_tag trips_path, :method => 'get', :class => 'hero_form' do %>
             <div class = "hero_form_left">  
               <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 4), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "place_dropdown_field selectpicker" %>
@@ -31,7 +31,7 @@
               <%= hidden_field_tag "place_text_field", params[:place], :class => "hero-hidden-place-field" %>
             
               <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "hero_trip_location_id" %>                          
-            <div class = "hero_form_left">
+            <div class = "hero_form_left  hidden-phone">
               <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler_type_multiselect" %>                    
             </div>
             <!--
@@ -46,7 +46,7 @@
             </div> --> 
             <!-- END COMMENTING OUT THE DAYS FIELD -->
             
-            <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button', :id => "search_submit_button" %>
+            <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash_submit_button', :id => "search_submit_button" %>
           <% end %>
           <div class = "error_msg"></div>
         </div>

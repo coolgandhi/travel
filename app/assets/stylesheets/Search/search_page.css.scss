@@ -17,12 +17,6 @@
 @import "Search/trip_results_single_containers";
 
 /* Body Styles */ 
-// .navbar-fixed-top .container{
-//   @include respond-to(widescreen){
-//     width: 1180px;
-//   }
-// }
-
 .results_flash_message{
   .alert{
     margin-bottom: 0.5%;
@@ -32,11 +26,9 @@
 .middle_results_container{
   background-color: transparent;
   padding-top: 1%;
-  // @include box-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
-  // padding: 2%;
-  // margin-top: 1%;
-  // margin-bottom: 0%;
-  // @include border-radius($myDivBorderRadius);
+  @include respond-to(small){
+    padding-top: 0%;
+  }
 }
 
 /* Hero Unit Styles */ 
@@ -49,13 +41,17 @@
   margin-bottom: -2%;
   border-bottom: 5px solid $myPrimaryBlue;
   @include border-radius(0);
-  @include box-shadow(0px 4px 4px rgba(0, 0, 0, 0.3))
+  @include box-shadow(0px 4px 4px rgba(0, 0, 0, 0.3));
+  @include respond-to(small){
+    height: 70px;  
+    top: -20px;
+    border-bottom: 0;
+    box-shadow: none;
+  }  
+  
 }
 
 .hero_tag_line{
-  // position: absolute;
-  // top: 10%;
-  // left: 4%;
   position: relative;
   color: white;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -63,10 +59,15 @@
   line-height: 1;
   text-shadow: 0px 3px 3px black;
   letter-spacing: -1px;
-  // font-weight: bold;
   text-transform: uppercase;
   z-index: 1;
-  // margin-bottom: 4%;
+  @include respond-to(small){
+    font-size: 150%;
+    font-weight: bold;
+    text-shadow: none;
+    color: black;
+    margin-bottom: 5px;
+  }  
 }
 
 .splash_image_container{
@@ -76,14 +77,18 @@
   height: 475px;
   width: 100%;
   background-color: $black;
-  // background-image: url("http://farm3.staticflickr.com/2534/3896485602_8ec732a285_b_d.jpg");
-  // background-image: url("/assets/splash_images/Positano-Seaview-1800x687_1-IMG_0572.jpg");
   background-image: url("/assets/splash_images/paris_street_zoetnet_4850848041_flickr_med.jpg");
+    
   background-repeat: no-repeat;
   background-size: 1600px auto;
   background-position-x: center;
   background-position-y: 50%;
-  // margin: 0 auto;
+  
+  @include respond-to(small){
+     background-image: none;
+     background-color: $white;
+     height: 10px;
+   }
 }
 .text_standout_blob{
   position: absolute;
@@ -115,13 +120,15 @@
   width: 100%;
   margin: 0 auto;
   font-size: $baseFontSize;
+  @include respond-to(small){
+    background-color: $white;
+  }
+  
   .form_centering{
   	position: relative;
   	max-width: 720px;
   	margin: 0 auto;
-    color: white;
-    // background-color: rgba(0,0,0,.6);
-    // padding: 0.5% 1%; 
+  	color: white;
     @include border-radius($myDivBorderRadius);
     @include clearfix;  
     @include respond-to(portrait){
@@ -136,13 +143,14 @@
       background-color: $transBlack;
       @include border-radius($myDivBorderRadius);
       float: left;
+      @include respond-to(small){
+        background-color: $white;
+      }
   	}
     .form_dialog{
       margin: 1% 0;
       text-shadow: 0px 1px 1px black;
       font-size: 1.5em;
-      // padding-left: 2%;
-      // font-weight: 300;
     }
   }
 }
@@ -153,11 +161,9 @@
 
 .place_dropdown_field{
   margin-bottom: 0;
-  width: 300px;
   @include respond-to(portrait){
     margin-bottom: 2%;
   }
-
 }
 
 .ui-multiselect.traveler_type_multiselect{
@@ -214,13 +220,16 @@
       border-top-color:#888888;
     }
   }  
-  // select{
-  //   width: 100px;
-  // }
 }
 
 .splash_submit_button{
   float: left;
+}
+
+.mobile_splash_submit_button{
+  @include respond-to(small){
+    margin-top: 5px;
+  }
 }
 
 #search_submit_button{
@@ -242,11 +251,23 @@
   padding: 1% 0;
   height: 30px;
   @include clearfix;
+  @include respond-to(small){
+    height: 105px;
+    border-color: none;
+    border-style: none;
+    background-color: $white;
+    background-image: none;
+    box-shadow: none;
+    text-align: left;
+  }
 }
 
 .results_form_centering{
   display: inline-block;
   // padding-top: 0.5%;
+  @include respond-to(small){
+    display: inline;
+  }
 }
 
 .results_hero_form{
@@ -263,13 +284,22 @@
 
 .results_place_dropdown_field{
   margin-bottom: 0;
-  width: 200px;
+  @include respond-to(small){
+    margin-top: 5px;
+  }
+}
+
+
+.traveler_type_multiselect{
+  width: 100% !important;
 }
 
 .ui-multiselect.results_traveler_type_multiselect{
   @extend .ui-multiselect.traveler_type_multiselect;
   margin-bottom: 0;
-  width: 200px;
+  @include respond-to(small){
+     margin-top: 5px;
+   }
 }
 
 .ui-multiselect-menu.results_traveler_type_multiselect{
@@ -288,7 +318,9 @@
 
 .featured_results_title{
   margin: 1% 0 0.5% 0;
-  // font-weight: normal;
+  @include respond-to(small){
+    margin: 0%;  
+  }
 }
 .featured_results_subtitle{
   margin-bottom: 0;
@@ -310,8 +342,9 @@
 }
 #trips_results_container{
   position: relative;
-  // @include col(12);
-  // width: 100%;
+  @include respond-to(small){
+    background-color: $white;
+  }
 }
 
 .continuous_loading_indicator_wrapper{
@@ -330,13 +363,7 @@
 }
 
 .continuous_scroll_spinner{
-  // height: 25px;
-  // width: 25px;
   margin: 0 auto;
-  // background-image: url('/assets/spinners/ajax-loader-dots.gif');
-  // background-size: 25px auto;
-  // background-repeat: no-repeat;
-  // background-position: center;
 }
 
 /* Filter by Landmarks */
@@ -351,6 +378,7 @@
   width: 99%;
   margin-left: 0.5%;
 }
+
 
 .filter_by_bar_tab{
   border: $myDivBorderWidth solid $borderGray;
@@ -427,6 +455,22 @@
 
 .front_page_convo_container{
   // @include col(12);
+}
+
+.trips_page {
+  @include respond-to(small){
+    margin: 0px;
+    padding: 0px;
+    li:nth-child(4n) {
+      display:none;
+    }
+  }
+}
+
+.continuous-search-result:before, .continuous-search-result:after {
+  @include respond-to(small){
+    display:inline;
+  }
 }
 
 .sample_trip_result_thumbnail_li{
@@ -522,6 +566,10 @@
   border-color: darken($borderGray, 10%);
   border-width: $myDivBorderWidth + 0px;
   @include box-shadow(0px 0px 3px 3px rgba(0,0,0,0.1))
+  }
+  
+  @include respond-to(small){
+    @include col(12);
   }
 }
 

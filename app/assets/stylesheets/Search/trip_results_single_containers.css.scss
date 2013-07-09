@@ -7,6 +7,12 @@ $colorBorderWeight: 6px solid;
 /* Individual Trip Thumbnail */
 .trip_result_thumbnail_li{
   @include col(4);
+  @include respond-to(small){
+    @include col(6);
+    li:nth-child(4n) {
+      display:none;
+    }
+  }
   background-color: #fafafa;//$myDivBg;
   border-color: $borderGray;
   border-width: $myDivBorderWidth;
@@ -32,6 +38,9 @@ $colorBorderWeight: 6px solid;
   padding: 0;
   position: relative;
   border: none;
+  @include respond-to(small){
+    height: 570px;
+  }
 }
 
 $resultThumbHeight: 52.5%;
@@ -65,9 +74,12 @@ $resultThumbHeight: 52.5%;
   .caption_trip_title{
     margin: 0;
     margin-bottom: 1px;
-    color: $black;
+    color: $black;  
     // font-weight: 200;
     text-transform: capitalize;
+    @include respond-to(small){
+      font-size: 100%;
+    }
   }
   .caption_trip_subtitle{
     color: $resultSubtitleColor;
@@ -75,7 +87,6 @@ $resultThumbHeight: 52.5%;
   }
   .caption_trip_summary{
     color: $black;
-    margin: em(4px) 0 0 0;
   }
 }
 
