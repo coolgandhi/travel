@@ -1,5 +1,5 @@
 ((site_wide_namespace, $, undefined_) ->
-  isMobile =
+  site_wide_namespace.isMobile =
 
     Android: ->
       navigator.userAgent.match /Mobile Android/i
@@ -20,11 +20,11 @@
       navigator.userAgent.match /IEMobile/i
 
     any: ->
-      isMobile.Android() or isMobile.BlackBerry() or isMobile.iPhone() or isMobile.Opera() or isMobile.Windows()
+      site_wide_namespace.isMobile.Android() or site_wide_namespace.isMobile.BlackBerry() or site_wide_namespace.isMobile.iPhone() or site_wide_namespace.isMobile.Opera() or site_wide_namespace.isMobile.Windows()
 
 
   jQuery ->
-    if isMobile.any()
+    if site_wide_namespace.isMobile.any()
       height = $(window).height()
       width = $(window).width()
       if(width < height) 	      
@@ -32,7 +32,7 @@
         $('.container').hide()
 
     $(window).bind "resize", (e) ->
-      if isMobile.any()  
+      if site_wide_namespace.isMobile.any()  
         height = $(window).height()
         width = $(window).width()
         if(width < height) 	      

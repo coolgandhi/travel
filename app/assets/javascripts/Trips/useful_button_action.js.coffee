@@ -14,11 +14,12 @@
           processData: false
           complete: ->
             $(".useful_button").attr("disabled", true);
-        $('.trip_chalo_feedback_modal').modal('show')
+        if !Modernizr.touch and !site_wide_namespace.isMobile.any() 
+          $('.trip_chalo_feedback_modal').modal('show')
     
     trips_namespace.fireSwipeViewUsefulButton = ->
       if ($("#useful_button").length and $("#useful_button").hasClass("disabled"))
-        $(".trip_useful_message").html('This trip summary is useful!');
+        $(".trip_useful_message").html('');
         $(".useful_button").html "<i class=\"icon-heart\"></i>"
         $(".useful_button").addClass "disabled"
       else
@@ -40,7 +41,8 @@
               $(".useful_button").unbind('click');
               $(".useful_button").attr("disabled", true);
               requestRunning = false;
-          $('.trip_chalo_feedback_modal').modal('show')
+          if !Modernizr.touch and !site_wide_namespace.isMobile.any()
+            $('.trip_chalo_feedback_modal').modal('show')
 
     #fire fire fire!!!
     trips_namespace.fireUsefulButton();

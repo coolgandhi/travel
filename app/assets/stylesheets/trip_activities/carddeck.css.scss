@@ -52,6 +52,8 @@ $lastrowheight: 10%;
   @include box-shadow($myDivBoxShadow);
 
 }
+
+
 .triptitlebox{
   // @include col(8);
   width: 70%;
@@ -67,7 +69,10 @@ $lastrowheight: 10%;
 
   @include box-sizing(border-box);
   padding: 0.25% 1%;
-  // overflow: hidden;
+  @include respond-to(small){
+    width:80%;
+    border-right: 0;
+  }
   p{
     margin: 0;
   }
@@ -75,6 +80,9 @@ $lastrowheight: 10%;
   div.trip_title_text{
     float: left;
     width: 90%;
+    @include respond-to(small){
+      float: none;
+    }
   }
 
   .trip_title_main_text{
@@ -113,6 +121,10 @@ $lastrowheight: 10%;
   // margin-bottom: 1%;
   @include box-sizing(border-box);
   padding: 0.5% 1%;
+  @include respond-to(small){
+    border-left: $myDivBorderWidth solid $borderGray;
+    width:20%;
+  }
   // border-left: $myDivBorderWidth solid $borderGray;
   .ab_author_name{
     color: black;
@@ -1250,17 +1262,17 @@ div.rightcaption .ui-accordion-content {
       //this is here because iScroll4 needs a header to scroll the main body item.
       padding: 1%;
     } 
-    .div_fb_comments, .disqus_thread{
-      // position: absolute;
-      // width: 100%;
-      // height: 85%; //having this works for all except for android browser (sticky scrolling)
-      overflow-y: auto;
-      overflow-x: hidden;
-      border-top: 1px solid $borderGray;
-      padding: 2%;
-      @include box-sizing(border-box);
-      // -webkit-overflow-scrolling: touch; //works
-    }
+}
+.div_fb_comments, .disqus_thread{
+  // position: absolute;
+  // width: 100%;
+  // height: 85%; //having this works for all except for android browser (sticky scrolling)
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-top: 1px solid $borderGray;
+  padding: 2%;
+  @include box-sizing(border-box);
+  // -webkit-overflow-scrolling: touch; //works
 }
 
 
@@ -1347,6 +1359,7 @@ div.rightcaption .ui-accordion-content {
     right:0;
 
   }
+  
 }
 
 .om_left_side{
@@ -1534,6 +1547,9 @@ td.activity_count_cell{
   width: 100%;
   float: left;
   position: relative;
+  @include respond-to(small){
+    float: none;
+  }
 }
 
 .likebox{
@@ -1543,6 +1559,9 @@ td.activity_count_cell{
   // min-width: 250px;
   position: relative;
   float: right;
+  @include respond-to(small){
+    padding-top:3%;
+  }
 }
 
 .trip_useful_message{
@@ -1552,6 +1571,9 @@ td.activity_count_cell{
   // font-weight: bold;
   color: black;
   font-size: em(14px);
+  @include respond-to(small){
+    font-size: em(11px);
+  }
 }
 .useful_button{
   float: left;

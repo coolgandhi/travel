@@ -1,7 +1,7 @@
 <% if @status == 0 %>
 	$(".likebox").html('Too useful, button malfunctioned!')
 <% else %>
-	$(".trip_useful_message").html('This trip summary is useful!');
+	$(".trip_useful_message").html('');
 	$(".useful_button").html('<i class="icon-heart"></i>');
 	$(".useful_button").addClass('disabled');
 	$(".useful_button").unbind('click');

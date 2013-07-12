@@ -26,10 +26,8 @@
                 <% end %>
               <% else %>
                 <%= "( #{@trip_activity.activity[:duration]} )" %>
-              <% end %>
-          
+              <% end %>          
           </span>
-
         </div>
 
         <!-- Begin rc_tabs_con -->
@@ -41,7 +39,7 @@
               <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_1_#{@trip_activity.id}" %>" data-toggle="tab">Summary</a>
             </li>
             <li>
-              <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_2_#{@trip_activity.id}" %>"data-toggle="tab">More Info</a>
+              <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_2_#{@trip_activity.id}" %>"data-toggle="tab">Info</a>
             </li>
             <li>
               <a class="rc_activity_tabs_link" href="<%= "#rc_activity_tabs_3_#{@trip_activity.id}" %>" data-toggle="tab">Reviews</a>
