@@ -13,7 +13,7 @@
 
       <!-- The drop down menu -->
       <% unless controller.action_name != "show" %>
-        <ul class="nav pull-left">
+        <ul class="nav pull-left hidden-phone">
           <li class="divider-vertical"></li>
           <li class="dropdown">
               <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all, :limit => 4), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "droptoggle_searchbar selectpicker" %>

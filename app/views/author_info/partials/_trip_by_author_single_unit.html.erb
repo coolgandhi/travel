@@ -1,11 +1,11 @@
 <!--Begin Trip Result List Item-->
 
-<li class="trip_result_thumbnail_li">
+<li class="trip_result_thumbnail_li small_creen_adjustment">
 
   <!--Begin Trip Result Thumbnail Wrapper-->
-  <div class="thumbnail trip_result_thumbnail_div">
+  <div class="thumbnail trip_result_thumbnail_div ">
 
-    <div class="caption_box_social">
+    <div class="caption_box_social hidden-phone">
       <div class = "cb_social_item">
         <div id="fb-root"></div>
         <div class="fb-like" data-href="<%=  (Rails.env == "production") ? "#{url_for( :controller => 'trips', :action => 'show', :id => trip.id, :only_path => false)}" : "http://espn.com" %>" data-send="false" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend"></div>

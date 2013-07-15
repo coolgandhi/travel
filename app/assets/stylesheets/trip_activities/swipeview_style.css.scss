@@ -30,6 +30,7 @@
 
   	@include respond-to(small){
   		@include col(12.5);
+  		font-size: 12px;
   	}
 }
 #swipewrapper {

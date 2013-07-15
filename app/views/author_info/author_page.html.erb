@@ -58,84 +58,73 @@
         <div class = "author_profile_info_div">
           <!-- Begin Author Info Top -->
           <div class = "ap_info_div_top">
-            <div class = "ap_id_top_left">
-            <!-- BEGIN AUTHOR LEVEL BADGE -->
-            <% author_level_name, author_level_class, min_useful, next_level, tooltip_msg = author_level(@author_info) %>
-            <div class = "ap_badge_div author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="#{tooltip_msg}"%>" >
+            <div class = "ap_id_top_left hidden-phone">
+              <!-- BEGIN AUTHOR LEVEL BADGE -->
+              <% author_level_name, author_level_class, min_useful, next_level, tooltip_msg = author_level(@author_info) %>
+              <div class = "ap_badge_div author_level_tooltip" data-toggle="tooltip" data-placement="bottom" title="<%="#{tooltip_msg}"%>" >
               
-              <div class = "al_badge_container centerize">
-                <div class = "<%= author_level_class %>"></div>
+                <div class = "al_badge_container centerize">
+                  <div class = "<%= author_level_class %>"></div>
+                </div>
+                <span class = "al_badge_name"><%= author_level_name %></span>
               </div>
-              <span class = "al_badge_name"><%= author_level_name %></span>
-            </div>
-            <!-- END AUTHOR LEVEL BADGE -->
+              <!-- END AUTHOR LEVEL BADGE -->
             </div>
 
             <div class = "ap_id_top_right">
-            <div class = "ap_name_div">
-
-              <span class = "ap_float_left_span">
-                <h3 class = "author_profile_name">
-                  <% if @author_info.author_name.blank? %>
-                    <%= "Author #{@author_info.id}" %>
-                  <% else %>
-                    <%= @author_info.author_name %>
-                  <% end %>    
-                </h3>
-              </span>
-              
-              <span class = "ap_float_left_span">
-                <h3 class = "author_profile_from">
-                  <%= "| #{@author_info.city}" unless @author_info.city.blank? %><%= ", #{@author_info.state}" unless @author_info.state.blank? %>
-                </h3>
-              </span>
-            </div>
-
-      <!--        <span class = "ap_float_left_span">
-                <h5 class = "author_profile_from">
-                  <%= "#{@author_info.author_handle}" unless @author_info.author_handle.blank? %>
-                </h5>
-              </span>
-            </div>
-      -->
-
-            <div class = "ap_name_div">
-
-              <span class = "ap_float_left_span">
-                <%= link_to("Website", self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> 
-              </span>
-
-              <%unless @author_info.twitter_handle.blank? %>
-                <span class = "ap_float_left_span"> | </span> 
-                <span class = "ap_float_left_span">
-                  <iframe allowtransparency="true" frameborder="0" scrolling="no"
-                  src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author_info.twitter_handle %>"
-                  style="width:300px; height:20px;"></iframe>
+              <div class = "ap_name_div author_profile_small_screen">
+                <span class = "ap_float_left_span author_profile_small_screen">
+                  <h3 class = "author_profile_name author_profile_small_screen">
+                    <% if @author_info.author_name.blank? %>
+                      <%= "Author" %>
+                    <% else %>
+                      <%= @author_info.author_name %>
+                    <% end %>    
+                  </h3>
                 </span>
-              <% end %>
+              
+                <span class = "ap_float_left_span author_profile_small_screen">
+                  <h3 class = "author_profile_from author_profile_small_screen">
+                    <%= "| #{@author_info.city}" unless @author_info.city.blank? %><%= ", #{@author_info.state}" unless @author_info.state.blank? %>
+                  </h3>
+                </span>
+              </div>
 
+              <div class = "ap_name_div author_profile_small_screen">
+                <span class = "ap_float_left_span author_profile_small_screen">
+                  <%= link_to("Website", self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> 
+                </span>
+
+                <%unless @author_info.twitter_handle.blank? %>
+                  <span class = "ap_float_left_span author_profile_small_screen"> |
+                    <iframe allowtransparency="true" frameborder="0" scrolling="no"
+                    src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @author_info.twitter_handle %>"
+                    style="width:300px; height:20px;"></iframe>
+                  </span>
+                <% end %>
+
+              </div>
             </div>
-            </div>
-            <p class = "lead author_profile_about"><%= @author_info.about %> </p>
+            <p class = "lead author_profile_about author_profile_small_screen"><%= @author_info.about %> </p>
           </div>            
           <!-- End Author Info Top -->
           
           <!-- Begin Author Stats -->
           <ul class = "author_stats_box">
-            <li>
+            <li class="author_profile_small_screen">
               <%= @trip_count %> Trips
             </li>
-            <li>
+            <li class="author_profile_small_screen hidden-phone">
               <%= @trip_duration_count %> Days
             </li>
-            <li>
+            <li class="hidden-phone">
               <%= @trip_activities_count %> Activities
             </li>
-            <li>
+            <li class="author_profile_small_screen">
               <i class="icon-heart icon-large"></i>
               <%= @useful_count %>
             </li>
-            <li>
+            <li class="hidden-phone">
               <i class="icon-eye-open icon-large"></i>  
               <%= @trip_view_count %>
             </li>
@@ -190,7 +179,7 @@
           <% end %>
         </div>
       <% else %>
-        <ul class="thumbnails">
+        <ul class="thumbnails continuous-search-result">
           
           <% @trips.each do |trip| %>
             <%= render "author_info/partials/trip_by_author_single_unit", :trip => trip %>
@@ -206,7 +195,7 @@
         <% if @trips_unpublished.blank? %>
           No unpublished trips belonging to the author
         <% else %>
-          <ul class="thumbnails">
+          <ul class="thumbnails continuous-search-result">
             
             <% @trips_unpublished.each do |trip| %>
               <%= render "author_info/partials/trip_by_author_single_unit", :trip => trip %>

@@ -3,8 +3,11 @@
   trips_namespace.wrap_heights = ->
     # create a jQuery deferred object
     r = $.Deferred()
-    $('#wrappiest').css "height", "" + Math.round(.7 * $(window).height())
-    $('.wrapper_film').css "height", "" + Math.round(.7 * $(window).height())
+    num = 0.7
+    if Modernizr.touch or site_wide_namespace.isMobile.any()
+      num = 1.5 
+    $('#wrappiest').css "height", "" + Math.round(num * $(window).height())
+    $('.wrapper_film').css "height", "" + Math.round(num * $(window).height())
     setTimeout (->  
       # and call `resolve` on the deferred object, once you're done
       r.resolve()
