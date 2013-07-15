@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528013911) do
+ActiveRecord::Schema.define(:version => 20130715035243) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(:version => 20130528013911) do
     t.string   "country"
     t.string   "postal_code"
     t.string   "phone"
-    t.string   "email",                  :default => "",       :null => false
+    t.string   "email",                  :default => "", :null => false
     t.string   "website"
     t.string   "twitter_handle"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "state"
     t.string   "about"
-    t.string   "encrypted_password",     :default => "",       :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -60,13 +60,14 @@ ActiveRecord::Schema.define(:version => 20130528013911) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "provider",               :default => "normal"
+    t.string   "provider"
     t.string   "uid"
     t.date     "birthday"
     t.datetime "password_expire_at"
     t.boolean  "admin"
     t.text     "self_image"
     t.text     "self_image_tmp"
+    t.string   "author_handle",          :default => ""
   end
 
   add_index "author_infos", ["email", "provider"], :name => "auth_email_index", :unique => true

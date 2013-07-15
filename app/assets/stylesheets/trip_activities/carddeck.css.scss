@@ -124,6 +124,16 @@ $lastrowheight: 10%;
       color: gray;
     }
   }
+  .ab_author_handle{
+    color: black;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 18px;
+    &:hover{
+      color: gray;
+    }
+  }
   .ab_author_website{
     margin-bottom: 0;
     // white-space: nowrap;

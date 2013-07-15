@@ -124,6 +124,7 @@ class TripsController < ApplicationController
       @author_info.email = @author_info.email.downcase 
     else
       @author_info.author_name = (params[:author_info][:author_name] and params[:author_info][:author_name] != "") ? params[:author_info][:author_name]: @author_info.author_name;
+      @author_info.author_handle = (params[:author_info][:author_handle] and params[:author_info][:author_handle] != "") ? params[:author_info][:author_handle]: @author_info.author_handle
       @author_info.about = (params[:author_info][:about] and params[:author_info][:about] != "") ? params[:author_info][:about]: @author_info.about;
       @author_info.twitter_handle = (params[:author_info][:twitter_handle] and params[:author_info][:twitter_handle] != "") ? params[:author_info][:twitter_handle]: @author_info.twitter_handle;
       @author_info.website = (params[:author_info][:website] and params[:author_info][:website] != "") ? params[:author_info][:website]: @author_info.website;

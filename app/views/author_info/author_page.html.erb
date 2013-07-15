@@ -73,6 +73,7 @@
 
             <div class = "ap_id_top_right">
             <div class = "ap_name_div">
+
               <span class = "ap_float_left_span">
                 <h3 class = "author_profile_name">
                   <% if @author_info.author_name.blank? %>
@@ -89,6 +90,14 @@
                 </h3>
               </span>
             </div>
+
+      <!--        <span class = "ap_float_left_span">
+                <h5 class = "author_profile_from">
+                  <%= "#{@author_info.author_handle}" unless @author_info.author_handle.blank? %>
+                </h5>
+              </span>
+            </div>
+      -->
 
             <div class = "ap_name_div">
 

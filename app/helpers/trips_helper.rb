@@ -185,6 +185,7 @@ module TripsHelper
   def trip_author_missing_profile (author_x)
     ap = author_x
     ap_name = ap.author_name
+    ap_handle = ap.author_handle
     ap_about = ap.about
     ap_image = ap.self_image
     blank_fields = []

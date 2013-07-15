@@ -10,7 +10,7 @@ class AuthorInfo < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
   include Author_Validators
-  attr_accessible :author_id, :address1, :address2, :address3, :author_name, :city, :state, :country, :email, :phone, :postal_code, :twitter_handle, :website, :about, :password, :password_confirmation, :remember_me, :birthday, :admin, :self_image, :self_image_tmp, :badge_level, :provider
+  attr_accessible :author_id, :address1, :address2, :address3, :author_handle, :author_name, :city, :state, :country, :email, :phone, :postal_code, :twitter_handle, :website, :about, :password, :password_confirmation, :remember_me, :birthday, :admin, :self_image, :self_image_tmp, :badge_level, :provider
   has_many :trips, :foreign_key => :author_id
   has_many :trip_stats
   #validates :author_name, :presence => { :message => "enter author name" }
@@ -23,6 +23,7 @@ class AuthorInfo < ActiveRecord::Base
   validates_confirmation_of   :encrypted_password, :on=>:create
   validates_length_of :password, :within => Devise.password_length, :allow_blank => true
   validate :check_password_same
+  validates_uniqueness_of  :author_handle, :presence => { :message => "enter a unique author handle" }, :author_handle => true
     
   validates_length_of :about, :maximum => 200, :allow_blank => true
   
@@ -55,6 +56,7 @@ class AuthorInfo < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |author_info|
       author_info.provider = auth.provider
       author_info.uid = auth.uid
+      author_info.author_handle = auth.author_handle
       author_info.author_name = auth.info.name
       author_info.email = auth.info.email
       author_info.birthday = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')

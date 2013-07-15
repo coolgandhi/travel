@@ -2,6 +2,7 @@ class CreateAuthorInfos < ActiveRecord::Migration
   def change
     create_table :author_infos do |t|
       t.string :author_id
+      t.string :author_handle 
       t.string :author_name
       t.string :bithday
       t.string :address1

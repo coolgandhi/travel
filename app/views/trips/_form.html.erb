@@ -22,6 +22,10 @@
     
     <%= fields_for @author_info do |a| %>
       <div class = "field">
+        <%= a.label :author_handle, 'Author Handle' %>:
+        <%= a.text_field :author_handle %>
+      </div>
+      <div class = "field">
         <%= a.label :author_name, 'Author Name' %>:
         <%= a.text_field :author_name %>
       </div>

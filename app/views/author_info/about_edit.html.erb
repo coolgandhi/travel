@@ -22,6 +22,15 @@
     </div>
 
     <div class="control-group">
+      <!-- Author Handle -->
+      <%= a.label :author_handle, 'Author Handle', :class=> "control-label", :for => "author_handle" %>
+      <div class="controls">
+        <%= a.text_field :author_handle, :class => "input-xlarge", :id => "author_handle" %>
+        <p class="help-block">Your Chalo handle?</p>
+      </div>
+    </div>
+
+    <div class="control-group">
       <!-- Username -->
       <%= a.label :author_name, 'Author Name', :class=> "control-label", :for => "author_name" %>
       <div class="controls">
