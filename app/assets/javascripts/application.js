@@ -32,5 +32,5 @@
 //= require jquery.multiselect
 //= require jquery.history
 //= require bootstrap-select
-
+//= require select2
 

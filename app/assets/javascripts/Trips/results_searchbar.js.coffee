@@ -9,7 +9,7 @@
       else
         $("#search_submit_button").val("Search Trips")
         $("#search_submit_button").removeClass("btn-flat-warning").addClass("btn-flat-primary")
-      $('.results_trip_location_id').val($('.results_place_dropdown_field').val())
+      $('.results_trip_location_id').val($('select.results_place_dropdown_field').val())
       $('.results_hidden_place_field').val($('select.results_place_dropdown_field option:selected').text())
   
   #Calling Multi-select

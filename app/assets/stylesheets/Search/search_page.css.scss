@@ -159,6 +159,7 @@
   // height: 2em;
 }
 
+
 .place_dropdown_field{
   margin-bottom: 0;
   @include respond-to(portrait){
@@ -289,10 +290,6 @@
   }
 }
 
-
-.traveler_type_multiselect{
-  width: 100% !important;
-}
 
 .ui-multiselect.results_traveler_type_multiselect{
   @extend .ui-multiselect.traveler_type_multiselect;

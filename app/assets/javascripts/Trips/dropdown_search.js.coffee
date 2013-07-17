@@ -18,7 +18,7 @@
       else
         $('#search_submit_button').val("Search Trips")
         $("#search_submit_button").removeClass("btn-flat-warning").addClass("btn-flat-primary")
-      $('.dropdown_trip_location_id').val($('.droptoggle_searchbar').val())
+      $('.dropdown_trip_location_id').val($('select.droptoggle_searchbar').val())
       $('.drophide-place-field').val($('select.droptoggle_searchbar option:selected').text())
   
   #Calling Multi-select
