@@ -14,18 +14,17 @@
 
     <%= f.hidden_field :image_url, :class => "selected_images" %>
     <%= hidden_field_tag :latlong, @latlong %>
-    <%= hidden_field_tag :locationval, @location_val %>
+    <%= hidden_field_tag :locationval, @location_val %>    
 
     <div class="field">
       <%= f.hidden_field :location_id %>
     </div>
              
     <div class="control-group">
-      <label class="control-label">Where did you go? <span class="required_star">*</span></label>
+      <label class="control-label" id="publish_place_dropdown_label" data-toggle="tooltip">Where did you go? <span class="required_star">*</span></label>
       <div class="controls">
         <% if controller.action_name == "publish_new" %>
-
-          <%= select_tag :publish_place_dropdown_field, options_from_collection_for_select(Location.find(:all, :offset => 1, :limit => 3), "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Which city?", :class => "publish_place_dropdown_field" %>
+          <%= text_field_tag :publish_place_dropdown_field, nil, :placeholder => "search", :class => "publish_place_dropdown_field" %>
         <% else %>
           <span class="control-label"><strong><%= @location_val %></strong></span>
         <% end %>

@@ -308,6 +308,20 @@ class TripsController < ApplicationController
     @trip = Trip.new(params[:trip])
     @trip.share_status = 0
     @location_detail = Location.find_by_location_id(@trip.location_id)
+    if @location_detail.nil?
+      @location_detail = Location.new
+      @location_detail.location_id = @trip.location_id
+      loc_info = params[:locationval].split(",")
+      @location_detail.place = loc_info[0]
+      @location_detail.city = loc_info[0]
+      @location_detail.state = loc_info[1]
+      @location_detail.country = loc_info[2]      
+      lat_long = params[:latlong].split(",")
+      @location_detail.latitude = lat_long[0]
+      @location_detail.longitude = lat_long[1]
+      @location_detail.save!      
+    end
+    
     @update = 0
     if (params[:trip][:image_url].blank?)
       FoursquareInteraction.foursquare_client
