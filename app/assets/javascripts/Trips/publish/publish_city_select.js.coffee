@@ -5,6 +5,8 @@
       minLength: 3
       source: (request, response) ->
         $.ajax 
+          beforeSend: ->
+            $(".swipe_loading_indicator_header").show()
           url: "http://ws.geonames.org/searchJSON"
           dataType: 'jsonp'
           data: 
@@ -13,6 +15,8 @@
             maxRows: 15
             featureClass: 'P' 
             username: 'coolgandhi'
+          complete: ->
+            $(".swipe_loading_indicator_header").hide()
           success: (data) ->
             response $.map(data.geonames, (item) ->
               label: item.name + ", " + item.adminName1 + ", " + item.countryName

@@ -24,7 +24,7 @@
       <label class="control-label" id="publish_place_dropdown_label" data-toggle="tooltip">Where did you go? <span class="required_star">*</span></label>
       <div class="controls">
         <% if controller.action_name == "publish_new" %>
-          <%= text_field_tag :publish_place_dropdown_field, nil, :placeholder => "search", :class => "publish_place_dropdown_field" %>
+          <%= text_field_tag :publish_place_dropdown_field, nil, :placeholder => "Search Place (i.e. San Francisco)", :class => "publish_place_dropdown_field", :autofocus => true%>
         <% else %>
           <span class="control-label"><strong><%= @location_val %></strong></span>
         <% end %>
