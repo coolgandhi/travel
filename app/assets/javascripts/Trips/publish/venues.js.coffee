@@ -125,7 +125,14 @@
                     $('#venue_id').val(item.value)
                     label: item.label + ", " + item.address + ", " + item.city
                     value: item.value
-                  )
+                  else
+                    location = $('#place_dropdown').val()
+                    $('#place_dropdown').val("Search for this activity in a different city? Please Enter the city name here.")
+                )
+                if jQuery.isEmptyObject(data)
+                  present_block = $("#no_activity_warning").css("display")
+                  if present_block != "block"
+                    $("#no_activity_warning").css({ "display": "block", "opacity": "0" }).animate({ "opacity": "1" }, 2000)
               else
                 $('.publish_trip_confirm_name').html(
                   "<strong>Something went wrong on our servers. Please try again in few minutes. Sorry!</strong>" 
@@ -148,8 +155,12 @@
             $(this).val ui.item.label
             $(this).siblings('#activityvenue').val ui.item.value
             trips_activities_namespace.populate_venue_detail (ui.item.value)   
-      
-          
+  
+
+  jQuery ->
+    $(".publish_trip_create_activities").on "click", ".close", (e) ->  
+      $("#no_activity_warning").css({ "display": "none"})
+  
   jQuery ->
     $("#venue_images").on "click", "img", (e) ->
       if ($(this).css("borderWidth") == '5px') 

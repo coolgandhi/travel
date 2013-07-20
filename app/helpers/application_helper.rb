@@ -458,6 +458,23 @@ module ApplicationHelper
   ret_category
   end
   
+  def find_closest_location_latlong_for_activity preferred_location_id, secondary_location_id
+    latlong =  "37.77493,-122.41942" 
+    location_detail = Location.find_by_location_id(secondary_location_id)
+    if !location_detail.nil?  
+      latlong = location_detail.latitude + "," + location_detail.longitude
+    end
+    
+    if !preferred_location_id.nil? and preferred_location_id != secondary_location_id
+      loc_detail = Location.find_by_location_id(preferred_location_id)
+      if !loc_detail.nil?
+        location_detail = loc_detail
+        latlong = location_detail.latitude + "," + location_detail.longitude
+      end
+    end
+    
+    return latlong, location_detail
+  end
   
   def find_location_latlong trip
     location_detail = Location.find_by_location_id(trip.location_id)

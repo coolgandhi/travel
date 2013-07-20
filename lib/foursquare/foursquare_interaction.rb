@@ -5,6 +5,27 @@ class FoursquareInteraction
     @@client ||= Foursquare2::Client.new(:client_id => CONFIG[:FOURSQUARE_CLIENT_ID], :client_secret => CONFIG[:FOURSQUARE_CLIENT_SECRET])
     @@client
   end
+
+  def self.search_venues latlong, term, total
+    get_places = @@client.search_venues(options = {:ll => latlong, :query => term, :intent => 'checkin', :limit => total})
+    Rails.logger.info "#{get_places.inspect}"
+    get_suggestions = Array.new
+    if get_places[:groups] and (get_places[:groups]).first[:items].length > 0
+      (get_places[:groups]).first[:items].each {|get_place|
+        category = !get_place[:categories].first.blank? ? get_place[:categories].first[:name] : "" 
+        get_suggestions.push ({
+          :label => get_place.name,
+          :value => get_place.id, 
+          :address => category.nil? ? "" : category, 
+          :city => get_place[:location].city.nil? ? "" : get_place[:location].city ,
+          :state => get_place[:location].state.nil? ? "": get_place[:location].state,
+          :lat => get_place[:location].lat, 
+          :lng=>get_place[:location].lng
+        })
+      }
+    end
+    get_suggestions
+  end
   
   def self.suggest_venues latlong, term, total
     begin
@@ -13,6 +34,11 @@ class FoursquareInteraction
       if term.length > 2   
         get_suggestions = @@client.suggest_completion_venues(options = {:ll => latlong, :query => term, :limit => total})
         suggestions = get_suggestions.minivenues.map {|x| {"label"=>x.name,"value"=>x.id, "address"=>x.location.address, "city"=>x.location.city, "state"=>x.location.state, "lat"=>x.location.lat, "lng"=>x.location.lng}}
+        #Rails.logger.info "#{suggestions.inspect}"
+        if suggestions.size == 0
+          suggestions = self.search_venues latlong, term, total
+          Rails.logger.info "#{suggestions.inspect}"
+        end
       end
     rescue Exception => exc
       suggestions = nil

@@ -248,3 +248,7 @@ $transBlack: rgba(0,0,0,.6);
   background-color: #e6e6e6 !important;
   @include background-image(linear-gradient(top, #f6f6f6 0%,#e5e5e5 100%)  !important) ;
 }
+
+.hide {
+  display: none;
+};

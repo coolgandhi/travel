@@ -232,13 +232,18 @@ ul#publish_create_tabs{
   width: 100%;
 
   #activityvenue{
-    width: 95%;
+    width: 55%;
   }
   
   #activitycity{
     width: 100%;
   }
-
+  
+  #place_dropdown{
+    width: 40%;  
+    float: right;
+  }
+  
   .fields_cell_50{
     @include box-sizing(border-box);
     position: relative;

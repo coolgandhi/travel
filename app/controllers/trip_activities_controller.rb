@@ -306,9 +306,8 @@ class TripActivitiesController < ApplicationController
   def publish_trip_activity_edit
     begin
       @trip_activity = @trip.trip_activities.find(params[:id])
-      @latlong = find_location_latlong @trip
       @activity = @trip_activity.activity
-      @latlong = find_location_latlong @trip
+      
       @update = 1
       case @trip_activity.activity_type
         when "LocationActivity"
@@ -328,6 +327,8 @@ class TripActivitiesController < ApplicationController
           params[:selected_images] = @activity.image_urls 
           params[:venueid]  = @activity.restaurant_detail_id
       end
+
+      @latlong, @location_detail = find_closest_location_latlong_for_activity( (@activity_detail.nil? or @activity_detail.location_id.nil?) ? "": @activity_detail.location_id, @trip.location_id)
       
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
@@ -345,9 +346,9 @@ class TripActivitiesController < ApplicationController
       @update = 1
       @trip_activity = @trip.trip_activities.find(params[:id])
       @activity = @trip_activity.activity
-      @latlong = find_location_latlong @trip
+      @latlong = ""
       @activity_detail = nil
-
+      @location_detail = ""
 
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
@@ -426,6 +427,7 @@ class TripActivitiesController < ApplicationController
       @activity_detail = nil
       @trip_activity.trip_id = params[:trip_id]
       @latlong = find_location_latlong @trip
+      @location_detail = Location.find_by_location_id(@trip.location_id)
       
       respond_to do |format|
         format.js
@@ -445,6 +447,22 @@ class TripActivitiesController < ApplicationController
       @trip_stats = @trip.trip_stat
       @venue = nil
       enter = 0
+      
+      @location_detail = Location.find_by_location_id(params[:location_id])
+      if @location_detail.nil?
+        @location_detail = Location.new
+        @location_detail.location_id = params[:location_id]
+        loc_info = params[:trip_activity_locationval].split(",")
+        @location_detail.place = loc_info[0]
+        @location_detail.city = loc_info[0]
+        @location_detail.state = loc_info[1]
+        @location_detail.country = loc_info[2]      
+        lat_long = params[:trip_activity_latlong].split(",")
+        @location_detail.latitude = lat_long[0]
+        @location_detail.longitude = lat_long[1]
+        @location_detail.save!      
+      end
+      
       
       @category = "LocationActivity"       
       @activity_detail = LocationDetail.find_by_location_detail_id(params[:venueid])
@@ -469,12 +487,16 @@ class TripActivitiesController < ApplicationController
       end
 
       if !@activity_detail.blank? and @activity_detail.location_id.blank?
-        @activity_detail.location_id = @trip.location_id
+        @activity_detail.location_id = params[:location_id].nil? ? @trip.location_id : params[:location_id]
         @activity_detail.save # save the location id if not present
       end
             
       if enter == 1
-        @latlong = find_location_latlong(@trip)
+        @latlong, @location_detail = find_closest_location_latlong_for_activity(params[:location_id].nil? ? "": params[:location_id], @trip.location_id)
+        
+       #@latlong = find_location_latlong(@trip)
+        #@location_detail = Location.find_by_location_id(@trip.location_id)
+        
         @trip_activity.activity_type = @category
         @trip_activity.activity_sequence_number = 1
         @day = @trip_activity.max_sequence_number_day(@trip_activity.activity_day)

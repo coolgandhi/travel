@@ -37,12 +37,51 @@
         $('#latlong').val (ui.item.value.lat + "," + ui.item.value.lng )
         $('#locationval').val(ui.item.value.name + "," + ui.item.value.adminName1 + "," + ui.item.value.countryName)
         $('#trip_location_id').val(ui.item.value.geonameId)
-        
-        
-      $('#publish_place_dropdown_label').tooltip
-        placement: "top"
-        title: "Place searches powered by geonames.org"
-        trigger: "hover"
+        return
+
+  jQuery ->
+    $('.publish_trip_create_activities').on "focus", "input", ->
+      $('#place_dropdown').autocomplete
+        minLength: 3
+        source: (request, response) ->
+          $.ajax 
+            beforeSend: ->
+              $(".swipe_loading_indicator_header").show()
+            url: "http://ws.geonames.org/searchJSON"
+            dataType: 'jsonp'
+            data: 
+              style: 'full'
+              name_startsWith: request.term
+              maxRows: 15
+              featureClass: 'P' 
+              username: 'coolgandhi'
+            complete: ->
+              $(".swipe_loading_indicator_header").hide()
+            success: (data) ->
+              response $.map(data.geonames, (item) ->
+                label: item.name + ", " + item.adminName1 + ", " + item.countryName
+                value: item
+                )
+        open: ->
+          $(this).removeClass("#place_dropdown").addClass "ui-corner-top"
+        close: ->
+          $(this).removeClass("ui-corner-top").addClass "ui-corner-all"
+        focus: (event, ui) ->
+          event.preventDefault()
+          $(this).val ui.item.label      
+        select: (event, ui) ->
+          event.preventDefault()
+          $(this).val ui.item.label
+          $('#trip_activity_latlong').val (ui.item.value.lat + "," + ui.item.value.lng )
+          $('#trip_activity_locationval').val(ui.item.value.name + "," + ui.item.value.adminName1 + "," + ui.item.value.countryName)
+          $('#location_id').val(ui.item.value.geonameId)        
+          return
       
+  jQuery ->
+    $('#publish_place_dropdown_label').tooltip
+      placement: "top"
+      title: "Place searches powered by geonames.org"
+      trigger: "hover"
+    return  
         
 ) window.trips_namespace = window.trips_namespace or {}, jQuery
