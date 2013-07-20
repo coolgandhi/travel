@@ -78,7 +78,7 @@
   trips_activities_namespace.activityimage_btn_tooltip = ->
     $('.ta_pick_from_foursquare').tooltip
       placement: "bottom"
-      title: "Please enter an Activity Venue"
+      title: "Please search for an activity"
       trigger: "click"
 
 
@@ -92,11 +92,17 @@
     trips_activities_namespace.populate_selected_images_field();
     $('.publish_trip_create_activities').on "click", ".ta_pick_from_foursquare", (e) ->
       e.preventDefault();
-      unless $('#venue_id').val() is ""
+      if $('#venue_id').val() != ""
         $('.pe_select_image_4SQ_modal').modal('show');
         $(".select_image_spinner").show();
         foursquare_id = $('#venue_id').val();
         site_wide_namespace.fetchvenueimages(foursquare_id, $(".4SQ_images_select_div"));
+      else
+        if $("#activityvenue").val() != ""
+          alert("This activity wasn't recognized by Foursquare. Please upload your own image.")
+        else
+          alert("Please search for an activity.")
+          
     
     $(".pe_select_image_4SQ_modal").on "hide", (e) ->
       $(".4SQ_images_select_div").empty();

@@ -8,7 +8,7 @@ class FoursquareInteraction
 
   def self.search_venues latlong, term, total
     get_places = @@client.search_venues(options = {:ll => latlong, :query => term, :intent => 'checkin', :limit => total})
-    Rails.logger.info "#{get_places.inspect}"
+    
     get_suggestions = Array.new
     if get_places[:groups] and (get_places[:groups]).first[:items].length > 0
       (get_places[:groups]).first[:items].each {|get_place|
@@ -37,7 +37,6 @@ class FoursquareInteraction
         #Rails.logger.info "#{suggestions.inspect}"
         if suggestions.size == 0
           suggestions = self.search_venues latlong, term, total
-          Rails.logger.info "#{suggestions.inspect}"
         end
       end
     rescue Exception => exc

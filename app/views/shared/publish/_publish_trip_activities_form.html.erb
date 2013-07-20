@@ -85,6 +85,8 @@
         </div>
         <!-- End Activity Confirm Box -->
         <%= hidden_field_tag :selected_images, @selectedimages, :id => "ta_selected_images_field", :value => @trip_activity.activity.nil? ? '' : @trip_activity.activity.image_urls.blank? ? '' : @trip_activity.activity.image_urls %>
+        
+        <%= hidden_field_tag :trip_activity_name  %>
         <%= hidden_field_tag :trip_activity_latlong, @latlong %>
         <%= hidden_field_tag :trip_id, @trip_activity.trip_id %>
         <%= hidden_field_tag :location_id, @trip.location_id %>

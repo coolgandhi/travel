@@ -47,7 +47,7 @@
     $('#locationvenue').autocomplete
       minLength: 3
       source: (request, response) ->
-        $.ajax 
+        $.ajax
           url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
           dataType: "json"
           data: 
@@ -111,6 +111,15 @@
       $('#activityvenue').autocomplete
         minLength: 3
         source: (request, response) ->
+          $('#venue_id').val('')      
+          $('.publish_trip_confirm_name').html('')
+          $('.publish_trip_confirm_category').html('');
+          $('.publish_trip_confirm_address').html('')
+          $('.publish_trip_confirm_stats').html('')
+          $('.stats_checkins').html('')
+          $('.stats_rating').html('')
+          $('.stats_rating_header').html('')
+          $('.stats_checkins_header').html('')
           $.ajax 
             url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
             dataType: "json"
@@ -159,8 +168,9 @@
 
   jQuery ->
     $(".publish_trip_create_activities").on "click", ".close", (e) ->  
-      $("#no_activity_warning").css({ "display": "none"})
-  
+      $("#no_activity_warning").css({ "display": "none"})  
+
+
   jQuery ->
     $("#venue_images").on "click", "img", (e) ->
       if ($(this).css("borderWidth") == '5px') 
@@ -179,6 +189,7 @@
 
   jQuery ->
     $("#trip_activities_form_submit").click ->
+      console.log "here"
       dat = ""
       $.each $('#venue_images').children(), (index, data) ->
         if ($(this).css("borderWidth") == '5px')

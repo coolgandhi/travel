@@ -61,7 +61,7 @@
       rules:
         description: trips_namespace.pubUserDescription_rule
         quick_tip: trips_namespace.pubQuickTip_rule
-        venueid: trips_namespace.pubVenueId_rule
+       # venueid: trips_namespace.pubVenueId_rule
         duration: trips_namespace.pubDuration_rule
       messages: 
         description: trips_namespace.pubUserDescription_message

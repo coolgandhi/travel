@@ -464,8 +464,36 @@ class TripActivitiesController < ApplicationController
       end
       
       
-      @category = "LocationActivity"       
-      @activity_detail = LocationDetail.find_by_location_detail_id(params[:venueid])
+      @category = "LocationActivity"
+      if params[:venueid].empty?
+        @activity_detail = LocationDetail.new
+        @activity_detail.name = params[:trip_activity_name]
+        @activity_detail.location_id = params[:location_id].nil? ? @trip.location_id : params[:location_id]
+        @activity_detail.latitude = @location_detail.latitude
+        @activity_detail.longitude = @location_detail.longitude
+        @activity_detail.location_detail_id = SecureRandom.uuid
+        params[:venueid] = @activity_detail.location_detail_id = @activity_detail.location_detail_id.gsub('-', '')
+        @activity_detail.address1 = ""         
+        @activity_detail.city = @location_detail.city    
+        @activity_detail.address2 = ""
+        @activity_detail.address3 = ""
+        @activity_detail.country = @location_detail.country
+        @activity_detail.state = @location_detail.state
+        @activity_detail.phone = "" 
+        @activity_detail.zip = "" 
+        @activity_detail.website = ""
+        @activity_detail.category = "" 
+        @activity_detail.description = "" 
+        @activity_detail.open_hours = "" 
+        @activity_detail.image_urls = "" 
+        @activity_detail.rating = ""
+        @activity_detail.twitter = ""
+        @activity_detail.canonical_url = ""
+        @activity_detail.source = "self"
+        @activity_detail.save!
+      else             
+        @activity_detail = LocationDetail.find_by_location_detail_id(params[:venueid])
+      end
       if @activity_detail.blank?
         @activity_detail = RestaurantDetail.find_by_restaurant_detail_id(params[:venueid])
         if @activity_detail.blank?
