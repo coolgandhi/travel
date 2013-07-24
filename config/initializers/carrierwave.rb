@@ -17,7 +17,7 @@ CarrierWave.configure do |config|
       }
       config.fog_directory = CONFIG[:AWS_S3_BUCKET_TEST]
     end
-    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
+    config.fog_attributes = {'Cache-Control'=>'max-age=604800'}
 end
 
 module CarrierWave
