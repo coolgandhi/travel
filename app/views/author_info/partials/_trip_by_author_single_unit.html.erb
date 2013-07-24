@@ -15,7 +15,7 @@
     </div>
     <div class="result_thumb_wrap">  
     <%= link_to trip do %>
-      <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip, :thumb, 600, 0) %>
+      <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip, :thumb, 300, 0) %>
       <%= image_tag(use_this_url, {:class => "image_link_thumbnail"}) %>
       <%= "hello #{use_this_url}" %>
     <% end %>
@@ -40,7 +40,7 @@
       <p class="caption_trip_summary caption_subtitle"><%= auto_link(trip.trip_summary, :html => { :target => '_blank' }) %><p>
 
       <!-- Only if you IS the author -->
-      <% if !current_author_info.blank? and trip.author_id == current_author_info.id.to_s %>
+      <% if !current_author_info.blank? and trip.author_id == current_author_info.id %>
         <div class = "current_author_admin">
           <%= link_to "Edit", publish_edit_trip_url(trip) %> | 
           <%= link_to "Delete", trip, :method => :delete, :confirm => "Are you sure you want to delete this trip summary?"%>

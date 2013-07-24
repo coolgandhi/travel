@@ -78,7 +78,7 @@ class TripsController < ApplicationController
     end 
 
     respond_to do |format|
-      if @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id == current_author_info.id.to_s)
+      if @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id.to_s == current_author_info.id.to_s)
         format.html # show.html.erb
       else
         flash[:notice] = "Trip not found"
@@ -164,7 +164,7 @@ class TripsController < ApplicationController
         @author_info = AuthorInfo.new(params[:author_info])
         @author_info.email = @author_info.email.downcase
       else
-        if (@trip.author_id != @author_info.id.to_s)
+        if (@trip.author_id.to_s != @author_info.id.to_s)
           @trip.author_id = @author_info.id
           update_author = 2
         end
@@ -648,7 +648,7 @@ class TripsController < ApplicationController
   def allow_owner_change_only
     if (params[:id])  
       @trip = Trip.find(params[:id])
-      if ((!current_author_info.blank? and @trip.author_id != current_author_info.id.to_s) and !self.admin? )
+      if ((!current_author_info.blank? and @trip.author_id.to_s != current_author_info.id.to_s) and !self.admin? )
         flash[:notice] = "Unauthorized Access"
         redirect_to root_url 
       end

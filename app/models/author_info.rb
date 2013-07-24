@@ -23,7 +23,7 @@ class AuthorInfo < ActiveRecord::Base
   validates_confirmation_of   :encrypted_password, :on=>:create
   validates_length_of :password, :within => Devise.password_length, :allow_blank => true
   validate :check_password_same
-  validates_uniqueness_of  :author_handle, :presence => { :message => "enter a unique author handle" }, :author_handle => true
+  validates_uniqueness_of  :author_handle, :case_sensitive => false, :allow_blank => true, :presence => { :message => "enter a unique author handle" }, :author_handle => true
     
   validates_length_of :about, :maximum => 200, :allow_blank => true
   

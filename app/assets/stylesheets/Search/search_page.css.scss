@@ -55,18 +55,18 @@
   position: relative;
   color: white;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 4em;
+  font-size: 3.45em;
   line-height: 1;
   text-shadow: 0px 3px 3px black;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   text-transform: uppercase;
   z-index: 1;
+  margin-bottom: 5px;
   @include respond-to(small){
     font-size: 150%;
     font-weight: bold;
     text-shadow: none;
     color: black;
-    margin-bottom: 5px;
   }  
 }
 

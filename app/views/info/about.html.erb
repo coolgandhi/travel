@@ -3,7 +3,7 @@
 <% end %>
 
 <%= content_for :description do %>
-  <%= "We make your travel planning easy. Check out trip summaries " + ((params[:place] == nil) ? "to your favorite destinations at chalo.io. We currently feature travel itineraries for San Francisco, New York and Paris.": ("to" + params[:place]) + " at chalo.io")  %>
+  <%= "Discover and share experiences to make travel planning easy. Check out trip summaries to " + ((params[:place_text_field] == nil) ? "San Francisco, New York, Paris and Queenstown amongst your other favorite destinations at chalo.io.": (params[:place_text_field]) + " amongst your other favorite destinations at chalo.io.")  %>
 <% end %>
 
 <%= render 'pill_nav' %>

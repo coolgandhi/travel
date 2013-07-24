@@ -588,7 +588,7 @@ class TripActivitiesController < ApplicationController
               @photo = SelfTripActivityPhoto.new(params[:self_trip_activity_photos])
               @trip_activity.activity = @activity
               if @trip_activity.save
-                 @photo.trip_activity_id = @trip_activity.id.to_s
+                 @photo.trip_activity_id = @trip_activity.id
                  if @photo.save
                     if !@trip_stats.blank?
                       if @trip.share_status == 1  

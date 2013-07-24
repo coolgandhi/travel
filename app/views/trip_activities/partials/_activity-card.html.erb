@@ -135,7 +135,7 @@
           <div class="main_pic_wrap" id="bloop">
             <div data-picture data-alt="<%=alt_name_card_image(@trip_activity)%>" data-class="relative_image">
               <!-- upload_or_foursquare_image_url_picker (object, self_image_size=:thumb, foursquare_image_width=250, foursquare_image_index=0) -->
-              <% use_this_url_thumb, which_url_msg_thumb = upload_or_foursquare_image_url_picker(@trip_activity,:thumb, 480, 0) %>
+              <% use_this_url_thumb, which_url_msg_thumb = upload_or_foursquare_image_url_picker(@trip_activity,:thumb, 300, 0) %>
               <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(@trip_activity,:card, 767, 0) %>
         
                 <div data-src=<%= use_this_url_thumb %> > </div>

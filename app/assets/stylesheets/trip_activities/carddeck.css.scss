@@ -1392,6 +1392,11 @@ div.rightcaption .ui-accordion-content {
   @include border-radius(4px);
   border: 1px solid $borderGray;
   margin-left: 1%;
+  
+  img {
+    min-width:100%;
+    min-height:100%;
+  }
 }
 
 /* overview table formatting */

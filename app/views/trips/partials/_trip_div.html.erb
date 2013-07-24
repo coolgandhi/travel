@@ -15,7 +15,7 @@
     </div>
     <div class="result_thumb_wrap">  
     <%= link_to trip do %>
-      <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip, :thumb, 600, 0) %>
+      <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(trip, :thumb, 300, 0) %>
       <%= image_tag(use_this_url, {:class => "image_link_thumbnail"}) %>
     <% end %>
     </div>

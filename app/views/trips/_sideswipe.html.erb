@@ -59,7 +59,7 @@
           </div>
 
           <div class ="it_share_this">
-            <% use_this_url_st, which_url_msg_st = upload_or_foursquare_image_url_picker(@trip, :thumb, 600, 0) %>
+            <% use_this_url_st, which_url_msg_st = upload_or_foursquare_image_url_picker(@trip, :thumb, 300, 0) %>
             <span class="st_email" st_url="<%= "#{request.url}" %>" st_title="chalo.io: <%= @trip.trip_name.titleize %>" st_image="<%= url_with_protocol(use_this_url_st) %>" st_summary = "<%= @trip.trip_summary %>"></span><span class = "share_this_email_text">Email</span>
           </div>
         </div>

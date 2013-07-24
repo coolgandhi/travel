@@ -20,10 +20,9 @@
         <div class ="form_centering">
           <!-- Begin Tag-Line Overlay -->
           <div class="hero_tag_line">
-            We Make Your Travel Planning Easy.
+            Discover Share Plan Experiences
           </div>
           <!-- End Tag-Line Overlay -->
-          <h3 class="form_dialog title hidden-phone">See trip summaries for</h3>
           <%= form_tag trips_path, :method => 'get', :class => 'hero_form' do %>
             <div class = "hero_form_left">  
               <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "place_dropdown_field selectpicker" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715035243) do
+ActiveRecord::Schema.define(:version => 20130723212755) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -207,6 +207,8 @@ ActiveRecord::Schema.define(:version => 20130715035243) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "self_trip_activity_photos", ["trip_activity_id"], :name => "trip_activity_photo_index"
+
   create_table "transport_activities", :force => true do |t|
     t.string   "activity_id"
     t.string   "transport_quick_tips"
@@ -235,7 +237,7 @@ ActiveRecord::Schema.define(:version => 20130715035243) do
   add_index "traveler_types", ["traveler_type_id"], :name => "traveler_type_index"
 
   create_table "trip_activities", :force => true do |t|
-    t.string   "trip_id"
+    t.integer  "trip_id"
     t.integer  "activity_id"
     t.string   "activity_day"
     t.integer  "activity_sequence_number"
@@ -264,7 +266,7 @@ ActiveRecord::Schema.define(:version => 20130715035243) do
   end
 
   create_table "trip_stats", :force => true do |t|
-    t.string   "trip_id"
+    t.integer  "trip_id"
     t.float    "total_rating"
     t.integer  "numbers_rated"
     t.integer  "likes"
@@ -275,15 +277,18 @@ ActiveRecord::Schema.define(:version => 20130715035243) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "useful",          :default => 0
-    t.string   "author_info_id"
+    t.integer  "author_info_id"
     t.integer  "trip_views",      :default => 0
     t.integer  "trip_activities", :default => 0
     t.integer  "trip_durations",  :default => 0
   end
 
+  add_index "trip_stats", ["author_info_id"], :name => "trip_stats_author_info_id_index"
+  add_index "trip_stats", ["trip_id"], :name => "trip_stats_trip_id_index", :unique => true
+
   create_table "trips", :force => true do |t|
     t.string   "trip_id"
-    t.string   "author_id"
+    t.integer  "author_id"
     t.string   "location_id"
     t.string   "traveler_type_id",   :default => "1"
     t.string   "trip_name",          :default => ""
@@ -299,5 +304,7 @@ ActiveRecord::Schema.define(:version => 20130715035243) do
     t.text     "tags"
     t.integer  "share_status",       :default => 1
   end
+
+  add_index "trips", ["author_id"], :name => "trips_author_id_index"
 
 end
