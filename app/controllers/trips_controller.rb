@@ -40,10 +40,12 @@ class TripsController < ApplicationController
     
     @trips_per_page = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : trips_per_page_default
     page  = (params[:page])? params[:page].to_i : 1
+    @trips_per_page= (page == 1) ? 2 : @trips_per_page
+    offset = (page == 1)? 0:2
     @exact_match_count = @exact_match_count - (page - 1) * @trips_per_page
     
     if params[:featured] != '1' and params[:trip_location_id] != '0'
-      @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page)
+      @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page, :offset => offset)
     end
     
     respond_to do |format|

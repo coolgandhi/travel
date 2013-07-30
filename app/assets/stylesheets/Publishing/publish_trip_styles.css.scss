@@ -26,7 +26,7 @@ ul#publish_create_tabs{
 /* 2. STRUCTURE */
 
 .publish_trip_sort_activities{
-  width: 45%;
+  width: 35%;
   height: 100%;
   float: left;
   margin-left: 0;
@@ -36,7 +36,7 @@ ul#publish_create_tabs{
 }
 
 .publish_trip_create_activities{
-  width: 55%;
+  width: 65%;
   height: 100%;
   min-height: 600px;
   float: left;
@@ -89,6 +89,10 @@ ul#publish_create_tabs{
   @include border-radius($myDivBorderRadius);
   border: 1px solid $borderGray;
   margin-bottom: 1%;
+}
+
+.pt_gray_box_hidden{
+  display:none;
 }
 
 /* 4. TRIP ACTIVITIES SELECTOR */

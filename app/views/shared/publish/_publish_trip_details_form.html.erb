@@ -71,16 +71,21 @@
             <button class = "btn-flat btn-flat-block btn-flat-info trip_cover_pick_foursquare_btn">Select From Foursquare</button>
           <% end %>
 
-      </div>
-      <!-- End Select an Image Wrapper -->
-          
+        </div>
+        <!-- End Select an Image Wrapper -->
+        
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
+          </div>
+        </div>  
       </div>
 
     </div> 
     
-    <hr class = "publish_form_hr">
+    <hr class = "publish_form_hr hidden">
    
-    <div class = "pt_gray_box">
+    <div class = "pt_gray_box hidden">
       <span class ="help-inline publish_form_required_label">
         You'll have another chance to edit the following before publishing.
       </span>
@@ -88,11 +93,7 @@
       <%= render 'shared/publish/publish_trip_confirm_form', :f => f %>
     </div>
     <div class="error_msg"></div>
-    <div class="control-group">
-      <div class="controls">
-        <%= f.submit @trip_message, :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
-      </div>
-    </div>
+    
 
   <% end %>
   
