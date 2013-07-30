@@ -14,6 +14,7 @@ development:
   adapter: mysql2
   database: production
   encoding: utf8
+  collation: utf8_general_ci
   pool: 5
   timeout: 5000
   username: root
@@ -28,6 +29,7 @@ test:
   adapter: mysql2
   encoding: utf8
   database: test
+  collation: utf8_general_ci
   pool: 5
   timeout: 5000
   username: root
@@ -38,6 +40,7 @@ production:
   adapter: mysql2
   encoding: utf8
   database: production
+  collation: utf8_general_ci
   timeout: 5000
   username: root
   password: QAZwsx987
