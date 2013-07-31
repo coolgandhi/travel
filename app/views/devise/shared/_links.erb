@@ -20,6 +20,17 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+    <% if #{provider.to_s.titleize} == "Facebook" %>
+      <div class="option_div">
+        <hr>
+      <div>
+      <% if request.fullpath.downcase == "/author_infos/sign_in" %>
+        <%= link_to image_tag('/assets/signinlogin/fb_signin_button.png'), omniauth_authorize_path(resource_name, provider) %>
+      <% else %>
+        <%= link_to image_tag('/assets/signinlogin/fb_signup_button.png'), omniauth_authorize_path(resource_name, provider) %>
+      <% end %>        
+    <% else %> 
+      <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+    <% end %>
   <% end -%>
 <% end -%>
