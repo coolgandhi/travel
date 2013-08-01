@@ -3,7 +3,7 @@ Travel::Application.routes.draw do
   get "author_info/about_edit"
   put "author_info/about_update"
 
-  devise_for :author_infos, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
+  devise_for :author_infos, :controllers => {:omniauth_callbacks => "omniauth_callbacks", :registrations => "devise_registrations_callbacks"}
 
   get "login" => "sessions#new"
   get "logout" => "sessions#del"

@@ -22,15 +22,6 @@
     </div>
 
     <div class="control-group">
-      <!-- Author Handle -->
-      <%= a.label :author_handle, 'Author Handle', :class=> "control-label", :for => "author_handle" %>
-      <div class="controls">
-        <%= a.text_field :author_handle, :class => "input-xlarge", :id => "author_handle" %>
-        <p class="help-block">Your Chalo handle?</p>
-      </div>
-    </div>
-
-    <div class="control-group">
       <!-- Username -->
       <%= a.label :author_name, 'Author Name', :class=> "control-label", :for => "author_name" %>
       <div class="controls">
@@ -80,6 +71,25 @@
             <!-- End Uploaded Image Preview -->
           </div>
     </div> 
+    
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <%= a.submit  :id => "author_info_update_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
+      </div>
+    </div>
+    <hr class="author_separator">
+    <div class="control-group author_separator_line">
+        Please add any of the information below at your convenience! <br> <br>
+    </div>
+    <div class="control-group">
+      <!-- Author Handle -->
+      <%= a.label :author_handle, 'Author Handle', :class=> "control-label", :for => "author_handle" %>
+      <div class="controls">
+        <%= a.text_field :author_handle, :class => "input-xlarge", :id => "author_handle" %>
+        <p class="help-block">Your Chalo handle?</p>
+      </div>
+    </div>
 
 
     <div class="control-group">
@@ -135,13 +145,6 @@
       <div class="controls">
         <%= a.text_field :country, :class => "input-xlarge", :id => "country" %>
         <p class="help-block">Country</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <!-- Button -->
-      <div class="controls">
-        <%= a.submit  :id => "author_info_update_form_submit", :class => "btn-flat btn-flat-primary" %>
       </div>
     </div>
 

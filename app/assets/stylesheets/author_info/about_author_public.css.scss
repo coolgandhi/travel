@@ -164,6 +164,14 @@ float: left;
   }
 }
 
+.author_separator {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.author_separator_line {
+  text-align:right;
+}
+
 /* 2. AUTHOR'S TRIPS  */
 @import "Search/trip_results_single_containers";
 

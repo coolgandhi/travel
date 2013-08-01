@@ -1,4 +1,5 @@
 class AuthorInfoController < ApplicationController
+  include ApplicationHelper
   before_filter :authenticate_author_info!, :except => [:author_page]
   
   def about_edit
@@ -54,6 +55,17 @@ class AuthorInfoController < ApplicationController
           }
         end
         @trips_unpublished = @trips_all.where("share_status = ?", 0)
+        
+        message = ""
+        # if @trips_unpublished.size > 0
+        #   message = "We would love to see your private trips."          
+        # end
+    
+        if self.is_system_created_account current_author_info.email
+          message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
+        end
+        
+        flash[:notice] = message.html_safe if message != ""
         format.html # about_edit.html.erb
       else
         format.html { redirect_to root_url() }

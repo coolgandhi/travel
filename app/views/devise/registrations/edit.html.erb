@@ -44,7 +44,7 @@
         <!-- Current Password -->
         <%= f.label :current_password, 'Current Password', :class=> "control-label", :for => "current_password" %>
         <div class="controls">
-          <%= f.password_field :current_password, :class => "input-xlarge", :id => "current_password" %>
+          <%= f.password_field :current_password, :class => "input-xlarge", :id => "current_password", :value =>  "#{self.is_system_created_account(resource.email) ? "password" : ""}" %>
           <p class="help-block"><i>We need your current password to confirm your changes</i></p>
         </div>
       </div>
@@ -54,10 +54,11 @@
     <div class="control-group">
       <!-- Button Update-->
       <div class="controls">
-        <%= f.submit "Update", :class => "btn-flat btn-flat-primary" %>
+        <%= f.submit "Update", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
       </div>
     </div>
   </fieldset>
+  <br> <br>
 <% end %>
 
 <div class = "row">

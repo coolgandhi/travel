@@ -8,6 +8,14 @@ module ApplicationHelper
     ret_cant_miss
   end
      
+  def is_system_created_account email
+    ret = true
+    if (/[0-9a-fA-F]{32}@youremail.com/.match(email).nil?)
+      ret = false 
+    end
+    ret
+  end
+    
   def get_photos venue_id, tot, ret_json=true
     FoursquareInteraction.foursquare_client
     venue_photos = FoursquareInteraction.venue_photos(venue_id, tot)

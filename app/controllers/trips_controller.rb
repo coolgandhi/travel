@@ -4,8 +4,8 @@ class TripsController < ApplicationController
   include LocationsHelper
   
   before_filter :authorize, :only => [:new, :edit, :create, :update, :trips_admin]
-  before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
-  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
+ # before_filter :authenticate_author_info!, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback]
+  before_filter :allow_owner_change_only, :except => [:index, :show, :showpartial, :daymapinfo, :publish_up_vote, :publish_chalo_feedback, :publish_new, :publish_create]
   layout :resolve_layout
   # GET /trips
   # GET /trips.json 
@@ -307,6 +307,20 @@ class TripsController < ApplicationController
 
   # Post /trips/publish_create
   def publish_create
+    
+    if current_author_info.blank?
+      author_user = SecureRandom.uuid
+      author_user = author_user.gsub('-', '')
+      author_user = author_user + "@youremail.com"
+      @auth_user = AuthorInfo.new(:author_name => 'Guest', :email => author_user , :password => 'password', :password_confirmation => 'password')
+     # for future use once we enable account confirmation thry email 
+     # current_author_info.skip_confirmation!
+     #http://stackoverflow.com/questions/8672189/devise-skip-confirmation-not-working
+      @auth_user.save!
+      sign_in @auth_user
+      sign_in @auth_user, :bypass => true 
+    end
+    
     @trip = Trip.new(params[:trip])
     @trip.share_status = 0
     @location_detail = Location.find_by_location_id(@trip.location_id)
@@ -346,7 +360,7 @@ class TripsController < ApplicationController
     @trip.tags = ((params[:tag1].nil? or params[:tag1] == "")? "" : params[:tag1] + ";") + 
                  ((params[:tag2].nil? or params[:tag2] == "")? "" : params[:tag2] + ";") +
                  ((params[:tag3].nil? or params[:tag3] == "")? "" : params[:tag3] + ";") 
-    @trip.author_id = current_author_info.id
+    @trip.author_id = current_author_info.blank? ? @auth_user.id : current_author_info.id
     @trip_message = "Create Trip"
     @trip_publish = "publish_create"
     respond_to do |format|
@@ -357,7 +371,12 @@ class TripsController < ApplicationController
         @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
         
         @trip_publish = publish_update_trip_url(@trip)
-        format.html { redirect_to publish_edit_trip_url(@trip), notice: 'Trip was successfully updated.' }
+        
+        message = 'Trip was successfully added.'
+        if self.is_system_created_account current_author_info.email
+          message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
+        end
+        format.html { redirect_to publish_edit_trip_url(@trip), notice: message.html_safe }
         format.json { render json: @trip, status: :created, location: @trip }
       else
         logger.info "#{@trip.errors.inspect}"
@@ -549,6 +568,10 @@ class TripsController < ApplicationController
         params[:tag2] = split_tags[1]
         params[:tag3] = split_tags[2]
       end
+      if self.is_system_created_account current_author_info.email
+        message = " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
+        flash[:notice] = message.html_safe
+      end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
@@ -650,7 +673,7 @@ class TripsController < ApplicationController
   def allow_owner_change_only
     if (params[:id])  
       @trip = Trip.find(params[:id])
-      if ((!current_author_info.blank? and @trip.author_id.to_s != current_author_info.id.to_s) and !self.admin? )
+      if (current_author_info.blank? or (!(@trip.author_id.to_s == current_author_info.id.to_s) and !self.admin?) )
         flash[:notice] = "Unauthorized Access"
         redirect_to root_url 
       end
