@@ -317,6 +317,7 @@ class TripsController < ApplicationController
      # current_author_info.skip_confirmation!
      #http://stackoverflow.com/questions/8672189/devise-skip-confirmation-not-working
       @auth_user.save!
+      # two times signing in http://stackoverflow.com/questions/4660565/how-to-manually-create-a-new-user-and-user-session-in-devise
       sign_in @auth_user
       sign_in @auth_user, :bypass => true 
     end
