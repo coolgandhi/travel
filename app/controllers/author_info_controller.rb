@@ -61,7 +61,7 @@ class AuthorInfoController < ApplicationController
         #   message = "We would love to see your private trips."          
         # end
     
-        if self.is_system_created_account current_author_info.email
+        if !current_author_info.blank? and self.is_system_created_account current_author_info.email
           message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
         end
         
