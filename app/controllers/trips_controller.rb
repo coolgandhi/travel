@@ -372,12 +372,14 @@ class TripsController < ApplicationController
         @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
         
         @trip_publish = publish_update_trip_url(@trip)
-        
+        send_alert = 0
         message = 'Trip was successfully added.'
         if self.is_system_created_account current_author_info.email
+          session[:return_to] ||= request.referer
+          send_alert = 1
           message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
         end
-        format.html { redirect_to publish_edit_trip_url(@trip), notice: message.html_safe }
+        send_alert == 0 ? format.html { redirect_to publish_edit_trip_url(@trip), notice: message.html_safe } : format.html { redirect_to publish_edit_trip_url(@trip), alert: message.html_safe } 
         format.json { render json: @trip, status: :created, location: @trip }
       else
         logger.info "#{@trip.errors.inspect}"
@@ -570,8 +572,9 @@ class TripsController < ApplicationController
         params[:tag3] = split_tags[2]
       end
       if self.is_system_created_account current_author_info.email
+        session[:return_to] ||= request.referer
         message = " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
-        flash[:notice] = message.html_safe
+        flash[:alert] = message.html_safe
       end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
@@ -598,23 +601,29 @@ class TripsController < ApplicationController
       return
     end
     respond_to do |format|
-      if @trip.update_attributes(params[:trip])
-        if !@trip_stats.blank?
-          if @trip.share_status == 1  
-            @trip_stats.trip_activities = @trip.trip_activities.size
-            @trip_stats.trip_durations = @trip.duration.to_i
-          else 
-            @trip_stats.trip_activities = 0
-            @trip_stats.trip_durations = 0 
-          end
-          @trip_stats.save
-        end
-        format.html { redirect_to @trip, notice: @trip.share_status == 0 ? 'Trip has been Unpublished' : 
-        'Trip was successfully Published'  }
-        format.json { head :no_content }
+      if self.is_system_created_account current_author_info.email
+        message = "Please update your email and password before publishing the trip"
+        session[:return_to] ||= request.referer
+        format.html { redirect_to edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") , alert: message }
       else
-        format.html { render action: "publish_confirm" }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        if @trip.update_attributes(params[:trip])
+          if !@trip_stats.blank?
+            if @trip.share_status == 1  
+              @trip_stats.trip_activities = @trip.trip_activities.size
+              @trip_stats.trip_durations = @trip.duration.to_i
+            else 
+              @trip_stats.trip_activities = 0
+              @trip_stats.trip_durations = 0 
+            end
+            @trip_stats.save
+          end
+          format.html { redirect_to @trip, notice: @trip.share_status == 0 ? 'Trip has been Unpublished' : 
+          'Trip was successfully Published'  }
+          format.json { head :no_content }
+        else
+          format.html { render action: "publish_confirm" }
+          format.json { render json: @trip.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -20,12 +20,12 @@
 <div class = "row">
 
     <% if @trip.share_status == 0 %>
-      <%= link_to "Publish", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right pt_publish_button" %>
+      <%= link_to "Review Trip", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-success pull-right pt_publish_button" %>
     <% elsif @trip.share_status == 1 %>
-      <%= link_to "Unpublish", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-danger pull-right pt_publish_button" %>
+      <%= link_to "Unpublish Trip", publish_confirm_trip_url(@trip), :class => "btn-flat btn-flat-danger pull-right pt_publish_button" %>
     <% end %>
 
-    <%= link_to "Preview", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
+    <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
 
   <!-- Begin Form Completion Status Container -->
     <%= render "trips/partials/publish/completion_status_widget" %>

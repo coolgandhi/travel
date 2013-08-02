@@ -10,7 +10,7 @@
 
   <!-- Begin Row-->
   <div class = "row">
-    <%= link_to "Preview", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
+    <%= link_to "Preview Trip", trip_url(@trip), :class => "btn-flat btn-flat-info pull-right", :target => "_blank" %>
     <!-- Begin Form Completion Status Container -->
     <%= render "trips/partials/publish/completion_status_widget" %>
     <!-- End Form Completion Status Container -->
@@ -60,9 +60,9 @@
           <div class="control-group">
             <div class="controls">
               <% if @trip.share_status == 0 %>
-                <%= f.submit "Publish", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
+                <%= f.submit "Publish Trip", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
               <% elsif @trip.share_status == 1 %>
-                <%= f.submit "Update", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary btn-flat-large pull-right" %>
+                <%= f.submit "Update Trip", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary btn-flat-large pull-right" %>
               <% end %>
             </div>
           </div>

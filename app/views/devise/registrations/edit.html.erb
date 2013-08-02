@@ -1,5 +1,9 @@
+<% system_generated_account = self.is_system_created_account(resource.email) %>
+
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal"}) do |f| %>
   <%= devise_error_messages! %>
+
+
 
   <fieldset>
     <div id="legend">
@@ -21,13 +25,15 @@
     
     <%= f.hidden_field :provider, :value => "normal" %>
   
+    <% help_block_class = "help-block #{((system_generated_account) ? " hidden" : "")}" %>
+    <% control_group_class = "control-group #{((system_generated_account) ? " hidden" : "") }"%>
     <% if f.object.encrypted_password.present? %>
       <div class="control-group">
         <!-- Password -->
         <%= f.label :password, 'New Password', :class=> "control-label", :for => "password" %>
         <div class="controls">
           <%= f.password_field :password, :class => "input-xlarge", :id => "password", :autocomplete => "off" %>
-          <p class="help-block"><i>Leave this blank if you don't want to change it</i></p>
+          <p class = "<%= help_block_class %>"><i>Leave this blank if you don't want to change it</i></p>
         </div>
       </div>
 
@@ -36,15 +42,15 @@
         <%= f.label :password_confirmation, 'Confirm New Password', :class=> "control-label", :for => "password_confirmation" %>
         <div class="controls">
           <%= f.password_field :password_confirmation, :class => "input-xlarge", :id => "password_confirmation" %>
-          <p class="help-block"><i>To make sure you entered your new password correctly</i></p>
+          <p class= "<%= help_block_class %>"><i>To make sure you entered your new password correctly</i></p>
         </div>
       </div>
 
-      <div class="control-group">
+      <div class= "<%= control_group_class %>">
         <!-- Current Password -->
         <%= f.label :current_password, 'Current Password', :class=> "control-label", :for => "current_password" %>
         <div class="controls">
-          <%= f.password_field :current_password, :class => "input-xlarge", :id => "current_password", :value =>  "#{self.is_system_created_account(resource.email) ? "password" : ""}" %>
+          <%= f.password_field :current_password, :class => "input-xlarge", :id => "current_password", :value =>  ((system_generated_account) ? "password" : "") %>
           <p class="help-block"><i>We need your current password to confirm your changes</i></p>
         </div>
       </div>
@@ -61,11 +67,13 @@
   <br> <br>
 <% end %>
 
-<div class = "row">
-  <div class="control-group pull-right">
-    <!-- Button Cancel-->
-    <div class="controls">
-      <%= button_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn-flat btn-flat-danger btn-flat-mini" %>
+<% if !system_generated_account %>
+  <div class = "row">
+    <div class="control-group pull-right">
+      <!-- Button Cancel-->
+      <div class="controls">
+        <%= button_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn-flat btn-flat-danger btn-flat-mini" %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
