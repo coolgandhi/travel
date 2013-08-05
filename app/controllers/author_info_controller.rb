@@ -23,52 +23,65 @@ class AuthorInfoController < ApplicationController
     end
   end
 
+  # author_page and author_page_given_userhandle
   def author_page
     @use_id = nil
-    if !current_author_info.blank?
-      @use_id = current_author_info.id
-    end
+    @user_handle = nil
+    params[:not_found] = ""
+    # if !current_author_info.blank?
+    #   @use_id = current_author_info.id
+    # end
     if params[:id] 
       @use_id = params[:id]
     end
+    if params[:username] 
+      @user_handle = params[:username]
+      params[:not_found] = params[:username]  
+    end
     
     respond_to do |format|
-      if !@use_id.blank?
-        @author_info = AuthorInfo.find(@use_id)
-        @trips_all = @author_info.trips
-        @trips = @trips_all.where("share_status = ?", 1)
+      if !@use_id.blank? or !@user_handle.blank?
+        @author_info = !@use_id.blank? ? AuthorInfo.find(@use_id) : AuthorInfo.find_by_author_handle(@user_handle)
+        if !@author_info.blank?
+          @trips_all = @author_info.trips
+          @trips = @trips_all.where("share_status = ?", 1)
         
         
-        @useful_count = 0
-        @trip_count = @trips.size 
-        @trip_duration_count = 0
-        @trip_activities_count = 0
-        @trip_view_count = 0
+          @useful_count = 0
+          @trip_count = @trips.size 
+          @trip_duration_count = 0
+          @trip_activities_count = 0
+          @trip_view_count = 0
         
-        @trip_stats = @author_info.trip_stats
-        if !@trip_stats.blank?
-          @trip_stats.each { |trip_stat|
-            @useful_count = @useful_count + trip_stat.useful
-            @trip_duration_count = @trip_duration_count + trip_stat.trip_durations
-            @trip_activities_count = @trip_activities_count + trip_stat.trip_activities
-            @trip_view_count = @trip_view_count + trip_stat.trip_views            
-          }
-        end
-        @trips_unpublished = @trips_all.where("share_status = ?", 0)
+          @trip_stats = @author_info.trip_stats
+          if !@trip_stats.blank?
+            @trip_stats.each { |trip_stat|
+              @useful_count = @useful_count + trip_stat.useful
+              @trip_duration_count = @trip_duration_count + trip_stat.trip_durations
+              @trip_activities_count = @trip_activities_count + trip_stat.trip_activities
+              @trip_view_count = @trip_view_count + trip_stat.trip_views            
+            }
+          end
+          @trips_unpublished = @trips_all.where("share_status = ?", 0)
         
-        message = ""
-        # if @trips_unpublished.size > 0
-        #   message = "We would love to see your private trips."          
-        # end
+          message = ""
+          # if @trips_unpublished.size > 0
+          #   message = "We would love to see your private trips."          
+          # end
     
-        if !current_author_info.blank? and self.is_system_created_account current_author_info.email
-          message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
-        end
+          if !current_author_info.blank? and self.is_system_created_account current_author_info.email
+            message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
+          end
         
-        flash[:alert] = message.html_safe if message != ""
-        format.html # about_edit.html.erb
+          flash[:alert] = message.html_safe if message != ""
+          format.html # about_edit.html.erb
+        else
+          @not_found_path = params[:not_found]
+          raise ActionController::RoutingError.new("Not found")
+        end
       else
-        format.html { redirect_to root_url() }
+        @not_found_path = params[:not_found]
+        raise ActionController::RoutingError.new("Not found")
       end
     end        
   end

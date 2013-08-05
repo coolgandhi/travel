@@ -29,7 +29,6 @@
 
 .touch{
   @media only screen and (orientation:portrait) and (max-width: $break-large - 1){
-    .container { display:none; }
     #warning-message { display:block; }
   }
 }

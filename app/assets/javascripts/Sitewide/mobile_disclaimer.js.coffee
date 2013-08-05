@@ -29,7 +29,6 @@
       width = $(window).width()
       if(width < height) 	      
         $('#warning-message').show()
-        $('.container').hide()
 
     $(window).bind "resize", (e) ->
       if site_wide_namespace.isMobile.any()  
@@ -37,9 +36,7 @@
         width = $(window).width()
         if(width < height) 	      
           $('#warning-message').show()
-          $('.container').hide()
         else
           $('#warning-message').hide()
-          $('.container').show()
       
 ) window.site_wide_namespace = window.site_wide_namespace or {}, jQuery

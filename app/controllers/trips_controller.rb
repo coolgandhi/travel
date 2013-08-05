@@ -312,7 +312,7 @@ class TripsController < ApplicationController
       author_user = SecureRandom.uuid
       author_user = author_user.gsub('-', '')
       author_user = author_user + "@youremail.com"
-      @auth_user = AuthorInfo.new(:author_name => 'Guest', :email => author_user , :password => 'password', :password_confirmation => 'password')
+      @auth_user = AuthorInfo.new(:author_name => 'Guest', :email => author_user , :password => 'password', :password_confirmation => 'password', :provider => 'normal')
      # for future use once we enable account confirmation thry email 
      # current_author_info.skip_confirmation!
      #http://stackoverflow.com/questions/8672189/devise-skip-confirmation-not-working
