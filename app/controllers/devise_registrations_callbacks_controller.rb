@@ -6,7 +6,11 @@ class DeviseRegistrationsCallbacksController < Devise::RegistrationsController
       if !session[:return_to].blank?
         session.delete(:return_to)
       else  
-        author_page_author_info_path(resource) 
+        if !resource.author_handle.blank? 
+          "/" + resource.author_handle
+        else
+          author_page_author_info_path(resource) 
+        end
       end
     end
 end

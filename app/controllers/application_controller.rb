@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   
   def after_sign_in_path_for(resource)
-     request.env['omniauth.origin'] || stored_location_for(resource) || author_page_author_info_url(current_author_info.id, :protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http")
+     request.env['omniauth.origin'] || stored_location_for(resource) || !current_author_info.author_handle.blank? ? "/" + current_author_info.author_handle  : author_page_author_info_url(current_author_info.id, :protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http")
    end
    
   helper_method :admin?

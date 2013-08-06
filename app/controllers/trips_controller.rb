@@ -224,13 +224,21 @@ class TripsController < ApplicationController
       @trip.destroy
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to author_page_author_info_path(@author_info)
+      if !@author_info.author_handle.blank? 
+        redirect_to "/" + @author_info.author_handle
+      else
+        redirect_to author_page_author_info_path(@author_info)
+      end
       return
     end 
 
     respond_to do |format|
-      format.html { redirect_to author_page_author_info_path(@author_info), notice: 'Trip was successfully deleted.' }
-      format.json { head :no_content }
+      if !@author_info.author_handle.blank?
+        format.html { redirect_to  "/" + @author_info.author_handle }
+      else
+        format.html { redirect_to author_page_author_info_path(@author_info), notice: 'Trip was successfully deleted.' }
+        format.json { head :no_content }
+      end
     end
   end
 
