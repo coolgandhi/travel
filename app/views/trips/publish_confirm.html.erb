@@ -2,6 +2,11 @@
   chalo.io - Review Trip Summary
 <% end %>
 
+
+<!-- Begin Cover Image Select for Trip-->
+<%= render "shared/publish/cover_select_image_modal" %>
+<!-- End Cover Image Select for Trip-->
+
 <div class = "container publish_container">
   
   <div class="publish_flash_message">
@@ -38,8 +43,17 @@
           
           <div class = "pt_gray_box">
             <%= render "shared/publish/publish_trip_confirm_form", :f => f  %>
+            <div class="control-group">
+              <div class="controls">
+                <% if @trip.share_status == 0 %>
+                  <%= f.submit "Publish Trip", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
+                <% elsif @trip.share_status == 1 %>
+                  <%= f.submit "Update Trip", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary btn-flat-large pull-right" %>
+                <% end %>
+              </div>
+            </div>
           </div>
-          
+                    
           <div class = "row">
             <div class = "span12">
               <p class = "centerize">
@@ -57,15 +71,6 @@
             </div>
           </div>
 
-          <div class="control-group">
-            <div class="controls">
-              <% if @trip.share_status == 0 %>
-                <%= f.submit "Publish Trip", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-success btn-flat-large pull-right" %>
-              <% elsif @trip.share_status == 1 %>
-                <%= f.submit "Update Trip", :name => @trip_name, :id => "trip_form_submit", :class => "btn-flat btn-flat-primary btn-flat-large pull-right" %>
-              <% end %>
-            </div>
-          </div>
 
         <% end %>
         <div class="error_msg"></div>
