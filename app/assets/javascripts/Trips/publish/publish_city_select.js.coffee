@@ -33,7 +33,11 @@
         event.preventDefault()
         $(this).val ui.item.label
         if $('#trip_trip_summary') then $('#trip_trip_summary').val("Tell us more about the time you went to " + ui.item.value.name) #on select put an auto summary
-        if $('#trip_trip_name') then $('#trip_trip_name').val("My Awesome Time in "+ ui.item.value.name) #on select put an auto title
+        my_awesome_time = "My Awesome Time in "+ ui.item.value.name
+        if my_awesome_time.length > 40
+          my_awesome_time = my_awesome_time.substring(0, 36)
+          my_awesome_time = my_awesome_time + "..."
+        if $('#trip_trip_name') then $('#trip_trip_name').val(my_awesome_time) #on select put an auto title
         $('#latlong').val (ui.item.value.lat + "," + ui.item.value.lng )
         $('#locationval').val(ui.item.value.name + "," + ui.item.value.adminName1 + "," + ui.item.value.countryName)
         $('#trip_location_id').val(ui.item.value.geonameId)
