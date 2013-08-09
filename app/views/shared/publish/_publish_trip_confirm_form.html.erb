@@ -1,6 +1,4 @@
-  <%= f.hidden_field :image_url, :class => "selected_images" %>
-  <%= hidden_field_tag :latlong, @latlong %>
-  <%= hidden_field_tag :locationval, @location_val %>    
+
   
   <div class="control-group">
     <label class="control-label">Give a short summary</label>
@@ -58,6 +56,9 @@
 </div>
 
 <% if controller.action_name == "publish_confirm" %>
+  <%= f.hidden_field :image_url, :class => "selected_images" %>
+  <%= hidden_field_tag :latlong, @latlong %>
+  <%= hidden_field_tag :locationval, @location_val %>
   <div class="control-group">
     <label class="control-label">Make your trip public and include it in search results (you can edit this later)</label>    
     <div class="controls">
