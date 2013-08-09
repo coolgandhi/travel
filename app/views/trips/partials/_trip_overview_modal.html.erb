@@ -67,8 +67,10 @@
           </div>
         </div>
         <div class="om_right_side">
-          <%= link_to @trip do %>
-            <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(@trip, :thumb, 300, 0) %>
+          <% use_this_url, which_url_msg = upload_or_foursquare_image_url_picker(@trip, :thumb, 300, 0) %>
+          <% if @other_activity_count > 0 or @eatery_activity_count > 0 %>
+            <%= link_to image_tag(use_this_url, {:class => "image_link_thumbnail"}), "#", :onclick => 'trips_namespace.gallery.goToPage(0);' %>
+          <% else %>
             <%= image_tag(use_this_url, {:class => "image_link_thumbnail"}) %>
           <% end %>
         </div>

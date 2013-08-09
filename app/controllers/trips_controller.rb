@@ -284,11 +284,15 @@ class TripsController < ApplicationController
   def daymapinfo
     begin
       @trip = Trip.find(params[:id])
-      @trip_details = @trip.trip_activities.where("activity_day = ?", params[:activity_day]).first.prev_activities_sequence_number
-      @current_activity = @trip_details.first.id
-      #logger.info { "\n\ntripdetails...  #{@trip_details.inspect} #{@current_activity}"}
+      @trip_activ = @trip.trip_activities.where("activity_day = ?", params[:activity_day]).first
+      @day_map_info = ""
+      if !@trip_activ.blank?
+        @trip_details = @trip_activ.prev_activities_sequence_number
+        @current_activity = @trip_details.first.id
+        #logger.info { "\n\ntripdetails...  #{@trip_details.inspect} #{@current_activity}"}
     
-      @day_map_info = view_context.get_trip_map_info @trip_details, @current_activity
+        @day_map_info = view_context.get_trip_map_info @trip_details, @current_activity
+      end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip activity not found"
       redirect_to :controller => 'trips', :action => 'index'
