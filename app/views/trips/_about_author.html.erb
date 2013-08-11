@@ -1,70 +1,74 @@
   
 <div class = "auth_container">
-	<div class ="about_author_main">
-  	<h3 class = "author_title">About the Author</h3>
-  	<hr class="auth_hr">
-  	<% if !@trip.author_info.self_image.blank? %>
-       <div class="auth_picture">
-         <%= image_tag(@trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
-       </div>
-    <% else %>
-    	<div class="auth_picture">
-        <%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
-  	 </div>
-  	<% end %>
-  	<div class="auth_description">
-  		<h4><%= @trip.author_info.author_name %></br><small class="auth_city"><%= @trip.author_info.city %>, <%= @trip.author_info.state %> </small></h4>
-  		<!-- <div class="auth_social_link"><%#= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "auth_social_icon"), raw("https://twitter.com/#{@author.twitter_handle}"), :target => "_blank"%>
-  			<a href="https://twitter.com/#{@author.twitter_handle}" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @ <%= @trip.author_info.twitter_handle %></a>
-      </div> -->
-      <% if @trip.author_info.twitter_handle != nil and @trip.author_info.twitter_handle != "" %>
-        <div>
-          <iframe allowtransparency="true" frameborder="0" scrolling="no"
-          src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @trip.author_info.twitter_handle %>"
-          style="width:300px; height:20px;"></iframe>
-        </div>
-      <% end %>
+  <% if !@trip.author_info.blank? %>
+  	<div class ="about_author_main">
+    	<h3 class = "author_title">About the Author</h3>
+    	<hr class="auth_hr">
+    	<% if !@trip.author_info.self_image.blank? %>
+         <div class="auth_picture">
+           <%= image_tag(@trip.author_info.self_image_url(:thumb), :alt => "profile", :class => "auth_img_tag") %>
+         </div>
+      <% else %>
+      	<div class="auth_picture">
+          <%= image_tag avatar_url(@trip.author_info), :alt => "profile", :class => "auth_img_tag" %>
+    	 </div>
+    	<% end %>
+    	<div class="auth_description">
+    		<h4><%= @trip.author_info.author_name %></br><small class="auth_city"><%= @trip.author_info.city %>, <%= @trip.author_info.state %> </small></h4>
+    		<!-- <div class="auth_social_link"><%#= link_to image_tag('/assets/logos/twitter-bird-white-on-blue.png', :class=> "auth_social_icon"), raw("https://twitter.com/#{@author.twitter_handle}"), :target => "_blank"%>
+    			<a href="https://twitter.com/#{@author.twitter_handle}" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @ <%= @trip.author_info.twitter_handle %></a>
+        </div> -->
+        <% if @trip.author_info.twitter_handle != nil and @trip.author_info.twitter_handle != "" %>
+          <div>
+            <iframe allowtransparency="true" frameborder="0" scrolling="no"
+            src="//platform.twitter.com/widgets/follow_button.html?screen_name=<%= @trip.author_info.twitter_handle %>"
+            style="width:300px; height:20px;"></iframe>
+          </div>
+        <% end %>
 
-      <!-- begin auth_moreinfo -->
-      <div class="auth_moreinfo">
-        <lead><%= @trip.author_info.about %></lead>
-      </div>
-      <!-- end auth_moreinfo -->
-  	</div>
+        <!-- begin auth_moreinfo -->
+        <div class="auth_moreinfo">
+          <lead><%= @trip.author_info.about %></lead>
+        </div>
+        <!-- end auth_moreinfo -->
+    	</div>
   	    
 
     
-    <div class="auth_call_action centerize">
-      <p>We hope you enjoyed this trip summary as much as we did showing it.</p>
-      <!-- Begin Like Box -->
-      <div class="likebox">
-        <span class = "trip_useful_message">Was this trip summary useful?</span>
-        <span type="submit" class="useful_button" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="swipeview_useful_button" name="commit">
-          <i class="icon-heart-empty"></i>
-        </span>
-        <span class = "counter_o" style = "display: <%= (!@trip_stats.blank? and @trip_stats.useful > 0) ? "block" : "none" %>">
-          <i></i>
-          <u></u>
-          <span class = "trip_useful_counter_div">
-          <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
-            <%= @trip_stats.useful %>
-          <% else %>
-            0  
-          <% end %>
+      <div class="auth_call_action centerize">
+        <p>We hope you enjoyed this trip summary as much as we did showing it.</p>
+        <!-- Begin Like Box -->
+        <div class="likebox">
+          <span class = "trip_useful_message">Was this trip summary useful?</span>
+          <span type="submit" class="useful_button" data-usefulurl="<%= publish_up_vote_trip_url(@trip) %>" id="swipeview_useful_button" name="commit">
+            <i class="icon-heart-empty"></i>
           </span>
-        </span>
-      </div>
-      <!-- End Like Box -->
+          <span class = "counter_o" style = "display: <%= (!@trip_stats.blank? and @trip_stats.useful > 0) ? "block" : "none" %>">
+            <i></i>
+            <u></u>
+            <span class = "trip_useful_counter_div">
+            <% if !@trip_stats.blank? and @trip_stats.useful >  0 %>
+              <%= @trip_stats.useful %>
+            <% else %>
+              0  
+            <% end %>
+            </span>
+          </span>
+        </div>
+        <!-- End Like Box -->
 
-      <hr class="auth_hr">
+        <hr class="auth_hr">
 
-      <p>Join Chalo to Share Your Awesome Trips</p>
-      <p class = "centerize">
-      <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-success wn_signup_button" %>
-      </p>
+        <p>Join Chalo to Share Your Awesome Trips</p>
+        <p class = "centerize">
+        <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-success wn_signup_button" %>
+        </p>
     
-    </div>
+      </div>
 
-	</div>
+  	</div>
+  <% else %>
+    <span> Author information unknown </span>
+  <% end%>
 </div>
 
