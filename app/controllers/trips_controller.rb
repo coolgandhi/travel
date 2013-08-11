@@ -75,7 +75,7 @@ class TripsController < ApplicationController
       @trip_feedback = @trip.trip_feedbacks.new
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end 
 
@@ -110,7 +110,7 @@ class TripsController < ApplicationController
       @location_val = @location_detail.city + "," +  @location_detail.state + "," + @location_detail.country
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end 
   end
@@ -177,7 +177,7 @@ class TripsController < ApplicationController
       end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end 
 
@@ -251,7 +251,7 @@ class TripsController < ApplicationController
       @partial_layout = params[:layout]
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end 
     
@@ -294,8 +294,8 @@ class TripsController < ApplicationController
         @day_map_info = view_context.get_trip_map_info @trip_details, @current_activity
       end
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Trip activity not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      flash[:notice] = "Trip not found"
+      redirect_to root_url()
       return
     end
     
@@ -425,7 +425,7 @@ class TripsController < ApplicationController
          e[:activity_sequence_number]}
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end 
   end
@@ -445,7 +445,7 @@ class TripsController < ApplicationController
        @trip_publish = "publish_update"
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end
     respond_to do |format|
@@ -466,8 +466,8 @@ class TripsController < ApplicationController
       @day = (@trip.duration.to_i + 1)
       @trip.duration = @day.to_s
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Trip activity not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      flash[:notice] = "Trip not found"
+      redirect_to root_url()
       return
     end
 
@@ -532,8 +532,8 @@ class TripsController < ApplicationController
          end       
        end
      rescue ActiveRecord::RecordNotFound
-       flash[:notice] = "Trip Day not found"
-       redirect_to :controller => 'trips', :action => 'index'
+       flash[:notice] = "Trip not found"
+       redirect_to root_url()
        return
      end
 
@@ -553,8 +553,8 @@ class TripsController < ApplicationController
       @trip_activities = @trip.trip_activities.all.sort_by {|e| e[:activity_sequence_number]}
   
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Trip activity not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      flash[:notice] = "Trip not found"
+      redirect_to root_url()
       return
     end
 
@@ -589,8 +589,8 @@ class TripsController < ApplicationController
         flash[:alert] = message.html_safe
       end
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Trip activity not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      flash[:notice] = "Trip not found"
+      redirect_to root_url()
       return
     end
   end
@@ -609,7 +609,7 @@ class TripsController < ApplicationController
         
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
-      redirect_to :controller => 'trips', :action => 'index'
+      redirect_to root_url()
       return
     end
     respond_to do |format|
