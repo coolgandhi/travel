@@ -49,10 +49,14 @@ class TripsController < ApplicationController
     end
     
     respond_to do |format|
-      flash.now[:notice] = @message_with_trip_render
-      format.html  # index.html.erb
-      format.js # index.js.erb
-      format.json { render json: @trips }
+      if !@trips.blank?
+        flash.now[:notice] = @message_with_trip_render
+        format.html  # index.html.erb
+        format.js # index.js.erb
+        format.json { render json: @trips }
+      else
+        format.html { redirect_to root_url() }
+      end
     end
   end
 
