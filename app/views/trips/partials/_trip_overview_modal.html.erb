@@ -169,6 +169,10 @@
             </div>
             <!-- End overview modal left side -->
             <div class = "om_right_side">
+              <div class="launch_big_map hidden-phone">
+                <!-- Button to trigger modal -->
+                <a href="#trip_map_big_view_modal" role="button" class="btn big_map_launch_button" data-toggle="modal" data-day="<%= @sorted_activities[i][:activityday] %>">Enlarge</a>
+              </div>
               <div class = "modal_map" id="<%= "modal_map_#{@sorted_activities[i][:activityday]}"%>"></div>
             </div>
           </div>

@@ -1147,17 +1147,50 @@ div.rightcaption .ui-accordion-content {
  img{max-width:none}
 }
 
+.launch_big_map {
+  position: absolute; 
+  right:120px;
+  @include respond-to(portrait){
+    right:130px;
+  }
+  top:6px;
+  z-index:3000;
+  height: 17px !important;
+  .btn {
+      height: 17px !important;
+      padding-top: 1.5px;
+      outline: none;
+      background: white;
+      text-decoration-style: solid;
+      box-shadow:none !important;
+      font-weight: bold;
+      &:hover { color: $gray;
+      background: rgba(255, 255,255,0.6);}
+  }
+}
+
+#trip_map_big_view_modal {
+  left:30%;
+  top:40%;
+  padding: 0px;
+  .modal-body {max-height: 800px; padding: 0px;}
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: 0.95;
+}
+
 .modal_map{
  height: 100%;
  width: 100%;
- // position: absolute;
+ //position: absolute;
  // left:0;
  // top:40px;
  position: relative;
  img{max-width:none}
 }
 
-.mapModalMask{
+.mapModalMask {
   position: absolute;
   left: 0;
   top: 0;

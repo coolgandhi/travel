@@ -4,10 +4,13 @@
     # create a jQuery deferred object
     r = $.Deferred()
     num = 0.7
+    num_map = 0.9
     if Modernizr.touch or site_wide_namespace.isMobile.any()
       num = 1.5 
     $('#wrappiest').css "height", "" + Math.round(num * $(window).height())
     $('.wrapper_film').css "height", "" + Math.round(num * $(window).height())
+    $('#trip_map_big_view_modal').css "height", "" + Math.round(num_map * $(window).height())    
+    $('.modal_big_map').css "height", "" + Math.round(num_map * $(window).height())
     setTimeout (->  
       # and call `resolve` on the deferred object, once you're done
       r.resolve()
@@ -16,7 +19,11 @@
     r
 
   trips_namespace.wrap_widths = ->
-    $('#comments').css "width", "" + Math.round(.6 * $(window).width())
+    num_map = 0.9
+    #$('#comments').css "width", "" + Math.round(.7 * $(window).width())
+    $('#trip_map_big_view_modal').css "width", "" + Math.round(num_map * $(window).width())
+    $('.modal_big_map').css "width", "" + Math.round(num_map * $(window).width())
+  
 
   #this initiates the iscrolls
   trips_namespace.create_iscrollers = ->
@@ -31,9 +38,13 @@
   # calling the methods above
   $(document).ready ->
     trips_namespace.wrap_heights()
-    # # wrap_widths()
-    $(window).on "resize", -> trips_namespace.wrap_heights()
-    $(window).on "orientationchange", -> trips_namespace.wrap_heights()
+    trips_namespace.wrap_widths()
+    $(window).on "resize", -> 
+      trips_namespace.wrap_heights()
+      trips_namespace.wrap_widths()
+    $(window).on "orientationchange", -> 
+      trips_namespace.wrap_heights()
+      trips_namespace.wrap_widths()
     # # $(window).on "resize", wrap_widths
     trips_namespace.wrap_heights().done trips_namespace.create_iscrollers
     

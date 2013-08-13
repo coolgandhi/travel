@@ -44,8 +44,8 @@
         complete: ->
           $(".swipe_loading_indicator").hide()
         success: (data) ->
-          restore(mapcontainer)
-          addmarkers(data, mapcontainer)
+          trips_activities_namespace.restore(mapcontainer)
+          trips_activities_namespace.addmarkers(data, mapcontainer)
           # addpolyline(data, mapcontainer)
           return     
 
@@ -73,8 +73,8 @@
         complete: ->
           $(".swipe_loading_indicator").hide()
         success: (data) ->
-          restore(mapcontainer)
-          addmarkers(data, mapcontainer)
+          trips_activities_namespace.restore(mapcontainer)
+          trips_activities_namespace.addmarkers(data, mapcontainer)
           addpolyline(data, mapcontainer)
           return     
 
@@ -107,19 +107,19 @@
         complete: ->
           $(".swipe_loading_indicator").hide()
         success: (data) ->
-          restore(mapcontainer)
-          addmarkers(data, mapcontainer)
+          trips_activities_namespace.restore(mapcontainer)
+          trips_activities_namespace.addmarkers(data, mapcontainer)
           addpolyline(data, mapcontainer)
           return       
                     
-  restore = (mapcontainer) ->
+  trips_activities_namespace.restore = (mapcontainer) ->
     mapcontainer.gmap3('destroy') 
     # container = mapcontainer.parent()
     # mapcontainer.remove()
     # container.append '<div id="modal_map"></div>'
     return
 
-  addmarkers = (data, mapcontainer) ->
+  trips_activities_namespace.addmarkers = (data, mapcontainer) ->
     arrobject = []
     $.each data, (i, name) ->
       spl = data[i].location.split(",")
