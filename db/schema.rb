@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723212755) do
+ActiveRecord::Schema.define(:version => 20130814062017) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(:version => 20130723212755) do
   end
 
   add_index "food_activities", ["restaurant_detail_id"], :name => "restaurant_detail_index"
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "location_activities", :force => true do |t|
     t.string   "activity_id"
@@ -303,8 +314,10 @@ ActiveRecord::Schema.define(:version => 20130723212755) do
     t.text     "self_image_tmp"
     t.text     "tags"
     t.integer  "share_status",       :default => 1
+    t.string   "slug"
   end
 
   add_index "trips", ["author_id"], :name => "trips_author_id_index"
+  add_index "trips", ["slug"], :name => "index_trips_on_slug"
 
 end

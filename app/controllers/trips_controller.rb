@@ -76,8 +76,15 @@ class TripsController < ApplicationController
       if !@trip_stats.blank? and @trip.share_status == 1  
         TripStat.increment_counter(:trip_views, @trip_stats.id)
       end
+
+
+      if request.path != trip_path(@trip)
+        redirect_to @trip, status: :moved_permanently 
+        return 
+      end
+
       @trip_feedback = @trip.trip_feedbacks.new
-    rescue ActiveRecord::RecordNotFound
+      rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to root_url()
       return
@@ -91,6 +98,7 @@ class TripsController < ApplicationController
         format.html { redirect_to root_url()}         
       end
     end
+
   end
 
   # GET /trips/new

@@ -22,6 +22,13 @@ class Trip < ActiveRecord::Base
   validates_numericality_of :duration, :message => "enter a valid length of the trip" 
   validates :rank_score, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :message => "score should be between 0 and 100"}
   
+  extend FriendlyId
+  friendly_id :trip_name, use: [:slugged, :history] 
+
+#  def should_generate_new_friendly_id?
+#    new_record?
+#  end
+
   def days_in_trip
     self.trip_activities.order("trip_activities DESC").maximum(:activity_day)
   end

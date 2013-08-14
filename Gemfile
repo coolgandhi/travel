@@ -60,3 +60,5 @@ gem 'jquery-ui-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+ gem 'friendly_id'
