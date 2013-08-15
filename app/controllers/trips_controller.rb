@@ -77,12 +77,6 @@ class TripsController < ApplicationController
         TripStat.increment_counter(:trip_views, @trip_stats.id)
       end
 
-
-      if request.path != trip_path(@trip)
-        redirect_to @trip, status: :moved_permanently 
-        return 
-      end
-
       @trip_feedback = @trip.trip_feedbacks.new
       rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
@@ -91,7 +85,11 @@ class TripsController < ApplicationController
     end 
 
     respond_to do |format|
-      if @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id.to_s == current_author_info.id.to_s)
+
+      if request.path != trip_path(@trip)
+        redirect_to @trip, status: :moved_permanently 
+        return 
+      elsif @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id.to_s == current_author_info.id.to_s)
         format.html # show.html.erb
       else
         flash[:notice] = "Trip not found"

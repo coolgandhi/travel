@@ -25,10 +25,6 @@ class Trip < ActiveRecord::Base
   extend FriendlyId
   friendly_id :trip_name, use: [:slugged, :history] 
 
-#  def should_generate_new_friendly_id?
-#    new_record?
-#  end
-
   def days_in_trip
     self.trip_activities.order("trip_activities DESC").maximum(:activity_day)
   end
