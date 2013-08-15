@@ -86,11 +86,13 @@ class TripsController < ApplicationController
 
     respond_to do |format|
 
-      if request.path != trip_path(@trip)
-        redirect_to @trip, status: :moved_permanently 
-        return 
-      elsif @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id.to_s == current_author_info.id.to_s)
-        format.html # show.html.erb
+
+      if @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id.to_s == current_author_info.id.to_s)
+        if request.path != trip_path(@trip)
+           format.html { redirect_to @trip, status: :moved_permanently } 
+        else 
+            format.html # show.html.erb
+        end
       else
         flash[:notice] = "Trip not found"
         format.html { redirect_to root_url()}         
