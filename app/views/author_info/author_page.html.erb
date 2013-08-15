@@ -92,7 +92,7 @@
 
               <div class = "ap_name_div author_profile_small_screen">
                 <span class = "ap_float_left_span author_profile_small_screen">
-                  <%= link_to("Website", self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> 
+                  <%= link_to(@author_info.website, self.url_with_protocol(@author_info.website), :target => "_blank") unless @author_info.website.blank? %> 
                 </span>
 
                 <%unless @author_info.twitter_handle.blank? %>
