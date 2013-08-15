@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814062017) do
+ActiveRecord::Schema.define(:version => 20130814071014) do
 
   create_table "activity_duration_types", :force => true do |t|
     t.string   "activity_duration_type_id"
@@ -318,6 +318,6 @@ ActiveRecord::Schema.define(:version => 20130814062017) do
   end
 
   add_index "trips", ["author_id"], :name => "trips_author_id_index"
-  add_index "trips", ["slug"], :name => "index_trips_on_slug"
+  add_index "trips", ["slug"], :name => "trip_slug_index"
 
 end
