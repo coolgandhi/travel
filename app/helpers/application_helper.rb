@@ -253,6 +253,39 @@ module ApplicationHelper
   end
   
   
+  def create_empty_location_with_id(venue_id, source)
+    activity_detail = LocationDetail.new
+    activity_detail.attributes = { 
+      :location_detail_id => venue_id, 
+      :address1 => "", 
+      :city => "", 
+      :address2 => "", 
+      :country => "", 
+      :state => "", 
+      :latitude => "", 
+      :longitude => "", 
+      :phone => "", 
+      :zip => "", 
+      :name => "To be added soon - Sorry!", 
+      :website => "", 
+      :category => "", 
+      :description => "", 
+      :open_hours => "", 
+      :image_urls => "", 
+      :location_id => "",
+      :rating => "",
+      :twitter => "",
+      :canonical_url => "",
+      :source => source
+    }
+    
+    if !activity_detail.save!
+      Rails.logger.info "error #{@activity_detail.errors.inspect} \n" 
+      raise "Venue savings error #{@activity_detail.errors} "
+    end
+      
+    activity_detail
+  end
   
   def create_location_venue(venue_id, location_id, update=0, venue=nil)
     FoursquareInteraction.foursquare_client

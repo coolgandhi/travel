@@ -494,17 +494,24 @@ class TripActivitiesController < ApplicationController
       else             
         @activity_detail = LocationDetail.find_by_location_detail_id(params[:venueid])
       end
+      
+      @category = "LocationActivity"
       if @activity_detail.blank?
         @activity_detail = RestaurantDetail.find_by_restaurant_detail_id(params[:venueid])
         if @activity_detail.blank?
+          FoursquareInteraction.foursquare_client
           @venue, error = FoursquareInteraction.venue_info(params[:venueid])
+          enter = 1
           if !@venue.blank?
-            @category = get_closest_category(@venue[:categories])
+             enter = 2
+             @category = get_closest_category(@venue[:categories])
           else
-            enter = 1
+            @activity_detail = create_empty_location_with_id(params[:venueid], "foursquare")
+            if @activity_detail.blank?
+              enter = 0
+            end
           end
           @activity = nil
-          @activity_detail = nil      
         else
           enter = 1
           @category = "FoodActivity"            
@@ -519,7 +526,7 @@ class TripActivitiesController < ApplicationController
         @activity_detail.save # save the location id if not present
       end
             
-      if enter == 1
+      if enter >= 1
         @latlong, @location_detail = find_closest_location_latlong_for_activity(params[:location_id].nil? ? "": params[:location_id], @trip.location_id)
         
        #@latlong = find_location_latlong(@trip)
@@ -540,16 +547,17 @@ class TripActivitiesController < ApplicationController
             @activity.duration = params[:duration]
             @activity.quick_tip = params[:quick_tip]
             @activity.image_urls = params[:selected_images]
-            @activity.restaurant_detail_id = params[:venueid]
-            @activity_detail = @activity_detail.blank? ? @activity.restaurant_detail : @activity_detail
-            if (@activity_detail.blank?)
+            @activity.restaurant_detail_id = params[:venueid]            
+            if enter == 2 
+              # activity detail is not set and if we reach this condition then we need to create the venue, otherwise not
+               @activity.restaurant_detail_id = @venue[:id]
               @activity_detail = create_food_venue(@venue[:id], params[:location_id], 0, @venue)
               @activity.restaurant_detail = @activity_detail
             end
           when "TransportActivity"
             logger.info " transport activity \n"
             @activity_detail = ""
-            @activity = TransportActivity.new(params[:transport_activity])        
+            @activity = TransportActivity.new(params[:transport_activity])            
           else
             logger.info " location activity \n"
             @activity = LocationActivity.new
@@ -558,8 +566,9 @@ class TripActivitiesController < ApplicationController
             @activity.quick_tip = params[:quick_tip]
             @activity.image_urls = params[:selected_images]
             @activity.location_detail_id = params[:venueid]
-            @activity_detail = @activity_detail.blank? ? @activity.location_detail : @activity_detail
-            if (@activity_detail.blank?)
+            if enter == 2 
+              # activity detail is not set and if we reach this condition then we need to create the venue, otherwise not
+              @activity.location_detail_id = @venue[:id]
               @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)
               @activity.location_detail = @activity_detail
             end

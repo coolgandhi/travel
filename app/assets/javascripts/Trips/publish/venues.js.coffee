@@ -32,11 +32,11 @@
             );
             $('.publish_trip_confirm_stats').html();
             $('.stats_checkins').html(
-              item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            );
+              item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
+            ) if item.venue_stats != undefined
             $('.stats_rating').html(
               (Math.round( item.rating * 10 ) / 10) + " / 10"
-            );
+            ) if item.rating != undefined
             $('.stats_rating_header').html('<strong>4sq Rating</strong>');
             $('.stats_checkins_header').html('<strong>Total Check-ins</strong>');
           )

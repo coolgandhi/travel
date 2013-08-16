@@ -59,7 +59,7 @@ class VenuesController < ApplicationController
     if params[:venueid]
       FoursquareInteraction.foursquare_client
       @venue, error = FoursquareInteraction.venue_info(params[:venueid])
-      
+            
       if !@venue.blank?
         @venue_details[:venue_id] = @venue[:id]
         @venue_details[:canonicalUrl] = empty_string_if_value_nil(@venue[:canonicalUrl])
@@ -90,7 +90,7 @@ class VenuesController < ApplicationController
             @activity_detail = create_location_venue(@venue[:id], params[:location_id], 0, @venue)  
         end
       else
-        @venue_details = nil
+        @venue_details[:name] = "Sorry will update this info soon" 
       end
     end
     
