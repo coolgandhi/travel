@@ -30,7 +30,6 @@
               "<address>" + item.address1 + secondAddress +
               "</br>" + item.city + ", " + item.state + " " + item.zip + "</address>" 
             );
-            $('.publish_trip_confirm_stats').html();
             $('.stats_checkins').html(
               item.venue_stats.checkinsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
             ) if item.venue_stats != undefined
@@ -115,7 +114,6 @@
           $('.publish_trip_confirm_name').html('')
           $('.publish_trip_confirm_category').html('');
           $('.publish_trip_confirm_address').html('')
-          $('.publish_trip_confirm_stats').html('')
           $('.stats_checkins').html('')
           $('.stats_rating').html('')
           $('.stats_rating_header').html('')
