@@ -655,9 +655,9 @@ class TripsController < ApplicationController
   def publish_up_vote
     begin
       @status = 0
-      @trip_stat = TripStat.find_by_trip_id(params[:id])
+      @trip = Trip.find(params[:id])
+      @trip_stat = TripStat.find_by_trip_id(@trip.id)
       if @trip_stat.nil?
-        @trip = Trip.find(params[:id])
         @trip_stat = TripStat.new
         #@trip.trip_stat.new(:trip_id => @trip.id)
         @trip_stat.trip_id = @trip.id
