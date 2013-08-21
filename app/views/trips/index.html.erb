@@ -12,7 +12,7 @@
 <% end %>
 
 <%= content_for :title do %>
-  <%= (params[:place] == nil) ? "chalo.io": params[:place] %>
+  <%= (params[:place_text_field].blank?) ? "Chalo - Trip Summaries to inspire travel planning": "Chalo - Trip Summaries to " + params[:place_text_field] %>
 <% end %>
 
 <%= content_for :description do %>
