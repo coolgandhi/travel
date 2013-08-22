@@ -6,7 +6,7 @@
       required: true
 
     trips_namespace.pubUserDescription_rule = 
-      required: true
+      required: false
       maxlength: 200
         
     trips_namespace.pubQuickTip_rule =
@@ -20,7 +20,7 @@
       required: true
       min: 1
 
-    trips_namespace.pubLocationPlace_message = "Please select a Location"
+    trips_namespace.pubLocationPlace_message = "Please select a valid Location"
 
     trips_namespace.pubUserDescription_message = "Please enter a Description with less than 200 characters"
     
@@ -34,11 +34,13 @@
     trips_namespace.pubFormCreateRules = 
       ignore: []  
       rules:
-        "publish_place_dropdown_field": trips_namespace.pubLocationPlace_rule
+        "trip[location_id]" : trips_namespace.pubVenueId_rule
+       # "publish_place_dropdown_field": trips_namespace.pubLocationPlace_rule
         "trip[trip_name]": trips_namespace.pubTitle_rule
         "trip[trip_summary]": trips_namespace.pubUserDescription_rule
       messages:
-        "publish_place_dropdown_field": trips_namespace.pubLocationPlace_message 
+        "trip[location_id]" : trips_namespace.pubLocationPlace_message 
+       # "publish_place_dropdown_field": trips_namespace.pubLocationPlace_message 
         "trip[trip_name]": "Please enter a Trip Title with fewer than 40 characters"
         "trip[trip_summary]": "Please enter a Summary with fewer than 200 characters"
       success: (label, element) ->
