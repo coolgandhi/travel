@@ -118,13 +118,19 @@
           $('.stats_rating').html('')
           $('.stats_rating_header').html('')
           $('.stats_checkins_header').html('')
-          $.ajax 
+          $.ajax
+            beforeSend: ->
+              $(".swipe_loading_indicator_header").show()
+              $(".select_cover_image_spinner").show() 
             url: window.location.protocol + "//" + window.location.host + "/venues/pick.json"
             dataType: "json"
             data: 
               total: 20
               ven: request.term
               latlong: $('#trip_activity_latlong').val()
+            complete: ->
+              $(".swipe_loading_indicator_header").hide()
+              $(".select_cover_image_spinner").hide()
             success: (data) ->
               if data != null
                 response $.map(data, (item) ->

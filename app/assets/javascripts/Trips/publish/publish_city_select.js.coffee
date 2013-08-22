@@ -7,6 +7,7 @@
         $.ajax 
           beforeSend: ->
             $(".swipe_loading_indicator_header").show()
+            $(".select_cover_image_spinner").show()
           url: "http://ws.geonames.org/searchJSON"
           dataType: 'jsonp'
           data: 
@@ -17,6 +18,7 @@
             username: 'coolgandhi'
           complete: ->
             $(".swipe_loading_indicator_header").hide()
+            $(".select_cover_image_spinner").hide()
           success: (data) ->
             response $.map(data.geonames, (item) ->
               label: item.name + ", " + item.adminName1 + ", " + item.countryName
@@ -51,6 +53,7 @@
           $.ajax 
             beforeSend: ->
               $(".swipe_loading_indicator_header").show()
+              $(".select_cover_image_spinner").show()
             url: "http://ws.geonames.org/searchJSON"
             dataType: 'jsonp'
             data: 
@@ -61,6 +64,7 @@
               username: 'coolgandhi'
             complete: ->
               $(".swipe_loading_indicator_header").hide()
+              $(".select_cover_image_spinner").hide()              
             success: (data) ->
               response $.map(data.geonames, (item) ->
                 label: item.name + ", " + item.adminName1 + ", " + item.countryName
