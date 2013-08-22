@@ -403,7 +403,7 @@ class TripsController < ApplicationController
           send_alert = 1
           message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
         end
-        send_alert == 0 ? format.html { redirect_to publish_edit_trip_url(@trip), notice: message.html_safe } : format.html { redirect_to publish_edit_trip_url(@trip), alert: message.html_safe } 
+        send_alert == 0 ? format.html { redirect_to publish_edit_trip_url(@trip), {:notice => message.html_safe} } : format.html { redirect_to publish_edit_trip_url(@trip), :flash => {:error => message.html_safe} } 
         format.json { render json: @trip, status: :created, location: @trip }
       else
         logger.info "#{@trip.errors.inspect}"
@@ -598,7 +598,7 @@ class TripsController < ApplicationController
       if self.is_system_created_account current_author_info.email
         session[:return_to] ||= request.referer
         message = " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
-        flash[:alert] = message.html_safe
+        flash[:error] = message.html_safe
       end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
@@ -628,7 +628,7 @@ class TripsController < ApplicationController
       if self.is_system_created_account current_author_info.email
         message = "Please update your email and password before publishing the trip"
         session[:return_to] ||= request.referer
-        format.html { redirect_to edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") , alert: message }
+        format.html { redirect_to edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") ,  :flash => {:error => message} }
       else
         if @trip.update_attributes(params[:trip])
           if !@trip_stats.blank?
