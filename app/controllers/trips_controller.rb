@@ -87,7 +87,7 @@ class TripsController < ApplicationController
     respond_to do |format|
 
 
-      if @trip.share_status == 1 or  (!current_author_info.blank? and @trip.author_id.to_s == current_author_info.id.to_s)
+      if @trip.share_status == 1 or  (!current_author_info.blank? and (@trip.author_id.to_s == current_author_info.id.to_s or current_author_info.admin == true))
         if request.path != trip_path(@trip)
            format.html { redirect_to @trip, status: :moved_permanently } 
         else 
