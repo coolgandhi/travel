@@ -56,7 +56,6 @@ class AuthorInfo < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |author_info|
       author_info.provider = auth.provider
       author_info.uid = auth.uid
-      author_info.author_handle = auth.author_handle
       author_info.author_name = auth.info.name
       author_info.email = auth.info.email
       author_info.birthday = !auth.extra.raw_info.birthday.blank? ? Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y') : ""
