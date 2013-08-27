@@ -4,7 +4,7 @@
 
       <%= form_tag trips_path, :method => 'get', :class => 'results_hero_form', :remote => false do %>
         <span class = "hero_form_left">  
-          <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params["trip_location_id"].to_s), :multiple => false, :prompt => "Where would you like to go?" , :class => "results_place_dropdown_field selectpicker" %>
+          <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params["trip_location_id"].to_s), :multiple => false, :class => "results_place_dropdown_field selectpicker" %>
 
           <%= hidden_field_tag "place_text_field", params[:place], :class => "results_hidden_place_field", :value=> params["place_text_field"] %>
         
@@ -16,13 +16,13 @@
         <!--
         <div class="input-prepend hero_from_prepend">
           <span class="add-on">from</span>
-          <%= text_field_tag :from, params[:from], :class => "results_from_datefield input-small", :value => params["from"] %> 
+          <#%= text_field_tag :from, params[:from], :class => "results_from_datefield input-small", :value => params["from"] %> 
         </div>
         -->
-        <div class="input-append hero_days_append hidden-phone">
-          <%= select_tag :days, options_for_select((1..10).step(1).to_a.map{|s| ["#{s} Days", s]}, params[:days].blank? ? "" : params[:days]), :prompt => "# of Days", :class => "results_day_field selectpicker", :id => "results_day_field" %>
-        </div>  
-        <%= submit_tag "New Search", :name => nil, :class => 'btn-flat btn-flat-primary splash_submit_button mobile_splash_submit_button', :id => "search_submit_button"  %>
+        <div class="hero_days_append hidden-phone">
+           <%= select_tag :days, options_for_select((0..10).step(1).to_a.map{|s| s == 0 ? "" : ["#{s} Days", s]}, params[:days].blank? ? "" : params[:days]), :multiple => false, :class => "results_day_field", :id => "results_day_field" %>
+        </div>
+        <%= submit_tag "Chalo!", :name => nil, :class => 'btn btn-flat-warning splash_submit_button mobile_splash_submit_button', :id => "search_submit_button"  %>
       <% end %>
   <div class = "error_msg"></div>
   </div>

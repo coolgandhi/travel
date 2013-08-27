@@ -43,5 +43,6 @@
 
   jQuery ->
     trips_namespace.fireResultSearchBarJs()
+      
 
 ) window.trips_namespace = window.trips_namespace or {}, jQuery

@@ -46,10 +46,10 @@
       ignore: []
       rules:
         days: trips_namespace.day_rule
-        place_text_field: trips_namespace.place_rule
+        trip_location_id: trips_namespace.place_rule
       messages: 
         days: trips_namespace.day_err_message
-        place_text_field: trips_namespace.place_err_message
+        trip_location_id: trips_namespace.place_err_message
       success: (label, element) ->
         # $(element).parents('form').siblings(".error_msg").empty()
         return

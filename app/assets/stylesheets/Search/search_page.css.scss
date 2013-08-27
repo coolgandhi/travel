@@ -135,7 +135,7 @@
       max-width: 680px;
     }
   	.hero_form{
-      // margin: 0 auto;
+      margin: 0 15%;
       // width: 100%;
       padding: 5px;
       position: relative;
@@ -162,10 +162,19 @@
 
 .place_dropdown_field{
   margin-bottom: 0;
+  min-width: 220px;
   @include respond-to(portrait){
     margin-bottom: 2%;
   }
+  
+  .select2-choice {
+    .select2-arrow{
+      border-left: none !important;
+      background: none !important;
+    }
+  }
 }
+
 
 .ui-multiselect.traveler_type_multiselect{
   margin-bottom: 0;
@@ -214,13 +223,13 @@
   color: $black;
   margin-right: 5px;
   margin-bottom: 0;
-  .bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"]{
-    width: 100px;
-    margin-bottom: 0px;
-    span.caret{
-      border-top-color:#888888;
-    }
-  }  
+  // .bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"]{
+  //   width: 100px;
+  //   margin-bottom: 0px;
+  //  span.caret{
+  //     border-top-color:#888888;
+  //   }
+  // }  
 }
 
 .splash_submit_button{
@@ -285,12 +294,38 @@
 
 .results_place_dropdown_field{
   margin-bottom: 0;
-  @include respond-to(small){
+  min-width: 220px;
+  text-align: left;
+  @include respond-to(portrait){
     margin-top: 5px;
+  }
+  
+  .select2-choice {
+    border: 1px solid #cccccc !important;
+    background-color: #e6e6e6 !important; 
+    background-repeat: no-repeat !important;
+    background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6) !important;
+    .select2-arrow{
+      border-left: none !important;
+      background: none !important;
+    }
   }
 }
 
-
+.results_day_field {
+  min-width: 100px;
+  .select2-choice {
+    color: black !important;
+    border: 1px solid #cccccc !important;
+    background-color: #e6e6e6 !important; 
+    background-repeat: no-repeat !important;
+    background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6) !important;
+    .select2-arrow{
+       border-left: none !important;
+       background: none !important;
+    }
+  }
+}
 .ui-multiselect.results_traveler_type_multiselect{
   @extend .ui-multiselect.traveler_type_multiselect;
   margin-bottom: 0;

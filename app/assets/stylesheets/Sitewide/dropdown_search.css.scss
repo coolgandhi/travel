@@ -1,13 +1,26 @@
 /* Dropdown Search */
 .droptoggle_searchbar{
+  min-width: 220px;
   line-height: 20px;
   height: 25px;
   margin: 7px 0 !important;
   padding: 1px;
-  font-size: 12px;
+  font-size: 14px;
   .dropdown-toggle span.caret{
     border-top-color:#888888;
   }
+  
+  .select2-choice {
+     color: black !important;
+     border: 1px solid #cccccc !important;
+     background-color: #e6e6e6 !important; 
+     background-repeat: no-repeat !important;
+     background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6) !important;
+     .select2-arrow{
+        border-left: none !important;
+        background: none !important;
+     }
+   }
 }
 
 .droptoggle_menu{

@@ -25,14 +25,16 @@
           <!-- End Tag-Line Overlay -->
           <%= form_tag trips_path, :method => 'get', :class => 'hero_form' do %>
             <div class = "hero_form_left">  
-              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params[:place]), :multiple => false, :prompt => "Where would you like to go?", :class => "place_dropdown_field selectpicker" %>
+              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params[:place]), :multiple => false, :class => "place_dropdown_field selectpicker" %>
             </div>
               <%= hidden_field_tag "place_text_field", params[:place], :class => "hero-hidden-place-field" %>
             
-              <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "hero_trip_location_id" %>                          
+              <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "hero_trip_location_id", :value => '0' %>    
+            <!--                      
             <div class = "hero_form_left  hidden-phone">
-              <%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler_type_multiselect" %>                    
+              <#%= select_tag :traveler_type_id, options_from_collection_for_select(TravelerType.find(:all, :limit => 4), "traveler_type_id", "traveler_type_name", params[:traveler_type_id]), :multiple => true, :class => "traveler_type_multiselect" %>                    
             </div>
+            -->
             <!--
             <div class="input-prepend hero_from_prepend">
               <span class="add-on">from</span>
@@ -45,7 +47,7 @@
             </div> --> 
             <!-- END COMMENTING OUT THE DAYS FIELD -->
             
-            <%= submit_tag "Search Trips", :name => nil, :class => 'btn btn-primary splash_submit_button', :id => "search_submit_button" %>
+            <%= submit_tag "Chalo!", :name => nil, :class => 'btn btn-flat-warning splash_submit_button', :id => "search_submit_button" %>
           <% end %>
           <div class = "error_msg"></div>
         </div>

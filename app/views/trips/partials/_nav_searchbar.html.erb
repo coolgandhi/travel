@@ -1,7 +1,7 @@
 <%= form_tag trips_path, :method => 'get', :remote => false, :class => 'droptoggle_form' do %>
   <%= hidden_field_tag "show_hero", params[:show_hero], :value=> false %> 
-  <%= hidden_field_tag "place_text_field", params[:place], :placeholder => "Where would you like to go?", :class => "drophide-place-field", :id => "drophide-place-field" %>
-  <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "dropdown_trip_location_id" %> 
+  <%= hidden_field_tag "place_text_field", params[:place], :class => "drophide-place-field", :id => "drophide-place-field" %>
+  <%= hidden_field_tag "trip_location_id", params[:trip_location_id], :class => "dropdown_trip_location_id", :value => '0' %> 
 
   <div class="control-group">
     <div class="controls">
@@ -14,7 +14,7 @@
       <!--
         <div class="input-prepend from_prepend">
           <span class="add-on">from</span>  
-          <%= text_field_tag :from, params[:from], :class => "dropdown-from-datefield input-small", :id => "dropdown-from-datefield" %>
+          <%#= text_field_tag :from, params[:from], :class => "dropdown-from-datefield input-small", :id => "dropdown-from-datefield" %>
         </div>
       -->
       
@@ -29,7 +29,7 @@
   
   <div class="control-group button-control-group">
   <button type="button" class="btn-flat btn-flat-danger dropdown-close-button">Cancel</button>
-  <%= submit_tag "Search Trips", :name => nil, :class => 'btn-flat btn-flat-primary dropdown-search-button', :id => "search_submit_button"  %>
+  <%= submit_tag "Chalo!", :name => nil, :class => 'btn-flat btn-flat-warning dropdown-search-button', :id => "search_submit_button"  %>
   </div>
 <% end %>
 <div class = "small_error_msg"></div>
