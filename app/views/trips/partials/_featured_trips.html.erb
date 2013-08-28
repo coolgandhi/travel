@@ -1,4 +1,4 @@
-<% if (params[:featured] == '1') %>
+<% if (params[:featured] == '1' or params[:trip_location_id] == '0') %>
   <h3 class ="featured_results_title title_large hidden-phone">Featured Trip Summaries</h3>
   <h3 class ="featured_results_title title_subtitle visible-phone">Featured Trip Summaries</h3>
   <p class ="featured_results_subtitle title_subtitle hidden-phone">Check out these trips that our friends have taken</p>

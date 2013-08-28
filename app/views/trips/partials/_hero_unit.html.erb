@@ -25,7 +25,7 @@
           <!-- End Tag-Line Overlay -->
           <%= form_tag trips_path, :method => 'get', :class => 'hero_form' do %>
             <div class = "hero_form_left">  
-              <%= select_tag :place_dropdown_field, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params[:place]), :multiple => false, :class => "place_dropdown_field selectpicker" %>
+              <%= select_tag :place_dropdown_field, grouped_options_for_select(self.get_locations()), :multiple => false, :class => "place_dropdown_field selectpicker" %>
             </div>
               <%= hidden_field_tag "place_text_field", params[:place], :class => "hero-hidden-place-field" %>
             

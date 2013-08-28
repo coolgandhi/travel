@@ -677,4 +677,14 @@ module ApplicationHelper
     return color_class
   end
 
+  def get_locations
+    locations = Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq 
+    
+    grouped_options = locations.inject({}) do |options, locations|
+      (options[locations.country.nil? ? "" : locations.country] ||= []) << [locations.place + (locations.state.nil? ? ""  : ", "  + locations.state), locations.location_id]
+      options
+    end
+    
+    grouped_options
+  end
 end

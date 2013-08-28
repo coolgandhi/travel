@@ -54,7 +54,7 @@
   <% end %>
 
   <div id="trips_results_container">
-    <% if ((params["show_hero"] && params["show_hero"] == 'false') or (params[:featured] != "1" and params[:trip_location_id] != '0')) %>
+    <% if ((params["show_hero"] && params["show_hero"] == 'false'  and params[:trip_location_id] != '0') or (params[:featured] != "1" and params[:trip_location_id] != '0')) %>
       <%= render 'trips' %>
     <% else %>
       <%= render 'trips/partials/featured_trips' %>

@@ -16,7 +16,7 @@
         <ul class="nav pull-left hidden-phone">
           <li class="divider-vertical"></li>
           <li class="dropdown">
-              <%= select_tag :droptoggle_searchbar_id, options_from_collection_for_select(Location.find(:all, :limit => 1) + Location.joins(:trips).where('trips.share_status' => '1').uniq, "location_id", "location_label", params[:place]), :multiple => false, :class => "droptoggle_searchbar selectpicker" %>
+              <%= select_tag :droptoggle_searchbar_id, grouped_options_for_select(self.get_locations()), :multiple => false, :class => "droptoggle_searchbar selectpicker" %>
 
             <div class="dropdown-menu droptoggle_menu">
               <!-- Login form here -->
