@@ -9,6 +9,7 @@
       <%= render 'trips/partials/trip_div_add_trip' %>
     <% end %>
     <% @trips.each do |trip| %>
+      <% next if trip == "wxyz" %>
       <% if (params[:featured] == '1' or params[:trip_location_id] == '0') and trip.location_id != prev_location %>
       
         <% prev_location = trip.location_id %>

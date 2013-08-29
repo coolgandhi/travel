@@ -38,14 +38,20 @@ class TripsController < ApplicationController
       end
     end
     
-    @trips_per_page = (params[:per_page] && params[:per_page] != "")?params[:per_page].to_i : trips_per_page_default
-    page  = (params[:page])? params[:page].to_i : 1
-    @trips_per_page= (page <= 1) ? (@trips_per_page - 1) : @trips_per_page
-    offset = (page == 1)? 0: ((page - 1) * @trips_per_page) - 1
+    # this can be simplified later
+    page  = !params[:page].blank? ? params[:page].to_i : 1
+    @trips_per_page = !params[:per_page].blank? ? params[:per_page].to_i : trips_per_page_default
+    @trips_per_page = (page <= 1) ? (@trips_per_page - 1) : @trips_per_page
     @exact_match_count = @exact_match_count - (page - 1) * @trips_per_page
     
     if params[:featured] != '1' and params[:trip_location_id] != '0'
-      @trips = @trips.paginate(:page => (params[:page] && params[:page] != "")?params[:page] : "1", :per_page => @trips_per_page, :offset => offset)
+      offset = (page == 1) ? 0 : ((page - 1) * @trips_per_page) - 1
+      if !@trips.blank? and @trips.size % trips_per_page_default == 0
+        # reset the trips per page as we are adding a dummy trip here
+        @trips_per_page = trips_per_page_default 
+        @trips = @trips.unshift('wxyz')
+      end
+      @trips = @trips.paginate(:page => page != 1 ? params[:page] : "1", :per_page => @trips_per_page, :offset => offset)    
     end
     
     respond_to do |format|
