@@ -16,8 +16,7 @@
         <ul class="nav pull-left hidden-phone">
           <li class="divider-vertical"></li>
           <li class="dropdown">
-              <%= select_tag :droptoggle_searchbar_id, grouped_options_for_select(self.get_locations()), :multiple => false, :class => "droptoggle_searchbar selectpicker" %>
-
+            <%= select_tag :droptoggle_searchbar_id, grouped_options_for_select(self.get_locations()), :multiple => false, :include_blank => "blank", :class => "droptoggle_searchbar selectpicker2" %>
             <div class="dropdown-menu droptoggle_menu">
               <!-- Login form here -->
               <%= render 'trips/partials/nav_searchbar' %>

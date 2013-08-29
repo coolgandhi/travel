@@ -1,28 +1,25 @@
 ((trips_namespace, $, undefined_) ->
   #Toggles the dropdown on 'focus' of search bar
-  jQuery ->
+  #jQuery ->
     # $('.droptoggle_searchbar').click ->
     #   $('.droptoggle_menu').show()
       
-    $(".droptoggle_searchbar").on "select2-open", ->
-      $(".droptoggle_menu").show()
+    # $(".droptoggle_searchbar").on "select2-open", ->
+    #   $(".droptoggle_menu").show()
         
-    $('.dropdown-close-button').click ->
-  	  $('.droptoggle_menu').hide()
+    # $('.dropdown-close-button').click ->
+    #       $('.droptoggle_menu').hide()
 
-    $('.dropdown-search-button').on('submit', $('.droptoggle_menu').hide())  
+    # $('.dropdown-search-button').on('submit', $('.droptoggle_menu').hide())  
   
   # passing label and value of the dropdown search place field to hidden fields in dropdown form
   jQuery ->
     $('.droptoggle_searchbar').change ->
       if $('select.droptoggle_searchbar option:selected').text() != "Where would you like to go?"
         $('#search_submit_button').val("Chalo!")
-        $("#search_submit_button").removeClass("btn-flat-primary").addClass("btn-flat-warning")
-      else
-        $('#search_submit_button').val("Search Trips")
-        $("#search_submit_button").removeClass("btn-flat-warning").addClass("btn-flat-primary")
-      $('.dropdown_trip_location_id').val($('select.droptoggle_searchbar').val())
-      $('.drophide-place-field').val($('select.droptoggle_searchbar option:selected').text())
+        $('.dropdown_trip_location_id').val($('select.droptoggle_searchbar').val())
+        $('.drophide-place-field').val($('select.droptoggle_searchbar option:selected').text())
+        $('.dropdown-search-button').click()
   
   #Calling Multi-select
   $(document).ready ->
