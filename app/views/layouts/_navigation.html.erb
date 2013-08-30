@@ -10,28 +10,37 @@
         <%= image_tag("logos/chalo_right_alpha_96x35.png") %>
       <% end %>
       <%# link_to 'Chalo', root_url, :class=>"brand", :id =>"homepagelink"%>
-
-      <!-- The drop down menu -->
-      <% unless controller.action_name != "show" %>
-        <ul class="nav pull-left hidden-phone">
-          <li class="divider-vertical"></li>
-          <li class="dropdown">
-            <%= select_tag :droptoggle_searchbar_id, grouped_options_for_select(self.get_locations()), :multiple => false, :include_blank => "blank", :class => "droptoggle_searchbar selectpicker2" %>
-            <div class="dropdown-menu droptoggle_menu">
-              <!-- Login form here -->
-              <%= render 'trips/partials/nav_searchbar' %>
-            </div>
-
-          </li>
-        </ul>
-      <% end %>
+        <div class="nav-collapse collapse navbar-responsive-collapse nav_center_linked">        
+          <%= link_to 'Add A Trip', publish_new_trips_url(), :class => "btn-flat btn-flat-inverse nav_create_trip_button hidden-phone" %>
+          <% unless controller.action_name != "show" %>
+            <!-- The drop down menu -->
+              <%= select_tag :droptoggle_searchbar_id, grouped_options_for_select(self.get_locations()), :multiple => false, :include_blank => "blank", :class => "droptoggle_searchbar selectpicker2" %>
+              <div class="dropdown-menu droptoggle_menu">
+                <!-- Login form here -->
+                <%= render 'trips/partials/nav_searchbar' %>
+              </div>
+          <% end %>  
+        </div>
+      
       <!-- End drop down menu -->
-      <% unless author_info_signed_in? %>
-        <p class = "nav_center_linked hidden-phone"><%= link_to 'Why Sign Up?', why_path %></p>
-      <% end %>
+      
 
       <div class="nav-collapse collapse navbar-responsive-collapse">
         <ul class="nav pull-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              About
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <% unless author_info_signed_in? %>
+                <li class = "hidden-phone"><%= link_to 'Why Join?', why_path %></li>
+              <% end %>
+              <li> <%= link_to "Blog", "http://blog.chalo.io/", :class => "hidden-phone" %></li>
+              <li><%=link_to "About", about_path %></li>
+            </ul>
+          </li>
+          <li class="divider-vertical"></li>
           <% if author_info_signed_in? %>
             <li class="dropdown hidden-phone">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -45,14 +54,10 @@
                   <li> <%= link_to "Log Out", destroy_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes") ? "https": "http"), method: :delete %> </li>
                 </ul>
             </li>
-
           <% else %>
-              <li> <%= link_to "Sign Up", new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "hidden-phone" %> </li>
-              <li> <%= link_to "Log In", new_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "hidden-phone" %> </li>
+            <li> <%= link_to "Sign Up", new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "hidden-phone" %> </li>
+            <li> <%= link_to "Log In", new_author_info_session_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "hidden-phone" %> </li>
           <% end %>
-          <li><%=link_to "About", about_path %></li>
-          <li class="divider-vertical"></li>
-          <%= link_to 'Add A Trip', publish_new_trips_url(), :class => "btn-flat btn-flat-inverse nav_create_trip_button hidden-phone" %>
         </ul>
       </div>
     </div>

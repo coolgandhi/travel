@@ -11,7 +11,7 @@
     <div class = "floating_sign_up centerize">
       <p><strong>Join Chalo Today!</strong></p>
       <%= link_to 'Sign Up Now', new_author_info_registration_url(:protocol => (Rails.env.production?  and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"), :class => "btn-flat btn-flat-success wn_signup_button" %>
-      <p class = "smaller_text"><strong><%= link_to 'Why Sign Up?', why_path %></strong></p>
+      <p class = "smaller_text"><strong><%= link_to 'Why Join?', why_path %></strong></p>
     </div>
 
 
