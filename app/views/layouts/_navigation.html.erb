@@ -44,7 +44,7 @@
           <% if author_info_signed_in? %>
             <li class="dropdown hidden-phone">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Hi <%= current_author_info.author_name.nil? ? current_author_info.email : current_author_info.author_name %>
+                Hi <%= current_author_info.author_name.nil? ? current_author_info.email : self.first_name(current_author_info.author_name) %>
                 <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">

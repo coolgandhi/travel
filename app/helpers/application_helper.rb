@@ -687,4 +687,9 @@ module ApplicationHelper
     
     grouped_options
   end
+  
+  
+  def first_name(full_name)
+    full_name.split(" ")[0]
+  end
 end
