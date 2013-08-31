@@ -21,10 +21,8 @@
               </div>
           <% end %>  
         </div>
-      
       <!-- End drop down menu -->
       
-
       <div class="nav-collapse collapse navbar-responsive-collapse">
         <ul class="nav pull-right">
           <li class="dropdown">
@@ -36,7 +34,7 @@
               <% unless author_info_signed_in? %>
                 <li class = "hidden-phone"><%= link_to 'Why Join?', why_path %></li>
               <% end %>
-              <li> <%= link_to "Blog", "http://blog.chalo.io/", :class => "hidden-phone" %></li>
+              <li> <%= link_to "Blog", "http://blog.chalo.io/" %></li>
               <li><%=link_to "About", about_path %></li>
             </ul>
           </li>
