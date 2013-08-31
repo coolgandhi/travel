@@ -624,7 +624,10 @@ class TripsController < ApplicationController
       # @trip_message = "Publish Trip"
       @trip_publish = "publish_confirm_update"
               
-        
+      @trip.tags = ((params[:tag1].blank?) ? "" : params[:tag1] + ";") + 
+                   ((params[:tag2].blank?) ? "" : params[:tag2] + ";") +
+                   ((params[:tag3].blank?) ? "" : params[:tag3] + ";")
+                   
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Trip not found"
       redirect_to root_url()
