@@ -135,7 +135,7 @@
       max-width: 680px;
     }
   	.hero_form{
-      margin: 0 15%;
+      margin: 2% 15% 2% 12%;
       // width: 100%;
       padding: 5px;
       position: relative;
@@ -162,13 +162,17 @@
 
 .place_dropdown_field{
   margin-bottom: 0;
-  min-width: 220px;
+  min-width: 300px;
   @include respond-to(portrait){
     margin-bottom: 2%;
   }
   
   .select2-choice {
+    height: 38px !important;
+    line-height: 36px !important;
+    letter-spacing: 1px;
     .select2-arrow{
+      top: 5px !important;
       border-left: none !important;
       background: none !important;
     }
@@ -243,7 +247,8 @@
 }
 
 #search_submit_button{
-  height: 30px;
+  height: 40px;
+  font-size: 20px;
 }
 /* Results Searchbar */
 
