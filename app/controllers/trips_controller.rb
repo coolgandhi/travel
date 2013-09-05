@@ -405,11 +405,17 @@ class TripsController < ApplicationController
         send_alert = 0
         message = 'Trip was successfully added.'
         if self.is_system_created_account current_author_info.email
-          session[:return_to] ||= request.referer
+          session[:return_to] ||= publish_edit_trip_url(@trip)
           send_alert = 1
-          message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
+         # message = message + " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
+         message = "Please update your account email and password before continuing with creating your trip"
         end
-        send_alert == 0 ? format.html { redirect_to publish_edit_trip_url(@trip), {:notice => message.html_safe} } : format.html { redirect_to publish_edit_trip_url(@trip), :flash => {:error => message.html_safe} } 
+        
+        if self.is_system_created_account current_author_info.email
+          format.html { redirect_to edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http") ,  :flash => {:error => message} }
+        else
+          send_alert == 0 ? format.html { redirect_to publish_edit_trip_url(@trip), {:notice => message.html_safe} } : format.html { redirect_to publish_edit_trip_url(@trip), :flash => {:error => message.html_safe} } 
+        end
         format.json { render json: @trip, status: :created, location: @trip }
       else
         logger.info "#{@trip.errors.inspect}"
@@ -434,6 +440,11 @@ class TripsController < ApplicationController
       # @sorted_activities, @compressed_activities = sorted_trip_activities @trip
       
       split_tags = @trip.tags.blank? ? nil : @trip.tags.split(";")
+      
+      if self.is_system_created_account current_author_info.email
+        session[:return_to] = request.env['PATH_INFO'] || session[:return_to]
+      end
+      
       if (!split_tags.blank?)
         params[:tag1] = split_tags[0]
         params[:tag2] = split_tags[1]
