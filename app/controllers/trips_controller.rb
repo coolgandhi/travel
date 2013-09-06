@@ -613,7 +613,7 @@ class TripsController < ApplicationController
         params[:tag3] = split_tags[2]
       end
       if self.is_system_created_account current_author_info.email
-        session[:return_to] ||= request.referer
+        session[:return_to] = publish_confirm_trip_url(@trip) || session[:return_to]
         message = " #{view_context.link_to('Click here to update your email and password.', edit_author_info_registration_url(:protocol => (Rails.env.production? and CONFIG[:ENABLE_HTTPS] == "yes")  ? "https": "http"))}"
         flash[:error] = message.html_safe
       end
